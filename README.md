@@ -1,5 +1,4 @@
 # open-collection
 
-Personal collection (storage) of various scientific and educational open software data.
+Personal collection (storage) of various open scientific and educational software inputs and some data.
 
-Use it as you wich.

@@ -1,0 +1,140 @@
+#!/bin/bash
+
+#PBS -S /bin/bash
+#PBS -A UMB-ITMS-26110230082
+#PBS -N DaltonTests
+### Declare myprogram non-rerunable
+#PBS -r n
+
+#PBS -l nodes=1:ppn=12:old
+
+#PBS -l walltime=5:00:00
+#PBS -l mem=47g
+#PBS -j oe
+
+#PBS -q batch
+##PBS -q debug
+
+#PBS -M Miroslav.Ilias@umb.sk
+
+echo "Working host is: "; hostname -f
+source /mnt/apps/intel/bin/compilervars.sh intel64
+#source /mnt/apps/pgi/environment.sh
+
+# libnumma for PGI
+#export LD_LIBRARY_PATH=/home/milias/bin/lib64_libnuma:$LD_LIBRARY_PATH
+
+echo "My PATH=$PATH"
+echo "Running on host `hostname`"
+echo "Time is `date`"
+echo "Directory is `pwd`"
+echo "This jobs runs on the following processors:"
+echo `cat $PBS_NODEFILE`
+
+UNIQUE_NODES="`cat $PBS_NODEFILE | sort | uniq`"
+UNIQUE_NODES="`echo $UNIQUE_NODES | sed s/\ /,/g `"
+echo "Unique nodes for parallel run:  $UNIQUE_NODES"
+
+# Extract number of processors
+NPROCS_PBS=`wc -l < $PBS_NODEFILE`
+NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
+echo "This node has $NPROCS CPUs."
+echo "This node has $NPROCS_PBS CPUs allocated for PBS calculations."
+
+#echo "PBS_SERVER=$PBS_SERVER"
+echo "PBS_NODEFILE=$PBS_NODEFILE"
+echo "PBS_O_QUEUE=$PBS_O_QUEUE"
+echo "PBS_O_WORKDIR=$PBS_O_WORKDIR"
+#
+
+#export MKL_NUM_THREADS=$NPROCS
+#echo "MKL_NUM_THREADS=$MKL_NUM_THREADS"
+#export MKL_DOMAIN_NUM_THREADS="MKL_BLAS=$NPROCS"
+export OMP_NUM_THREADS=1
+export MKL_DYNAMIC="FALSE"
+export OMP_DYNAMIC="FALSE"
+
+# provide OpenMPI-Intel - local installation for DIRAC
+#export PATH=/home/milias/bin/openmpi-2.1.1-intel14/bin:$PATH
+#export LD_LIBRARY_PATH=/home/milias/bin/openmpi-2.1.1-intel14/lib:$LD_LIBRARY_PATH
+
+#DIRAC=/home/milias/Work/qch/software/dirac/production_trunk
+DALTON=/home/milias/Work/qch/software/dalton/
+BUILD=build_intel14-i8-mkl
+
+#BUILD_MPI1=$DIRAC/build_ompi_intelmkl_i8
+#BUILD_MPI1=$DIRAC/build_openmpi-1.8.4_intel14_mkl_i8_xh
+#BUILD_MPI1=$DIRAC/build_openmpi-2.1.1_intel14_mkl_i8_xh
+#PAM_MPI1=$BUILD_MPI1/pam
+
+#BUILD_MPI2=$DIRAC/build_openmpi-2.1.1_intel14_openblas_i8_xh
+#export LD_LIBRARY_PATH=/home/milias/bin/openblas/OpenBLAS:$LD_LIBRARY_PATH
+#PAM_MPI2=$BUILD_MPI2/pam
+
+echo -e "\nPython -V \c"; python -V
+echo -e "mpf90 ? \c"; which mpif90; mpif90 --version
+echo -e "mpirun ? \c"; which mpirun; mpirun --version
+
+#$echo -e "\n The $BUILD_MPI1/dirac.x attributes:"
+#ls -lt $BUILD_MPI1/dirac.x
+#ldd $BUILD_MPI1/dirac.x
+
+#  set your test case
+#INP=$DIRAC/test/benchmark_cc_linear/cc.inp
+#MOL=$DIRAC/test/benchmark_cc_linear/N2.ccpVQZ.mol
+#INP=$DIRAC/test/benchmark_cc/cc.inp
+#MOL=$DIRAC/test/benchmark_cc/C2H4Cl2_sta_c2h.mol
+#INP=$DIRAC/test/cc_linear/cc.inp
+#MOL=$DIRAC/test/cc_linear/N2.ccpVDZ.mol
+
+# set local scratch directory for your runs 
+export DIRAC_TMPDIR=/mnt/local/$USER/$PBS_JOBID
+echo -e "\n Local scratch directory, DIRAC_TMPDIR=$DIRAC_TMPDIR \c"; df -h /mnt/local/$USER/
+
+#  set BASIS directory for your runs - pam needs to see it
+#export BASDIR_PATH="$DIRAC/basis:$DIRAC/basis_dalton:$DIRAC/basis_ecp"
+
+#  MPI command
+#export DIRAC_MPI_COMMAND="mpirun -H ${UNIQUE_NODES} -npernode 1 -x MKL_NUM_THREADS"
+#export DIRAC_MPI_COMMAND="mpirun -H ${UNIQUE_NODES} -npernode 1"
+
+# secure maximum time for running Dirac job (for pam)
+#export DIRTIMEOUT="1h"
+#export DIRTIMEOUT="20m"
+
+cd $PBS_O_WORKDIR
+
+#----------------------------------------------------------
+#   Main cycle over OpenMPI-OpenMP number of tasks/threads
+#----------------------------------------------------------
+  # set MKL envirovariables
+  unset MKL_NUM_THREADS
+  #export MKL_NUM_THREADS=$nmkl
+  export MKL_NUM_THREADS=1
+  echo -e "\nUpdated MKL_NUM_THREADS=$MKL_NUM_THREADS"
+  echo -e "MKL_DYNAMIC=$MKL_DYNAMIC"
+  echo -e "OMP_NUM_THREADS=$OMP_NUM_THREADS"
+  echo -e "OMP_DYNAMIC=$OMP_DYNAMIC"
+  
+# send MKL enviro-variables to nodes
+#PBS -v MKL_NUM_THREADS
+#PBS -v MKL_DYNAMIC
+#PBS -v OMP_NUM_THREADS
+#PBS -v OMP_DYNAMIC
+
+# Passing your whole environment
+#PBS -V
+
+  #unset DIRAC_MPI_COMMAND
+  #export DIRAC_MPI_COMMAND="mpirun -np ${np}"
+
+  echo -e "OpenMPI which mpirun ? \c"; which mpirun
+
+  #miro: try memory set up...
+ # $PAM_MPI1 --mpi=2 --noarch --gb=3.5 --ag=23   --inp=$INP  --mol=$MOL --suffix=out_mkl_2mpi
+ # $PAM_MPI2 --mpi=2 --noarch --gb=3.5 --ag=23   --inp=$INP  --mol=$MOL --suffix=out_ob_2mpi
+
+  #$PAM_MPI1 --mpi=2 --noarch --gb=2.00 --ag=2.50   --inp=cc.inp  --mol=N2.ccpVDZ.mol --suffix=out_mkl_2mpi
+  #$PAM_MPI2 --mpi=2 --noarch --gb=2.00 --ag=2.50    --inp=cc.inp  --mol=N2.ccpVDZ.mol --suffix=out_ob_2mpi
+
+exit 0

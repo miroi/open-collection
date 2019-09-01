@@ -5,7 +5,7 @@
 #
 # Launched as:
 # ~~~~~~~~~~~~
-# nohup lxir_run_gsi.01 &> log.lxir_run_gsi.01.std_err_out &
+# nohup labs-fpv-umb-sk_run-bash.01 &> log.labs-fpv-umb-sk_run-bash.01.std_err_out &
 #
 
 echo -e "\nRunning on host `hostname -f`"
@@ -13,7 +13,7 @@ echo Time is `date`
 echo Directory is `pwd`
 
 NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
-echo -e "\nThis node has $NPROCS CPUs."
+echo -e "\nThis computer has $NPROCS CPUs."
 
 #export MKL_NUM_THREADS=$NPROCS
 #echo "Internal MKL library parallelization with MKL_NUM_THREADS=$MKL_NUM_THREADS"
@@ -23,7 +23,7 @@ echo -e "\nThis node has $NPROCS CPUs."
 #export OMP_DYNAMIC="FALSE"
 
 echo -e "\nWorking server `hostname -f` memory status:"
-free -m -t -h
+free -g -t -h
 
 #echo -e "\n Loaded Modules"
 #module list
@@ -32,7 +32,8 @@ export DALTON_TMPDIR=/tmp # working directory
 
 DALTON=/home/milias/work/qch_software/dalton/build_gnu/dalton
 
-$DALTON dft_b3lyp  H2O
+$DALTON -noarch dft_b3lyp H2O
+$DALTON -noarch dft_bp86 H2O
 
 
 exit 0

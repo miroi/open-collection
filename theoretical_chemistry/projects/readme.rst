@@ -17,3 +17,7 @@ https://www.shd.org.rs/JSCS/Vol77/No3/09_4952_4275.pdf
 
 A simple approach for determining detonation velocity of high explosive at any loading density
 https://www.sciencedirect.com/science/article/pii/S0304389405000658
+
+
+Theoretical Evaluation of Sensitivity and Thermal Stabilityfor High Explosives Based on Quantum ChemistryMethods: A Brief Review
+https://onlinelibrary.wiley.com/doi/epdf/10.1002/qua.24209

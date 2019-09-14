@@ -72,7 +72,8 @@ export LD_LIBRARY_PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel
 
 DALTON=/home/milias/Work/qch/software/dalton_suite/dalton_master
 #BUILD=build_intel14-i8-mkl
-BUILD=build_intelmklpar_openmpi_i8
+#BUILD=build_intelmklpar_openmpi_i8
+BUILD=build_intelmklpar_openmpi
 
 #BUILD_MPI1=$DIRAC/build_openmpi-2.1.1_intel14_mkl_i8_xh
 #PAM_MPI1=$BUILD_MPI1/pam
@@ -120,6 +121,6 @@ cd $PBS_O_WORKDIR
   # $DALTON/$BUILD/dalton -omp $NPROCS_PBS  sarin_nmr
 
 # this is parallel run 
-   $DALTON/$BUILD/dalton -N $NPROCS_PBS  -noarch dft_bp86
+   $DALTON/$BUILD/dalton -N $NPROCS_PBS  -noarch dft_bp86 H2O
 
 exit 0

@@ -1,3 +1,4 @@
+=============================
 udocker on @login.grid.umb.sk
 =============================
 
@@ -35,4 +36,38 @@ FATAL: kernel too old
 
 milias@comp03:~/Work/open-collection/computer_science/containers/umb_sk/grid_umb_sk/udocker/.udocker run mirotini bash
 FATAL: kernel too old
+
+Scientific Linux 6 Image
+========================
+See https://hub.docker.com/_/sl?tab=tags
+
+udocker pull sl # downloads the latest SL
+
+udocker pull sl:6 # downloads SL 6
+
+Create container upon SL:latest
+-------------------------------
+milias@login.grid.umb.sk:~/Work/open-collection/computer_science/containers/umb_sk/grid_umb_sk/udocker/.udocker create --name=mirosl sl:latest
+55ca64ba-da26-31af-ae20-cca0a8b0a3bd
+
+milias@login.grid.umb.sk:~/Work/open-collection/computer_science/containers/umb_sk/grid_umb_sk/udocker/.udocker ps
+ONTAINER ID                         P M NAMES              IMAGE
+55ca64ba-da26-31af-ae20-cca0a8b0a3bd . W ['mirosl']         sl:latest  # my image 
+
+milias@login.grid.umb.sk:~/Work/open-collection/computer_science/containers/umb_sk/grid_umb_sk/udocker/.udocker run mirosl bash
+ *               STARTING 55ca64ba-da26-31af-ae20-cca0a8b0a3bd                * 
+ executing: bash
+55ca64ba# whoami # <---- root
+yum install vim # install package  with all dependencies !
+
+milias@login.grid.umb.sk:~/Work/open-collection/computer_science/containers/umb_sk/grid_umb_sk/udocker/.udocker run --user=gridumbuser  mirosl bash
+Warning: non-existing user will be created
+ *               STARTING 55ca64ba-da26-31af-ae20-cca0a8b0a3bd                * 
+ executing: bash
+55ca64ba$ whoami
+gridumbuser
+
+SL:last has the same packages as cluster kernel, no need to use containers !!!
+------------------------------------------------------------------------------
+
 

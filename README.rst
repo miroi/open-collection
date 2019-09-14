@@ -2,22 +2,12 @@ Open science data collection
 ============================
 
 Personal collection (storage) of various scientific and 
-educational open-software data inputs and some output excerpts.
+educational data inputs and some output excerpts.
 
-Contains areas of theoretical chemistry, air pollution modeling, 3D computer modeling.
+My areas of interest are theoretical chemistry, air pollution modeling and computer science. Used mainly for teaching purposes.
 
-Theoretical Chemistry
----------------------
-Dirac, Dalton
+Each subdirectory contains own description file.
 
-Air Pollution Modeling
-----------------------
-
-CAMx
-
-3D Computer Modeling
----------------------
-Blender
 
 
 

@@ -2,7 +2,7 @@
 
 #PBS -S /bin/bash
 #PBS -A UMB-ITMS-26110230082
-#PBS -N DalTest
+#PBS -N DalT12
 
 ### Declare myprogram non-rerunable
 #PBS -r n
@@ -94,14 +94,15 @@ export DALTON_TMPDIR=/mnt/local/$USER/$PBS_JOBID
 echo -e "\n Local scratch directory, DALTON_TMPDIR=$DALTON_TMPDIR";
 echo -e "Size of local scratch dir, df -h /mnt/local/$USER/:"; df -h /mnt/local/$USER
 
-export DALTON_LAUNCHER="mpirun -np 3"
+#export DALTON_LAUNCHER="mpirun -np 3"
+export DALTON_LAUNCHER="mpirun -np $NPROCS_PBS"
 echo -e "\nDALTON parallel run with DALTON_LAUNCHER=$DALTON_LAUNCHER"
 
 #cd $PBS_O_WORKDIR
 
  cd $DALTON/$BUILD
- echo -e "\n Running 'ctest -j4 ' in $DALTON/$BUILD"
+ echo -e "\n Running 'ctest -VV -L short ' in $DALTON/$BUILD"
  echo -e "Control pwd=\c";pwd
- ctest -VV -j4
+ ctest -VV -L short
 
 exit 0

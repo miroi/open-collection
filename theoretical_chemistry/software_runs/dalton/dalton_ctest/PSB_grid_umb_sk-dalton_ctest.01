@@ -22,34 +22,38 @@
 
 #PBS -M Miroslav.Ilias@umb.sk
 
-echo -e "\n Working host is: "; hostname -f
+echo -e "\nWorking host is: \c"; hostname -f
 
 # Intel 2013 compilers
 source /mnt/apps/intel/bin/compilervars.sh intel64
 # Intel MKL 2013 math library
 source /mnt/apps/intel/composer_xe_2013_sp1.1.106/mkl/bin/mklvars.sh intel64
-echo -e "\n Intel Fortran/C/C++ commercial compilers 2013 with MKL library 2013 activated, PROD_DIR=$PROD_DIR, MKLROOT=$MKLROOT."
+echo -e "\n Intel Fortran/C/C++ commercial compilers 2013 with MKL library 2013 activated, PROD_DIR=$PROD_DIR, MKLROOT=$MKLROOT.\n"
 
-#source /mnt/apps/pgi/environment.sh
-# libnumma for PGI
-#export LD_LIBRARY_PATH=/home/milias/bin/lib64_libnuma:$LD_LIBRARY_PATH
+source /mnt/apps/pgi/environment.sh
+export LD_LIBRARY_PATH=/home/milias/bin/lib64_libnuma:$LD_LIBRARY_PATH  # libnumma for PGI
 
-echo "My PATH=$PATH"
-echo "Running on host `hostname`"
-echo "Time is `date`"
-echo "Directory is `pwd`"
-echo "This jobs runs on the following processors:"
+# provide OpenMPI-Intel - local installation for DIRAC
+export PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/bin:$PATH
+export LD_LIBRARY_PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib:$LD_LIBRARY_PATH
+
+echo -e "\n My PATH=$PATH"
+echo -e "My LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
+echo -e "Running on host `hostname`"
+echo -e "Date & Time is `date`"
+echo -e "Current directory is, pwd= `pwd`"
+echo -e "This jobs runs on the following processors: \c "
 echo `cat $PBS_NODEFILE`
 
 UNIQUE_NODES="`cat $PBS_NODEFILE | sort | uniq`"
 UNIQUE_NODES="`echo $UNIQUE_NODES | sed s/\ /,/g `"
-echo "Unique nodes for parallel run:  $UNIQUE_NODES"
+echo -e "\nUnique nodes for parallel run:  $UNIQUE_NODES"
 
 # Extract number of processors
 NPROCS_PBS=`wc -l < $PBS_NODEFILE`
 NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
-echo "This node has $NPROCS CPUs."
-echo "This node has $NPROCS_PBS CPUs allocated for PBS calculations."
+echo -e "This node has $NPROCS CPUs."
+echo -e "This node has $NPROCS_PBS CPUs allocated for PBS calculations."
 
 #echo "PBS_SERVER=$PBS_SERVER"
 echo "PBS_NODEFILE=$PBS_NODEFILE"
@@ -60,21 +64,26 @@ echo "PBS_O_WORKDIR=$PBS_O_WORKDIR"
 #export MKL_NUM_THREADS=$NPROCS
 #echo "MKL_NUM_THREADS=$MKL_NUM_THREADS"
 #export MKL_DOMAIN_NUM_THREADS="MKL_BLAS=$NPROCS"
+
 export OMP_NUM_THREADS=1
 export MKL_DYNAMIC="FALSE"
 export OMP_DYNAMIC="FALSE"
-
-# provide OpenMPI-Intel - local installation for DIRAC
-#export PATH=/home/milias/bin/openmpi-2.1.1-intel14/bin:$PATH
-#export LD_LIBRARY_PATH=/home/milias/bin/openmpi-2.1.1-intel14/lib:$LD_LIBRARY_PATH
+# set MKL envirovariables
+unset MKL_NUM_THREADS
+export MKL_NUM_THREADS=1
+echo -e "\nUpdated MKL_NUM_THREADS=$MKL_NUM_THREADS"
+echo -e "MKL_DYNAMIC=$MKL_DYNAMIC"
+echo -e "OMP_NUM_THREADS=$OMP_NUM_THREADS"
+echo -e "OMP_DYNAMIC=$OMP_DYNAMIC"
 
 DALTON=/home/milias/Work/qch/software/dalton_suite/dalton_master
 BUILD=build_intelmklpar_openmpi
-echo -e "Linked libraries,  ldd $DALTON/$BUILD/dalton.x:"
+echo -e "\nDalton executable linked libraries, ldd $DALTON/$BUILD/dalton.x:"
 ldd $DALTON/$BUILD/dalton.x
 
 echo -e "\nPython -V \c"; python -V
-echo -e "mpf90 ? \c"; which mpif90; mpif90 --version
+echo -e "mpif90 ? \c"; which mpif90; mpif90 --version
+echo -e "mpicc ? \c"; which mpicc; mpicc --version
 echo -e "mpirun ? \c"; which mpirun; mpirun --version
 
 # set local scratch directory for your runs 
@@ -84,8 +93,6 @@ echo -e "\n Local scratch directory, DALTON_TMPDIR=$DALTON_TMPDIR \c"; df -h /mn
 export DALTON_NUM_MPI_PROCS=$NPROCS_PBS 
 echo -e "DALTON parallel run on DALTON_NUM_MPI_PROCS=$DALTON_NUM_MPI_PROCS CPUs"
 
-cd $PBS_O_WORKDIR
-
   # set MKL envirovariables
   unset MKL_NUM_THREADS
   #export MKL_NUM_THREADS=$nmkl
@@ -94,16 +101,12 @@ cd $PBS_O_WORKDIR
   echo -e "MKL_DYNAMIC=$MKL_DYNAMIC"
   echo -e "OMP_NUM_THREADS=$OMP_NUM_THREADS"
   echo -e "OMP_DYNAMIC=$OMP_DYNAMIC"
-  
-# send MKL enviro-variables to nodes
-#PBS -v MKL_NUM_THREADS
-#PBS -v MKL_DYNAMIC
-#PBS -v OMP_NUM_THREADS
-#PBS -v OMP_DYNAMIC
-# Passing your whole environment
-#PBS -V
 
- echo -e "\n Running $DALTON/$BUILD/ctest -L short"
- $DALTON/$BUILD/ctest -L short
+#cd $PBS_O_WORKDIR
+ echo -e  "ctest ? \c";which ctest;ctest --version
+
+ cd $DALTON/$BUILD
+ echo -e "\n Running ctest in $DALTON/$BUILD"
+ ctest -L short
 
 exit 0

@@ -7,13 +7,13 @@
 #PBS -r n
 
 ##PBS -l nodes=1:ppn=12:old
-#PBS -l nodes=1:ppn=4
+#PBS -l nodes=1:ppn=6
 
 #PBS -l walltime=2:00:00
 
 ##PBS -l mem=47g
 ##PBS -l mem=32g
-#PBS -l mem=12g  # 4x3gb=12gb
+#PBS -l mem=12g  # 6x2gb=12gb
 
 #PBS -j oe
 
@@ -100,13 +100,13 @@ echo -e "Size of scratch dir; df -h /mnt/local/$USER/ :\c";df -h /mnt/local/$USE
 
 #export DALTON_NUM_MPI_PROCS=$NPROCS_PBS 
 export DALTON_LAUNCHER="mpirun -np $NPROCS_PBS"
-echo -e "DALTON parallel run with DALTON_LAUNCHER=$DALTON_LAUNCHER"
+echo -e "\n***  DALTON parallel run with DALTON_LAUNCHER=$DALTON_LAUNCHER ***"
 
 cd $DALTON/$BUILD
 echo -e "\n I am in $DALTON/$BUILD for ctest "
 echo -e "Checked with pwd=\c";pwd
-echo -e "Running ctest -VV -R shield_spin.dal"
-ctest -VV -R shield_spin.dal
+echo -e "Running ctest -VV -R pcm_shield_spin"
+ctest -VV -R pcm_shield_spin
 
 cd $PBS_O_WORKDIR
 echo -e "\n Now I am in PBS_O_WORKDIR=$PBS_O_WORKDIR "

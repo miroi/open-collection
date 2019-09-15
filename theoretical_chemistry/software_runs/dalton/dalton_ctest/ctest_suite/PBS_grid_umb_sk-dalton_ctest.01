@@ -7,13 +7,13 @@
 #PBS -r n
 
 ##PBS -l nodes=1:ppn=12:old
-#PBS -l nodes=1:ppn=8
+#PBS -l nodes=1:ppn=4
 
 #PBS -l walltime=5:00:00
 
 ##PBS -l mem=47g
 ##PBS -l mem=32g
-#PBS -l mem=16g  # 8x2gb=16gb
+#PBS -l mem=8g  # 4x2gb=8gb
 
 #PBS -j oe
 
@@ -85,21 +85,23 @@ ldd $DALTON/$BUILD/dalton.x
 echo -e "\nPython -V \c"; python -V
 echo -e "mpif90 ? \c"; which mpif90; mpif90 --version
 echo -e "mpicc ? \c"; which mpicc; mpicc --version
+echo -e "mpicxx ? \c"; which mpicxx; mpicxx --version
 echo -e "mpirun ? \c"; which mpirun; mpirun --version
+echo -e  "ctest ? \c";which ctest;ctest --version
 
 # set local scratch directory for your runs 
 export DALTON_TMPDIR=/mnt/local/$USER/$PBS_JOBID
-echo -e "\n Local scratch directory, DALTON_TMPDIR=$DALTON_TMPDIR \c"; df -h /mnt/local/$USER/
+echo -e "\n Local scratch directory, DALTON_TMPDIR=$DALTON_TMPDIR"
+echo -e "Space on this local scratch:"; df -h /mnt/local/$USER/
 
-export DALTON_NUM_MPI_PROCS=$NPROCS_PBS 
-echo -e "DALTON parallel run on DALTON_NUM_MPI_PROCS=$DALTON_NUM_MPI_PROCS CPUs"
+export DALTON_LAUNCHER="mpirun -np $NPROCS_PBS"
+echo -e "DALTON parallel run with DALTON_LAUNCHER=$DALTON_LAUNCHER"
 
 # set MKL envirovariables
 unset MKL_NUM_THREADS
 export MKL_NUM_THREADS=1
 
 #cd $PBS_O_WORKDIR
- echo -e  "ctest ? \c";which ctest;ctest --version
 
  cd $DALTON/$BUILD
  echo -e "\n Running ctest in $DALTON/$BUILD"

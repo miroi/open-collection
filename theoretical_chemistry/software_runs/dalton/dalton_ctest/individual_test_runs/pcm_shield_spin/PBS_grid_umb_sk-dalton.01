@@ -28,7 +28,7 @@ echo -e "\nWorking host is: \c"; hostname -f
 source /mnt/apps/intel/bin/compilervars.sh intel64
 # Intel MKL 2013 math library
 source /mnt/apps/intel/composer_xe_2013_sp1.1.106/mkl/bin/mklvars.sh intel64
-echo -e "\n Intel Fortran/C/C++ commercial compilers 14.0.1 with MKL library 11.1.1 activated, PROD_DIR=$PROD_DIR, MKLROOT=$MKLROOT.\n"
+echo -e "\n Intel Fortran/C/C++ commercial compilers 14.0.1 with MKL library 11.1.1 activated, PROD_DIR=$PROD_DIR, MKLROOT=$MKLROOT .\n"
 
 source /mnt/apps/pgi/environment.sh
 export LD_LIBRARY_PATH=/home/milias/bin/lib64_libnuma:$LD_LIBRARY_PATH  # libnumma for PGI
@@ -38,7 +38,7 @@ export PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g+
 export LD_LIBRARY_PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib:$LD_LIBRARY_PATH
 echo -e "\nActivated  /home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++ OpenMPI-Intel-g++ environ.variables"
 
-echo -e "\n My PATH=$PATH"
+echo -e "\nMy PATH=$PATH"
 echo -e "My LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
 echo -e "Running on host `hostname`"
 echo -e "Date & Time is `date`"
@@ -95,21 +95,21 @@ echo -e "g++ ? \c"; which g++; g++ --version
 
 # set local scratch directory for your runs 
 export DALTON_TMPDIR=/mnt/local/$USER/$PBS_JOBID
-echo -e "\n Local scratch directory, DALTON_TMPDIR=$DALTON_TMPDIR "
-echo -e "Size of scratch dir; df -h /mnt/local/$USER/ :\c";df -h /mnt/local/$USER/
+echo -e "\nLocal scratch directory, DALTON_TMPDIR=$DALTON_TMPDIR "
+echo -e "Size of scratch dir; df -h /mnt/local/$USER/ :"; df -h /mnt/local/$USER/
 
 #export DALTON_NUM_MPI_PROCS=$NPROCS_PBS 
 export DALTON_LAUNCHER="mpirun -np $NPROCS_PBS"
 echo -e "\n***  DALTON parallel run with DALTON_LAUNCHER=$DALTON_LAUNCHER ***"
 
 cd $DALTON/$BUILD
-echo -e "\n I am in $DALTON/$BUILD for ctest "
+echo -e "\nI am in $DALTON/$BUILD for ctest "
 echo -e "Checked with pwd=\c";pwd
 echo -e "Running ctest -VV -R pcm_shield_spin"
 ctest -VV -R pcm_shield_spin
 
 cd $PBS_O_WORKDIR
-echo -e "\n Now I am in PBS_O_WORKDIR=$PBS_O_WORKDIR "
+echo -e "\nNow I am in PBS_O_WORKDIR=$PBS_O_WORKDIR "
 echo -e "Checked with pwd=\c";pwd
 
 echo -e "\n Running $DALTON/DALTON/test/pcm_shield_spin:"

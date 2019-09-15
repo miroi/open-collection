@@ -97,13 +97,14 @@ export DALTON_TMPDIR=/mnt/local/$USER/$PBS_JOBID
 echo -e "\n Local scratch directory, DALTON_TMPDIR=$DALTON_TMPDIR "
 echo -e "Size of scratch dir; df -h /mnt/local/$USER/ :\c";df -h /mnt/local/$USER/
 
-export DALTON_NUM_MPI_PROCS=$NPROCS_PBS 
-echo -e "DALTON parallel run on DALTON_NUM_MPI_PROCS=$DALTON_NUM_MPI_PROCS CPUs"
+#export DALTON_NUM_MPI_PROCS=$NPROCS_PBS 
+export DALTON_LAUNCHER="mpirun -np $NPROCS_PBS"
+echo -e "DALTON parallel run with DALTON_LAUNCHER=$DALTON_LAUNCHER"
 
 cd $PBS_O_WORKDIR
 echo -e "\n I am in PBS_O_WORKDIR=$PBS_O_WORKDIR ; pwd=\c";pwd
 
 echo -e "\n Running $DALTON/DALTON/test/dft_b3lyp_sym:"
-$DALTON/$BUILD/dalton -noarch $DALTON/DALTON/test/dft_b3lyp_sym/dft_b3lyp_sym  $DALTON/DALTON/test/dft_b3lyp_sym/H2O_intgrl
+$DALTON/$BUILD/dalton  -noarch  $DALTON/DALTON/test/dft_b3lyp_sym/dft_b3lyp_sym   $DALTON/DALTON/test/dft_b3lyp_sym/H2O_intgrl
 
 exit 0

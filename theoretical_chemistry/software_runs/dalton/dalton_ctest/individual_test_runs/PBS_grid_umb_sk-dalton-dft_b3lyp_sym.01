@@ -105,6 +105,9 @@ cd $PBS_O_WORKDIR
 echo -e "\n I am in PBS_O_WORKDIR=$PBS_O_WORKDIR ; pwd=\c";pwd
 
 echo -e "\n Running $DALTON/DALTON/test/dft_b3lyp_sym:"
-$DALTON/$BUILD/dalton  -noarch  $DALTON/DALTON/test/dft_b3lyp_sym/dft_b3lyp_sym   $DALTON/DALTON/test/dft_b3lyp_sym/H2O_intgrl
+#$DALTON/$BUILD/dalton  -noarch  $DALTON/DALTON/test/dft_b3lyp_sym/dft_b3lyp_sym   $DALTON/DALTON/test/dft_b3lyp_sym/H2O_intgrl
+cp $DALTON/DALTON/test/dft_b3lyp_sym/dft_b3lyp_sym  $PBS_O_WORKDIR/.
+cp $DALTON/DALTON/test/dft_b3lyp_sym/H2O_intgrl  $PBS_O_WORKDIR/.
+$DALTON/$BUILD/dalton  -noarch  dft_b3lyp_sym/dft_b3lyp_sym   dft_b3lyp_sym/H2O_intgrl
 
 exit 0

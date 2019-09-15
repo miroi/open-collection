@@ -101,13 +101,21 @@ echo -e "Size of scratch dir; df -h /mnt/local/$USER/ :\c";df -h /mnt/local/$USE
 export DALTON_LAUNCHER="mpirun -np $NPROCS_PBS"
 echo -e "DALTON parallel run with DALTON_LAUNCHER=$DALTON_LAUNCHER"
 
+cd $DALTON/$BUILD
+echo -e "\n I am in $DALTON/$BUILD for ctest "
+echo -e "Running ctest -VV -R dft_b3lyp_sym"
+ctest -VV -R dft_b3lyp_sym
+
 cd $PBS_O_WORKDIR
-echo -e "\n I am in PBS_O_WORKDIR=$PBS_O_WORKDIR ; pwd=\c";pwd
+echo -e "\n Now I am in PBS_O_WORKDIR=$PBS_O_WORKDIR ; pwd=\c";pwd
 
 echo -e "\n Running $DALTON/DALTON/test/dft_b3lyp_sym:"
-#$DALTON/$BUILD/dalton  -noarch  $DALTON/DALTON/test/dft_b3lyp_sym/dft_b3lyp_sym   $DALTON/DALTON/test/dft_b3lyp_sym/H2O_intgrl
-cp $DALTON/DALTON/test/dft_b3lyp_sym/dft_b3lyp_sym  $PBS_O_WORKDIR/.
-cp $DALTON/DALTON/test/dft_b3lyp_sym/H2O_intgrl  $PBS_O_WORKDIR/.
-$DALTON/$BUILD/dalton  -noarch  dft_b3lyp_sym/dft_b3lyp_sym   dft_b3lyp_sym/H2O_intgrl
+#$DALTON/$BUILD/dalton  -noarch  $DALTON/DALTON/test/dft_b3lyp_sym/dft_b3lyp_sym.dal   $DALTON/DALTON/test/dft_b3lyp_sym/H2O_intgrl.mol # does not work
+
+ln -sf  $DALTON/DALTON/test/dft_b3lyp_sym/dft_b3lyp_sym.dal  $PBS_O_WORKDIR/.
+ln -sf  $DALTON/DALTON/test/dft_b3lyp_sym/H2O_intgrl.mol  $PBS_O_WORKDIR/.
+$DALTON/$BUILD/dalton  -noarch  dft_b3lyp_sym  H2O_intgrl
+/bin/rm dft_b3lyp_sym.dal
+/bin/rm H2O_intgrl.mol
 
 exit 0

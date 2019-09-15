@@ -7,13 +7,13 @@
 #PBS -r n
 
 ##PBS -l nodes=1:ppn=12:old
-#PBS -l nodes=1:ppn=4
+#PBS -l nodes=1:ppn=8
 
 #PBS -l walltime=5:00:00
 
 ##PBS -l mem=47g
 ##PBS -l mem=32g
-#PBS -l mem=12g  # 4x3gb=12gb
+#PBS -l mem=16g  # 8x2gb=16gb
 
 #PBS -j oe
 
@@ -30,12 +30,13 @@ source /mnt/apps/intel/bin/compilervars.sh intel64
 source /mnt/apps/intel/composer_xe_2013_sp1.1.106/mkl/bin/mklvars.sh intel64
 echo -e "\n Intel Fortran/C/C++ commercial compilers 2013 with MKL library 2013 activated, PROD_DIR=$PROD_DIR, MKLROOT=$MKLROOT.\n"
 
-source /mnt/apps/pgi/environment.sh
-export LD_LIBRARY_PATH=/home/milias/bin/lib64_libnuma:$LD_LIBRARY_PATH  # libnumma for PGI
+#source /mnt/apps/pgi/environment.sh
+#export LD_LIBRARY_PATH=/home/milias/bin/lib64_libnuma:$LD_LIBRARY_PATH  # libnumma for PGI
 
 # provide OpenMPI-Intel - local installation for DIRAC
 export PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/bin:$PATH
 export LD_LIBRARY_PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib:$LD_LIBRARY_PATH
+echo -e  "\n PATH,LD_LIBRARY_PATH updated for OpenMPI:/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++"
 
 echo -e "\n My PATH=$PATH"
 echo -e "My LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
@@ -93,14 +94,9 @@ echo -e "\n Local scratch directory, DALTON_TMPDIR=$DALTON_TMPDIR \c"; df -h /mn
 export DALTON_NUM_MPI_PROCS=$NPROCS_PBS 
 echo -e "DALTON parallel run on DALTON_NUM_MPI_PROCS=$DALTON_NUM_MPI_PROCS CPUs"
 
-  # set MKL envirovariables
-  unset MKL_NUM_THREADS
-  #export MKL_NUM_THREADS=$nmkl
-  export MKL_NUM_THREADS=1
-  echo -e "\nUpdated MKL_NUM_THREADS=$MKL_NUM_THREADS"
-  echo -e "MKL_DYNAMIC=$MKL_DYNAMIC"
-  echo -e "OMP_NUM_THREADS=$OMP_NUM_THREADS"
-  echo -e "OMP_DYNAMIC=$OMP_DYNAMIC"
+# set MKL envirovariables
+unset MKL_NUM_THREADS
+export MKL_NUM_THREADS=1
 
 #cd $PBS_O_WORKDIR
  echo -e  "ctest ? \c";which ctest;ctest --version

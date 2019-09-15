@@ -95,13 +95,22 @@ export TMPDIR=/mnt/local/$USER/$PBS_JOBID
 echo -e "\n Local scratch directory, TMPDIR=$TMPDIR";
 echo -e "Size of local scratch dir, df -h /mnt/local/$USER/:";df -h /mnt/local/$USER
 
+mkdir $TMPDIR
 cd $TMPDIR
 echo -e "\nI am in TMPDIR=$TMPDIR"
-echo -e "pwd=\c";pwd
-echo -e "Hoem directory with NWChem input file, PBS_O_WORKDIR=$PBS_O_WORKDIR"
+echo -e "For control pwd=\c";pwd
+echo -e "The local home directory with NWChem input file, PBS_O_WORKDIR=$PBS_O_WORKDIR"
 
-mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/N2.scf_geomopt.nw  > $PBS_O_WORKDIR/N2.scf_geomopt.out
+mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/N2.scf_geomopt_sto2g.nw  > $PBS_O_WORKDIR/N2.scf_geomopt.out
 
+echo -e "\n Working files in scratch dir $TMPDIR:"
+ls -lt $TMPDIR 
+du -h -s $TMPDIR
+cd .. ; echo -e "just for control -  pwd=\c";pwd
+echo -e "Deleting scratch directory:"; /bin/rm -r $TMPDIR
+
+echo -e "returning to $PBS_O_WORKDIR"
+cd $PBS_O_WORKDIR
 
 
 exit 0

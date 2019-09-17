@@ -28,35 +28,25 @@
 #SBATCH --mail-type=ALL
 
  
+echo -e "Kronos cluster - running on host `hostname`"
+echo -e "Time is `date` \n"
+
 echo -e "\nJob user is $SLURM_JOB_USER and his job $SLURM_JOB_NAME has assigned ID $SLURM_JOBID"
 echo -e "This job was submitted from the computer $SLURM_SUBMIT_HOST"
-echo -e "and from the home directory:"
+echo -e "and from the home directory:\c" 
 echo $SLURM_SUBMIT_DIR
-echo
-echo It is running on the cluster compute node:
-echo $SLURM_CLUSTER_NAME
-echo and is employing $SLURM_JOB_NUM_NODES node/nodes:
-echo $SLURM_JOB_NODELIST
-echo
-echo -e "Job partition is $SLURM_JOB_PARTITION \n"
-
-echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
+echo -e "\nIt is running on the cluster compute node SLURM_CLUSTER_NAME=$SLURM_CLUSTER_NAME "
+echo -e "Job is employing $SLURM_JOB_NUM_NODES node/nodes: $SLURM_JOB_NODELIST"
+echo -e "\nJob partition is $SLURM_JOB_PARTITION \n"
+echo -e "The job requests $SLURM_CPUS_ON_NODE CPU per task."
 
 module use /cvmfs/it.gsi.de/modulefiles/
-echo "modules at disposal:"
+echo -e "All modules at disposal:"
 module avail
-echo
-
-
-# I want Intel v 17.0 !
-module load /openmpi/intel/4.0_mp1compat_intel17.4
-
-
-echo -e "\n\n loaded modules:"
+echo -e "\n Loading openmpi/intel/4.0_intel17.4:"
+module load openmpi/intel/4.0_intel17.4
+echo -e ".... loaded modules:"
 module list
-
-echo -e "\nRunning on host `hostname`"
-echo -e "Time is `date` \n"
 
 # CPU model, total numer of CPUs, number of allocated CPUs
 echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
@@ -64,9 +54,8 @@ NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
 #echo -e "This node has total $NPROCS CPUs available for EXCLUSIVE job."
 echo "This node has $SLURM_CPUS_ON_NODE CPUs allocated for SLURM calculations."
 
-echo -e "\n The total memory at the node (in GB)"
+echo -e "\n The total memory at the given node (in GB)"
 free -t -g
-echo -e "\n"
 
 ## set internal OpenMP parallelization for MKL - Slurm CPU count
 #export MKL_NUM_THREADS=$SLURM_CPUS_ON_NODE
@@ -97,14 +86,14 @@ echo -e "Python -v :\c"; python -V
 #echo -e "ctest --version \c"; ctest --version
 echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
 
-echo -e "\n For comparison, /tmp local disk;  df -h /tmp/."; df -h /tmp
-echo -e "\n"
+#echo -e "\n For comparison, /tmp local disk;  df -h /tmp/."; df -h /tmp
 
 # for running jobs from your homedir
 cd $SLURM_SUBMIT_DIR
+echo -e "\n I am in SLURM_SUBMIT_DIR=$SLURM_SUBMIT_DIR"
+echo -e "...for control, pwd=\c";pwd
 
-#$PAM --noarch --mw=2200 --nw=900 --aw=7800  --mol=Sg-CO_6.v3z.D2h.mol --inp=Sg-CO6.x2c_a4p.2fs_scf_relcc54ce_v26.inp   --put "DFCOEF.Sg-CO_6.x2c_a4p.scf.v3z=DFCOEF" --suffix=out_mpi
-
+echo -e "\nLaunching mpirun -np $SLURM_CPUS_ON_NODE $LAMMPS_EXE -in in.melt :"
 mpirun -np $SLURM_CPUS_ON_NODE $LAMMPS_EXE -in in.melt
 
 #

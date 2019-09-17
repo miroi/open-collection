@@ -31,13 +31,14 @@ source /mnt/apps/intel/bin/compilervars.sh intel64
 source /mnt/apps/intel/composer_xe_2013_sp1.1.106/mkl/bin/mklvars.sh intel64
 echo -e "\n Intel Fortran/C/C++ commercial compilers 2013 with MKL library 2013 activated, PROD_DIR=$PROD_DIR, MKLROOT=$MKLROOT.\n"
 
-#source /mnt/apps/pgi/environment.sh
-#export LD_LIBRARY_PATH=/home/milias/bin/lib64_libnuma:$LD_LIBRARY_PATH  # libnumma for PGI
+source /mnt/apps/pgi/environment.sh
+export LD_LIBRARY_PATH=/home/milias/bin/lib64_libnuma:$LD_LIBRARY_PATH  # libnumma for PGI
 
 # provide OpenMPI-Intel - local installation for DIRAC
 export PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/bin:$PATH
 export LD_LIBRARY_PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib:$LD_LIBRARY_PATH
-echo -e  "\n PATH,LD_LIBRARY_PATH updated for OpenMPI:/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++"
+export PMIX_MCA_gds=hash
+echo -e  "\n PATH,LD_LIBRARY_PATH, PMIX_MCA_gds initialized for OpenMPI:/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++"
 
 echo -e "\n My PATH=$PATH"
 echo -e "My LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
@@ -106,7 +107,7 @@ export MKL_NUM_THREADS=1
 #cd $PBS_O_WORKDIR
 
  cd $DALTON/$BUILD
- echo -e "\n Running 'ctest -j4 -L short' in $DALTON/$BUILD"
+ echo -e "\n Running 'ctest -j4 -L short' in $DALTON/$BUILD"  
  ctest -j4 -L short
 
 exit 0

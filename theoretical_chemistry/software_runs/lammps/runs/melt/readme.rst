@@ -8,5 +8,4 @@ lammps_stable/examples/melt:
 
 Kronos - run OK
 
-UMB - parallel run crashed !
-
+grid.umb.sk - run OK (see https://github.com/open-mpi/ompi/issues/6981)

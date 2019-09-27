@@ -7,6 +7,10 @@ Install
 ~~~~~~~
 https://lammps.sandia.gov/doc/Install_git.html
 
+Presentation
+~~~~~~~~~~~~
+https://www.osti.gov/servlets/purl/1331412
+
 Kronos
 ~~~~~~
 Currently Loaded Modulefiles:
@@ -19,8 +23,6 @@ scl devtoolset...
 milias@login.grid.umb.sk:~/Work/qch/software/lammps/lammps_stable/src/.make mpi
 
 
-Presentation
-~~~~~~~~~~~~
-https://www.osti.gov/servlets/purl/1331412
+
 
 

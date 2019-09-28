@@ -122,23 +122,35 @@ jobtype="openmpi"
 # a job id is automatically added to the workdir
 global_workdisk=no
 workdir=/mnt/local/$USER/$PBS_JOBID
+mkdir $workdir
 echo -e "\n Local scratch directory, workdir=$workdir";
 echo -e "Size of local scratch dir, df -h $workdir:"; df -h $workdir
 
-outdir=$workdir/CFOURrun
+#outdir=$workdir/CFOURrun
+outdir=$workdir
 
 ###--- JOB SPECIFICATION ---###
 input="ZMAT $CFOUR/basis/GENBAS $CFOUR/bin/x*"
+echo -e "\n going to initialize job"
 initialize_job
 
+
 # distribute input files to all nodes
+echo -e "going to distribute inputs"
 distribute $input
+
 # run job either in parallel (if appropriate)
 #run xcfour.sh
 cd $workdir
+echo -e "\n in pwd=$PWD ; ls -lt:"; ls -lt
 xcfour
 
 finalize_job
+
+echo -e "\n in pwd=$PWD ; ls -lt:"; ls -lt
+cd $PBS_O_WORKDIR
+
+ls -lt  $workdir
 
 exit 0
 

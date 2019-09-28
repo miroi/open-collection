@@ -2,13 +2,13 @@
 
 #PBS -S /bin/bash
 #PBS -A UMB-ITMS-26110230082
-#PBS -N C4test
+#PBS -N C4
 
 ### Declare myprogram non-rerunable
 #PBS -r n
 
-##PBS -l nodes=1:ppn=12:old
-#PBS -l nodes=1:ppn=8
+#PBS -l nodes=1:ppn=12:old
+##PBS -l nodes=1:ppn=8
 
 #PBS -l walltime=5:00:00
 
@@ -117,7 +117,7 @@ echo -e "mpirun ? \c"; which mpirun; mpirun --version
  #echo -e "Control pwd=\c";pwd
  #ctest -VV -L short
 
-export CFOUR_NUM_CORES=4
+export CFOUR_NUM_CORES=2
 
 cd $CFOUR/testsuite
 
@@ -127,7 +127,9 @@ xtester --list
 
 #xtester -j2 --testcase 022 048 049 050 057 058 059 118 119 128 134 142 158 230 
 #xtester -j2 --testcase 134 142 158 230 
-xtester -j2 --testcase 134 142
+#xtester -j2 --testcase 134 142
+
+xtester -j6 --all
 
 #xtester -j$NPROCS_PBS  --all
 

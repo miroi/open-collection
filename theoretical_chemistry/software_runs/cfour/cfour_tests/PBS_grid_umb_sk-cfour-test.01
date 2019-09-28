@@ -37,7 +37,8 @@ export LD_LIBRARY_PATH=/home/milias/bin/lib64_libnuma:$LD_LIBRARY_PATH  # libnum
 # provide proper OpenMPI-Intel installation 
 export PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/bin:$PATH
 export LD_LIBRARY_PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib:$LD_LIBRARY_PATH
-echo -e "\nPATH,LD_LIBRARY_PATH updated for OpenMPI, /home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++"
+export PMIX_MCA_gds=hash
+echo -e "\nPATH,LD_LIBRARY_PATH,PMIX_MCA_gds updated for OpenMPI, /home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++"
 
 echo -e "\nMy PATH=$PATH"
 echo -e "My LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
@@ -87,8 +88,11 @@ echo -e "OMP_DYNAMIC=$OMP_DYNAMIC"
 #echo -e "\nDalton executable linked libraries, ldd $DALTON/$BUILD/dalton.x:"
 #ldd $DALTON/$BUILD/dalton.x
 
-CFOUR=/home/milias/Work/qch/software/cfour/cfour-public-master-4567f08b44f7f255929f07cb843baf9a89d5c048
+#CFOUR=/home/milias/Work/qch/software/cfour/cfour-public-master-4567f08b44f7f255929f07cb843baf9a89d5c048
+CFOUR=/home/milias/Work/qch/software/cfour/cfour-public_openmpi_intel_g++_mkl_i8
 export PATH=$CFOUR/bin:$PATH
+
+echo -e "\nCFOUR binaries, $CFOUR/bin:"; ls -lt $CFOUR/bin
 
 echo -e "\nPython -V \c"; python -V
 echo -e "mpif90 ? \c"; which mpif90; mpif90 --version
@@ -113,15 +117,18 @@ echo -e "mpirun ? \c"; which mpirun; mpirun --version
  #echo -e "Control pwd=\c";pwd
  #ctest -VV -L short
 
+export CFOUR_NUM_CORES=4
+
 cd $CFOUR/testsuite
 
 xtester --help
 
 xtester --list
 
-#xtester --testcase 022 048 049 050 057 058 059 118 119 128 134 142 158 230 
+#xtester -j2 --testcase 022 048 049 050 057 058 059 118 119 128 134 142 158 230 
+xtester -j2 --testcase 134 142 158 230 
 
-xtester -j$NPROCS_PBS  --all
+#xtester -j$NPROCS_PBS  --all
 
 
 exit 0

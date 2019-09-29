@@ -105,26 +105,32 @@ export CFOUR_NUM_CORES=$NPROCS_PBS
 echo -e "\n CFOUR_NUM_CORES=$CFOUR_NUM_CORES"
 
 workdir=/mnt/local/$USER/$PBS_JOBID
-#mkdir $workdir
+mkdir $workdir
 echo -e "\n Local scratch directory, workdir=$workdir";
 echo -e "Size of local scratch dir, df -h $workdir:"; df -h $workdir
+
 cd $workdir
 
 ### Link all files into scratch directory
 ln -sf $CFOUR/basis/GENBAS .
 ln -sf $CFOUR/bin/x*       .
 ln -sf $PBS_O_WORKDIR/ZMAT .
-echo -e "\n going to initialize job"
-echo -e "\n in pwd=$PWD ; ls -lt:"; ls -lt
-xcfour
+echo -e "\n I am in pwd=$PWD ; input files are linked, ls -lt:"; ls -lt
+echo -e "\n Going to launch xcfour !!!! \n"
+./xcfour
 
-echo -e "\n After the job, in pwd=$PWD ; ls -lt:"; ls -lt
+echo -e "\n After the job, in pwd=$PWD see the content; ls -lt:"; ls -lt; df -h -s .
 
 cd $PBS_O_WORKDIR
-echo -e "..returning to homedir, PBS_O_WORKDIR=$PBS_O_WORKDIR"
+echo -e "\n...returning to homedir, PBS_O_WORKDIR=$PBS_O_WORKDIR"
 
-echo -e "content of $workdir"
+echo -e "\ncontent of $workdir"
 ls -lt  $workdir
+
+echo -e "...deleting the $workdir"
+/bin/rm -r $workdir
+
+echo -e "\n remaining content of scratch.../mnt/local/$USER/"; hostname -f; ls -lt /mnt/local/$USER/
 
 exit 0
 

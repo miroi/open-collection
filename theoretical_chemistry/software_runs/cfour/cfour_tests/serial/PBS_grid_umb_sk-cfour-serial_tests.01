@@ -2,16 +2,15 @@
 
 #PBS -S /bin/bash
 #PBS -A UMB-ITMS-26110230082
-#PBS -N C4
+#PBS -N C4s
 
 ### Declare myprogram non-rerunable
 #PBS -r n
 
-#PBS -l nodes=1:ppn=12:old
-##PBS -l nodes=1:ppn=8
+##PBS -l nodes=1:ppn=12:old
+#PBS -l nodes=1:ppn=4
 
-##PBS -l walltime=5:00:00
-#PBS -l walltime=48:00:00
+#PBS -l walltime=5:00:00
 
 ##PBS -l mem=47g # max mem
 #PBS -l mem=24g  # 12x2gb=24gb
@@ -36,10 +35,10 @@ source /mnt/apps/pgi/environment.sh
 export LD_LIBRARY_PATH=/home/milias/bin/lib64_libnuma:$LD_LIBRARY_PATH  # libnumma for PGI
 
 # provide proper OpenMPI-Intel installation 
-export PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/bin:$PATH
-export LD_LIBRARY_PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib:$LD_LIBRARY_PATH
-export PMIX_MCA_gds=hash
-echo -e "\nPATH,LD_LIBRARY_PATH,PMIX_MCA_gds updated for OpenMPI, /home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++"
+#export PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/bin:$PATH
+#export LD_LIBRARY_PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib:$LD_LIBRARY_PATH
+#export PMIX_MCA_gds=hash
+#echo -e "\nPATH,LD_LIBRARY_PATH,PMIX_MCA_gds updated for OpenMPI, /home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++"
 
 echo -e "\nMy PATH=$PATH"
 echo -e "My LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
@@ -84,13 +83,9 @@ echo -e "MKL_DYNAMIC=$MKL_DYNAMIC"
 echo -e "OMP_NUM_THREADS=$OMP_NUM_THREADS"
 echo -e "OMP_DYNAMIC=$OMP_DYNAMIC"
 
-#DALTON=/home/milias/Work/qch/software/dalton_suite/dalton_master
-#BUILD=build_intelmklpar_openmpi
-#echo -e "\nDalton executable linked libraries, ldd $DALTON/$BUILD/dalton.x:"
-#ldd $DALTON/$BUILD/dalton.x
-
 #CFOUR=/home/milias/Work/qch/software/cfour/cfour-public-master-4567f08b44f7f255929f07cb843baf9a89d5c048
-CFOUR=/home/milias/Work/qch/software/cfour/cfour-public_openmpi_intel_g++_mkl_i8
+#CFOUR=/home/milias/Work/qch/software/cfour/cfour-public_openmpi_intel_g++_mkl_i8
+CFOUR=/home/milias/Work/qch/software/cfour/cfour-public_serial_intel_g++_mkl_i8
 export PATH=$CFOUR/bin:$PATH
 
 echo -e "\nCFOUR binaries, $CFOUR/bin:"; ls -lt $CFOUR/bin
@@ -118,7 +113,8 @@ echo -e "mpirun ? \c"; which mpirun; mpirun --version
  #echo -e "Control pwd=\c";pwd
  #ctest -VV -L short
 
-export CFOUR_NUM_CORES=2
+unset CFOUR_NUM_CORES
+#export CFOUR_NUM_CORES=4
 
 cd $CFOUR/testsuite
 
@@ -128,9 +124,7 @@ xtester --list
 
 #xtester -j2 --testcase 022 048 049 050 057 058 059 118 119 128 134 142 158 230 
 #xtester -j2 --testcase 134 142 158 230 
-#xtester -j2 --testcase 134 142
-
-xtester -j6 --all
+xtester -j2 --testcase 050 134 
 
 #xtester -j$NPROCS_PBS  --all
 

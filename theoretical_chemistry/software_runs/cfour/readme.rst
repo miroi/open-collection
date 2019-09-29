@@ -24,6 +24,9 @@ milias@login.grid.umb.sk:~/Work/qch/software/cfour/cfour-public_openmpi_intel_g+
 
 make -j4
 
+
+
+
 @lxir127.gsi.de at GSI.de
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 module load openmpi/intel/4.0_mp1compat_intel17.4
@@ -42,6 +45,11 @@ configure command:
  ::
  milias@lxir127.gsi.de:/tmp/milias-work/software/qch/cfour/cfour-public_openmpi4_intel17_mkl_i8/.CC=icc CXX=g++ FC=ifort F77=ifort MPIFC=mpif90 MPICC=mpicc MPICXX=mpicxx ./configure --prefix=$PWD  --with-blas="${MKLROOT}/lib/mic/libmkl_blas95_ilp64.a -L${MKLROOT}/lib/mic -lmkl_scalapack_ilp64 -lmkl_cdft_core -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread -lm -ldl" --enable-mpi=openmpi  --with-mpirun="mpirun -np \$CFOUR_NUM_CORES"  --with-exenodes="mpirun -np \$CFOUR_NUM_CORES"
 
+export LD_LIBRARY_PATH=$MKLROOT:$LD_LIBRARY_PATH
+
+milias@lxir127.gsi.de:/tmp/milias-work/software/qch/cfour/cfour-public_openmpi4_intel17_mkl_i8/.CC=icc CXX=g++ FC=ifort F77=ifort MPIFC=mpif90 MPICC=mpicc MPICXX=mpicxx ./configure --prefix=$PWD  --enable-mpi=openmpi  --with-mpirun="mpirun -np \$CFOUR_NUM_CORES"  --with-exenodes="mpirun -np \$CFOUR_NUM_CORES"
+
+
 
 @lxbk0199.gsi.de, Kronos cluster at GSI.de
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -53,6 +61,10 @@ configure command:
  milias@lxbk0199.gsi.de:/lustre/nyx/ukt/milias/work/software/cfour/cfour-public_openmpi4_intel17_mkl_i8/.CC=icc CXX=g++ FC=ifort F77=ifort MPIFC=mpif90 MPICC=mpicc MPICXX=mpicxx ./configure --prefix=$PWD  --with-blas="${MKLROOT}/lib/mic/libmkl_blas95_ilp64.a -L${MKLROOT}/lib/mic -lmkl_scalapack_ilp64 -lmkl_cdft_core -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread -lm -ldl" --enable-mpi=openmpi  --with-mpirun="mpirun -np \$CFOUR_NUM_CORES"  --with-exenodes="mpirun -np \$CFOUR_NUM_CORES"
 
 
+milias@lxbk0199.gsi.de:/lustre/nyx/ukt/milias/work/software/cfour/cfour-public_openmpi4_intel17_mkl_i8/.export LD_LIBRARY_PATH=$MKLROOT:$LD_LIBRARY_PATH
 
+export LD_LIBRARY_PATH=$MKLROOT:$LD_LIBRARY_PATH
+
+milias@lxbk0199.gsi.de:/lustre/nyx/ukt/milias/work/software/cfour/cfour-public_openmpi4_intel17_mkl_i8/.CC=icc CXX=g++ FC=ifort F77=ifort MPIFC=mpif90 MPICC=mpicc MPICXX=mpicxx ./configure --prefix=$PWD  --enable-mpi=openmpi  --with-mpirun="mpirun -np \$CFOUR_NUM_CORES"  --with-exenodes="mpirun -np \$CFOUR_NUM_CORES"
 
 

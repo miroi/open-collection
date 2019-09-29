@@ -83,11 +83,6 @@ echo -e "MKL_DYNAMIC=$MKL_DYNAMIC"
 echo -e "OMP_NUM_THREADS=$OMP_NUM_THREADS"
 echo -e "OMP_DYNAMIC=$OMP_DYNAMIC"
 
-#DALTON=/home/milias/Work/qch/software/dalton_suite/dalton_master
-#BUILD=build_intelmklpar_openmpi
-#echo -e "\nDalton executable linked libraries, ldd $DALTON/$BUILD/dalton.x:"
-#ldd $DALTON/$BUILD/dalton.x
-
 #CFOUR=/home/milias/Work/qch/software/cfour/cfour-public-master-4567f08b44f7f255929f07cb843baf9a89d5c048
 CFOUR=/home/milias/Work/qch/software/cfour/cfour-public_openmpi_intel_g++_mkl_i8
 export PATH=$CFOUR/bin:$PATH
@@ -127,7 +122,7 @@ xtester --list
 
 #xtester -j2 --testcase 022 048 049 050 057 058 059 118 119 128 134 142 158 230 
 #xtester -j2 --testcase 134 142 158 230 
-xtester -j2 --testcase 134 142
+xtester -j2 --testcase 050 134 142
 
 #xtester -j$NPROCS_PBS  --all
 

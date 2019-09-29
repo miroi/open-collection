@@ -7,9 +7,9 @@ http://slater.chemie.uni-mainz.de/cfour/index.php?n=Main.GitLab
 
 Download
 --------
-see https://cfour.chem.ufl.edu/cfour-public/cfour-public
+see the repository https://cfour.chem.ufl.edu/cfour-public/cfour-public
 
-git clone git@cfour.chem.ufl.edu:cfour-public/cfour-public.git
+ git clone git@cfour.chem.ufl.edu:cfour-public/cfour-public.git
 
 Software installation
 ---------------------

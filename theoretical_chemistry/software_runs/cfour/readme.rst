@@ -33,8 +33,12 @@ milias@lxir127.gsi.de:~/.echo $MKLROOT
 
 
 based on https://software.intel.com/en-us/articles/intel-mkl-link-line-advisor : Intel MKL 2017.0
-
+ ::
 ${MKLROOT}/lib/mic/libmkl_blas95_ilp64.a -L${MKLROOT}/lib/mic -lmkl_scalapack_ilp64 -lmkl_cdft_core -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread -lm -ldl
 
 Compiler options:  -i8 -I${MKLROOT}/include/mic/ilp64 -I${MKLROOT}/include -mmic
+
+configure command:
+ ::
+ milias@lxir127.gsi.de:/tmp/milias-work/software/qch/cfour/cfour-public_openmpi4_intel17_mkl_i8/.CC=icc CXX=g++ FC=ifort F77=ifort MPIFC=mpif90 MPICC=mpicc MPICXX=mpicxx ./configure --prefix=$PWD  --with-blas="${MKLROOT}/lib/mic/libmkl_blas95_ilp64.a -L${MKLROOT}/lib/mic -lmkl_scalapack_ilp64 -lmkl_cdft_core -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread -lm -ldl" --enable-mpi=openmpi  --with-mpirun="mpirun -np \$CFOUR_NUM_CORES"  --with-exenodes="mpirun -np \$CFOUR_NUM_CORES"
 

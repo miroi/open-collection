@@ -36,10 +36,10 @@ source /mnt/apps/pgi/environment.sh
 export LD_LIBRARY_PATH=/home/milias/bin/lib64_libnuma:$LD_LIBRARY_PATH  # libnumma for PGI
 
 # provide proper OpenMPI-Intel installation 
-export PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/bin:$PATH
-export LD_LIBRARY_PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib:$LD_LIBRARY_PATH
-export PMIX_MCA_gds=hash
-echo -e "\nPATH,LD_LIBRARY_PATH,PMIX_MCA_gds updated for OpenMPI, /home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++"
+#export PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/bin:$PATH
+#export LD_LIBRARY_PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib:$LD_LIBRARY_PATH
+#export PMIX_MCA_gds=hash
+#echo -e "\nPATH,LD_LIBRARY_PATH,PMIX_MCA_gds updated for OpenMPI, /home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++"
 
 echo -e "\nMy PATH=$PATH"
 echo -e "My LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
@@ -132,7 +132,7 @@ ls -lt  $workdir
 echo -e "...deleting the $workdir"
 /bin/rm -r $workdir
 
-echo -e "\n remaining content of scratch.../mnt/local/$USER/"; hostname -f; ls -lt /mnt/local/$USER/
+echo -e "\n remaining content of scratch... /mnt/local/$USER/"; hostname -f; ls -lt /mnt/local/$USER/
 
 exit 0
 

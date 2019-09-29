@@ -47,9 +47,11 @@ ${MKLROOT}/lib/mic/libmkl_blas95_ilp64.a -L${MKLROOT}/lib/mic -lmkl_scalapack_il
 
 Compiler options:  -i8 -I${MKLROOT}/include/mic/ilp64 -I${MKLROOT}/include -mmic
 
+Simpler way:
+
 export LD_LIBRARY_PATH=$MKLROOT:$LD_LIBRARY_PATH
 
-milias@lxir127.gsi.de:/tmp/milias-work/software/qch/cfour/cfour-public_openmpi4_intel17_mkl_i8/.CC=icc CXX=g++ FC=ifort F77=ifort MPIFC=mpif90 MPICC=mpicc MPICXX=mpicxx ./configure --prefix=$PWD  --enable-mpi=openmpi  --with-mpirun="mpirun -np \$CFOUR_NUM_CORES"  --with-exenodes="mpirun -np \$CFOUR_NUM_CORES"
+milias@lxir127.gsi.de:/tmp/milias-work/software/qch/cfour/cfour-public_openmpi4_intel17_mkl_i8/.CC=icc CXX=icpc FC=ifort F77=ifort MPIFC=mpif90 MPICC=mpicc MPICXX=mpicxx ./configure --prefix=$PWD  --enable-mpi=openmpi  --with-mpirun="mpirun -np \$CFOUR_NUM_CORES"  --with-exenodes="mpirun -np \$CFOUR_NUM_CORES"
 
 
 
@@ -60,6 +62,6 @@ module load openmpi/intel/4.0_intel17.4
 
 export LD_LIBRARY_PATH=$MKLROOT:$LD_LIBRARY_PATH
 
-milias@lxbk0199.gsi.de:/lustre/nyx/ukt/milias/work/software/cfour/cfour-public_openmpi4_intel17_mkl_i8/.CC=icc CXX=g++ FC=ifort F77=ifort MPIFC=mpif90 MPICC=mpicc MPICXX=mpicxx ./configure --prefix=$PWD  --enable-mpi=openmpi  --with-mpirun="mpirun -np \$CFOUR_NUM_CORES"  --with-exenodes="mpirun -np \$CFOUR_NUM_CORES"
 
+milias@lxbk0199.gsi.de:/lustre/nyx/ukt/milias/work/software/cfour/cfour-public_openmpi4_intel17_mkl_i8/.CC=icc CXX=icpc FC=ifort F77=ifort MPIFC=mpif90 MPICC=mpicc MPICXX=mpicxx ./configure --prefix=$PWD  --enable-mpi=openmpi  --with-mpirun="mpirun -np \$CFOUR_NUM_CORES"  --with-exenodes="mpirun -np \$CFOUR_NUM_CORES"
 

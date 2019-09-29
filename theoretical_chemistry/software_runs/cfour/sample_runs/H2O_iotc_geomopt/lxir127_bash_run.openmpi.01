@@ -1,0 +1,78 @@
+#!/bin/bash
+
+#
+# script for interactive job runs on Valeria private GSI node lxir127
+#
+# Launched as:
+# ~~~~~~~~~~~~
+# nohup script &> log.script.std_err_out &
+#
+
+echo -e "\nRunning on host `hostname -f`"
+echo Time is `date`
+echo Directory is `pwd`
+
+NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
+echo -e "\nThis node has $NPROCS CPUs."
+
+#export MKL_DOMAIN_NUM_THREADS="MKL_BLAS=$NPROCS"
+#export MKL_NUM_THREADS=$NPROCS
+export MKL_NUM_THREADS=1
+export OMP_NUM_THREADS=1
+export MKL_DYNAMIC="FALSE"
+export OMP_DYNAMIC="FALSE"
+echo -e "\n Internal MKL library parallelization with MKL_NUM_THREADS=$MKL_NUM_THREADS"
+
+echo -e "\nWorking server memory status"
+free -g -t -h
+
+echo -e "\n Loaded Modules:"
+module list
+
+#CFOUR=/lustre/nyx/ukt/milias/work/software/cfour/cfour_v2.00beta_64bit_linux_serial
+#CFOUR=/tmp/milias-dirac-software/cfour/cfour-public_openmpi_intel
+CFOUR=/tmp/milias-work/software/qch/cfour/cfour-public_openmpi4_intel17_mkl_i8
+QUESYS=$CFOUR/share/quesys.sh
+if [ -f $QUESYS ]; then
+    .   $QUESYS
+else
+    echo "$QUESYS not found!"
+    exit 1
+fi
+
+export PATH=$CFOUR/bin:$PATH
+
+# set number of cores
+export CFOUR_NUM_CORES=4
+
+# needs this var
+has_nodefile=1
+
+stop_on_crash=no
+
+# possible jobs types are: mpich, lam, scali, mvapich or serial
+#jobtype="serial" 
+jobtype="openmpi" 
+
+# a job id is automatically added to the workdir
+
+global_workdisk=no
+
+workdir=/tmp
+outdir=$workdir/CFOURrun
+
+###--- JOB SPECIFICATION ---###
+input="ZMAT $CFOUR/basis/GENBAS $CFOUR/bin/x*"
+initialize_job
+
+# distribute input files to all nodes
+distribute $input
+
+# run job either in parallel (if appropriate)
+#run xcfour.sh 
+cd $workdir
+xcfour
+
+finalize_job
+
+exit 0

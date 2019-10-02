@@ -1,0 +1,50 @@
+** To run the example, copy the AERTEST.INP file to AERMOD.INP and type:                                                                                                        
+**                                                                                                                                  
+**    AERMOD
+**                                                                                                                                  
+** The results for this example problem are provided in file AERMOD.OUT.
+                                                                                                                                    
+CO STARTING                                                                                                                         
+   TITLEONE Zjednoduseny vstup pre AERMOD
+   MODELOPT  CONC   FLAT
+   AVERTIME  24  PERIOD                                                                                                          
+   POLLUTID  SO2                                                                                                                    
+   RUNORNOT  RUN
+   EVENTFIL  aertest_evt.inp
+   ERRORFIL  ERRORS.OUT
+CO FINISHED                                                                                                                         
+                                                                                                                                    
+SO STARTING
+   ELEVUNIT  METERS
+   LOCATION  STACK1  POINT  0.0   0.0   0.0
+                                                                                                                                    
+** Point Source       QS      HS     TS    VS    DS
+** Parameters:       ----    ----   ----  ----   ---
+   SRCPARAM  STACK1  500.0   65.00  425.  15.0   5.
+                                                                                                                                 
+                                                                                                                            
+   SRCGROUP  ALL                                                                                                                    
+SO FINISHED                                                                                                                         
+                                                                                                                                    
+RE STARTING
+RE GRIDPOLR POL1 STA
+                 ORIG STACK1
+                 DIST 100. 1000.
+                 GDIR 36 10 10
+RE GRIDPOLR POL1 END
+RE FINISHED                                                                                                                         
+                                                                                                                                    
+ME STARTING                                                                                                                         
+   SURFFILE  aermet2.sfc
+   PROFFILE  aermet2.pfl
+   SURFDATA  14735  1988  ALBANY,NY
+   UAIRDATA  14735  1988  ALBANY,NY                                                                                                 
+   SITEDATA  99999  1988  HUDSON
+   PROFBASE  0.0  METERS
+ME FINISHED                                                                                                                         
+                                                                                                                                    
+OU STARTING                                                                                                                         
+   RECTABLE  ALLAVE  FIRST-THIRD
+   MAXTABLE  ALLAVE  50
+   SUMMFILE  AERTEST.SUM                                                                                         
+OU FINISHED

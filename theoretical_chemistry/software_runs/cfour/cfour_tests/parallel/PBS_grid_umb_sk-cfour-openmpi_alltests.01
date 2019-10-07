@@ -2,12 +2,13 @@
 
 #PBS -S /bin/bash
 #PBS -A UMB-ITMS-26110230082
-#PBS -N C4allt_p
+#PBS -N C4allt_4cpu
 
 ### Declare myprogram non-rerunable
 #PBS -r n
 
-#PBS -l nodes=1:ppn=12:old
+##PBS -l nodes=1:ppn=12:old
+#PBS -l nodes=1:ppn=16
 ##PBS -l nodes=1:ppn=8
 
 ##PBS -l walltime=5:00:00
@@ -97,11 +98,12 @@ echo -e "mpicxx ? \c"; which mpicxx; mpicxx --version
 echo -e "mpirun ? \c"; which mpirun; mpirun --version
 #echo -e  "ctest ? \c";which ctest;ctest --version
 
-export CFOUR_NUM_CORES=2
+#export CFOUR_NUM_CORES=2
+export CFOUR_NUM_CORES=4
 
 cd $CFOUR/testsuite
 
-xtester --help
+#xtester --help
 
 xtester --list
 
@@ -113,7 +115,7 @@ xtester --list
 
 #xtester -j$NPROCS_PBS  --all
 
-echo -e "\n running ALL testcases as xtester -j6  --all :"
-xtester -j6  --all
+echo -e "\n running ALL testcases as xtester -j4  --all :"
+xtester -j4  --all
 
 exit 0

@@ -37,7 +37,8 @@ export LD_LIBRARY_PATH=/home/milias/bin/lib64_libnuma:$LD_LIBRARY_PATH  # libnum
 # provide OpenMPI-Intel local installation 
 export PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/bin:$PATH
 export LD_LIBRARY_PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib:$LD_LIBRARY_PATH
-echo -e "PATH, LD_LIBRARY_PATH adjusted for /home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++"
+export PMIX_MCA_gds=hash
+echo -e "PATH, LD_LIBRARY_PATH and  PMIX_MCA_gds adjusted for /home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++"
 
 echo -e "\nMy PATH=$PATH"
 echo -e "My LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
@@ -101,7 +102,7 @@ nproc=$NPROCS_PBS
 if [ "$1" != "" ] ; then
   nproc=$1
 fi
-echo -e "nproc=$nproc"
+echo -e "\n nproc=$nproc"
 . ./domknwchemenv
 ./domknwchemrc
 status=$?

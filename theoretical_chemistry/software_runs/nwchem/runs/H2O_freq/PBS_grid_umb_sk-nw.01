@@ -37,7 +37,8 @@ export LD_LIBRARY_PATH=/home/milias/bin/lib64_libnuma:$LD_LIBRARY_PATH  # libnum
 # provide OpenMPI-Intel local installation 
 export PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/bin:$PATH
 export LD_LIBRARY_PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib:$LD_LIBRARY_PATH
-echo -e "PATH, LD_LIBRARY_PATH adjusted for /home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++"
+export PMIX_MCA_gds=hash
+echo -e "PATH, LD_LIBRARY_PATH and PMIX_MCA_gds adjusted for /home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++"
 
 echo -e "\nMy PATH=$PATH"
 echo -e "My LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
@@ -109,6 +110,7 @@ ls -lt $TMPDIR
 du -h -s $TMPDIR
 cd .. ; echo -e "just for control -  pwd=\c";pwd
 echo -e "Deleting scratch directory:"; /bin/rm -r $TMPDIR
+echo -e "Remaining content ls -lt /mnt/local/$USER/ : "; ls -lt /mnt/local/$USER/
 
 echo -e "returning to $PBS_O_WORKDIR"
 cd $PBS_O_WORKDIR

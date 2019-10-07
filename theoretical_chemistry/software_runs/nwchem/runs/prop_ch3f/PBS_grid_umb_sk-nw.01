@@ -2,7 +2,7 @@
 
 #PBS -S /bin/bash
 #PBS -A UMB-ITMS-26110230082
-#PBS -N NWqa
+#PBS -N ch3f
 
 ### Declare myprogram non-rerunable
 #PBS -r n
@@ -34,7 +34,7 @@ echo -e "\n Intel Fortran/C/C++ commercial compilers 2013 with MKL library 2013 
 source /mnt/apps/pgi/environment.sh
 export LD_LIBRARY_PATH=/home/milias/bin/lib64_libnuma:$LD_LIBRARY_PATH  # libnumma for PGI
 
-## provide OpenMPI-Intel local installation 
+# provide OpenMPI-Intel local installation 
 export PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/bin:$PATH
 export LD_LIBRARY_PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib:$LD_LIBRARY_PATH
 export PMIX_MCA_gds=hash
@@ -78,8 +78,11 @@ echo -e "MKL_DYNAMIC=$MKL_DYNAMIC"
 echo -e "OMP_NUM_THREADS=$OMP_NUM_THREADS"
 echo -e "OMP_DYNAMIC=$OMP_DYNAMIC"
 
+#DALTON=/home/milias/Work/qch/software/dalton_suite/dalton_master
+#DIRAC=/home/milias/Work/qch/software/dirac/dirac_production
+#BUILD=build_openmpi_intel14_mkl_i8
 export NWCHEM_EXECUTABLE=/home/milias/Work/qch/software/nwchem_suite/nwchem_master/bin/LINUX64/nwchem
-echo -e "\nNWCHEM executable linked libraries, ldd $NWCHEM_EXECUTABLE"
+echo -e "\nDIRAC executable linked libraries, ldd $NWCHEM_EXECUTABLE"
 ldd $NWCHEM_EXECUTABLE
 
 echo -e "\npython -V \c"; python -V
@@ -88,31 +91,30 @@ echo -e "mpicc ? \c"; which mpicc; mpicc --version
 echo -e "mpirun ? \c"; which mpirun; mpirun --version
 #echo -e "ctest ? \c";which ctest;ctest --version
 
-cd /home/milias/Work/qch/software/nwchem_suite/nwchem_master/QA
-echo -e "pwd=\c"; pwd
+### set local scratch directory for run
+export TMPDIR=/mnt/local/$USER/$PBS_JOBID
+echo -e "\n Local scratch directory, TMPDIR=$TMPDIR";
+echo -e "Size of local scratch dir, df -h /mnt/local/$USER/:";df -h /mnt/local/$USER
 
-export NWCHEM_TOP=`pwd`/..
-export NWCHEM_TARGET=LINUX64
-export NWCHEM_TEST=${NWCHEM_TOP}/QA/tests
-export NWCHEM_EXECUTABLE=`find "${NWCHEM_TOP}/bin" -perm -u-x -name "nwchem*"`
+mkdir $TMPDIR
+cd $TMPDIR
+echo -e "\nI am in TMPDIR=$TMPDIR"
+echo -e "For control pwd=\c";pwd
+echo -e "The local home directory with NWChem input file, PBS_O_WORKDIR=$PBS_O_WORKDIR"
 
-#nproc=4
-nproc=$NPROCS_PBS
+#mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/N2.scf_geomopt_sto2g.nw  > $PBS_O_WORKDIR/N2.scf_geomopt_sto2g.out
+#mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/N2.scf_geomopt.nw  > $PBS_O_WORKDIR/N2.scf_geomopt.out
+mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/prop_ch3f.nw  > $PBS_O_WORKDIR/prop_ch3f.out
 
-if [ "$1" != "" ] ; then
-  nproc=$1
-fi
-echo -e "nproc=$nproc"
-. ./domknwchemenv
-./domknwchemrc
-status=$?
-if [[ $status != 0 ]]; then
-  echo "ERROR: The script domknwchemrc failed. Exiting."
-  exit $status
-fi
-date
-./domdtests.mpi $nproc
-./doqmtests.mpi $nproc fast
-date
+echo -e "\n Working files in scratch dir $TMPDIR:"
+ls -lt $TMPDIR 
+du -h -s $TMPDIR
+cd .. ; echo -e "just for control -  pwd=\c";pwd
+echo -e "\nDeleting scratch directory $TMPDIR: "; /bin/rm -r $TMPDIR
+echo -e "\n Afterwards, content of ls -lt /mnt/local/$USER :"; ls -lt /mnt/local/$USER
+
+echo -e "\n returning to $PBS_O_WORKDIR"
+cd $PBS_O_WORKDIR
+
 
 exit 0

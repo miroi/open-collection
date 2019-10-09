@@ -1,0 +1,31 @@
+JOB
+    REPORT    SALEM_S3.RPT
+    MESSAGES  SALEM_S3.MSG
+
+METPREP
+    DATA      SALEM.MET
+    OUTPUT    salem_86-90.sfc
+    PROFILE   salem_86-90.pfl
+
+    XDATES    1986/1/1 TO 1991/12/31
+
+    METHOD    REFLEVEL  SUBNWS
+    METHOD    WIND_DIR  RANDOM
+    NWS_HGT   WIND      10.0
+   FREQ_SECT  SEASONAL  3
+   SECTOR   1    0   90
+   SECTOR   2   90  230
+   SECTOR   3  230  360
+**           Season   Sect    Alb      Bo        Zo
+   SITE_CHAR    1       1     0.18     0.86     0.025
+   SITE_CHAR    1       2     0.18     0.86     0.038
+   SITE_CHAR    1       3     0.18     0.86     0.038
+   SITE_CHAR    2       1     0.15     0.55     0.033
+   SITE_CHAR    2       2     0.15     0.55     0.049
+   SITE_CHAR    2       3     0.15     0.55     0.047
+   SITE_CHAR    3       1     0.17     0.64     0.043
+   SITE_CHAR    3       2     0.17     0.64     0.092
+   SITE_CHAR    3       3     0.17     0.64     0.062
+   SITE_CHAR    4       1     0.17     0.86     0.036
+   SITE_CHAR    4       2     0.17     0.86     0.084
+   SITE_CHAR    4       3     0.17     0.86     0.055

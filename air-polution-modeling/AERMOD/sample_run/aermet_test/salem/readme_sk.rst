@@ -3,24 +3,19 @@ AERMET pre Salem
 ================
 
 Potrebujeme subory:
-
+aermet.exe 
 stage1.inp
 stage2.inp
 stage3.inp
-.
-.
-.
 
+24232_85_91.ua, salem.txt, UPPER.OQA
 
 
 Spustenie generovania suborov:
 
-copy stage1.inp aermet.inp
-aermet.exe    # z 24232_85_91.ua (upperair) a salem.txt (surface)  vytvori SAMEL.IQA, SALEM.OQA-surface;UPPER.IQA,UPPER.OQA -upper air
-copy stage2.inp aermet.inp
-aermet.exe # z UPPER.OQA a SALEM.OQA vyrobi SALEM.MET
-copy stage3.inp aermet.inp
-aermet.exe # zo SALEM.MET vytvori salem_86-90.sfc a salem_86-90.pfl
+aermet.exe stage1.inp  # z 24232_85_91.ua (upperair) a salem.txt (surface)  vytvori SAMEL.IQA, SALEM.OQA-surface;UPPER.IQA -upper air
+aermet.exe stage2.inp  # z UPPER.OQA a SALEM.OQA vyrobi SALEM.MET
+aermet.exe stage3.inp  # zo SALEM.MET vytvori salem_86-90.sfc a salem_86-90.pfl
 
 Na zaver teda  ziskam klucove vstupne subory
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

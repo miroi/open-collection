@@ -1,22 +1,22 @@
 
  &CAMx_Control
 
- Run_Message      = 'CAMx 6.50 simple test ',
+ Run_Message      = 'CAMx 6.50 jednoduchy test ',  ! poznamka
 
- Time_Zone        = 0,    
- Restart          = .false.,
+ Time_Zone        = 0,                 ! casova zona, 0=UTC
+ Restart          = .false.,           ! restartovanie
  Start_Date_Hour  = 2002,06,03,0000,   ! (YYYY,MM,DD,HHmm)
 
 ! End_Date_Hour    = 2002,06,03,2400,   ! (YYYY,MM,DD,HHmm)
 ! End_Date_Hour    = 2002,06,03,0030,   ! (YYYY,MM,DD,HHmm)
  End_Date_Hour    = 2002,06,03,0015,   ! (YYYY,MM,DD,HHmm)
 
- Maximum_Timestep    = 15.,            ! minutes
+ Maximum_Timestep    = 2.,            ! minutes
  Met_Input_Frequency = 60.,            ! minutes
  Ems_Input_Frequency = 60.,            ! minutes
  Output_Frequency    = 60.,            ! minutes
 
-!--- Map projection parameters ---
+!--- Map projection parameters, geograficke parametre podla daneho mapoveho systemu
 
  Map_Projection = 'LAMBERT',  ! (LAMBERT,POLAR,UTM,LATLON)
  UTM_Zone       = 0,
@@ -91,7 +91,7 @@
 !--- Input files ---
 
  Chemistry_Parameters = '/home/milias/work/air-pollution-modelling/CAMx_suite/v6-50-specific-inputs/inputs/CAMx6.5.chemparam.CB6r4_CF_SOAP_ISORROPIA',
- Photolyis_Rates      = '/home/milias/work/air-pollution-modelling/CAMx_suite/CAMx6-30-test_run-inputs_other-160408/inputs/tuv.do_CB6.020603',
+ Photolysis_Rates     = '/home/milias/work/air-pollution-modelling/CAMx_suite/CAMx6-30-test_run-inputs_other-160408/inputs/tuv.do_CB6.020603',
  Ozone_Column         = '/home/milias/work/air-pollution-modelling/CAMx_suite/CAMx6-30-test_run-inputs_other-160408/inputs/o3map.200206.STL_36_68X68_12_92X113.txt',
  Initial_Conditions   = '/home/milias/work/air-pollution-modelling/CAMx_suite/CAMx6-30-test_run-inputs_other-160408//inputs/IC.vistas_2002gt2a_STL_36_68X68_16L.2002081',
  Boundary_Conditions  = '/home/milias/work/air-pollution-modelling/CAMx_suite/CAMx6-30-test_run-inputs_other-160408/inputs/BC.vistas_2002gt2a_STL_36_68X68_16L.2002154',

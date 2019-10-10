@@ -3,12 +3,14 @@ AERMET pre Salem
 ================
 
 Potrebujeme subory:
-aermet.exe 
-stage1.inp
-stage2.inp
-stage3.inp
 
-24232_85_91.ua, salem.txt, UPPER.OQA
+aermet.exe (executable z http://labs.fpv.umb.sk/~milias/aermod_system_execs/windows_64bit/ )
+
+stage1.inp (vstupny subor 1)
+stage2.inp (vstupny subor 2)
+stage3.inp (vstupny subor 3)
+
+24232_85_91.ua, salem.txt
 
 
 Spustenie generovania suborov:

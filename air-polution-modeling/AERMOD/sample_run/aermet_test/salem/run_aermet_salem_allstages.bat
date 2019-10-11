@@ -15,5 +15,5 @@ echo "aermet.exe stage3.inp :"
 aermet.exe stage3.inp
 
 echo
-echo "Hotovo, sfc a pfl subory su hotove !"
+echo "Hotovo, sfc a pfl subory pre AERMOD su hotove !"
 

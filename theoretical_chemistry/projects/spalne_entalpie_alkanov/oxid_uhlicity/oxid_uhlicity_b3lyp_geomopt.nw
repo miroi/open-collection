@@ -1,0 +1,23 @@
+echo
+
+start molecule
+
+title "oxiduhlicity_b3lyp_geomopt"
+charge 0
+
+geometry units angstroms print xyz autosym
+   C       -4.24329       -3.69889        2.20121
+   O       -3.47095       -3.01644        1.59395
+   O       -5.01585       -4.38151        2.80805
+end
+
+basis
+  * library 6-31G*
+end
+
+dft
+  xc b3lyp
+  mult 1
+end
+
+task dft optimize

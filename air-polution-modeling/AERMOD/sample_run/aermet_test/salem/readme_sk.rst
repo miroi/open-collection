@@ -24,3 +24,4 @@ Na zaver teda  ziskam klucove vstupne subory
 SALEM_86-90.PFL
 SALEM_86-90.SFC
 
+AERMET prirucka: https://www3.epa.gov/ttn/scram/7thconf/aermod/aermet_userguide.pdf

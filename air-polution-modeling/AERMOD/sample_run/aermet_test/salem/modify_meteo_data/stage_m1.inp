@@ -1,15 +1,15 @@
 JOB
 
-    REPORT    SALEM_S1.RPT
-    MESSAGES  SALEM_S1.MSG
+    REPORT    SLIAC_S1.RPT
+    MESSAGES  SLIAC_S1.MSG
 
 
 UPPERAIR
 ** miro: potrebuje "upper air" data v urcenom formate
-    DATA      24232_85_91.ua  6201FB  1
-
-** modifikacia nefunguje, musim zistit preco
-**    DATA ua_modif.ua  6201FB  1 
+**    DATA      poprad_fls.txt   FSL  1
+** DATA      24232_85_91.ua  6201FB  1  
+**  DATA      poprad_fsl.txt  FSL  1
+  DATA      poprad16-10-2017_fsl.txt  FSL 
 
 
 ** vystupne subory:
@@ -17,7 +17,7 @@ UPPERAIR
     QAOUT     UPPER.OQA 
 
 ** miro: skratenie dni
-    XDATES   1986/1/1 TO 1986/1/5
+    XDATES   2017/10/16 TO 2017/10/16
 
     LOCATION  00024232  123.001W  44.91N  8 
     AUDIT     UATT  UAWS  UALR
@@ -26,11 +26,12 @@ UPPERAIR
 SURFACE
 ** miro: potrebuje povrchove meteoreologicke data v urcenom formate
 **    DATA      salem.txt  ISHD
-    DATA  salem5days.txt  ISHD
+    DATA  sliac.txt  ISHD
 ** vystupne subory:
-    EXTRACT   SALEM.IQA
-    QAOUT     SALEM.OQA
-**miro: skratenie dni
-    XDATES    1986/1/1 TO 1986/1/5
+    EXTRACT   SLIAC.IQA
+    QAOUT     SLIAC.OQA
+
+**miro: datumy meteo-merani 
+    XDATES    2017/10/16 TO 2017/10/16
 
     LOCATION  00024232  123.001W  44.91N  8 60.4

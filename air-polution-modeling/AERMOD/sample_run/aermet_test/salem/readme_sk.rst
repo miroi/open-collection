@@ -4,7 +4,8 @@ AERMET pre Salem
 
 Potrebujeme subory:
 
-aermet.exe (executable z http://labs.fpv.umb.sk/~milias/aermod_system_execs/windows_64bit/ )
+aermet.exe 
+(executable z mojho web adresara http://labs.fpv.umb.sk/~milias/aermod_system_execs/windows_64bit/ )
 
 stage1.inp (vstupny subor 1)
 stage2.inp (vstupny subor 2)

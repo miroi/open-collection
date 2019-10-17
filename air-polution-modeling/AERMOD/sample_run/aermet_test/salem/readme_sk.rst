@@ -11,7 +11,8 @@ stage1.inp (vstupny subor 1)
 stage2.inp (vstupny subor 2)
 stage3.inp (vstupny subor 3)
 
-24232_85_91.ua, salem.txt
+Upper air meteo:  24232_85_91.ua
+Sufrace air meteo:  salem.txt
 
 
 Spustenie generovania suborov:

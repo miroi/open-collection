@@ -2,7 +2,6 @@
 Meteorologicke data, modifikacie pre AERMET
 ===========================================
 
-
 aermet.exe 
 (executable z mojho web adresara http://labs.fpv.umb.sk/~milias/aermod_system_execs/windows_64bit/ )
 

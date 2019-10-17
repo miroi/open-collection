@@ -1,0 +1,37 @@
+JOB
+
+    REPORT    POPRAD.RPT
+    MESSAGES  POPRAD.MSG
+
+
+UPPERAIR
+**  "upper air" data v urcenom formate, z http://esrl.noaa.gov/raobs/ ... 
+    DATA  poprad_01-01-2019.fsl  FSL 
+
+
+** vystupne subory:
+    EXTRACT   UPPER.IQA
+    QAOUT     UPPER.OQA 
+
+** miro: datumy
+    XDATES   2019/01/01 TO 2019/01/01
+
+**    LOCATION  00024232  123.001W  44.91N  8 
+
+	LOCATION 11952  49.03N 20.32E   701
+    AUDIT     UATT  UAWS  UALR
+
+
+SURFACE
+** miro: potrebuje povrchove meteoreologicke data v urcenom formate
+** z http://www.ncdc.noaa.gov/isd/data-access
+
+    DATA  poprad_surface_01_01_2019.txt  ISHD
+
+** vystupne subory:
+    EXTRACT   POPRAD.IQA
+    QAOUT     POPRAD.OQA
+
+**miro: datumy meteo-merani 
+    XDATES    2019/01/01 TO 2019/01/01
+    LOCATION  11952  49.03N 20.32E   701

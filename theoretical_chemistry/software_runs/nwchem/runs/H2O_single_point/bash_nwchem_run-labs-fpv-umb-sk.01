@@ -1,0 +1,36 @@
+#!/bin/bash
+
+project=h2o_scf_6-31g
+
+export NWCHEM_EXECUTABLE=/home/milias/work/qch_software/nwchem/bin/LINUX64/nwchem
+ldd $NWCHEM_EXECUTABLE
+
+export TMPDIR=/tmp/$USER/$project
+
+echo -e "\n Local scratch directory, TMPDIR=$TMPDIR";
+echo -e "Size of the local scratch dir, df -h /tmp :"; df -h /tmp
+
+export THISDIR=$PWD
+echo -e "Current working directory,  THISDIR=$THISDIR"
+
+mkdir $TMPDIR
+cd $TMPDIR
+echo -e "\nI am in TMPDIR=$TMPDIR"
+echo -e "For control pwd=\c";pwd
+
+
+echo -e "\n which mpirun ? \c"; which mpirun
+
+mpirun -np 1 $NWCHEM_EXECUTABLE  $THISDIR/$project.nw >  $THISDIR/$project.out
+
+echo -e "\n Working files in scratch dir $TMPDIR:"
+ls -lt $TMPDIR
+du -h -s $TMPDIR
+cd .. ; echo -e "just for control -  pwd=\c";pwd
+echo -e "\nDeleting scratch directory $TMPDIR: "; /bin/rm -r $TMPDIR
+
+echo -e "\n returning to $THISDIR"
+cd $THISDIR
+
+
+exit 0

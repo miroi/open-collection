@@ -12,7 +12,8 @@ echo -e "Size of the scratch dir, df -h /tmp :"; df -h /tmp
 export THISDIR=$PWD
 echo -e "Current working directory,  THISDIR=$THISDIR"
 
-mkdir $TMPDIR
+echo -e "\n Creating scratch dir,  mkdir -p $TMPDIR"
+mkdir -p $TMPDIR
 cd $TMPDIR
 echo -e "\nI am in newly created TMPDIR=$TMPDIR"
 echo -e "For control,  pwd=\c";pwd
@@ -20,6 +21,7 @@ echo -e "For control,  pwd=\c";pwd
 
 echo -e "\n Checking : which mpirun ? \c"; which mpirun
 
+# ... project name 
 proj=h2o_scf_6-31g
 echo -e "\n Launching NWChem with 2 CPU:"
 mpirun -np 2 $NWCHEM_EXECUTABLE  $THISDIR/$proj.nw >  $THISDIR/$proj.out

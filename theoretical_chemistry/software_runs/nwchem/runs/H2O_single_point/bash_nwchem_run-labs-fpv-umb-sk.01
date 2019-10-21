@@ -1,32 +1,33 @@
 #!/bin/bash
 
-project=h2o_scf_6-31g
-
 export NWCHEM_EXECUTABLE=/home/milias/work/qch_software/nwchem/bin/LINUX64/nwchem
 ldd $NWCHEM_EXECUTABLE
 
-export TMPDIR=/tmp/$USER/$project
+randstr=`openssl rand -hex  6` 
+export TMPDIR=/tmp/$USER/nwchem_run.$randstr
 
-echo -e "\n Local scratch directory, TMPDIR=$TMPDIR";
-echo -e "Size of the local scratch dir, df -h /tmp :"; df -h /tmp
+echo -e "\n Scratch directory, TMPDIR=$TMPDIR";
+echo -e "Size of the scratch dir, df -h /tmp :"; df -h /tmp
 
 export THISDIR=$PWD
 echo -e "Current working directory,  THISDIR=$THISDIR"
 
 mkdir $TMPDIR
 cd $TMPDIR
-echo -e "\nI am in TMPDIR=$TMPDIR"
-echo -e "For control pwd=\c";pwd
+echo -e "\nI am in newly created TMPDIR=$TMPDIR"
+echo -e "For control,  pwd=\c";pwd
 
 
-echo -e "\n which mpirun ? \c"; which mpirun
+echo -e "\n Checking : which mpirun ? \c"; which mpirun
 
-mpirun -np 1 $NWCHEM_EXECUTABLE  $THISDIR/$project.nw >  $THISDIR/$project.out
+proj=h2o_scf_6-31g
+echo -e "\n Launching NWChem with 2 CPU:"
+mpirun -np 2 $NWCHEM_EXECUTABLE  $THISDIR/$proj.nw >  $THISDIR/$proj.out
 
 echo -e "\n Working files in scratch dir $TMPDIR:"
 ls -lt $TMPDIR
 du -h -s $TMPDIR
-cd .. ; echo -e "just for control -  pwd=\c";pwd
+cd .. ; echo -e "just for control -  pwd=\c";pwd; ls -lt
 echo -e "\nDeleting scratch directory $TMPDIR: "; /bin/rm -r $TMPDIR
 
 echo -e "\n returning to $THISDIR"

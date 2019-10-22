@@ -2,7 +2,7 @@ echo
 
 start molecule
 
-title "Sarin (GB)"
+title "THC exp.geom."
 charge 0
 
 geometry units angstroms print xyz autosym
@@ -70,4 +70,16 @@ dft
   mult 1
 end
 
+driver
+  maxiter 50
+  xyz THC_geom
+end
+
+property
+  giao
+  shielding
+  spinspin
+end
+
 task dft energy
+task dft propery

@@ -23,11 +23,11 @@ echo -e "\n Checking : which mpirun ? \c"; which mpirun
 
 # ... project name 
 proj=prop_ch3f
+ncpus=2
+echo -e "\n Launching NWChem project $proj on  $ncpus CPU:"
+mpirun -np $ncpus $NWCHEM_EXECUTABLE  $THISDIR/$proj.nw >  $THISDIR/$proj.out
 
-echo -e "\n Launching NWChem with 1 CPU:"
-mpirun -np 1 $NWCHEM_EXECUTABLE  $THISDIR/$proj.nw >  $THISDIR/$proj.out
-
-echo -e "\n Working files in scratch dir $TMPDIR:"
+echo -e "\n\n Working files in scratch dir $TMPDIR:"
 ls -lt $TMPDIR
 du -h -s $TMPDIR
 cd .. ; echo -e "just for control -  pwd=\c";pwd; ls -lt

@@ -2,7 +2,9 @@
 #PBS -N g16sarin
 #PBS -A UMB-APVV-0059-10
 #PBS -r n
-#PBS -q batch
+
+##PBS -q batch
+#PBS -q debug
 
 ##PBS -l nodes=1:ppn=12:ht
 #PBS -l nodes=1:ppn=1:ht
@@ -11,7 +13,8 @@
 #PBS -l mem=2gb
 
 ##PBS -l walltime=48:00:00
-#PBS -l walltime=4:00:00
+##PBS -l walltime=4:00:00
+#PBS -l walltime=0:30:00
 
 ###PBS -l cput=24:00:00
 
@@ -39,13 +42,13 @@ source /home/mimelichercik/g16/bsd/g16.profile
 export GAUSS_ARCDIR=./
 export GAUSS_EXEDIR=/home/mimelichercik/g16
 export GAUSS_HLPDIR=/home/mimelichercik/g16
-export Project=sarin
 export GAUSS_SCRDIR=/mnt/local/$USER/$PBS_JOBID    # je iba jeden scratch pre cely nod
 export GAUSS_SRCDIR=/home/mimelichercik/g16
 echo scratch is $GAUSS_SCRDIR
 #----------------------------------------------------------------------------------------------------------------------#
 mkdir -p $GAUSS_SCRDIR
 
+export Project=sarin
   /home/mimelichercik/g16/g16 < $Project.com > $Project.log
 
 echo -e "\n Deleting scratch dir  $GAUSS_SCRDIR"

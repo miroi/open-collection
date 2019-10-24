@@ -1,13 +1,20 @@
 #!/bin/bash
-#PBS -N g16_job
+#PBS -N g16sarin
 #PBS -A UMB-APVV-0059-10
 #PBS -r n
 #PBS -q batch
+
+##PBS -l nodes=1:ppn=12:ht
 #PBS -l nodes=1:ppn=1:ht
+
 #PBS -v tpt=1
-#PBS -l mem=2000m
-#PBS -l walltime=48:00:00
+#PBS -l mem=2gb
+
+##PBS -l walltime=48:00:00
+#PBS -l walltime=4:00:00
+
 ###PBS -l cput=24:00:00
+
 echo Working directory is $PBS_O_WORKDIR
 cd $PBS_O_WORKDIR
 
@@ -39,8 +46,11 @@ echo scratch is $GAUSS_SCRDIR
 #----------------------------------------------------------------------------------------------------------------------#
 mkdir -p $GAUSS_SCRDIR
 
-  /home/mimelichercik/g16/g16 <$Project.com> $Project.log
+  /home/mimelichercik/g16/g16 < $Project.com > $Project.log
 
-rm -rf $GAUSS_SCRDIR
+echo -e "\n Deleting scratch dir  $GAUSS_SCRDIR"
+/bin/rm -rf $GAUSS_SCRDIR
+echo -e "\n Remaining `hostname`  /mnt/local/$USER/ "
+ls -lt /mnt/local/$USER/
 #----------------------------------------------------------------------------------------------------------------------#
 

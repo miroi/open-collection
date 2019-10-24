@@ -1,0 +1,65 @@
+#!/bin/bash
+
+if [ ! $# == 3 ] && [ ! $# == 4 ]; then
+echo
+echo "usage:   sub-g09  input      no_of_cores   mem_in_mb  node/nodes(optional)"
+echo "example: sub-g09  input.inp  12            8000       compXX/1"
+echo
+exit 1
+fi
+
+node=${4:-1}
+
+cat > qsub-$$ << %eof%
+
+#!/bin/bash
+#PBS -A UMB-APVV-0059-10 
+#PBS -r n
+#PBS -q batch
+#PBS -l nodes=${node}:ppn=${2}
+#PBS -v tpt=4
+#PBS -l mem=${3}mb
+#PBS -l walltime=720:00:00
+#PBS -o output_file
+#PBS -e error_file
+#PBS -N g16_`echo ${1} | head -c 12`
+
+echo Working directory is \$PBS_O_WORKDIR
+cd \$PBS_O_WORKDIR
+
+### Run some informational commands.
+echo Running on host \`hostname\`
+echo Time is \`date\`
+echo Directory is \`pwd\`
+echo This jobs runs on the following processors:
+echo \`cat \$PBS_NODEFILE\`
+
+### Define number of processors
+NPROCS=\`wc -l < \$PBS_NODEFILE\`
+echo This job has allocated \$NPROCS cpus
+
+export g16root="/home/mimelichercik/g16"
+export PATH="/home/mimelichercik/g09:$PATH"
+source /home/mimelichercik/g16/bsd/g16.profile
+export LD_LIBRARY_PATH="/home/mimelichercik/UTILS/sharutils-4.7/lib:/home/mimelichercik/UTILS/lapack-3.4.2"
+export PATH="$PATH:/home/mimelichercik/bin:/home/mimelichercik/UTILS/sharutils-4.7/sharutils/bin"
+source /home/mimelichercik/intel/bin/compilervars.sh intel64
+export GAUSS_ARCDIR=./
+export GAUSS_EXEDIR=/home/mimelichercik/g16
+export GAUSS_HLPDIR=/home/mimelichercik/g16
+export GAUSS_SCRDIR=/mnt/local/$USER/\$PBS_JOBID    # je iba jeden scratch pre cely nod
+export GAUSS_SRCDIR=/home/mimelichercik/g16
+echo scratch is \$GAUSS_SCRDIR
+#----------------------------------------------------------------------------------------------------------------------#
+mkdir -p \$GAUSS_SCRDIR
+
+  /home/mimelichercik/g16/g16 ${1}
+
+rm -rf \$GAUSS_SCRDIR
+
+%eof%
+
+qsub qsub-$$
+rm qsub-$$
+
+

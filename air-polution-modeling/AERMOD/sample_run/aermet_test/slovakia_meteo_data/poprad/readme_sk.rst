@@ -27,5 +27,5 @@ Formaty: CD-144, SAMSON, HUSWO, ISHD, TD-3280
 Webove zdroje:
 http://www.ncdc.noaa.gov/isd/data-access
 
-Pouzil som salem_cheat.txt surface data, s modifikovanym datum 2019-01-01/00-23.
+Pouzil som salem_cheat.txt surface data, s modifikovanym datum 2019-01-01/cas 00-23.
 

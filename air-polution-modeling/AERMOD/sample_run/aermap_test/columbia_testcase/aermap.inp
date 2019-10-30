@@ -24,19 +24,27 @@ CO FINISHED
 ** zdroje znecistenia
 SO STARTING 
    LOCATION  STACK1 POINT  0.0  0.0 
+   LOCATION  STACK2 POINT  10.0  10.0
 SO FINISHED
 
+** receptory
 RE STARTING
-   GRIDcART  CART1 STA
+   GRIDCART  CART1 STA
 **                   XYINC -10000.0 21 1000.0 -10000.0 21 1000.0
-** menej receptorov
-                     XYINC -10000.0 2 1000.0 -10000.0 2 1000.0 
+** menej receptorov - kartezsky grid 3x3
+                     XYINC -10000.0 3 1000.0 -10000.0 3 1000.0 
    GRIDCART  CART1 END
 RE FINISHED
 
+** vystupne subory
 OU STARTING
+** subor s receptormi
    RECEPTOR  Columbia_REC.OUT
+   
+** subor so zdrojmi znecistenia  
    SOURCLOC  Columbia_SRC.OUT
+
+** debugovacie subory
    DEBUGREC  REC1DB_Columbia.OUT  REC2DB_Columbia.OUT  REC3DB_Columbia.OUT
    DEBUGSRC  SRC1DB_Columbia.OUT  SRC2DB_Columbia.OUT  SRC3DB_Columbia.OUT
    DEBUGHIL  HillDebug_Columbia.out

@@ -7,24 +7,32 @@
 CO STARTING                                                                                                                         
    TITLEONE Zjednoduseny vstup pre AERMOD
    MODELOPT  CONC   FLAT
-   AVERTIME  24  PERIOD                                                                                                          
+   AVERTIME  1 3 8 24  PERIOD                                                                                                          
    POLLUTID  SO2                                                                                                                    
    RUNORNOT  RUN
    EVENTFIL  aertest_evt.inp
    ERRORFIL  ERRORS.OUT
 CO FINISHED                                                                                                                         
                                                                                                                                     
+SO STARTING 
+** zdroje z externej geografie
 SO INCLUDED Columbia_SRC.OUT
- 
+
+** rozne hodinove emisie pre STACK1
+SO HOUREMIS HOUREMIS_S1.txt STACK1 
+
 ** Charakteristika bodoveho zdroja znecistenia                                                                                                                                    
 ** Point Source       QS      HS     TS    VS    DS
 ** Parameters:       ----    ----   ----  ----   ---
    SRCPARAM  STACK1  100.0    5.00  425.  10.0   1.
-   SRCGROUP ALL                                                   
+   SRCPARAM  STACK2  150.0    1.00  325.  15.0   0.8
+   SRCGROUP ALL       
 SO FINISHED                                                                                                                         
                                                                                                                                     
+RE STARTING
 RE INCLUDED Columbia_REC.OUT
-RE FINISHED                                                                                                                         
+RE FINISHED
+                                                                                                                       
              
 ** meteorologický vstup			 
 ME STARTING                                                                                                                         

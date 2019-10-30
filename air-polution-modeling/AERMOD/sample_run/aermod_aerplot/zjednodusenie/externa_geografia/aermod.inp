@@ -1,0 +1,48 @@
+** To run the example, copy the AERTEST.INP file to AERMOD.INP and type:                                                                                                        
+**                                                                                                                                  
+**    AERMOD
+**                                                                                                                                  
+** The results for this example problem are provided in file AERMOD.OUT.
+                                                                                                                                    
+CO STARTING                                                                                                                         
+   TITLEONE Zjednoduseny vstup pre AERMOD
+   MODELOPT  CONC   FLAT
+   AVERTIME  24  PERIOD                                                                                                          
+   POLLUTID  SO2                                                                                                                    
+   RUNORNOT  RUN
+   EVENTFIL  aertest_evt.inp
+   ERRORFIL  ERRORS.OUT
+CO FINISHED                                                                                                                         
+                                                                                                                                    
+SO INCLUDED Columbia_SRC.OUT
+ 
+** Charakteristika bodoveho zdroja znecistenia                                                                                                                                    
+** Point Source       QS      HS     TS    VS    DS
+** Parameters:       ----    ----   ----  ----   ---
+   SRCPARAM  STACK1  100.0    5.00  425.  10.0   1.
+   SRCGROUP ALL                                                   
+SO FINISHED                                                                                                                         
+                                                                                                                                    
+RE INCLUDED Columbia_REC.OUT
+RE FINISHED                                                                                                                         
+             
+** meteorologický vstup			 
+ME STARTING                                                                                                                         
+   SURFFILE  aermet2.sfc
+   PROFFILE  aermet2.pfl
+   SURFDATA  14735  1988  ALBANY,NY
+   UAIRDATA  14735  1988  ALBANY,NY                                                                                                 
+   SITEDATA  99999  1988  HUDSON
+   PROFBASE  0.0  METERS
+ME FINISHED                                                                                                                         
+             
+** specifikacia vystupu			 
+OU STARTING                                                                                                                         
+   RECTABLE  ALLAVE  FIRST-THIRD
+   MAXTABLE  ALLAVE  50
+   SUMMFILE  AERTEST.SUM
+**
+** vytvori subor AERMOD.PLT pre vykreslenie čiar koncentrácii na mapu GoogleEarth
+**
+   PLOTFILE 24 ALL FIRST AERMOD.PLT     
+OU FINISHED

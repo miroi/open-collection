@@ -5,16 +5,22 @@
 
  Time_Zone        = 0,                 ! casova zona, 0=UTC
  Restart          = .false.,           ! restartovanie
- Start_Date_Hour  = 2002,06,03,0000,   ! (YYYY,MM,DD,HHmm)
+ Start_Date_Hour  = 2002,06,03,0000,   ! (YYYY,MM,DD,HHmm) ... cas startu
 
 ! End_Date_Hour    = 2002,06,03,2400,   ! (YYYY,MM,DD,HHmm)
 ! End_Date_Hour    = 2002,06,03,0030,   ! (YYYY,MM,DD,HHmm)
- End_Date_Hour    = 2002,06,03,0015,   ! (YYYY,MM,DD,HHmm)
+ !End_Date_Hour    = 2002,06,03,0015,   ! (YYYY,MM,DD,HHmm)
+ End_Date_Hour    = 2002,06,03,0009,   ! (YYYY,MM,DD,HHmm)
 
- Maximum_Timestep    = 2.,            ! minutes
- Met_Input_Frequency = 60.,            ! minutes
- Ems_Input_Frequency = 60.,            ! minutes
- Output_Frequency    = 60.,            ! minutes
+ Maximum_Timestep    = 1.5,            ! minutes ... musi byt vacsi ako 1 minuta
+
+ Met_Input_Frequency = 60.,           ! minutes
+ !Met_Input_Frequency = 30.,           ! minutes
+
+ Ems_Input_Frequency = 60.,           ! minutes
+
+ !Output_Frequency    = 60.,           ! minutes
+ Output_Frequency    = 1.5,           ! minutes
 
 !--- Map projection parameters, geograficke parametre podla daneho mapoveho systemu
 
@@ -46,6 +52,7 @@
  Nest_End_J_Index(2)    = 58,          ! Relative to master grid
 
 !--- Model options ---
+!  ... parametre modelu ...
  Diagnostic_Error_Check = .false.,      ! True = will stop after 1st timestep
  Advection_Solver       = 'PPM',        ! (PPM,BOTT)
  Chemistry_Solver       = 'EBI',        ! (EBI,IEH,LSODE)

@@ -1,17 +1,18 @@
 #!/bin/bash
-#PBS -N g16sarin
+#PBS -N g16thc
 #PBS -A UMB-APVV-0059-10
 #PBS -r n
 
-##PBS -q batch
-#PBS -q debug
+#PBS -q batch
+##PBS -q debug
 ##PBS -q test
 
 ##PBS -l nodes=1:ppn=12:ht
-#PBS -l nodes=1:ppn=2
+#PBS -l nodes=1:ppn=16:ht
 
 #PBS -v tpt=4
-#PBS -l mem=2000mb
+##PBS -l mem=2000mb
+#PBS -l mem=8gb
 
 #PBS -j oe
 #PBS -M Miroslav.Ilias@umb.sk
@@ -48,12 +49,13 @@ export GAUSS_EXEDIR=/home/mimelichercik/g16
 export GAUSS_HLPDIR=/home/mimelichercik/g16
 export GAUSS_SCRDIR=/mnt/local/$USER/$PBS_JOBID    # je iba jeden scratch pre cely nod
 export GAUSS_SRCDIR=/home/mimelichercik/g16
-echo -e "\nPre Gaussian je scratch  $GAUSS_SCRDIR"
+echo -e "\nGaussian scratch directory  $GAUSS_SCRDIR"
 #----------------------------------------------------------------------------------------------------------------------#
 mkdir -p $GAUSS_SCRDIR
 
-export Project=sarin
-  /home/mimelichercik/g16/g16 < $Project.gauss_inp > $Project.gauss_log
+#export Project=sarin
+export Project=THC
+  /home/mimelichercik/g16/g16 < $Project.b3lyp_geomopt_freq.com > $Project.b3lyp_geomopt_freq.out
 
 echo -e "\n Deleting scratch dir  $GAUSS_SCRDIR"
 /bin/rm -rf $GAUSS_SCRDIR

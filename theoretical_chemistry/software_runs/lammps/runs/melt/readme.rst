@@ -6,6 +6,8 @@ lammps_stable/examples/melt:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-Kronos - run OK
+Kronos (GSI.de) - run OK
 
-grid.umb.sk - run OK (see https://github.com/open-mpi/ompi/issues/6981)
+grid.umb.sk - run OK (see also https://github.com/open-mpi/ompi/issues/6981)
+
+labs.fpv.umb.sk - run OK

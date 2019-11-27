@@ -1,0 +1,53 @@
+CO STARTING
+   TITLEONE  moje geo-tiff
+   TITLETWO  bystrica-vysek
+   
+**   DATATYPE  DEM
+   DATATYPE NED
+** vstupne subory   
+**   DATAFILE  N00W070.dem
+**   DATAFILE  S01W070.dem
+
+   DATAFILE bystrica-vysek.tif
+  
+** Request ALL Debug Output Files   
+   DEBUGOPT  ALL
+
+** Domain crosses Equator 
+**   DOMAINXY  430000.0 9985000.0 -19  460000.0 15000.0 19
+   DOMAINLL 18.5599999999999987  48.4174999999999969  19.7541666666666664 49.0741666666666632
+  
+** Referencny bod v UTM pre FPV UMB
+   ANCHORXY  0.0 0.0  361969.24 361969.24 34  0
+  
+   RUNORNOT  RUN
+CO FINISHED
+
+** zdroje znecistenia
+SO STARTING 
+   LOCATION  STACK1 POINT  0.0  0.0 
+**   LOCATION  STACK2 POINT  10.0  10.0
+SO FINISHED
+
+** receptory
+RE STARTING
+   GRIDCART  CART1 STA
+**                   XYINC -10000.0 21 1000.0 -10000.0 21 1000.0
+** menej receptorov - kartezsky grid 2x2
+                     XYINC -100.0 2 100.0 -100.0 2 100.0 
+   GRIDCART  CART1 END
+RE FINISHED
+
+** vystupne subory
+OU STARTING
+** subor s receptormi
+   RECEPTOR  FPVUMB_REC.OUT
+   
+** subor so zdrojmi znecistenia  
+   SOURCLOC  FPVUMB_SRC.OUT
+
+** debugovacie subory
+   DEBUGREC  REC1DB.OUT  REC2DB.OUT  REC3DB.OUT
+   DEBUGSRC  SRC1DB.OUT  SRC2DB.OUT  SRC3DB.OUT
+   DEBUGHIL  HillDebug.out
+OU FINISHED

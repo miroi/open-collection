@@ -2,7 +2,7 @@
 Sarin MP2 with Gaussian
 =======================
 
-najskor treba zoptimalizovat geometriu v MP2 so solventom
+v jednom subore: najskor zoptimalizujeme geometriu v MP2 so solventom, spolu s frekvenciami
 
-potom pre danu geometriu spustit MP2
+potom pre danu geometriu spustime nmr-MP2 tiez v solvente
 

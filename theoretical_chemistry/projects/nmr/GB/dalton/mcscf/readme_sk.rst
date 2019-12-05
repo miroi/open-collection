@@ -1,11 +1,10 @@
 ==============
-Sarin v Dalton
+Sarin v Dalton - RASSCF
 ==============
 
 
-Optimalizacia geometrie v DFT, vibracne frekvencie, GIAO-NMR
+Optimalizacia geometrie v RASSCF + PCM +  GIAO-NMR
 
-defaultnych 25 iteracii nestaci na zoptimaliz.geometrie, treba ich viacej
 
 
 

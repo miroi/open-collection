@@ -2,7 +2,9 @@
 Sarin v Daltone - CASSCF
 =========================
 
-vo fixnej geometrii CASSCF + PCM +  GIAO-NMR
+- geometriu v CASSCF nemusime optimalizovat, zoberieme z DFT metodz
+
+-  vo fixnej geometrii CASSCF (+ PCM) +  GIAO-NMR
 
 
 

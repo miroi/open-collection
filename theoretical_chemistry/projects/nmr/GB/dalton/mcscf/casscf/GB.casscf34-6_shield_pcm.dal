@@ -1,0 +1,29 @@
+**DALTON INPUT  #  Must start all input files
+.OPTIMIZE       # Request geometry optimization
+*PCM
+.SOLVNT
+CHCL3
+.NEQRSP
+*PCMCAV
+**WAVE FUNCTIONS  # Wave function input
+.HF            #    We start with HF
+.MP2           #   Then MP2 (starting orb. for MCSCF)
+.MCSCF         #   Request an MCSCF
+*SCF INPUT
+.DOUBLY OCCUPIED
+37 
+*CONFIGURATION INPUT
+.SYMMETRY
+1
+.SPIN MUL
+1
+.INACTIVE       # electrons out of business
+34       
+.CAS SPACE
+6 
+.ELECTRONS       #  Number of electrons to correlate
+6                #    The valence electrons
+**PROPERTIES      # Input for single geometry run
+.SHIELD
+#.SPIN-S
+**END OF DALTON INPUT

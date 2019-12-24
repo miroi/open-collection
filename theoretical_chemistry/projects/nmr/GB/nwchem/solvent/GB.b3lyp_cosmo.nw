@@ -1,10 +1,9 @@
 
-
 echo
 
 start molecule
 
-title "GB-conf26+solvent"
+title "GB-COSMO"
 charge 0
 
 geometry units angstroms print xyz autosym
@@ -47,7 +46,11 @@ property
   shielding
 end
 
+cosmo
+  dielec  78.4
+end
+
 task dft optimize
-task dft freq numerical
+task dft freq 
 task dft property
 

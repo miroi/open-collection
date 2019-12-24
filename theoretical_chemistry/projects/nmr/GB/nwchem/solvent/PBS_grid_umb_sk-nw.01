@@ -105,7 +105,7 @@ echo -e "The local home directory with NWChem input file, PBS_O_WORKDIR=$PBS_O_W
 #mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/N2.scf_geomopt_sto2g.nw  > $PBS_O_WORKDIR/N2.scf_geomopt_sto2g.out
 #mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/N2.scf_geomopt.nw  > $PBS_O_WORKDIR/N2.scf_geomopt.out
 
-mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/GB-conf26.nw  > $PBS_O_WORKDIR/nwchem.out
+mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/GB.b3lyp_cosmo.nw  > $PBS_O_WORKDIR/nwchem.out
 
 echo -e "\n Working files in scratch dir $TMPDIR:"
 ls -lt $TMPDIR 
@@ -116,6 +116,5 @@ echo -e "\n Afterwards, content of ls -lt /mnt/local/$USER :"; ls -lt /mnt/local
 
 echo -e "\n returning to $PBS_O_WORKDIR"
 cd $PBS_O_WORKDIR
-
 
 exit 0

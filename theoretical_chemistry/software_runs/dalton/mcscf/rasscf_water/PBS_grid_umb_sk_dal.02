@@ -1,0 +1,127 @@
+#!/bin/bash
+
+#PBS -S /bin/bash
+#PBS -A UMB-ITMS-26110230082
+#PBS -N raspcm
+
+### Declare myprogram non-rerunable
+#PBS -r n
+
+##PBS -l nodes=1:ppn=12:old
+#PBS -l nodes=1:ppn=4  # number of CPUs for Dalton parallel run
+
+#PBS -l walltime=02:00:00
+
+##PBS -l mem=47g
+#PBS -l mem=4g  # size of allocated memory for Dalton run
+
+#PBS -j oe
+
+#PBS -q batch
+##PBS -q debug
+
+#PBS -M Miroslav.Ilias@umb.sk  # send email after finishing job
+
+echo -e "\n Date & Time:  `date`"
+echo -e "\n Working host is: \c "; hostname -f
+
+source /mnt/apps/intel/bin/compilervars.sh intel64
+echo -e "\n Intel Fortran/C/C++ commercial compilers with MKL library activated, MKLROOT=$MKLROOT."
+
+echo -e "Loaded modules:"; module list
+
+# libnumma for PGI
+#export LD_LIBRARY_PATH=/home/milias/bin/lib64_libnuma:$LD_LIBRARY_PATH
+
+# my CMake into PATH
+export PATH=/home/milias/bin/cmake/cmake-3.3.0-Linux-x86_64/bin:$PATH
+echo "My PATH=$PATH"
+
+echo "Launching directory for PBS is `pwd`"
+echo -e "\nThis jobs runs on the following processors:"
+echo `cat $PBS_NODEFILE`
+
+UNIQUE_NODES="`cat $PBS_NODEFILE | sort | uniq`"
+UNIQUE_NODES="`echo $UNIQUE_NODES | sed s/\ /,/g `"
+echo "Unique nodes for parallel run:  $UNIQUE_NODES"
+
+# Extract number of processors
+NPROCS_PBS=`wc -l < $PBS_NODEFILE`
+NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
+echo -e "\nThis node has $NPROCS CPUs."
+echo -e "This node has $NPROCS_PBS CPUs allocated for PBS calculations."
+
+echo -e "\nMemory on node:"; free -t -g -h
+
+echo -e "\n PBS variables:"
+echo "PBS_NODEFILE=$PBS_NODEFILE"
+echo "PBS_O_QUEUE=$PBS_O_QUEUE"
+echo "PBS_O_WORKDIR=$PBS_O_WORKDIR"
+#
+
+#export MKL_NUM_THREADS=$NPROCS
+#echo "MKL_NUM_THREADS=$MKL_NUM_THREADS"
+#export MKL_DOMAIN_NUM_THREADS="MKL_BLAS=$NPROCS"
+export OMP_NUM_THREADS=1
+export MKL_DYNAMIC="FALSE"
+export OMP_DYNAMIC="FALSE"
+
+# provide OpenMPI-Intel - local installation 
+export PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/bin:$PATH
+export LD_LIBRARY_PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib:$LD_LIBRARY_PATH
+
+DALTON=/home/milias/Work/qch/software/dalton_suite/dalton_master
+#BUILD=build_intel14-i8-mkl
+#BUILD=build_intelmklpar_openmpi_i8
+BUILD=build_intelmklpar_openmpi
+
+#BUILD_MPI1=$DIRAC/build_openmpi-2.1.1_intel14_mkl_i8_xh
+#PAM_MPI1=$BUILD_MPI1/pam
+
+#BUILD_MPI2=$DIRAC/build_openmpi-2.1.1_intel14_openblas_i8_xh
+#export LD_LIBRARY_PATH=/home/milias/bin/openblas/OpenBLAS:$LD_LIBRARY_PATH
+#PAM_MPI2=$BUILD_MPI2/pam
+
+echo -e "\nPython -V \c"; python -V
+#echo -e "mpf90 ? \c"; which mpif90; mpif90 --version
+#echo -e "mpirun ? \c"; which mpirun; mpirun --version
+
+#$echo -e "\n The $BUILD_MPI1/dirac.x attributes:"
+#ls -lt $BUILD_MPI1/dirac.x
+
+echo -e "\n The $DALTON/$BUILD/dalton.x attributes:"
+ls -lt $DALTON/$BUILD/dalton.x
+ldd $DALTON/$BUILD/dalton.x
+
+# set local scratch directory for your runs
+export DALTON_TMPDIR=/mnt/local/$USER/$PBS_JOBID
+echo -e "\n Local scratch directory for Dalton, DALTON_TMPDIR=$DALTON_TMPDIR "
+echo -e "df -h /mnt/local/$USER \c "; df -h /mnt/local/$USER
+
+cd $PBS_O_WORKDIR
+
+  # set MKL envirovariables
+  unset MKL_NUM_THREADS
+  #export MKL_NUM_THREADS=$nmkl
+  export MKL_NUM_THREADS=1
+  echo -e "\nUpdated MKL_NUM_THREADS=$MKL_NUM_THREADS"
+  echo -e "MKL_DYNAMIC=$MKL_DYNAMIC"
+  echo -e "OMP_NUM_THREADS=$OMP_NUM_THREADS"
+  echo -e "OMP_DYNAMIC=$OMP_DYNAMIC"
+  
+# send MKL enviro-variables to nodes
+#PBS -v MKL_NUM_THREADS
+#PBS -v MKL_DYNAMIC
+#PBS -v OMP_NUM_THREADS
+#PBS -v OMP_DYNAMIC
+
+# Passing your whole environment
+#PBS -V
+
+  # $DALTON/$BUILD/dalton -omp $NPROCS_PBS  sarin_nmr
+
+# this is parallel run 
+   #$DALTON/$BUILD/dalton -N $NPROCS_PBS  -noarch H2O.rasscf_prop H2O.C2v
+   $DALTON/$BUILD/dalton -N $NPROCS_PBS  -noarch H2O.rasscf_shield_pcm H2O.C2v
+
+exit 0

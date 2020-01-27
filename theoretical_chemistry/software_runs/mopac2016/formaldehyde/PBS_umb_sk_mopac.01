@@ -13,7 +13,7 @@
 #PBS -l walltime=02:00:00
 
 ##PBS -l mem=47g
-#PBS -l mem=4g  # size of allocated memory for Dalton run
+#PBS -l mem=4g  # size of allocated memory for run
 
 #PBS -j oe
 
@@ -59,13 +59,17 @@ echo -e "\nPython -V \c"; python -V
 #$echo -e "\n The $BUILD_MPI1/dirac.x attributes:"
 #ls -lt $BUILD_MPI1/dirac.x
 
+echo -e "\n...LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
+
 MOPAC_PATH=/home/milias/Work/qch/software/mopac/mopac2016
+export MOPAC_LICENSE=$MOPAC_PATH
+export LD_LIBRARY_PATH=$MOPAC_PATH:$LD_LIBRARY_PATH
+
+echo "...extended LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
+
 echo -e "\n The $MOPAC_PATH/MOPAC2016.exe attributes:"
 ls -lt $MOPAC_PATH/MOPAC2016.exe
 ldd $MOPAC_PATH/MOPAC2016.exe
-export LD_LIBRARY_PATH=$MOPAC_PATH:$LD_LIBRARY_PATH
-
-echo "...LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
 
 # set local scratch directory for your runs
 #export MOPAC_TMPDIR=/mnt/local/$USER/$PBS_JOBID

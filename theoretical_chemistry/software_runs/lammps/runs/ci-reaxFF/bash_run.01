@@ -1,10 +1,20 @@
 #!/bin/bash
 
-LAMMPS_EXE=/home/milias/work/qch_software/lammps_suite/lammps_stable/build/lmp
+if [[ `hostname` = "labs.fpv.umb.sk" ]];
+then
+    LAMMPS_EXE=/home/milias/work/qch_software/lammps_suite/lammps_stable/build/lmp
+else
+    LAMMPS_EXE=/usr/bin/lammps
+fi
 
-linp=in.melt
+#
+echo -e "\n Running LAMMPS=$LAMMPS_EXE on the hostname `hostname`"
+
+#linp=in.melt
+#linp=in.AuO
+linp=in.ci-reax.CH
  
-echo -e "\n LAMMPS input=$linp "
+echo -e "LAMMPS input=$linp "
 
 np=$1; # echo "argument = $np"
 

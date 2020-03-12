@@ -2,15 +2,33 @@
 CAMx, www.camx.com
 ==================
 
-labs.fpv.umb.sk
----------------
+milias@labs.fpv.umb.sk; milias@194.160.44.72
+--------------------------------------------
 
 in Makefile:
+~~~~~~~~~~~~
 #MPI_INST = /usr/local/mpich3
 MPI_INST = /usr
-NCF_INST = /usr/local/netcdf
+#NCF_INST = /usr/local/netcdf
+NCF_INST = /usr
+
+change of v6-50/MPI/util/Makefile:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+#MPI_INST = /usr/local/mpich3
+MPI_INST = /usr
+
+LIBNAME = libparlib.a
+
+CC = gcc
+
+#LIB = -L$(MPI_INST)/lib -lmpich
+LIB = -L$(MPI_INST)/lib -lmpi
+
+INC = $(MPI_INST)/include/mpi
 
 Compilation
 ~~~~~~~~~~~
-milias@labs.fpv.umb.sk:~/work/software/air_pollution/CAMx/v6-50/.make COMPILER=gfortran MPI=openmpi NCF=NCF4_C
+make COMPILER=gfortran MPI=openmpi NCF=NCF4
+make COMPILER=gfortran NCF=NCF4
 

@@ -33,8 +33,12 @@ timev = f.createVariable(
     units='hours since 1970-01-01 00:00:00+0000',
 )
 
+print("doing rawf.getTimes()...")
+print("rawf.getTimes()",rawf.getTimes()) ### gives error !
+
 print("doing f.date2num...")
 f.variables['time'][:] = f.date2num(rawf.getTimes())
+
 
 print("starting cycle...")
 for key, var in f.variables.items():

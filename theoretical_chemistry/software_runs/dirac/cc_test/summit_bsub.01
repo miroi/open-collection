@@ -4,9 +4,18 @@
 #BSUB -W 2:00
 #BSUB -P CHP109
 #BSUB -J cctest
-#BSUB -o %J.out
-#BSUB -e %J.err
+#BSUB -oe %J.std_oe
+##BSUB -e %J.err
 #BSUB -u M.Ilias@gsi.de  
+
+# Load modules:
+module load gcc/8.1.1
+module load essl
+module load cuda
+module load git
+module load cmake
+module load python
+module load netlib-lapack
 
 # number of MPI processes (2*nnodes)
 #export nmpi=400
@@ -15,7 +24,6 @@ export nmpi=4
 # dirac setup
 export DIRAC_PATH=/gpfs/alpine/world-shared/chp109/dirac_install
 export BASDIR=${DIRAC_PATH}/basis:${DIRAC_PATH}/basis_dalton:${DIRAC_PATH}/basis_ecp
-source ~/.modules
 
 # project setup
 export ProjectDir=/ccs/home/milias/work/open-collection/theoretical_chemistry/software_runs/dirac/cc_test
@@ -30,7 +38,6 @@ export datadir=$ProjectDir/data
 
 export MOL_file=$ProjectDir/CO.mol
 export INP_file=$ProjectDir/ccsd.small.inp
-
 
 
 export DIRAC_TMPDIR=${MEMBERWORK}/chp109/cc_test

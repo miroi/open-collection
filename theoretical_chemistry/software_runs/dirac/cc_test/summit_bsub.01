@@ -1,14 +1,16 @@
 #!/bin/bash
-#BSUB -nnodes 200
+##BSUB -nnodes 200
+#BSUB -nnodes 2
 #BSUB -W 12:00
 #BSUB -P CHP109
-#BSUB -J nitrate_-4500to5_v2z_x2c
-#BSUB -o nitrate_-4500to5_v2z_x2c_scheme4_%J.out
-#BSUB -e nitrate_-4500to5_v2z_x2c_scheme4_%J.err
-#BSUB -u andre.gomes@univ-lille.fr
+#BSUB -J cctest
+#BSUB -o %J.out
+#BSUB -e %J.err
+#BSUB -u M.Ilias@gsi.de  
 
 # number of MPI processes (2*nnodes)
-export nmpi=400
+#export nmpi=400
+export nmpi=4
 
 # dirac setup
 export DIRAC_PATH=/gpfs/alpine/world-shared/chp109/dirac_install
@@ -16,20 +18,28 @@ export BASDIR=${DIRAC_PATH}/basis:${DIRAC_PATH}/basis_dalton:${DIRAC_PATH}/basis
 source ~/.modules
 
 # project setup
-export ProjectDir=/ccs/home/gomes/projects/grands-challenges/uo2no33-
+export ProjectDir=/ccs/home/milias/work/open-collection/theoretical_chemistry/software_runs/dirac/cc_test
+
 export inpdir=$ProjectDir/inp
 export xyzdir=$ProjectDir/xyz
-export outdir=$ProjectDir/out/v2z-summit-lp64/ccsd_x2c_energy+lambda_exacorr_scheme4_block60_-4500to5_v2z
-export datadir=$ProjectDir/data/v2z-rome-lp64/scf_x2c_properties_v2z
+export outdir=$ProjectDir/out
+export datadir=$ProjectDir/data
 
-export MOL_file=$xyzdir/Rb_uo2_3no3-Barclay-AC1965-19-205.xyz
-export INP_file=$inpdir/ccsd_x2c_energy+lambda_exacorr_scheme4_block60_-4500to5_v2z.inp
-#
-export DIRAC_TMPDIR=${MEMBERWORK}/chp109/uo2no33-_x2c_v2z_scheme4_block60_-4500to5
+#export MOL_file=$xyzdir/Rb_uo2_3no3-Barclay-AC1965-19-205.xyz
+#export INP_file=$inpdir/ccsd_x2c_energy+lambda_exacorr_scheme4_block60_-4500to5_v2z.inp
+
+export MOL_file=$ProjectDir/CO.mol
+export INP_file=$ProjectDir/ccsd.small.inp
+
+
+
+export DIRAC_TMPDIR=${MEMBERWORK}/chp109/cc_test
 #
 
 # now running
 mkdir -p $outdir
 cd $outdir
 # run exacorr
-${DIRAC_PATH}/pam --keep_scratch --scratchfull=$DIRAC_TMPDIR --mpi=$nmpi --mol=$MOL_file --inp=$INP_file --outqforce --put="$datadir/DFCOEF $datadir/AOMOMAT" --get "CCDENS"
+#${DIRAC_PATH}/pam --keep_scratch --scratchfull=$DIRAC_TMPDIR --mpi=$nmpi --mol=$MOL_file --inp=$INP_file --outqforce --put="$datadir/DFCOEF $datadir/AOMOMAT" --get "CCDENS"
+${DIRAC_PATH}/pam --scratch=$DIRAC_TMPDIR --mpi=$nmpi --mol=$MOL_file --inp=$INP_file 
+

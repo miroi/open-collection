@@ -1,0 +1,25 @@
+#!/bin/bash
+
+export FLEUR=/u/milias/Work/qch/software/fleur_code/fleur/build
+
+ #echo -e "\n running $FLEUR/inpgen < inp_Si on \"`hostname`\"  "
+
+  ulimit -s unlimited
+
+ # $FLEUR/inpgen < inp_MoS2_relax
+
+# relaxation steps
+   $FLEUR/fleur_MPI
+   $FLEUR/fleur_MPI
+   $FLEUR/fleur_MPI
+   $FLEUR/fleur_MPI
+   $FLEUR/fleur_MPI
+   $FLEUR/fleur_MPI
+   $FLEUR/fleur_MPI
+   $FLEUR/fleur_MPI
+   $FLEUR/fleur_MPI
+
+ # export OMP_NUM_THREADS=5
+ # mpirun -np 4 $FLEUR/fleur_MPI
+
+exit 0

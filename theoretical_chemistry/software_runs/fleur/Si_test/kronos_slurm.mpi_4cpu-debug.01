@@ -30,18 +30,16 @@
 #SBATCH --mail-type=ALL
 
  
-echo Job user is $SLURM_JOB_USER and his job $SLURM_JOB_NAME has assigned ID $SLURM_JOBID
-echo This job was submitted from the computer $SLURM_SUBMIT_HOST
-echo and from the home directory:
-echo $SLURM_SUBMIT_DIR
-echo
-echo It is running on the cluster compute node:
-echo $SLURM_CLUSTER_NAME
-echo and is employing $SLURM_JOB_NUM_NODES node/nodes:
-echo $SLURM_JOB_NODELIST
-echo
-echo -e "Job partition is : $SLURM_JOB_PARTITION \n"
-echo The job exclusive job has $SLURM_CPUS_ON_NODE CPU on the node.
+echo -e "Job user is $SLURM_JOB_USER and his job $SLURM_JOB_NAME has assigned ID $SLURM_JOBID"
+echo -e "This job was submitted from the computer $SLURM_SUBMIT_HOST"
+echo -e "and from the home directory: $SLURM_SUBMIT_DIR"
+echo -e "It is running on the cluster compute node: $SLURM_CLUSTER_NAME"
+echo -e "\nJob is employing $SLURM_JOB_NUM_NODES node/nodes: $SLURM_JOB_NODELIST"
+echo -e "\nJob partition is : $SLURM_JOB_PARTITION \n"
+echo -e "\nThis job has $SLURM_CPUS_ON_NODE CPU(s) on the node."
+
+echo -e "\n SLURM_JOB_CPUS_PER_NODE=$SLURM_JOB_CPUS_PER_NODE"
+echo -e "\n SLURM_NTASKS=$SLURM_NTASKS"
 
 echo -e "\n Memory per node,  SLURM_MEM_PER_NODE=$SLURM_MEM_PER_NODE MB"
 if [[ $SLURM_MEM_PER_CPU ]]; then
@@ -102,13 +100,16 @@ echo -e "\n For comparison, /tmp local disk;  df -h /tmp/."; df -h /tmp
 echo -e "\n"
 FLEUR_BUILD=/lustre/ukt/milias/work/software/fleur/fleur_release/build
 
+echo -e "ldd $FLEUR_BUILD/inpgen :"
 ldd $FLEUR_BUILD/inpgen
+echo -e "ldd $FLEUR_BUILD/fleur_MPI :"
 ldd $FLEUR_BUILD/fleur_MPI
+
+echo -e "setting 'ulimit -s unlimited'"
+ulimit -s unlimited
 
 # for running jobs from your homedir
 cd $SLURM_SUBMIT_DIR
-
-#$PAM --noarch --mpi=1 --gb=100.5 --ag=120.5  --mol=Bh-CO_4.x2c_a4p_bp86_v2z.Cs.mol --inp=Bh-CO_4.x2c_a4.relcc_o20-19_v15.inp  --scratchfull=/lustre/nyx/ukt/milias/scratch/milias/DIRAC_Bh-CO_4.x2c_a4.scf_relcc_o20-19_v15_Bh-CO_4.x2c_a4p_bp86_v2z.Cs_5327
 
 #THISMPI=$SLURM_CPUS_ON_NODE
 #THISMPI=1
@@ -117,7 +118,6 @@ cd $SLURM_SUBMIT_DIR
 #export MKL_NUM_THREADS=$SLURM_CPUS_ON_NODE
 #echo -e "\nThis node has $NPROCS CPUs available for this EXCLUSIVE JOB and dirac.x is running via $THISMPI threads."
 #echo -e "Therefore, for the MKL internal parallelization, number of calculated threads=$MKL_NUM_THREADS \n"
-
 # $PAM --noarch --mpi=$THISMPI --gb=218 --ag=220 --mol=Rh-Hax-CO_4.sozora_bp_tz2p.xyz  --inp=Rh-Hax-CO_4.x2c_a4p.scf1fs.v3z.relcc-58ce-v12au.inp  --suffix=i17mkl_mpi$THISMPI-omp$MKL_NUM_THREADS-$SLURM_JOB_PARTITION-$SLURM_JOBID-out --put "DFPCMO.RhHCO4.x2c_a4p.v3z.adf-xyz=DFPCMO"
 
 echo -e "\n running $FLEUR_BUILD/inpgen < inp_Si on \"`hostname`\"  "

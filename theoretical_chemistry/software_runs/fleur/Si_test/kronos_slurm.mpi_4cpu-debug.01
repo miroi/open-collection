@@ -3,7 +3,7 @@
 
 ## max. execution time
 ##SBATCH -t 7-00:00:00
-#SBATCH -t 0-02:00:00
+#SBATCH -t 0-00:30:00
 
 # number of nodes
 #SBATCH -N 1
@@ -19,7 +19,8 @@
 ##  partition (queue)
 ##SBATCH -p parallel
 ##SBATCH -p long
-#SBATCH -p main
+##SBATCH -p main
+#SBATCH -p debug
 
 ## stdout/stderr output file
 #SBATCH -o log_slurm_job.%j.%N.std_out_err
@@ -53,15 +54,14 @@ echo -e "All modules at disposal at the node:"
 module avail
 echo
 
-module unload compiler/intel/12.1
-module unload compiler/intel/15.0
-module unload compiler/intel/16.0
-
 source /lustre/ukt/milias/bin/intel-mpi-mkl_2019.4/intel/impi/2019.4.243/intel64/bin/mpivars.sh 
 source /lustre/ukt/milias/bin/intel-mpi-mkl_2019.4/intel/bin/compilervars.sh intel64 -platform linux  
 source /lustre/ukt/milias/bin/intel-mpi-mkl_2019.4/intel/compilers_and_libraries_2019.4.243/linux/mpi/intel64/bin/mpivars.sh
 module load compiler/intel/19.0 ; echo -e "Activated Intel 19.0, MKL & Intel-MPI"
-which mpiifort; which mpiicc; which mpiicpc; which mpirun
+which mpiifort; mpiifort --version
+which mpiicc; mpiicc --version
+which mpiicpc;  mpiicpc --version
+which mpirun; mpirun --version
 
 echo -e "\n\n loaded modules:"
 module list
@@ -120,14 +120,13 @@ cd $SLURM_SUBMIT_DIR
 
 # $PAM --noarch --mpi=$THISMPI --gb=218 --ag=220 --mol=Rh-Hax-CO_4.sozora_bp_tz2p.xyz  --inp=Rh-Hax-CO_4.x2c_a4p.scf1fs.v3z.relcc-58ce-v12au.inp  --suffix=i17mkl_mpi$THISMPI-omp$MKL_NUM_THREADS-$SLURM_JOB_PARTITION-$SLURM_JOBID-out --put "DFPCMO.RhHCO4.x2c_a4p.v3z.adf-xyz=DFPCMO"
 
-echo -e "\n running $FLEUR/inpgen < inp_Si on \"`hostname`\"  "
+echo -e "\n running $FLEUR_BUILD/inpgen < inp_Si on \"`hostname`\"  "
 
   $FLEUR_BUILD/inpgen < inp_Si 
 
+echo -e "\n running mpirun -np 4 $FLEUR_BUILD/fleur_MPI "
+
   mpirun -np 4 $FLEUR_BUILD/fleur_MPI
-
-
-
 
 
 exit

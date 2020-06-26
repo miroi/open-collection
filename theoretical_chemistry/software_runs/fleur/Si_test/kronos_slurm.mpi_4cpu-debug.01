@@ -125,11 +125,10 @@ if [ ! -f "$SLURM_SUBMIT_DIR/inp.xml" ]; then
   echo -e "\n running $FLEUR_BUILD/inpgen < inp_Si on \"`hostname`\"  "
   $FLEUR_BUILD/inpgen < inp_Si 
 else 
-  echo -e "File $SLURM_SUBMIT_DIR/inp.xml exists, skipping inpgen run."
+  echo -e "\n Generated (inpgen) file $SLURM_SUBMIT_DIR/inp.xml exists, skipping inpgen run."
 fi
 
-  echo -e "\n running mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI "
+  echo -e "\n Continuing with  'mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI' "
   mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI
-
 
 exit

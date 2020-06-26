@@ -121,12 +121,14 @@ cd $SLURM_SUBMIT_DIR
 #echo -e "Therefore, for the MKL internal parallelization, number of calculated threads=$MKL_NUM_THREADS \n"
 # $PAM --noarch --mpi=$THISMPI --gb=218 --ag=220 --mol=Rh-Hax-CO_4.sozora_bp_tz2p.xyz  --inp=Rh-Hax-CO_4.x2c_a4p.scf1fs.v3z.relcc-58ce-v12au.inp  --suffix=i17mkl_mpi$THISMPI-omp$MKL_NUM_THREADS-$SLURM_JOB_PARTITION-$SLURM_JOBID-out --put "DFPCMO.RhHCO4.x2c_a4p.v3z.adf-xyz=DFPCMO"
 
-echo -e "\n running $FLEUR_BUILD/inpgen < inp_Si on \"`hostname`\"  "
-
+if [ ! -f "$SLURM_SUBMIT_DIR/inp.xml" ]; then 
+  echo -e "\n running $FLEUR_BUILD/inpgen < inp_Si on \"`hostname`\"  "
   $FLEUR_BUILD/inpgen < inp_Si 
+else 
+  echo -e "File $SLURM_SUBMIT_DIR/inp.xml exists, skipping inpgen run."
+fi
 
-echo -e "\n running mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI "
-
+  echo -e "\n running mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI "
   mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI
 
 

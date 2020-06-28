@@ -9,7 +9,7 @@
 #SBATCH -p debug
 
 ## CPU count  
-#SBATCH -n 20
+#SBATCH -n 16
 
 ## max. execution time
 ##SBATCH -t 7-00:00:00
@@ -130,9 +130,9 @@ else
   echo -e "\n Generated (inpgen) file $SLURM_SUBMIT_DIR/inp.xml exists, skipping inpgen run."
 fi
 
-echo -e "\n Continuing with  'mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI' "
+#echo -e "\n Continuing with  'mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI' "
 
-mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI
+#mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI
 #mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI
 
 

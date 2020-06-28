@@ -2,13 +2,14 @@ Fleur, relaxation
 =================
 
 https://www.flapw.de/MaX-4.0/howto/#relaxation
+https://www.flapw.de/MaX-4.0/documentation/forces
 
-inp.xml modified 
+"inp.xml" must be modified 
 
-Needs:  sym.out,  cdn.hdf
+Needs:  sym.out from inpgen,  
+        cdn.hdf from scf
 
-Problem: in relax.xlm energy is not changing !
-
+Watch: relax.xml
 
 
 

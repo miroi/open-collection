@@ -7,6 +7,8 @@ inp.xml modified
 
 Needs:  sym.out,  cdn.hdf
 
+Problem: in relax.xlm energy is not changing !
+
 
 
 

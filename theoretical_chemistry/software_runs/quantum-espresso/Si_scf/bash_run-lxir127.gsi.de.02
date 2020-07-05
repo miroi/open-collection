@@ -4,8 +4,7 @@ export QE=/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/bin
 
 echo -e "\n running $QE \"`hostname`\"  "
 
-  inp=Si.scf.in
-  out=Si.scf.out
- mpirun -np 4 $QE/pw.x < $inp > $out
+ proj=Si.scf_k3x12
+ mpirun -np 4 $QE/pw.x < $proj.in > $proj.out
 
 exit 0

@@ -1,0 +1,49 @@
+#!/bin/sh
+
+NSCM_AMSEXTERNAL=$NSCM
+export NSCM_AMSEXTERNAL
+NSCM=1
+export NSCM
+"$AMSBIN/ams" << eor
+
+Task SinglePoint
+System
+    Atoms
+        O -1.575681 -1.650492 -0.0 
+        H -1.106642 -2.506847 -0.0 
+        Nh 0.0 0.0 0.0 
+    End
+    Lattice
+        -3.0 0.0 -0.0
+        0.0 3.0 0.0
+        0.0 0.0 -3.0
+    End
+    BondOrders
+         1 1 1.0 0 1 0
+         2 1 1.0
+         3 1 1.0
+         3 1 1.0 -1 1 0
+         3 1 1.0 0 1 0
+    End
+End
+
+Engine External
+    Input
+    EndInput
+
+    InputDefinition $AMSBIN/input_def/vasp.json
+    Execute "$AMSBIN"/startpython "$AMSHOME"/scripting/standalone/external_engines/vasp.py
+    ExecuteAtEnd "$AMSBIN"/startpython "$AMSHOME"/scripting/standalone/external_engines/vasp-bandstructure.py
+    
+    Supports
+        DipoleMoment       False
+        PeriodicityNone    False
+        PeriodicityChain   False
+        PeriodicitySlab    False
+        PeriodicityBulk    True
+        NonSpecificSystems False
+    End
+    
+EndEngine
+eor
+

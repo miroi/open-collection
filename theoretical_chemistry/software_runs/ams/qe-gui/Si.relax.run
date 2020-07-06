@@ -1,0 +1,66 @@
+#!/bin/sh
+
+if test ! -z "$PSEUDO_DIR" -a ! -z "$QEBIN"; then
+    echo "Using user-defined QE binaries"
+elif test -f "$AMSBIN"/qerc.sh; then
+    . "$AMSBIN/qerc.sh"
+fi
+if test -z "$SCM_LOGFILE"; then SCM_LOGFILE=logfile; fi
+if test -z "$SCM_RESULTDIR"; then SCM_RESULTDIR=.; fi
+
+cp "$PSEUDO_DIR/QE/Si.rel-pbe-n-kjpaw_psl.0.1.UPF" "Si.rel-pbe-n-kjpaw_psl.0.1.UPF"
+
+"$AMSBIN/startqe" "$QEBIN/pw.x" << eor | tee -a "$SCM_LOGFILE"
+
+&control
+    calculation   = 'vc-relax'
+    prefix        = 'qe',
+    wf_collect    = .true.,
+    pseudo_dir    = './',
+/
+
+&system
+    ibrav           = 0,
+    nat             = 2,
+    ntyp            = 1,
+    ecutwfc         = 20.0,
+    nbnd            = 20,
+    noncolin        = .true.
+    lspinorb        = .true.
+/
+
+&electrons
+/
+
+&ions
+/
+
+&cell
+/
+
+ATOMIC_SPECIES
+    Si 27.976926 'Si.rel-pbe-n-kjpaw_psl.0.1.UPF'
+
+ATOMIC_POSITIONS angstrom
+    Si -0.749879792825938 -0.749879792825938 -0.749879792825938
+    Si 0.749879792825938 0.749879792825938 0.749879792825938
+
+CELL_PARAMETERS angstrom
+  0.0 2.999990097416894 2.999990097416894
+  2.999990097416894 0.0 2.999990097416894
+  2.999990097416894 2.999990097416894 0.0
+
+K_POINTS automatic
+  10 10 10 0 0 0
+eor
+
+echo | tee -a "$SCM_LOGFILE"
+echo Converting results to RKF | tee -a "$SCM_LOGFILE"
+rm -f "$SCM_RESULTDIR/$JOBNAME.rkf"
+"$AMSBIN/tokf" qe "$SCM_LOGFILE" "$SCM_RESULTDIR/$JOBNAME.rkf"
+if test -f kpath.kf; then
+  "$AMSBIN/cpkf" kpath.kf "$SCM_RESULTDIR/$JOBNAME.rkf" "WScell(reciprocal_space)"
+  "$AMSBIN/cpkf" kpath.kf "$SCM_RESULTDIR/$JOBNAME.rkf" band_curves%path_type band_curves%brav_type
+fi
+rm -f logfile__0 edges.txt bandx.*dat* qe.dos_* qe.pdos_* kpath.kf
+

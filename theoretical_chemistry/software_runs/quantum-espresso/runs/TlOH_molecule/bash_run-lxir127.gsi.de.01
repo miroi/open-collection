@@ -4,10 +4,10 @@ export QE=/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/bin
 
 echo -e "\n running $QE \"`hostname`\"  "
 
- workdir=/data.local1/milias/scratch/NhOH_QE_workdir
- #mkdir -p $workdir
+ workdir=/data.local1/milias/scratch/TlOH_QE_workdir
+ mkdir -p $workdir
 
- proj=NhOH.relax
+ proj=TlOH.relax
  mpirun -np 4 $QE/pw.x < $proj.in > $proj.out
 
  echo -e "\n Content of $workdir :"

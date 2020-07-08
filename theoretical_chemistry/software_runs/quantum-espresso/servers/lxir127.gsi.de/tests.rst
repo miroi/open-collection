@@ -85,6 +85,35 @@ pw_hse - hse-si222.in: Passed.
 .
 .
 
+All done. ERROR: only 15 out of 32 tests passed (57 skipped).
+Failed tests in:
+	/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/test-suite/epw_base/
+	/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/test-suite/epw_metal/
+	/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/test-suite/epw_mob/
+	/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/test-suite/epw_mob_ibte/
+	/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/test-suite/epw_mob_ibte_sym/
+	/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/test-suite/epw_mob_polar/
+	/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/test-suite/epw_pl/
+	/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/test-suite/epw_polar/
+	/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/test-suite/epw_scdm/
+	/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/test-suite/epw_soc/
+	/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/test-suite/epw_super/
+	/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/test-suite/epw_trev/
+	/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/test-suite/epw_trev_uspp/
+Skipped tests in:
+	/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/test-suite/epw_base/
+	/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/test-suite/epw_mob/
+	/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/test-suite/epw_mob_ibte/
+	/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/test-suite/epw_mob_ibte_sym/
+	/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/test-suite/epw_mob_polar/
+	/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/test-suite/epw_pl/
+	/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/test-suite/epw_polar/
+	/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/test-suite/epw_scdm/
+	/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/test-suite/epw_super/
+	/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/test-suite/epw_trev/
+	/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/test-suite/epw_trev_uspp/
+Makefile:75: recipe for target 'run-tests-epw-parallel' failed
+make: *** [run-tests-epw-parallel] Error 1
 
 
 

@@ -11,7 +11,8 @@ print("going to import PseudoNetCDF as pnc")
 import PseudoNetCDF as pnc
 
 print("going to open nc file ...")
-rawf = pnc.pncopen('testin.nc', format='ioapi')
+#rawf = pnc.pncopen('testin.nc', format='ioapi')
+rawf = pnc.pncopen('testin.nc', format='netcdf')
 
 print("going to rename dimensions ...")
 f = rawf.renameDimensions(TSTEP='time', LAY='layer', ROW='Y', COL='X')

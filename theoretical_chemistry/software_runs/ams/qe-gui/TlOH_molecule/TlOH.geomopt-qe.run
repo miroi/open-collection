@@ -1,0 +1,68 @@
+#!/bin/sh
+
+if test ! -z "$PSEUDO_DIR" -a ! -z "$QEBIN"; then
+    echo "Using user-defined QE binaries"
+elif test -f "$AMSBIN"/qerc.sh; then
+    . "$AMSBIN/qerc.sh"
+fi
+if test -z "$SCM_LOGFILE"; then SCM_LOGFILE=logfile; fi
+if test -z "$SCM_RESULTDIR"; then SCM_RESULTDIR=.; fi
+
+# dependency: {} /home/milias/Work/projects/open-collection/theoretical_chemistry/software_runs/ams/qe-gui/TlOH_molecule/Tl.upf Tl.upf
+cp "$PSEUDO_DIR/QE/O.rel-pbe-n-kjpaw_psl.0.1.UPF" "O.rel-pbe-n-kjpaw_psl.0.1.UPF"
+cp "$PSEUDO_DIR/QE/H.rel-pbe-kjpaw_psl.0.1.UPF" "H.rel-pbe-kjpaw_psl.0.1.UPF"
+
+"$AMSBIN/startqe" "$QEBIN/pw.x" << eor | tee -a "$SCM_LOGFILE"
+
+&control
+    calculation   = 'relax'
+    prefix        = 'qe',
+    wf_collect    = .true.,
+    pseudo_dir    = './',
+/
+
+&system
+    ibrav           = 0,
+    nat             = 3,
+    ntyp            = 3,
+    ecutwfc         = 20.0,
+    nbnd            = 34,
+    noncolin        = .true.
+    lspinorb        = .true.
+/
+
+&electrons
+/
+
+&ions
+/
+
+ATOMIC_SPECIES
+    Tl 204.974412 'Tl.upf'
+    O 15.994914 'O.rel-pbe-n-kjpaw_psl.0.1.UPF'
+    H 1.007825 'H.rel-pbe-kjpaw_psl.0.1.UPF'
+
+ATOMIC_POSITIONS angstrom
+    Tl 1.071013206078855 0.9089236720545073 0.9250247735495478
+    O -0.4499567943623412 -0.02742868601230172 -0.5698176699223658
+    H -0.5493744416472676 -0.9719025499973069 -0.4295135660872426
+
+CELL_PARAMETERS angstrom
+  3.0 0.0 0.0
+  0.0 3.0 0.0
+  0.0 0.0 3.0
+
+K_POINTS automatic
+  10 10 10 0 0 0
+eor
+
+echo | tee -a "$SCM_LOGFILE"
+echo Converting results to RKF | tee -a "$SCM_LOGFILE"
+rm -f "$SCM_RESULTDIR/$JOBNAME.rkf"
+"$AMSBIN/tokf" qe "$SCM_LOGFILE" "$SCM_RESULTDIR/$JOBNAME.rkf"
+if test -f kpath.kf; then
+  "$AMSBIN/cpkf" kpath.kf "$SCM_RESULTDIR/$JOBNAME.rkf" "WScell(reciprocal_space)"
+  "$AMSBIN/cpkf" kpath.kf "$SCM_RESULTDIR/$JOBNAME.rkf" band_curves%path_type band_curves%brav_type
+fi
+rm -f logfile__0 edges.txt bandx.*dat* qe.dos_* qe.pdos_* kpath.kf
+

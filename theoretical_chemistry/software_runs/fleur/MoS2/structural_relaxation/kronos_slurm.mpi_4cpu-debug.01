@@ -9,7 +9,7 @@
 #SBATCH -p debug
 
 ## CPU count  
-#SBATCH -n 4
+#SBATCH -n 20
 
 ## max. execution time
 ##SBATCH -t 7-00:00:00
@@ -132,6 +132,9 @@ fi
 
 echo -e "\n Continuing with  'mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI' "
 
+mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI
+mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI
+mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI
 mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI
 mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI
 mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI

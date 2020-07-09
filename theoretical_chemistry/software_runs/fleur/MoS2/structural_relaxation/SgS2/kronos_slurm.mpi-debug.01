@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH -J MoS2relax
+#SBATCH -J SgS2relax
 
 ##  partition (queue)
 ##SBATCH -p parallel
@@ -9,7 +9,7 @@
 #SBATCH -p debug
 
 ## CPU count  
-#SBATCH -n 20
+#SBATCH -n 4
 
 ## max. execution time
 ##SBATCH -t 7-00:00:00
@@ -122,7 +122,7 @@ cd $SLURM_SUBMIT_DIR
 #echo -e "Therefore, for the MKL internal parallelization, number of calculated threads=$MKL_NUM_THREADS \n"
 # $PAM --noarch --mpi=$THISMPI --gb=218 --ag=220 --mol=Rh-Hax-CO_4.sozora_bp_tz2p.xyz  --inp=Rh-Hax-CO_4.x2c_a4p.scf1fs.v3z.relcc-58ce-v12au.inp  --suffix=i17mkl_mpi$THISMPI-omp$MKL_NUM_THREADS-$SLURM_JOB_PARTITION-$SLURM_JOBID-out --put "DFPCMO.RhHCO4.x2c_a4p.v3z.adf-xyz=DFPCMO"
 
-inp=inp_MoS2
+inp=inp_SgS2
 if [ ! -f "$SLURM_SUBMIT_DIR/inp.xml" ]; then 
   echo -e "\n running $FLEUR_BUILD/inpgen < $inp \"`hostname`\"  "
   $FLEUR_BUILD/inpgen < $inp
@@ -130,16 +130,9 @@ else
   echo -e "\n Generated (inpgen) file $SLURM_SUBMIT_DIR/inp.xml exists, skipping inpgen run."
 fi
 
-echo -e "\n Continuing with  'mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI' "
+#echo -e "\n Continuing with  'mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI' "
 
-mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI
-mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI
-mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI
-mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI
-mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI
-mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI
-mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI
-mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI
-mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI
+#mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI
+#mpirun -np $SLURM_NTASKS $FLEUR_BUILD/fleur_MPI
 
 

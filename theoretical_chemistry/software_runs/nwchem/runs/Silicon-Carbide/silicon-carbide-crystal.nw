@@ -1,0 +1,37 @@
+title "SiC 8 atom cubic cell - geometry and unit cell optimization" 
+start SiC
+#**** Enter the geometry using fractional coordinates ****  
+geometry units au center noautosym noautoz print
+ system crystal
+   lat_a 8.277d0
+   lat_b 8.277d0 
+   lat_c 8.277d0  
+   alpha 90.0d0  
+   beta  90.0d0
+   gamma 90.0d0
+ end 
+Si    -0.50000d0  -0.50000d0  -0.50000d0
+Si     0.00000d0   0.00000d0  -0.50000d0  
+Si     0.00000d0  -0.50000d0   0.00000d0 
+Si    -0.50000d0   0.00000d0   0.00000d0
+C     -0.25000d0  -0.25000d0  -0.25000d0
+C      0.25000d0   0.25000d0  -0.25000d0 
+C      0.25000d0  -0.25000d0   0.25000d0
+C     -0.25000d0   0.25000d0   0.25000d0  
+end  
+#***** setup the nwpw gamma point code ****  
+nwpw
+  simulation_cell 
+    ngrid 16 16 16
+  end
+  ewald_ncut 8 
+end  
+set nwpw:minimizer 2
+set nwpw:psi_nolattice .true.  # turns of unit cell checking for wavefunctions 
+driver
+  clear 
+  maxiter 40  
+end
+set includestress .true.         # this option tells driver to optimize the unit cell
+set nwpw:stress_numerical .true. #currently only numerical stresses implemented in paw
+task paw optimize

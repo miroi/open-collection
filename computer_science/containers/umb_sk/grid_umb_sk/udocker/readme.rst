@@ -19,7 +19,9 @@ CONTAINER ID                         P M NAMES              IMAGE
 3f8bcb87-6ba6-310e-be12-e2f593dbcc55 . W                    devcafe/ubuntu16.04-gcc5.3.1-openmpi1.10-mkl2017.4.239:latest
 0cc05965-3a3e-3dc1-8a83-44e284582796 . W ['miro']           devcafe/ubuntu16.04-gcc5.3.1-openmpi1.10-mkl2017.4.239:latest
 
-But error upon running: https://github.com/indigo-dc/udocker/issues/223
+But error upon running: 
+https://github.com/indigo-dc/udocker/issues/223 
+https://github.com/krallin/tini/issues/141
 
 Another image download
 ----------------------

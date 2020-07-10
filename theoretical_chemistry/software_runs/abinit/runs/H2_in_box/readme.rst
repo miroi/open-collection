@@ -16,4 +16,7 @@ lxir127
 ~~~~~~~
 /data.local1/milias/software/abinit/abinit-8.10.3/bin/abinit < tbase1_x.files > output
 
+mpirun -np 4 /data.local1/milias/software/abinit/abinit-8.10.3/bin/abinit < tbase1_x.files > output
+
+
 

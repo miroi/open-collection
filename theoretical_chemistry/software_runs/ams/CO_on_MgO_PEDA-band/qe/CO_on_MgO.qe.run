@@ -1,0 +1,74 @@
+#!/bin/sh
+
+if test ! -z "$PSEUDO_DIR" -a ! -z "$QEBIN"; then
+    echo "Using user-defined QE binaries"
+elif test -f "$AMSBIN"/qerc.sh; then
+    . "$AMSBIN/qerc.sh"
+fi
+if test -z "$SCM_LOGFILE"; then SCM_LOGFILE=logfile; fi
+if test -z "$SCM_RESULTDIR"; then SCM_RESULTDIR=.; fi
+
+cp "$PSEUDO_DIR/" ""
+cp "$PSEUDO_DIR/QE/O.rel-pbe-n-kjpaw_psl.0.1.UPF" "O.rel-pbe-n-kjpaw_psl.0.1.UPF"
+cp "$PSEUDO_DIR/QE/C.rel-pbe-n-kjpaw_psl.0.1.UPF" "C.rel-pbe-n-kjpaw_psl.0.1.UPF"
+
+"$AMSBIN/startqe" "$QEBIN/pw.x" << eor | tee -a "$SCM_LOGFILE"
+
+&control
+    calculation   = 'relax'
+    prefix        = 'qe',
+    wf_collect    = .true.,
+    pseudo_dir    = './',
+/
+
+&system
+    ibrav           = 0,
+    nat             = 10,
+    ntyp            = 3,
+    ecutwfc         = 20.0,
+    noncolin        = .true.
+    lspinorb        = .true.
+/
+
+&electrons
+/
+
+&ions
+/
+
+ATOMIC_SPECIES
+    Mg 23.985041 ''
+    O 15.994914 'O.rel-pbe-n-kjpaw_psl.0.1.UPF'
+    C 12.0 'C.rel-pbe-n-kjpaw_psl.0.1.UPF'
+
+ATOMIC_POSITIONS angstrom
+    Mg 0.59538358 0.5953822600000001 0.2075
+    Mg 2.08384335 -0.89307752 -1.8975
+    Mg -2.38153597 0.5953822600000001 0.2075
+    Mg -0.8930762 -0.89307752 -1.8975
+    O 2.08384335 -0.89307752 0.2075
+    O -0.8930762 -0.89307752 0.2075
+    O 0.59538358 0.5953822600000001 -1.8975
+    O -2.38153597 0.5953822600000001 -1.8975
+    O 0.5953855300000001 0.595392 3.9525
+    C 0.59538493 0.59538903 2.8075
+
+CELL_PARAMETERS angstrom
+  2.97691955 -2.97691955 0.0
+  2.97691955 2.97691955 0.0
+  0.0 0.0 3.0
+
+K_POINTS automatic
+  10 10 10 0 0 0
+eor
+
+echo | tee -a "$SCM_LOGFILE"
+echo Converting results to RKF | tee -a "$SCM_LOGFILE"
+rm -f "$SCM_RESULTDIR/$JOBNAME.rkf"
+"$AMSBIN/tokf" qe "$SCM_LOGFILE" "$SCM_RESULTDIR/$JOBNAME.rkf"
+if test -f kpath.kf; then
+  "$AMSBIN/cpkf" kpath.kf "$SCM_RESULTDIR/$JOBNAME.rkf" "WScell(reciprocal_space)"
+  "$AMSBIN/cpkf" kpath.kf "$SCM_RESULTDIR/$JOBNAME.rkf" band_curves%path_type band_curves%brav_type
+fi
+rm -f logfile__0 edges.txt bandx.*dat* qe.dos_* qe.pdos_* kpath.kf
+

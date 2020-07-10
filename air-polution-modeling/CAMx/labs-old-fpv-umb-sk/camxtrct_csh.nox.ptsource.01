@@ -1,0 +1,90 @@
+#!/bin/csh
+#
+#  --- Script to Run CAMxtrct ---
+#
+#     CAMxtrct extracts gridded data from CAMx output files or 
+#     emissions from EMISSONS or PTSOURCE files for a single species.
+#     It either writes a BINARY output file in CAMx AVERAGE file format or
+#     in an text/ASCII format (similar to Golden Software Surfer GRD and DAT
+#     formats).
+#
+#     Input parameters:
+#
+#     Line 1:  Extraction type
+#
+#        Choices are:
+#        XY HOURS     -- N-hourly X-Y extraction for one layer  
+#        XY MAX       -- Maximum (over duration of file) X-Y extraction for one 
+#                        layer 
+#        EMISSIONS    -- X-Y area emissions summed over duration of file  
+#        PTSOURCE     -- Point emissions summed over duration of file 
+#
+#     Line 2:  Output file type
+#
+#        Choices are:
+#        BINARY       -- Output file is CAMx format (gridded data only) 
+#        ASCII        -- Output file is Surfer GRD (gridded data) or DAT
+#                        (point sources) formats
+#
+#     Line 3:  Output file name
+#
+#     Line 4:  Input file name
+#
+#     Line 5:  Layer index
+#
+#     Line 6:  Species to extract (must match species in input file)
+#
+#        The name of any regular model or OSAT species in the average file
+#
+#        Or a "parameter" representing compound species may also be selected:
+#        NOX     -- NO + NO2 
+#        NOY     -- NO + NO2 + PAN + HNO2 + HNO3 + N2O5 + NO3 + NTR 
+#        VOC     -- ETH + OLE + PAR + TOL + XYL + FORM + ALD2 + ISOP + ETOH +
+#                   MEOH + ISPD + IOLE + ALDX + TERP + ACET + BENZ + ETHY +
+#                   KET + PRPA 
+#        AAA/BBB -- ratio of two species or parameters (e.g., VOC/NOX) 
+#
+#        CAMxtrct can also process a "parameter" representing sums of SA tracer
+#        species across all regions and emission groups:
+#          TNOX, TVOC, TO3, TO3N, TO3V
+#        where
+#          TNOX selects all the NOX tracers
+#          TVOC selects all the VOC tracers
+#          TO3N selects all the O3N tracers
+#          TO3V selects all the O3V tracers
+#          TO3  selects all the O3N plus O3V tracers
+#
+#        Or sums of tracer species by region:
+#          O3Rnnn
+#          where nnn is the region
+#
+#        Or sums of tracer species by emissions group:
+#          EmmmO3N, EmmmO3V, EmmmO3T 
+#          where mmm is the region
+#
+#        Or sums of tracer species by region/group: O3RnnnEmmm
+#          where nnn is the region and mmm is the emissions group
+#
+#     Line 7: Arbitrary string used for labeling output units
+#
+#     Line 8: Conversion factor to convert file units to user-specified units
+#             (model units are usually PPM for concentration and moles for 
+#             emissions)
+#
+#     Line 9: Number of decimal places to use when writing ASCII files
+#
+#     Line 10: Minimum value used for writing the output (will replace any
+#              non-zero value below this minimum -- used for emissions plots)
+#
+/home/milias/work/air-pollution-modelling/CAMx_suite/camxtrct-8apr16/camxtrct.8feb16/src/CAMxtrct << ieof 
+Extraction type    : PTSOURCE
+Output file format : ASCII
+Output filename    : ptsource_out
+Input filename     : /home/milias/work/air-pollution-modelling/CAMx_suite/CAMx6-30-test_run-inputs_other-160408/ptsrce/ptsrce.stl.36km.2002154.a0.bin
+Layer index        :  1
+Species to extract : nox
+Units              : ppm
+Units conversion   : 1.0
+Number of decimals : 
+Minumum output val : 
+ieof

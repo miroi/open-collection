@@ -1,0 +1,30 @@
+JOB
+
+    REPORT    POPRAD_S1.RPT
+    MESSAGES  POPRAD_S1.MSG
+
+UPPERAIR
+**  "upper air" data v urcenom formate, z http://esrl.noaa.gov/raobs/ ... 
+    DATA  poprad_01-01-2019.fsl  FSL 
+** vystupne subory:
+    EXTRACT   UPPER.IQA
+    QAOUT     UPPER.OQA 
+** datumy
+    XDATES   2019/01/01 TO 2019/01/01
+** poloha meteostanice, bez nadmor. vysky
+    LOCATION  00011952   20.32E  49.03N  0 
+    AUDIT     UATT  UAWS  UALR
+
+SURFACE
+** potrebuje povrchove meteoreologicke data v urcenom formate
+** z http://www.ncdc.noaa.gov/isd/data-access
+**  DATA  poprad_surface_01_01_2019.txt  ISHD
+    DATA poprad_surface_01_01_2019.txt  ISHD
+**    DATA salem_cheat.txt  ISHD
+** vystupne subory:
+    EXTRACT   POPRAD.IQA
+    QAOUT     POPRAD.OQA
+**datumy meteo-merani 
+    XDATES    2019/01/01 TO 2019/01/01
+** poloha meteostanice, aj s nadmor. vyskou	
+    LOCATION  00011952  20.32E  49.03N    0  701

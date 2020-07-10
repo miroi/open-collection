@@ -1,0 +1,51 @@
+CO STARTING
+   TITLEONE  Cross-Equator Test for AERMAP - Columbia
+   TITLETWO  Using SRTM 3-sec Data, converted to DEM format
+   
+   DATATYPE  DEM
+**    DATATYPE NED
+** vstupne subory   
+   DATAFILE  N00W070.dem
+   DATAFILE  S01W070.dem
+**   DATAFILE n48_e019_1arc_v3.tif
+  
+** Request ALL Debug Output Files   
+   DEBUGOPT  ALL
+
+** Domain crosses Equator 
+   DOMAINXY  430000.0 9985000.0 -19  460000.0 15000.0 19
+   
+** Reference point is on Equator at 69.5W based on NADA=3 for WGS84 Datum
+   ANCHORXY  0.0 0.0   444362.0 10000000.0  -19  3
+  
+   RUNORNOT  RUN
+CO FINISHED
+
+** zdroje znecistenia
+SO STARTING 
+   LOCATION  STACK1 POINT  0.0  0.0 
+   LOCATION  STACK2 POINT  10.0  10.0
+SO FINISHED
+
+** receptory
+RE STARTING
+   GRIDCART  CART1 STA
+**                   XYINC -10000.0 21 1000.0 -10000.0 21 1000.0
+** menej receptorov - kartezsky grid 3x3
+                     XYINC -10000.0 3 1000.0 -10000.0 3 1000.0 
+   GRIDCART  CART1 END
+RE FINISHED
+
+** vystupne subory
+OU STARTING
+** subor s receptormi
+   RECEPTOR  Columbia_REC.OUT
+   
+** subor so zdrojmi znecistenia  
+   SOURCLOC  Columbia_SRC.OUT
+
+** debugovacie subory
+   DEBUGREC  REC1DB_Columbia.OUT  REC2DB_Columbia.OUT  REC3DB_Columbia.OUT
+   DEBUGSRC  SRC1DB_Columbia.OUT  SRC2DB_Columbia.OUT  SRC3DB_Columbia.OUT
+   DEBUGHIL  HillDebug_Columbia.out
+OU FINISHED

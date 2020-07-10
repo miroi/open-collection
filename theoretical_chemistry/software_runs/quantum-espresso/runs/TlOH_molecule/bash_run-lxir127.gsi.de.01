@@ -1,0 +1,17 @@
+#!/bin/bash
+
+export QE=/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/bin
+
+echo -e "\n running $QE \"`hostname`\"  "
+
+ workdir=/data.local1/milias/scratch/TlOH_QE_workdir
+ mkdir -p $workdir
+
+ proj=TlOH.relax
+ mpirun -np 16 $QE/pw.x < $proj.in > $proj.out
+
+ echo -e "\n Content of $workdir :"
+ ls -lt $workdir
+ 
+exit 0
+

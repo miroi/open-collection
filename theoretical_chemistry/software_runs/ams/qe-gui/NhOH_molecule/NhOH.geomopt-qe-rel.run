@@ -1,0 +1,67 @@
+#!/bin/sh
+
+if test ! -z "$PSEUDO_DIR" -a ! -z "$QEBIN"; then
+    echo "Using user-defined QE binaries"
+elif test -f "$AMSBIN"/qerc.sh; then
+    . "$AMSBIN/qerc.sh"
+fi
+if test -z "$SCM_LOGFILE"; then SCM_LOGFILE=logfile; fi
+if test -z "$SCM_RESULTDIR"; then SCM_RESULTDIR=.; fi
+
+cp "$PSEUDO_DIR/QE/O.rel-pbe-n-kjpaw_psl.0.1.UPF" "O.rel-pbe-n-kjpaw_psl.0.1.UPF"
+cp "$PSEUDO_DIR/QE/H.rel-pbe-kjpaw_psl.0.1.UPF" "H.rel-pbe-kjpaw_psl.0.1.UPF"
+# dependency: {} /home/milias/Work/projects/open-collection/theoretical_chemistry/software_runs/ams/qe-gui/NhOH_molecule/POTCAR_Nh13VE POTCAR_Nh13VE
+
+"$AMSBIN/startqe" "$QEBIN/pw.x" << eor | tee -a "$SCM_LOGFILE"
+
+&control
+    calculation   = 'relax'
+    prefix        = 'qe',
+    wf_collect    = .true.,
+    pseudo_dir    = './',
+/
+
+&system
+    ibrav           = 0,
+    nat             = 3,
+    ntyp            = 3,
+    ecutwfc         = 20.0,
+    noncolin        = .true.
+    lspinorb        = .true.
+/
+
+&electrons
+/
+
+&ions
+/
+
+ATOMIC_SPECIES
+    O 15.994914 'O.rel-pbe-n-kjpaw_psl.0.1.UPF'
+    H 1.007825 'H.rel-pbe-kjpaw_psl.0.1.UPF'
+    Nh 286.0 'POTCAR_Nh13VE'
+
+ATOMIC_POSITIONS angstrom
+    O -1.575681 -1.650492 -0.0
+    H -1.106642 -2.506847 -0.0
+    Nh 0.0 0.0 0.0
+
+CELL_PARAMETERS angstrom
+  -3.0 0.0 -0.0
+  0.0 3.0 0.0
+  0.0 0.0 -3.0
+
+K_POINTS automatic
+  10 10 10 0 0 0
+eor
+
+echo | tee -a "$SCM_LOGFILE"
+echo Converting results to RKF | tee -a "$SCM_LOGFILE"
+rm -f "$SCM_RESULTDIR/$JOBNAME.rkf"
+"$AMSBIN/tokf" qe "$SCM_LOGFILE" "$SCM_RESULTDIR/$JOBNAME.rkf"
+if test -f kpath.kf; then
+  "$AMSBIN/cpkf" kpath.kf "$SCM_RESULTDIR/$JOBNAME.rkf" "WScell(reciprocal_space)"
+  "$AMSBIN/cpkf" kpath.kf "$SCM_RESULTDIR/$JOBNAME.rkf" band_curves%path_type band_curves%brav_type
+fi
+rm -f logfile__0 edges.txt bandx.*dat* qe.dos_* qe.pdos_* kpath.kf
+

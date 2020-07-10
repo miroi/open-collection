@@ -1,0 +1,63 @@
+#!/bin/bash
+#PBS -N gb_mp2_nmr
+#PBS -A UMB-APVV-0059-10
+#PBS -r n
+
+#PBS -q batch
+##PBS -q debug
+##PBS -q test
+
+##PBS -l nodes=1:ppn=12:ht
+#PBS -l nodes=1:ppn=16:ht
+
+#PBS -v tpt=4
+#PBS -l mem=32gb
+
+#PBS -j oe
+#PBS -M Miroslav.Ilias@umb.sk
+
+#PBS -l walltime=48:00:00
+##PBS -l walltime=0:30:00
+
+###PBS -l cput=24:00:00
+
+echo Working directory is $PBS_O_WORKDIR
+cd $PBS_O_WORKDIR
+
+### Run some informational commands.
+echo Running on host `hostname`
+echo Time is `date`
+echo Directory is `pwd`
+echo This jobs runs on the following processors:
+echo `cat $PBS_NODEFILE`
+
+### Define number of processors
+NPROCS=`wc -l < $PBS_NODEFILE`
+echo This job has allocated $NPROCS cpus
+
+export g16root="/home/mimelichercik/g16"
+export PATH="/home/mimelichercik/g09:$PATH"
+source /home/mimelichercik/g16/bsd/g16.profile
+export LD_LIBRARY_PATH="/home/mimelichercik/UTILS/sharutils-4.7/lib:/home/mimelichercik/UTILS/lapack-3.4.2"
+export PATH="$PATH:/home/mimelichercik/bin:/home/mimelichercik/UTILS/sharutils-4.7/sharutils/bin"
+source /home/mimelichercik/intel/bin/compilervars.sh intel64
+
+export GAUSS_ARCDIR=./
+export GAUSS_EXEDIR=/home/mimelichercik/g16
+export GAUSS_HLPDIR=/home/mimelichercik/g16
+export GAUSS_SCRDIR=/mnt/local/$USER/$PBS_JOBID    # je iba jeden scratch pre cely nod
+export GAUSS_SRCDIR=/home/mimelichercik/g16
+echo -e "\nGaussian scratch directory  $GAUSS_SCRDIR"
+#----------------------------------------------------------------------------------------------------------------------#
+mkdir -p $GAUSS_SCRDIR
+
+export Project=sarin
+  /home/mimelichercik/g16/g16 < $Project.mp2_opt_freq_solvent_nmr_2steps.gauss_inp > $Project.mp2_opt_freq_solvent_nmr_2steps.gauss_out
+
+
+echo -e "\n Deleting scratch dir  $GAUSS_SCRDIR"
+/bin/rm -rf $GAUSS_SCRDIR
+echo -e "\n Remaining `hostname`  /mnt/local/$USER/ "
+ls -lt /mnt/local/$USER/
+#----------------------------------------------------------------------------------------------------------------------#
+

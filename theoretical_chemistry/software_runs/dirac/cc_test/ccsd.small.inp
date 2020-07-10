@@ -1,0 +1,34 @@
+!
+! This test calculates the energy and dipole moment
+! of the water molecule at different levels of theory.
+!
+! WARNING : TESTING PURPOSE ONLY
+! We use only LL-type integrals : results are not reliable !
+!
+**DIRAC
+.TITLE
+Water molecule. Restricted kinetic balance. Energies, dipole moment.
+.WAVE F
+.PROPER
+.4INDEX
+**HAMILTONIAN
+.INTFLG      
+1 0 0 0
+**WAVE FUNCTIONS
+.SCF
+.RELCCSD
+*SCF
+.EVCCNV
+1.0E-8
+**PROPERTIES
+.DIPOLE
+**MOLTRA
+.ACTIVE
+energy -1.0 2.0 0.2
+**RELCCSD
+.TIMING
+.GRADIENT
+*CCFOPR
+.MP2G
+.RELAXED
+*END OF

@@ -12,5 +12,5 @@ Problems:
 ~~~~~~~~~
 https://forum.abinit.org/viewtopic.php?f=7&t=4472
 
-
+works with Debian abinit !
 

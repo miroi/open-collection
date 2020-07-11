@@ -4,6 +4,9 @@ export ABINIT_HOME=/data.local1/milias/software/abinit/abinit-8.10.3
 
 echo -e "\n running Abinit=$ABINIT_HOME on \"`hostname`\"  "
 
+ ln -sf /data.local1/milias/software/abinit/abinit-8.10.3/share/abinit-test/Psps_for_tests/6c.lda.atompaw  .
+ echo "Link of paw file: ls -l 6c.lda.atompaw"
+
 #mpirun -np 2 $ABINIT_HOME/bin/abinit < tpaw1_1.files > log 2> err &
  $ABINIT_HOME/bin/abinit < tpaw1_1.files > log 2> err &
 

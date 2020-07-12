@@ -7,16 +7,19 @@ echo -e "\n running Abinit=$ABINIT on \"`hostname`\"  "
  #ln -sf /data.local1/milias/software/abinit/abinit-8.10.3/share/abinit-test/Psps_for_tests/6c.lda.atompaw  .
  #echo "Link of paw file: ls -l 6c.lda.atompaw"
 
-ln -sf  /u/milias/Work/qch/software/qe_pseudo/Tl.rel-pbe-dn-kjpaw_psl.1.0.0.UPF  .  
-ln -sf  /u/milias/Work/qch/software/qe_pseudo/O.rel-pbe-n-kjpaw_psl.1.0.0.UPF    .
+#ln -sf  /u/milias/Work/qch/software/qe_pseudo/Tl.rel-pbe-dn-kjpaw_psl.1.0.0.UPF  .  
+#ln -sf  /u/milias/Work/qch/software/qe_pseudo/O.rel-pbe-n-kjpaw_psl.1.0.0.UPF    .
 ln -sf  /u/milias/Work/qch/software/qe_pseudo/H.rel-pbe-kjpaw_psl.1.0.0.UPF    .
  echo "Linked paw potential files"
-
 
 #mpirun -np 2 $ABINIT_HOME/bin/abinit < tpaw1_1.files > log 2> err &
  #$ABINIT_HOME/bin/abinit < tpaw1_1.files > log 2> err &
 
  #$ABINIT < tpaw1_2.files > log 2> err &
- $ABINIT < TlOH.files > log 2> err &
+# $ABINIT < TlOH.files > log 2> err &
+
+ $ABINIT < H2_paw.files > log 2> err &
 
 exit 0
+
+

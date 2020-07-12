@@ -12,5 +12,7 @@ ubuntu-kch
 
 lixr127.gsi.de
 ~~~~~~~~~~~~~~
-launch bash_lxri127_nwchem.01
+/usr/bin/nwchem  h2o works ...
+
+launch bash_lxri127_nwchem.01 .. does not work ...
 

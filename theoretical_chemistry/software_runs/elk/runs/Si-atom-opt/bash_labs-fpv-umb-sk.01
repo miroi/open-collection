@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#ELK=/data.local1/milias/software/elk/openmpi_intel17/elk-6.8.4/src/elk
+ELK=/home/milias/work/software/theoretical_chemistry/elk/elk-6.8.4
+
+#export OMP_NUM_THREADS=4
+
+export OMP_STACKSIZE=64M
+
+ln -sf $ELK/species/Si.in .
+
+mpirun -np 4 $ELK/src/elk 
+
+exit 0

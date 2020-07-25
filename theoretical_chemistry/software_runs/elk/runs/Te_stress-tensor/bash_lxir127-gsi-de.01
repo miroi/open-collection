@@ -1,13 +1,23 @@
 #!/bin/bash
 
 #ELK=/data.local1/milias/software/elk/elk-6.8.4/src/elk
-ELK=/data.local1/milias/software/elk/openmpi_intel17/elk-6.8.4/src/elk
+#ELK=/data.local1/milias/software/elk/openmpi_intel17/elk-6.8.4/src/elk
+#ELK=/data.local1/milias/software/elk/openmpi_intel17/elk-6.8.4
+ELK=/data.local1/milias/software/elk/openmpi-gcc-4.0_gcc8/elk-6.8.4
 
-export OMP_NUM_THREADS=4
-export OMP_STACKSIZE=64M
+#export OMP_NUM_THREADS=4
+export OMP_STACKSIZE=256M
+
+module purge
+module load openmpi/gcc/4.0_gcc8
+#module load openmpi/gcc/4.0.3_gcc8
+module list
 
 #mpirun -np 2 $ELK elk.in
 # $ELK elk.in
-mpirun -np 2 $ELK 
+
+ln -sf $ELK/species/Te.in $PWD/.
+
+mpirun -np 4 $ELK/src/elk 
 
 exit 0

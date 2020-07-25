@@ -2,6 +2,10 @@
 
 ELK=/data.local1/milias/software/elk/elk-6.8.4/src/elk
 
-mpirun -np 2 $ELK elk.in
+export OMP_STACKSIZE=64M
+
+#mpirun -np 2 $ELK elk.in
+# $ELK elk.in
+mpirun -np 2 $ELK 
 
 exit 0

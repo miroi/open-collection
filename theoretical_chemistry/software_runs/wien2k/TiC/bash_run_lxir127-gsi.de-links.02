@@ -8,7 +8,9 @@ export WIEN2k=/data.local1/milias/software/wien2k/WIEN2k_19.2
  #$ABINIT_HOME/bin/abinit < tpaw1_1.files > log 2> err &
 #$WIEN2k/init_lapw  bi.struct
 
-# firs link executables into directory
+# first link executables into directory
+ echo -e "Creating symbolic links of executables from $WIEN2k"
+
  ln -sf $WIEN2k/dstart             $PWD/.
  ln -sf $WIEN2k/init_lapw          $PWD/.
  ln -sf $WIEN2k/instgen_lapw       $PWD/.

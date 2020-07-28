@@ -40,12 +40,19 @@ export WIEN2k=/data.local1/milias/software/wien2k/WIEN2k_19.2
 
 # try scripts ...
  #x nn
- x nn -d nn.def
+ #x nn -d nn.def
+ x -d nn
+
  x sgroup 
  x symmetry
  instgen_lapw -s -up
- kgen 30 1
+
+ #kgen 30 1
+ x -d kgen 
+
  dstart
+
+ run_lapw -ec 0.0001 -NI
 
  # instgen_lapw < $inp
  # init_lapw -b

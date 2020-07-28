@@ -10,6 +10,7 @@ export WIEN2k=/data.local1/milias/software/wien2k/WIEN2k_19.2
 
 # firs link executables into directory
  ln -sf $WIEN2k/dstart             $PWD/.
+ ln -sf $WIEN2k/init_lapw          $PWD/.
  ln -sf $WIEN2k/instgen_lapw       $PWD/.
  ln -sf $WIEN2k/kgen               $PWD/.
  ln -sf $WIEN2k/lapw0              $PWD/.
@@ -33,5 +34,10 @@ export WIEN2k=/data.local1/milias/software/wien2k/WIEN2k_19.2
  ln -sf $WIEN2k/testconv_lapw      $PWD/.
  ln -sf $WIEN2k/x                  $PWD/.
  ln -sf $WIEN2k/x_lapw             $PWD/.
+
+  inp=TiC.struct
+
+  instgen_lapw < $inp
+
 
 exit 0

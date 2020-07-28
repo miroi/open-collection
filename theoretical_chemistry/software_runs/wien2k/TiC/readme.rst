@@ -2,7 +2,7 @@
 TiC test case with Wien2k
 =========================
 
-
+..
 
 
 

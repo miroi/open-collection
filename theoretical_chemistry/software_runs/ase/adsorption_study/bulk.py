@@ -4,8 +4,10 @@ from ase.eos import calculate_eos
 from ase.db import connect
 
 db = connect('bulk.db')
+#for symb in ['Al', 'Ni', 'Cu', 'Pd', 'Ag', 'Pt', 'Au', 'Tl']:
 for symb in ['Al', 'Ni', 'Cu', 'Pd', 'Ag', 'Pt', 'Au']:
     atoms = bulk(symb, 'fcc')
+#    atoms = bulk(symb, 'bcc')
     atoms.calc = EMT()
     eos = calculate_eos(atoms)
     v, e, B = eos.fit()  # find minimum

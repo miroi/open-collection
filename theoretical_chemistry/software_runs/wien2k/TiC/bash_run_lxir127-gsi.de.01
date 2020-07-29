@@ -2,13 +2,7 @@
 
 export WIEN2k=/data.local1/milias/software/wien2k/WIEN2k_19.2
 
-#echo -e "\n running Abinit=$ABINIT on \"`hostname`\"  "
-
-#mpirun -np 2 $ABINIT_HOME/bin/abinit < tpaw1_1.files > log 2> err &
- #$ABINIT_HOME/bin/abinit < tpaw1_1.files > log 2> err &
-#$WIEN2k/init_lapw  bi.struct
-
-# firs link executables into directory
+# first link Wien2k executables into the directory
  ln -sf $WIEN2k/dstart             $PWD/.
  ln -sf $WIEN2k/init_lapw          $PWD/.
  ln -sf $WIEN2k/instgen_lapw       $PWD/.
@@ -48,8 +42,10 @@ export WIEN2k=/data.local1/milias/software/wien2k/WIEN2k_19.2
 
  instgen_lapw -s -up
 
+ # provide PBE and -6.0Ry
  echo -e 13 '\n'-6.0 | x lstart
 
+ # provide k space
  echo 30 | x kgen 
 
  x dstart

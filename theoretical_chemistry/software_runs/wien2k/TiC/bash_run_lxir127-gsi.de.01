@@ -1,5 +1,14 @@
 #!/bin/bash
 
+#
+# 'Simplest' bash script driven run of the Wien2k TiC test case.
+#
+#  Thanks to hints and tips from Wien2k community
+#
+#  Written by Miro Ilias, www.GSI.de, Darmstadt, Germany at the end of July 2020.
+#  Free for use.
+#
+
 export WIEN2k=/data.local1/milias/software/wien2k/WIEN2k_19.2
 
 # first link Wien2k executables into the directory
@@ -55,7 +64,12 @@ export WIEN2k=/data.local1/milias/software/wien2k/WIEN2k_19.2
  cat $case.in2_ls  $case.in2_sy > $case.in2_st; cp $case.in2_st $case.in2
  x dstart
 
- # run own SCF 
+ # run own SCF, but prepare input files first
+ cp $case.inc_st  $case.inc
+ cp $case.inm_st  $case.inm
+ cp $case.inq_st  $case.inq
  run_lapw -ec 0.0001 -NI
+
+ echo -e "\n Finished; check for ':ENE' in outputs."
 
 exit 0

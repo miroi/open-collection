@@ -38,24 +38,23 @@ export WIEN2k=/data.local1/milias/software/wien2k/WIEN2k_19.2
 
  inp=TiC.struct
 
-# try scripts ...
- #x nn
- #x nn -d nn.def
-
  instgen_lapw < $inp
- #x -d nn
- echo 2|x nn
- x sgroup 
- x symmetry
- instgen_lapw -s -up
- x lstart
- echo 30 | x kgen 
- x dstart
- run_lapw -ec 0.0001 -NI
 
- # instgen_lapw < $inp
- # init_lapw -b
- # dstart  dstart.def 
- # lapw0   # generate potential from density
+ echo 2|x nn
+
+ x sgroup 
+
+ x symmetry
+
+ instgen_lapw -s -up
+
+ echo -e 13 '\n'-6.0 | x lstart
+
+ echo 30 | x kgen 
+
+ x dstart
+
+ # run own SCF 
+ run_lapw -ec 0.0001 -NI
 
 exit 0

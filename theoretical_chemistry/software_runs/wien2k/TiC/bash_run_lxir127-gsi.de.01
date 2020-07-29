@@ -30,7 +30,8 @@ export WIEN2k=/data.local1/milias/software/wien2k/WIEN2k_19.2
  ln -sf $WIEN2k/x                  $PWD/.
  ln -sf $WIEN2k/x_lapw             $PWD/.
 
- inp=TiC.struct
+ case=TiC
+ inp=$case.struct
 
  instgen_lapw < $inp
 
@@ -48,6 +49,10 @@ export WIEN2k=/data.local1/milias/software/wien2k/WIEN2k_19.2
  # provide k space
  echo 30 | x kgen 
 
+ #prepare files for dstart, based on Table 4.1 in https://euler.phys.cmu.edu/cluster/WIEN2k/4Files_Program.html
+ cp $case.in0_st  $case.in0
+ cp $case.in1_st  $case.in1
+ cat $case.in2_ls  $case.in2_sy > $case.in2_st; cp $case.in2_st $case.in2
  x dstart
 
  # run own SCF 

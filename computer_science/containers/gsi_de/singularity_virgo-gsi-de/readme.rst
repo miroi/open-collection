@@ -60,3 +60,22 @@ singularity pull --name funny.simg docker://godlovedc/lolcow # Done. Container i
 singularity build hello-world.simg shub://vsoch/hello-world # works 
 
 
+
+Ubuntu 20.04
+-------------
+milias@lxbk0195.gsi.de:/lustre/ukt/milias/work/projects/open-collection/computer_science/containers/gsi_de/gsi_kronos_singularity/.singularity build --sandbox ubuntu/ docker://ubuntu:20.04
+WARNING: Building sandbox as non-root may result in wrong file permissions
+Docker image path: index.docker.io/library/ubuntu:20.04
+Cache folder set to /u/milias/.singularity/docker
+[4/4] |===================================| 100.0% 
+Importing: base Singularity environment
+Exploding layer: sha256:692c352adcf2821d6988021248da6b276cb738808f69dcc7bbb74a9c952146f7.tar.gz
+Exploding layer: sha256:97058a342707e39028c2597a4306fd3b1a2ebaf5423f8e514428c73fa508960c.tar.gz
+Exploding layer: sha256:2821b8e766f41f4f148dc2d378c41d60f3d2cbe6f03b2585dd5653c3873740ef.tar.gz
+Exploding layer: sha256:4e643cc37772c094642f3168c56d1fcbcc9a07ecf72dbb5afdc35baf57e8bc29.tar.gz
+Exploding layer: sha256:c6a9ef4b9995d615851d7786fbc2fe72f72321bee1a87d66919b881a0336525a.tar.gz
+WARNING: Building container as an unprivileged user. If you run this container as root
+WARNING: it may be missing some functionality.
+Singularity container built: ubuntu/
+Cleaning up...
+

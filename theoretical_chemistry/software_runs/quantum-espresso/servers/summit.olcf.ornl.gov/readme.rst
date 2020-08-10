@@ -38,6 +38,6 @@ export LAPACK_LIBS="-L$OLCF_ESSL_ROOT/lib64 -lessl $OLCF_NETLIB_LAPACK_ROOT/lib6
 
 sed -i "/DFLAGS/s/__FFTW/__LINUX_ESSL/" make.inc
 
-make -j32 all install
-#make -j32 pw
+#make -j32 all install
+make -j32 pw  # only pw is supported
 

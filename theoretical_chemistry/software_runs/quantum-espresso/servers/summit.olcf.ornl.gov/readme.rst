@@ -7,11 +7,12 @@ https://gitlab.com/QEF/q-e-gpu/-/wikis/Install-QE-GPU-on-Summit
 Lodad modules
 -------------
 module unload xl
-module add pgi
-module add essl
-module add cuda
-module add hdf5 
-module add netlib-lapack
+module load pgi
+module load essl
+module load cuda
+module load hdf5 
+module load netlib-lapack
+module load python
 
 Check enviro-variables
 -----------------------

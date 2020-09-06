@@ -4,12 +4,10 @@
 from ase.build import bulk
 from ase.calculators.emt import EMT
 from ase.phonons import Phonons
-#import ase.cell.Cell.bandpath
-#import ase
 
 # Setup crystal and EMT calculator
 atoms = bulk('Al', 'fcc', a=4.05)
-print(atoms)
+#print(atoms)
 
 # Phonon calculator
 N = 7
@@ -25,7 +23,6 @@ ph.clean()
 
 path = atoms.cell.bandpath('GXULGK', npoints=100)
 bs = ph.get_band_structure(path)
-
 dos = ph.get_dos(kpts=(20, 20, 20)).sample_grid(npts=100, width=1e-3)
 
 # Plot the band structure and DOS:

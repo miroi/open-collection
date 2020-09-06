@@ -42,4 +42,5 @@ dosax.set_yticks([])
 dosax.set_xticks([])
 dosax.set_xlabel("DOS", fontsize=18)
 
+# save picture
 fig.savefig('Al_phonon.png')

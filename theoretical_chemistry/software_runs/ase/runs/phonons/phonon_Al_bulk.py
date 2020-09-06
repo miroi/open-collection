@@ -4,18 +4,24 @@
 from ase.build import bulk
 from ase.calculators.emt import EMT
 from ase.phonons import Phonons
+#import ase.cell.Cell.bandpath
+#import ase
 
 # Setup crystal and EMT calculator
 atoms = bulk('Al', 'fcc', a=4.05)
+print(atoms)
 
 # Phonon calculator
 N = 7
-ph = Phonons(atoms, EMT(), supercell=(N, N, N), delta=0.05)
+ph = Phonons(atoms, EMT(), supercell=(N, N, N), delta=0.05); print(ph)
 ph.run()
+
 
 # Read forces and assemble the dynamical matrix
 ph.read(acoustic=True)
 ph.clean()
+
+#print(atoms.cell.bandpath)
 
 path = atoms.cell.bandpath('GXULGK', npoints=100)
 bs = ph.get_band_structure(path)

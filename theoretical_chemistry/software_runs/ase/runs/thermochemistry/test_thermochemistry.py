@@ -123,5 +123,7 @@ def test_hindered_thermo():
 # Main part ...
 print("test thermo:")
 test_ideal_gas_thermo()
-test_crystal_thermo()
-    
+test_harmonic_thermo()
+#test_crystal_thermo(asap3)
+test_hindered_thermo()
+

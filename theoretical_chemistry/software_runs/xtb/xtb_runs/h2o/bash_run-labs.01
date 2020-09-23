@@ -18,7 +18,7 @@ cd $scratch_dir
 echo -e "I am in pwd=$PWD"
 
 xtb --help
-xtb $home_dir/h2o.coord  > h2o.xtb.out
+xtb $home_dir/h2o.coord  > $home_dir/h2o.xtb.out
 
 echo -e "\n Content of $scratch_dir:"
 ls -lt
@@ -26,6 +26,8 @@ du -h -s .
 
 echo -e "\n returning back to $home_dir ..."
 cd $home_dir
-#/bin/rm -rf $scratch_dir
+
+echo -e "\n deleting $scratch_dir ..."
+/bin/rm -rf $scratch_dir
 
 exit 0

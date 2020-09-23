@@ -3,23 +3,29 @@
 echo -e "\n running xTB example - H2O"
 
 source /home/milias/work/software/theoretical_chemistry/xtb/xtb-6.3.3/share/xtb/config_env.bash
+export home_dir=$PWD
+echo -e "home_dir=$home_dir"
 
-random_string=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w ${1:-6} | head -n 1`
+random_string=`head /dev/urandom | tr -dc A-Za-z0-9 | head -c 5 ; echo ''`
 
-export home_dir=$pwd
 export scratch_dir=/tmp/$USER.xTB.$random_string
+echo -e "\n scratch_dir=$scratch_dir"
+
+
 mkdir $scratch_dir
 
 cd $scratch_dir
 echo -e "I am in pwd=$PWD"
 
 xtb --help
-xtb $home_dir/coord
+xtb $home_dir/h2o.coord  > h2o.xtb.out
 
+echo -e "\n Content of $scratch_dir:"
 ls -lt
 du -h -s .
 
+echo -e "\n returning back to $home_dir ..."
 cd $home_dir
-/bin/rm -rf $scratch_dir
+#/bin/rm -rf $scratch_dir
 
 exit 0

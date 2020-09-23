@@ -1,12 +1,25 @@
 #!/bin/bash
 
-
 echo -e "\n running xTB example - H2O"
 
 source /home/milias/work/software/theoretical_chemistry/xtb/xtb-6.3.3/share/xtb/config_env.bash
 
-xtb --help
+random_string=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w ${1:-6} | head -n 1`
 
-xtb coord
+export home_dir=$pwd
+export scratch_dir=/tmp/$USER.xTB.$random_string
+mkdir $scratch_dir
+
+cd $scratch_dir
+echo -e "I am in pwd=$PWD"
+
+xtb --help
+xtb $home_dir/coord
+
+ls -lt
+du -h -s .
+
+cd $home_dir
+/bin/rm -rf $scratch_dir
 
 exit 0

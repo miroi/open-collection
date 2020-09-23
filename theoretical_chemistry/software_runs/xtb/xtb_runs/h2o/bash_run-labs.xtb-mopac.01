@@ -24,8 +24,16 @@ echo -e "I am in pwd=$PWD"
 xtb --help
 #xtb $home_dir/h2o.coord  > $home_dir/h2o.xtb.out
 #xtb $home_dir/h2o.xyz  > $home_dir/h2o.xtb.out
+#xtb --input $home_dir/xtb.inp  $home_dir/h2o.xyz  > $home_dir/h2o.xtb.out
 
-xtb --input $home_dir/xtb.inp  $home_dir/h2o.xyz  > $home_dir/h2o.xtb.out
+xtb --input $home_dir/xtb.inp  $home_dir/h2o.xyz --mopac  > $home_dir/h2o.xtb.out
+
+# get back MOPAC files
+cp $scratch_dir/GCOORD.out   $home_dir/.
+cp $scratch_dir/GCOORD.aux   $home_dir/.
+cp $scratch_dir/GCOORD.arc   $home_dir/.
+cp $scratch_dir/GCOORD       $home_dir/.
+
 
 
 echo -e "\n Content of $scratch_dir:"

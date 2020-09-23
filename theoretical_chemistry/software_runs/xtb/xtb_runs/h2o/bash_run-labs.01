@@ -1,6 +1,10 @@
 #!/bin/bash
 
-echo -e "\n running xTB example - H2O"
+echo -e "\n running xTB "
+
+export MOPAC_LICENSE=/home/milias/work/software/theoretical_chemistry/mopac2016
+export LD_LIBRARY_PATH=/home/milias/work/software/theoretical_chemistry/mopac2016:$LD_LIBRARY_PATH
+
 
 source /home/milias/work/software/theoretical_chemistry/xtb/xtb-6.3.3/share/xtb/config_env.bash
 export home_dir=$PWD
@@ -19,7 +23,11 @@ echo -e "I am in pwd=$PWD"
 
 xtb --help
 #xtb $home_dir/h2o.coord  > $home_dir/h2o.xtb.out
-xtb $home_dir/h2o.xyz  > $home_dir/h2o.xtb.out
+#xtb $home_dir/h2o.xyz  > $home_dir/h2o.xtb.out
+#xtb --input $home_dir/xtb.inp  $home_dir/h2o.xyz  > $home_dir/h2o.xtb.out
+xtb --input $home_dir/xtb.inp  $home_dir/h2o.xyz --mopac  > $home_dir/h2o.xtb.out
+
+
 
 echo -e "\n Content of $scratch_dir:"
 ls -lt

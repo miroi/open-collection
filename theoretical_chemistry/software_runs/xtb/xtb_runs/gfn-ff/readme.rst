@@ -1,6 +1,9 @@
 
 https://xtb-docs.readthedocs.io/en/latest/gfnff.html#how-to-use-it
 
+... not implemented yet for periodic boundary conditions
+
+
 single point
 ~~~~~~~~~~~~
 

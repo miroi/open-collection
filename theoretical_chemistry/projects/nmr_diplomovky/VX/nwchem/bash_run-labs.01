@@ -13,9 +13,10 @@ echo -e "\n running NWChem=$NWCHEM  with $input "
 mkdir -p $TMPDIR
 cd $TMPDIR
 
-mpirun -np 4  $input  > $output
+mpirun -np 4 $NWCHEM  $input  > $output
 
 cd $HOMEDIR
+/bin/rm -rf $TMPDIR
 
 
 exit 0

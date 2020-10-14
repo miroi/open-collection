@@ -1,0 +1,52 @@
+echo
+
+start molecule
+
+title "trimetylsilan"
+charge 0
+
+geometry units angstroms print xyz autosym
+  Si       -0.16909       -0.23911       -0.41417
+   C        1.69747       -0.23921       -0.41432
+   C       -0.79137        1.52066       -0.41433
+   C       -0.79138       -1.11915        1.10974
+   H       -0.65909       -0.93209       -1.61446
+   H        2.06666       -1.28526       -0.41437
+   H        2.06666        0.28379       -1.32024
+   H        2.06711        0.28377        0.49152
+   H       -0.42135        2.04307       -1.32025
+   H       -1.90065        1.52005       -0.41438
+   H       -0.42152        2.04350        0.49151
+   H       -1.90066       -1.11889        1.10918
+   H       -0.42136       -2.16491        1.10919
+   H       -0.42153       -0.59610        2.01546
+end
+
+basis
+  * library 6-31G**
+end
+
+dft
+  grid fine
+  xc b3lyp
+  mult 1
+end
+
+driver
+  maxiter 50
+  xyz trimetylsilan_geom
+end
+
+property
+  giao
+  shielding
+  spinspin
+end
+
+cosmo
+  solvent chcl3
+end
+
+task dft optimize
+task dft freq
+task dft property

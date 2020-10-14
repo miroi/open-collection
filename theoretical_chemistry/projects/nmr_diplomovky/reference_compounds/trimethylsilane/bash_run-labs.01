@@ -1,0 +1,26 @@
+#!/bin/bash
+
+
+export NWCHEM=/usr/bin/nwchem
+export TMPDIR=/tmp/$USER/nwchem_job.$PPID
+
+export HOMEDIR=$PWD
+
+project=trimetylsilan_poor_b3lyp_shield
+input=$HOMEDIR/$project.nw
+output=$HOMEDIR/$project.out
+
+echo -e "\n running NWChem=$NWCHEM  with $input "
+
+mkdir -p $TMPDIR
+cd $TMPDIR
+
+mpirun -np 12 $NWCHEM  $input  > $output
+
+cd $HOMEDIR
+echo -e "\nContent of $TMPDIR :"; ls -lt; du -h -s $TMPDIR
+echo -e "\n Deleting  $TMPDIR ..."
+/bin/rm -rf $TMPDIR
+
+
+exit 0

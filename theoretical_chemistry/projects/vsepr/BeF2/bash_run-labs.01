@@ -1,0 +1,12 @@
+#!/bin/bash
+
+export MOPAC=/home/milias/work/software/theoretical_chemistry/mopac2016
+
+export LD_LIBRARY_PATH=$MOPAC:$LD_LIBRARY_PATH
+export MOPAC_LICENSE=$MOPAC
+
+echo -e "\n running MOPAC2016=$MOPAC on \"`hostname`\"  "
+
+$MOPAC/MOPAC2016.exe BeF2.geopt_pm7.mop
+
+exit 0

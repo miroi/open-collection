@@ -11,5 +11,6 @@ Metody vypoctov:
 Avogadro: UFF, Ghemical
 MOPAC:  PM7, PM6
 
+E(FC_2,UFF)=741,090 kJ/mol
 
 

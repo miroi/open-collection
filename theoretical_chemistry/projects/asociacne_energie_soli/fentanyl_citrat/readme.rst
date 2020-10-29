@@ -12,6 +12,7 @@ Avogadro: UFF, Ghemical
 MOPAC:  PM7, PM6
 
 E(FC_2,UFF)=741,090 kJ/mol
+E(F2+,UFF)=660,571 kJ/mol
 
 Hf(FC_2,PM7)=-749.42474 KJ/MOL
 

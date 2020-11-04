@@ -1,0 +1,44 @@
+echo
+
+start molecule
+
+title "Mustard gas, HD"
+charge 0
+
+geometry units angstroms print xyz autosym
+  Cl        0.91786       -3.33017       -0.19527
+  Cl        0.91633        3.32691        0.20175
+   S        0.17455       -0.00210       -0.00337
+   C       -1.09044       -1.40828        0.24987
+   C       -1.08963        1.40511       -0.25475
+   C       -0.42794       -2.58614        0.93266
+   C       -0.42544        2.58504       -0.93233
+   H       -1.50862       -1.69527       -0.71612
+   H       -1.88184       -1.02605        0.90377
+   H       -1.50966        1.68910        0.71134
+   H       -1.87981        1.02528       -0.91152
+   H        0.09193       -2.30456        1.84581
+   H       -1.12537       -3.40508        1.10369
+   H        0.09746        2.30611       -1.84457
+   H       -1.12275        3.40404       -1.10356
+end
+
+basis
+  * library 6-31G*
+end
+
+dft
+  grid fine
+  xc b3lyp
+  mult 1
+end
+
+driver
+  maxiter 50
+  xyz HD_geom6-31Gs
+end
+
+
+task dft optimize
+task dft freq numerical
+

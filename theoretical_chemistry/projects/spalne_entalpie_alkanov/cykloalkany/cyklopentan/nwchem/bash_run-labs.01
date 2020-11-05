@@ -1,0 +1,30 @@
+#!/bin/bash
+
+
+export NWCHEM=/usr/bin/nwchem
+export TMPDIR=/tmp/$USER/nwchem_job.$PPID
+
+export HOMEDIR=$PWD
+
+project=cyklopentan_geopt_b3lyp_6-31Gs
+input=$HOMEDIR/$project.nw
+output=$HOMEDIR/$project.out
+
+echo -e "\n running NWChem=$NWCHEM  with $input "
+
+mkdir -p $TMPDIR
+cd $TMPDIR
+
+mpirun -np 12 $NWCHEM  $input  > $output
+
+cd $HOMEDIR
+
+echo -e "\nContent of $TMPDIR: "; ls -lt $TMPDIR; du -h -s $TMPDIR
+df -h /tmp
+echo "Deleting $TMPDIR"
+/bin/rm -rf $TMPDIR
+df -h /tmp
+
+
+
+exit 0

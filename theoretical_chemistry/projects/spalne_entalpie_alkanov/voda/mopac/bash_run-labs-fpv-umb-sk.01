@@ -1,0 +1,14 @@
+#!/bin/bash
+
+
+export MOPAC=/home/milias/work/software/theoretical_chemistry/mopac2016
+export LD_LIBRARY_PATH=$MOPAC:$LD_LIBRARY_PATH
+
+export MOPAC_LICENSE=$MOPAC
+
+#project=oxygen-molecule_pm7
+project=voda_pm7
+echo -e "\n running MOPAC2016 example of project=$project"
+$MOPAC/MOPAC2016.exe $project.mop
+
+exit 0

@@ -1,0 +1,49 @@
+echo
+
+start molecule
+
+title "Mustard gas"
+charge 0
+
+geometry units angstroms print xyz autosym
+  Cl        3.24400        0.88250       -0.64890
+  Cl       -3.24550        0.87740        0.65240
+   S       -0.00400        0.32410       -0.00020
+   C        1.34270       -0.86390        0.28380
+   C       -1.33890       -0.85960       -0.28680
+   C        2.65230       -0.18110        0.65180
+   C       -2.65060       -0.17940       -0.65220
+   H        1.47620       -1.47080       -0.61820
+   H        1.05060       -1.53180        1.10090
+   H       -1.47290       -1.47150        0.61180
+   H       -1.04750       -1.52490       -1.10640
+   H        2.54900        0.42260        1.55930
+   H        3.42780       -0.93150        0.83350
+   H       -2.55000        0.42760       -1.55790
+   H       -3.42380       -0.93160       -0.83620
+end
+
+basis
+  * library 3-21G
+end
+
+dft
+  grid fine
+  xc b3lyp
+  mult 1
+end
+
+driver
+  maxiter 50
+  xyz HD_geom
+end
+
+property
+  giao
+  shielding
+end
+
+
+task dft energy
+task dft property
+

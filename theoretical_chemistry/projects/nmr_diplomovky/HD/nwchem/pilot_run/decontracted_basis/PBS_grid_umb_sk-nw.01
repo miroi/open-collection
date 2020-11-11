@@ -112,7 +112,7 @@ echo -e "The local home directory with NWChem input file, PBS_O_WORKDIR=$PBS_O_W
 
 project=HD.b3lyp_ccpvdz_geopt
 mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/$project.nw  > $PBS_O_WORKDIR/$project.out
-cp $TMPDIR/HD_geom_ccpvdz*   $PBS_O_WORKDIR/.
+cp $TMPDIR/HD_geom_ccpvdz $PBS_O_WORKDIR/.
 
 echo -e "\n Working files in scratch dir $TMPDIR:"
 ls -lt $TMPDIR 

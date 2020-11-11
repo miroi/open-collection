@@ -2,14 +2,14 @@
 
 #PBS -S /bin/bash
 #PBS -A UMB-ITMS-26110230082
-#PBS -N HDnw3
+#PBS -N HDccpvdz
 
 ### Declare myprogram non-rerunable
 #PBS -r n
 
 ##PBS -l nodes=1:ppn=12:old
 ##PBS -l nodes=1:ppn=32
-#PBS -l nodes=1:ppn=8
+#PBS -l nodes=1:ppn=12
 
 ##PBS -l walltime=100:00:00
 #PBS -l walltime=24:00:00
@@ -105,12 +105,10 @@ echo -e "\nI am in TMPDIR=$TMPDIR"
 echo -e "For control pwd=\c";pwd
 echo -e "The local home directory with NWChem input file, PBS_O_WORKDIR=$PBS_O_WORKDIR"
 
-#mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/N2.scf_geomopt_sto2g.nw  > $PBS_O_WORKDIR/N2.scf_geomopt_sto2g.out
-#mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/N2.scf_geomopt.nw  > $PBS_O_WORKDIR/N2.scf_geomopt.out
-#mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/GB-conf36.nw  > $PBS_O_WORKDIR/GB-conf36.out
 #mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/HD.b3lyp_3-21G_geopt_shield.nw  > $PBS_O_WORKDIR/HD.b3lyp_3-21G_geopt_shield.out
 
-project=HD.b3lyp_ccpvdz_geopt
+cp $PBS_O_WORKDIR/HD_konformer81.xyz   $TMPDIR/.
+project=HD.geopt_freq_b3lyp_ccpvdz
 mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/$project.nw  > $PBS_O_WORKDIR/$project.out
 cp $TMPDIR/HD_geom_ccpvdz*   $PBS_O_WORKDIR/.
 

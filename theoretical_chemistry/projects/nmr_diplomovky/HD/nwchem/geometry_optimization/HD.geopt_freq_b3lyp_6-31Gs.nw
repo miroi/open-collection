@@ -1,0 +1,30 @@
+echo
+
+start molecule
+
+title "Mustard gas, HD"
+charge 0
+
+geometry units angstroms print xyz autosym
+  load format xyz HD_konformer81.xyz
+end
+
+basis
+  * library 6-31G*
+end
+
+dft
+  grid fine
+  xc b3lyp
+  mult 1
+end
+
+driver
+  maxiter 50
+  xyz HD_geom_6-31Gs
+end
+
+
+task dft optimize
+task dft freq numerical
+

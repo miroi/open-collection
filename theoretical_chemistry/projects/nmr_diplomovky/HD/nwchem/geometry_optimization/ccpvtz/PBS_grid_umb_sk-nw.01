@@ -107,7 +107,8 @@ echo -e "The local home directory with NWChem input file, PBS_O_WORKDIR=$PBS_O_W
 
 #mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/HD.b3lyp_3-21G_geopt_shield.nw  > $PBS_O_WORKDIR/HD.b3lyp_3-21G_geopt_shield.out
 
-cp $PBS_O_WORKDIR/HD_konformer81.xyz   $TMPDIR/.
+#cp $PBS_O_WORKDIR/HD_konformer81.xyz   $TMPDIR/.
+cp $PBS_O_WORKDIR/HD_geom_ccpvtz.xyz   $TMPDIR/.
 project=HD.geopt_freq_b3lyp_ccpvtz
 mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/$project.nw  > $PBS_O_WORKDIR/$project.out
 cp $TMPDIR/HD_geom_ccpvtz*   $PBS_O_WORKDIR/.
@@ -121,6 +122,8 @@ echo -e "\n Afterwards, content of ls -lt /mnt/local/$USER :"; ls -lt /mnt/local
 
 echo -e "\n returning to $PBS_O_WORKDIR"
 cd $PBS_O_WORKDIR
+
+echo -e "Date & Time is `date`"
 
 
 exit 0

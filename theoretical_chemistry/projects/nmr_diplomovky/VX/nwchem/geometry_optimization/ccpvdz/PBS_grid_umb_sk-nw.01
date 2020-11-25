@@ -24,7 +24,7 @@
 #PBS -q batch
 ##PBS -q debug
 
-#PBS -M emacusova@studenti.umb.sk
+#PBS -M Miroslav.Ilias@umb.sk
 
 echo -e "\nWorking host is: \c"; hostname -f
 
@@ -107,7 +107,7 @@ echo -e "The local home directory with NWChem input file, PBS_O_WORKDIR=$PBS_O_W
 
 #mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/HD.b3lyp_3-21G_geopt_shield.nw  > $PBS_O_WORKDIR/HD.b3lyp_3-21G_geopt_shield.out
 
-cp $PBS_O_WORKDIR/VX_geom_clanok.xyz   $TMPDIR/.
+cp $PBS_O_WORKDIR/VX_geom_ccpvdz-034-again.xyz   $TMPDIR/.
 project=VX.geopt_freq_b3lyp_ccpvdz
 mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/$project.nw  > $PBS_O_WORKDIR/$project.out
 cp $TMPDIR/VX_geom_ccpvdz*   $PBS_O_WORKDIR/.

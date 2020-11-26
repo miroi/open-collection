@@ -18,9 +18,22 @@ basis
   * library 6-31G*
 end
 
+scf  
+   vectors  output h2.movecs  
+end  
+
+dplot
+  title h2-vykreslenie
+  vectors h2.movecs
+  spin total 
+  gaussian  
+  output chargedensity.cube 
+end
+
 dft
   xc b3lyp
   mult 1
 end
 
 task dft optimize
+task dplot

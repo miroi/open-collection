@@ -1,0 +1,22 @@
+#!/bin/bash
+
+
+export NWCHEM=/usr/bin/nwchem
+export TMPDIR=/tmp/$USER/nwchem_job.$PPID
+
+export HOMEDIR=$PWD
+input=$HOMEDIR/VX_avog_dft.nw
+output=$HOMEDIR/VX_avog_dft.out
+
+echo -e "\n running NWChem=$NWCHEM  with $input "
+
+mkdir -p $TMPDIR
+cd $TMPDIR
+
+mpirun -np 4 $NWCHEM  $input  > $output
+
+cd $HOMEDIR
+/bin/rm -rf $TMPDIR
+
+
+exit 0

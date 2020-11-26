@@ -5,15 +5,17 @@ export NWCHEM=/usr/bin/nwchem
 export TMPDIR=/tmp/$USER/nwchem_job.$PPID
 
 export HOMEDIR=$PWD
-input=$HOMEDIR/VX_avog_dft.nw
-output=$HOMEDIR/VX_avog_dft.out
+
+export project=H2.geopt_b3lyp_6-31G
+input=$HOMEDIR/$project.nw
+output=$HOMEDIR/$project.out
 
 echo -e "\n running NWChem=$NWCHEM  with $input "
 
 mkdir -p $TMPDIR
 cd $TMPDIR
 
-mpirun -np 4 $NWCHEM  $input  > $output
+mpirun -np 3 $NWCHEM  $input  > $output
 
 cd $HOMEDIR
 /bin/rm -rf $TMPDIR

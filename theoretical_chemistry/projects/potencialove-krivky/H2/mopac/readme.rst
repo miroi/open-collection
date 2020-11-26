@@ -1,4 +1,7 @@
 H2 with MOPAC
 =============
 
-few points
+few points, based on 
+http://openmopac.net/manual/step.html
+
+

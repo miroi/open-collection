@@ -1,0 +1,6 @@
+LiCl MOPAC 
+==========
+
+geometry optimization
+
+

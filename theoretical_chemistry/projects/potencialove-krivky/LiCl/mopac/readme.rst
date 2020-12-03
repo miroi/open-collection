@@ -22,7 +22,7 @@ E(PM7,LiCl, opt.geom.)=-274.91727 EV
 Hf(PM7,LiCl+,opt.geom.)= 723.97567 KJ/MOL
 E(PM7,LiCl+,opt.geom.) = -300.64401 EV
 
-IE1=-300.64401-(-274.91727) eV = -25.7 eV
+IE1=-300.64401-(-274.91727) eV = -25.7 eV WRONG!
 
 Exper. 9.57 eV, see https://cccbdb.nist.gov/ie2.asp?casno=7447418
 

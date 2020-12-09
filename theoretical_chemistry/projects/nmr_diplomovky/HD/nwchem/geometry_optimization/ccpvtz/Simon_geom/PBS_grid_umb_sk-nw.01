@@ -109,7 +109,7 @@ echo -e "The local home directory with NWChem input file, PBS_O_WORKDIR=$PBS_O_W
 
 #cp $PBS_O_WORKDIR/HD_konformer81.xyz   $TMPDIR/.
 cp $PBS_O_WORKDIR/HD_geom_Simon.xyz   $TMPDIR/.
-project=HD.geopt_freq_b3lyp_ccpvtz
+project=HD.geoptC2v_freq-an_b3lyp_ccpvtz.nw
 mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/$project.nw  > $PBS_O_WORKDIR/$project.out
 #cp $TMPDIR/HD_geom_ccpvtz_again*   $PBS_O_WORKDIR/.
 cp $TMPDIR/HD_geomSimon_ccpvtz_again   $PBS_O_WORKDIR/.

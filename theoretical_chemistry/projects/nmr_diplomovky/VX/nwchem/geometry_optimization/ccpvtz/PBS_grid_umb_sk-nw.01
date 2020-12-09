@@ -103,6 +103,7 @@ mkdir $TMPDIR
 cd $TMPDIR
 echo -e "\nI am in TMPDIR=$TMPDIR"
 echo -e "For control pwd=\c";pwd
+echo -e "\n Current size of $TMPDIR :";df -h $TMPDIR
 echo -e "The local home directory with NWChem input file, PBS_O_WORKDIR=$PBS_O_WORKDIR"
 
 #mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/HD.b3lyp_3-21G_geopt_shield.nw  > $PBS_O_WORKDIR/HD.b3lyp_3-21G_geopt_shield.out
@@ -115,6 +116,8 @@ cp $TMPDIR/VX_geom_ccpvtz*   $PBS_O_WORKDIR/.
 echo -e "\n Working files in scratch dir $TMPDIR:"
 ls -lt $TMPDIR 
 du -h -s $TMPDIR
+echo -e "\n Current size of $TMPDIR :";df -h $TMPDIR
+ 
 cd .. ; echo -e "just for control -  pwd=\c";pwd
 echo -e "\nDeleting scratch directory $TMPDIR: "; /bin/rm -r $TMPDIR
 echo -e "\n Afterwards, content of ls -lt /mnt/local/$USER :"; ls -lt /mnt/local/$USER

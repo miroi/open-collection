@@ -116,12 +116,13 @@ echo -e "\n"
 #----------------------------------------------
 # run few tests with ctest in $DIRAC_BUILDDIR
 #----------------------------------------------
-echo -e "\n Running short test suite on the hostname=\c";hostname -f
+echo -e "\n Running full test suite on the hostname=\c";hostname -f
 cd $DIRAC_BUILDDIR
 export DIRAC_MPI_COMMAND="mpirun -np 2"
 echo -e "DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
 export MKL_NUM_THREADS=1
-time ctest -j4 -VV -L short
+#time ctest -j4 -VV -L short
+time ctest -j4 -VV 
 unset DIRAC_MPI_COMMAND
 echo -e "Variable DIRAC_MPI_COMMAND was unset."
 

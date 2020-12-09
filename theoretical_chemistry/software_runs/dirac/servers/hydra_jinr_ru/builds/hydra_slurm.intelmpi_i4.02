@@ -146,7 +146,9 @@ cd $SLURM_SUBMIT_DIR
 #$PAM --noarch --mpi=$THISMPI --gb=19 --ag=20 --mol=TsOH.acv3z.Cs.mol  --inp=TsOH.x2c_a2p.scf_relcc-46e-5000v.inp  --suffix=mkl_mpi$THISMPI-omp$MKL_NUM_THREADS-$SLURM_JOB_PARTITION-$SLURM_JOBID-out --put="DFPCMO.TsOH.Cs_acv3z=DFPCMO"
 #
 
-$PAM --noarch --mw=64 --aw=130 --inp=$DIRAC_ROOTDIR/test/cc_essential/ccsd.small.inp  --mol=$DIRAC_ROOTDIR/test/cc_essential/H2O.mol
-$PAM --noarch --mw=110 --inp=$DIRAC_ROOTDIR/test/cc_essential/ccsd_gradient_sf.inp  --mol=$DIRAC_ROOTDIR/test/cc_essential/CO_auto.mol
+#$PAM --noarch --mw=64 --aw=130 --inp=$DIRAC_ROOTDIR/test/cc_essential/ccsd.small.inp  --mol=$DIRAC_ROOTDIR/test/cc_essential/H2O.mol
+#$PAM --noarch --mw=110 --inp=$DIRAC_ROOTDIR/test/cc_essential/ccsd_gradient_sf.inp  --mol=$DIRAC_ROOTDIR/test/cc_essential/CO_auto.mol
+
+$PAM --noarch --inp=$DIRAC_ROOTDIR/test/dft_response/b3lyp.inp  --mol=$DIRAC_ROOTDIR/test/dft_response/hf.mol
 
 exit

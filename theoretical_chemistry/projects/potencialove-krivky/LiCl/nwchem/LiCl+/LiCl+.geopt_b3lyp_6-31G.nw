@@ -2,25 +2,29 @@ echo
 
 start molecule
 
-title "LiCl(+)"
-charge +1
+  title "LiCl(+)"
+  charge +1
 
-geometry units angstroms print
- zmatrix
- Li
- Cl    1    r2
- variables
-   r2        2.22688
- end
+  geometry units angstroms print
+    zmatrix
+      Li
+      Cl    1    r2
+    variables
+      r2        2.22688
+  end
 end
 
 basis
   * library 6-31G*
 end
 
+scf
+ doublet
+ rohf
+end
+
 dft
   xc b3lyp
-  mult 2
 end
 
 task dft optimize

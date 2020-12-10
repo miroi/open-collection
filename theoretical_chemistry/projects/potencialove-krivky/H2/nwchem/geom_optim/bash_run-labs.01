@@ -1,7 +1,10 @@
 #!/bin/bash
 
 
-export NWCHEM=/usr/bin/nwchem
+#export NWCHEM=/usr/bin/nwchem
+export NWCHEM=/home/milias/work/software/theoretical_chemistry/nwchem/nwchem-7.0.1/bin/LINUX64/nwchem
+
+
 export TMPDIR=/tmp/$USER/nwchem_job.$PPID
 
 export HOMEDIR=$PWD
@@ -15,7 +18,7 @@ echo -e "\n running NWChem=$NWCHEM  with $input "
 mkdir -p $TMPDIR
 cd $TMPDIR
 
-mpirun -np 3 $NWCHEM  $input  > $output
+mpirun -np 4 $NWCHEM  $input  > $output
 
 cd $HOMEDIR
 /bin/rm -rf $TMPDIR

@@ -1,0 +1,28 @@
+echo
+
+start molecule
+
+  title "LiCl(+)"
+  charge +1
+
+  geometry units angstroms print
+    zmatrix
+      Li
+      Cl    1    r2
+    variables
+      r2        2.22688
+  end
+end
+
+basis
+  * library 6-31G*
+end
+
+dft
+  xc b3lyp
+  rohf
+  doublet
+end
+
+task dft energy
+#task dft freq

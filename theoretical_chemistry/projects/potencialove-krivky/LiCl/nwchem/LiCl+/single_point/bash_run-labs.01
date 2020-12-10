@@ -1,0 +1,50 @@
+#!/bin/bash
+
+
+export NWCHEM=/usr/bin/nwchem
+#export NWCHEM=/home/milias/work/software/theoretical_chemistry/nwchem/nwchem-7.0.1/bin/LINUX64/nwchem
+
+export TMPDIR=/tmp/$USER/nwchem_job.$PPID
+export HOMEDIR=$PWD
+
+#
+# Mofidy project for input/output
+#
+export project=LiCl+.singlepoint_uhf_b3lyp_6-31G
+
+np_default=2
+if [[ -z "$1" ]]; then
+ np=$np_default
+else 
+ np=$1
+fi
+
+input=$HOMEDIR/$project.nw
+output=$HOMEDIR/$project.out_$np
+
+echo -e "  User@Server: $USER@`hostname` with `cat /proc/cpuinfo | grep processor | wc -l` CPU"
+echo -e "       NWChem: $NWCHEM on $np CPUs . "
+echo -e "        Input: $input "
+echo -e "       Output: $output "
+
+mkdir -p $TMPDIR
+cd $TMPDIR
+echo -e "  Workspace $TMPDIR with size (df -h):"; df -h $TMPDIR
+echo -e "  Parallel run, with 'mpirun'"
+which mpirun; mpirun --version
+
+# ... own run
+echo -e "\n  Running mpirun -np $np $NWCHEM  $input  > $output "
+mpirun -np $np $NWCHEM  $input  > $output
+
+# return to homedir
+echo -e "\n  Returning to homedir=$HOMEDIR"
+cd $HOMEDIR
+
+echo -e "\n  Occupied space of $TMPDIR :";ls -lt  $TMPDIR
+du -h -s $TMPDIR
+echo -e "  Deleting $TMPDIR "
+/bin/rm -rf $TMPDIR
+
+
+exit 0

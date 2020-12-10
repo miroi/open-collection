@@ -2,7 +2,7 @@
 
 #PBS -S /bin/bash
 #PBS -A UMB-ITMS-26110230082
-#PBS -N VXccpvtz
+#PBS -N HDccpvtzS
 
 ### Declare myprogram non-rerunable
 #PBS -r n
@@ -11,8 +11,8 @@
 ##PBS -l nodes=1:ppn=32
 #PBS -l nodes=1:ppn=12
 
-#PBS -l walltime=100:00:00
-##PBS -l walltime=24:00:00
+##PBS -l walltime=100:00:00
+#PBS -l walltime=24:00:00
 
 ##PBS -l mem=47g # max mem
 ##PBS -l mem=36g  # 12x3gb=36gb
@@ -103,27 +103,28 @@ mkdir $TMPDIR
 cd $TMPDIR
 echo -e "\nI am in TMPDIR=$TMPDIR"
 echo -e "For control pwd=\c";pwd
-echo -e "\n Current size of $TMPDIR :";df -h $TMPDIR
 echo -e "The local home directory with NWChem input file, PBS_O_WORKDIR=$PBS_O_WORKDIR"
 
 #mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/HD.b3lyp_3-21G_geopt_shield.nw  > $PBS_O_WORKDIR/HD.b3lyp_3-21G_geopt_shield.out
 
-cp $PBS_O_WORKDIR/VX_geom_ccpvdz-034-again.xyz   $TMPDIR/.
-project=VX.geopt_freq-an_b3lyp_ccpvtz
+#cp $PBS_O_WORKDIR/HD_konformer81.xyz   $TMPDIR/.
+cp $PBS_O_WORKDIR/HD_geom_Simon.xyz   $TMPDIR/.
+project=HD.geoptC2v_freq-an_b3lyp_ccpvtz
 mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/$project.nw  > $PBS_O_WORKDIR/$project.out
-cp $TMPDIR/VX_geom_ccpvtz*   $PBS_O_WORKDIR/.
+#cp $TMPDIR/HD_geom_ccpvtz_again*   $PBS_O_WORKDIR/.
+cp $TMPDIR/HD_geomSimon_ccpvtz_again   $PBS_O_WORKDIR/.
 
 echo -e "\n Working files in scratch dir $TMPDIR:"
 ls -lt $TMPDIR 
 du -h -s $TMPDIR
-echo -e "\n Current size of $TMPDIR :";df -h $TMPDIR
- 
 cd .. ; echo -e "just for control -  pwd=\c";pwd
 echo -e "\nDeleting scratch directory $TMPDIR: "; /bin/rm -r $TMPDIR
 echo -e "\n Afterwards, content of ls -lt /mnt/local/$USER :"; ls -lt /mnt/local/$USER
 
 echo -e "\n returning to $PBS_O_WORKDIR"
 cd $PBS_O_WORKDIR
+
+echo -e "Date & Time is `date`"
 
 
 exit 0

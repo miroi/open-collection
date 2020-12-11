@@ -9,6 +9,13 @@ LiCl(+) with NWChem
   fon partial 2 electrons 3 filled 1
 
 
+see https://groups.google.com/g/nwchem-forum/c/Hj_jLUMKjrk/m/5RGj44pZAAAJ
+
+"RODFT does not have the same functionality as the default Unrestricted DFT code. FON is one of them.
+The code should have stopped with a more meaningful error message"
+
+https://github.com/nwchemgit/nwchem/issues/283
+
 
 Effectivity of parallel runs
 ----------------------------

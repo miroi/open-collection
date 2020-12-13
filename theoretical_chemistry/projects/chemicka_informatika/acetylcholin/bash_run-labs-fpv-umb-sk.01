@@ -1,0 +1,20 @@
+#!/bin/bash
+
+
+export MOPAC=/home/milias/work/software/theoretical_chemistry/mopac2016
+
+export LD_LIBRARY_PATH=$MOPAC:$LD_LIBRARY_PATH
+
+export MOPAC_LICENSE=$MOPAC
+
+#input=fentanylcitrat2_UFFopt_pm7.mop
+#input=jedna-styri-dinitrocyklohexan_uff_pm7.mop
+#input=molekula-uff.mop
+input=Acetylcholin_UFF.mop
+
+echo -e "\n running MOPAC2016 system - $input "
+
+# samotne spustenie programu
+$MOPAC/MOPAC2016.exe $input
+
+exit 0

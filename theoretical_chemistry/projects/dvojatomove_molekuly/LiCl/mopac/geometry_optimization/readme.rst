@@ -9,6 +9,12 @@ we=565.74 cm-1 (exper. we=643.31 (5) cm-1 NIST )
 
 rot. constant B=0.71028351 cm-1(  exper. B=0.7065222 cm-1)
 
+Polarity of the molecule: Li(+0.87) Cl(-0.87)
+
+dipole moment = 8.443 D?
+
+
+
 
 
 

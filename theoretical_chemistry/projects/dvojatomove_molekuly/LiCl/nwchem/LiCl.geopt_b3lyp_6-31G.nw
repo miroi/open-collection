@@ -14,11 +14,6 @@ geometry units angstroms print
  end
 end
 
-SCF
-   DOUBLET
-   ROHF
-END
-
 basis
   * library 6-31G*
 end
@@ -28,5 +23,12 @@ dft
   mult 1
 end
 
+property
+  dipole moment
+  polarizability
+end
+
 task dft optimize
-#task dft freq
+task dft properties
+task dft freq
+

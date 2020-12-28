@@ -1,0 +1,149 @@
+#!/bin/bash
+#SBATCH -J cc
+
+## max. execution time
+##SBATCH -t 7-00:00:00
+#SBATCH -t 0-01:00:00
+
+# number of nodes
+#SBATCH -N 1
+##SBATCH --exclusive
+#SBATCH --mem=12GB
+#SBATCH --mem=248GB
+
+# do not restart in the case of nodefail!
+#SBATCH --no-requeue
+#SBATCH --no-kill
+
+## CPU count  - max. 40 per node ?
+#SBATCH -n 4
+
+##  partition (queue)
+##SBATCH -p parallel
+##SBATCH -p long
+#SBATCH -p main
+
+## memory NO !!!
+##SBATCH --mem-per-cpu=28G
+
+## stdout/stderr output file
+#SBATCH -o log_slurm_job.%j.%N.std_out_err
+
+## mail
+#SBATCH --mail-user=M.Ilias@gsi.de 
+#SBATCH --mail-type=ALL
+
+ 
+echo Job user is $SLURM_JOB_USER and his job $SLURM_JOB_NAME has assigned ID $SLURM_JOBID
+echo This job was submitted from the computer $SLURM_SUBMIT_HOST
+echo and from the home directory:
+echo $SLURM_SUBMIT_DIR
+echo
+echo It is running on the cluster compute node:
+echo $SLURM_CLUSTER_NAME
+echo and is employing $SLURM_JOB_NUM_NODES node/nodes:
+echo $SLURM_JOB_NODELIST
+echo
+echo -e "Job partition is $SLURM_JOB_PARTITION \n"
+#echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
+
+module use /cvmfs/it.gsi.de/modulefiles/
+echo "modules at disposal:"
+module avail
+echo
+
+#
+#source /lustre/ukt/milias/bin/intel-mpi-mkl_2019.4/intel/bin/compilervars.sh intel64 -platform linux  
+#source /lustre/ukt/milias/bin/intel-mpi-mkl_2019.4/intel/bin/compilervars.sh intel64 -platform linux 
+#source /lustre/ukt/milias/bin/intel-mpi-mkl_2019.4/intel/compilers_and_libraries_2019.4.243/linux/mpi/intel64/bin/mpivars.sh
+#module load compiler/intel/19.0 echo -e "Activated Intel 19.0, MKL & Intel-MPI"
+#which mpiifort; which mpiicc; which mpiicpc; which mpirun
+#mpiifort -v; mpiicc -v; mpirun --version
+
+module load cmake/3.15.3
+module load compiler/intel/17.4
+
+echo -e "\n\n loaded modules:"
+module list
+
+echo -e "\nRunning on host `hostname`"
+echo -e "Time is `date` \n"
+
+# CPU model, total numer of CPUs, number of allocated CPUs
+echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
+NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
+echo "This node has total $NPROCS CPUs available for EXCLUSIVE job."
+#echo "This node has $SLURM_CPUS_ON_NODE CPUs allocated for SLURM calculations."
+
+echo -e "\n the memory at the node (in GB)"
+free -t -g
+echo -e "\n"
+
+## set internal OpenMP parallelization for MKL - Slurm CPU count
+#export MKL_NUM_THREADS=$SLURM_CPUS_ON_NODE
+#export MKL_NUM_THREADS=24
+#export MKL_NUM_THREADS=$NPROCS
+#echo -e  "\nInternal MKL parallelization MKL_NUM_THREADS=$MKL_NUM_THREADS\n"
+export OMP_NUM_THREADS=1
+export MKL_DYNAMIC="FALSE"
+export OMP_DYNAMIC="FALSE"
+
+##   My OpenMPI-Intel installation   ##
+export PATH=/lustre/ukt/milias/bin/openmpi-3.1.2-intel17-i8-slurm/bin:$PATH
+export LD_LIBRARY_PATH=/lustre/ukt/milias/bin/openmpi-3.1.2-intel17-i8-slurm/lib:$LD_LIBRARY_PATH
+#
+export DIRAC_ROOTDIR=/lustre/ukt/milias/work/software/dirac/production_trunk
+export DIRAC_BUILDDIR=$DIRAC_ROOTDIR/build_opempi3.1.2_intel17_mklpar_i8
+#
+export PAM=$DIRAC_BUILDDIR/pam
+export BASDIR=$DIRAC_ROOTDIR/basis_dalton:$DIRAC_ROOTDIR/basis:$DIRAC_ROOTDIR/basis_ecp
+
+# set MPI launcher
+unset DIRAC_MPI_COMMAND
+#export DIRAC_MPI_COMMAND="mpirun -np $SLURM_CPUS_ON_NODE"
+
+echo -e "\nldd $DIRAC_BUILDDIR/dirac.x:"
+ldd $DIRAC_BUILDDIR/dirac.x
+echo -e "\n ifort -V: \c"; ifort -V
+
+echo -e "\nMy PATH=$PATH\n"
+echo -e "Python -v :\c"; python -V
+echo -e "cmake ? which cmake = \c"; which cmake
+echo -e "ctest ? which ctest = \c"; which ctest
+echo -e "ctest --version \c"; ctest --version
+echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
+echo -e "DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
+echo
+
+export DIRAC_TMPDIR=/lustre/nyx/ukt/milias/scratch
+echo -e "\nDIRAC scratch directory space, $DIRAC_TMPDIR"
+df -h $DIRAC_TMPDIR/.
+echo -e "\n For comparison, /tmp local disk;  df -h /tmp/."; df -h /tmp
+echo -e "\n"
+
+# for running jobs from your homedir
+cd $SLURM_SUBMIT_DIR
+
+#$PAM --noarch --mpi=2 --gb=55.5 --ag=62.5  --mol=Bh-CO_4.x2c_a4p_bp86_v2z.Cs.mol --inp=Bh-CO_4.x2c_a4.scf_relcc_o20-19_v15.inp  --put "DFPCMO.x2c_a4.scf.v2z=DFPCMO" --keep_scratch
+#$PAM --noarch --mpi=1 --gb=100.5 --ag=120.5  --mol=Bh-CO_4.x2c_a4p_bp86_v2z.Cs.mol --inp=Bh-CO_4.x2c_a4.relcc_o20-19_v15.inp  --scratchfull=/lustre/nyx/ukt/milias/scratch/milias/DIRAC_Bh-CO_4.x2c_a4.scf_relcc_o20-19_v15_Bh-CO_4.x2c_a4p_bp86_v2z.Cs_5327
+
+#THISMPI=10
+#THISMPI=4
+#let "NUMTHR=$NPROCS/$THISMPI"
+#export MKL_NUM_THREADS=$NUMTHR
+export MKL_NUM_THREADS=1
+#echo -e "\nThis node has $NPROCS CPUs available for this EXCLUSIVE JOB and dirac.x is running via $THISMPI threads."
+#echo -e "Therefore, for the MKL internal parallelization, number of calculated threads=$MKL_NUM_THREADS \n"
+
+#
+#$PAM --noarch --mpi=$THISMPI --gb=23 --ag=24 --mol=TsOH.dirac_geom.v2z.Cs.mol --inp=TsOH.geomopt-x2c_a.scf_relcc-46e-1000v.inp  --suffix=i17mkl_mpi$THISMPI-omp$MKL_NUM_THREADS-$SLURM_JOB_PARTITION-$SLURM_JOBID-out --put="DFPCMO.TsOH.Cs_v2z=DFPCMO"
+
+MOL=$DIRAC_ROOTDIR/test/cc_essential/CO.mol
+INP=$DIRAC_ROOTDIR/test/cc_essential/ccsd.small.inp
+
+#$PAM --noarch --mpi=6  --gb=1.89 --ag=1.99 --mol=  --inp=TsOH.x2c_a2p.scf_relcc-46e-5000v.inp  --suffix=i17mkl_mpi$THISMPI-omp$MKL_NUM_THREADS-$SLURM_JOB_PARTITION-$SLURM_JOBID-out 
+
+$PAM --noarch --mpi=6  --gb=1.89 --ag=1.99 --mol=  --inp=TsOH.x2c_a2p.scf_relcc-46e-5000v.inp  --suffix=$SLURM_JOB_PARTITION-$SLURM_JOBID-out 
+#
+
+exit

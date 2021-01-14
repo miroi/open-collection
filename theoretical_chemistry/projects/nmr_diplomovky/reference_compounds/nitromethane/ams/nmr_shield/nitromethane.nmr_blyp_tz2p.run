@@ -1,0 +1,65 @@
+#!/bin/sh
+
+"$AMSBIN/ams" << eor
+
+Task SinglePoint
+PESPointCharacter
+    Tolerance 0.02
+End
+System
+    Atoms
+        C -1.06114703 0.22157301 0.01455853 
+        N 0.45599388 0.15096527 0.00867068 
+        O 1.07134394 1.22830238 -0.00235278 
+        O 0.9701230199999999 -0.97799475 -0.01299107 
+        H -1.35320552 1.14775907 0.51026835 
+        H -1.43804518 -0.67025808 0.51584701 
+        H -1.37441504 0.23251561 -1.03400072 
+    End
+    BondOrders
+         1 2 1.0
+         1 5 1.0
+         1 6 1.0
+         1 7 1.0
+         2 3 1.0
+         2 4 1.0
+    End
+End
+
+Engine ADF
+    Basis
+        Type TZ2P
+        Core None
+    End
+    Save TAPE10
+    XC
+        GGA BLYP
+    End
+    Relativity
+        Level None
+    End
+EndEngine
+eor
+
+# =======
+# NMR NMR
+# =======
+
+cp "${AMS_RESULTSDIR-${AMS_JOBNAME-ams}.results}/adf.rkf" TAPE21
+cp "${AMS_RESULTSDIR-${AMS_JOBNAME-ams}.results}/TAPE10" TAPE10
+
+"$AMSBIN/nmr" << eor
+NMR
+    out    iso    tens
+    adfgui
+    Atoms 2 
+    u1k best
+    calc all
+End
+
+eor
+
+mv TAPE21 "${AMS_RESULTSDIR-${AMS_JOBNAME-ams}.results}/adf.rkf"
+rm -f TAPE10 TAPE15
+
+

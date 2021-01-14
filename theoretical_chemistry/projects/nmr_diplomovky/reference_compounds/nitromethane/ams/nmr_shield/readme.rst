@@ -1,0 +1,5 @@
+NMR shieldings of nitromethane
+==============================
+
+
+

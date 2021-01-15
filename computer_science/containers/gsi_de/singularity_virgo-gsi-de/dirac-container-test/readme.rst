@@ -37,7 +37,10 @@ singularity exec $SINGULARITY_CONTAINERS/bast-openmpi-i8:4.0.4-gcc-9.3.0.sif omp
 singularity exec $SINGULARITY_CONTAINERS/bast-openmpi-i8:4.0.4-gcc-9.3.0.sif cmake --version
 cmake version 3.16.3
 
+singularity exec $SINGULARITY_CONTAINERS/bast-openmpi-i8:4.0.4-gcc-9.3.0.sif gfortran --version
+GNU Fortran (Ubuntu 9.3.0-10ubuntu2) 9.3.0
 
-
+singularity exec $SINGULARITY_CONTAINERS/bast-openmpi-i8:4.0.4-gcc-9.3.0.sif cmake --version
+cmake version 3.16.3
 
 

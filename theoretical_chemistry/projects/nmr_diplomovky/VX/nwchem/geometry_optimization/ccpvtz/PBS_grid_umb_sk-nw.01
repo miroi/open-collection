@@ -7,17 +7,17 @@
 ### Declare myprogram non-rerunable
 #PBS -r n
 
-##PBS -l nodes=1:ppn=12:old
+#PBS -l nodes=1:ppn=24:old
 ##PBS -l nodes=1:ppn=32
-#PBS -l nodes=1:ppn=12
+##PBS -l nodes=1:ppn=12
 
 #PBS -l walltime=100:00:00
 ##PBS -l walltime=24:00:00
 
 ##PBS -l mem=47g # max mem
-##PBS -l mem=36g  # 12x3gb=36gb
+#PBS -l mem=40g  
 ##PBS -l mem=32g
-#PBS -l mem=24g
+##PBS -l mem=24g
 
 #PBS -j oe
 
@@ -108,7 +108,8 @@ echo -e "The local home directory with NWChem input file, PBS_O_WORKDIR=$PBS_O_W
 
 #mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/HD.b3lyp_3-21G_geopt_shield.nw  > $PBS_O_WORKDIR/HD.b3lyp_3-21G_geopt_shield.out
 
-cp $PBS_O_WORKDIR/VX_geom_ccpvdz-034-again.xyz   $TMPDIR/.
+#cp $PBS_O_WORKDIR/VX_geom_ccpvdz-034-again.xyz   $TMPDIR/.
+cp $PBS_O_WORKDIR/VX.coord_freq_blyp_tz2p.xyz   $TMPDIR/.
 project=VX.geopt_freq-an_b3lyp_ccpvtz
 mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/$project.nw  > $PBS_O_WORKDIR/$project.out
 cp $TMPDIR/VX_geom_ccpvtz*   $PBS_O_WORKDIR/.

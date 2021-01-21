@@ -2,7 +2,7 @@
 
 #PBS -S /bin/bash
 #PBS -A UMB-ITMS-26110230082
-#PBS -N HDccpvtzS
+#PBS -N HDccpvtzA
 
 ### Declare myprogram non-rerunable
 #PBS -r n
@@ -108,11 +108,10 @@ echo -e "The local home directory with NWChem input file, PBS_O_WORKDIR=$PBS_O_W
 #mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/HD.b3lyp_3-21G_geopt_shield.nw  > $PBS_O_WORKDIR/HD.b3lyp_3-21G_geopt_shield.out
 
 #cp $PBS_O_WORKDIR/HD_konformer81.xyz   $TMPDIR/.
-cp $PBS_O_WORKDIR/HD_geom_Simon.xyz   $TMPDIR/.
-project=HD.geoptC2v_freq-an_b3lyp_ccpvtz
+cp $PBS_O_WORKDIR/HD.coord_blyp_tz2p.xyz   $TMPDIR/.
+project=HD.geopt_freq_b3lyp_ccpvtz
 mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/$project.nw  > $PBS_O_WORKDIR/$project.out
-#cp $TMPDIR/HD_geom_ccpvtz_again*   $PBS_O_WORKDIR/.
-cp $TMPDIR/HD_geomSimon_ccpvtz_again   $PBS_O_WORKDIR/.
+cp $TMPDIR/HD_ccpvtz_again*   $PBS_O_WORKDIR/.
 
 echo -e "\n Working files in scratch dir $TMPDIR:"
 ls -lt $TMPDIR 

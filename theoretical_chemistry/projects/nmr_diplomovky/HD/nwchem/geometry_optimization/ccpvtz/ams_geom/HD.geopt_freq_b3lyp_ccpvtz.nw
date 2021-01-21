@@ -1,0 +1,34 @@
+echo
+
+start molecule
+
+print low
+
+title "Mustard gas, HD"
+charge 0
+
+geometry units angstroms print xyz autosym
+ # load format xyz HD_geom_Simon.xyz
+  load format xyz HD_geom_Simon.xyz
+end
+
+basis
+  * library cc-pvtz
+end
+
+dft
+  grid fine
+  xc b3lyp
+  mult 1
+  noprint "final vectors analysis"
+end
+
+driver
+  maxiter 50
+  xyz HD_ccpvtz_again
+end
+
+
+task dft optimize
+task dft freq 
+

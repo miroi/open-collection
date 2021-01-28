@@ -1,0 +1,37 @@
+echo
+
+start molecule
+
+print low
+
+title "VX"
+charge 0
+
+geometry units angstroms print xyz autosym
+  load format xyz VX.converged_geometry_blyp_tz2p-solvent-chcl3.xyz
+end
+
+basis
+  * library cc-pvtz
+end
+
+dft
+  grid fine
+  xc b3lyp
+  mult 1
+# Reduce output during geometry optimization
+  #noprint "final vectors analysis"
+end
+
+property
+  giao
+  shielding
+end
+
+cosmo
+  solvent chcl3
+end
+
+task dft energy
+task dft property
+

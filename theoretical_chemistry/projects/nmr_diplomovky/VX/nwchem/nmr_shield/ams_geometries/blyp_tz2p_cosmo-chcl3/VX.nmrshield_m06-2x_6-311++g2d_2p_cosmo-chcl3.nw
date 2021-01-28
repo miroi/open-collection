@@ -1,0 +1,36 @@
+echo
+
+start molecule
+
+print low
+
+title "VX"
+charge 0
+
+geometry units angstroms print xyz autosym
+  load format xyz VX.converged_geometry_blyp_tz2p-solvent-chcl3.xyz
+end
+
+basis
+  * library 6-311++g2d_2p 
+end
+
+dft
+  grid fine
+# see https://nwchemgit.github.io/Density-Functional-Theory-for-Molecules.html#density-functional-theory-dft
+  xc m06-2x
+  mult 1
+end
+
+property
+  giao
+  shielding
+end
+
+cosmo
+  solvent chcl3
+end
+
+task dft energy
+task dft property
+

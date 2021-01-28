@@ -2,18 +2,19 @@
 
 #PBS -S /bin/bash
 #PBS -A UMB-ITMS-26110230082
-#PBS -N gb_sto3g_dal
+#PBS -N VXdal
 
 ### Declare myprogram non-rerunable
 #PBS -r n
 
 ##PBS -l nodes=1:ppn=12:old
-#PBS -l nodes=1:ppn=8  # number of CPUs for Dalton parallel run
+#PBS -l nodes=1:ppn=12  # number of CPUs for Dalton parallel run
 
-#PBS -l walltime=04:00:00
+#PBS -l walltime=100:00:00
 
 ##PBS -l mem=47g
-#PBS -l mem=4g  # size of allocated memory for Dalton run
+#PBS -l mem=42g
+##PBS -l mem=4g  # size of allocated memory for Dalton run
 
 #PBS -j oe
 
@@ -121,6 +122,7 @@ cd $PBS_O_WORKDIR
   # $DALTON/$BUILD/dalton -omp $NPROCS_PBS  sarin_nmr
 
 # this is parallel run 
-   $DALTON/$BUILD/dalton -N $NPROCS_PBS  -noarch b3lyp_geomopt_freq_shield  GB.sto3g
+   #$DALTON/$BUILD/dalton -N $NPROCS_PBS  -noarch b3lyp_geomopt_freq_shield  GB.sto3g
+   $DALTON/$BUILD/dalton -N $NPROCS_PBS  -noarch VX.b3lyp_geomopt_freq_pcm_h2o  VX.6-311G
 
 exit 0

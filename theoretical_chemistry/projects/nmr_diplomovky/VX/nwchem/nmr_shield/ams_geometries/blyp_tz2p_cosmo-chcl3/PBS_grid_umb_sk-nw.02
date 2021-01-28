@@ -2,7 +2,7 @@
 
 #PBS -S /bin/bash
 #PBS -A UMB-ITMS-26110230082
-#PBS -N VXccpvtz
+#PBS -N VX2
 
 ### Declare myprogram non-rerunable
 #PBS -r n
@@ -112,7 +112,7 @@ echo -e "The local home directory with NWChem input file, PBS_O_WORKDIR=$PBS_O_W
 
 #cp $PBS_O_WORKDIR/VX_geom_ccpvdz-034-again.xyz   $TMPDIR/.
 cp $PBS_O_WORKDIR/VX.converged_geometry_blyp_tz2p-solvent-chcl3.xyz   $TMPDIR/.
-project=VX.nmrshield_b3lyp_ccpvtz_cosmo-chcl3
+project=VX.nmrshield_m06-2x_6-311++g2d_2p_cosmo-chcl3
 mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/$project.nw  > $PBS_O_WORKDIR/$project.out
 #cp $TMPDIR/VX_geom_ccpvtz*   $PBS_O_WORKDIR/.
 

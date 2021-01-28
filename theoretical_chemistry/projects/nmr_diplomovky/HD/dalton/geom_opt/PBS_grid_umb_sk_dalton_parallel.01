@@ -2,7 +2,7 @@
 
 #PBS -S /bin/bash
 #PBS -A UMB-ITMS-26110230082
-#PBS -N VXdal
+#PBS -N HDdal
 
 ### Declare myprogram non-rerunable
 #PBS -r n
@@ -21,7 +21,7 @@
 #PBS -q batch
 ##PBS -q debug
 
-#PBS -M emacusova@studenti.umb.sk  # send email after finishing job
+#PBS -M Miroslav.Ilias@umb.sk  # send email after finishing job
 
 echo -e "\n Date & Time:  `date`"
 echo -e "\n Working host is: \c "; hostname -f
@@ -123,6 +123,6 @@ cd $PBS_O_WORKDIR
 
 # this is parallel run 
    #$DALTON/$BUILD/dalton -N $NPROCS_PBS  -noarch b3lyp_geomopt_freq_shield  GB.sto3g
-   $DALTON/$BUILD/dalton -N $NPROCS_PBS  -noarch VX.b3lyp_geomopt_freq_pcm_h2o  VX.6-311G
+   $DALTON/$BUILD/dalton -N $NPROCS_PBS  -noarch   HD.b3lyp_geomopt_freq_pcm_ch3cl  HD.6-311G
 
 exit 0

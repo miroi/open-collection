@@ -2,11 +2,14 @@ echo
 
 start molecule
 
-title "VX"
+print low
+
+title "Mustard gas, HD"
 charge 0
 
 geometry units angstroms print xyz autosym
-  load format xyz VX_geom_ccpvdz-034-again.xyz
+ # load format xyz HD_geom_Simon.xyz
+  load format xyz HD.coord_blyp_tz2p.xyz
 end
 
 basis
@@ -17,12 +20,14 @@ dft
   grid fine
   xc b3lyp
   mult 1
+  noprint "final vectors analysis"
 end
 
 driver
   maxiter 50
-  xyz VX_geom_ccpvtz
+  xyz HD_ccpvtz_again
 end
+
 
 task dft optimize
 task dft freq 

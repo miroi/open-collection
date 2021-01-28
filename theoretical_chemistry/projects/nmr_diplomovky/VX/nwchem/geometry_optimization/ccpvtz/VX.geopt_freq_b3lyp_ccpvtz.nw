@@ -2,18 +2,18 @@ echo
 
 start molecule
 
-title "Durene"
-
 print low
 
+title "VX"
 charge 0
 
 geometry units angstroms print xyz autosym
-  load format xyz Durene.ams.xyz
+#  load format xyz VX_geom_ccpvdz-034-again.xyz
+  load format xyz VX.coord_freq_blyp_tz2p.xyz
 end
 
 basis
- * library cc-pvtz
+  * library cc-pvtz
 end
 
 dft
@@ -25,9 +25,10 @@ dft
 end
 
 driver
-  maxiter 80
-  xyz durene_geom
+  maxiter 50
+  xyz VX_geom_ccpvtz
 end
 
 task dft optimize
-task dft freq numerical
+task dft freq 
+

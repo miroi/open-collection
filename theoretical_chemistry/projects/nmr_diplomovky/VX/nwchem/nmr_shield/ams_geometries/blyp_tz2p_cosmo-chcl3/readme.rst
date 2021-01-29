@@ -10,4 +10,6 @@ DFT functionals: https://nwchemgit.github.io/Density-Functional-Theory-for-Molec
 
 
 
+fix ccpvtz: https://nwchemgit.github.io/Special_AWCforum/st/id2507/write-failed_error_on_large_syst....html
+
 

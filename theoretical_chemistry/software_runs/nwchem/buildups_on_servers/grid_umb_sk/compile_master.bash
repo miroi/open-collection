@@ -1,7 +1,10 @@
 #!/bin/bash
 
-#   NWChem on grid.umb.sk
+#        NWChem on grid.umb.sk
 #  /home/milias/Work/qch/software/nwchem_suite/nwchem_master
+
+
+#  nohup compile_master.bash > compile_master.log  2>&1
 
   echo -e "\n***   NWChem environmental variables for login.grid.umb.sk:   ***"
 

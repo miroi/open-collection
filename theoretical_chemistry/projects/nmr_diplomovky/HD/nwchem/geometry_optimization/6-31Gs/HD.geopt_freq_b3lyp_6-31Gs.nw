@@ -2,12 +2,16 @@ echo
 
 start molecule
 
+memory stack 1750 mb heap 100 mb global 425 mb noverify
+
 title "Mustard gas, HD"
 charge 0
 
 geometry units angstroms print xyz autosym
   load format xyz HD_konformer81.xyz
 end
+
+set lindep:tol 1.0d-7
 
 basis
   * library 6-31G*
@@ -20,6 +24,7 @@ dft
 end
 
 driver
+  clear
   tight
   linopt 0
   maxiter 50
@@ -27,6 +32,9 @@ driver
 end
 
 task dft optimize
-#task dft freq numerical
+et int:txs:limxmem               29379684
+dft
+grid S 750 18 Cl 350 18
+end
 task dft freq 
 

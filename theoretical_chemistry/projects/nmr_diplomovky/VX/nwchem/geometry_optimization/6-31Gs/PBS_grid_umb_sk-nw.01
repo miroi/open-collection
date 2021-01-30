@@ -2,7 +2,7 @@
 
 #PBS -S /bin/bash
 #PBS -A UMB-ITMS-26110230082
-#PBS -N VXccpvtzA
+#PBS -N VX
 
 ### Declare myprogram non-rerunable
 #PBS -r n
@@ -83,10 +83,8 @@ echo -e "MKL_DYNAMIC=$MKL_DYNAMIC"
 echo -e "OMP_NUM_THREADS=$OMP_NUM_THREADS"
 echo -e "OMP_DYNAMIC=$OMP_DYNAMIC"
 
-#DALTON=/home/milias/Work/qch/software/dalton_suite/dalton_master
-#DIRAC=/home/milias/Work/qch/software/dirac/dirac_production
-#BUILD=build_openmpi_intel14_mkl_i8
-export NWCHEM_EXECUTABLE=/home/milias/Work/qch/software/nwchem_suite/nwchem_master/bin/LINUX64/nwchem
+#export NWCHEM_EXECUTABLE=/home/milias/Work/qch/software/nwchem_suite/nwchem_master/bin/LINUX64/nwchem
+export NWCHEM_EXECUTABLE=/home/milias/Work/qch/software/nwchem_suite/nwchem-7.0.2/bin/LINUX64/nwchem
 echo -e "\nDIRAC executable linked libraries, ldd $NWCHEM_EXECUTABLE"
 ldd $NWCHEM_EXECUTABLE
 
@@ -112,9 +110,9 @@ echo -e "The local home directory with NWChem input file, PBS_O_WORKDIR=$PBS_O_W
 
 #cp $PBS_O_WORKDIR/VX_geom_ccpvdz-034-again.xyz   $TMPDIR/.
 cp $PBS_O_WORKDIR/VX.coord_freq_blyp_tz2p.xyz   $TMPDIR/.
-project=VX.geopt_freq_b3lyp_ccpvtz
+project=VX.geopt_freq_b3lyp_6-31Gs
 mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/$project.nw  > $PBS_O_WORKDIR/$project.out
-cp $TMPDIR/VX_geom_ccpvtz*   $PBS_O_WORKDIR/.
+cp $TMPDIR/VX_geom*   $PBS_O_WORKDIR/.
 
 echo -e "\n Working files in scratch dir $TMPDIR:"
 ls -lt $TMPDIR 

@@ -2,6 +2,9 @@ echo
 
 start molecule
 
+# https://nwchemgit.github.io/Memory.html
+memory total 40 gb
+
 print low
 
 title "VX"
@@ -13,11 +16,12 @@ geometry units angstroms print xyz autosym
 end
 
 basis
-  * library cc-pvtz
+  * library 6-31G*
 end
 
 dft
-  grid fine
+  #grid fine
+  grid huge
   xc b3lyp
   mult 1
 # Reduce output during geometry optimization
@@ -26,7 +30,7 @@ end
 
 driver
   maxiter 50
-  xyz VX_geom_ccpvtz
+  xyz VX_geom
 end
 
 task dft optimize

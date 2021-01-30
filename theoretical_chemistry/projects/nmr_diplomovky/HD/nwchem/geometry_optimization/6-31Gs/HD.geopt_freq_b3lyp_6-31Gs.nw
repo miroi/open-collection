@@ -11,8 +11,6 @@ geometry units angstroms print xyz autosym
   load format xyz HD_konformer81.xyz
 end
 
-set lindep:tol 1.0d-7
-
 basis
   * library 6-31G*
 end
@@ -32,9 +30,9 @@ driver
 end
 
 task dft optimize
-et int:txs:limxmem               29379684
+set int:txs:limxmem               29379684
 dft
-grid S 750 18 Cl 350 18
+   grid S 750 18 Cl 350 18
 end
 task dft freq 
 

@@ -4,8 +4,7 @@
 #   NWChem on grid.umb.sk
 #  /home/milias/Work/qch/software/nwchem_suite/nwchem_master
 
-  echo -e "\nNWChem environmental variables for login.grid.umb.sk:"
-
+  echo -e "\n***   NWChem environmental variables for login.grid.umb.sk:   ***"
 
   export NWCHEM_TOP=/home/milias/Work/qch/software/nwchem_suite/nwchem_master
  # export NWCHEM_TOP=/home/milias/Work/qch/software/nwchem_suite/nwchem_release
@@ -32,8 +31,9 @@
  # export MPI_LIB="/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib -Wl,-rpath  /home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib -Wl,--enable-new-dtags -L/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib"
  # export MPI_INCLUDE="/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/include /home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib -Wl,-rpath -Wl"
 
-  #export BLASOPT="-L/usr/lib -lblas"
+  echo -e "MKLROOT=${MKLROOT}"
 
+  #export BLASOPT="-L/usr/lib -lblas"
   export BLASOPT="${MKLROOT}/lib/mic/libmkl_blas95_ilp64.a -L${MKLROOT}/lib/mic -lmkl_scalapack_ilp64 -lmkl_cdft_core -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread -lm -ldl"
   echo -e "BLASOPT=$BLASOPT"
 
@@ -41,7 +41,8 @@
   #export LAPACK_LIB="${MKLROOT}/lib/mic/libmkl_lapack95_ilp64.a -L${MKLROOT}/lib/mic -lmkl_scalapack_ilp64 -lmkl_cdft_core -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread -lm -ldl"
   echo -e "LAPACK_LIB=$LAPACK_LIB"
 
- #export USE_64TO32=n # see http://www.nwchem-sw.org/index.php/Special:AWCforum/sp/id7260
+  export USE_64TO32=n # see http://www.nwchem-sw.org/index.php/Special:AWCforum/sp/id7260
+  echo -e "USE_64TO32=$USE_64TO32"
 
   export BLAS_SIZE=8
   echo -e "BLAS_SIZE=$BLAS_SIZE"
@@ -74,3 +75,11 @@
 
   echo -e "\nNWChem environmental variables were defined for login.grid.umb.sk"
 
+
+  cd $NWCHEM_TOP/src
+  echo -e "\n I am in :\c";pwd;ls -lt
+  echo -e "\n  launching make -j4 :"
+ # make -j4
+  
+  
+  exit

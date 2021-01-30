@@ -42,3 +42,10 @@ NWChem on grid.umb.sk
   echo -e "\nNWChem environmental variables defined for login.grid.umb.sk\n"
 
 
+
+undefined reference to `yscal_'
+cr_eomccsd_t_act.F:(.text+0x2a13): undefined reference to `yscal_'
+/home/milias/Work/qch/software/nwchem_suite/nwchem_master/lib/LINUX64/libtce.a(q3rexpt2_act.o): In function `q3rexpt2_act_
+':
+q3rexpt2_act.F:(.text+0xe98): undefined reference to `ygemm_'
+

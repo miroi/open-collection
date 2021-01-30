@@ -21,11 +21,13 @@ echo -e "\nI am in newly created TMPDIR=$TMPDIR"
 echo -e "For control,  pwd=\c";pwd
 
 
-echo -e "\n Checking : which mpirun ? \c"; which mpirun
+echo -e "\n Checking : which mpirun ? \c"; which mpirun; mpirun --version
 
 # ... project name 
-proj=prop_ch3f
-ncpus=2
+#proj=prop_ch3f
+proj=h2o_freq_tasks
+
+ncpus=2 # should be as parameter
 echo -e "\n Launching NWChem project $proj on  $ncpus CPU:"
 mpirun -np $ncpus $NWCHEM_EXECUTABLE  $THISDIR/$proj.nw >  $THISDIR/$proj.out
 

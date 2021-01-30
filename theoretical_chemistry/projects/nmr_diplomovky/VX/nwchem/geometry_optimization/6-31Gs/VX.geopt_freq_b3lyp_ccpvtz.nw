@@ -1,0 +1,34 @@
+echo
+
+start molecule
+
+print low
+
+title "VX"
+charge 0
+
+geometry units angstroms print xyz autosym
+#  load format xyz VX_geom_ccpvdz-034-again.xyz
+  load format xyz VX.coord_freq_blyp_tz2p.xyz
+end
+
+basis
+  * library cc-pvtz
+end
+
+dft
+  grid fine
+  xc b3lyp
+  mult 1
+# Reduce output during geometry optimization
+  noprint "final vectors analysis"
+end
+
+driver
+  maxiter 50
+  xyz VX_geom_ccpvtz
+end
+
+task dft optimize
+task dft freq 
+

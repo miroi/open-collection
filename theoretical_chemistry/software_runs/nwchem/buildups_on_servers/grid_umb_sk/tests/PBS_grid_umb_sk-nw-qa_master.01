@@ -78,10 +78,6 @@ echo -e "MKL_DYNAMIC=$MKL_DYNAMIC"
 echo -e "OMP_NUM_THREADS=$OMP_NUM_THREADS"
 echo -e "OMP_DYNAMIC=$OMP_DYNAMIC"
 
-export NWCHEM_EXECUTABLE=/home/milias/Work/qch/software/nwchem_suite/nwchem_master/bin/LINUX64/nwchem
-echo -e "\nNWCHEM executable linked libraries, ldd $NWCHEM_EXECUTABLE"
-ldd $NWCHEM_EXECUTABLE
-
 echo -e "\npython -V \c"; python -V
 echo -e "mpif90 ? \c"; which mpif90; mpif90 --version
 echo -e "mpicc ? \c"; which mpicc; mpicc --version
@@ -89,12 +85,14 @@ echo -e "mpirun ? \c"; which mpirun; mpirun --version
 #echo -e "ctest ? \c";which ctest;ctest --version
 
 cd /home/milias/Work/qch/software/nwchem_suite/nwchem_master/QA
-echo -e "pwd=\c"; pwd
+echo -e "\n I am in pwd=\c"; pwd
 
 export NWCHEM_TOP=`pwd`/..
 export NWCHEM_TARGET=LINUX64
 export NWCHEM_TEST=${NWCHEM_TOP}/QA/tests
 export NWCHEM_EXECUTABLE=`find "${NWCHEM_TOP}/bin" -perm -u-x -name "nwchem*"`
+echo -e "\nNWCHEM executable linked libraries, ldd $NWCHEM_EXECUTABLE"
+ldd $NWCHEM_EXECUTABLE
 
 #nproc=4
 nproc=$NPROCS_PBS
@@ -111,7 +109,9 @@ if [[ $status != 0 ]]; then
   exit $status
 fi
 date
+echo -e "\nRunning  ./domdtests.mpi $nproc"
 ./domdtests.mpi $nproc
+echo -e "Now ./doqmtests.mpi $nproc fast ..."
 ./doqmtests.mpi $nproc fast
 date
 

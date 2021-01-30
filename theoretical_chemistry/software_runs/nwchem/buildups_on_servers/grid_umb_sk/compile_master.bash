@@ -69,7 +69,7 @@
   #export PYTHONHOME=/opt/rh/devtoolset-6/root/usr/lib64/python2.6/site-packages
   #export NWCHEM_MODULES="all python"
 
-  export NWCHEM_MODULES="all" # problem with Python!
+  export NWCHEM_MODULES="all" # remove python
   echo -e "NWCHEM_MODULES=$NWCHEM_MODULES"
 
   export NWCHEM_EXECUTABLE=$NWCHEM_TOP/bin/LINUX64/nwchem
@@ -83,6 +83,7 @@
 
   cd $NWCHEM_TOP/src
   echo -e "\n I am in :\c";pwd;ls -lt
+  echo -e " make nwchem_config: ";make nwchem_config 
   echo -e "\n  launching make -j4 :"; make -j4
 
   # build the version info
@@ -91,6 +92,7 @@
    make version
    make
    cd $NWCHEM_TOP/src
+   make link
 
 
    echo -e "\n After the NWCHem compilation:"

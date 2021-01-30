@@ -4,7 +4,8 @@ NWChem
 
 https://github.com/nwchemgit/nwchem/wiki/Getting-Started
 
-
+ubuntu-kch
+----------
 milias@194.160.44.72:~/work/projects/open-collection/theoretical_chemistry/software_runs/nwchem/runs/H2O_freq/.bash_ubuntu-kch_nw.01
 
   NWCHEM_EXECUTABLE=/usr/bin/nwchem
@@ -83,6 +84,5 @@ Deleting scratch directory /tmp/milias/nwchem_run.f1be025e4918:
 
  returning to /home/milias/work/projects/open-collection/theoretical_chemistry/software_runs/nwchem/runs/H2O_freq
 milias@194.160.44.72:~/work/projects/open-collection/theoretical_chemistry/software_runs/nwchem/runs/H2O_freq/.
-
 
 

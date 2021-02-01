@@ -83,10 +83,10 @@ echo -e "MKL_DYNAMIC=$MKL_DYNAMIC"
 echo -e "OMP_NUM_THREADS=$OMP_NUM_THREADS"
 echo -e "OMP_DYNAMIC=$OMP_DYNAMIC"
 
-#export NWCHEM_EXECUTABLE=/home/milias/Work/qch/software/nwchem_suite/nwchem_master/bin/LINUX64/nwchem
-export NWCHEM_EXECUTABLE=/home/milias/Work/qch/software/nwchem_suite/nwchem-7.0.2/bin/LINUX64/nwchem
-echo -e "\nDIRAC executable linked libraries, ldd $NWCHEM_EXECUTABLE"
-ldd $NWCHEM_EXECUTABLE
+export NWCHEM_EXECUTABLE=/home/milias/Work/qch/software/nwchem_suite/nwchem_master/bin/LINUX64/nwchem
+#export NWCHEM_EXECUTABLE=/home/milias/Work/qch/software/nwchem_suite/nwchem-7.0.2/bin/LINUX64/nwchem
+
+echo -e "\n  NWChem executable linked libraries, ldd $NWCHEM_EXECUTABLE"; ldd $NWCHEM_EXECUTABLE
 
 echo -e "\npython -V \c"; python -V
 echo -e "mpif90 ? \c"; which mpif90; mpif90 --version
@@ -104,13 +104,14 @@ cd $TMPDIR
 echo -e "\nI am in TMPDIR=$TMPDIR"
 echo -e "For control pwd=\c";pwd
 echo -e "\n Current size of $TMPDIR :";df -h $TMPDIR
-echo -e "The local home directory with NWChem input file, PBS_O_WORKDIR=$PBS_O_WORKDIR"
-
-#mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/HD.b3lyp_3-21G_geopt_shield.nw  > $PBS_O_WORKDIR/HD.b3lyp_3-21G_geopt_shield.out
+echo -e "The local home directory with NWChem inputs file, PBS_O_WORKDIR=$PBS_O_WORKDIR"
 
 #cp $PBS_O_WORKDIR/VX_geom_ccpvdz-034-again.xyz   $TMPDIR/.
 cp $PBS_O_WORKDIR/VX_geom-031_start.xyz   $TMPDIR/.
 project=VX.geopt_freq_b3lyp_6-31Gs
+
+echo -e "List of input files :"; ls -lt 
+echo -e "\n Launching mpirun  -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/$project.nw  > $PBS_O_WORKDIR/$project.out :"
 mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/$project.nw  > $PBS_O_WORKDIR/$project.out
 cp $TMPDIR/VX_geom*   $PBS_O_WORKDIR/.
 

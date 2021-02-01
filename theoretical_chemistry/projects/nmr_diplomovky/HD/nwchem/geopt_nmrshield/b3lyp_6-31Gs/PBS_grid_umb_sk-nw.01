@@ -12,12 +12,12 @@
 #PBS -l nodes=1:ppn=12
 
 ##PBS -l walltime=100:00:00
-#PBS -l walltime=24:00:00
+#PBS -l walltime=50:00:00
 
 ##PBS -l mem=47g # max mem
 ##PBS -l mem=36g  # 12x3gb=36gb
 ##PBS -l mem=32g
-#PBS -l mem=24g
+#PBS -l mem=40g
 
 #PBS -j oe
 
@@ -84,8 +84,8 @@ echo -e "OMP_DYNAMIC=$OMP_DYNAMIC"
 #DALTON=/home/milias/Work/qch/software/dalton_suite/dalton_master
 #DIRAC=/home/milias/Work/qch/software/dirac/dirac_production
 #BUILD=build_openmpi_intel14_mkl_i8
-#export NWCHEM_EXECUTABLE=/home/milias/Work/qch/software/nwchem_suite/nwchem_master/bin/LINUX64/nwchem
-export NWCHEM_EXECUTABLE=/home/milias/Work/qch/software/nwchem_suite/nwchem-7.0.2/bin/LINUX64/nwchem
+export NWCHEM_EXECUTABLE=/home/milias/Work/qch/software/nwchem_suite/nwchem_master/bin/LINUX64/nwchem
+#export NWCHEM_EXECUTABLE=/home/milias/Work/qch/software/nwchem_suite/nwchem-7.0.2/bin/LINUX64/nwchem
 echo -e "\nDIRAC executable linked libraries, ldd $NWCHEM_EXECUTABLE"
 ldd $NWCHEM_EXECUTABLE
 
@@ -108,10 +108,10 @@ echo -e "The local home directory with NWChem input file, PBS_O_WORKDIR=$PBS_O_W
 
 #mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/HD.b3lyp_3-21G_geopt_shield.nw  > $PBS_O_WORKDIR/HD.b3lyp_3-21G_geopt_shield.out
 
-cp $PBS_O_WORKDIR/HD_konformer81.xyz   $TMPDIR/.
-project=HD.geopt_freq_b3lyp_6-31Gs
+cp $PBS_O_WORKDIR/HD_geom_6-31Gs-017_final.xyz   $TMPDIR/.
+project=HD.geopt_freq_nmrshield_b3lyp_6-31Gs
 mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/$project.nw  > $PBS_O_WORKDIR/$project.out
-cp $TMPDIR/HD_geom_6-31Gs*   $PBS_O_WORKDIR/.
+#cp $TMPDIR/HD_geom_6-31Gs*   $PBS_O_WORKDIR/.
 
 echo -e "\n Working files in scratch dir $TMPDIR:"
 ls -lt $TMPDIR 

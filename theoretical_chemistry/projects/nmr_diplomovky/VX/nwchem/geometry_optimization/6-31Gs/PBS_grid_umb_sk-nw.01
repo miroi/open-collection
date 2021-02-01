@@ -109,7 +109,7 @@ echo -e "The local home directory with NWChem input file, PBS_O_WORKDIR=$PBS_O_W
 #mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/HD.b3lyp_3-21G_geopt_shield.nw  > $PBS_O_WORKDIR/HD.b3lyp_3-21G_geopt_shield.out
 
 #cp $PBS_O_WORKDIR/VX_geom_ccpvdz-034-again.xyz   $TMPDIR/.
-cp $PBS_O_WORKDIR/VX.coord_freq_blyp_tz2p.xyz   $TMPDIR/.
+cp $PBS_O_WORKDIR/VX_geom-031_start.xyz   $TMPDIR/.
 project=VX.geopt_freq_b3lyp_6-31Gs
 mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/$project.nw  > $PBS_O_WORKDIR/$project.out
 cp $TMPDIR/VX_geom*   $PBS_O_WORKDIR/.

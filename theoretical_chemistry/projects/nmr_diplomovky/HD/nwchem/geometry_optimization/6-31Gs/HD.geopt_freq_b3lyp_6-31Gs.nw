@@ -2,6 +2,8 @@ echo
 
 start molecule
 
+memory stack 1750 mb heap 100 mb global 425 mb noverify
+
 title "Mustard gas, HD"
 charge 0
 
@@ -14,19 +16,20 @@ basis
 end
 
 dft
-  grid fine
+#  grid fine
+  grid huge
   xc b3lyp
   mult 1
 end
 
 driver
+  clear
   tight
   linopt 0
   maxiter 50
   xyz HD_geom_6-31Gs
 end
 
-
 task dft optimize
-task dft freq numerical
+task dft freq 
 

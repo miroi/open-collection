@@ -1,0 +1,41 @@
+#!/bin/bash
+
+#export NWCHEM_EXECUTABLE=/home/milias/Work/qch/software/nwchem_suite/nwchem_master/bin/LINUX64/nwchem
+export NWCHEM_EXECUTABLE=/data.local1/milias/software/nwchem/nwchem_master/bin/LINUX64/nwchem
+echo -e "\nNWCHEM executable linked libraries, ldd $NWCHEM_EXECUTABLE"
+ldd $NWCHEM_EXECUTABLE
+
+echo -e "\npython -V \c"; python -V
+echo -e "mpif90 ? \c"; which mpif90; mpif90 --version
+echo -e "mpicc ? \c"; which mpicc; mpicc --version
+echo -e "mpirun ? \c"; which mpirun; mpirun --version
+#echo -e "ctest ? \c";which ctest;ctest --version
+
+#cd /home/milias/Work/qch/software/nwchem_suite/nwchem_master/QA
+cd /data.local1/milias/software/nwchem/nwchem_master/QA
+echo -e "pwd=\c"; pwd
+
+export NWCHEM_TOP=`pwd`/..
+export NWCHEM_TARGET=LINUX64
+export NWCHEM_TEST=${NWCHEM_TOP}/QA/tests
+export NWCHEM_EXECUTABLE=`find "${NWCHEM_TOP}/bin" -perm -u-x -name "nwchem*"`
+
+#nproc=2
+
+if [ "$1" != "" ] ; then
+  nproc=$1
+fi
+echo -e "nproc=$nproc"
+. ./domknwchemenv
+./domknwchemrc
+status=$?
+if [[ $status != 0 ]]; then
+  echo "ERROR: The script domknwchemrc failed. Exiting."
+  exit $status
+fi
+date
+./domdtests.mpi $nproc
+./doqmtests.mpi $nproc fast
+date
+
+exit 0

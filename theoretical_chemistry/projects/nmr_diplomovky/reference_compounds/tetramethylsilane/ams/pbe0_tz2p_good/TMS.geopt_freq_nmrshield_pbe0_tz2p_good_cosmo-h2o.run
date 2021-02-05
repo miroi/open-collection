@@ -1,0 +1,104 @@
+#!/bin/sh
+
+"$AMSBIN/ams" << eor
+
+Task GeometryOptimization
+Properties
+    NormalModes Yes
+End
+GeometryOptimization
+    InitialHessian
+        Type FromFile
+        File dep-ams.rkf
+    End
+End
+System
+    Atoms
+        Si -0.0002019886420916819 0.0001527852607048395 7.738594796054753e-05 adf.R=1.908
+        C -0.9233627180556774 -0.1715883159239624 -1.623909045710736 adf.R=1.700
+        C 0.8886256007071096 1.651512813283392 0.04281984859600408 adf.R=1.700
+        C 1.252087466561407 -1.38754578343133 0.1567771741129599 adf.R=1.700
+        C -1.217585445724481 -0.09224099754077905 1.424207661553547 adf.R=1.700
+        H -1.450265388119152 -1.128232761210663 -1.672353209928604 adf.R=1.350
+        H -1.660340683759138 0.6276565128858607 -1.738601844019675 adf.R=1.350
+        H -0.2336729200818001 -0.1210695711393612 -2.470583284333333 adf.R=1.350
+        H 1.605062318521016 1.728942648858367 -0.7792555679342577 adf.R=1.350
+        H 0.178501268777111 2.47778690328871 -0.04727073421711846 adf.R=1.350
+        H 1.435073201028811 1.774827816031746 0.9816217532412681 adf.R=1.350
+        H 1.80399368707532 -1.309021462292361 1.097171603301471 adf.R=1.350
+        H 0.7575023919948204 -2.362204936384811 0.1342752876510299 adf.R=1.350
+        H 1.973822537858956 -1.354560747831596 -0.663693836294509 adf.R=1.350
+        H -0.7021641374724349 0.005316414949098672 2.383374274244904 adf.R=1.350
+        H -1.958886083472681 0.7082558872619769 1.354626270893355 adf.R=1.350
+        H -1.748789107196981 -1.047687206065052 1.420416262895791 adf.R=1.350
+    End
+    BondOrders
+         1 2 1.0
+         1 3 1.0
+         1 4 1.0
+         1 5 1.0
+         2 6 1.0
+         2 7 1.0
+         2 8 1.0
+         3 9 1.0
+         3 10 1.0
+         3 11 1.0
+         4 12 1.0
+         4 13 1.0
+         4 14 1.0
+         5 15 1.0
+         5 16 1.0
+         5 17 1.0
+    End
+End
+
+Engine ADF
+    Basis
+        Type TZ2P
+        Core None
+    End
+    Save TAPE10
+    XC
+        Hybrid PBE0
+    End
+    Relativity
+        Level None
+    End
+    Solvation
+        Surf Delley
+        Solv name=Water cav0=0.0 cav1=0.0067639
+        Charged method=CONJ
+        C-Mat POT
+        SCF VAR ALL 
+        CSMRSP
+    End
+    NumericalQuality Good
+EndEngine
+eor
+
+# dependency: {} /home/milias/work/projects/open-collection/theoretical_chemistry/projects/nmr_diplomovky/reference_compounds/tetramethylsilane/ams/pbe0_tz2p_good/TMS.geopt_freq_nmrshield_pbe0_tz2p_good_cosmo-h2o.results/ams.rkf dep-ams.rkf
+
+
+# =======
+# NMR NMR
+# =======
+
+cp "${AMS_RESULTSDIR-${AMS_JOBNAME-ams}.results}/adf.rkf" TAPE21
+cp "${AMS_RESULTSDIR-${AMS_JOBNAME-ams}.results}/TAPE10" TAPE10
+
+"$AMSBIN/nmr" << eor
+NMR
+    out    iso    tens
+    adfgui
+    Atoms 2 3 4 5 6 7 8 9 10 11 
+    Atoms 12 13 14 15 16 17 
+    u1k best
+    calc all
+End
+
+eor
+
+mv TAPE21 "${AMS_RESULTSDIR-${AMS_JOBNAME-ams}.results}/adf.rkf"
+rm -f TAPE10 TAPE15
+
+

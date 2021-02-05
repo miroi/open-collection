@@ -1,5 +1,7 @@
 VX geometry optimization 
 ========================
 
-starting geometry from AMS
+starting geometry from AMS ... still negative freq.
+
+
 

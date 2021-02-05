@@ -36,11 +36,13 @@
   echo -e "MKL library, MKLROOT=${MKLROOT}"
 
   #export BLASOPT="-L/usr/lib -lblas"
-  export BLASOPT="${MKLROOT}/lib/mic/libmkl_blas95_ilp64.a -L${MKLROOT}/lib/mic -lmkl_scalapack_ilp64 -lmkl_cdft_core -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread -lm -ldl"
+  #export BLASOPT="${MKLROOT}/lib/mic/libmkl_blas95_ilp64.a -L${MKLROOT}/lib/mic -lmkl_scalapack_ilp64 -lmkl_cdft_core -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread -lm -ldl"
+  export BLASOPT="-mkl -i8"
   echo -e "BLASOPT=$BLASOPT"
 
-  export LAPACK_LIB="-L/usr/lib -llapack"
+#  export LAPACK_LIB="-L/usr/lib -llapack"
   #export LAPACK_LIB="${MKLROOT}/lib/mic/libmkl_lapack95_ilp64.a -L${MKLROOT}/lib/mic -lmkl_scalapack_ilp64 -lmkl_cdft_core -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread -lm -ldl"
+  export LAPACK_LIB="-mkl -i8"
   echo -e "LAPACK_LIB=$LAPACK_LIB"
 
   export USE_64TO32="n" # see http://www.nwchem-sw.org/index.php/Special:AWCforum/sp/id7260

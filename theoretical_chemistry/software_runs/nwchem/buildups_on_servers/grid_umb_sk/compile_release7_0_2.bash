@@ -4,7 +4,7 @@
 #  /home/milias/Work/qch/software/nwchem_suite/nwchem_master
 
 
-#  nohup compile.bash &> compile.log &
+#  nohup compile_release7_0_2.bash &> compile_release7_0_2.log &
 
   echo -e "\n***   NWChem environmental variables for login.grid.umb.sk:   ***"
 
@@ -36,10 +36,12 @@
   echo -e "MKL library, MKLROOT=${MKLROOT}"
 
   #export BLASOPT="-L/usr/lib -lblas"
-  export BLASOPT="${MKLROOT}/lib/mic/libmkl_blas95_ilp64.a -L${MKLROOT}/lib/mic -lmkl_scalapack_ilp64 -lmkl_cdft_core -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread -lm -ldl"
+  #export BLASOPT="${MKLROOT}/lib/mic/libmkl_blas95_ilp64.a -L${MKLROOT}/lib/mic -lmkl_scalapack_ilp64 -lmkl_cdft_core -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread -lm -ldl"
+  export BLASOPT="-mkl -i8"
   echo -e "BLASOPT=$BLASOPT"
 
-  export LAPACK_LIB="-L/usr/lib -llapack"
+  export LAPACK_LIB="-mkl -i8"
+  #export LAPACK_LIB="-L/usr/lib -llapack"
   #export LAPACK_LIB="${MKLROOT}/lib/mic/libmkl_lapack95_ilp64.a -L${MKLROOT}/lib/mic -lmkl_scalapack_ilp64 -lmkl_cdft_core -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread -lm -ldl"
   echo -e "LAPACK_LIB=$LAPACK_LIB"
 
@@ -80,6 +82,9 @@
 
   echo -e "\nNWChem environmental variables were defined for login.grid.umb.sk - GOING TO COMPILE:"
 
+  cd $NWCHEM_TOP
+  echo "\n I am in :\c";pwd
+  echo "Launching 'git clean -f -d -x' :"; git clean -f -d -x
 
   cd $NWCHEM_TOP/src
   echo -e "\n I am in :\c";pwd;ls -lt
@@ -96,9 +101,9 @@
 
 
    echo -e "\n After the NWCHem compilation:"
-   echo -e "   ls -l $NWCHEM_TOP/bin/LINUX64: "
+   echo -e "\n   ls -l $NWCHEM_TOP/bin/LINUX64: "
    ls -l $NWCHEM_TOP/bin/LINUX64       
-   echo -e "   ls -l $NWCHEM_TOP/lib/LINUX64:"
+   echo -e "\n   ls -l $NWCHEM_TOP/lib/LINUX64:"
    ls -l $NWCHEM_TOP/lib/LINUX64   
   
   

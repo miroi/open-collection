@@ -2,7 +2,7 @@
 
 #PBS -S /bin/bash
 #PBS -A UMB-ITMS-26110230082
-#PBS -N NWrelQA
+#PBS -N NWqa_release
 
 ### Declare myprogram non-rerunable
 #PBS -r n
@@ -10,7 +10,7 @@
 ##PBS -l nodes=1:ppn=12:old
 #PBS -l nodes=1:ppn=12
 
-#PBS -l walltime=8:00:00
+#PBS -l walltime=24:00:00
 
 ##PBS -l mem=47g # max mem
 ##PBS -l mem=36g  # 12x3gb=36gb
@@ -86,7 +86,7 @@ echo -e "mpirun ? \c"; which mpirun; mpirun --version
 
 #cd /home/milias/Work/qch/software/nwchem_suite/nwchem_master/QA
 cd /home/milias/Work/qch/software/nwchem_suite/nwchem-7.0.2/QA
-echo -e "pwd=\c"; pwd
+echo -e "\n I am in pwd=\c"; pwd
 
 export NWCHEM_TOP=`pwd`/..
 export NWCHEM_TARGET=LINUX64
@@ -110,9 +110,9 @@ if [[ $status != 0 ]]; then
   exit $status
 fi
 date
-echo -e "Running ./domdtests.mpi $nproc  :"
+echo -e "\nRunning  ./domdtests.mpi $nproc"
 ./domdtests.mpi $nproc
-echo -e "Running ./domdtests.mpi $nproc fast :"
+echo -e "Now ./doqmtests.mpi $nproc fast ..."
 ./doqmtests.mpi $nproc fast
 date
 

@@ -1,0 +1,42 @@
+echo
+
+start molecule
+
+memory total 40 gb
+print low
+
+title "Mustard gas, HD"
+charge 0
+
+geometry units angstroms print xyz autosym
+  load format xyz HD_geom_6-31Gs-017_final.xyz
+end
+
+basis
+  * library 6-31G*
+end
+
+dft
+  grid huge
+  xc b3lyp
+  mult 1
+  noprint "final vectors analysis"
+end
+
+driver
+  clear
+  tight
+  linopt 0
+  maxiter 90
+end
+
+property
+  giao
+  shielding
+end
+
+
+task dft optimize
+task dft freq 
+task dft property
+

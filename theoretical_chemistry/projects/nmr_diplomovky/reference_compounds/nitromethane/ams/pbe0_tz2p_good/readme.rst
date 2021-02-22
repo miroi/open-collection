@@ -1,7 +1,8 @@
 Nitromethane with ADF
 =====================
 
-<Jan30-2021> <22:22:00>  PES point character: Geometry corresponds to a transition state.
-<Jan30-2021> <22:22:00>  ERROR: Geometry optimization failed! (Converged, but did not find a minimum on the PES.)
-<Jan30-2021> <22:22:00>  NORMAL TERMINATION
+<Feb15-2021> <19:51:31>  Numerical nuclear derivatives calculation complete.
+<Feb15-2021> <19:51:31>  PES point character: Geometry corresponds to a local minimum on the PES.
+<Feb15-2021> <19:51:31>  Geometry optimization successful!
+<Feb15-2021> <19:51:32>  NORMAL TERMINATION
 

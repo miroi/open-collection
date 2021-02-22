@@ -2,7 +2,7 @@
 
 #PBS -S /bin/bash
 #PBS -A UMB-ITMS-26110230082
-#PBS -N HD6-311+g2d_p
+#PBS -N HD
 
 ### Declare myprogram non-rerunable
 #PBS -r n
@@ -12,7 +12,7 @@
 #PBS -l nodes=1:ppn=12
 
 ##PBS -l walltime=100:00:00
-#PBS -l walltime=50:00:00
+#PBS -l walltime=200:00:00
 
 ##PBS -l mem=47g # max mem
 ##PBS -l mem=36g  # 12x3gb=36gb
@@ -108,10 +108,10 @@ echo -e "The local home directory with NWChem input file, PBS_O_WORKDIR=$PBS_O_W
 
 #mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/HD.b3lyp_3-21G_geopt_shield.nw  > $PBS_O_WORKDIR/HD.b3lyp_3-21G_geopt_shield.out
 
-cp $PBS_O_WORKDIR/HD_geom_6-31Gs-017_final.xyz   $TMPDIR/.
-project=HD.geopt_freq_nmrshield_b3lyp_6-311+g2d_p
+cp $PBS_O_WORKDIR/HD_startgeom.xyz   $TMPDIR/.
+project=HD.geoptfreq_nmrshield_b3lyp_6-311++g2d_2p_cosmo-chcl3
 mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/$project.nw  > $PBS_O_WORKDIR/$project.out
-#cp $TMPDIR/HD_geom_6-31Gs*   $PBS_O_WORKDIR/.
+cp $TMPDIR/HD_geom*   $PBS_O_WORKDIR/.
 
 echo -e "\n Working files in scratch dir $TMPDIR:"
 ls -lt $TMPDIR 

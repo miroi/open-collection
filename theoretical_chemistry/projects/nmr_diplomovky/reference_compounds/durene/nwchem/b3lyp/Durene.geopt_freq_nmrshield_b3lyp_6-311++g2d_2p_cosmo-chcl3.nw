@@ -1,0 +1,47 @@
+echo
+
+start molecule
+
+memory total 40 gb
+
+print low
+
+title "Durene "
+charge 0
+
+geometry units angstroms print xyz autosym
+    load format xyz Durene.geopt_freq_nmr_shield_pbe0_tz2p_good_cosmo-chcl3.xyz
+end
+
+basis
+  * library 6-311++G(2d,2p)*
+end
+
+dft
+  grid huge
+  xc b3lyp
+  mult 1
+# Reduce output during geometry optimization
+  noprint "final vectors analysis"
+end
+
+driver
+  clear
+  tight
+  linopt 0
+  maxiter 9999
+  xyz Durene_geom
+end
+
+property
+  giao
+  shielding
+end
+
+cosmo
+  solvent chcl3
+end
+
+task dft optimize
+task dft freq numerical
+task dft property

@@ -1,5 +1,0 @@
-Durene with NWChem
-==================
-
-
-

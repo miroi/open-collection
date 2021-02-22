@@ -111,7 +111,7 @@ echo -e "The local home directory with NWChem input file, PBS_O_WORKDIR=$PBS_O_W
 cp $PBS_O_WORKDIR/CHCl3.start_geom.xyz   $TMPDIR/.
 project=CHCl3.geoptfreq_nmrshield_b3lyp_6-311++g2d_2p_cosmo-chcl3
 mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/$project.nw  > $PBS_O_WORKDIR/$project.out
-cp $TMPDIR/CHCl3.start_geom*   $PBS_O_WORKDIR/.
+cp $TMPDIR/CHCl3_geom*   $PBS_O_WORKDIR/.
 
 echo -e "\n Working files in scratch dir $TMPDIR:"
 ls -lt $TMPDIR 

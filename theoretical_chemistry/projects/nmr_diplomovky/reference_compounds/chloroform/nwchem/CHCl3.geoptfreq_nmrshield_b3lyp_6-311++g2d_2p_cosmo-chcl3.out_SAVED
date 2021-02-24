@@ -1,0 +1,4294 @@
+ argument  1 = /home/milias/Work/open-collection/theoretical_chemistry/projects/nmr_diplomovky/reference_compounds/chloroform/nwchem/CHCl3.geoptfreq_nmrshield_b3lyp_6-311++g2d_2p_cosmo-chcl3.nw
+ 
+
+
+============================== echo of input deck ==============================
+echo
+
+start molecule
+
+memory total 40 gb
+print low
+
+title "Mustard gas, HD"
+charge 0
+
+geometry units angstroms print xyz autosym
+  load format xyz CHCl3.start_geom.xyz
+end
+
+basis
+  * library 6-311++G(2d,2p)
+end
+
+dft
+  grid huge
+  xc b3lyp
+  mult 1
+  noprint "final vectors analysis"
+end
+
+driver
+  clear
+  tight
+  linopt 0
+  maxiter 999
+  xyz CHCl3_geom
+end
+
+property
+  giao
+  shielding
+end
+
+cosmo
+  solvent chcl3
+end
+
+task dft optimize
+task dft freq
+task dft property
+
+================================================================================
+
+
+                                         
+                                         
+ 
+ 
+             Northwest Computational Chemistry Package (NWChem) 7.0.1
+             --------------------------------------------------------
+ 
+ 
+                    Environmental Molecular Sciences Laboratory
+                       Pacific Northwest National Laboratory
+                                Richland, WA 99352
+ 
+                              Copyright (c) 1994-2020
+                       Pacific Northwest National Laboratory
+                            Battelle Memorial Institute
+ 
+             NWChem is an open-source computational chemistry package
+                        distributed under the terms of the
+                      Educational Community License (ECL) 2.0
+             A copy of the license is included with this distribution
+                              in the LICENSE.TXT file
+ 
+                                  ACKNOWLEDGMENT
+                                  --------------
+
+            This software and its documentation were developed at the
+            EMSL at Pacific Northwest National Laboratory, a multiprogram
+            national laboratory, operated for the U.S. Department of Energy
+            by Battelle under Contract Number DE-AC05-76RL01830. Support
+            for this work was provided by the Department of Energy Office
+            of Biological and Environmental Research, Office of Basic
+            Energy Sciences, and the Office of Advanced Scientific Computing.
+
+
+           Job information
+           ---------------
+
+    hostname        = comp21
+    program         = /home/milias/Work/qch/software/nwchem_suite/nwchem_master/bin/LINUX64/nwchem
+    date            = Mon Feb 22 19:22:09 2021
+
+    compiled        = Sun_Jan_31_23:21:07_2021
+    source          = /home/milias/Work/qch/software/nwchem_suite/nwchem_master
+    nwchem branch   = 7.0.0
+    nwchem revision = nwchem_on_git-2308-gc943026
+    ga revision     = 5.8.0
+    use scalapack   = F
+    input           = /home/milias/Work/open-collection/theoretical_chemistry/projects/nmr_diplomovky/reference_compounds/chloroform/nwchem/CHCl3.geoptfreq_nmrshield_b3lyp_6-311++g2d_2p_cosmo-chcl3.nw
+    prefix          = molecule.
+    data base       = ./molecule.db
+    status          = startup
+    nproc           =       12
+    time left       =     -1s
+
+
+
+           Memory information
+           ------------------
+
+    heap     = 1342177278 doubles =  10240.0 Mbytes
+    stack    = 1342177275 doubles =  10240.0 Mbytes
+    global   = 2684354560 doubles =  20480.0 Mbytes (distinct from heap & stack)
+    total    = 5368709113 doubles =  40960.0 Mbytes
+    verify   = yes
+    hardfail = no 
+
+
+           Directory information
+           ---------------------
+ 
+  0 permanent = .
+  0 scratch   = .
+ 
+ 
+ 
+ 
+                                NWChem Input Module
+                                -------------------
+ 
+ 
+                                  Mustard gas, HD
+                                  ---------------
+
+ Scaling coordinates for geometry "geometry" by  1.889725989
+ (inverse scale =  0.529177249)
+
+
+          ------
+          auto-z
+          ------
+  Looking for out-of-plane bends
+  no constraints, skipping   0.000000000000000E+000
+  no constraints, skipping   0.000000000000000E+000
+ 
+ 
+                             Geometry "geometry" -> ""
+                             -------------------------
+ 
+ Output coordinates in angstroms (scale by  1.889725989 to convert to a.u.)
+ 
+  No.       Tag          Charge          X              Y              Z
+ ---- ---------------- ---------- -------------- -------------- --------------
+    1 C                    6.0000     0.00000000     0.00000000     0.45783486
+    2 Cl                  17.0000     1.56124949    -0.61479311    -0.08407139
+    3 Cl                  17.0000    -1.31305120    -1.04468517    -0.08407139
+    4 H                    1.0000     0.00000000     0.00000000     1.54063180
+    5 Cl                  17.0000    -0.24819829     1.65947828    -0.08407139
+ 
+      Atomic Mass 
+      ----------- 
+ 
+      C                 12.000000
+      Cl                34.968850
+      H                  1.007825
+ 
+
+ Effective nuclear repulsion energy (a.u.)     264.1855071852
+
+            Nuclear Dipole moment (a.u.) 
+            ----------------------------
+        X                 Y               Z
+ ---------------- ---------------- ----------------
+     0.0000000000     0.0000000000    -0.0000000000
+ 
+      Symmetry information
+      --------------------
+ 
+ Group name             C3        
+ Group number              5
+ Group order               3
+ No. of unique centers     3
+ 
+      Symmetry unique atoms
+ 
+     1    2    4
+ 
+
+
+                                Z-matrix (autoz)
+                                -------- 
+
+ Units are Angstrom for bonds and degrees for angles
+ 
+      Type          Name      I     J     K     L     M      Value
+      ----------- --------  ----- ----- ----- ----- ----- ----------
+    1 Stretch                  1     2                       1.76327
+    2 Stretch                  1     3                       1.76327
+    3 Stretch                  1     4                       1.08280
+    4 Stretch                  1     5                       1.76327
+    5 Bend                     2     1     3               110.99722
+    6 Bend                     2     1     4               107.89838
+    7 Bend                     2     1     5               110.99722
+    8 Bend                     3     1     4               107.89838
+    9 Bend                     3     1     5               110.99722
+   10 Bend                     4     1     5               107.89838
+ 
+ 
+            XYZ format geometry
+            -------------------
+     5
+ geometry
+ C                     0.00000000     0.00000000     0.45783486
+ Cl                    1.56124949    -0.61479311    -0.08407139
+ Cl                   -1.31305120    -1.04468517    -0.08407139
+ H                     0.00000000     0.00000000     1.54063180
+ Cl                   -0.24819829     1.65947828    -0.08407139
+ 
+ ==============================================================================
+                                internuclear distances
+ ------------------------------------------------------------------------------
+       center one      |      center two      | atomic units |  angstroms
+ ------------------------------------------------------------------------------
+    2 Cl               |   1 C                |     3.33210  |     1.76327
+    3 Cl               |   1 C                |     3.33210  |     1.76327
+    4 H                |   1 C                |     2.04619  |     1.08280
+    5 Cl               |   1 C                |     3.33210  |     1.76327
+ ------------------------------------------------------------------------------
+                         number of included internuclear distances:          4
+ ==============================================================================
+
+
+
+ ==============================================================================
+                                 internuclear angles
+ ------------------------------------------------------------------------------
+        center 1       |       center 2       |       center 3       |  degrees
+ ------------------------------------------------------------------------------
+    2 Cl               |   1 C                |   3 Cl               |   111.00
+    2 Cl               |   1 C                |   4 H                |   107.90
+    2 Cl               |   1 C                |   5 Cl               |   111.00
+    3 Cl               |   1 C                |   4 H                |   107.90
+    3 Cl               |   1 C                |   5 Cl               |   111.00
+    4 H                |   1 C                |   5 Cl               |   107.90
+ ------------------------------------------------------------------------------
+                            number of included internuclear angles:          6
+ ==============================================================================
+
+
+
+  library name resolved from: environment
+  library file name is: </usr/share/nwchem/libraries/>
+  
+
+
+ Summary of "ao basis" -> "" (cartesian)
+ ------------------------------------------------------------------------------
+       Tag                 Description            Shells   Functions and Types
+ ---------------- ------------------------------  ------  ---------------------
+ *                      6-311++G(2d,2p)               on all atoms 
+
+
+ 
+  Deleted DRIVER restart files 
+ 
+ 
+ 
+                           NWChem Geometry Optimization
+                           ----------------------------
+ 
+ 
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+  no constraints, skipping   0.000000000000000E+000
+ maximum gradient threshold         (gmax) =   0.000015
+ rms gradient threshold             (grms) =   0.000010
+ maximum cartesian step threshold   (xmax) =   0.000060
+ rms cartesian step threshold       (xrms) =   0.000040
+ fixed trust radius                (trust) =   0.300000
+ maximum step size to saddle      (sadstp) =   0.100000
+ energy precision                  (eprec) =   5.0D-06
+ maximum number of steps          (nptopt) =  999
+ initial hessian option           (inhess) =    0
+ line search option               (linopt) =    0
+ hessian update option            (modupd) =    1
+ saddle point option              (modsad) =    0
+ initial eigen-mode to follow     (moddir) =    0
+ initial variable to follow       (vardir) =    0
+ follow first negative mode     (firstneg) =    T
+ apply conjugacy                    (opcg) =    F
+ source of zmatrix                         =   autoz   
+
+
+          -------------------
+          Energy Minimization
+          -------------------
+
+ 
+ Names of Z-matrix variables 
+    1              2              3              4              5         
+    6              7              8              9             10         
+ 
+ Variables with the same non-blank name are constrained to be equal
+ 
+ 
+ Using diagonal initial Hessian 
+ Scaling for Hessian diagonals: bonds = 1.00  angles = 0.25  torsions = 0.10
+
+          --------
+          Step   0
+          --------
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+                      Basis "ao basis" -> "ao basis" (cartesian)
+                      -----
+  C (Carbon)
+  ----------
+            Exponent  Coefficients 
+       -------------- ---------------------------------------------------------
+  1 S  4.56324000E+03  0.001967
+  1 S  6.82024000E+02  0.015231
+  1 S  1.54973000E+02  0.076127
+  1 S  4.44553000E+01  0.260801
+  1 S  1.30290000E+01  0.616462
+  1 S  1.82773000E+00  0.221006
+ 
+  2 S  2.09642000E+01  0.114660
+  2 S  4.80331000E+00  0.919999
+  2 S  1.45933000E+00 -0.003031
+ 
+  3 P  2.09642000E+01  0.040249
+  3 P  4.80331000E+00  0.237594
+  3 P  1.45933000E+00  0.815854
+ 
+  4 S  4.83456000E-01  1.000000
+ 
+  5 P  4.83456000E-01  1.000000
+ 
+  6 S  1.45585000E-01  1.000000
+ 
+  7 P  1.45585000E-01  1.000000
+ 
+  8 S  4.38000000E-02  1.000000
+ 
+  9 P  4.38000000E-02  1.000000
+ 
+ 10 D  1.25200000E+00  1.000000
+ 
+ 11 D  3.13000000E-01  1.000000
+ 
+  Cl (Chlorine)
+  -------------
+            Exponent  Coefficients 
+       -------------- ---------------------------------------------------------
+  1 S  1.05819000E+05  0.000738
+  1 S  1.58720000E+04  0.005718
+  1 S  3.61965000E+03  0.029495
+  1 S  1.03080000E+03  0.117286
+  1 S  3.39908000E+02  0.362949
+  1 S  1.24538000E+02  0.584149
+ 
+  2 S  1.24538000E+02  0.134177
+  2 S  4.95135000E+01  0.624250
+  2 S  2.08056000E+01  0.291756
+ 
+  3 S  6.58346000E+00  1.000000
+ 
+  4 S  2.56468000E+00  1.000000
+ 
+  5 S  5.59763000E-01  1.000000
+ 
+  6 S  1.83273000E-01  1.000000
+ 
+  7 P  5.89776000E+02  0.002391
+  7 P  1.39849000E+02  0.018504
+  7 P  4.51413000E+01  0.081377
+  7 P  1.68733000E+01  0.221552
+  7 P  6.74110000E+00  0.772569
+ 
+  8 P  6.74110000E+00 -1.572244
+  8 P  2.77152000E+00  0.992389
+ 
+  9 P  1.02387000E+00  1.000000
+ 
+ 10 P  3.81368000E-01  1.000000
+ 
+ 11 P  1.09437000E-01  1.000000
+ 
+ 12 S  4.83000000E-02  1.000000
+ 
+ 13 P  4.83000000E-02  1.000000
+ 
+ 14 D  1.50000000E+00  1.000000
+ 
+ 15 D  3.75000000E-01  1.000000
+ 
+  H (Hydrogen)
+  ------------
+            Exponent  Coefficients 
+       -------------- ---------------------------------------------------------
+  1 S  3.38650000E+01  0.025494
+  1 S  5.09479000E+00  0.190373
+  1 S  1.15879000E+00  0.852161
+ 
+  2 S  3.25840000E-01  1.000000
+ 
+  3 S  1.02741000E-01  1.000000
+ 
+  4 S  3.60000000E-02  1.000000
+ 
+  5 P  1.50000000E+00  1.000000
+ 
+  6 P  3.75000000E-01  1.000000
+ 
+
+
+ Summary of "ao basis" -> "ao basis" (cartesian)
+ ------------------------------------------------------------------------------
+       Tag                 Description            Shells   Functions and Types
+ ---------------- ------------------------------  ------  ---------------------
+ C                      6-311++G(2d,2p)             11       29   5s4p2d
+ Cl                     6-311++G(2d,2p)             15       37   7s6p2d
+ H                      6-311++G(2d,2p)              6       10   4s2p
+
+
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1    0.00000000    0.00000000    0.86518243     2.000
+     2    2.95033374   -1.16179052   -0.15887189     2.050
+     3   -2.48130698   -1.97416871   -0.15887189     2.050
+     4    0.00000000    0.00000000    2.91137195     1.300
+     5   -0.46902676    3.13595923   -0.15887189     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     23,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       92
+ molecular surface =    112.914 angstrom**2
+ molecular volume  =     75.686 angstrom**3
+ G(cav/disp)       =      1.425 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+  Rotation of axis 
+   Time after variat. SCF:      1.5
+   Time prior to 1st pass:      1.5
+  Resetting Diis
+
+
+         Total DFT energy =    -1419.393554177901
+      One electron energy =    -2483.847066618571
+           Coulomb energy =      890.774302917391
+    Exchange-Corr. energy =      -90.532606953032
+ Nuclear repulsion energy =      264.185507185238
+
+             COSMO energy =        0.026309291075
+
+ Numeric. integr. density =       58.000001204797
+
+     Total iterative time =     18.7s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =     -1419.390634438587
+                 sol phase energy =     -1419.393554177901
+ (electrostatic) solvation energy =         0.002919739313 (    1.83 kcal/mol)
+ 
+                  Occupations of the irreducible representations
+                  ----------------------------------------------
+ 
+                     irrep           alpha         beta
+                     --------     --------     --------
+                     a                11.0         11.0
+                     e+               18.0         18.0
+                     e-                0.0          0.0
+ 
+  Rotation of axis 
+
+
+                         DFT ENERGY GRADIENTS
+
+    atom               coordinates                        gradient
+                 x          y          z           x          y          z
+   1 C       0.000000   0.000000   0.865182    0.000000  -0.000000  -0.020243
+   2 Cl      2.950334  -1.161791  -0.158872   -0.012071   0.004708   0.006203
+   3 Cl     -2.481307  -1.974169  -0.158872    0.010112   0.008100   0.006203
+   4 H       0.000000   0.000000   2.911372   -0.000000   0.000000   0.001633
+   5 Cl     -0.469027   3.135959  -0.158872    0.001958  -0.012807   0.006203
+ 
+  no constraints, skipping   0.000000000000000E+000
+
+@ Step       Energy      Delta E   Gmax     Grms     Xrms     Xmax   Walltime
+@ ---- ---------------- -------- -------- -------- -------- -------- --------
+@    0   -1419.39355418  0.0D+00  0.01424  0.00793  0.00000  0.00000     25.3
+                                                                    
+
+  no constraints, skipping   0.000000000000000E+000
+  no constraints, skipping   0.000000000000000E+000
+  no constraints, skipping   0.000000000000000E+000
+  no constraints, skipping   0.000000000000000E+000
+  no constraints, skipping   0.000000000000000E+000
+  no constraints, skipping   0.000000000000000E+000
+  no constraints, skipping   0.000000000000000E+000
+  no constraints, skipping   0.000000000000000E+000
+
+          --------
+          Step   1
+          --------
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1    0.00000000   -0.00000000    0.90275655     2.000
+     2    2.97049749   -1.16973066   -0.18237129     2.050
+     3   -2.49826521   -1.98766096   -0.18237129     2.050
+     4    0.00000000    0.00000000    2.94429602     1.300
+     5   -0.47223228    3.15739162   -0.18237129     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     23,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       92
+ molecular surface =    113.314 angstrom**2
+ molecular volume  =     75.949 angstrom**3
+ G(cav/disp)       =      1.427 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+  Rotation of axis 
+   Time after variat. SCF:     25.4
+   Time prior to 1st pass:     25.4
+
+
+         Total DFT energy =    -1419.394125200269
+      One electron energy =    -2479.307940507171
+           Coulomb energy =      888.496969905689
+    Exchange-Corr. energy =      -90.508995056938
+ Nuclear repulsion energy =      261.895132117330
+
+             COSMO energy =        0.030708340821
+
+ Numeric. integr. density =       58.000001214688
+
+     Total iterative time =     16.6s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =     -1419.391033304765
+                 sol phase energy =     -1419.394125200269
+ (electrostatic) solvation energy =         0.003091895504 (    1.94 kcal/mol)
+ 
+                  Occupations of the irreducible representations
+                  ----------------------------------------------
+ 
+                     irrep           alpha         beta
+                     --------     --------     --------
+                     a                11.0         11.0
+                     e+               18.0         18.0
+                     e-                0.0          0.0
+ 
+  Rotation of axis 
+
+
+                         DFT ENERGY GRADIENTS
+
+    atom               coordinates                        gradient
+                 x          y          z           x          y          z
+   1 C       0.000000  -0.000000   0.902757    0.000000  -0.000000  -0.006187
+   2 Cl      2.970497  -1.169731  -0.182371   -0.004092   0.002343   0.001974
+   3 Cl     -2.498265  -1.987661  -0.182371    0.004075   0.002372   0.001974
+   4 H       0.000000   0.000000   2.944296    0.000000   0.000000   0.000267
+   5 Cl     -0.472232   3.157392  -0.182371    0.000017  -0.004715   0.001974
+ 
+  no constraints, skipping   0.000000000000000E+000
+
+  Step       Energy      Delta E   Gmax     Grms     Xrms     Xmax   Walltime
+  ---- ---------------- -------- -------- -------- -------- -------- --------
+@    1   -1419.39412520 -5.7D-04  0.00505  0.00278  0.01934  0.03755     46.8
+                                                                    
+
+  no constraints, skipping   0.000000000000000E+000
+  no constraints, skipping   0.000000000000000E+000
+  no constraints, skipping   0.000000000000000E+000
+  no constraints, skipping   0.000000000000000E+000
+  no constraints, skipping   0.000000000000000E+000
+  no constraints, skipping   0.000000000000000E+000
+  no constraints, skipping   0.000000000000000E+000
+  no constraints, skipping   0.000000000000000E+000
+
+          --------
+          Step   2
+          --------
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1    0.00000000    0.00000000    0.91559584     2.000
+     2    2.98483695   -1.17537729   -0.19054094     2.050
+     3   -2.51032507   -1.99725598   -0.19054094     2.050
+     4   -0.00000000    0.00000000    2.95596569     1.300
+     5   -0.47451188    3.17263327   -0.19054094     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     24,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       93
+ molecular surface =    113.605 angstrom**2
+ molecular volume  =     76.143 angstrom**3
+ G(cav/disp)       =      1.428 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+  Rotation of axis 
+   Time after variat. SCF:     47.0
+   Time prior to 1st pass:     47.0
+
+
+         Total DFT energy =    -1419.393976764496
+      One electron energy =    -2476.551022124477
+           Coulomb energy =      887.112665834080
+    Exchange-Corr. energy =      -90.496161541352
+ Nuclear repulsion energy =      260.508411902917
+
+             COSMO energy =        0.032129164337
+
+ Numeric. integr. density =       58.000000961248
+
+     Total iterative time =     16.7s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =     -1419.390808192776
+                 sol phase energy =     -1419.393976764496
+ (electrostatic) solvation energy =         0.003168571719 (    1.99 kcal/mol)
+ 
+                  Occupations of the irreducible representations
+                  ----------------------------------------------
+ 
+                     irrep           alpha         beta
+                     --------     --------     --------
+                     a                11.0         11.0
+                     e+               18.0         18.0
+                     e-                0.0          0.0
+ 
+  Rotation of axis 
+
+
+                         DFT ENERGY GRADIENTS
+
+    atom               coordinates                        gradient
+                 x          y          z           x          y          z
+   1 C       0.000000   0.000000   0.915596    0.000000  -0.000000  -0.000485
+   2 Cl      2.984837  -1.175377  -0.190541    0.000208   0.000960   0.000167
+   3 Cl     -2.510325  -1.997256  -0.190541    0.000727  -0.000660   0.000167
+   4 H      -0.000000   0.000000   2.955966   -0.000000   0.000000  -0.000015
+   5 Cl     -0.474512   3.172633  -0.190541   -0.000935  -0.000300   0.000167
+ 
+  no constraints, skipping   0.000000000000000E+000
+
+  Step       Energy      Delta E   Gmax     Grms     Xrms     Xmax   Walltime
+  ---- ---------------- -------- -------- -------- -------- -------- --------
+@    2   -1419.39397676  1.5D-04  0.00020  0.00013  0.00900  0.01529     68.5
+                                                                    
+
+ Restricting overall step due to uphill motion.   alpha=  0.50
+  no constraints, skipping   0.000000000000000E+000
+  no constraints, skipping   0.000000000000000E+000
+  no constraints, skipping   0.000000000000000E+000
+
+          --------
+          Step   3
+          --------
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1    0.00000000    0.00000000    0.91661714     2.000
+     2    2.98480508   -1.17536474   -0.19122574     2.050
+     3   -2.51029827   -1.99723465   -0.19122574     2.050
+     4    0.00000000    0.00000000    2.95699877     1.300
+     5   -0.47450681    3.17259940   -0.19122574     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     24,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       93
+ molecular surface =    113.609 angstrom**2
+ molecular volume  =     76.145 angstrom**3
+ G(cav/disp)       =      1.428 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+  Rotation of axis 
+   Time after variat. SCF:     68.7
+   Time prior to 1st pass:     68.7
+
+
+         Total DFT energy =    -1419.393958514255
+      One electron energy =    -2476.521422321404
+           Coulomb energy =      887.097927757208
+    Exchange-Corr. energy =      -90.495871269421
+ Nuclear repulsion energy =      260.493156748664
+
+             COSMO energy =        0.032250570699
+
+ Numeric. integr. density =       58.000000956600
+
+     Total iterative time =     16.5s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =     -1419.390785780535
+                 sol phase energy =     -1419.393958514255
+ (electrostatic) solvation energy =         0.003172733720 (    1.99 kcal/mol)
+ 
+                  Occupations of the irreducible representations
+                  ----------------------------------------------
+ 
+                     irrep           alpha         beta
+                     --------     --------     --------
+                     a                11.0         11.0
+                     e+               18.0         18.0
+                     e-                0.0          0.0
+ 
+  Rotation of axis 
+
+
+                         DFT ENERGY GRADIENTS
+
+    atom               coordinates                        gradient
+                 x          y          z           x          y          z
+   1 C       0.000000   0.000000   0.916617    0.000000  -0.000000  -0.000234
+   2 Cl      2.984805  -1.175365  -0.191226    0.000270   0.000954   0.000082
+   3 Cl     -2.510298  -1.997235  -0.191226    0.000691  -0.000711   0.000082
+   4 H       0.000000   0.000000   2.956999   -0.000000   0.000000  -0.000012
+   5 Cl     -0.474507   3.172599  -0.191226   -0.000961  -0.000243   0.000082
+ 
+  no constraints, skipping   0.000000000000000E+000
+
+  Step       Energy      Delta E   Gmax     Grms     Xrms     Xmax   Walltime
+  ---- ---------------- -------- -------- -------- -------- -------- --------
+@    3   -1419.39395851  1.8D-05  0.00012  0.00007  0.00048  0.00103     90.0
+                                                                    
+
+ Restricting overall step due to uphill motion.   alpha=  0.25
+  no constraints, skipping   0.000000000000000E+000
+  no constraints, skipping   0.000000000000000E+000
+  no constraints, skipping   0.000000000000000E+000
+
+          --------
+          Step   4
+          --------
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1    0.00000000   -0.00000000    0.91683637     2.000
+     2    2.98485064   -1.17538268   -0.19137506     2.050
+     3   -2.51033658   -1.99726514   -0.19137506     2.050
+     4   -0.00000000    0.00000000    2.95722749     1.300
+     5   -0.47451406    3.17264782   -0.19137506     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     24,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       93
+ molecular surface =    113.610 angstrom**2
+ molecular volume  =     76.146 angstrom**3
+ G(cav/disp)       =      1.428 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+  Rotation of axis 
+   Time after variat. SCF:     90.2
+   Time prior to 1st pass:     90.2
+
+
+         Total DFT energy =    -1419.393954171000
+      One electron energy =    -2476.506486264701
+           Coulomb energy =      887.090449916001
+    Exchange-Corr. energy =      -90.495773714814
+ Nuclear repulsion energy =      260.485579015980
+
+             COSMO energy =        0.032276876536
+
+ Numeric. integr. density =       58.000000961207
+
+     Total iterative time =     16.4s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =     -1419.390780429334
+                 sol phase energy =     -1419.393954171000
+ (electrostatic) solvation energy =         0.003173741666 (    1.99 kcal/mol)
+ 
+                  Occupations of the irreducible representations
+                  ----------------------------------------------
+ 
+                     irrep           alpha         beta
+                     --------     --------     --------
+                     a                11.0         11.0
+                     e+               18.0         18.0
+                     e-                0.0          0.0
+ 
+  Rotation of axis 
+
+
+                         DFT ENERGY GRADIENTS
+
+    atom               coordinates                        gradient
+                 x          y          z           x          y          z
+   1 C       0.000000  -0.000000   0.916836   -0.000000  -0.000000  -0.000174
+   2 Cl      2.984851  -1.175383  -0.191375    0.000296   0.000948   0.000061
+   3 Cl     -2.510337  -1.997265  -0.191375    0.000673  -0.000730   0.000061
+   4 H      -0.000000   0.000000   2.957227    0.000000   0.000000  -0.000009
+   5 Cl     -0.474514   3.172648  -0.191375   -0.000969  -0.000218   0.000061
+ 
+  no constraints, skipping   0.000000000000000E+000
+
+  Step       Energy      Delta E   Gmax     Grms     Xrms     Xmax   Walltime
+  ---- ---------------- -------- -------- -------- -------- -------- --------
+@    4   -1419.39395417  4.3D-06  0.00009  0.00005  0.00011  0.00023    111.4
+                                                                    
+
+ Restricting overall step due to uphill motion.   alpha=  0.70
+  no constraints, skipping   0.000000000000000E+000
+  no constraints, skipping   0.000000000000000E+000
+  no constraints, skipping   0.000000000000000E+000
+
+          --------
+          Step   5
+          --------
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1    0.00000000    0.00000000    0.91729218     2.000
+     2    2.98492991   -1.17541390   -0.19168466     2.050
+     3   -2.51040325   -1.99731818   -0.19168466     2.050
+     4    0.00000000    0.00000000    2.95770050     1.300
+     5   -0.47452666    3.17273208   -0.19168466     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     24,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       93
+ molecular surface =    113.614 angstrom**2
+ molecular volume  =     76.148 angstrom**3
+ G(cav/disp)       =      1.428 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+  Rotation of axis 
+   Time after variat. SCF:    111.5
+   Time prior to 1st pass:    111.5
+ PeIGS error from dstebz 2 ...trying dsterf 
+
+
+         Total DFT energy =    -1419.393945157494
+      One electron energy =    -2476.477964173064
+           Coulomb energy =      887.076175412648
+    Exchange-Corr. energy =      -90.495581385829
+ Nuclear repulsion energy =      260.471093580073
+
+             COSMO energy =        0.032331408677
+
+ Numeric. integr. density =       58.000000962115
+
+     Total iterative time =     16.3s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =     -1419.390769352958
+                 sol phase energy =     -1419.393945157494
+ (electrostatic) solvation energy =         0.003175804537 (    1.99 kcal/mol)
+ 
+                  Occupations of the irreducible representations
+                  ----------------------------------------------
+ 
+                     irrep           alpha         beta
+                     --------     --------     --------
+                     a                11.0         11.0
+                     e+               18.0         18.0
+                     e-                0.0          0.0
+ 
+  Rotation of axis 
+
+
+                         DFT ENERGY GRADIENTS
+
+    atom               coordinates                        gradient
+                 x          y          z           x          y          z
+   1 C       0.000000   0.000000   0.917292    0.000000  -0.000000  -0.000053
+   2 Cl      2.984930  -1.175414  -0.191685    0.000346   0.000938   0.000018
+   3 Cl     -2.510403  -1.997318  -0.191685    0.000639  -0.000768   0.000018
+   4 H       0.000000   0.000000   2.957700    0.000000   0.000000  -0.000003
+   5 Cl     -0.474527   3.172732  -0.191685   -0.000985  -0.000169   0.000018
+ 
+  no constraints, skipping   0.000000000000000E+000
+
+  Step       Energy      Delta E   Gmax     Grms     Xrms     Xmax   Walltime
+  ---- ---------------- -------- -------- -------- -------- -------- --------
+@    5   -1419.39394516  9.0D-06  0.00003  0.00002  0.00022  0.00047    132.8
+                                                                    
+
+ Restricting overall step due to uphill motion.   alpha=  0.50
+  no constraints, skipping   0.000000000000000E+000
+  no constraints, skipping   0.000000000000000E+000
+  no constraints, skipping   0.000000000000000E+000
+
+          --------
+          Step   6
+          --------
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1    0.00000000    0.00000000    0.91739002     2.000
+     2    2.98494791   -1.17542099   -0.19175112     2.050
+     3   -2.51041839   -1.99733022   -0.19175112     2.050
+     4    0.00000000    0.00000000    2.95780202     1.300
+     5   -0.47452952    3.17275121   -0.19175112     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     24,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       93
+ molecular surface =    113.614 angstrom**2
+ molecular volume  =     76.148 angstrom**3
+ G(cav/disp)       =      1.428 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+  Rotation of axis 
+   Time after variat. SCF:    132.9
+   Time prior to 1st pass:    132.9
+
+
+         Total DFT energy =    -1419.393943201772
+      One electron energy =    -2476.471682155550
+           Coulomb energy =      887.073031086460
+    Exchange-Corr. energy =      -90.495539475100
+ Nuclear repulsion energy =      260.467904239467
+
+             COSMO energy =        0.032343102952
+
+ Numeric. integr. density =       58.000000962618
+
+     Total iterative time =     16.7s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =     -1419.390766952317
+                 sol phase energy =     -1419.393943201772
+ (electrostatic) solvation energy =         0.003176249455 (    1.99 kcal/mol)
+ 
+                  Occupations of the irreducible representations
+                  ----------------------------------------------
+ 
+                     irrep           alpha         beta
+                     --------     --------     --------
+                     a                11.0         11.0
+                     e+               18.0         18.0
+                     e-                0.0          0.0
+ 
+  Rotation of axis 
+
+
+                         DFT ENERGY GRADIENTS
+
+    atom               coordinates                        gradient
+                 x          y          z           x          y          z
+   1 C       0.000000   0.000000   0.917390    0.000000   0.000000  -0.000026
+   2 Cl      2.984948  -1.175421  -0.191751    0.000357   0.000935   0.000009
+   3 Cl     -2.510418  -1.997330  -0.191751    0.000632  -0.000776   0.000009
+   4 H       0.000000   0.000000   2.957802    0.000000   0.000000  -0.000001
+   5 Cl     -0.474530   3.172751  -0.191751   -0.000988  -0.000159   0.000009
+ 
+  no constraints, skipping   0.000000000000000E+000
+
+  Step       Energy      Delta E   Gmax     Grms     Xrms     Xmax   Walltime
+  ---- ---------------- -------- -------- -------- -------- -------- --------
+@    6   -1419.39394320  2.0D-06  0.00001  0.00001  0.00005  0.00010    154.5
+                                     ok       ok                    
+
+ Restricting overall step due to uphill motion.   alpha=  0.90
+  no constraints, skipping   0.000000000000000E+000
+  no constraints, skipping   0.000000000000000E+000
+  no constraints, skipping   0.000000000000000E+000
+
+          --------
+          Step   7
+          --------
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1   -0.00000000    0.00000000    0.91747808     2.000
+     2    2.98496404   -1.17542734   -0.19181092     2.050
+     3   -2.51043196   -1.99734102   -0.19181092     2.050
+     4   -0.00000000    0.00000000    2.95789338     1.300
+     5   -0.47453208    3.17276836   -0.19181092     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     24,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       93
+ molecular surface =    113.615 angstrom**2
+ molecular volume  =     76.149 angstrom**3
+ G(cav/disp)       =      1.428 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+  Rotation of axis 
+   Time after variat. SCF:    154.7
+   Time prior to 1st pass:    154.7
+ PeIGS error from dstebz 2 ...trying dsterf 
+
+
+         Total DFT energy =    -1419.393941434675
+      One electron energy =    -2476.466038987769
+           Coulomb energy =      887.070206544540
+    Exchange-Corr. energy =      -90.495501798153
+ Nuclear repulsion energy =      260.465039184003
+
+             COSMO energy =        0.032353622704
+
+ Numeric. integr. density =       58.000000961294
+
+     Total iterative time =     16.4s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =     -1419.390764784865
+                 sol phase energy =     -1419.393941434675
+ (electrostatic) solvation energy =         0.003176649810 (    1.99 kcal/mol)
+ 
+                  Occupations of the irreducible representations
+                  ----------------------------------------------
+ 
+                     irrep           alpha         beta
+                     --------     --------     --------
+                     a                11.0         11.0
+                     e+               18.0         18.0
+                     e-                0.0          0.0
+ 
+  Rotation of axis 
+
+
+                         DFT ENERGY GRADIENTS
+
+    atom               coordinates                        gradient
+                 x          y          z           x          y          z
+   1 C      -0.000000   0.000000   0.917478    0.000000  -0.000000  -0.000003
+   2 Cl      2.984964  -1.175427  -0.191811    0.000366   0.000933   0.000001
+   3 Cl     -2.510432  -1.997341  -0.191811    0.000625  -0.000784   0.000001
+   4 H      -0.000000   0.000000   2.957893   -0.000000   0.000000  -0.000000
+   5 Cl     -0.474532   3.172768  -0.191811   -0.000991  -0.000149   0.000001
+ 
+  no constraints, skipping   0.000000000000000E+000
+
+  Step       Energy      Delta E   Gmax     Grms     Xrms     Xmax   Walltime
+  ---- ---------------- -------- -------- -------- -------- -------- --------
+@    7   -1419.39394143  1.8D-06  0.00000  0.00000  0.00004  0.00009    176.0
+                                     ok       ok                    
+
+ Restricting overall step due to uphill motion.   alpha=  0.90
+  no constraints, skipping   0.000000000000000E+000
+  no constraints, skipping   0.000000000000000E+000
+  no constraints, skipping   0.000000000000000E+000
+
+          --------
+          Step   8
+          --------
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1    0.00000000    0.00000000    0.91748693     2.000
+     2    2.98496562   -1.17542796   -0.19181693     2.050
+     3   -2.51043329   -1.99734208   -0.19181693     2.050
+     4    0.00000000    0.00000000    2.95790256     1.300
+     5   -0.47453234    3.17277004   -0.19181693     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     24,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       93
+ molecular surface =    113.615 angstrom**2
+ molecular volume  =     76.149 angstrom**3
+ G(cav/disp)       =      1.428 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+  Rotation of axis 
+   Time after variat. SCF:    176.2
+   Time prior to 1st pass:    176.2
+
+
+         Total DFT energy =    -1419.393941257434
+      One electron energy =    -2476.465478201610
+           Coulomb energy =      887.069925876530
+    Exchange-Corr. energy =      -90.495498036932
+ Nuclear repulsion energy =      260.464754422782
+
+             COSMO energy =        0.032354681795
+
+ Numeric. integr. density =       58.000000960340
+
+     Total iterative time =     16.4s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =     -1419.390764567438
+                 sol phase energy =     -1419.393941257434
+ (electrostatic) solvation energy =         0.003176689996 (    1.99 kcal/mol)
+ 
+                  Occupations of the irreducible representations
+                  ----------------------------------------------
+ 
+                     irrep           alpha         beta
+                     --------     --------     --------
+                     a                11.0         11.0
+                     e+               18.0         18.0
+                     e-                0.0          0.0
+ 
+  Rotation of axis 
+
+
+                         DFT ENERGY GRADIENTS
+
+    atom               coordinates                        gradient
+                 x          y          z           x          y          z
+   1 C       0.000000   0.000000   0.917487   -0.000000   0.000000  -0.000000
+   2 Cl      2.984966  -1.175428  -0.191817    0.000367   0.000933   0.000000
+   3 Cl     -2.510433  -1.997342  -0.191817    0.000624  -0.000784   0.000000
+   4 H       0.000000   0.000000   2.957903    0.000000   0.000000  -0.000000
+   5 Cl     -0.474532   3.172770  -0.191817   -0.000992  -0.000148   0.000000
+ 
+  no constraints, skipping   0.000000000000000E+000
+
+  Step       Energy      Delta E   Gmax     Grms     Xrms     Xmax   Walltime
+  ---- ---------------- -------- -------- -------- -------- -------- --------
+@    8   -1419.39394126  1.8D-07  0.00000  0.00000  0.00000  0.00001    197.4
+                                     ok       ok       ok       ok  
+
+
+      ----------------------
+      Optimization converged
+      ----------------------
+
+
+  Step       Energy      Delta E   Gmax     Grms     Xrms     Xmax   Walltime
+  ---- ---------------- -------- -------- -------- -------- -------- --------
+@    8   -1419.39394126  1.8D-07  0.00000  0.00000  0.00000  0.00001    197.4
+                                     ok       ok       ok       ok  
+
+ 
+ 
+                         Geometry "geometry" -> "geometry"
+                         ---------------------------------
+ 
+ Output coordinates in angstroms (scale by  1.889725989 to convert to a.u.)
+ 
+  No.       Tag          Charge          X              Y              Z
+ ---- ---------------- ---------- -------------- -------------- --------------
+    1 C                    6.0000     0.00000000     0.00000000     0.48551321
+    2 Cl                  17.0000     1.57957590    -0.62200974    -0.10150516
+    3 Cl                  17.0000    -1.32846418    -1.05694799    -0.10150516
+    4 H                    1.0000     0.00000000     0.00000000     1.56525474
+    5 Cl                  17.0000    -0.25111172     1.67895772    -0.10150516
+ 
+      Atomic Mass 
+      ----------- 
+ 
+      C                 12.000000
+      Cl                34.968850
+      H                  1.007825
+ 
+
+ Effective nuclear repulsion energy (a.u.)     260.4647544228
+
+            Nuclear Dipole moment (a.u.) 
+            ----------------------------
+        X                 Y               Z
+ ---------------- ---------------- ----------------
+     0.0000000000     0.0000000000    -1.3198394410
+ 
+      Symmetry information
+      --------------------
+ 
+ Group name             C3        
+ Group number              5
+ Group order               3
+ No. of unique centers     3
+ 
+      Symmetry unique atoms
+ 
+     1    2    4
+ 
+ 
+                Final and change from initial internal coordinates
+                --------------------------------------------------
+ 
+
+
+                                Z-matrix (autoz)
+                                -------- 
+
+ Units are Angstrom for bonds and degrees for angles
+ 
+      Type          Name      I     J     K     L     M      Value       Change
+      ----------- --------  ----- ----- ----- ----- ----- ---------- ----------
+    1 Stretch                  1     2                       1.79626    0.03299
+    2 Stretch                  1     3                       1.79626    0.03299
+    3 Stretch                  1     4                       1.07974   -0.00306
+    4 Stretch                  1     5                       1.79626    0.03299
+    5 Bend                     2     1     3               109.86482   -1.13240
+    6 Bend                     2     1     4               109.07469    1.17632
+    7 Bend                     2     1     5               109.86482   -1.13240
+    8 Bend                     3     1     4               109.07469    1.17632
+    9 Bend                     3     1     5               109.86482   -1.13240
+   10 Bend                     4     1     5               109.07469    1.17632
+ 
+ 
+ 
+                                NWChem Input Module
+                                -------------------
+ 
+ 
+ 
+ 
+                   NWChem Nuclear Hessian and Frequency Analysis
+                   ---------------------------------------------
+ 
+ COSMO detected
+ 
+ 
+                         NWChem Finite-difference Hessian
+                         --------------------------------
+ 
+ 
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1    0.00000000    0.00000000    0.91748693     2.000
+     2    2.98496562   -1.17542796   -0.19181693     2.050
+     3   -2.51043329   -1.99734208   -0.19181693     2.050
+     4    0.00000000    0.00000000    2.95790256     1.300
+     5   -0.47453234    3.17277004   -0.19181693     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     24,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       93
+ molecular surface =    113.615 angstrom**2
+ molecular volume  =     76.149 angstrom**3
+ G(cav/disp)       =      1.428 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+  Rotation of axis 
+   Time after variat. SCF:    197.5
+   Time prior to 1st pass:    197.5
+ PeIGS error from dstebz 2 ...trying dsterf 
+
+
+         Total DFT energy =    -1419.393941258659
+      One electron energy =    -2476.465478184357
+           Coulomb energy =      887.069925860296
+    Exchange-Corr. energy =      -90.495498037274
+ Nuclear repulsion energy =      260.464754422782
+
+             COSMO energy =        0.032354679894
+
+ Numeric. integr. density =       58.000000964101
+
+     Total iterative time =     16.3s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =     -1419.390764568664
+                 sol phase energy =     -1419.393941258659
+ (electrostatic) solvation energy =         0.003176689995 (    1.99 kcal/mol)
+ 
+                  Occupations of the irreducible representations
+                  ----------------------------------------------
+ 
+                     irrep           alpha         beta
+                     --------     --------     --------
+                     a                11.0         11.0
+                     e+               18.0         18.0
+                     e-                0.0          0.0
+ 
+  
+ initial hessian
+
+ zero matrix
+
+  
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1    0.01000000    0.00000000    0.91748693     2.000
+     2    2.98496562   -1.17542796   -0.19181693     2.050
+     3   -2.51043329   -1.99734208   -0.19181693     2.050
+     4    0.00000000    0.00000000    2.95790256     1.300
+     5   -0.47453234    3.17277004   -0.19181693     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     24,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       93
+ molecular surface =    113.572 angstrom**2
+ molecular volume  =     76.120 angstrom**3
+ G(cav/disp)       =      1.428 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+   Time after variat. SCF:    214.0
+   Time prior to 1st pass:    214.0
+
+
+         Total DFT energy =    -1419.393930689483
+      One electron energy =    -2476.466186259808
+           Coulomb energy =      887.070142016607
+    Exchange-Corr. energy =      -90.495503995486
+ Nuclear repulsion energy =      260.464852559152
+
+             COSMO energy =        0.032764990052
+
+ Numeric. integr. density =       58.000002481583
+
+     Total iterative time =     43.8s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =     -1419.390754804007
+                 sol phase energy =     -1419.393930689483
+ (electrostatic) solvation energy =         0.003175885476 (    1.99 kcal/mol)
+
+
+                         DFT ENERGY GRADIENTS
+
+    atom               coordinates                        gradient
+                 x          y          z           x          y          z
+   1 C       0.010000   0.000000   0.917487    0.002252   0.000195   0.011656
+   2 Cl      2.984966  -1.175428  -0.191817    0.000000   0.000000   0.000000
+   3 Cl     -2.510433  -1.997342  -0.191817    0.000000   0.000000   0.000000
+   4 H       0.000000   0.000000   2.957903    0.000000   0.000000   0.000000
+   5 Cl     -0.474532   3.172770  -0.191817    0.000000   0.000000   0.000000
+ 
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1   -0.01000000    0.00000000    0.91748693     2.000
+     2    2.98496562   -1.17542796   -0.19181693     2.050
+     3   -2.51043329   -1.99734208   -0.19181693     2.050
+     4    0.00000000    0.00000000    2.95790256     1.300
+     5   -0.47453234    3.17277004   -0.19181693     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     24,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       93
+ molecular surface =    113.659 angstrom**2
+ molecular volume  =     76.178 angstrom**3
+ G(cav/disp)       =      1.428 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+   Time after variat. SCF:    267.7
+   Time prior to 1st pass:    267.7
+
+
+         Total DFT energy =    -1419.393935335451
+      One electron energy =    -2476.464973006960
+           Coulomb energy =      887.069812256253
+    Exchange-Corr. energy =      -90.495497064625
+ Nuclear repulsion energy =      260.464851511371
+
+             COSMO energy =        0.031870968511
+
+ Numeric. integr. density =       58.000002484035
+
+     Total iterative time =     43.8s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =     -1419.390754851183
+                 sol phase energy =     -1419.393935335451
+ (electrostatic) solvation energy =         0.003180484268 (    2.00 kcal/mol)
+
+
+                         DFT ENERGY GRADIENTS
+
+    atom               coordinates                        gradient
+                 x          y          z           x          y          z
+   1 C      -0.010000   0.000000   0.917487   -0.001781   0.000205   0.011633
+   2 Cl      2.984966  -1.175428  -0.191817    0.000000   0.000000   0.000000
+   3 Cl     -2.510433  -1.997342  -0.191817    0.000000   0.000000   0.000000
+   4 H       0.000000   0.000000   2.957903    0.000000   0.000000   0.000000
+   5 Cl     -0.474532   3.172770  -0.191817    0.000000   0.000000   0.000000
+ 
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1    0.00000000    0.01000000    0.91748693     2.000
+     2    2.98496562   -1.17542796   -0.19181693     2.050
+     3   -2.51043329   -1.99734208   -0.19181693     2.050
+     4    0.00000000    0.00000000    2.95790256     1.300
+     5   -0.47453234    3.17277004   -0.19181693     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     24,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       93
+ molecular surface =    113.646 angstrom**2
+ molecular volume  =     76.169 angstrom**3
+ G(cav/disp)       =      1.428 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+   Time after variat. SCF:    321.6
+   Time prior to 1st pass:    321.6
+
+
+         Total DFT energy =    -1419.393930807961
+      One electron energy =    -2476.465762823076
+           Coulomb energy =      887.070022679408
+    Exchange-Corr. energy =      -90.495501854554
+ Nuclear repulsion energy =      260.464853132684
+
+             COSMO energy =        0.032458057577
+
+ Numeric. integr. density =       58.000002475997
+
+     Total iterative time =     44.0s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =     -1419.390754782723
+                 sol phase energy =     -1419.393930807961
+ (electrostatic) solvation energy =         0.003176025237 (    1.99 kcal/mol)
+
+
+                         DFT ENERGY GRADIENTS
+
+    atom               coordinates                        gradient
+                 x          y          z           x          y          z
+   1 C       0.000000   0.010000   0.917487    0.000218   0.002249   0.011645
+   2 Cl      2.984966  -1.175428  -0.191817    0.000000   0.000000   0.000000
+   3 Cl     -2.510433  -1.997342  -0.191817    0.000000   0.000000   0.000000
+   4 H       0.000000   0.000000   2.957903    0.000000   0.000000   0.000000
+   5 Cl     -0.474532   3.172770  -0.191817    0.000000   0.000000   0.000000
+ 
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1    0.00000000   -0.01000000    0.91748693     2.000
+     2    2.98496562   -1.17542796   -0.19181693     2.050
+     3   -2.51043329   -1.99734208   -0.19181693     2.050
+     4    0.00000000    0.00000000    2.95790256     1.300
+     5   -0.47453234    3.17277004   -0.19181693     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     24,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       93
+ molecular surface =    113.586 angstrom**2
+ molecular volume  =     76.129 angstrom**3
+ G(cav/disp)       =      1.428 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+   Time after variat. SCF:    375.5
+   Time prior to 1st pass:    375.5
+
+
+         Total DFT energy =    -1419.393935180319
+      One electron energy =    -2476.465396536512
+           Coulomb energy =      887.069931825025
+    Exchange-Corr. energy =      -90.495499214313
+ Nuclear repulsion energy =      260.464850937839
+
+             COSMO energy =        0.032177807643
+
+ Numeric. integr. density =       58.000002482702
+
+     Total iterative time =     43.4s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =     -1419.390754877012
+                 sol phase energy =     -1419.393935180319
+ (electrostatic) solvation energy =         0.003180303307 (    2.00 kcal/mol)
+
+
+                         DFT ENERGY GRADIENTS
+
+    atom               coordinates                        gradient
+                 x          y          z           x          y          z
+   1 C       0.000000  -0.010000   0.917487    0.000228  -0.001793   0.011644
+   2 Cl      2.984966  -1.175428  -0.191817    0.000000   0.000000   0.000000
+   3 Cl     -2.510433  -1.997342  -0.191817    0.000000   0.000000   0.000000
+   4 H       0.000000   0.000000   2.957903    0.000000   0.000000   0.000000
+   5 Cl     -0.474532   3.172770  -0.191817    0.000000   0.000000   0.000000
+ 
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1    0.00000000    0.00000000    0.92748693     2.000
+     2    2.98496562   -1.17542796   -0.19181693     2.050
+     3   -2.51043329   -1.99734208   -0.19181693     2.050
+     4    0.00000000    0.00000000    2.95790256     1.300
+     5   -0.47453234    3.17277004   -0.19181693     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     24,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       93
+ molecular surface =    113.556 angstrom**2
+ molecular volume  =     76.126 angstrom**3
+ G(cav/disp)       =      1.428 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+   Time after variat. SCF:    429.0
+   Time prior to 1st pass:    429.0
+
+
+         Total DFT energy =    -1419.393800102945
+      One electron energy =    -2476.320583055359
+           Coulomb energy =      886.997663534388
+    Exchange-Corr. energy =      -90.495666648078
+ Nuclear repulsion energy =      260.392182369119
+
+             COSMO energy =        0.032603696985
+
+ Numeric. integr. density =       58.000002485708
+
+     Total iterative time =     44.2s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =     -1419.390609322703
+                 sol phase energy =     -1419.393800102945
+ (electrostatic) solvation energy =         0.003190780242 (    2.00 kcal/mol)
+
+
+                         DFT ENERGY GRADIENTS
+
+    atom               coordinates                        gradient
+                 x          y          z           x          y          z
+   1 C       0.000000   0.000000   0.927487    0.000241   0.000215   0.016963
+   2 Cl      2.984966  -1.175428  -0.191817    0.000000   0.000000   0.000000
+   3 Cl     -2.510433  -1.997342  -0.191817    0.000000   0.000000   0.000000
+   4 H       0.000000   0.000000   2.957903    0.000000   0.000000   0.000000
+   5 Cl     -0.474532   3.172770  -0.191817    0.000000   0.000000   0.000000
+ 
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1    0.00000000    0.00000000    0.90748693     2.000
+     2    2.98496562   -1.17542796   -0.19181693     2.050
+     3   -2.51043329   -1.99734208   -0.19181693     2.050
+     4    0.00000000    0.00000000    2.95790256     1.300
+     5   -0.47453234    3.17277004   -0.19181693     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     24,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       93
+ molecular surface =    113.676 angstrom**2
+ molecular volume  =     76.172 angstrom**3
+ G(cav/disp)       =      1.428 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+   Time after variat. SCF:    483.4
+   Time prior to 1st pass:    483.4
+
+
+         Total DFT energy =    -1419.394033720489
+      One electron energy =    -2476.609316238124
+           Coulomb energy =      887.141644002338
+    Exchange-Corr. energy =      -90.495334887093
+ Nuclear repulsion energy =      260.536936033047
+
+             COSMO energy =        0.032037369342
+
+ Numeric. integr. density =       58.000002534115
+
+     Total iterative time =     43.3s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =     -1419.390869605197
+                 sol phase energy =     -1419.394033720489
+ (electrostatic) solvation energy =         0.003164115292 (    1.99 kcal/mol)
+
+
+                         DFT ENERGY GRADIENTS
+
+    atom               coordinates                        gradient
+                 x          y          z           x          y          z
+   1 C       0.000000   0.000000   0.907487    0.000218   0.000213   0.006480
+   2 Cl      2.984966  -1.175428  -0.191817    0.000000   0.000000   0.000000
+   3 Cl     -2.510433  -1.997342  -0.191817    0.000000   0.000000   0.000000
+   4 H       0.000000   0.000000   2.957903    0.000000   0.000000   0.000000
+   5 Cl     -0.474532   3.172770  -0.191817    0.000000   0.000000   0.000000
+ 
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1    0.00000000    0.00000000    0.91748693     2.000
+     2    2.98496562   -1.17542796   -0.19181693     2.050
+     3   -2.51043329   -1.99734208   -0.19181693     2.050
+     4    0.01000000    0.00000000    2.95790256     1.300
+     5   -0.47453234    3.17277004   -0.19181693     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     24,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       93
+ molecular surface =    113.616 angstrom**2
+ molecular volume  =     76.150 angstrom**3
+ G(cav/disp)       =      1.428 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+   Time after variat. SCF:    536.5
+   Time prior to 1st pass:    536.5
+
+
+         Total DFT energy =    -1419.393941137814
+      One electron energy =    -2476.465298266782
+           Coulomb energy =      887.069848808494
+    Exchange-Corr. energy =      -90.495492884965
+ Nuclear repulsion energy =      260.464712490887
+
+             COSMO energy =        0.032288714552
+
+ Numeric. integr. density =       58.000002475799
+
+     Total iterative time =     43.6s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =     -1419.390762878435
+                 sol phase energy =     -1419.393941137814
+ (electrostatic) solvation energy =         0.003178259379 (    1.99 kcal/mol)
+
+
+                         DFT ENERGY GRADIENTS
+
+    atom               coordinates                        gradient
+                 x          y          z           x          y          z
+   1 C       0.000000   0.000000   0.917487   -0.000091   0.000212   0.011655
+   2 Cl      2.984966  -1.175428  -0.191817    0.000000   0.000000   0.000000
+   3 Cl     -2.510433  -1.997342  -0.191817    0.000000   0.000000   0.000000
+   4 H       0.010000   0.000000   2.957903    0.000455   0.000019  -0.000425
+   5 Cl     -0.474532   3.172770  -0.191817    0.000000   0.000000   0.000000
+ 
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1    0.00000000    0.00000000    0.91748693     2.000
+     2    2.98496562   -1.17542796   -0.19181693     2.050
+     3   -2.51043329   -1.99734208   -0.19181693     2.050
+     4   -0.01000000    0.00000000    2.95790256     1.300
+     5   -0.47453234    3.17277004   -0.19181693     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     24,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       93
+ molecular surface =    113.614 angstrom**2
+ molecular volume  =     76.148 angstrom**3
+ G(cav/disp)       =      1.428 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+   Time after variat. SCF:    590.2
+   Time prior to 1st pass:    590.2
+
+
+         Total DFT energy =    -1419.393939895798
+      One electron energy =    -2476.465398730809
+           Coulomb energy =      887.069870080202
+    Exchange-Corr. energy =      -90.495493478562
+ Nuclear repulsion energy =      260.464712466463
+
+             COSMO energy =        0.032369766909
+
+ Numeric. integr. density =       58.000002475819
+
+     Total iterative time =     43.8s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =     -1419.390762879388
+                 sol phase energy =     -1419.393939895798
+ (electrostatic) solvation energy =         0.003177016410 (    1.99 kcal/mol)
+
+
+                         DFT ENERGY GRADIENTS
+
+    atom               coordinates                        gradient
+                 x          y          z           x          y          z
+   1 C       0.000000   0.000000   0.917487    0.000551   0.000214   0.011653
+   2 Cl      2.984966  -1.175428  -0.191817    0.000000   0.000000   0.000000
+   3 Cl     -2.510433  -1.997342  -0.191817    0.000000   0.000000   0.000000
+   4 H      -0.010000   0.000000   2.957903   -0.000579   0.000024  -0.000426
+   5 Cl     -0.474532   3.172770  -0.191817    0.000000   0.000000   0.000000
+ 
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1    0.00000000    0.00000000    0.91748693     2.000
+     2    2.98496562   -1.17542796   -0.19181693     2.050
+     3   -2.51043329   -1.99734208   -0.19181693     2.050
+     4    0.00000000    0.01000000    2.95790256     1.300
+     5   -0.47453234    3.17277004   -0.19181693     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     24,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       93
+ molecular surface =    113.611 angstrom**2
+ molecular volume  =     76.146 angstrom**3
+ G(cav/disp)       =      1.428 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+   Time after variat. SCF:    644.1
+   Time prior to 1st pass:    644.1
+
+
+         Total DFT energy =    -1419.393940291390
+      One electron energy =    -2476.465385504443
+           Coulomb energy =      887.069867386632
+    Exchange-Corr. energy =      -90.495493295337
+ Nuclear repulsion energy =      260.464712504257
+
+             COSMO energy =        0.032358617501
+
+ Numeric. integr. density =       58.000002484563
+
+     Total iterative time =     44.1s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =     -1419.390762879076
+                 sol phase energy =     -1419.393940291390
+ (electrostatic) solvation energy =         0.003177412314 (    1.99 kcal/mol)
+
+
+                         DFT ENERGY GRADIENTS
+
+    atom               coordinates                        gradient
+                 x          y          z           x          y          z
+   1 C       0.000000   0.000000   0.917487    0.000229  -0.000106   0.011652
+   2 Cl      2.984966  -1.175428  -0.191817    0.000000   0.000000   0.000000
+   3 Cl     -2.510433  -1.997342  -0.191817    0.000000   0.000000   0.000000
+   4 H       0.000000   0.010000   2.957903   -0.000065   0.000541  -0.000426
+   5 Cl     -0.474532   3.172770  -0.191817    0.000000   0.000000   0.000000
+ 
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1    0.00000000    0.00000000    0.91748693     2.000
+     2    2.98496562   -1.17542796   -0.19181693     2.050
+     3   -2.51043329   -1.99734208   -0.19181693     2.050
+     4    0.00000000   -0.01000000    2.95790256     1.300
+     5   -0.47453234    3.17277004   -0.19181693     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     24,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       93
+ molecular surface =    113.620 angstrom**2
+ molecular volume  =     76.151 angstrom**3
+ G(cav/disp)       =      1.428 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+   Time after variat. SCF:    698.2
+   Time prior to 1st pass:    698.2
+
+
+         Total DFT energy =    -1419.393940728964
+      One electron energy =    -2476.465314094975
+           Coulomb energy =      887.069852061246
+    Exchange-Corr. energy =      -90.495493081942
+ Nuclear repulsion energy =      260.464712453093
+
+             COSMO energy =        0.032301933613
+
+ Numeric. integr. density =       58.000002481556
+
+     Total iterative time =     44.4s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =     -1419.390762880791
+                 sol phase energy =     -1419.393940728964
+ (electrostatic) solvation energy =         0.003177848173 (    1.99 kcal/mol)
+
+
+                         DFT ENERGY GRADIENTS
+
+    atom               coordinates                        gradient
+                 x          y          z           x          y          z
+   1 C       0.000000   0.000000   0.917487    0.000230   0.000534   0.011655
+   2 Cl      2.984966  -1.175428  -0.191817    0.000000   0.000000   0.000000
+   3 Cl     -2.510433  -1.997342  -0.191817    0.000000   0.000000   0.000000
+   4 H       0.000000  -0.010000   2.957903   -0.000060  -0.000496  -0.000425
+   5 Cl     -0.474532   3.172770  -0.191817    0.000000   0.000000   0.000000
+ 
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1    0.00000000    0.00000000    0.91748693     2.000
+     2    2.98496562   -1.17542796   -0.19181693     2.050
+     3   -2.51043329   -1.99734208   -0.19181693     2.050
+     4    0.00000000    0.00000000    2.96790256     1.300
+     5   -0.47453234    3.17277004   -0.19181693     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     24,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       93
+ molecular surface =    113.699 angstrom**2
+ molecular volume  =     76.185 angstrom**3
+ G(cav/disp)       =      1.428 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+   Time after variat. SCF:    752.9
+   Time prior to 1st pass:    752.9
+
+
+         Total DFT energy =    -1419.393929614240
+      One electron energy =    -2476.406347869382
+           Coulomb energy =      887.040444978434
+    Exchange-Corr. energy =      -90.493531222686
+ Nuclear repulsion energy =      260.432749039918
+
+             COSMO energy =        0.032755459476
+
+ Numeric. integr. density =       58.000002483106
+
+     Total iterative time =     43.7s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =     -1419.390740696527
+                 sol phase energy =     -1419.393929614240
+ (electrostatic) solvation energy =         0.003188917713 (    2.00 kcal/mol)
+
+
+                         DFT ENERGY GRADIENTS
+
+    atom               coordinates                        gradient
+                 x          y          z           x          y          z
+   1 C       0.000000   0.000000   0.917487    0.000227   0.000213   0.008132
+   2 Cl      2.984966  -1.175428  -0.191817    0.000000   0.000000   0.000000
+   3 Cl     -2.510433  -1.997342  -0.191817    0.000000   0.000000   0.000000
+   4 H       0.000000   0.000000   2.967903   -0.000062   0.000021   0.003115
+   5 Cl     -0.474532   3.172770  -0.191817    0.000000   0.000000   0.000000
+ 
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1    0.00000000    0.00000000    0.91748693     2.000
+     2    2.98496562   -1.17542796   -0.19181693     2.050
+     3   -2.51043329   -1.99734208   -0.19181693     2.050
+     4    0.00000000    0.00000000    2.94790256     1.300
+     5   -0.47453234    3.17277004   -0.19181693     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     24,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       93
+ molecular surface =    113.532 angstrom**2
+ molecular volume  =     76.113 angstrom**3
+ G(cav/disp)       =      1.428 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+   Time after variat. SCF:    807.4
+   Time prior to 1st pass:    807.4
+
+
+         Total DFT energy =    -1419.393920578532
+      One electron energy =    -2476.524747382418
+           Coulomb energy =      887.099465394313
+    Exchange-Corr. energy =      -90.497479682375
+ Nuclear repulsion energy =      260.496927587614
+
+             COSMO energy =        0.031913504334
+
+ Numeric. integr. density =       58.000002475657
+
+     Total iterative time =     44.4s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =     -1419.390754515178
+                 sol phase energy =     -1419.393920578532
+ (electrostatic) solvation energy =         0.003166063354 (    1.99 kcal/mol)
+
+
+                         DFT ENERGY GRADIENTS
+
+    atom               coordinates                        gradient
+                 x          y          z           x          y          z
+   1 C       0.000000   0.000000   0.917487    0.000232   0.000215   0.015304
+   2 Cl      2.984966  -1.175428  -0.191817    0.000000   0.000000   0.000000
+   3 Cl     -2.510433  -1.997342  -0.191817    0.000000   0.000000   0.000000
+   4 H       0.000000   0.000000   2.947903   -0.000063   0.000022  -0.004088
+   5 Cl     -0.474532   3.172770  -0.191817    0.000000   0.000000   0.000000
+ 
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1    0.00000000    0.00000000    0.91748693     2.000
+     2    2.98496562   -1.17542796   -0.19181693     2.050
+     3   -2.51043329   -1.99734208   -0.19181693     2.050
+     4    0.00000000    0.00000000    2.95790256     1.300
+     5   -0.46453234    3.17277004   -0.19181693     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     24,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       93
+ molecular surface =    113.642 angstrom**2
+ molecular volume  =     76.166 angstrom**3
+ G(cav/disp)       =      1.428 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+   Time after variat. SCF:    862.4
+   Time prior to 1st pass:    862.4
+
+
+         Total DFT energy =    -1419.393944520693
+      One electron energy =    -2476.539231442972
+           Coulomb energy =      887.107045934437
+    Exchange-Corr. energy =      -90.495787289389
+ Nuclear repulsion energy =      260.501830603027
+
+             COSMO energy =        0.032197674204
+
+ Numeric. integr. density =       58.000002485040
+
+     Total iterative time =     44.9s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =     -1419.390767592769
+                 sol phase energy =     -1419.393944520693
+ (electrostatic) solvation energy =         0.003176927924 (    1.99 kcal/mol)
+
+
+                         DFT ENERGY GRADIENTS
+
+    atom               coordinates                        gradient
+                 x          y          z           x          y          z
+   1 C       0.000000   0.000000   0.917487   -0.000062   0.000295   0.011595
+   2 Cl      2.984966  -1.175428  -0.191817    0.000000   0.000000   0.000000
+   3 Cl     -2.510433  -1.997342  -0.191817   -0.001770  -0.001569  -0.003627
+   4 H       0.000000   0.000000   2.957903   -0.000031   0.000053  -0.000435
+   5 Cl     -0.464532   3.172770  -0.191817    0.000045   0.001788  -0.003729
+ 
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1    0.00000000    0.00000000    0.91748693     2.000
+     2    2.98496562   -1.17542796   -0.19181693     2.050
+     3   -2.51043329   -1.99734208   -0.19181693     2.050
+     4    0.00000000    0.00000000    2.95790256     1.300
+     5   -0.48453234    3.17277004   -0.19181693     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     24,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       93
+ molecular surface =    113.590 angstrom**2
+ molecular volume  =     76.132 angstrom**3
+ G(cav/disp)       =      1.428 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+   Time after variat. SCF:    918.6
+   Time prior to 1st pass:    918.6
+
+
+         Total DFT energy =    -1419.393937918949
+      One electron energy =    -2476.390952958612
+           Coulomb energy =      887.032418942352
+    Exchange-Corr. energy =      -90.495204441851
+ Nuclear repulsion energy =      260.427341486775
+
+             COSMO energy =        0.032459052387
+
+ Numeric. integr. density =       58.000002482870
+
+     Total iterative time =     44.5s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =     -1419.390759595596
+                 sol phase energy =     -1419.393937918949
+ (electrostatic) solvation energy =         0.003178323353 (    1.99 kcal/mol)
+
+
+                         DFT ENERGY GRADIENTS
+
+    atom               coordinates                        gradient
+                 x          y          z           x          y          z
+   1 C       0.000000   0.000000   0.917487    0.000522   0.000132   0.011729
+   2 Cl      2.984966  -1.175428  -0.191817    0.000000   0.000000   0.000000
+   3 Cl     -2.510433  -1.997342  -0.191817   -0.001782  -0.001208  -0.003685
+   4 H       0.000000   0.000000   2.957903   -0.000093  -0.000011  -0.000428
+   5 Cl     -0.484532   3.172770  -0.191817   -0.000707   0.002163  -0.003867
+ 
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1    0.00000000    0.00000000    0.91748693     2.000
+     2    2.98496562   -1.17542796   -0.19181693     2.050
+     3   -2.51043329   -1.99734208   -0.19181693     2.050
+     4    0.00000000    0.00000000    2.95790256     1.300
+     5   -0.47453234    3.18277004   -0.19181693     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     24,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       93
+ molecular surface =    113.679 angstrom**2
+ molecular volume  =     76.192 angstrom**3
+ G(cav/disp)       =      1.428 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+   Time after variat. SCF:    974.5
+   Time prior to 1st pass:    974.5
+
+
+         Total DFT energy =    -1419.393915503267
+      One electron energy =    -2475.969061912401
+           Coulomb energy =      886.820424508858
+    Exchange-Corr. energy =      -90.493549862612
+ Nuclear repulsion energy =      260.216153096389
+
+             COSMO energy =        0.032118666499
+
+ Numeric. integr. density =       58.000002482635
+
+     Total iterative time =     44.0s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =     -1419.390730742167
+                 sol phase energy =     -1419.393915503267
+ (electrostatic) solvation energy =         0.003184761099 (    2.00 kcal/mol)
+
+
+                         DFT ENERGY GRADIENTS
+
+    atom               coordinates                        gradient
+                 x          y          z           x          y          z
+   1 C       0.000000   0.000000   0.917487    0.000310  -0.000609   0.012085
+   2 Cl      2.984966  -1.175428  -0.191817    0.000000   0.000000   0.000000
+   3 Cl     -2.510433  -1.997342  -0.191817   -0.001935  -0.001747  -0.003657
+   4 H       0.000000   0.000000   2.957903   -0.000029  -0.000144  -0.000404
+   5 Cl     -0.474532   3.182770  -0.191817   -0.000516   0.003553  -0.004239
+ 
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1    0.00000000    0.00000000    0.91748693     2.000
+     2    2.98496562   -1.17542796   -0.19181693     2.050
+     3   -2.51043329   -1.99734208   -0.19181693     2.050
+     4    0.00000000    0.00000000    2.95790256     1.300
+     5   -0.47453234    3.16277004   -0.19181693     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     24,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       93
+ molecular surface =    113.554 angstrom**2
+ molecular volume  =     76.107 angstrom**3
+ G(cav/disp)       =      1.428 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+   Time after variat. SCF:   1029.0
+   Time prior to 1st pass:   1029.0
+
+
+         Total DFT energy =    -1419.393954732269
+      One electron energy =    -2476.963405010220
+           Coulomb energy =      887.320185415876
+    Exchange-Corr. energy =      -90.497462925703
+ Nuclear repulsion energy =      260.714197818830
+
+             COSMO energy =        0.032529968947
+
+ Numeric. integr. density =       58.000002487953
+
+     Total iterative time =     44.1s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =     -1419.390784054635
+                 sol phase energy =     -1419.393954732269
+ (electrostatic) solvation energy =         0.003170677634 (    1.99 kcal/mol)
+
+
+                         DFT ENERGY GRADIENTS
+
+    atom               coordinates                        gradient
+                 x          y          z           x          y          z
+   1 C       0.000000   0.000000   0.917487    0.000144   0.001070   0.011224
+   2 Cl      2.984966  -1.175428  -0.191817    0.000000   0.000000   0.000000
+   3 Cl     -2.510433  -1.997342  -0.191817   -0.001615  -0.001027  -0.003656
+   4 H       0.000000   0.000000   2.957903   -0.000095   0.000188  -0.000460
+   5 Cl     -0.474532   3.162770  -0.191817   -0.000140   0.000359  -0.003340
+ 
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1    0.00000000    0.00000000    0.91748693     2.000
+     2    2.98496562   -1.17542796   -0.19181693     2.050
+     3   -2.51043329   -1.99734208   -0.19181693     2.050
+     4    0.00000000    0.00000000    2.95790256     1.300
+     5   -0.47453234    3.17277004   -0.18181693     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     24,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       93
+ molecular surface =    113.591 angstrom**2
+ molecular volume  =     76.133 angstrom**3
+ G(cav/disp)       =      1.428 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+   Time after variat. SCF:   1084.1
+   Time prior to 1st pass:   1084.1
+
+
+         Total DFT energy =    -1419.393978982464
+      One electron energy =    -2476.532667234400
+           Coulomb energy =      887.103447760177
+    Exchange-Corr. energy =      -90.496098167778
+ Nuclear repulsion energy =      260.499323803017
+
+             COSMO energy =        0.032014856521
+
+ Numeric. integr. density =       58.000002481887
+
+     Total iterative time =     43.4s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =     -1419.390809050101
+                 sol phase energy =     -1419.393978982464
+ (electrostatic) solvation energy =         0.003169932363 (    1.99 kcal/mol)
+
+
+                         DFT ENERGY GRADIENTS
+
+    atom               coordinates                        gradient
+                 x          y          z           x          y          z
+   1 C       0.000000   0.000000   0.917487    0.000193   0.000442   0.011111
+   2 Cl      2.984966  -1.175428  -0.191817    0.000000   0.000000   0.000000
+   3 Cl     -2.510433  -1.997342  -0.191817   -0.001753  -0.001408  -0.003586
+   4 H       0.000000   0.000000   2.957903   -0.000102   0.000288  -0.000436
+   5 Cl     -0.474532   3.172770  -0.181817   -0.000262   0.001525  -0.003382
+ 
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1    0.00000000    0.00000000    0.91748693     2.000
+     2    2.98496562   -1.17542796   -0.19181693     2.050
+     3   -2.51043329   -1.99734208   -0.19181693     2.050
+     4    0.00000000    0.00000000    2.95790256     1.300
+     5   -0.47453234    3.17277004   -0.20181693     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     24,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       93
+ molecular surface =    113.641 angstrom**2
+ molecular volume  =     76.165 angstrom**3
+ G(cav/disp)       =      1.428 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+   Time after variat. SCF:   1139.0
+   Time prior to 1st pass:   1139.0
+
+
+         Total DFT energy =    -1419.393903066674
+      One electron energy =    -2476.397174140704
+           Coulomb energy =      887.035841914852
+    Exchange-Corr. energy =      -90.494894480566
+ Nuclear repulsion energy =      260.429679732476
+
+             COSMO energy =        0.032643907267
+
+ Numeric. integr. density =       58.000002472763
+
+     Total iterative time =     43.5s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =     -1419.390717704986
+                 sol phase energy =     -1419.393903066674
+ (electrostatic) solvation energy =         0.003185361688 (    2.00 kcal/mol)
+
+
+                         DFT ENERGY GRADIENTS
+
+    atom               coordinates                        gradient
+                 x          y          z           x          y          z
+   1 C       0.000000   0.000000   0.917487    0.000265  -0.000011   0.012212
+   2 Cl      2.984966  -1.175428  -0.191817    0.000000   0.000000   0.000000
+   3 Cl     -2.510433  -1.997342  -0.191817   -0.001798  -0.001370  -0.003726
+   4 H       0.000000   0.000000   2.957903   -0.000022  -0.000243  -0.000427
+   5 Cl     -0.474532   3.172770  -0.201817   -0.000400   0.002423  -0.004213
+ 
+  
+  finite difference hessian delta =   1.000000000000000E-002
+
+              1        2        3        4        5        6        7        8
+    1    0.2019   0.0000   0.0000  -0.0774   0.0197   0.0215  -0.0631  -0.0278
+    2    0.0000   0.2019   0.0000   0.0196  -0.0357  -0.0082  -0.0279  -0.0500
+    3    0.0000   0.0000   0.5241   0.0406  -0.0157  -0.0551  -0.0339  -0.0273
+    4   -0.0774   0.0196   0.0406   0.1454  -0.0435  -0.0424  -0.0416  -0.0063
+    5    0.0197  -0.0357  -0.0157  -0.0435   0.0519   0.0165  -0.0083   0.0062
+    6    0.0215  -0.0082  -0.0551  -0.0424   0.0165   0.0415  -0.0014   0.0025
+    7   -0.0631  -0.0279  -0.0339  -0.0416  -0.0083  -0.0014   0.1129   0.0623
+    8   -0.0278  -0.0500  -0.0273  -0.0063   0.0062   0.0025   0.0623   0.0844
+    9   -0.0178  -0.0145  -0.0551   0.0005   0.0029   0.0070   0.0355   0.0284
+   10   -0.0321  -0.0000   0.0000  -0.0145   0.0069   0.0250  -0.0089  -0.0101
+   11    0.0000  -0.0321  -0.0000   0.0069   0.0009  -0.0098  -0.0102  -0.0047
+   12   -0.0000   0.0000  -0.3586   0.0026  -0.0011  -0.0005  -0.0023  -0.0017
+   13   -0.0292   0.0082  -0.0067  -0.0121   0.0254  -0.0028   0.0006  -0.0181
+   14    0.0083  -0.0839   0.0430   0.0234  -0.0233  -0.0010  -0.0160  -0.0360
+   15   -0.0036   0.0227  -0.0551  -0.0015  -0.0025   0.0070   0.0022  -0.0019
+
+              9       10       11       12       13       14       15      
+    1   -0.0178  -0.0321   0.0000  -0.0000  -0.0292   0.0083  -0.0036
+    2   -0.0145  -0.0000  -0.0321   0.0000   0.0082  -0.0839   0.0227
+    3   -0.0551   0.0000  -0.0000  -0.3586  -0.0067   0.0430  -0.0551
+    4    0.0005  -0.0145   0.0069   0.0026  -0.0121   0.0234  -0.0015
+    5    0.0029   0.0069   0.0009  -0.0011   0.0254  -0.0233  -0.0025
+    6    0.0070   0.0250  -0.0098  -0.0005  -0.0028  -0.0010   0.0070
+    7    0.0355  -0.0089  -0.0102  -0.0023   0.0006  -0.0160   0.0022
+    8    0.0284  -0.0101  -0.0047  -0.0017  -0.0181  -0.0360  -0.0019
+    9    0.0415  -0.0210  -0.0167  -0.0005   0.0029  -0.0000   0.0070
+   10   -0.0210   0.0518  -0.0000   0.0000   0.0031   0.0033  -0.0040
+   11   -0.0167  -0.0000   0.0518  -0.0000   0.0032  -0.0166   0.0266
+   12   -0.0005   0.0000  -0.0000   0.3601  -0.0004   0.0028  -0.0005
+   13    0.0029   0.0031   0.0032  -0.0004   0.0376  -0.0187   0.0069
+   14   -0.0000   0.0033  -0.0166   0.0028  -0.0187   0.1597  -0.0449
+   15    0.0070  -0.0040   0.0266  -0.0005   0.0069  -0.0449   0.0415
+  
+
+  finite difference derivative dipole; delta =   1.000000000000000E-002
+
+  
+  
+ X vector of derivative dipole (au) [debye/angstrom]
+ d_dipole_x/<atom=   1,x> =     1.7881     [    8.5888]
+ d_dipole_x/<atom=   1,y> =    -0.0053     [   -0.0253]
+ d_dipole_x/<atom=   1,z> =    -0.0000     [   -0.0000]
+ d_dipole_x/<atom=   2,x> =    -0.8584     [   -4.1229]
+ d_dipole_x/<atom=   2,y> =     0.2604     [    1.2506]
+ d_dipole_x/<atom=   2,z> =     0.2262     [    1.0864]
+ d_dipole_x/<atom=   3,x> =    -0.6603     [   -3.1716]
+ d_dipole_x/<atom=   3,y> =    -0.3802     [   -1.8264]
+ d_dipole_x/<atom=   3,z> =    -0.1919     [   -0.9219]
+ d_dipole_x/<atom=   4,x> =    -0.0622     [   -0.2987]
+ d_dipole_x/<atom=   4,y> =     0.0002     [    0.0011]
+ d_dipole_x/<atom=   4,z> =     0.0000     [    0.0000]
+ d_dipole_x/<atom=   5,x> =    -0.2046     [   -0.9825]
+ d_dipole_x/<atom=   5,y> =     0.1116     [    0.5359]
+ d_dipole_x/<atom=   5,z> =    -0.0343     [   -0.1646]
+  
+ Y vector of derivative dipole (au) [debye/angstrom]
+ d_dipole_y/<atom=   1,x> =     0.0053     [    0.0253]
+ d_dipole_y/<atom=   1,y> =     1.7881     [    8.5888]
+ d_dipole_y/<atom=   1,z> =     0.0000     [    0.0000]
+ d_dipole_y/<atom=   2,x> =     0.2659     [    1.2772]
+ d_dipole_y/<atom=   2,y> =    -0.2905     [   -1.3951]
+ d_dipole_y/<atom=   2,z> =    -0.0910     [   -0.4372]
+ d_dipole_y/<atom=   3,x> =    -0.3747     [   -1.7998]
+ d_dipole_y/<atom=   3,y> =    -0.4885     [   -2.3464]
+ d_dipole_y/<atom=   3,z> =    -0.1504     [   -0.7222]
+ d_dipole_y/<atom=   4,x> =    -0.0002     [   -0.0011]
+ d_dipole_y/<atom=   4,y> =    -0.0622     [   -0.2987]
+ d_dipole_y/<atom=   4,z> =     0.0000     [    0.0000]
+ d_dipole_y/<atom=   5,x> =     0.1171     [    0.5625]
+ d_dipole_y/<atom=   5,y> =    -0.9443     [   -4.5355]
+ d_dipole_y/<atom=   5,z> =     0.2414     [    1.1595]
+  
+ Z vector of derivative dipole (au) [debye/angstrom]
+ d_dipole_z/<atom=   1,x> =    -0.0000     [   -0.0000]
+ d_dipole_z/<atom=   1,y> =     0.0000     [    0.0000]
+ d_dipole_z/<atom=   1,z> =     0.1306     [    0.6274]
+ d_dipole_z/<atom=   2,x> =     0.0654     [    0.3140]
+ d_dipole_z/<atom=   2,y> =    -0.0281     [   -0.1348]
+ d_dipole_z/<atom=   2,z> =    -0.0973     [   -0.4676]
+ d_dipole_z/<atom=   3,x> =    -0.0570     [   -0.2737]
+ d_dipole_z/<atom=   3,y> =    -0.0426     [   -0.2045]
+ d_dipole_z/<atom=   3,z> =    -0.0973     [   -0.4676]
+ d_dipole_z/<atom=   4,x> =     0.0000     [    0.0000]
+ d_dipole_z/<atom=   4,y> =    -0.0000     [   -0.0000]
+ d_dipole_z/<atom=   4,z> =     0.1630     [    0.7829]
+ d_dipole_z/<atom=   5,x> =    -0.0084     [   -0.0403]
+ d_dipole_z/<atom=   5,y> =     0.0706     [    0.3393]
+ d_dipole_z/<atom=   5,z> =    -0.0973     [   -0.4676]
+  
+  
+ 
+ 
+  Vibrational analysis via the FX method 
+ 
+  See chapter 2 in "Molecular Vibrations" by Wilson, Decius and Cross
+ 
+  Vib: Default input used 
+ 
+  Nuclear Hessian passed symmetry test 
+ 
+
+
+ ---------------------------- Atom information ----------------------------
+     atom    #        X              Y              Z            mass
+ --------------------------------------------------------------------------
+    C        1  1.5825946D-66  0.0000000D+00  9.1748693D-01  1.2000000D+01
+    Cl       2  2.9849656D+00 -1.1754280D+00 -1.9181693D-01  3.4968850D+01
+    Cl       3 -2.5104333D+00 -1.9973421D+00 -1.9181693D-01  3.4968850D+01
+    H        4  1.2660757D-65  0.0000000D+00  2.9579026D+00  1.0078250D+00
+    Cl       5 -4.7453234D-01  3.1727700D+00 -1.9181693D-01  3.4968850D+01
+ --------------------------------------------------------------------------
+
+
+
+
+          ----------------------------------------------------
+          MASS-WEIGHTED NUCLEAR HESSIAN (Hartree/Bohr/Bohr/Kamu)
+          ----------------------------------------------------
+
+
+               1            2            3            4            5            6            7            8            9           10
+   ----- ----- ----- ----- -----
+    1    1.68235D+01
+    2    2.27428D-16  1.68235D+01
+    3    4.51751D-18  0.00000D+00  4.36774D+01
+    4   -3.77628D+00  9.54916D-01  1.98282D+00  4.15848D+00
+    5    9.59592D-01 -1.74475D+00 -7.67465D-01 -1.24406D+00  1.48376D+00
+    6    1.04739D+00 -4.00090D-01 -2.68875D+00 -1.21117D+00  4.71498D-01  1.18764D+00
+    7   -3.08164D+00 -1.36064D+00 -1.65605D+00 -1.18999D+00 -2.38601D-01 -4.06262D-02  3.22983D+00
+    8   -1.35596D+00 -2.43939D+00 -1.33344D+00 -1.80623D-01  1.77306D-01  7.22901D-02  1.78022D+00  2.41241D+00
+    9   -8.70182D-01 -7.07020D-01 -2.68875D+00  1.47861D-02  8.28141D-02  2.00403D-01  1.01392D+00  8.13157D-01  1.18764D+00
+   10   -9.22075D+00 -5.84051D-03  0.00000D+00 -2.44193D+00  1.16981D+00  4.21450D+00 -1.49856D+00 -1.70042D+00 -3.54211D+00  5.13752D+01
+   11    5.84051D-03 -9.22075D+00 -2.59804D-18  1.15577D+00  1.58568D-01 -1.65684D+00 -1.71446D+00 -7.84801D-01 -2.82145D+00 -1.87359D-15
+   12   -1.29902D-18  0.00000D+00 -1.03122D+02  4.44084D-01 -1.86236D-01 -7.64138D-02 -3.83328D-01 -2.91470D-01 -7.64138D-02  1.12061D-18
+   13   -1.42363D+00  3.98711D-01 -3.26766D-01 -3.46048D-01  7.25853D-01 -7.91122D-02  1.70112D-02 -5.16241D-01  8.29182D-02  5.15448D-01
+   14    4.03387D-01 -4.09740D+00  2.10090D+00  6.67875D-01 -6.66638D-01 -2.86019D-02 -4.58263D-01 -1.02970D+00 -9.61709D-04  5.51676D-01
+   15   -1.77206D-01  1.10711D+00 -2.68875D+00 -4.22920D-02 -7.13284D-02  2.00403D-01  6.43261D-02 -5.42122D-02  2.00403D-01 -6.72387D-01
+
+
+              11           12           13           14           15
+   ----- ----- ----- ----- -----
+   11    5.13752D+01
+   12   -2.80152D-18  3.57350D+02
+   13    5.37633D-01 -6.07568D-02  1.07505D+00
+   14   -2.79881D+00  4.77706D-01 -5.36158D-01  4.56719D+00
+   15    4.47828D+00 -7.64138D-02  1.97257D-01 -1.28466D+00  1.18764D+00
+
+
+
+          -------------------------------------------------
+          NORMAL MODE EIGENVECTORS IN CARTESIAN COORDINATES
+          -------------------------------------------------
+                 (Frequencies expressed in cm-1)
+
+                    1           2           3           4           5           6
+ 
+ Frequency        -14.14      -14.14       10.31       22.94       22.94       23.35
+ 
+           1    -0.03070     0.09275    -0.00000    -0.01864     0.00875    -0.00000
+           2    -0.09275    -0.03070     0.00000     0.00875     0.01864    -0.00000
+           3     0.00000     0.00000     0.09170     0.00000     0.00000     0.00494
+           4    -0.03174     0.08269    -0.00197     0.00838    -0.02491     0.03575
+           5    -0.08253    -0.03174    -0.00524    -0.02474    -0.00688     0.09068
+           6    -0.01390    -0.02753     0.09197     0.11334    -0.06755     0.00532
+           7    -0.03181     0.08257    -0.00355     0.00718    -0.02543     0.06066
+           8    -0.08265    -0.03167     0.00432    -0.02421    -0.00808    -0.07630
+           9    -0.01689     0.02580     0.09197     0.00183     0.13193     0.00532
+          10    -0.02911     0.11388    -0.00000    -0.07111     0.07664    -0.00000
+          11    -0.11388    -0.02911     0.00000     0.07664     0.07111    -0.00000
+          12     0.00000     0.00000     0.09166     0.00000     0.00000     0.00499
+          13    -0.03167     0.08257     0.00552     0.00732    -0.02413    -0.09641
+          14    -0.08265    -0.03181     0.00092    -0.02552    -0.00794    -0.01438
+          15     0.03079     0.00173     0.09197    -0.11516    -0.06438     0.00532
+
+                    7           8           9          10          11          12
+ 
+ Frequency        257.22      257.22      358.36      651.58      681.17      681.17
+ 
+           1    -0.03017     0.04686    -0.00000    -0.00000    -0.14546     0.21149
+           2     0.04686     0.03017    -0.00000    -0.00000     0.21149     0.14546
+           3    -0.00000    -0.00000    -0.10094     0.24053    -0.00000     0.00000
+           4    -0.08812     0.01704     0.08376     0.03514     0.03889    -0.03038
+           5    -0.02969    -0.09613    -0.03306    -0.01374    -0.02090     0.00372
+           6    -0.00393     0.00275     0.01242    -0.02986    -0.01861     0.01272
+           7     0.07031     0.06177    -0.07051    -0.02947     0.00282    -0.04172
+           8    -0.07442     0.06229    -0.05601    -0.02357    -0.00956    -0.03234
+           9    -0.00042    -0.00478     0.01242    -0.02986    -0.00171    -0.02247
+          10    -0.04927     0.07437    -0.00000    -0.00000    -0.09958     0.14561
+          11     0.07437     0.04927    -0.00000    -0.00000     0.14561     0.09958
+          12    -0.00000    -0.00000    -0.10403     0.24973    -0.00000     0.00000
+          13     0.02983    -0.09779    -0.01325    -0.00568     0.01103    -0.00482
+          14     0.08514     0.02182     0.08907     0.03730    -0.04646    -0.02413
+          15     0.00435     0.00203     0.01242    -0.02986     0.02032     0.00975
+
+                   13          14          15
+ 
+ Frequency       1197.82     1197.82     3202.90
+ 
+           1    -0.06512    -0.01141    -0.00000
+           2     0.01141    -0.06512    -0.00000
+           3     0.00000    -0.00000    -0.08279
+           4    -0.00580     0.00213    -0.00006
+           5     0.00281     0.00226     0.00002
+           6     0.01297    -0.00263     0.00031
+           7    -0.00189    -0.00506     0.00005
+           8    -0.00439    -0.00165     0.00005
+           9    -0.00876    -0.00991     0.00031
+          10     0.94891     0.16729     0.00000
+          11    -0.16729     0.94891    -0.00000
+          12     0.00000    -0.00000     0.95427
+          13     0.00239     0.00192     0.00002
+          14     0.00259    -0.00593    -0.00007
+          15    -0.00420     0.01255     0.00031
+  
+  
+ ----------------------------------------------------------------------------
+ Normal Eigenvalue ||                 Infra Red Intensities
+  Mode   [cm**-1]  || [atomic units] [(debye/angs)**2] [(KM/mol)] [arbitrary]
+ ------ ---------- || -------------- ----------------- ---------- -----------
+    1      -14.142 ||    0.000034           0.001         0.033       0.008
+    2      -14.142 ||    0.000034           0.001         0.033       0.008
+    3       10.305 ||    0.000000           0.000         0.000       0.000
+    4       22.941 ||    0.000428           0.010         0.417       0.098
+    5       22.941 ||    0.000428           0.010         0.417       0.098
+    6       23.346 ||    0.000001           0.000         0.000       0.000
+    7      257.224 ||    0.000003           0.000         0.003       0.001
+    8      257.224 ||    0.000003           0.000         0.003       0.001
+    9      358.362 ||    0.000212           0.005         0.207       0.048
+   10      651.582 ||    0.007902           0.182         7.703       1.804
+   11      681.167 ||    0.286414           6.608       279.210      65.386
+   12      681.167 ||    0.286414           6.608       279.210      65.386
+   13     1197.820 ||    0.027129           0.626        26.447       6.193
+   14     1197.820 ||    0.027129           0.626        26.447       6.193
+   15     3202.896 ||    0.020919           0.483        20.392       4.776
+ ----------------------------------------------------------------------------
+
+
+
+ 
+ 
+        Vibrational analysis via the FX method 
+  --- with translations and rotations projected out ---
+  --- via the Eckart algorithm                      ---
+
+          --------------------------------------------------------
+          MASS-WEIGHTED PROJECTED HESSIAN (Hartree/Bohr/Bohr/Kamu)
+          --------------------------------------------------------
+
+
+               1            2            3            4            5            6            7            8            9           10
+   ----- ----- ----- ----- -----
+    1    1.67923D+01
+    2    5.98771D-12  1.67923D+01
+    3    3.32810D-12 -2.21411D-12  4.36699D+01
+    4   -3.75329D+00  9.55075D-01  1.97900D+00  4.14955D+00
+    5    9.58662D-01 -1.72338D+00 -7.79295D-01 -1.24789D+00  1.47118D+00
+    6    1.12345D+00 -4.38610D-01 -2.69062D+00 -1.22304D+00  4.78732D-01  1.19081D+00
+    7   -3.05953D+00 -1.35921D+00 -1.66439D+00 -1.19879D+00 -2.41975D-01 -5.02114D-02  3.22147D+00
+    8   -1.35562D+00 -2.41714D+00 -1.32422D+00 -1.78053D-01  1.74903D-01  7.74353D-02  1.78371D+00  2.39926D+00
+    9   -9.41572D-01 -7.53631D-01 -2.69062D+00  2.92232D-02  9.00961D-02  1.99402D-01  1.02611D+00  8.19818D-01  1.19081D+00
+   10   -9.55388D+00  3.16943D-02  2.85948D-12 -2.36608D+00  1.15735D+00  4.16909D+00 -1.43587D+00 -1.70679D+00 -3.51029D+00  5.19489D+01
+   11   -3.16943D-02 -9.55388D+00 -5.43594D-13  1.16973D+00  2.17738D-01 -1.64631D+00 -1.69441D+00 -7.12469D-01 -2.78738D+00  3.33550D-11
+   12    2.24369D-11 -7.64006D-12 -1.03142D+02  4.50461D-01 -1.77384D-01 -7.92242D-02 -3.78850D-01 -3.01419D-01 -7.92242D-02  3.26380D-11
+   13   -1.40218D+00  3.98750D-01 -3.14610D-01 -3.50399D-01  7.31797D-01 -9.26371D-02  1.33566D-02 -5.21782D-01  9.21666D-02  5.79440D-01
+   14    4.02337D-01 -4.07448D+00  2.10351D+00  6.67875D-01 -6.73492D-01 -1.97400D-02 -4.57860D-01 -1.03725D+00  4.76671D-03  5.30866D-01
+   15   -1.81877D-01  1.19224D+00 -2.69062D+00 -4.19552D-02 -8.22020D-02  1.99402D-01  6.34138D-02 -7.03561D-02  1.99402D-01 -6.58793D-01
+
+
+              11           12           13           14           15
+   ----- ----- ----- ----- -----
+   11    5.19489D+01
+   12   -1.87323D-12  3.57304D+02
+   13    5.43244D-01 -7.16117D-02  1.06007D+00
+   14   -2.72778D+00  4.78803D-01 -5.35827D-01  4.56066D+00
+   15    4.43369D+00 -7.92242D-02  1.96926D-01 -1.29855D+00  1.19081D+00
+
+ center of mass
+ --------------
+ x =   0.00000000 y =   0.00000000 z =  -0.05200351
+
+ moments of inertia (a.u.)
+ ------------------
+         562.290840497207          -0.000000000000           0.000000000000
+          -0.000000000000         562.290840497207           0.000000000000
+           0.000000000000           0.000000000000        1079.661565677432
+
+ Rotational Constants
+ --------------------
+ A=   0.107062 cm-1  (  0.154035 K)
+ B=   0.107062 cm-1  (  0.154035 K)
+ C=   0.055758 cm-1  (  0.080222 K)
+
+
+ Temperature                      =   298.15K
+ frequency scaling parameter      =   1.0000
+
+ Zero-Point correction to Energy  =   12.137 kcal/mol  (  0.019341 au)
+ Thermal correction to Energy     =   14.990 kcal/mol  (  0.023888 au)
+ Thermal correction to Enthalpy   =   15.582 kcal/mol  (  0.024831 au)
+
+ Total Entropy                    =   70.931 cal/mol-K
+   - Translational                =   40.191 cal/mol-K (mol. weight = 117.9144)
+   - Rotational                   =   25.131 cal/mol-K (symmetry #  =        3)
+   - Vibrational                  =    5.608 cal/mol-K
+
+ Cv (constant volume heat capacity) =   14.085 cal/mol-K
+   - Translational                  =    2.979 cal/mol-K
+   - Rotational                     =    2.979 cal/mol-K
+   - Vibrational                    =    8.126 cal/mol-K
+
+
+
+          -------------------------------------------------
+          NORMAL MODE EIGENVECTORS IN CARTESIAN COORDINATES
+          -------------------------------------------------
+             (Projected Frequencies expressed in cm-1)
+
+                    1           2           3           4           5           6
+ 
+ P.Frequency       -0.00       -0.00        0.00        0.00        0.00        0.00
+ 
+           1     0.02710     0.00458     0.01640    -0.02928    -0.08804    -0.02282
+           2     0.02129    -0.03084    -0.07178     0.01548     0.00145    -0.05792
+           3     0.05169     0.05494     0.00181     0.05276     0.00114     0.00163
+           4    -0.00312    -0.00110     0.03849     0.00603    -0.07686    -0.04857
+           5    -0.00260     0.00552    -0.01630     0.00060     0.02867    -0.12507
+           6    -0.00431     0.00116     0.00250     0.16352     0.00238     0.00348
+           7    -0.00306    -0.00132     0.05363     0.00608    -0.06928    -0.06699
+           8    -0.00299     0.00698    -0.11750     0.00024    -0.02202    -0.00195
+           9     0.16365     0.00019    -0.00012     0.00018     0.00093     0.00081
+          10     0.08283     0.01444     0.01556    -0.09407    -0.08866    -0.02388
+          11     0.06562    -0.09916    -0.07270     0.04321     0.00202    -0.05741
+          12     0.05169     0.05494     0.00181     0.05276     0.00114     0.00163
+          13    -0.00343     0.00006    -0.04158     0.00574    -0.11696     0.04885
+          14    -0.00285     0.00644    -0.08001     0.00037    -0.00324    -0.04756
+          15    -0.00429     0.16348     0.00306    -0.00543     0.00011     0.00059
+
+                    7           8           9          10          11          12
+ 
+ P.Frequency      256.83      256.83      358.22      651.33      678.84      678.84
+ 
+           1    -0.03546     0.04359    -0.00000    -0.00000    -0.09691     0.23684
+           2     0.04359     0.03546    -0.00000    -0.00000     0.23684     0.09691
+           3    -0.00000    -0.00000    -0.10098     0.24041     0.00000     0.00000
+           4    -0.08952     0.00718     0.08376     0.03516     0.03180    -0.03792
+           5    -0.01846    -0.09873    -0.03298    -0.01385    -0.01947     0.00831
+           6    -0.00534     0.00298     0.01255    -0.02990    -0.01636     0.01708
+           7     0.06277     0.06946    -0.07045    -0.02957    -0.00627    -0.04145
+           8    -0.08074     0.05356    -0.05605    -0.02353    -0.01594    -0.02976
+           9     0.00009    -0.00612     0.01255    -0.02990    -0.00661    -0.02271
+          10    -0.05700     0.06807    -0.00000    -0.00000    -0.06891     0.16694
+          11     0.06807     0.05700    -0.00000    -0.00000     0.16694     0.06891
+          12    -0.00000    -0.00000    -0.10411     0.24967     0.00000     0.00000
+          13     0.04056    -0.09357    -0.01332    -0.00559     0.00971    -0.00671
+          14     0.08228     0.03135     0.08903     0.03737    -0.05068    -0.01379
+          15     0.00525     0.00314     0.01255    -0.02990     0.02297     0.00563
+
+                   13          14          15
+ 
+ P.Frequency     1205.13     1205.13     3202.76
+ 
+           1    -0.06678    -0.00896    -0.00000
+           2     0.00896    -0.06678    -0.00000
+           3     0.00000     0.00000    -0.08281
+           4    -0.00535     0.00243    -0.00006
+           5     0.00278     0.00228     0.00002
+           6     0.01245    -0.00313     0.00030
+           7    -0.00188    -0.00478     0.00005
+           8    -0.00443    -0.00118     0.00004
+           9    -0.00894    -0.00921     0.00030
+          10     0.95475     0.12484     0.00000
+          11    -0.12484     0.95475    -0.00000
+          12     0.00000     0.00000     0.95424
+          13     0.00263     0.00183     0.00001
+          14     0.00217    -0.00570    -0.00007
+          15    -0.00351     0.01234     0.00030
+  
+  
+ ----------------------------------------------------------------------------
+ Normal Eigenvalue ||           Projected Infra Red Intensities
+  Mode   [cm**-1]  || [atomic units] [(debye/angs)**2] [(KM/mol)] [arbitrary]
+ ------ ---------- || -------------- ----------------- ---------- -----------
+    1       -0.000 ||    0.000460           0.011         0.448       0.105
+    2       -0.000 ||    0.000432           0.010         0.421       0.099
+    3        0.000 ||    0.000001           0.000         0.001       0.000
+    4        0.000 ||    0.000452           0.010         0.440       0.103
+    5        0.000 ||    0.000001           0.000         0.001       0.000
+    6        0.000 ||    0.000000           0.000         0.000       0.000
+    7      256.834 ||    0.000001           0.000         0.000       0.000
+    8      256.834 ||    0.000001           0.000         0.000       0.000
+    9      358.219 ||    0.000214           0.005         0.208       0.049
+   10      651.330 ||    0.007902           0.182         7.703       1.804
+   11      678.836 ||    0.285230           6.580       278.057      65.116
+   12      678.836 ||    0.285230           6.580       278.057      65.116
+   13     1205.128 ||    0.028104           0.648        27.397       6.416
+   14     1205.128 ||    0.028104           0.648        27.397       6.416
+   15     3202.761 ||    0.020917           0.483        20.391       4.775
+ ----------------------------------------------------------------------------
+
+
+
+ vib:animation  F
+ 
+ 
+                                NWChem Input Module
+                                -------------------
+ 
+ 
+                              NWChem Property Module
+                              ----------------------
+ 
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                  Mustard gas, HD
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1    0.00000000    0.00000000    0.91748693     2.000
+     2    2.98496562   -1.17542796   -0.19181693     2.050
+     3   -2.51043329   -1.99734208   -0.19181693     2.050
+     4    0.00000000    0.00000000    2.95790256     1.300
+     5   -0.47453234    3.17277004   -0.19181693     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     24,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       93
+ molecular surface =    113.615 angstrom**2
+ molecular volume  =     76.149 angstrom**3
+ G(cav/disp)       =      1.428 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+   Time after variat. SCF:   1193.7
+   Time prior to 1st pass:   1193.7
+
+
+         Total DFT energy =    -1419.393941728012
+      One electron energy =    -2476.465428452839
+           Coulomb energy =      887.069897933523
+    Exchange-Corr. energy =      -90.495496359274
+ Nuclear repulsion energy =      260.464754422782
+
+             COSMO energy =        0.032330727795
+
+ Numeric. integr. density =       58.000000149195
+
+     Total iterative time =     49.6s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =     -1419.390764133343
+                 sol phase energy =     -1419.393941728012
+ (electrostatic) solvation energy =         0.003177594669 (    1.99 kcal/mol)
+
+          -----------------------------------------
+          Chemical Shielding Tensors (GIAO, in ppm)
+          -----------------------------------------
+
+    0 giaofock schwarz done =      84.64%
+    0 giaofock schwarz done =      90.22%
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1  6.000  2.000
+    2 17.000  2.050
+    3 17.000  2.050
+    4  1.000  1.300
+    5 17.000  2.050
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1    0.00000000    0.00000000    0.91748693     2.000
+     2    2.98496562   -1.17542796   -0.19181693     2.050
+     3   -2.51043329   -1.99734208   -0.19181693     2.050
+     4    0.00000000    0.00000000    2.95790256     1.300
+     5   -0.47453234    3.17277004   -0.19181693     2.050
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (      6,     0 )       0
+    2 (     23,     0 )       0
+    3 (     24,     0 )       0
+    4 (     16,     0 )       0
+    5 (     24,     0 )       0
+ number of -cosmo- surface points =       93
+ molecular surface =    113.615 angstrom**2
+ molecular volume  =     76.149 angstrom**3
+ G(cav/disp)       =      1.428 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+ SCF residual:   3.516550007154481E-005
+
+ Wrote CPHF data to ./molecule.shieldcphf
+
+ Calc. par tensor-> nonrel
+      Atom:    1  C 
+        Diamagnetic
+    248.2801     -0.0115      0.0130
+     -0.0115    248.3547      0.0042
+      0.0130      0.0042    237.5630
+
+        Paramagnetic
+   -163.2400     -0.0275      0.0209
+     -0.0275   -163.2466     -0.0265
+      0.0209     -0.0265   -213.1370
+
+        Total Shielding Tensor
+     85.0401     -0.0390      0.0339
+     -0.0390     85.1081     -0.0223
+      0.0339     -0.0223     24.4260
+
+           isotropic =      64.8581
+          anisotropy =      30.4017
+
+          Principal Components and Axis System
+                 1           2           3
+               85.1259     85.0224     24.4260
+
+      1        -0.4142      0.9102     -0.0006
+      2         0.9102      0.4142      0.0004
+      3        -0.0006      0.0004      1.0000
+
+
+
+      Atom:    2  Cl
+        Diamagnetic
+   1152.8057     -4.3171     -2.8783
+     -4.3171   1143.5841      1.1335
+     -2.8783      1.1335   1141.2090
+
+        Paramagnetic
+   -311.7367   -175.8973   -185.3989
+   -175.8973   -689.9965     72.6480
+   -185.3989     72.6480  -1000.5932
+
+        Total Shielding Tensor
+    841.0690   -180.2144   -188.2772
+   -180.2144    453.5875     73.7815
+   -188.2772     73.7815    140.6158
+
+           isotropic =     478.4241
+          anisotropy =     724.9559
+
+          Principal Components and Axis System
+                 1           2           3
+              961.7281    382.7293     90.8149
+
+      1         0.9037      0.3657      0.2228
+      2        -0.3552      0.9307     -0.0868
+      3        -0.2391     -0.0007      0.9710
+
+
+
+      Atom:    3  Cl
+        Diamagnetic
+   1149.5887      6.1501      2.4292
+      6.1501   1146.7858      1.9439
+      2.4292      1.9439   1141.2151
+
+        Paramagnetic
+   -442.9822    251.4529    156.1756
+    251.4529   -559.1557    124.1030
+    156.1756    124.1030  -1000.3605
+
+        Total Shielding Tensor
+    706.6065    257.6030    158.6048
+    257.6030    587.6301    126.0468
+    158.6048    126.0468    140.8546
+
+           isotropic =     478.3637
+          anisotropy =     724.7247
+
+          Principal Components and Axis System
+                 1           2           3
+              961.5135    382.7357     90.8420
+
+      1         0.7598     -0.6224     -0.1877
+      2         0.6043      0.7827     -0.1490
+      3         0.2397     -0.0003      0.9709
+
+
+
+      Atom:    4  H 
+        Diamagnetic
+     22.9816     -0.0072     -0.0047
+     -0.0072     23.0090     -0.0040
+     -0.0047     -0.0040     39.5721
+
+        Paramagnetic
+     -0.6323      0.0080      0.0059
+      0.0080     -0.6600      0.0057
+      0.0059      0.0057    -13.2253
+
+        Total Shielding Tensor
+     22.3492      0.0009      0.0013
+      0.0009     22.3491      0.0017
+      0.0013      0.0017     26.3468
+
+           isotropic =      23.6817
+          anisotropy =       3.9977
+
+          Principal Components and Axis System
+                 1           2           3
+               26.3468     22.3500     22.3483
+
+      1         0.0003      0.7392     -0.6735
+      2         0.0004      0.6735      0.7392
+      3         1.0000     -0.0005     -0.0001
+
+
+
+      Atom:    5  Cl
+        Diamagnetic
+   1142.1489     -1.8502      0.4473
+     -1.8502   1154.2783     -3.0479
+      0.4473     -3.0479   1141.2324
+
+        Paramagnetic
+   -747.8150    -75.4218     29.2570
+    -75.4218   -253.6165   -196.2519
+     29.2570   -196.2519  -1000.7395
+
+        Total Shielding Tensor
+    394.3339    -77.2721     29.7043
+    -77.2721    900.6618   -199.2998
+     29.7043   -199.2998    140.4929
+
+           isotropic =     478.4962
+          anisotropy =     724.7133
+
+          Principal Components and Axis System
+                 1           2           3
+              961.6384    382.8037     91.0464
+
+      1        -0.1433      0.9891     -0.0351
+      2         0.9606      0.1475      0.2357
+      3        -0.2383     -0.0001      0.9712
+
+
+
+ 
+ 
+                                NWChem Input Module
+                                -------------------
+ 
+ 
+ 
+ 
+                                     CITATION
+                                     --------
+                Please cite the following reference when publishing
+                           results obtained with NWChem:
+ 
+          E. Aprà, E. J. Bylaska, W. A. de Jong, N. Govind, K. Kowalski,
+       T. P. Straatsma, M. Valiev, H. J. J. van Dam, Y. Alexeev, J. Anchell,
+       V. Anisimov, F. W. Aquino, R. Atta-Fynn, J. Autschbach, N. P. Bauman,
+     J. C. Becca, D. E. Bernholdt, K. Bhaskaran-Nair, S. Bogatko, P. Borowski,
+        J. Boschen, J. Brabec, A. Bruner, E. Cauët, Y. Chen, G. N. Chuev,
+      C. J. Cramer, J. Daily, M. J. O. Deegan, T. H. Dunning Jr., M. Dupuis,
+   K. G. Dyall, G. I. Fann, S. A. Fischer, A. Fonari, H. Früchtl, L. Gagliardi,
+      J. Garza, N. Gawande, S. Ghosh, K. Glaesemann, A. W. Götz, J. Hammond,
+       V. Helms, E. D. Hermes, K. Hirao, S. Hirata, M. Jacquelin, L. Jensen,
+   B. G. Johnson, H. Jónsson, R. A. Kendall, M. Klemm, R. Kobayashi, V. Konkov,
+      S. Krishnamoorthy, M. Krishnan, Z. Lin, R. D. Lins, R. J. Littlefield,
+      A. J. Logsdail, K. Lopata, W. Ma, A. V. Marenich, J. Martin del Campo,
+   D. Mejia-Rodriguez, J. E. Moore, J. M. Mullin, T. Nakajima, D. R. Nascimento,
+    J. A. Nichols, P. J. Nichols, J. Nieplocha, A. Otero-de-la-Roza, B. Palmer,
+    A. Panyala, T. Pirojsirikul, B. Peng, R. Peverati, J. Pittner, L. Pollack,
+   R. M. Richard, P. Sadayappan, G. C. Schatz, W. A. Shelton, D. W. Silverstein,
+   D. M. A. Smith, T. A. Soares, D. Song, M. Swart, H. L. Taylor, G. S. Thomas,
+            V. Tipparaju, D. G. Truhlar, K. Tsemekhman, T. Van Voorhis,
+     Á. Vázquez-Mayagoitia, P. Verma, O. Villa, A. Vishnu, K. D. Vogiatzis,
+        D. Wang, J. H. Weare, M. J. Williamson, T. L. Windus, K. Woliński,
+        A. T. Wong, Q. Wu, C. Yang, Q. Yu, M. Zacharias, Z. Zhang, Y. Zhao,
+                                and R. J. Harrison
+                        "NWChem: Past, present, and future
+                         J. Chem. Phys. 152, 184102 (2020)
+                               doi:10.1063/5.0004997
+ 
+                                      AUTHORS
+                                      -------
+     E. Apra, E. J. Bylaska, N. Govind, K. Kowalski, M. Valiev, W. A. de Jong,
+      T. P. Straatsma, H. J. J. van Dam, D. Wang, T. L. Windus, N. P. Bauman,
+       A. Panyala, J. Hammond, J. Autschbach, K. Bhaskaran-Nair, J. Brabec,
+    K. Lopata, S. A. Fischer, S. Krishnamoorthy, M. Jacquelin, W. Ma, M. Klemm,
+       O. Villa, Y. Chen, V. Anisimov, F. Aquino, S. Hirata, M. T. Hackler,
+           Eric Hermes, L. Jensen, J. E. Moore, J. C. Becca, V. Konjkov,
+            D. Mejia-Rodriguez, T. Risthaus, M. Malagoli, A. Marenich,
+   A. Otero-de-la-Roza, J. Mullin, P. Nichols, R. Peverati, J. Pittner, Y. Zhao,
+        P.-D. Fan, A. Fonari, M. J. Williamson, R. J. Harrison, J. R. Rehr,
+      M. Dupuis, D. Silverstein, D. M. A. Smith, J. Nieplocha, V. Tipparaju,
+      M. Krishnan, B. E. Van Kuiken, A. Vazquez-Mayagoitia, M. Swart, Q. Wu,
+   T. Van Voorhis, A. A. Auer, M. Nooijen, L. D. Crosby, E. Brown, G. Cisneros,
+     G. I. Fann, H. Fruchtl, J. Garza, K. Hirao, R. A. Kendall, J. A. Nichols,
+       K. Tsemekhman, K. Wolinski, J. Anchell, D. E. Bernholdt, P. Borowski,
+       T. Clark, D. Clerc, H. Dachsel, M. J. O. Deegan, K. Dyall, D. Elwood,
+      E. Glendening, M. Gutowski, A. C. Hess, J. Jaffe, B. G. Johnson, J. Ju,
+        R. Kobayashi, R. Kutteh, Z. Lin, R. Littlefield, X. Long, B. Meng,
+      T. Nakajima, S. Niu, L. Pollack, M. Rosing, K. Glaesemann, G. Sandrone,
+      M. Stave, H. Taylor, G. Thomas, J. H. van Lenthe, A. T. Wong, Z. Zhang.
+
+ Total times  cpu:     1388.0s     wall:     1392.6s

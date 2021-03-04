@@ -1,6 +1,4 @@
-VX with NWChem
-==============
+H3PO4 with NWChem
+=================
 
-no freq - it takes too long !!!
 
-needs enough disk space on /mnt/local

@@ -1,0 +1,90 @@
+#!/bin/sh
+
+"$AMSBIN/ams" << eor
+
+Task GeometryOptimization
+Properties
+    NormalModes Yes
+End
+System
+    Atoms
+        Si -0.0004167414808490979 0.0003417545827628677 3.832229970896522e-05 
+        C -0.9235635125713549 -0.1717741203808881 -1.624315185998626 
+        C 0.8887542232498906 1.651930749381008 0.04302019472183896 
+        C 1.252249390440904 -1.38771652788587 0.1566820930259595 
+        C -1.217877583982209 -0.09211478612695473 1.424606481872964 
+        H -1.452178934598344 -1.126301298928311 -1.678375170603492 
+        H -1.661782653195095 0.6243954790039745 -1.745195577285405 
+        H -0.2390340434981381 -0.1223303935465387 -2.47429042773745 
+        H 1.606409541338083 1.73499415960327 -0.776475474727056 
+        H 0.1842595423154317 2.482063788268198 -0.04654929119788366 
+        H 1.436903187099288 1.780588436694349 0.979218131916919 
+        H 1.807283660804527 -1.314541748738741 1.094802909328208 
+        H 0.7637489284458415 -2.364637112559414 0.1348047572427237 
+        H 1.976274229583081 -1.359811014526407 -0.6609453142127349 
+        H -0.7082232678732021 0.004741355142366049 2.386039523970508 
+        H -1.961503720827903 0.7056293660991844 1.360665081873147 
+        H -1.751902245249722 -1.045158086082106 1.425968945510785 
+    End
+    BondOrders
+         1 2 1.0
+         1 3 1.0
+         1 4 1.0
+         1 5 1.0
+         2 6 1.0
+         2 7 1.0
+         2 8 1.0
+         3 9 1.0
+         3 10 1.0
+         3 11 1.0
+         4 12 1.0
+         4 13 1.0
+         4 14 1.0
+         5 15 1.0
+         5 16 1.0
+         5 17 1.0
+    End
+End
+
+Engine ADF
+    Basis
+        Type TZ2P
+        Core None
+    End
+    Save TAPE10
+    XC
+        Hybrid PBE0
+    End
+    Relativity
+        Level None
+    End
+    NumericalQuality Good
+EndEngine
+eor
+
+# dependency: {} /home/milias/work/projects/open-collection/theoretical_chemistry/projects/nmr_diplomovky/reference_compounds/tetramethylsilane/ams/pbe0_tz2p_good/TMS.geopt_freq_nmrshield_pbe0_tz2p_good_cosmo-h2o.results/ams.rkf dep-ams.rkf
+
+
+# =======
+# NMR NMR
+# =======
+
+cp "${AMS_RESULTSDIR-${AMS_JOBNAME-ams}.results}/adf.rkf" TAPE21
+cp "${AMS_RESULTSDIR-${AMS_JOBNAME-ams}.results}/TAPE10" TAPE10
+
+"$AMSBIN/nmr" << eor
+NMR
+    out    iso    tens
+    adfgui
+    Atoms 2 3 4 5 6 7 8 9 10 11 
+    Atoms 12 13 14 15 16 17 
+    u1k best
+    calc all
+End
+
+eor
+
+mv TAPE21 "${AMS_RESULTSDIR-${AMS_JOBNAME-ams}.results}/adf.rkf"
+rm -f TAPE10 TAPE15
+
+

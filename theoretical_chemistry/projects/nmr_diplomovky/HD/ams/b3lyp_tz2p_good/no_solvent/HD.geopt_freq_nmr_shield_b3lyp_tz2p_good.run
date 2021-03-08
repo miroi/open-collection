@@ -1,0 +1,91 @@
+#!/bin/sh
+
+"$AMSBIN/ams" << eor
+
+Task GeometryOptimization
+Properties
+    NormalModes Yes
+End
+GeometryOptimization
+    Convergence
+        Step 0.001
+    End
+End
+PESPointCharacter
+    Tolerance 0.02
+End
+System
+    Atoms
+        S 3.362950334290387e-18 2.143116107869448e-17 -0.9725239045334685 
+        C 1.393372093270436 -6.388827262354983e-17 0.21826330034673 
+        H 1.33011856662936 0.8868352844399185 0.8478220792874507 
+        H 1.33011856662936 -0.8868352844399185 0.8478220792874507 
+        C 2.694514524041563 -1.435602682774833e-16 -0.5603691769825184 
+        H 2.794258367915379 0.8874586265614839 -1.178878897366553 
+        H 2.794258367915379 -0.8874586265614843 -1.178878897366553 
+        C -1.393372093270436 1.067505947809388e-16 0.21826330034673 
+        H -1.33011856662936 -0.8868352844399185 0.8478220792874507 
+        H -1.33011856662936 0.8868352844399185 0.8478220792874507 
+        C -2.694514524041563 1.864225904348721e-16 -0.5603691769825184 
+        H -2.794258367915379 0.8874586265614843 -1.178878897366553 
+        H -2.794258367915379 -0.8874586265614841 -1.178878897366553 
+        Cl 4.110205657116837 -2.302463490125793e-16 0.5685310305938236 
+        Cl -4.110205657116837 2.731086711699684e-16 0.5685310305938236 
+    End
+    BondOrders
+         1 2 1.0
+         1 8 1.0
+         2 3 1.0
+         2 4 1.0
+         2 5 1.0
+         5 6 1.0
+         5 7 1.0
+         5 14 1.0
+         8 9 1.0
+         8 10 1.0
+         8 11 1.0
+         11 12 1.0
+         11 13 1.0
+         11 15 1.0
+    End
+End
+
+Engine ADF
+    Basis
+        Type TZ2P
+        Core None
+    End
+    Save TAPE10
+    XC
+        Hybrid B3LYP
+    End
+    Relativity
+        Level None
+    End
+    NumericalQuality Good
+EndEngine
+eor
+
+# =======
+# NMR NMR
+# =======
+
+cp "${AMS_RESULTSDIR-${AMS_JOBNAME-ams}.results}/adf.rkf" TAPE21
+cp "${AMS_RESULTSDIR-${AMS_JOBNAME-ams}.results}/TAPE10" TAPE10
+
+"$AMSBIN/nmr" << eor
+NMR
+    out    iso    tens
+    adfgui
+    Atoms 1 2 3 4 5 6 7 8 9 10 
+    Atoms 11 12 13 14 15 
+    u1k best
+    calc all
+End
+
+eor
+
+mv TAPE21 "${AMS_RESULTSDIR-${AMS_JOBNAME-ams}.results}/adf.rkf"
+rm -f TAPE10 TAPE15
+
+

@@ -1,0 +1,99 @@
+#!/bin/sh
+
+"$AMSBIN/ams" << eor
+
+Task GeometryOptimization
+Properties
+    NormalModes Yes
+End
+GeometryOptimization
+    Convergence
+        Step 0.001
+    End
+End
+PESPointCharacter
+    Tolerance 0.02
+End
+System
+    Atoms
+        S 2.761157579678043e-17 7.752768753026743e-18 -0.9778451883217578 adf.R=1.792
+        C 1.392976387395773 -7.754243495257711e-17 0.2160551690591681 adf.R=1.700
+        H 1.322213418173528 0.8878710003749574 0.8422545685536859 adf.R=1.350
+        H 1.322213418173528 -0.8878710003749576 0.8422545685536859 adf.R=1.350
+        C 2.693391343641218 -1.571698856390436e-16 -0.5617927343401909 adf.R=1.700
+        H 2.802994575878291 0.8885230009127206 -1.175490127822137 adf.R=1.350
+        H 2.802994575878291 -0.8885230009127211 -1.175490127822137 adf.R=1.350
+        C -1.392976387395773 9.304797245863062e-17 0.2160551690591681 adf.R=1.700
+        H -1.322213418173528 -0.8878710003749574 0.8422545685536859 adf.R=1.350
+        H -1.322213418173528 0.8878710003749575 0.8422545685536859 adf.R=1.350
+        C -2.693391343641218 1.726754231450972e-16 -0.5617927343401909 adf.R=1.700
+        H -2.802994575878291 0.888523000912721 -1.175490127822137 adf.R=1.350
+        H -2.802994575878291 -0.8885230009127207 -1.175490127822137 adf.R=1.350
+        Cl 4.109707770540783 -2.43894254578162e-16 0.5791808433342002 adf.R=1.725
+        Cl -4.109707770540783 2.593997920842154e-16 0.5791808433342002 adf.R=1.725
+    End
+    BondOrders
+         1 2 1.0
+         1 8 1.0
+         2 3 1.0
+         2 4 1.0
+         2 5 1.0
+         5 6 1.0
+         5 7 1.0
+         5 14 1.0
+         8 9 1.0
+         8 10 1.0
+         8 11 1.0
+         11 12 1.0
+         11 13 1.0
+         11 15 1.0
+    End
+End
+
+Engine ADF
+    Basis
+        Type TZ2P
+        Core None
+    End
+    Save TAPE10
+    XC
+        Hybrid B3LYP
+    End
+    Relativity
+        Level None
+    End
+    Solvation
+        Surf Delley
+        Solv name=Chloroform cav0=0.0 cav1=0.0067639
+        Charged method=CONJ
+        C-Mat POT
+        SCF VAR ALL 
+        CSMRSP
+    End
+    NumericalQuality Good
+EndEngine
+eor
+
+# =======
+# NMR NMR
+# =======
+
+cp "${AMS_RESULTSDIR-${AMS_JOBNAME-ams}.results}/adf.rkf" TAPE21
+cp "${AMS_RESULTSDIR-${AMS_JOBNAME-ams}.results}/TAPE10" TAPE10
+
+"$AMSBIN/nmr" << eor
+NMR
+    out    iso    tens
+    adfgui
+    Atoms 1 2 3 4 5 6 7 8 9 10 
+    Atoms 11 12 13 14 15 
+    u1k best
+    calc all
+End
+
+eor
+
+mv TAPE21 "${AMS_RESULTSDIR-${AMS_JOBNAME-ams}.results}/adf.rkf"
+rm -f TAPE10 TAPE15
+
+

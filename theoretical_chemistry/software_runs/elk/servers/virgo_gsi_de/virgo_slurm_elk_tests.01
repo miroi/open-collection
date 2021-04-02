@@ -35,6 +35,17 @@
 #SBATCH --mail-user=M.Ilias@gsi.de 
 #SBATCH --mail-type=ALL
 
+echo -e "\nRunning on host `hostname`"
+echo -e "Time is `date` \n"
+# CPU model, total numer of CPUs, number of allocated CPUs
+echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
+NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
+echo "This node has total $NPROCS CPUs available for an exclusive job."
+echo "This node has $SLURM_CPUS_ON_NODE CPUs allocated for SLURM calculations."
+echo -e "\n ===   the memory at the node (in GB)  === "
+free -t -g
+echo -e "\n"
+
  
 echo Job user is $SLURM_JOB_USER and his job $SLURM_JOB_NAME has assigned ID $SLURM_JOBID
 echo This job was submitted from the computer $SLURM_SUBMIT_HOST
@@ -47,7 +58,7 @@ echo and is employing $SLURM_JOB_NUM_NODES node/nodes:
 echo $SLURM_JOB_NODELIST
 echo
 echo -e "Job partition is $SLURM_JOB_PARTITION \n"
-#echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
+echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
 
 module use /cvmfs/it.gsi.de/modulefiles/
 echo "modules at disposal:"
@@ -69,25 +80,16 @@ echo -e "\n\n loaded modules:"
 module list
 
 echo -e "\n ifort ? \c"; which ifort; ifort -V
-echo -e "\nMy PATH=$PATH\n"
 echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
 
+echo -e "\nMy PATH=$PATH\n"
+echo -e "\nMy LD_LIBRARY_PATH=$LD_LIBRARY_PATH\n"
 
-echo -e "\nRunning on host `hostname`"
-echo -e "Time is `date` \n"
-
-# CPU model, total numer of CPUs, number of allocated CPUs
-echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
-NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
-echo "This node has total $NPROCS CPUs available for an exclusive job."
-echo "This node has $SLURM_CPUS_ON_NODE CPUs allocated for SLURM calculations."
-
-echo -e "\n ===   the memory at the node (in GB)  === "
-free -t -g
-echo -e "\n"
 
 ELK=/lustre/ukt/milias/work/software/elk/elk-7.1.14
 ELKBIN=$ELK/src/elk
+echo -e "\n ===  ELK program  ==="
+ls -lt $ELK
 ls -lt $ELKBIN
 echo -e "\nldd $ELKBIN :"
 ldd $ELKBIN
@@ -100,9 +102,9 @@ echo "hello, running $ELK/tests/test-mpi.sh ..."
 
 $ELK/tests/test-mpi.sh
 
-echo "returning back to $SLURM_SUBMIT_DIR"
+echo -e "\n returning back to $SLURM_SUBMIT_DIR"
 cd $SLURM_SUBMIT_DIR
-
+pwd
 ls -lt
 
 exit

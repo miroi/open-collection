@@ -62,6 +62,7 @@ echo
 #which mpiifort; which mpiicc; which mpiicpc; which mpirun
 #mpiifort -v; mpiicc -v; mpirun --version
 
+module purge
 module load openmpi/intel/4.0.3_intel19.0
 
 echo -e "\n\n loaded modules:"
@@ -93,11 +94,15 @@ ldd $ELKBIN
 
 
 # for running jobs from your homedir
-cd $SLURM_SUBMIT_DIR
 
+cd $ELK/tests
 echo "hello, running $ELK/tests/test-mpi.sh ..."
 
 $ELK/tests/test-mpi.sh
 
+echo "returning back to $SLURM_SUBMIT_DIR"
+cd $SLURM_SUBMIT_DIR
+
+ls -lt
 
 exit

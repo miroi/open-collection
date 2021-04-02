@@ -103,3 +103,32 @@ Scanning dependencies of target qe_epw_exe
 [100%] Linking Fortran executable ../bin/epw.x
 [100%] Built target qe_epw_exe
 
+
+milias@194.160.44.72:~/work/software/theoretical_chemistry/quantum-epresso/q-e/build/.ctest -j4
+Test project /home/milias/work/software/theoretical_chemistry/quantum-epresso/q-e/build
+        Start 239: test-suite_pseudo_cp
+        Start   1: test_qe_fftx
+        Start   2: test_qe_utilx_mp_count_nodes
+        Start   3: test_qe_utilx_mp_bcast_i1
+  1/444 Test   #3: test_qe_utilx_mp_bcast_i1 .........................................   Passed    0.33 sec
+        Start   4: test_qe_utilx_mp_bcast_iv
+  2/444 Test   #2: test_qe_utilx_mp_count_nodes ......................................   Passed    0.34 sec
+        Start   5: test_qe_utilx_mp_bcast_im
+  3/444 Test   #4: test_qe_utilx_mp_bcast_iv .........................................   Passed    0.27 sec
+        Start   6: test_qe_utilx_mp_bcast_it
+  4/444 Test   #5: test_qe_utilx_mp_bcast_im .........................................   Passed    0.27 sec
+        Start   7: test_qe_utilx_mp_bcast_iv_buffer
+  5/444 Test   #1: test_qe_fftx ......................................................   Passed    0.68 sec
+        Start   8: test_qe_utilx_mp_bcast_lv_buffer
+  6/444 Test   #6: test_qe_utilx_mp_bcast_it .........................................   Passed    0.32 sec
+        Start   9: test_qe_utilx_mp_bcast_rv_buffer
+  7/444 Test   #7: test_qe_utilx_mp_bcast_iv_buffer ..................................   Passed    0.32 sec
+        Start  10: test_qe_utilx_mp_max_iv_buffer
+  8/444 Test   #8: test_qe_utilx_mp_bcast_lv_buffer ..................................   Passed    0.32 sec
+        Start  11: test_qe_utilx_mp_max_rv_buffer
+  9/444 Test #239: test-suite_pseudo_cp ..............................................   Passed    1.04 sec
+        Start  17: test-suite_pseudo_pw
+ 10/444 Test   #9: test_qe_utilx_mp_bcast_rv_buffer ..................................   Passed    0.35
+.
+.
+.

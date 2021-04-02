@@ -132,3 +132,5 @@ Test project /home/milias/work/software/theoretical_chemistry/quantum-epresso/q-
 .
 .
 .
+59% tests passed, 183 tests failed out of 444
+

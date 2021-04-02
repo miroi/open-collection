@@ -16,8 +16,8 @@ Find all package files
 ----------------------
 
 sudo apt-file update
-sudo apt-file list quantum-espresso 
-sudo apt-file list quantum-espresso-data
+sudo apt-file list quantum-espresso  > quantum-espresso.ubuntu_files
+sudo apt-file list quantum-espresso-data  >>  quantum-espresso.ubuntu_files
 
 see
 quantum-espresso: /usr/bin/*.x

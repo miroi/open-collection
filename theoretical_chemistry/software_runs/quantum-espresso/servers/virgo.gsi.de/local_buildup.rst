@@ -92,5 +92,18 @@ milias@lxbk0595.gsi.de:/lustre/ukt/milias/work/software/quantum-espresso/q-e/bui
 milias@lxbk0595.gsi.de:/lustre/ukt/milias/work/software/quantum-espresso/q-e/build_gnu8_openmpi3/.np
 Number of processors:128
 milias@lxbk0595.gsi.de:/lustre/ukt/milias/work/software/quantum-espresso/q-e/build_gnu8_openmpi3/.m -j16
+.
+.
+[ 98%] Building Fortran object EPW/CMakeFiles/qe_epw.dir/src/eliashberg.f90.o
+[ 98%] Linking Fortran static library ../lib/libqe_epw.a
+[ 98%] Built target qe_epw
+Scanning dependencies of target qe_epw_exe
+[ 98%] Building Fortran object EPW/CMakeFiles/qe_epw_exe.dir/src/epw.f90.o
+[ 98%] Linking Fortran executable ../bin/epw.x
+[ 98%] Built target qe_epw_exe
+[100%] Linking Fortran executable ../bin/fd_ifc.x
+[100%] Built target qe_phonon_fdifc_exe
+milias@lxbk0595.gsi.de:/lustre/ukt/milias/work/software/quantum-espresso/q-e/build_gnu8_openmpi3/.
+
 
 

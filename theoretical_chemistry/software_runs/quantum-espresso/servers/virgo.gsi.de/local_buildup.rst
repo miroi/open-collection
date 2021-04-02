@@ -13,7 +13,7 @@ milias@lxbk0595.gsi.de:/lustre/ukt/milias/work/software/quantum-espresso/q-e/bui
 Currently Loaded Modules:
   1) compiler/intel/19.0   2) openmpi/intel/4.0.3_intel19.0   3) cmake/3.15.4
 
-milias@lxbk0595.gsi.de:/lustre/ukt/milias/work/software/quantum-espresso/q-e/build_gnu8_openmpi3/.cmake ..
+milias@lxbk0595.gsi.de:/lustre/ukt/milias/work/software/quantum-espresso/q-e/build_intel_openmpi/.cmake ..
 -- The Fortran compiler identification is Intel 19.0.4.20190416
 -- The C compiler identification is GNU 4.8.5
 -- Check for working Fortran compiler: /cvmfs/it.gsi.de/compiler/intel/19.0/compilers_and_libraries_2019.4.243/linux/bin/intel64/ifort
@@ -87,13 +87,13 @@ Submodule path 'external/devxlib': checked out '00c140557725bdd9b155566924c01cfe
 -- generating tests in hp category
 -- Configuring done
 -- Generating done
--- Build files have been written to: /lustre/ukt/milias/work/software/quantum-espresso/q-e/build_gnu8_openmpi3
-milias@lxbk0595.gsi.de:/lustre/ukt/milias/work/software/quantum-espresso/q-e/build_gnu8_openmpi3/.
-milias@lxbk0595.gsi.de:/lustre/ukt/milias/work/software/quantum-espresso/q-e/build_gnu8_openmpi3/.np
-Number of processors:128
-milias@lxbk0595.gsi.de:/lustre/ukt/milias/work/software/quantum-espresso/q-e/build_gnu8_openmpi3/.m -j16
+
+milias@lxbk0595.gsi.de:/lustre/ukt/milias/work/software/quantum-espresso/q-e/build_intel_openmpi/.m -j24
 .
 .
+[ 98%] Building Fortran object EPW/CMakeFiles/qe_epw.dir/src/supercond_iso.f90.o
+[ 98%] Building Fortran object EPW/CMakeFiles/qe_epw.dir/src/ephwann_shuffle.f90.o
+[ 98%] Building Fortran object EPW/CMakeFiles/qe_epw.dir/src/ephwann_shuffle_mem.f90.o
 [ 98%] Building Fortran object EPW/CMakeFiles/qe_epw.dir/src/eliashberg.f90.o
 [ 98%] Linking Fortran static library ../lib/libqe_epw.a
 [ 98%] Built target qe_epw
@@ -103,7 +103,5 @@ Scanning dependencies of target qe_epw_exe
 [ 98%] Built target qe_epw_exe
 [100%] Linking Fortran executable ../bin/fd_ifc.x
 [100%] Built target qe_phonon_fdifc_exe
-milias@lxbk0595.gsi.de:/lustre/ukt/milias/work/software/quantum-espresso/q-e/build_gnu8_openmpi3/.
-
 
 

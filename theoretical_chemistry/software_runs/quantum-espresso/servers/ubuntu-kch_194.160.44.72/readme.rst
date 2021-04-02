@@ -19,8 +19,13 @@ sudo apt-file update
 sudo apt-file list quantum-espresso  > quantum-espresso.ubuntu_files
 sudo apt-file list quantum-espresso-data  >>  quantum-espresso.ubuntu_files
 
-see
+ see
 quantum-espresso: /usr/bin/*.x
 quantum-espresso-data: /usr/share/doc/quantum-espresso
 quantum-espresso-data: /usr/share/espresso/
+
+
+Environment variables
+---------------------
+sudo cp environment_variables /usr/share/doc/quantum-espresso/.
 

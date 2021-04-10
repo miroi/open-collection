@@ -1,0 +1,57 @@
+**DIRAC
+.TITLE
+  Ne atom
+.WAVE F ! Activate integral and wave functions module
+.PROPERTIES
+#.ANALYZE
+**GENERAL
+.DIRECT
+1 1 1
+.PCMOUT
+# employ Jacobi diagonalization
+#.DOJACO
+#.QJACO
+**INTEGRALS
+.PRINT
+5
+.NUCMOD ! 1-Point nucleus, 2-gaussian
+2
+*READIN
+.UNCONTRACTED
+**HAMILTONIAN
+.PRINT
+0
+.INTFLG
+1 1 0
+**INTEGRALS
+.PRINT
+3
+*READIN
+.UNCONTRACTED
+**WAVE FUNCTIONS ! What method (DHF,MP2,CC..)
+.SCF
+*SCF
+# Ne atom (10 el)
+.CLOSED SHELL
+4 6 
+.EVCCNV ! Energy convergence...
+1.0D-9  1.0D-7
+# read starting MOs
+#.MAXITR
+#2
+#################################################
+**PROPERTIES
+.RHONUC
+.PRINT
+3
+*EXPECTATION
+.ORBANA
+.PRINT
+3
+**ANALYZE
+.MULPOP
+*MULPOP
+.VECPOP
+all   
+all   
+*END OF

@@ -1,0 +1,67 @@
+**DIRAC
+.TITLE
+  Ne atom
+.WAVE F ! Activate integral and wave functions module
+#.ANALYZE
+.4INDEX
+**GENERAL
+.DIRECT
+1 1 1
+.PCMOUT
+# employ Jacobi diagonalization
+#.DOJACO
+.QJACO
+**INTEGRALS
+.PRINT
+0
+.NUCMOD ! 1-Point nucleus, 2-gaussian
+2
+*READIN
+.UNCONTRACTED
+**HAMILTONIAN
+.PRINT
+0
+.INTFLG
+1 1 0
+**INTEGRALS
+*READIN
+.UNCONTRACTED
+**WAVE FUNCTIONS ! What method (DHF,MP2,CC..)
+.SCF
+*SCF
+# Ne atom (10 el)
+.CLOSED SHELL
+4 6 
+.EVCCNV ! Energy convergence...
+1.0D-9  1.0D-7
+# read starting MOs
+#.MAXITR
+#2
+#################################################
+**ANALYZE
+.MULPOP
+*MULPOP
+.VECPOP
+all   
+all   
+**MOLTRA
+.NO2IND
+.NO4IND
+.NOMDCI
+# all occupied shells
+.ACTIVE
+1..2
+1..3
+.PRPTRA
+*PRPTRA
+# we need this print level to get all MO mtx elements printed
+.PRINT
+3
+# my operator  ...
+.OPERATOR
+ 'myoper' 
+ DIAGONAL
+ 'FC Rn 01'
+ COMFACTOR
+ 1.00D0
+*END OF

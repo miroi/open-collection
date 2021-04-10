@@ -1,0 +1,82 @@
+#!/bin/sh
+
+"$AMSBIN/ams" << eor
+
+Task GeometryOptimization
+Properties
+    NormalModes Yes
+End
+GeometryOptimization
+    Convergence
+        Step 0.001
+    End
+End
+PESPointCharacter
+    Tolerance 0.02
+End
+System
+    Atoms
+        C 0.6557059659468337 0.009275475053312655 -2.810386902414648e-17 adf.R=1.700
+        N -0.8208284025454096 0.01667055664047818 -2.810386902414648e-17 adf.R=1.608
+        O -1.390125993135104 0.005156487116529412 1.072163589555178 adf.R=1.517
+        O -1.390125993135104 0.005156487116529412 -1.072163589555178 adf.R=1.517
+        H 0.9961122070703826 0.5007444277568995 0.9038931202141925 adf.R=1.350
+        H 0.9961122070703826 0.5007444277568995 -0.9038931202141925 adf.R=1.350
+        H 0.9531500087280167 -1.03774785144065 -2.810386902414648e-17 adf.R=1.350
+    End
+    BondOrders
+         1 2 1.0
+         1 5 1.0
+         1 6 1.0
+         1 7 1.0
+         2 3 1.0
+         2 4 1.0
+    End
+End
+
+Engine ADF
+    Basis
+        Type TZ2P
+        Core None
+    End
+    Save TAPE10
+    XC
+        Hybrid PBE0
+    End
+    Relativity
+        Level None
+    End
+    Solvation
+        Surf Delley
+        Solv name=Water cav0=0.0 cav1=0.0067639
+        Charged method=CONJ
+        C-Mat POT
+        SCF VAR ALL 
+        CSMRSP
+    End
+    NumericalQuality Good
+EndEngine
+eor
+
+# =======
+# NMR NMR
+# =======
+
+cp "${AMS_RESULTSDIR-${AMS_JOBNAME-ams}.results}/adf.rkf" TAPE21
+cp "${AMS_RESULTSDIR-${AMS_JOBNAME-ams}.results}/TAPE10" TAPE10
+
+"$AMSBIN/nmr" << eor
+NMR
+    out    iso    tens
+    adfgui
+    Atoms 2 
+    u1k best
+    calc all
+End
+
+eor
+
+mv TAPE21 "${AMS_RESULTSDIR-${AMS_JOBNAME-ams}.results}/adf.rkf"
+rm -f TAPE10 TAPE15
+
+

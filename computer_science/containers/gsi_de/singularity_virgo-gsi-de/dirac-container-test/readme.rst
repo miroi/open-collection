@@ -2,6 +2,7 @@ Singularity on Virgo.gsi.de cluster
 ===================================
 
 https://github.com/dev-cafe/docker-images
+-----------------------------------------
 
 milias@lxbk0595.gsi.de:/lustre/ukt/milias/work/projects/open-collection/computer_science/containers/gsi_de/singularity_virgo-gsi-de/dirac-container-test/
 
@@ -37,7 +38,15 @@ singularity exec $SINGULARITY_CONTAINERS/bast-openmpi-i8:4.0.4-gcc-9.3.0.sif omp
 singularity exec $SINGULARITY_CONTAINERS/bast-openmpi-i8:4.0.4-gcc-9.3.0.sif cmake --version
 cmake version 3.16.3
 
+singularity exec $SINGULARITY_CONTAINERS/bast-openmpi-i8:4.0.4-gcc-9.3.0.sif gfortran --version
+GNU Fortran (Ubuntu 9.3.0-10ubuntu2) 9.3.0
+
+singularity exec $SINGULARITY_CONTAINERS/bast-openmpi-i8:4.0.4-gcc-9.3.0.sif g++  --version
+g++ (Ubuntu 9.3.0-10ubuntu2) 9.3.0
+
+singularity exec $SINGULARITY_CONTAINERS/bast-openmpi-i8:4.0.4-gcc-9.3.0.sif git --version
+git version 2.25.1
 
 
-
+singularity exec $SINGULARITY_CONTAINERS/bast-openmpi-i8:4.0.4-gcc-9.3.0.sif git clone git@gitlab.com:dirac/dirac.git
 

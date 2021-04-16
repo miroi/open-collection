@@ -109,7 +109,8 @@ echo -e "For control pwd=\c";pwd
 echo -e "The local home directory with NWChem input file, SLURM_SUBMIT_DIR=${SLURM_SUBMIT_DIR}"
 
 # copy starting geometry to the workdir
-cp ${SLURM_SUBMIT_DIR}/VX.converged_geometry_blyp_tz2p-solvent-chcl3.xyz   $TMPDIR/.
+#cp ${SLURM_SUBMIT_DIR}/VX.converged_geometry_blyp_tz2p-solvent-chcl3.xyz   $TMPDIR/.
+cp ${SLURM_SUBMIT_DIR}/VX.geom.xyz   $TMPDIR/.
 project=VX.nmrshield_b3lyp_ccpvtz_cosmo-h2o
 echo -e "\n Launching NWChem run of project=$project"
 mpirun -np  $SLURM_CPUS_ON_NODE $NWCHEM_EXECUTABLE  ${SLURM_SUBMIT_DIR}/$project.nw  > ${SLURM_SUBMIT_DIR}/$project.${SLURM_JOBID}.out

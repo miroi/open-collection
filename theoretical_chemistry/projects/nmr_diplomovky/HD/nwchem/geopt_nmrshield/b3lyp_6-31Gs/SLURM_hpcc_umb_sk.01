@@ -94,9 +94,6 @@ echo -e "MKL_DYNAMIC=$MKL_DYNAMIC"
 echo -e "OMP_NUM_THREADS=$OMP_NUM_THREADS"
 echo -e "OMP_DYNAMIC=$OMP_DYNAMIC"
 
-#DALTON=/home/milias/Work/qch/software/dalton_suite/dalton_master
-#DIRAC=/home/milias/Work/qch/software/dirac/dirac_production
-#BUILD=build_openmpi_intel14_mkl_i8
 export NWCHEM_EXECUTABLE=/home/milias/Work/qch/software/nwchem_suite/nwchem_master/bin/LINUX64/nwchem
 #export NWCHEM_EXECUTABLE=/home/milias/Work/qch/software/nwchem_suite/nwchem-7.0.2/bin/LINUX64/nwchem
 echo -e "\nNWCHEM executable linked libraries, ldd $NWCHEM_EXECUTABLE"
@@ -106,10 +103,8 @@ echo -e "\npython -V \c"; python -V
 echo -e "mpif90 ? \c"; which mpif90; mpif90 --version
 echo -e "mpicc ? \c"; which mpicc; mpicc --version
 echo -e "mpirun ? \c"; which mpirun; mpirun --version
-#echo -e "ctest ? \c";which ctest;ctest --version
 
 ### set local scratch directory for run
-#export TMPDIR=/mnt/local/$USER/$PBS_JOBID
 export TMPDIR=/mnt/local/$USER/SLURMjob-${SLURM_JOBID}
 echo -e "\n Noide's local scratch directory, TMPDIR=$TMPDIR";
 echo -e "Size of this local scratch dir, df -h /mnt/local/$USER/:";df -h /mnt/local/$USER
@@ -120,24 +115,22 @@ echo -e "\nI am in TMPDIR=$TMPDIR"
 echo -e "For control pwd=\c";pwd
 echo -e "The local home directory with NWChem input file, PBS_O_WORKDIR=$PBS_O_WORKDIR"
 
-#mpirun -np $NPROCS_PBS  $NWCHEM_EXECUTABLE  $PBS_O_WORKDIR/HD.b3lyp_3-21G_geopt_shield.nw  > $PBS_O_WORKDIR/HD.b3lyp_3-21G_geopt_shield.out
-
-#cp $PBS_O_WORKDIR/HD_geom_6-31Gs-017_final.xyz   $TMPDIR/.
+# copy starting geometry to the workdir
 cp ${SLURM_SUBMIT_DIR}/HD_geom_6-31Gs-017_final.xyz   $TMPDIR/.
 project=HD.geopt_freq_nmrshield_b3lyp_6-31Gs
 mpirun -np  $SLURM_CPUS_ON_NODE $NWCHEM_EXECUTABLE  ${SLURM_SUBMIT_DIR}/$project.nw  > ${SLURM_SUBMIT_DIR}/$project.${SLURM_JOBID}.out
 # save conveged geometry 
 cp $TMPDIR/HD_geom*   ${SLURM_JOBID}/.
 
-echo -e "\n Working files in scratch dir $TMPDIR:"
+echo -e "\n Working files remained in scratch dir $TMPDIR:"
 ls -lt $TMPDIR 
 du -h -s $TMPDIR
 cd .. ; echo -e "just for control -  pwd=\c";pwd
 echo -e "\nDeleting scratch directory $TMPDIR: "; /bin/rm -r $TMPDIR
 echo -e "\n Afterwards, content of ls -lt /mnt/local/$USER :"; ls -lt /mnt/local/$USER
 
-echo -e "\n returning to  ${SLURM_SUBMIT_DIR}"
-echo -e "Time of nishing job is `date` \n"
+echo -e "Time of fishing job is `date` \n"
+echo -e "\n returning to ${SLURM_SUBMIT_DIR}"
 cd ${SLURM_SUBMIT_DIR}
 ls -lt
 

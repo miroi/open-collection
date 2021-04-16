@@ -1,5 +1,4 @@
 VX in AMS geometry
 ==================
 
-VX.geopt_freq_blyp_tz2p-solvent-h2o.ams
-
+sbatch SLURM_hpcc_umb_sk.01

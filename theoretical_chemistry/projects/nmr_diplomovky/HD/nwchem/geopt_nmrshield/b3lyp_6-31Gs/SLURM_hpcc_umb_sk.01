@@ -69,7 +69,7 @@ echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
 NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
 echo "This node has total $NPROCS CPUs available for an EXCLUSIVE job on this node."
 echo "This node has $SLURM_CPUS_ON_NODE CPUs allocated for this SLURM job."
-echo -e "\n The job requests $SBATCH_MEM_PER_NODE memory."
+echo -e "\n The job requests SLURM_MEM_PER_NODE=$SLURM_MEM_PER_NODE memory."
 
 echo -e "\n The total memory at the node (in GB)"
 free -t -g

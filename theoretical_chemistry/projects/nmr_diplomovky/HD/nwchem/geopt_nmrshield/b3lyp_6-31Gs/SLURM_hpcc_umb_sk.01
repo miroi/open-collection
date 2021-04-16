@@ -6,7 +6,7 @@
 # number of nodes
 #SBATCH -N 1
 # number of  CPUs
-#SBATCH -n 12
+#SBATCH -n 8
 
 # partition
 #SBATCH -p compute
@@ -99,7 +99,7 @@ echo -e "OMP_DYNAMIC=$OMP_DYNAMIC"
 #BUILD=build_openmpi_intel14_mkl_i8
 export NWCHEM_EXECUTABLE=/home/milias/Work/qch/software/nwchem_suite/nwchem_master/bin/LINUX64/nwchem
 #export NWCHEM_EXECUTABLE=/home/milias/Work/qch/software/nwchem_suite/nwchem-7.0.2/bin/LINUX64/nwchem
-echo -e "\nDIRAC executable linked libraries, ldd $NWCHEM_EXECUTABLE"
+echo -e "\nNWCHEM executable linked libraries, ldd $NWCHEM_EXECUTABLE"
 ldd $NWCHEM_EXECUTABLE
 
 echo -e "\npython -V \c"; python -V
@@ -111,8 +111,8 @@ echo -e "mpirun ? \c"; which mpirun; mpirun --version
 ### set local scratch directory for run
 #export TMPDIR=/mnt/local/$USER/$PBS_JOBID
 export TMPDIR=/mnt/local/$USER/SLURMjob-${SLURM_JOBID}
-echo -e "\n Local scratch directory, TMPDIR=$TMPDIR";
-echo -e "Size of local scratch dir, df -h /mnt/local/$USER/:";df -h /mnt/local/$USER
+echo -e "\n Noide's local scratch directory, TMPDIR=$TMPDIR";
+echo -e "Size of this local scratch dir, df -h /mnt/local/$USER/:";df -h /mnt/local/$USER
 
 mkdir $TMPDIR
 cd $TMPDIR
@@ -125,7 +125,7 @@ echo -e "The local home directory with NWChem input file, PBS_O_WORKDIR=$PBS_O_W
 #cp $PBS_O_WORKDIR/HD_geom_6-31Gs-017_final.xyz   $TMPDIR/.
 cp ${SLURM_SUBMIT_DIR}/HD_geom_6-31Gs-017_final.xyz   $TMPDIR/.
 project=HD.geopt_freq_nmrshield_b3lyp_6-31Gs
-mpirun -np $NPROCS_SLURM  $NWCHEM_EXECUTABLE  ${SLURM_SUBMIT_DIR}/$project.nw  > ${SLURM_SUBMIT_DIR}/$project.${SLURM_JOBID}.out
+mpirun -np  $SLURM_CPUS_ON_NODE $NWCHEM_EXECUTABLE  ${SLURM_SUBMIT_DIR}/$project.nw  > ${SLURM_SUBMIT_DIR}/$project.${SLURM_JOBID}.out
 # save conveged geometry 
 cp $TMPDIR/HD_geom*   ${SLURM_JOBID}/.
 

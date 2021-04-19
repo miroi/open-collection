@@ -1,0 +1,41 @@
+echo
+
+start molecule
+
+memory total 40 gb
+
+print low
+
+title "VX"
+charge 0
+
+geometry units angstroms print xyz autosym
+#  load format xyz VX.converged_geometry_b3lyp_tz2p-solvent-h2o.xyz
+  load format xyz VX.geom.xyz
+end
+
+basis
+  * library cc-pvtz
+end
+
+dft
+  direct
+  grid fine
+  xc b3lyp
+  mult 1
+# Reduce output during geometry optimization
+  #noprint "final vectors analysis"
+end
+
+property
+  giao
+  shielding
+end
+
+cosmo
+  solvent h2o
+end
+
+task dft energy
+task dft property
+

@@ -1,0 +1,1408 @@
+ argument  1 = /home/milias/Work/open-collection/theoretical_chemistry/projects/nmr_diplomovky/reference_compounds/tetramethylsilane/nwchem/cosmo-chcl3/adf_geometry/TMS.nmrshield_b3lyp_6-311++g2d_2p_cosmo-chcl3.nw
+ 
+
+
+============================== echo of input deck ==============================
+echo
+
+start molecule
+
+memory total 40 gb
+print low
+
+title "TMS"
+charge 0
+
+geometry units angstroms print xyz autosym
+  #load format xyz TMS.start_geom.xyz
+  load format xyz TMS.converged_geometry_pbe0_tz2p_good_cosmo-chcl3.xyz
+end
+
+basis
+  * library 6-311++G(2d,2p)
+end
+
+dft
+  grid huge
+  xc b3lyp
+  mult 1
+  noprint "final vectors analysis"
+end
+
+driver
+  clear
+  tight
+  linopt 0
+  maxiter 999
+  xyz TMS_geom
+end
+
+property
+  giao
+  shielding
+end
+
+cosmo
+  solvent chcl3
+end
+
+task dft energy
+#task dft freq
+task dft property
+
+================================================================================
+
+
+                                         
+                                         
+ 
+ 
+             Northwest Computational Chemistry Package (NWChem) 7.0.1
+             --------------------------------------------------------
+ 
+ 
+                    Environmental Molecular Sciences Laboratory
+                       Pacific Northwest National Laboratory
+                                Richland, WA 99352
+ 
+                              Copyright (c) 1994-2020
+                       Pacific Northwest National Laboratory
+                            Battelle Memorial Institute
+ 
+             NWChem is an open-source computational chemistry package
+                        distributed under the terms of the
+                      Educational Community License (ECL) 2.0
+             A copy of the license is included with this distribution
+                              in the LICENSE.TXT file
+ 
+                                  ACKNOWLEDGMENT
+                                  --------------
+
+            This software and its documentation were developed at the
+            EMSL at Pacific Northwest National Laboratory, a multiprogram
+            national laboratory, operated for the U.S. Department of Energy
+            by Battelle under Contract Number DE-AC05-76RL01830. Support
+            for this work was provided by the Department of Energy Office
+            of Biological and Environmental Research, Office of Basic
+            Energy Sciences, and the Office of Advanced Scientific Computing.
+
+
+           Job information
+           ---------------
+
+    hostname        = comp30
+    program         = /home/milias/Work/qch/software/nwchem_suite/nwchem_master/bin/LINUX64/nwchem
+    date            = Sun Mar  7 23:23:10 2021
+
+    compiled        = Sun_Jan_31_23:21:07_2021
+    source          = /home/milias/Work/qch/software/nwchem_suite/nwchem_master
+    nwchem branch   = 7.0.0
+    nwchem revision = nwchem_on_git-2308-gc943026
+    ga revision     = 5.8.0
+    use scalapack   = F
+    input           = /home/milias/Work/open-collection/theoretical_chemistry/projects/nmr_diplomovky/reference_compounds/tetramethylsilane/nwchem/cosmo-chcl3/adf_geometry/TMS.nmrshield_b3lyp_6-311++g2d_2p_cosmo-chcl3.nw
+    prefix          = molecule.
+    data base       = ./molecule.db
+    status          = startup
+    nproc           =       12
+    time left       =     -1s
+
+
+
+           Memory information
+           ------------------
+
+    heap     = 1342177280 doubles =  10240.0 Mbytes
+    stack    = 1342177277 doubles =  10240.0 Mbytes
+    global   = 2684354560 doubles =  20480.0 Mbytes (distinct from heap & stack)
+    total    = 5368709117 doubles =  40960.0 Mbytes
+    verify   = yes
+    hardfail = no 
+
+
+           Directory information
+           ---------------------
+ 
+  0 permanent = .
+  0 scratch   = .
+ 
+ 
+ 
+ 
+                                NWChem Input Module
+                                -------------------
+ 
+ 
+                                        TMS
+                                        ---
+
+ Scaling coordinates for geometry "geometry" by  1.889725989
+ (inverse scale =  0.529177249)
+
+
+          ------
+          auto-z
+          ------
+  no constraints, skipping   0.000000000000000E+000
+  no constraints, skipping   0.000000000000000E+000
+ 
+ 
+                             Geometry "geometry" -> ""
+                             -------------------------
+ 
+ Output coordinates in angstroms (scale by  1.889725989 to convert to a.u.)
+ 
+  No.       Tag          Charge          X              Y              Z
+ ---- ---------------- ---------- -------------- -------------- --------------
+    1 Si                  14.0000    -0.00018405    -0.00004196     0.00020904
+    2 C                    6.0000     0.11828349     1.64109233     0.90161019
+    3 C                    6.0000     0.90247353    -1.31984520     0.98155613
+    4 C                    6.0000     0.78287960     0.16150700    -1.69699127
+    5 C                    6.0000    -1.80346947    -0.48271440    -0.18635201
+    6 H                    1.0000    -0.40053873     2.42891061     0.34979805
+    7 H                    1.0000    -0.33093894     1.57516358     1.89567263
+    8 H                    1.0000     1.16053297     1.94644076     1.02327464
+    9 H                    1.0000     1.95751620    -1.06286779     1.10479159
+   10 H                    1.0000     0.46601465    -1.43490947     1.97683180
+   11 H                    1.0000     0.84897051    -2.28778841     0.47700838
+   12 H                    1.0000     0.72762591    -0.78235032    -2.24509052
+   13 H                    1.0000     0.27533715     0.92547220    -2.29119449
+   14 H                    1.0000     1.83594885     0.44258330    -1.61696040
+   15 H                    1.0000    -1.90093313    -1.43704111    -0.70989082
+   16 H                    1.0000    -2.28459596    -0.58401306     0.78965414
+   17 H                    1.0000    -2.35336561     0.27074881    -0.75575985
+ 
+      Atomic Mass 
+      ----------- 
+ 
+      Si                27.976930
+      C                 12.000000
+      H                  1.007825
+ 
+
+ Effective nuclear repulsion energy (a.u.)     246.4636601942
+
+            Nuclear Dipole moment (a.u.) 
+            ----------------------------
+        X                 Y               Z
+ ---------------- ---------------- ----------------
+    -0.0000000000    -0.0000000000    -0.0000000000
+ 
+
+
+                                Z-matrix (autoz)
+                                -------- 
+
+ Units are Angstrom for bonds and degrees for angles
+ 
+      Type          Name      I     J     K     L     M      Value
+      ----------- --------  ----- ----- ----- ----- ----- ----------
+    1 Stretch                  1     2                       1.87613
+    2 Stretch                  1     3                       1.87609
+    3 Stretch                  1     4                       1.87611
+    4 Stretch                  1     5                       1.87606
+    5 Stretch                  2     6                       1.09285
+    6 Stretch                  2     7                       1.09284
+    7 Stretch                  2     8                       1.09285
+    8 Stretch                  3     9                       1.09286
+    9 Stretch                  3    10                       1.09284
+   10 Stretch                  3    11                       1.09286
+   11 Stretch                  4    12                       1.09286
+   12 Stretch                  4    13                       1.09285
+   13 Stretch                  4    14                       1.09287
+   14 Stretch                  5    15                       1.09285
+   15 Stretch                  5    16                       1.09286
+   16 Stretch                  5    17                       1.09285
+   17 Bend                     1     2     6               110.97818
+   18 Bend                     1     2     7               110.99590
+   19 Bend                     1     2     8               110.98457
+   20 Bend                     1     3     9               110.98077
+   21 Bend                     1     3    10               110.99543
+   22 Bend                     1     3    11               110.97903
+   23 Bend                     1     4    12               110.99166
+   24 Bend                     1     4    13               110.99100
+   25 Bend                     1     4    14               110.98274
+   26 Bend                     1     5    15               110.97918
+   27 Bend                     1     5    16               110.99007
+   28 Bend                     1     5    17               110.98288
+   29 Bend                     2     1     3               109.49169
+   30 Bend                     2     1     4               109.44862
+   31 Bend                     2     1     5               109.48293
+   32 Bend                     3     1     4               109.44824
+   33 Bend                     3     1     5               109.48117
+   34 Bend                     4     1     5               109.47466
+   35 Bend                     6     2     7               107.91649
+   36 Bend                     6     2     8               107.91183
+   37 Bend                     7     2     8               107.91564
+   38 Bend                     9     3    10               107.91587
+   39 Bend                     9     3    11               107.91395
+   40 Bend                    10     3    11               107.91775
+   41 Bend                    12     4    13               107.91332
+   42 Bend                    12     4    14               107.91290
+   43 Bend                    13     4    14               107.91062
+   44 Bend                    15     5    16               107.91648
+   45 Bend                    15     5    17               107.91333
+   46 Bend                    16     5    17               107.92103
+   47 Torsion                  2     1     3     9         -59.98466
+   48 Torsion                  2     1     3    10          60.01937
+   49 Torsion                  2     1     3    11        -179.97538
+   50 Torsion                  2     1     4    12         179.99703
+   51 Torsion                  2     1     4    13         -59.99785
+   52 Torsion                  2     1     4    14          59.99793
+   53 Torsion                  2     1     5    15         179.96860
+   54 Torsion                  2     1     5    16         -60.03121
+   55 Torsion                  2     1     5    17          59.97716
+   56 Torsion                  3     1     2     6         179.99419
+   57 Torsion                  3     1     2     7         -60.00239
+   58 Torsion                  3     1     2     8          60.00419
+   59 Torsion                  3     1     4    12          59.99986
+   60 Torsion                  3     1     4    13        -179.99503
+   61 Torsion                  3     1     4    14         -59.99925
+   62 Torsion                  3     1     5    15         -59.99305
+   63 Torsion                  3     1     5    16          60.00714
+   64 Torsion                  3     1     5    17        -179.98449
+   65 Torsion                  4     1     2     6          60.02364
+   66 Torsion                  4     1     2     7        -179.97294
+   67 Torsion                  4     1     2     8         -59.96636
+   68 Torsion                  4     1     3     9          59.98612
+   69 Torsion                  4     1     3    10         179.99016
+   70 Torsion                  4     1     3    11         -60.00459
+   71 Torsion                  4     1     5    15          59.98700
+   72 Torsion                  4     1     5    16         179.98719
+   73 Torsion                  4     1     5    17         -60.00444
+   74 Torsion                  5     1     2     6         -59.97390
+   75 Torsion                  5     1     2     7          60.02952
+   76 Torsion                  5     1     2     8        -179.96390
+   77 Torsion                  5     1     3     9         179.98235
+   78 Torsion                  5     1     3    10         -60.01362
+   79 Torsion                  5     1     3    11          59.99163
+   80 Torsion                  5     1     4    12         -60.00036
+   81 Torsion                  5     1     4    13          60.00475
+   82 Torsion                  5     1     4    14        -179.99946
+ 
+ 
+            XYZ format geometry
+            -------------------
+    17
+ geometry
+ Si                   -0.00018405    -0.00004196     0.00020904
+ C                     0.11828349     1.64109233     0.90161019
+ C                     0.90247353    -1.31984520     0.98155613
+ C                     0.78287960     0.16150700    -1.69699127
+ C                    -1.80346947    -0.48271440    -0.18635201
+ H                    -0.40053873     2.42891061     0.34979805
+ H                    -0.33093894     1.57516358     1.89567263
+ H                     1.16053297     1.94644076     1.02327464
+ H                     1.95751620    -1.06286779     1.10479159
+ H                     0.46601465    -1.43490947     1.97683180
+ H                     0.84897051    -2.28778841     0.47700838
+ H                     0.72762591    -0.78235032    -2.24509052
+ H                     0.27533715     0.92547220    -2.29119449
+ H                     1.83594885     0.44258330    -1.61696040
+ H                    -1.90093313    -1.43704111    -0.70989082
+ H                    -2.28459596    -0.58401306     0.78965414
+ H                    -2.35336561     0.27074881    -0.75575985
+ 
+ ==============================================================================
+                                internuclear distances
+ ------------------------------------------------------------------------------
+       center one      |      center two      | atomic units |  angstroms
+ ------------------------------------------------------------------------------
+    2 C                |   1 Si               |     3.54538  |     1.87613
+    3 C                |   1 Si               |     3.54530  |     1.87609
+    4 C                |   1 Si               |     3.54533  |     1.87611
+    5 C                |   1 Si               |     3.54525  |     1.87606
+    6 H                |   2 C                |     2.06520  |     1.09285
+    7 H                |   2 C                |     2.06518  |     1.09284
+    8 H                |   2 C                |     2.06519  |     1.09285
+    9 H                |   3 C                |     2.06520  |     1.09286
+   10 H                |   3 C                |     2.06518  |     1.09284
+   11 H                |   3 C                |     2.06521  |     1.09286
+   12 H                |   4 C                |     2.06520  |     1.09286
+   13 H                |   4 C                |     2.06519  |     1.09285
+   14 H                |   4 C                |     2.06522  |     1.09287
+   15 H                |   5 C                |     2.06520  |     1.09285
+   16 H                |   5 C                |     2.06520  |     1.09286
+   17 H                |   5 C                |     2.06518  |     1.09285
+ ------------------------------------------------------------------------------
+                         number of included internuclear distances:         16
+ ==============================================================================
+
+
+
+ ==============================================================================
+                                 internuclear angles
+ ------------------------------------------------------------------------------
+        center 1       |       center 2       |       center 3       |  degrees
+ ------------------------------------------------------------------------------
+    2 C                |   1 Si               |   3 C                |   109.49
+    2 C                |   1 Si               |   4 C                |   109.45
+    2 C                |   1 Si               |   5 C                |   109.48
+    3 C                |   1 Si               |   4 C                |   109.45
+    3 C                |   1 Si               |   5 C                |   109.48
+    4 C                |   1 Si               |   5 C                |   109.47
+    1 Si               |   2 C                |   6 H                |   110.98
+    1 Si               |   2 C                |   7 H                |   111.00
+    1 Si               |   2 C                |   8 H                |   110.98
+    6 H                |   2 C                |   7 H                |   107.92
+    6 H                |   2 C                |   8 H                |   107.91
+    7 H                |   2 C                |   8 H                |   107.92
+    1 Si               |   3 C                |   9 H                |   110.98
+    1 Si               |   3 C                |  10 H                |   111.00
+    1 Si               |   3 C                |  11 H                |   110.98
+    9 H                |   3 C                |  10 H                |   107.92
+    9 H                |   3 C                |  11 H                |   107.91
+   10 H                |   3 C                |  11 H                |   107.92
+    1 Si               |   4 C                |  12 H                |   110.99
+    1 Si               |   4 C                |  13 H                |   110.99
+    1 Si               |   4 C                |  14 H                |   110.98
+   12 H                |   4 C                |  13 H                |   107.91
+   12 H                |   4 C                |  14 H                |   107.91
+   13 H                |   4 C                |  14 H                |   107.91
+    1 Si               |   5 C                |  15 H                |   110.98
+    1 Si               |   5 C                |  16 H                |   110.99
+    1 Si               |   5 C                |  17 H                |   110.98
+   15 H                |   5 C                |  16 H                |   107.92
+   15 H                |   5 C                |  17 H                |   107.91
+   16 H                |   5 C                |  17 H                |   107.92
+ ------------------------------------------------------------------------------
+                            number of included internuclear angles:         30
+ ==============================================================================
+
+
+
+  library name resolved from: environment
+  library file name is: </usr/share/nwchem/libraries/>
+  
+
+
+ Summary of "ao basis" -> "" (cartesian)
+ ------------------------------------------------------------------------------
+       Tag                 Description            Shells   Functions and Types
+ ---------------- ------------------------------  ------  ---------------------
+ *                      6-311++G(2d,2p)               on all atoms 
+
+
+ 
+  Deleted DRIVER restart files 
+ 
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                        TMS
+ 
+ 
+                      Basis "ao basis" -> "ao basis" (cartesian)
+                      -----
+  Si (Silicon)
+  ------------
+            Exponent  Coefficients 
+       -------------- ---------------------------------------------------------
+  1 S  6.93792300E+04  0.000757
+  1 S  1.03549400E+04  0.005932
+  1 S  2.33387960E+03  0.031088
+  1 S  6.57142950E+02  0.124967
+  1 S  2.14301130E+02  0.386897
+  1 S  7.76291680E+01  0.554888
+ 
+  2 S  7.76291680E+01  0.177881
+  2 S  3.06308070E+01  0.627765
+  2 S  1.28012950E+01  0.247623
+ 
+  3 S  3.92686600E+00  1.000000
+ 
+  4 S  1.45234300E+00  1.000000
+ 
+  5 S  2.56234000E-01  1.000000
+ 
+  6 S  9.42790000E-02  1.000000
+ 
+  7 P  3.35483190E+02  0.008866
+  7 P  7.89003660E+01  0.068299
+  7 P  2.49881500E+01  0.290958
+  7 P  9.21971100E+00  0.732117
+ 
+  8 P  3.62114000E+00  0.619879
+  8 P  1.45131000E+00  0.439148
+ 
+  9 P  5.04977000E-01  1.000000
+ 
+ 10 P  1.86317000E-01  1.000000
+ 
+ 11 P  6.54320000E-02  1.000000
+ 
+ 12 S  3.31000000E-02  1.000000
+ 
+ 13 P  3.31000000E-02  1.000000
+ 
+ 14 D  9.00000000E-01  1.000000
+ 
+ 15 D  2.25000000E-01  1.000000
+ 
+  C (Carbon)
+  ----------
+            Exponent  Coefficients 
+       -------------- ---------------------------------------------------------
+  1 S  4.56324000E+03  0.001967
+  1 S  6.82024000E+02  0.015231
+  1 S  1.54973000E+02  0.076127
+  1 S  4.44553000E+01  0.260801
+  1 S  1.30290000E+01  0.616462
+  1 S  1.82773000E+00  0.221006
+ 
+  2 S  2.09642000E+01  0.114660
+  2 S  4.80331000E+00  0.919999
+  2 S  1.45933000E+00 -0.003031
+ 
+  3 P  2.09642000E+01  0.040249
+  3 P  4.80331000E+00  0.237594
+  3 P  1.45933000E+00  0.815854
+ 
+  4 S  4.83456000E-01  1.000000
+ 
+  5 P  4.83456000E-01  1.000000
+ 
+  6 S  1.45585000E-01  1.000000
+ 
+  7 P  1.45585000E-01  1.000000
+ 
+  8 S  4.38000000E-02  1.000000
+ 
+  9 P  4.38000000E-02  1.000000
+ 
+ 10 D  1.25200000E+00  1.000000
+ 
+ 11 D  3.13000000E-01  1.000000
+ 
+  H (Hydrogen)
+  ------------
+            Exponent  Coefficients 
+       -------------- ---------------------------------------------------------
+  1 S  3.38650000E+01  0.025494
+  1 S  5.09479000E+00  0.190373
+  1 S  1.15879000E+00  0.852161
+ 
+  2 S  3.25840000E-01  1.000000
+ 
+  3 S  1.02741000E-01  1.000000
+ 
+  4 S  3.60000000E-02  1.000000
+ 
+  5 P  1.50000000E+00  1.000000
+ 
+  6 P  3.75000000E-01  1.000000
+ 
+
+
+ Summary of "ao basis" -> "ao basis" (cartesian)
+ ------------------------------------------------------------------------------
+       Tag                 Description            Shells   Functions and Types
+ ---------------- ------------------------------  ------  ---------------------
+ Si                     6-311++G(2d,2p)             15       37   7s6p2d
+ C                      6-311++G(2d,2p)             11       29   5s4p2d
+ H                      6-311++G(2d,2p)              6       10   4s2p
+
+
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1 14.000  2.457
+    2  6.000  2.000
+    3  6.000  2.000
+    4  6.000  2.000
+    5  6.000  2.000
+    6  1.000  1.300
+    7  1.000  1.300
+    8  1.000  1.300
+    9  1.000  1.300
+   10  1.000  1.300
+   11  1.000  1.300
+   12  1.000  1.300
+   13  1.000  1.300
+   14  1.000  1.300
+   15  1.000  1.300
+   16  1.000  1.300
+   17  1.000  1.300
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1   -0.00034781   -0.00007930    0.00039503     2.457
+     2    0.22352338    3.10121482    1.70379621     2.000
+     3    1.70542768   -2.49414578    1.85487212     2.000
+     4    1.47942793    0.30520398   -3.20684850     2.000
+     5   -3.40806312   -0.91219794   -0.35215423     2.000
+     6   -0.75690845    4.58997551    0.66102246     1.300
+     7   -0.62538391    2.97662755    3.58230183     1.300
+     8    2.19308932    3.67823969    1.93370868     1.300
+     9    3.69916924   -2.00852888    2.08775338     1.300
+    10    0.88064000   -2.71158571    3.73567043     1.300
+    11    1.60432164   -4.32329321    0.90141513     1.300
+    12    1.37501359   -1.47842774   -4.24260589     1.300
+    13    0.52031176    1.74888886   -4.32972978     1.300
+    14    3.46944025    0.83636116   -3.05561209     1.300
+    15   -3.59224273   -2.71561394   -1.34149913     1.300
+    16   -4.31726036   -1.10362466    1.49222995     1.300
+    17   -4.44721616    0.51164105   -1.42817904     1.300
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (     11,     0 )       0
+    2 (     17,     0 )       0
+    3 (     13,     0 )       0
+    4 (     17,     0 )       0
+    5 (     16,     0 )       0
+    6 (     15,     0 )       0
+    7 (     16,     0 )       0
+    8 (     13,     0 )       0
+    9 (     14,     0 )       0
+   10 (     14,     0 )       0
+   11 (     14,     0 )       0
+   12 (     14,     0 )       0
+   13 (     15,     0 )       0
+   14 (     14,     0 )       0
+   15 (     15,     0 )       0
+   16 (     14,     0 )       0
+   17 (     16,     0 )       0
+ number of -cosmo- surface points =      248
+ molecular surface =    150.395 angstrom**2
+ molecular volume  =     84.737 angstrom**3
+ G(cav/disp)       =      1.612 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+   Time after variat. SCF:    117.7
+   Time prior to 1st pass:    118.1
+
+
+         Total DFT energy =     -449.287503273506
+      One electron energy =    -1104.142377134403
+           Coulomb energy =      455.663719968205
+    Exchange-Corr. energy =      -47.248029713475
+ Nuclear repulsion energy =      246.463660194194
+
+             COSMO energy =       -0.024476588028
+
+ Numeric. integr. density =       49.999999610855
+
+     Total iterative time =    519.3s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =      -449.286158636893
+                 sol phase energy =      -449.287503273506
+ (electrostatic) solvation energy =         0.001344636614 (    0.84 kcal/mol)
+ 
+ 
+                                NWChem Input Module
+                                -------------------
+ 
+ 
+                              NWChem Property Module
+                              ----------------------
+ 
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                        TMS
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1 14.000  2.457
+    2  6.000  2.000
+    3  6.000  2.000
+    4  6.000  2.000
+    5  6.000  2.000
+    6  1.000  1.300
+    7  1.000  1.300
+    8  1.000  1.300
+    9  1.000  1.300
+   10  1.000  1.300
+   11  1.000  1.300
+   12  1.000  1.300
+   13  1.000  1.300
+   14  1.000  1.300
+   15  1.000  1.300
+   16  1.000  1.300
+   17  1.000  1.300
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1   -0.00034781   -0.00007930    0.00039503     2.457
+     2    0.22352338    3.10121482    1.70379621     2.000
+     3    1.70542768   -2.49414578    1.85487212     2.000
+     4    1.47942793    0.30520398   -3.20684850     2.000
+     5   -3.40806312   -0.91219794   -0.35215423     2.000
+     6   -0.75690845    4.58997551    0.66102246     1.300
+     7   -0.62538391    2.97662755    3.58230183     1.300
+     8    2.19308932    3.67823969    1.93370868     1.300
+     9    3.69916924   -2.00852888    2.08775338     1.300
+    10    0.88064000   -2.71158571    3.73567043     1.300
+    11    1.60432164   -4.32329321    0.90141513     1.300
+    12    1.37501359   -1.47842774   -4.24260589     1.300
+    13    0.52031176    1.74888886   -4.32972978     1.300
+    14    3.46944025    0.83636116   -3.05561209     1.300
+    15   -3.59224273   -2.71561394   -1.34149913     1.300
+    16   -4.31726036   -1.10362466    1.49222995     1.300
+    17   -4.44721616    0.51164105   -1.42817904     1.300
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (     11,     0 )       0
+    2 (     17,     0 )       0
+    3 (     13,     0 )       0
+    4 (     17,     0 )       0
+    5 (     16,     0 )       0
+    6 (     15,     0 )       0
+    7 (     16,     0 )       0
+    8 (     13,     0 )       0
+    9 (     14,     0 )       0
+   10 (     14,     0 )       0
+   11 (     14,     0 )       0
+   12 (     14,     0 )       0
+   13 (     15,     0 )       0
+   14 (     14,     0 )       0
+   15 (     15,     0 )       0
+   16 (     14,     0 )       0
+   17 (     16,     0 )       0
+ number of -cosmo- surface points =      248
+ molecular surface =    150.395 angstrom**2
+ molecular volume  =     84.737 angstrom**3
+ G(cav/disp)       =      1.612 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+   Time after variat. SCF:    638.0
+   Time prior to 1st pass:    638.0
+
+
+         Total DFT energy =     -449.287503271323
+      One electron energy =    -1104.142375716350
+           Coulomb energy =      455.663719328760
+    Exchange-Corr. energy =      -47.248030255449
+ Nuclear repulsion energy =      246.463660194194
+
+             COSMO energy =       -0.024476822478
+
+ Numeric. integr. density =       49.999999695930
+
+     Total iterative time =    348.3s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =      -449.286158634601
+                 sol phase energy =      -449.287503271323
+ (electrostatic) solvation energy =         0.001344636722 (    0.84 kcal/mol)
+
+          -----------------------------------------
+          Chemical Shielding Tensors (GIAO, in ppm)
+          -----------------------------------------
+
+    0 giaofock schwarz done =      86.57%
+    0 giaofock schwarz done =      84.88%
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1 14.000  2.457
+    2  6.000  2.000
+    3  6.000  2.000
+    4  6.000  2.000
+    5  6.000  2.000
+    6  1.000  1.300
+    7  1.000  1.300
+    8  1.000  1.300
+    9  1.000  1.300
+   10  1.000  1.300
+   11  1.000  1.300
+   12  1.000  1.300
+   13  1.000  1.300
+   14  1.000  1.300
+   15  1.000  1.300
+   16  1.000  1.300
+   17  1.000  1.300
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1   -0.00034781   -0.00007930    0.00039503     2.457
+     2    0.22352338    3.10121482    1.70379621     2.000
+     3    1.70542768   -2.49414578    1.85487212     2.000
+     4    1.47942793    0.30520398   -3.20684850     2.000
+     5   -3.40806312   -0.91219794   -0.35215423     2.000
+     6   -0.75690845    4.58997551    0.66102246     1.300
+     7   -0.62538391    2.97662755    3.58230183     1.300
+     8    2.19308932    3.67823969    1.93370868     1.300
+     9    3.69916924   -2.00852888    2.08775338     1.300
+    10    0.88064000   -2.71158571    3.73567043     1.300
+    11    1.60432164   -4.32329321    0.90141513     1.300
+    12    1.37501359   -1.47842774   -4.24260589     1.300
+    13    0.52031176    1.74888886   -4.32972978     1.300
+    14    3.46944025    0.83636116   -3.05561209     1.300
+    15   -3.59224273   -2.71561394   -1.34149913     1.300
+    16   -4.31726036   -1.10362466    1.49222995     1.300
+    17   -4.44721616    0.51164105   -1.42817904     1.300
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (     11,     0 )       0
+    2 (     17,     0 )       0
+    3 (     13,     0 )       0
+    4 (     17,     0 )       0
+    5 (     16,     0 )       0
+    6 (     15,     0 )       0
+    7 (     16,     0 )       0
+    8 (     13,     0 )       0
+    9 (     14,     0 )       0
+   10 (     14,     0 )       0
+   11 (     14,     0 )       0
+   12 (     14,     0 )       0
+   13 (     15,     0 )       0
+   14 (     14,     0 )       0
+   15 (     15,     0 )       0
+   16 (     14,     0 )       0
+   17 (     16,     0 )       0
+ number of -cosmo- surface points =      248
+ molecular surface =    150.395 angstrom**2
+ molecular volume  =     84.737 angstrom**3
+ G(cav/disp)       =      1.612 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+ SCF residual:   9.745169232612969E-005
+
+ Wrote CPHF data to ./molecule.shieldcphf
+
+ Calc. par tensor-> nonrel
+      Atom:    1  Si
+        Diamagnetic
+    885.2747      0.0122     -0.0035
+      0.0122    885.2717     -0.0015
+     -0.0035     -0.0015    885.2804
+
+        Paramagnetic
+   -556.0239     -0.0847      0.1459
+     -0.0847   -556.0941     -0.0786
+      0.1459     -0.0786   -556.0810
+
+        Total Shielding Tensor
+    329.2508     -0.0725      0.1423
+     -0.0725    329.1776     -0.0801
+      0.1423     -0.0801    329.1994
+
+           isotropic =     329.2092
+          anisotropy =       0.3124
+
+          Principal Components and Axis System
+                 1           2           3
+              329.4175    329.1334    329.0768
+
+      1         0.6888      0.4665     -0.5549
+      2        -0.4081      0.8822      0.2351
+      3         0.5992      0.0645      0.7980
+
+
+
+      Atom:    2  C 
+        Diamagnetic
+    243.4894      0.9552      0.5798
+      0.9552    257.1315      7.5588
+      0.5798      7.5588    247.5681
+
+        Paramagnetic
+    -61.9979     -0.4790     -0.3278
+     -0.4790    -69.1503     -3.9196
+     -0.3278     -3.9196    -64.0616
+
+        Total Shielding Tensor
+    181.4915      0.4762      0.2520
+      0.4762    187.9812      3.6392
+      0.2520      3.6392    183.5065
+
+           isotropic =     184.3264
+          anisotropy =       8.5850
+
+          Principal Components and Axis System
+                 1           2           3
+              190.0498    181.4791    181.4504
+
+      1         0.0628     -0.4995      0.8640
+      2         0.8712     -0.3950     -0.2917
+      3         0.4869      0.7710      0.4103
+
+
+
+      Atom:    3  C 
+        Diamagnetic
+    247.5807     -6.1057      4.4742
+     -6.1057    252.3124     -6.5802
+      4.4742     -6.5802    248.3827
+
+        Paramagnetic
+    -64.1797      3.2154     -2.3122
+      3.2154    -66.6571      3.4782
+     -2.3122      3.4782    -64.7028
+
+        Total Shielding Tensor
+    183.4010     -2.8903      2.1620
+     -2.8903    185.6553     -3.1020
+      2.1620     -3.1020    183.6800
+
+           isotropic =     184.2454
+          anisotropy =       8.5134
+
+          Principal Components and Axis System
+                 1           2           3
+              189.9210    181.4425    181.3727
+
+      1        -0.4843      0.5762     -0.6583
+      2         0.7049      0.7027      0.0964
+      3        -0.5182      0.4174      0.7465
+
+
+
+      Atom:    4  C 
+        Diamagnetic
+    246.6597      0.6020     -6.7321
+      0.6020    243.6987     -1.4171
+     -6.7321     -1.4171    258.1005
+
+        Paramagnetic
+    -63.7253     -0.3107      3.5252
+     -0.3107    -62.1838      0.8378
+      3.5252      0.8378    -69.7152
+
+        Total Shielding Tensor
+    182.9343      0.2913     -3.2069
+      0.2913    181.5149     -0.5792
+     -3.2069     -0.5792    188.3853
+
+           isotropic =     184.2781
+          anisotropy =       8.4603
+
+          Principal Components and Axis System
+                 1           2           3
+              189.9183    181.4803    181.4358
+
+      1        -0.4187      0.5076      0.7530
+      2        -0.0769      0.8064     -0.5863
+      3         0.9049      0.3034      0.2986
+
+
+
+      Atom:    5  C 
+        Diamagnetic
+    259.9672      4.4900      1.7202
+      4.4900    244.6296      0.4246
+      1.7202      0.4246    243.7263
+
+        Paramagnetic
+    -70.6181     -2.3373     -0.8705
+     -2.3373    -62.5491     -0.1752
+     -0.8705     -0.1752    -62.1926
+
+        Total Shielding Tensor
+    189.3490      2.1526      0.8496
+      2.1526    182.0805      0.2494
+      0.8496      0.2494    181.5337
+
+           isotropic =     184.3211
+          anisotropy =       8.5648
+
+          Principal Components and Axis System
+                 1           2           3
+              190.0310    181.4955    181.4368
+
+      1         0.9592     -0.2819     -0.0210
+      2         0.2630      0.9172     -0.2992
+      3         0.1036      0.2815      0.9540
+
+
+
+      Atom:    6  H 
+        Diamagnetic
+     26.2579     -4.9823      2.9584
+     -4.9823     36.9932     -2.6774
+      2.9584     -2.6774     27.2008
+
+        Paramagnetic
+      3.4718      1.8514     -1.4032
+      1.8514     -1.2239      0.6177
+     -1.4032      0.6177      2.6205
+
+        Total Shielding Tensor
+     29.7298     -3.1309      1.5552
+     -3.1309     35.7693     -2.0597
+      1.5552     -2.0597     29.8213
+
+           isotropic =      31.7735
+          anisotropy =       9.1617
+
+          Principal Components and Axis System
+                 1           2           3
+               37.8813     29.3992     28.0399
+
+      1        -0.3913      0.3671      0.8439
+      2         0.8707      0.4446      0.2103
+      3        -0.2980      0.8171     -0.4936
+
+
+
+      Atom:    7  H 
+        Diamagnetic
+     25.5146     -0.0093     -5.1292
+     -0.0093     27.5558      3.0640
+     -5.1292      3.0640     37.3905
+
+        Paramagnetic
+      3.7693     -0.2291      2.0426
+     -0.2291      2.0615     -1.3763
+      2.0426     -1.3763     -0.9892
+
+        Total Shielding Tensor
+     29.2839     -0.2384     -3.0866
+     -0.2384     29.6173      1.6877
+     -3.0866      1.6877     36.4012
+
+           isotropic =      31.7675
+          anisotropy =       9.1821
+
+          Principal Components and Axis System
+                 1           2           3
+               37.8888     29.3854     28.0281
+
+      1        -0.3358      0.3253      0.8840
+      2         0.1976      0.9419     -0.2716
+      3         0.9210     -0.0835      0.3806
+
+
+
+      Atom:    8  H 
+        Diamagnetic
+     35.8322      5.4596      2.4588
+      5.4596     29.6169      3.2624
+      2.4588      3.2624     24.9667
+
+        Paramagnetic
+     -0.4587     -1.9399     -0.8380
+     -1.9399      1.4837     -1.7159
+     -0.8380     -1.7159      3.8347
+
+        Total Shielding Tensor
+     35.3736      3.5197      1.6208
+      3.5197     31.1006      1.5465
+      1.6208      1.5465     28.8014
+
+           isotropic =      31.7585
+          anisotropy =       9.1760
+
+          Principal Components and Axis System
+                 1           2           3
+               37.8758     29.3808     28.0189
+
+      1         0.8400     -0.5412      0.0382
+      2         0.4897      0.7261     -0.4827
+      3         0.2335      0.4242      0.8749
+
+
+
+      Atom:    9  H 
+        Diamagnetic
+     38.9120      0.0963      3.9348
+      0.0963     26.2686     -1.6754
+      3.9348     -1.6754     25.2407
+
+        Paramagnetic
+     -1.6142      0.0586     -1.6551
+      0.0586      2.7882      1.1198
+     -1.6551      1.1198      3.6737
+
+        Total Shielding Tensor
+     37.2977      0.1548      2.2797
+      0.1548     29.0568     -0.5556
+      2.2797     -0.5556     28.9145
+
+           isotropic =      31.7564
+          anisotropy =       9.1818
+
+          Principal Components and Axis System
+                 1           2           3
+               37.8776     29.3761     28.0154
+
+      1         0.9692      0.1181     -0.2163
+      2         0.0015      0.8748      0.4844
+      3         0.2464     -0.4698      0.8477
+
+
+
+      Atom:   10  H 
+        Diamagnetic
+     26.0842     -0.9699     -3.0741
+     -0.9699     26.5450     -4.6530
+     -3.0741     -4.6530     37.8235
+
+        Paramagnetic
+      3.1241      0.8904      1.1277
+      0.8904      2.9015      2.0066
+      1.1277      2.0066     -1.2114
+
+        Total Shielding Tensor
+     29.2083     -0.0795     -1.9465
+     -0.0795     29.4465     -2.6464
+     -1.9465     -2.6464     36.6121
+
+           isotropic =      31.7556
+          anisotropy =       9.1713
+
+          Principal Components and Axis System
+                 1           2           3
+               37.8698     29.3798     28.0173
+
+      1        -0.2072      0.7508      0.6272
+      2        -0.2914     -0.6594      0.6930
+      3         0.9339     -0.0392      0.3554
+
+
+
+      Atom:   11  H 
+        Diamagnetic
+     24.5798     -2.0814      1.3018
+     -2.0814     39.0430      3.1500
+      1.3018      3.1500     26.8749
+
+        Paramagnetic
+      3.9203      1.0591     -0.9377
+      1.0591     -1.8216     -0.9783
+     -0.9377     -0.9783      2.7129
+
+        Total Shielding Tensor
+     28.5001     -1.0223      0.3641
+     -1.0223     37.2214      2.1717
+      0.3641      2.1717     29.5878
+
+           isotropic =      31.7698
+          anisotropy =       9.1680
+
+          Principal Components and Axis System
+                 1           2           3
+               37.8817     29.3938     28.0338
+
+      1        -0.0954      0.5263      0.8449
+      2         0.9640     -0.1628      0.2103
+      3         0.2482      0.8346     -0.4918
+
+
+
+      Atom:   12  H 
+        Diamagnetic
+     24.2660      0.1168     -2.1330
+      0.1168     33.1618      6.7717
+     -2.1330      6.7717     33.0887
+
+        Paramagnetic
+      4.1096     -0.2542      1.2306
+     -0.2542      0.5278     -2.4126
+      1.2306     -2.4126      0.1509
+
+        Total Shielding Tensor
+     28.3755     -0.1374     -0.9024
+     -0.1374     33.6896      4.3590
+     -0.9024      4.3590     33.2396
+
+           isotropic =      31.7682
+          anisotropy =       9.1741
+
+          Principal Components and Axis System
+                 1           2           3
+               37.8843     29.3907     28.0297
+
+      1        -0.0759     -0.4609      0.8842
+      2         0.7197     -0.6391     -0.2713
+      3         0.6902      0.6158      0.3802
+
+
+
+      Atom:   13  H 
+        Diamagnetic
+     26.5257     -3.7483      1.6038
+     -3.7483     30.2061     -6.8240
+      1.6038     -6.8240     33.7598
+
+        Paramagnetic
+      3.0046      1.6592     -0.1704
+      1.6592      1.8635      2.6256
+     -0.1704      2.6256     -0.0575
+
+        Total Shielding Tensor
+     29.5304     -2.0891      1.4334
+     -2.0891     32.0697     -4.1985
+      1.4334     -4.1985     33.7023
+
+           isotropic =      31.7674
+          anisotropy =       9.1656
+
+          Principal Components and Axis System
+                 1           2           3
+               37.8778     29.3929     28.0316
+
+      1         0.2816      0.7262      0.6271
+      2        -0.6266     -0.3558      0.6934
+      3         0.7267     -0.5882      0.3549
+
+
+
+      Atom:   14  H 
+        Diamagnetic
+     38.3276      3.9137     -2.7307
+      3.9137     24.3245     -0.6038
+     -2.7307     -0.6038     27.8109
+
+        Paramagnetic
+     -1.3738     -1.5993      1.1495
+     -1.5993      4.2958      0.2291
+      1.1495      0.2291      1.8903
+
+        Total Shielding Tensor
+     36.9538      2.3144     -1.5812
+      2.3144     28.6203     -0.3747
+     -1.5812     -0.3747     29.7012
+
+           isotropic =      31.7585
+          anisotropy =       9.1768
+
+          Principal Components and Axis System
+                 1           2           3
+               37.8763     29.3792     28.0199
+
+      1         0.9496      0.1825     -0.2547
+      2         0.2453      0.0725      0.9667
+      3        -0.1949      0.9805     -0.0241
+
+
+
+      Atom:   15  H 
+        Diamagnetic
+     29.0248      4.0523      1.9800
+      4.0523     34.8123      6.1825
+      1.9800      6.1825     26.6482
+
+        Paramagnetic
+      1.4031     -1.5580     -0.7092
+     -1.5580      0.0497     -2.5104
+     -0.7092     -2.5104      3.3465
+
+        Total Shielding Tensor
+     30.4280      2.4943      1.2709
+      2.4943     34.8620      3.6721
+      1.2709      3.6721     29.9946
+
+           isotropic =      31.7615
+          anisotropy =       9.1841
+
+          Principal Components and Axis System
+                 1           2           3
+               37.8843     29.3798     28.0205
+
+      1         0.3514      0.9354      0.0397
+      2         0.8259     -0.2898     -0.4837
+      3         0.4410     -0.2027      0.8743
+
+
+
+      Atom:   16  H 
+        Diamagnetic
+     32.7634      2.3461     -6.2396
+      2.3461     23.8851     -1.3717
+     -6.2396     -1.3717     33.8508
+
+        Paramagnetic
+      0.1613     -1.1584      2.1208
+     -1.1584      4.4358      0.4352
+      2.1208      0.4352      0.2028
+
+        Total Shielding Tensor
+     32.9246      1.1877     -4.1188
+      1.1877     28.3209     -0.9365
+     -4.1188     -0.9365     34.0536
+
+           isotropic =      31.7664
+          anisotropy =       9.1672
+
+          Principal Components and Axis System
+                 1           2           3
+               37.8779     29.3902     28.0311
+
+      1        -0.6533      0.7130     -0.2547
+      2        -0.1538      0.2044      0.9667
+      3         0.7413      0.6707     -0.0239
+
+
+
+      Atom:   17  H 
+        Diamagnetic
+     33.7528     -4.2296      5.0946
+     -4.2296     29.4605     -4.6096
+      5.0946     -4.6096     27.2171
+
+        Paramagnetic
+     -0.1809      1.2419     -1.9737
+      1.2419      1.9033      1.9368
+     -1.9737      1.9368      3.1244
+
+        Total Shielding Tensor
+     33.5718     -2.9876      3.1209
+     -2.9876     31.3639     -2.6729
+      3.1209     -2.6729     30.3415
+
+           isotropic =      31.7591
+          anisotropy =       9.1770
+
+          Principal Components and Axis System
+                 1           2           3
+               37.8771     29.3811     28.0191
+
+      1         0.7076      0.6729     -0.2155
+      2        -0.5206      0.7028      0.4848
+      3         0.4777     -0.2308      0.8476
+
+
+
+ 
+ 
+                                NWChem Input Module
+                                -------------------
+ 
+ 
+ 
+ 
+                                     CITATION
+                                     --------
+                Please cite the following reference when publishing
+                           results obtained with NWChem:
+ 
+          E. Aprà, E. J. Bylaska, W. A. de Jong, N. Govind, K. Kowalski,
+       T. P. Straatsma, M. Valiev, H. J. J. van Dam, Y. Alexeev, J. Anchell,
+       V. Anisimov, F. W. Aquino, R. Atta-Fynn, J. Autschbach, N. P. Bauman,
+     J. C. Becca, D. E. Bernholdt, K. Bhaskaran-Nair, S. Bogatko, P. Borowski,
+        J. Boschen, J. Brabec, A. Bruner, E. Cauët, Y. Chen, G. N. Chuev,
+      C. J. Cramer, J. Daily, M. J. O. Deegan, T. H. Dunning Jr., M. Dupuis,
+   K. G. Dyall, G. I. Fann, S. A. Fischer, A. Fonari, H. Früchtl, L. Gagliardi,
+      J. Garza, N. Gawande, S. Ghosh, K. Glaesemann, A. W. Götz, J. Hammond,
+       V. Helms, E. D. Hermes, K. Hirao, S. Hirata, M. Jacquelin, L. Jensen,
+   B. G. Johnson, H. Jónsson, R. A. Kendall, M. Klemm, R. Kobayashi, V. Konkov,
+      S. Krishnamoorthy, M. Krishnan, Z. Lin, R. D. Lins, R. J. Littlefield,
+      A. J. Logsdail, K. Lopata, W. Ma, A. V. Marenich, J. Martin del Campo,
+   D. Mejia-Rodriguez, J. E. Moore, J. M. Mullin, T. Nakajima, D. R. Nascimento,
+    J. A. Nichols, P. J. Nichols, J. Nieplocha, A. Otero-de-la-Roza, B. Palmer,
+    A. Panyala, T. Pirojsirikul, B. Peng, R. Peverati, J. Pittner, L. Pollack,
+   R. M. Richard, P. Sadayappan, G. C. Schatz, W. A. Shelton, D. W. Silverstein,
+   D. M. A. Smith, T. A. Soares, D. Song, M. Swart, H. L. Taylor, G. S. Thomas,
+            V. Tipparaju, D. G. Truhlar, K. Tsemekhman, T. Van Voorhis,
+     Á. Vázquez-Mayagoitia, P. Verma, O. Villa, A. Vishnu, K. D. Vogiatzis,
+        D. Wang, J. H. Weare, M. J. Williamson, T. L. Windus, K. Woliński,
+        A. T. Wong, Q. Wu, C. Yang, Q. Yu, M. Zacharias, Z. Zhang, Y. Zhao,
+                                and R. J. Harrison
+                        "NWChem: Past, present, and future
+                         J. Chem. Phys. 152, 184102 (2020)
+                               doi:10.1063/5.0004997
+ 
+                                      AUTHORS
+                                      -------
+     E. Apra, E. J. Bylaska, N. Govind, K. Kowalski, M. Valiev, W. A. de Jong,
+      T. P. Straatsma, H. J. J. van Dam, D. Wang, T. L. Windus, N. P. Bauman,
+       A. Panyala, J. Hammond, J. Autschbach, K. Bhaskaran-Nair, J. Brabec,
+    K. Lopata, S. A. Fischer, S. Krishnamoorthy, M. Jacquelin, W. Ma, M. Klemm,
+       O. Villa, Y. Chen, V. Anisimov, F. Aquino, S. Hirata, M. T. Hackler,
+           Eric Hermes, L. Jensen, J. E. Moore, J. C. Becca, V. Konjkov,
+            D. Mejia-Rodriguez, T. Risthaus, M. Malagoli, A. Marenich,
+   A. Otero-de-la-Roza, J. Mullin, P. Nichols, R. Peverati, J. Pittner, Y. Zhao,
+        P.-D. Fan, A. Fonari, M. J. Williamson, R. J. Harrison, J. R. Rehr,
+      M. Dupuis, D. Silverstein, D. M. A. Smith, J. Nieplocha, V. Tipparaju,
+      M. Krishnan, B. E. Van Kuiken, A. Vazquez-Mayagoitia, M. Swart, Q. Wu,
+   T. Van Voorhis, A. A. Auer, M. Nooijen, L. D. Crosby, E. Brown, G. Cisneros,
+     G. I. Fann, H. Fruchtl, J. Garza, K. Hirao, R. A. Kendall, J. A. Nichols,
+       K. Tsemekhman, K. Wolinski, J. Anchell, D. E. Bernholdt, P. Borowski,
+       T. Clark, D. Clerc, H. Dachsel, M. J. O. Deegan, K. Dyall, D. Elwood,
+      E. Glendening, M. Gutowski, A. C. Hess, J. Jaffe, B. G. Johnson, J. Ju,
+        R. Kobayashi, R. Kutteh, Z. Lin, R. Littlefield, X. Long, B. Meng,
+      T. Nakajima, S. Niu, L. Pollack, M. Rosing, K. Glaesemann, G. Sandrone,
+      M. Stave, H. Taylor, G. Thomas, J. H. van Lenthe, A. T. Wong, Z. Zhang.
+
+ Total times  cpu:     2910.1s     wall:     2956.8s

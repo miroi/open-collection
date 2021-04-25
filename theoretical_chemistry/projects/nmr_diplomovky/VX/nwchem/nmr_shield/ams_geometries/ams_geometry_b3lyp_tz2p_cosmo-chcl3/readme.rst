@@ -14,3 +14,5 @@ fix ccpvtz: https://nwchemgit.github.io/Special_AWCforum/st/id2507/write-failed_
 m06-2x functional not working ...
 
 
+zbehlo len v ccpvtz baze 
+

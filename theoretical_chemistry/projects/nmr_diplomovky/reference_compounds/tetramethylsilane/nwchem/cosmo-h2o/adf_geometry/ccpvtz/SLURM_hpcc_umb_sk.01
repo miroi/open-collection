@@ -113,8 +113,8 @@ echo -e "The local home directory with NWChem input file, SLURM_SUBMIT_DIR=${SLU
 # copy starting geometry to the workdir
 #cp ${SLURM_SUBMIT_DIR}/VX.converged_geometry_blyp_tz2p-solvent-chcl3.xyz   $TMPDIR/.
 #cp ${SLURM_SUBMIT_DIR}/VX.geom.xyz   $TMPDIR/.
-cp ${SLURM_SUBMIT_DIR}/TMS.converged_geometry_pbe0_tz2p_good_cosmo-chcl3.xyz   $TMPDIR/.
-project=TMS.nmrshield_b3lyp_ccpvtz_cosmo-chcl3
+cp ${SLURM_SUBMIT_DIR}/TMS.converged_geometry_pbe0_tz2p_good_cosmo-h2o.xyz   $TMPDIR/.
+project=TMS.nmrshield_b3lyp_ccpvtz_cosmo-h2o
 echo -e "\n Launching NWChem run of project=$project"
 mpirun -np  $SLURM_CPUS_ON_NODE $NWCHEM_EXECUTABLE  ${SLURM_SUBMIT_DIR}/$project.nw  > ${SLURM_SUBMIT_DIR}/$project.${SLURM_JOBID}.out
 # save conveged geometry to homedir 

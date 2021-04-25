@@ -1,0 +1,47 @@
+echo
+
+start molecule
+
+memory total 40 gb
+print low
+
+title "TMS"
+charge 0
+
+geometry units angstroms print xyz autosym
+  #load format xyz TMS.start_geom.xyz
+  load format xyz TMS.converged_geometry_pbe0_tz2p_good_cosmo-h2o.xyz
+end
+
+basis
+  * library cc-pvtz
+end
+
+dft
+  grid huge
+  xc b3lyp
+  mult 1
+  noprint "final vectors analysis"
+end
+
+driver
+  clear
+  tight
+  linopt 0
+  maxiter 999
+  xyz TMS_geom
+end
+
+property
+  giao
+  shielding
+end
+
+cosmo
+  solvent h2o
+end
+
+task dft energy
+#task dft freq 
+task dft property
+

@@ -102,3 +102,36 @@ For more info, read the ESPRESSO User's Guide (Doc/users-guide.tex).
 --------------------------------------------------------------------
 configure: success
 
+
+milias@login.grid.umb.sk:~/Work/qch/software/quantum-espresso/qe-6.7/.make -j6 all
+.
+.
+milias@login.grid.umb.sk:~/Work/qch/software/quantum-espresso/qe-6.7/.ldd bin/pw.x
+        linux-vdso.so.1 =>  (0x00007ffdce99d000)
+        libmkl_scalapack_lp64.so => /mnt/apps/intel/composer_xe_2013_sp1.1.106/mkl/lib/intel64/libmkl_scalapack_lp64.so (0x00007efed944c000)
+        libmkl_intel_lp64.so => /mnt/apps/intel/composer_xe_2013_sp1.1.106/mkl/lib/intel64/libmkl_intel_lp64.so (0x00007efed8d08000)
+        libmkl_sequential.so => /mnt/apps/intel/composer_xe_2013_sp1.1.106/mkl/lib/intel64/libmkl_sequential.so (0x00007efed8645000)
+        libmkl_core.so => /mnt/apps/intel/composer_xe_2013_sp1.1.106/mkl/lib/intel64/libmkl_core.so (0x00007efed6f87000)
+        libmpi_usempif08.so.40 => /home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib/libmpi_usempif08.so.40 (0x00007efed6d54000)
+        libmpi_usempi_ignore_tkr.so.40 => /home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib/libmpi_usempi_ignore_tkr.so.40 (0x00007efed6b49000)
+        libmpi_mpifh.so.40 => /home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib/libmpi_mpifh.so.40 (0x00007efed68e4000)
+        libmpi.so.40 => /home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib/libmpi.so.40 (0x00007efed6598000)
+        libm.so.6 => /lib64/libm.so.6 (0x00007efed6296000)
+        libpthread.so.0 => /lib64/libpthread.so.0 (0x00007efed607a000)
+        libc.so.6 => /lib64/libc.so.6 (0x00007efed5cac000)
+        libgcc_s.so.1 => /lib64/libgcc_s.so.1 (0x00007efed5a96000)
+        libdl.so.2 => /lib64/libdl.so.2 (0x00007efed5892000)
+        libopen-rte.so.40 => /home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib/libopen-rte.so.40 (0x00007efed55b8000)
+        libopen-pal.so.40 => /home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib/libopen-pal.so.40 (0x00007efed5273000)
+        librt.so.1 => /lib64/librt.so.1 (0x00007efed506b000)
+        libutil.so.1 => /lib64/libutil.so.1 (0x00007efed4e68000)
+        libz.so.1 => /lib64/libz.so.1 (0x00007efed4c52000)
+        libifport.so.5 => /mnt/apps/intel/composer_xe_2013_sp1.1.106/compiler/lib/intel64/libifport.so.5 (0x00007efed4a23000)
+        libifcore.so.5 => /mnt/apps/intel/composer_xe_2013_sp1.1.106/compiler/lib/intel64/libifcore.so.5 (0x00007efed46e3000)
+        libimf.so => /mnt/apps/intel/composer_xe_2013_sp1.1.106/compiler/lib/intel64/libimf.so (0x00007efed421c000)
+        libintlc.so.5 => /mnt/apps/intel/composer_xe_2013_sp1.1.106/compiler/lib/intel64/libintlc.so.5 (0x00007efed3fc6000)
+        libsvml.so => /mnt/apps/intel/composer_xe_2013_sp1.1.106/compiler/lib/intel64/libsvml.so (0x00007efed33cf000)
+        libifcoremt.so.5 => /mnt/apps/intel/composer_xe_2013_sp1.1.106/compiler/lib/intel64/libifcoremt.so.5 (0x00007efed3061000)
+        libirng.so => /mnt/apps/intel/composer_xe_2013_sp1.1.106/compiler/lib/intel64/libirng.so (0x00007efed2e5a000)
+        /lib64/ld-linux-x86-64.so.2 (0x00007efed9d1e000)
+

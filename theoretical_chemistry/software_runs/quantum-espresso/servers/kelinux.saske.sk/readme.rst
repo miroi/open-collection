@@ -101,4 +101,29 @@ ilias@login1.kelinux.saske.sk:~/work/qch/software/quantum-espresso/qe-6.7/.
 make -j6 all
 
 
+ilias@login1.kelinux.saske.sk:~/work/qch/software/quantum-espresso/qe-6.7/.ldd bin/pw.x
+        linux-vdso.so.1 =>  (0x00007fffd99f1000)
+        libmkl_scalapack_lp64.so => /lustre/home/freeware/intel/compilers_and_libraries_2018.2.199/linux/mkl/lib/intel64_lin/libmkl_scalapack_lp64.so (0x00007ff4b56de000)
+        libmkl_blacs_openmpi_lp64.so => /lustre/home/freeware/intel/compilers_and_libraries_2018.2.199/linux/mkl/lib/intel64_lin/libmkl_blacs_openmpi_lp64.so (0x00007ff4b549b000)
+        libmkl_gf_lp64.so => /lustre/home/freeware/intel/compilers_and_libraries_2018.2.199/linux/mkl/lib/intel64_lin/libmkl_gf_lp64.so (0x00007ff4b49b6000)
+        libmkl_sequential.so => /lustre/home/freeware/intel/compilers_and_libraries_2018.2.199/linux/mkl/lib/intel64_lin/libmkl_sequential.so (0x00007ff4b35be000)
+        libmkl_core.so => /lustre/home/freeware/intel/compilers_and_libraries_2018.2.199/linux/mkl/lib/intel64_lin/libmkl_core.so (0x00007ff4af5b5000)
+        libmpi_usempif08.so.40 => /opt/ohpc/pub/mpi/openmpi3-gnu7/3.1.0/lib/libmpi_usempif08.so.40 (0x00007ff4af384000)
+        libmpi_usempi_ignore_tkr.so.40 => /opt/ohpc/pub/mpi/openmpi3-gnu7/3.1.0/lib/libmpi_usempi_ignore_tkr.so.40 (0x00007ff4af17d000)
+        libmpi_mpifh.so.40 => /opt/ohpc/pub/mpi/openmpi3-gnu7/3.1.0/lib/libmpi_mpifh.so.40 (0x00007ff4aef27000)
+        libmpi.so.40 => /opt/ohpc/pub/mpi/openmpi3-gnu7/3.1.0/lib/libmpi.so.40 (0x00007ff4aec10000)
+        libgfortran.so.4 => /opt/ohpc/pub/compiler/gcc/7.3.0/lib64/libgfortran.so.4 (0x00007ff4ae83e000)
+        libm.so.6 => /lib64/libm.so.6 (0x00007ff4ae53c000)
+        libgcc_s.so.1 => /opt/ohpc/pub/compiler/gcc/7.3.0/lib64/libgcc_s.so.1 (0x00007ff4ae325000)
+        libquadmath.so.0 => /opt/ohpc/pub/compiler/gcc/7.3.0/lib64/libquadmath.so.0 (0x00007ff4ae0e6000)
+        libpthread.so.0 => /lib64/libpthread.so.0 (0x00007ff4adeca000)
+        libc.so.6 => /lib64/libc.so.6 (0x00007ff4adafc000)
+        libdl.so.2 => /lib64/libdl.so.2 (0x00007ff4ad8f8000)
+        libopen-rte.so.40 => /opt/ohpc/pub/mpi/openmpi3-gnu7/3.1.0/lib/libopen-rte.so.40 (0x00007ff4ad645000)
+        libopen-pal.so.40 => /opt/ohpc/pub/mpi/openmpi3-gnu7/3.1.0/lib/libopen-pal.so.40 (0x00007ff4ad339000)
+        libnuma.so.1 => /lib64/libnuma.so.1 (0x00007ff4ad12d000)
+        librt.so.1 => /lib64/librt.so.1 (0x00007ff4acf25000)
+        libutil.so.1 => /lib64/libutil.so.1 (0x00007ff4acd22000)
+        libz.so.1 => /lib64/libz.so.1 (0x00007ff4acb0c000)
+        /lib64/ld-linux-x86-64.so.2 (0x00007ff4b5fde000)
 

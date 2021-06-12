@@ -2,18 +2,19 @@
 #SBATCH --job-name=Si_surf
 
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=12
+#SBATCH --ntasks-per-node=4
 
 ##SBATCH --mem=12gb
 
-#SBATCH --partition=devel
+##SBATCH --partition=devel
+#SBATCH --partition=short
 
 ##SBATCH --time=1-00:10:00
 #SBATCH --time=0-12:00:00
 
 ## memory per CPU ... is it working
 ##SBATCH --mem-per-cpu=2G
-#SBATCH --mem-per-cpu=1G
+##SBATCH --mem-per-cpu=1G
 
 ## stdout/stderr output file
 #SBATCH -o log_slurm_job.%j.%N.std_out_err

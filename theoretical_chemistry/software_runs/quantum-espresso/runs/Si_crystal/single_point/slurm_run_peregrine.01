@@ -104,7 +104,13 @@ echo
  project=Si.scf
  inp=$project.in
  out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOBID.out$SLURM_CPUS_ON_NODE
-
  mpirun -np $SLURM_CPUS_ON_NODE  $QE/pw.x < $inp > $out
+
+ project=Si.scf2
+ inp=$project.in
+ out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOBID.out$SLURM_CPUS_ON_NODE
+ mpirun -np $SLURM_CPUS_ON_NODE  $QE/pw.x < $inp > $out
+
+
 
 exit

@@ -6,7 +6,8 @@
 
 ##SBATCH --mem=50gb
 
-#SBATCH --partition=short 
+##SBATCH --partition=short 
+#SBATCH --partition=compute
 
 ##SBATCH --time=1-00:10:00
 ##SBATCH --time=0-00:30:00
@@ -49,7 +50,7 @@ echo -e "The job requests SLURM_CPUS_ON_NODE=$SLURM_CPUS_ON_NODE CPU per task."
 
 # my openmpi installation
 export PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/bin:$PATH
-export LD_LIBRARY_PATH= /home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib:$LD_LIBRARY_PATH
 
 echo -e "\nRunning on host `hostname`"
 echo -e "Time is `date` \n"

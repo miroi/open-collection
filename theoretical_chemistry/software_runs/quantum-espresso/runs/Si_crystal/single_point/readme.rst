@@ -2,7 +2,7 @@
 QE on Si
 ========
 
-needs Si_r.upf !
+needs Si_r.upf PP file 
 
 https://www.youtube.com/watch?v=mQ1D3tXWqD4
 

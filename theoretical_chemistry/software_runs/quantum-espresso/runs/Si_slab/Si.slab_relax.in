@@ -2,18 +2,20 @@
     calculation = 'relax',
     restart_mode='from_scratch',
     prefix='si',
-    pseudo_dir = '/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/pseudo',
-    outdir='/data.local1/milias/outdir_Si100'
-    nstep=200
+    !pseudo_dir = '/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/pseudo',
+    !outdir='/data.local1/milias/outdir_Si100'
+    nstep=200  !increase 
     etot_conv_thr=5.0d-5
     forc_conv_thr=5.0d-4
  /
 &system
-    ibrav= 8, celldm(1) =29.2337482, celldm(2)=0.5, celldm(3) = 1.5, nat=56, ntyp=2,
+    ibrav= 8, ! orthoormbic lattice
+      celldm(1) =29.2337482, celldm(2)=0.5, celldm(3) = 1.5, 
+      nat=56, ntyp=2,
     ecutwfc=30,
     ecutrho=120,
-    occupations='smearing', smearing='gaussian', degauss=0.005
-    nosym = .true.
+    occupations='smearing', smearing='gaussian', degauss=0.005 ! ensure convergence, surface can be metallic
+    nosym = .true. ! no symmetry of system, because of structure relaxation 
  /
  &electrons
     electron_maxstep=120
@@ -86,4 +88,4 @@ Si	0.501	0.25	0.353553392
 Si	0.747	0.25	0.353553392			
 
 K_POINTS automatic
-2 4 1 0 0 0
+2 4 1 0 0 0    ! surface, the larger supercell is, the lesser number of k-points

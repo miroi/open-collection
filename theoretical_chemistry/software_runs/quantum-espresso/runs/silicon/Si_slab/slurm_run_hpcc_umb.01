@@ -27,6 +27,9 @@ echo -e "Doing 'scl enable...' "
 if  [ -x "$(command -v scl)" ]; then scl enable devtoolset-9 bash; fi
 #source ~/.bashrc
 
+# https://github.com/open-mpi/ompi/issues/7752#issuecomment-631497402
+export OMPI_MCA_mca_base_component_show_load_errors=0
+
 echo -e "Job user is SLURM_JOB_USER=$SLURM_JOB_USER"
 echo -e "User's job is SLURM_JOB_NAME=$SLURM_JOB_NAME has assigned ID SLURM_JOBID=$SLURM_JOBID"
 echo -e "This job was submitted from the computer SLURM_SUBMIT_HOST=$SLURM_SUBMIT_HOST"

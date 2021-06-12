@@ -11,5 +11,6 @@ https://www.youtube.com/watch?v=mQ1D3tXWqD4
  12         -16.92146728
 
 
-
+scf1: -16.91969715 Ry
+scf2: -16.92370736 Ry (more k-points, higher ecutwfc)
 

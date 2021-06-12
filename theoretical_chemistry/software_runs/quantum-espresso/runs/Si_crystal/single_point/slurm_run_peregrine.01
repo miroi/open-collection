@@ -101,8 +101,9 @@ echo " It has the disk space of (df -h) :"
 df -h .
 echo
 
- inp=Si.scf.in
- out=Si.scf.out
+ project=Si
+ inp=$project.scf.in
+ out=$project.scf.out.$SLURM_CPUS_ON_NODE.%j.%N
  mpirun -np $SLURM_CPUS_ON_NODE  $QE/pw.x < $inp > $out
 
 exit

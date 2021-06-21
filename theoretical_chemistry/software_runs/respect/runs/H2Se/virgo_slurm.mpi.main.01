@@ -101,8 +101,15 @@ echo -e "\n Python -v :\c"; python -V
 #echo -e "ifort -V ? \c"; ifort -V
 #echo -e "icc -V ? \c"; icc -V
 
-echo -e "\n ldd $RSP/ReSpect-mDKS.x ..."
+echo -e "\n Concerning $RSP/ReSpect-mDKS.x ..."
 ldd $RSP/ReSpect-mDKS.x
+
+ls -lt $RSP/ReSpect-mDKS.x
+du -h -s $RSP/ReSpect-mDKS.x
+
+echo -e "\n Setting 'ulimit -s unlimited' for this run !"
+ulimit -s unlimited
+
 
 # for running jobs from your homedir, use ...
 cd $SLURM_SUBMIT_DIR
@@ -111,7 +118,7 @@ echo -e "\n Current directory where this SLURM job is running `pwd`"
 echo " It has the disk space of (df -h) :"
 df -h .
 
-export TMPDIR=/lustre/ukt/milias/scratch
+export TMPDIR=/lustre/ukt/milias/scratch/ReSpect_runs
 
 NMPI=$SLURM_CPUS_ON_NODE
 #NMPI=24
@@ -125,5 +132,8 @@ $RSP/respect --scf --scratch=$TMPDIR --inp=h2se_dkh2 --nt=$NMPI
 #echo -e "\n running $RSP/respect --scratch=$TMPDIR --restart=Fm2.dkh2.scf.v2z  --inp=Fm2.dc.pbe.vtz  --np=$NMPI ..."
 #$RSP/respect --scratch=$TMPDIR --restart=Fm2.dkh2.scf.v2z  --inp=Fm2.dc.pbe.vtz  --np=$NMPI
 #
+
+ls -lt $TMPDIR
+du -h -s $TMPDIR
 
 #/bin/rm -r $TMPDIR

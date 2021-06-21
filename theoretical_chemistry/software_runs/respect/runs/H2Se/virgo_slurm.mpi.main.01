@@ -1,10 +1,11 @@
 #!/bin/bash
-#SBATCH -J Fm2rsp2
+#SBATCH -J H2Se_rsp
 
 ## max. execution time
 ##SBATCH -t 0-1:30:00
 ##SBATCH -t 7-00:00:00
-#SBATCH -t 0-08:00:00
+##SBATCH -t 0-08:00:00
+#SBATCH -t 0-01:00:00
 
 ##  partition (queue)
 ##SBATCH -p long
@@ -117,9 +118,9 @@ NMPI=$SLURM_CPUS_ON_NODE
 #NMPI=12
 #NMPI=6
 
-echo -e "\n running $RSP/respect --scratch=$TMPDIR --inp=Fm2.dkh2.scf.v2z --nt=$NMPI ..."
+#echo -e "\n running $RSP/respect --scratch=$TMPDIR --inp=Fm2.dkh2.scf.v2z --nt=$NMPI ..."
 #$RSP/respect --scratch=$TMPDIR --inp=Fm2.dkh2.scf.v2z --np=$NMPI
-$RSP/respect --scratch=$TMPDIR --inp=Fm2.dkh2.scf.v2z --nt=$NMPI
+$RSP/respect --scratch=$TMPDIR --inp=h2se_dkh2 --nt=$NMPI
 
 #echo -e "\n running $RSP/respect --scratch=$TMPDIR --restart=Fm2.dkh2.scf.v2z  --inp=Fm2.dc.pbe.vtz  --np=$NMPI ..."
 #$RSP/respect --scratch=$TMPDIR --restart=Fm2.dkh2.scf.v2z  --inp=Fm2.dc.pbe.vtz  --np=$NMPI

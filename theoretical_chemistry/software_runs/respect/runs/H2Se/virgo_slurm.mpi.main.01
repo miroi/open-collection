@@ -111,6 +111,19 @@ echo -e "\n Setting 'ulimit -s unlimited' for this run !"
 ulimit -s unlimited
 
 
+export TMPDIR=/lustre/ukt/milias/scratch/ReSpect_run.$SLURM_CPUS_ON_NODE-$SLURM_JOB_PARTITION-$SLURM_JOBID
+if [ -d $TMPDIR ]
+then
+    echo "Directory $TMPDIR already exists"
+else
+    echo "\n Creating working directory $TMPDIR "
+    mkdir -p $TMPDIR
+fi
+
+echo -e "Space, df -h $TMPDIR :"
+df -h $TMPDIR
+
+
 # for running jobs from your homedir, use ...
 cd $SLURM_SUBMIT_DIR
 
@@ -118,7 +131,6 @@ echo -e "\n Current directory where this SLURM job is running `pwd`"
 echo " It has the disk space of (df -h) :"
 df -h .
 
-export TMPDIR=/lustre/ukt/milias/scratch/ReSpect_runs
 
 NMPI=$SLURM_CPUS_ON_NODE
 #NMPI=24
@@ -136,4 +148,5 @@ $RSP/respect --scf --scratch=$TMPDIR --inp=h2se_dkh2 --nt=$NMPI
 ls -lt $TMPDIR
 du -h -s $TMPDIR
 
-#/bin/rm -r $TMPDIR
+echo -e "\n Deleting $TMPDIR ..."
+/bin/rm -r $TMPDIR

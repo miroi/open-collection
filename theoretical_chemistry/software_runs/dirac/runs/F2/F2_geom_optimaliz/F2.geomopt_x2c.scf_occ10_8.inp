@@ -1,15 +1,24 @@
 **DIRAC
 .TITLE
-  autoocc 
+  F2
 .WAVE F ! Activate integral and wave functions module
-.ANALYZE
+#.ANALYZE
+.OPTIMIZE
+*OPTIMIZE
+! force numerical gradient
+.NUMGRA
+.PRINT
+3
+.MAX IT
+35
+.NOAUX
 **GENERAL
 .DIRECT
 1 1 1
 .PCMOUT
 **INTEGRALS
 .PRINT
-0
+1
 .NUCMOD ! 1-Point nucleus, 2-gaussian
 2
 *READIN
@@ -18,17 +27,19 @@
 .X2C
 .NOAMFI
 .PRINT
-0
+1
 **WAVE FUNCTIONS ! What method (DHF,MP2,CC..)
 .SCF
 *SCF
-#.CLOSED SHELL
-#4 6 
+.CLOSED SHELL
+10 8 
 .EVCCNV ! Energy convergence...
 1.0D-8  1.0D-6
 # read starting MOs
 .MAXITR
-45
+25
+.PRINT
+1
 #################################################
 **ANALYZE
 .MULPOP

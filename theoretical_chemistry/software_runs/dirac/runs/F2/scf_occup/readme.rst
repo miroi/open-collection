@@ -19,3 +19,6 @@ tot.num. of pos.erg shells:   24    8    1
 .CLOSED SHELL
 10  8
 
+-198.91873773317599
+
+-198.91873773317599

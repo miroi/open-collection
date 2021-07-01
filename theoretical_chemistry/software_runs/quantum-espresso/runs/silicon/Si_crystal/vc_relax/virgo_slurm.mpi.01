@@ -117,7 +117,7 @@ cd $SLURM_SUBMIT_DIR
 #echo -e "Therefore, for the MKL internal parallelization, number of calculated threads=$MKL_NUM_THREADS \n"
 #
  proj=Si.vc_relax
- mpirun -np 4 $QE/pw.x < $proj.in > $proj.out
+ mpirun -np 4 $QE/pw.x < $proj.in > $proj.$SLURM_JOB_PARTITION.$SLURM_JOBID.out
 
 
 exit

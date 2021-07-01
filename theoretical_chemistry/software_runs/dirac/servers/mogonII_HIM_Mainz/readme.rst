@@ -8,5 +8,7 @@ mirilias@login23.mogon:~/work/software/dirac/trunk_master/.echo $MKLROOT
 /cluster/easybuild/broadwell/software/imkl/2018.3.222-iimpi-2018.03/mkl
 
 
+mirilias@login23.mogon:~/work/software/dirac/trunk_master/../setup --mpi --int64 --fc=mpif90 --cc=mpicc --cxx=mpicxx  --mkl=parallel  build_openmpi_intel_mklpar_i8
+
 
 

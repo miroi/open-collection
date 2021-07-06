@@ -50,7 +50,8 @@ echo -e "Job partition is SLURM_JOB_PARTITION=$SLURM_JOB_PARTITION \n"
 echo -e "\nThe job requests SLURM_CPUS_ON_NODE=$SLURM_CPUS_ON_NODE CPU per task.\n"
 
 module purge
-module load lang/Python/3.6.1-intel-2017.02 
+#module load lang/Python/3.6.1-intel-2017.02 
+module load lang/Python/3.6.6-foss-2018b
 
 #
 echo -e "\n List of all loaded modules:"
@@ -82,7 +83,8 @@ export OMP_DYNAMIC="FALSE"
 ##   My OpenMPI-Intel installation   ##
 #
 export DIRAC_ROOTDIR=/home/mirilias/work/software/dirac/trunk_master
-export DIRAC_BUILDDIR=$DIRAC_ROOTDIR/build_intelmpi_mklpar_i8
+#export DIRAC_BUILDDIR=$DIRAC_ROOTDIR/build_intelmpi_mklpar_i8
+export DIRAC_BUILDDIR=$DIRAC_ROOTDIR/build_openmpi_gnu_i8
 #
 export PAM=$DIRAC_BUILDDIR/pam
 export BASDIR=$DIRAC_ROOTDIR/basis_dalton:$DIRAC_ROOTDIR/basis:$DIRAC_ROOTDIR/basis_ecp

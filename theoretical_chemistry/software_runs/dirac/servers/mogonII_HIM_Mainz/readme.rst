@@ -13,6 +13,16 @@ mirilias@login23.mogon:~/work/software/dirac/trunk_master/../setup --mpi --int64
 
 NOT WORKING ! Maybe due to Python2 ?
 
+With OpenMPI-GNU
+-----------------
+module load lang/Python/3.6.6-foss-2018b
+
+./setup --mpi --fc=mpif90 --cc=mpicc --cxx=mpicxx --int64 build_openmpi_gnu_i8/
+
+
+
+
+
 With Intel-MPI
 ---------------
 

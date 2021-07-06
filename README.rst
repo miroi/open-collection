@@ -1,8 +1,11 @@
-Open science data collection
-============================
+=======================================
+Open science software data collection
+=======================================
 
-Personal collection (storage) of various scientific and educational data software inputs and some outputs.
+Personal collection (or storage) of various scientific and educational software inputs and some outputs.
 
-My areas of interest are theoretical chemistry, air pollution modeling and computer science. This collection is open and is used mainly for mz teaching purposes.
+My areas of interest are theoretical chemistry, air pollution modeling and computer science. 
 
-Each subdirectory should contain brief description file.
+This collection is open and serves mainly for teaching purposes.
+
+Each subdirectory is supposed contain brief description file.

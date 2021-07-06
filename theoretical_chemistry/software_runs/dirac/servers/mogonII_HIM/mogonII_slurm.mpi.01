@@ -50,8 +50,7 @@ echo -e "Job partition is SLURM_JOB_PARTITION=$SLURM_JOB_PARTITION \n"
 echo -e "\nThe job requests SLURM_CPUS_ON_NODE=$SLURM_CPUS_ON_NODE CPU per task.\n"
 
 module purge
-#module load lang/Python/3.6.1-intel-2017.02 
-module load lang/Python/3.6.6-foss-2018b
+module load lang/Python/3.6.1-intel-2017.02
 
 #
 echo -e "\n List of all loaded modules:"
@@ -80,16 +79,20 @@ export OMP_NUM_THREADS=1
 export MKL_DYNAMIC="FALSE"
 export OMP_DYNAMIC="FALSE"
 
-##   My OpenMPI-Intel installation   ##
-#
-export DIRAC_ROOTDIR=/home/mirilias/work/software/dirac/trunk_master
-#export DIRAC_BUILDDIR=$DIRAC_ROOTDIR/build_intelmpi_mklpar_i8
-export DIRAC_BUILDDIR=$DIRAC_ROOTDIR/build_openmpi_gnu_i8
+##
+##   My OpenMPI-Intel-i8 installation   ##
+##
+export PATH=/home/mirilias/work/software/open-mpi/openmpi-4.1.1-intel-2017.02-i8/bin:$PATH
+export LD_LIBRARY_PATH=/home/mirilias/work/software/open-mpi/openmpi-4.1.1-intel-2017.02-i8/lib:$LD_LIBRARY_PATH
+
+export DIRAC_ROOTDIR=/home/mirilias/work/software/dirac/trunk_production
+export DIRAC_BUILDDIR=$DIRAC_ROOTDIR/build_openmpi_intel_mklpar_i8
 #
 export PAM=$DIRAC_BUILDDIR/pam
 export BASDIR=$DIRAC_ROOTDIR/basis_dalton:$DIRAC_ROOTDIR/basis:$DIRAC_ROOTDIR/basis_ecp
 
 echo -e "\n ifort -V: \c"; ifort -V
+echo -e "mpif90 -V: \c "; mpif90 -V
 echo -e "Python -v :\c"; python -V
 echo -e "cmake ? which cmake = \c"; which cmake
 echo -e "\n mpirun ? \c"; which mpirun; mpirun --version

@@ -20,7 +20,7 @@
 #SBATCH --no-kill
 
 ## CPU count  - max. 40 per node ?
-#SBATCH -n 4
+#SBATCH -n 8
 
 ##  partition (queue)
 #SBATCH -p devel
@@ -142,6 +142,6 @@ export MKL_NUM_THREADS=1
 #
 #
 cd $DIRAC_BUILDDIR; pwd
-ctest -j2 -L short
+ctest -j4 
 
 exit

@@ -20,9 +20,6 @@ module load lang/Python/3.6.6-foss-2018b
 ./setup --mpi --fc=mpif90 --cc=mpicc --cxx=mpicxx --int64 build_openmpi_gnu_i8/
 
 
-
-
-
 With Intel-MPI
 ---------------
 
@@ -40,7 +37,5 @@ mirilias@login23.mogon:~/work/software/dirac/trunk_master/build_intelmpi_mklpar_
 cmake version 3.11.4
 
 mirilias@login23.mogon:~/work/software/dirac/trunk_master/build_intelmpi_mklpar_i8/../setup --mpi --int64 --fc=mpiifort --cc=mpiicc --cxx=mpiicpc  --mkl=parallel  build_intelmpi_mklpar_i8
-
-
 
 

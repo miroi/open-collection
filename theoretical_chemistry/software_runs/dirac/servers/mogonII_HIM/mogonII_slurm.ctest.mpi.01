@@ -64,7 +64,8 @@ echo -e "Time is `date` \n"
 echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
 NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
 echo "This node has total $NPROCS CPUs available for an EXCLUSIVE job."
-echo "This node has $SLURM_CPUS_ON_NODE CPUs allocated for SLURM calculations."
+#echo "This node has $SLURM_CPUS_ON_NODE CPUs allocated for SLURM calculations."
+echo "This node has $SLURM_NPROCS CPUs allocated for SLURM calculations."
 
 echo -e "\n The memory at the node (in GB)"
 free -t -g
@@ -129,19 +130,18 @@ export MKL_NUM_THREADS=1
 #echo -e "\nThis node has $NPROCS CPUs available for this EXCLUSIVE JOB and dirac.x is running via $THISMPI threads."
 #echo -e "Therefore, for the MKL internal parallelization, number of calculated threads=$MKL_NUM_THREADS \n"
 #
-
-#$PAM --noarch --mpi=2 --gb=55.5 --ag=62.5  --mol=Bh-CO_4.x2c_a4p_bp86_v2z.Cs.mol --inp=Bh-CO_4.x2c_a4.scf_relcc_o20-19_v15.inp  --put "DFPCMO.x2c_a4.scf.v2z=DFPCMO" --keep_scratch
-
 #$PAM --noarch --mpi=$SLURM_CPUS_ON_NODE --gb=47.0 --ag=47.8 --mol=Cf2.xyz  --inp=Cf2.x2c-a4p.scf_occ98_98_mj1_v3z.inp --suffix=i17mkl_mpi$SLURM_CPUS_ON_NODE-$SLURM_JOB_PARTITION-$SLURM_JOBID-out  --get="DFPCMO=DFPCMO.Cf2.lsym_x2c-a4p_scf_v3z_occ98_98_mj1"  
-
-#
 #
 #$PAM --noarch --mpi=$SLURM_CPUS_ON_NODE --gb=2.0 --ag=2.2 --mol=$DIRAC_ROOTDIR/test/cc_energy_and_mp2_dipole/H2O.mol --inp=$DIRAC_ROOTDIR/test/cc_energy_and_mp2_dipole/ccsd.inp
-
+#
 #$PAM --noarch --mpi=4 --gb=2.0 --ag=2.2 --mol=$DIRAC_ROOTDIR/test/cc_energy_and_mp2_dipole/H2O.mol --inp=$DIRAC_ROOTDIR/test/cc_energy_and_mp2_dipole/ccsd.inp
 #
 #
-cd $DIRAC_BUILDDIR; pwd
-ctest -j4 
+
+let "NUMTHR=$SLURM_NPROCS/2"; echo "SLURM_NPROCS=$SLURM_NPROCS, then divided by 2,  NUMTHR=$NUMTHR"
+
+cd $DIRAC_BUILDDIR; echo -e "\nI am in: \c"; pwd
+echo -e "Running 'ctest -VV -j$NUMTHR'"
+ctest -VV  -j$NUMTHR
 
 exit

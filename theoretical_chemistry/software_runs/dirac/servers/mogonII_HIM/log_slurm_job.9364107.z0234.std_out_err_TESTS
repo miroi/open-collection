@@ -1,0 +1,529 @@
+
+Job user is SLURM_JOB_USER= mirilias
+User job SLURM_JOB_NAME=DIRAC has assigned ID SLURM_JOBID=9364107
+This job was submitted from the computer SLURM_SUBMIT_HOST=login23.mogon
+ and from the home directory SLURM_SUBMIT_DIR=/gpfs/fs1/home/mirilias/work/projects/open-collection/theoretical_chemistry/software_runs/dirac/servers/mogonII_HIM
+Job is running on the cluster compute node: SLURM_CLUSTER_NAME=mogon2
+and is employing SLURM_JOB_NUM_NODES=1 node/nodes:
+SLURM_JOB_NODELIST = z0234
+
+Job partition is SLURM_JOB_PARTITION=devel 
+
+
+The job requests SLURM_CPUS_ON_NODE=40 CPU per task.
+
+Loading lang/Python/3.6.1-intel-2017.02
+  Loading requirement: compiler/GCCcore/6.3.0 compiler/icc/2017.2.174-GCC-6.3.0
+    compiler/ifort/2017.2.174-GCC-6.3.0 toolchain/iccifort/2017.2.174-GCC-6.3.0
+    mpi/impi/2017.2.174-iccifort-2017.2.174-GCC-6.3.0
+    toolchain/iimpi/2017.02-GCC-6.3.0
+    numlib/imkl/2017.2.174-iimpi-2017.02-GCC-6.3.0 toolchain/intel/2017.02
+
+ List of all loaded modules:
+Currently Loaded Modulefiles:
+ 1) compiler/GCCcore/6.3.0                             10) devel/CMake/3.18.4  
+ 2) compiler/icc/2017.2.174-GCC-6.3.0                  
+ 3) compiler/ifort/2017.2.174-GCC-6.3.0                
+ 4) toolchain/iccifort/2017.2.174-GCC-6.3.0            
+ 5) mpi/impi/2017.2.174-iccifort-2017.2.174-GCC-6.3.0  
+ 6) toolchain/iimpi/2017.02-GCC-6.3.0                  
+ 7) numlib/imkl/2017.2.174-iimpi-2017.02-GCC-6.3.0     
+ 8) toolchain/intel/2017.02                            
+ 9) lang/Python/3.6.1-intel-2017.02                    
+
+Running on host z0234.mogon
+Time is Tue Jul  6 22:56:33 CEST 2021 
+
+The node's CPU model name	: Intel(R) Xeon(R) CPU E5-2630 v4 @ 2.20GHz
+This node has total 40 CPUs available for an EXCLUSIVE job.
+This node has 40 CPUs allocated for SLURM calculations.
+
+ The memory at the node (in GB)
+              total        used        free      shared  buff/cache   available
+Mem:             62           2          59           0           0          56
+Swap:             0           0           0
+Total:           62           2          59
+
+
+
+ ifort -V: Intel(R) Fortran Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 17.0.2.174 Build 20170213
+Copyright (C) 1985-2017 Intel Corporation.  All rights reserved.
+
+mpif90 -V: Intel(R) Fortran Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 17.0.2.174 Build 20170213
+Copyright (C) 1985-2017 Intel Corporation.  All rights reserved.
+
+mpicc -V: Intel(R) C Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 17.0.2.174 Build 20170213
+Copyright (C) 1985-2017 Intel Corporation.  All rights reserved.
+
+mpicxx -V: Intel(R) C++ Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 17.0.2.174 Build 20170213
+Copyright (C) 1985-2017 Intel Corporation.  All rights reserved.
+
+Python -v :Python 3.6.1
+cmake ? /cluster/easybuild/broadwell/software/CMake/3.18.4/bin/cmake
+cmake version 3.18.4
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
+ctest ? /cluster/easybuild/broadwell/software/CMake/3.18.4/bin/ctest
+ctest version 3.18.4
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
+
+ mpirun ? /home/mirilias/work/software/open-mpi/openmpi-4.1.1-intel-2017.02-i8/bin/mpirun
+mpirun (Open MPI) 4.1.1
+
+Report bugs to http://www.open-mpi.org/community/help/
+
+My PATH=/home/mirilias/work/software/open-mpi/openmpi-4.1.1-intel-2017.02-i8/bin:/cluster/easybuild/broadwell/software/CMake/3.18.4/bin:/cluster/easybuild/broadwell/software/lang/Python/3.6.1-intel-2017.02/bin:/cluster/easybuild/broadwell/software/numlib/imkl/2017.2.174-iimpi-2017.02-GCC-6.3.0/mkl/bin:/cluster/easybuild/broadwell/software/numlib/imkl/2017.2.174-iimpi-2017.02-GCC-6.3.0/bin:/cluster/easybuild/broadwell/software/mpi/impi/2017.2.174-iccifort-2017.2.174-GCC-6.3.0/bin64:/cluster/easybuild/broadwell/software/compiler/ifort/2017.2.174-GCC-6.3.0/compilers_and_libraries_2017.2.174/linux/bin/intel64:/cluster/easybuild/broadwell/software/compiler/icc/2017.2.174-GCC-6.3.0/compilers_and_libraries_2017.2.174/linux/bin/intel64:/cluster/easybuild/broadwell/software/compiler/GCCcore/6.3.0/bin:/home/mirilias/work/software/open-mpi/openmpi-4.1.1-intel-2017.02-i8/bin:/usr/share/Modules/bin:/usr/lpp/mmfs/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/var/cfengine/bin:.
+
+DIRAC_MPI_COMMAND=mpirun -np 2
+
+ldd /home/mirilias/work/software/dirac/trunk_production/build_openmpi_intel_mklpar_i8/dirac.x:
+	linux-vdso.so.1 (0x00007ffd383fb000)
+	libmkl_intel_ilp64.so => /cluster/easybuild/broadwell/software/numlib/imkl/2017.2.174-iimpi-2017.02-GCC-6.3.0/mkl/lib/intel64/libmkl_intel_ilp64.so (0x00007f7538c51000)
+	libmkl_intel_thread.so => /cluster/easybuild/broadwell/software/numlib/imkl/2017.2.174-iimpi-2017.02-GCC-6.3.0/mkl/lib/intel64/libmkl_intel_thread.so (0x00007f75371bf000)
+	libmkl_core.so => /cluster/easybuild/broadwell/software/numlib/imkl/2017.2.174-iimpi-2017.02-GCC-6.3.0/mkl/lib/intel64/libmkl_core.so (0x00007f75356cc000)
+	libiomp5.so => /cluster/easybuild/broadwell/software/lang/Python/3.6.1-intel-2017.02/lib/libiomp5.so (0x00007f75352d9000)
+	libmpi.so.40 => /home/mirilias/work/software/open-mpi/openmpi-4.1.1-intel-2017.02-i8/lib/libmpi.so.40 (0x00007f7534f8d000)
+	libimf.so => /cluster/easybuild/broadwell/software/numlib/imkl/2017.2.174-iimpi-2017.02-GCC-6.3.0/lib/intel64/libimf.so (0x00007f7534aa1000)
+	libsvml.so => /cluster/easybuild/broadwell/software/numlib/imkl/2017.2.174-iimpi-2017.02-GCC-6.3.0/lib/intel64/libsvml.so (0x00007f7533b96000)
+	libirng.so => /cluster/easybuild/broadwell/software/numlib/imkl/2017.2.174-iimpi-2017.02-GCC-6.3.0/lib/intel64/libirng.so (0x00007f7533821000)
+	libstdc++.so.6 => /cluster/easybuild/broadwell/software/compiler/GCCcore/6.3.0/lib64/libstdc++.so.6 (0x00007f7539670000)
+	libm.so.6 => /lib64/libm.so.6 (0x00007f753349f000)
+	libgcc_s.so.1 => /cluster/easybuild/broadwell/software/compiler/GCCcore/6.3.0/lib64/libgcc_s.so.1 (0x00007f7539648000)
+	libirc.so => /cluster/easybuild/broadwell/software/numlib/imkl/2017.2.174-iimpi-2017.02-GCC-6.3.0/lib/intel64/libirc.so (0x00007f7533235000)
+	libpthread.so.0 => /lib64/libpthread.so.0 (0x00007f7533015000)
+	libc.so.6 => /lib64/libc.so.6 (0x00007f7532c52000)
+	libdl.so.2 => /lib64/libdl.so.2 (0x00007f7532a4e000)
+	libz.so.1 => /lib64/libz.so.1 (0x00007f7532837000)
+	libmpi_usempi_ignore_tkr.so.40 => /home/mirilias/work/software/open-mpi/openmpi-4.1.1-intel-2017.02-i8/lib/libmpi_usempi_ignore_tkr.so.40 (0x00007f753262c000)
+	libmpi_mpifh.so.40 => /home/mirilias/work/software/open-mpi/openmpi-4.1.1-intel-2017.02-i8/lib/libmpi_mpifh.so.40 (0x00007f75323b6000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f75395db000)
+	libopen-rte.so.40 => /home/mirilias/work/software/open-mpi/openmpi-4.1.1-intel-2017.02-i8/lib/libopen-rte.so.40 (0x00007f75320ef000)
+	libopen-orted-mpir.so => /home/mirilias/work/software/open-mpi/openmpi-4.1.1-intel-2017.02-i8/lib/libopen-orted-mpir.so (0x00007f7531eed000)
+	libopen-pal.so.40 => /home/mirilias/work/software/open-mpi/openmpi-4.1.1-intel-2017.02-i8/lib/libopen-pal.so.40 (0x00007f7531bad000)
+	libudev.so.1 => /lib64/libudev.so.1 (0x00007f7531918000)
+	librt.so.1 => /lib64/librt.so.1 (0x00007f7531710000)
+	libutil.so.1 => /lib64/libutil.so.1 (0x00007f753150c000)
+	libintlc.so.5 => /cluster/easybuild/broadwell/software/numlib/imkl/2017.2.174-iimpi-2017.02-GCC-6.3.0/lib/intel64/libintlc.so.5 (0x00007f75312a2000)
+	libifport.so.5 => /cluster/easybuild/broadwell/software/numlib/imkl/2017.2.174-iimpi-2017.02-GCC-6.3.0/lib/intel64/libifport.so.5 (0x00007f7531073000)
+	libifcoremt.so.5 => /cluster/easybuild/broadwell/software/numlib/imkl/2017.2.174-iimpi-2017.02-GCC-6.3.0/lib/intel64/libifcoremt.so.5 (0x00007f7530ce3000)
+	libmount.so.1 => /lib64/libmount.so.1 (0x00007f7530a89000)
+	libblkid.so.1 => /lib64/libblkid.so.1 (0x00007f7530836000)
+	libuuid.so.1 => /lib64/libuuid.so.1 (0x00007f753062e000)
+	libselinux.so.1 => /lib64/libselinux.so.1 (0x00007f7530404000)
+	libpcre2-8.so.0 => /lib64/libpcre2-8.so.0 (0x00007f7530180000)
+
+DIRAC scratch directory space, /lustre/miifs03/scratch/m2_him_exp
+Filesystem                                      Size  Used Avail Use% Mounted on
+10.85.200.10@o2ib2:10.85.200.11@o2ib2:/miifs03  1.1P  385T  736T  35% /lustre/miifs03
+
+ For comparison, /tmp local disk;  df -h /tmp/.
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda3        20G  4.4G   16G  22% /
+
+
+/home/mirilias/work/software/dirac/trunk_production/build_openmpi_intel_mklpar_i8
+Test project /home/mirilias/work/software/dirac/trunk_production/build_openmpi_intel_mklpar_i8
+        Start  92: ecp
+        Start  93: ecp_nio6
+        Start  43: fde_export_density
+        Start  42: fde_response_autodiff
+  1/163 Test  #93: ecp_nio6 ...................................***Failed    3.21 sec
+        Start 131: cosci_energy
+  2/163 Test  #92: ecp ........................................***Failed    3.25 sec
+        Start  21: eomcc_long
+  3/163 Test  #21: eomcc_long .................................   Passed   50.33 sec
+        Start 102: open-shells
+  4/163 Test #131: cosci_energy ...............................   Passed   58.09 sec
+        Start   7: london_properties_symmetry
+  5/163 Test  #42: fde_response_autodiff ......................   Passed   65.36 sec
+        Start 117: xyz_symmetry_recognition
+  6/163 Test   #7: london_properties_symmetry .................   Passed   26.13 sec
+        Start  89: dft_lao_mag_prop
+  7/163 Test #102: open-shells ................................   Passed   41.43 sec
+        Start 127: atomic_supersymmetry
+  8/163 Test #117: xyz_symmetry_recognition ...................   Passed   37.16 sec
+        Start 125: visual_general
+  9/163 Test  #43: fde_export_density .........................   Passed  114.76 sec
+        Start 113: visual_div_rot
+ 10/163 Test  #89: dft_lao_mag_prop ...........................   Passed   30.17 sec
+        Start  70: basis_automatic_augmentation
+ 11/163 Test #127: atomic_supersymmetry .......................   Passed   31.14 sec
+        Start  68: acmoin
+ 12/163 Test #125: visual_general .............................   Passed   29.95 sec
+        Start 121: localization
+ 13/163 Test #113: visual_div_rot .............................   Passed   27.29 sec
+        Start 163: pe_exc
+ 14/163 Test  #70: basis_automatic_augmentation ...............   Passed   26.41 sec
+        Start  20: eomcc
+ 15/163 Test  #68: acmoin .....................................   Passed   22.89 sec
+        Start  98: mcscf_properties
+ 16/163 Test #121: localization ...............................   Passed   25.72 sec
+        Start  78: cc_linear
+ 17/163 Test  #20: eomcc ......................................   Passed   21.39 sec
+        Start 156: pcm_energy
+ 18/163 Test #163: pe_exc .....................................   Passed   26.02 sec
+        Start 107: response_lao_shield
+ 19/163 Test  #98: mcscf_properties ...........................   Passed   23.74 sec
+        Start  90: dft_pp86
+ 20/163 Test  #78: cc_linear ..................................   Passed   23.83 sec
+        Start  83: cosci_methods
+ 21/163 Test #107: response_lao_shield ........................   Passed   27.09 sec
+        Start 115: visual_frac_occupation
+ 22/163 Test #156: pcm_energy .................................   Passed   29.74 sec
+        Start 136: spinorbit-from-spinfree
+ 23/163 Test  #90: dft_pp86 ...................................   Passed   23.59 sec
+        Start 108: response_lao_magnetiz
+ 24/163 Test  #83: cosci_methods ..............................   Passed   18.92 sec
+        Start  82: cosci_energy_spinfree
+ 25/163 Test  #82: cosci_energy_spinfree ......................   Passed   11.01 sec
+        Start  72: basis_input
+ 26/163 Test #115: visual_frac_occupation .....................   Passed   20.00 sec
+        Start   3: stex
+ 27/163 Test #108: response_lao_magnetiz ......................   Passed   19.27 sec
+        Start 155: esr
+ 28/163 Test #136: spinorbit-from-spinfree ....................   Passed   22.15 sec
+        Start  87: dft_cam
+ 29/163 Test   #3: stex .......................................   Passed   12.58 sec
+        Start  74: bsse
+ 30/163 Test  #72: basis_input ................................   Passed   18.17 sec
+        Start 132: lucita_q_corrections
+ 31/163 Test  #87: dft_cam ....................................   Passed   14.73 sec
+        Start  75: bss_energy
+ 32/163 Test #155: esr ........................................   Passed   17.83 sec
+        Start 106: response_hf_polarizability
+ 33/163 Test  #74: bsse .......................................   Passed   14.04 sec
+        Start 101: mp2_natural_orbitals
+ 34/163 Test  #75: bss_energy .................................   Passed   12.80 sec
+        Start 118: zora
+ 35/163 Test #132: lucita_q_corrections .......................   Passed   16.36 sec
+        Start  84: cosci_tmom
+ 36/163 Test #106: response_hf_polarizability .................   Passed   13.62 sec
+        Start 112: symmetry_recognition
+ 37/163 Test #101: mp2_natural_orbitals .......................   Passed   12.30 sec
+        Start 135: operators_mo_mtx_elements
+ 38/163 Test #118: zora .......................................   Passed   11.82 sec
+        Start  88: dft_erf_xcfun
+ 39/163 Test #112: symmetry_recognition .......................   Passed   11.84 sec
+        Start  96: krci_properties_perm_dipmom
+ 40/163 Test  #84: cosci_tmom .................................   Passed   12.84 sec
+        Start 109: response_lao_magnetiz_dft
+ 41/163 Test #135: operators_mo_mtx_elements ..................   Passed   11.70 sec
+        Start  86: dft_betasigma
+ 42/163 Test  #88: dft_erf_xcfun ..............................   Passed   10.89 sec
+        Start  69: atomic_start
+ 43/163 Test #109: response_lao_magnetiz_dft ..................   Passed   11.91 sec
+        Start  97: linear_structures
+ 44/163 Test  #96: krci_properties_perm_dipmom ................   Passed   12.19 sec
+        Start 122: krci_properties_omega_tdm
+ 45/163 Test  #86: dft_betasigma ..............................   Passed    9.70 sec
+        Start 141: bed_anisotropic
+ 46/163 Test  #69: atomic_start ...............................   Passed    9.30 sec
+        Start 148: projection_analysis_overlaps
+ 47/163 Test  #97: linear_structures ..........................   Passed    9.79 sec
+        Start 100: mp2_srdft_energies
+ 48/163 Test #122: krci_properties_omega_tdm ..................   Passed   10.08 sec
+        Start 134: import_mos
+ 49/163 Test #141: bed_anisotropic ............................   Passed   10.36 sec
+        Start 133: x2c-SCF_to_4c-SCF
+ 50/163 Test #148: projection_analysis_overlaps ...............   Passed    9.30 sec
+        Start 140: bed_isotropic
+ 51/163 Test #100: mp2_srdft_energies .........................   Passed    8.59 sec
+        Start 104: pvc_scf
+ 52/163 Test #134: import_mos .................................   Passed    8.65 sec
+        Start 139: molecular_mean_field_restart
+ 53/163 Test #140: bed_isotropic ..............................   Passed    8.72 sec
+        Start 128: scf_levelshift
+ 54/163 Test #133: x2c-SCF_to_4c-SCF ..........................   Passed    9.16 sec
+        Start 119: dft_ac
+ 55/163 Test #104: pvc_scf ....................................   Passed    8.23 sec
+        Start 111: response_rkbimp_shield
+ 56/163 Test #139: molecular_mean_field_restart ...............   Passed    7.80 sec
+        Start  85: density_at_nuclei
+ 57/163 Test #119: dft_ac .....................................   Passed    6.80 sec
+        Start 124: visual_gamma5
+ 58/163 Test #128: scf_levelshift .............................   Passed    7.94 sec
+        Start 120: dft_grid_export_import
+ 59/163 Test  #85: density_at_nuclei ..........................   Passed    6.48 sec
+        Start 130: response_nonrel
+ 60/163 Test #111: response_rkbimp_shield .....................   Passed    6.79 sec
+        Start 105: response_C6
+ 61/163 Test #124: visual_gamma5 ..............................   Passed    6.66 sec
+        Start  71: basis_contraction
+ 62/163 Test #120: dft_grid_export_import .....................   Passed    8.09 sec
+        Start  95: gaunt
+ 63/163 Test #130: response_nonrel ............................   Passed   14.48 sec
+        Start 110: response_nmr_levy-leblond
+ 64/163 Test #105: response_C6 ................................   Passed   15.19 sec
+        Start  91: dirac_mointegral_export
+ 65/163 Test  #71: basis_contraction ..........................   Passed   16.56 sec
+        Start 129: response_complex
+ 66/163 Test  #95: gaunt ......................................   Passed   14.24 sec
+        Start  94: free-particle_projection
+ 67/163 Test #110: response_nmr_levy-leblond ..................   Passed    6.50 sec
+        Start  99: mp2_energy
+ 68/163 Test  #91: dirac_mointegral_export ....................   Passed    6.91 sec
+        Start 116: lucita_short
+ 69/163 Test  #99: mp2_energy .................................   Passed    4.12 sec
+        Start 123: visual_elf
+ 70/163 Test  #94: free-particle_projection ...................   Passed    4.71 sec
+        Start  76: pam_test
+ 71/163 Test #116: lucita_short ...............................   Passed    3.47 sec
+        Start  73: basis_input_scripted
+ 72/163 Test  #73: basis_input_scripted .......................   Passed    0.09 sec
+        Start   1: dft_alda_xcfun
+ 73/163 Test #129: response_complex ...........................   Passed    5.47 sec
+        Start   2: dft_alda
+ 74/163 Test #123: visual_elf .................................   Passed    2.41 sec
+        Start   4: geo_opt
+ 75/163 Test  #76: pam_test ...................................   Passed    2.23 sec
+        Start   5: geo_opt_xyz
+ 76/163 Test   #1: dft_alda_xcfun .............................   Passed   73.68 sec
+        Start   6: geo_opt_symm_xyz
+ 77/163 Test   #2: dft_alda ...................................   Passed   75.61 sec
+        Start   8: response_pv_nmr
+ 78/163 Test   #5: geo_opt_xyz ................................   Passed  113.30 sec
+        Start   9: krci_energy
+ 79/163 Test   #6: geo_opt_symm_xyz ...........................   Passed   42.86 sec
+        Start  10: molecular_mean_field_hamiltonian_schemes
+ 80/163 Test   #9: krci_energy ................................   Passed   19.42 sec
+        Start  11: electrostatic_potential
+ 81/163 Test  #10: molecular_mean_field_hamiltonian_schemes ...   Passed   30.48 sec
+        Start  12: mp2_properties
+ 82/163 Test  #12: mp2_properties .............................   Passed   40.76 sec
+        Start  13: ffpt_dipmom_polariz_relcc
+ 83/163 Test  #13: ffpt_dipmom_polariz_relcc ..................   Passed   11.08 sec
+        Start  14: reladc_sip
+ 84/163 Test  #14: reladc_sip .................................   Passed    0.90 sec
+        Start  15: reladc_sipeigv
+ 85/163 Test  #15: reladc_sipeigv .............................   Passed    1.87 sec
+        Start  16: reladc_dip
+ 86/163 Test  #16: reladc_dip .................................   Passed    1.52 sec
+        Start  17: reladc_fano
+ 87/163 Test  #17: reladc_fano ................................   Passed    0.84 sec
+        Start  18: polprp_ph
+ 88/163 Test  #18: polprp_ph ..................................   Passed    3.39 sec
+        Start  19: cc_energy_and_mp2_dipole
+ 89/163 Test   #8: response_pv_nmr ............................   Passed  150.05 sec
+        Start  22: eomip_energy_symmetry
+ 90/163 Test  #19: cc_energy_and_mp2_dipole ...................   Passed   27.47 sec
+        Start  23: eomip_energy_symmetry_eigenvalue_shift
+ 91/163 Test   #4: geo_opt ....................................   Passed  237.02 sec
+        Start  24: eomee_energy_symmetry_eigenvalue_shift
+ 92/163 Test  #11: electrostatic_potential ....................   Passed  146.03 sec
+        Start  25: eomip_energy_symmetry_cvs
+ 93/163 Test  #23: eomip_energy_symmetry_eigenvalue_shift .....   Passed  118.95 sec
+        Start  26: eomee_energy_symmetry_cvs
+ 94/163 Test  #24: eomee_energy_symmetry_eigenvalue_shift .....   Passed  132.94 sec
+        Start  27: eomea_energy_symmetry
+ 95/163 Test  #22: eomip_energy_symmetry ......................   Passed  149.92 sec
+        Start  28: eomee_energy_symmetry
+ 96/163 Test  #25: eomip_energy_symmetry_cvs ..................   Passed  130.21 sec
+        Start  29: count_cc_memory
+ 97/163 Test  #29: count_cc_memory ............................   Passed   10.75 sec
+        Start  30: eomee_fc_cvs
+ 98/163 Test  #30: eomee_fc_cvs ...............................   Passed   12.96 sec
+        Start  31: eomip_fc_cvs
+ 99/163 Test  #31: eomip_fc_cvs ...............................   Passed   10.76 sec
+        Start  32: cisd_energy
+100/163 Test  #32: cisd_energy ................................   Passed   41.02 sec
+        Start  33: cosci_average
+101/163 Test  #33: cosci_average ..............................   Passed    7.30 sec
+        Start  34: dft_ao_eval
+102/163 Test  #26: eomee_energy_symmetry_cvs ..................   Passed  152.66 sec
+        Start  35: dft_geo_opt
+103/163 Test  #27: eomea_energy_symmetry ......................***Failed  159.32 sec
+        Start  36: dft_response
+104/163 Test  #34: dft_ao_eval ................................   Passed   44.37 sec
+        Start  37: dft_response_symmetry
+105/163 Test  #28: eomee_energy_symmetry ......................   Passed  183.58 sec
+        Start  38: dft_response_xcfun
+106/163 Test  #37: dft_response_symmetry ......................   Passed   38.69 sec
+        Start  39: efg
+107/163 Test  #36: dft_response ...............................   Passed   57.44 sec
+        Start  40: fde_static-vemb_dipole
+108/163 Test  #35: dft_geo_opt ................................   Passed   97.87 sec
+        Start  41: fde_open-shell
+109/163 Test  #38: dft_response_xcfun .........................   Passed   48.92 sec
+        Start  44: fde_interaction_energy
+110/163 Test  #39: efg ........................................   Passed   47.58 sec
+        Start  45: fde_response_mag
+111/163 Test  #44: fde_interaction_energy .....................   Passed   49.82 sec
+        Start  46: fde_response_shield
+112/163 Test  #41: fde_open-shell .............................   Passed   57.93 sec
+        Start  47: frozen_orbitals
+113/163 Test  #45: fde_response_mag ...........................   Passed   47.89 sec
+        Start  48: fscc_restart
+114/163 Test  #40: fde_static-vemb_dipole .....................   Passed   91.61 sec
+        Start  49: cc_restart
+115/163 Test  #46: fde_response_shield ........................   Passed   44.64 sec
+        Start  50: fscc
+116/163 Test  #50: fscc .......................................   Passed   32.14 sec
+        Start  51: fscc_highspin
+117/163 Test  #47: frozen_orbitals ............................   Passed   74.43 sec
+        Start  52: ihfscc_newshift
+118/163 Test  #52: ihfscc_newshift ............................***Failed    1.06 sec
+        Start  53: geo_opt_saddle
+119/163 Test  #49: cc_restart .................................   Passed   63.63 sec
+        Start  54: huckel_start
+120/163 Test  #54: huckel_start ...............................   Passed   15.26 sec
+        Start  55: lucita_large
+121/163 Test  #55: lucita_large ...............................   Passed   10.42 sec
+        Start  56: mcscf_energy
+122/163 Test  #51: fscc_highspin ..............................   Passed   41.84 sec
+        Start  57: response_excitation_energies
+123/163 Test  #53: geo_opt_saddle .............................   Passed   41.20 sec
+        Start  58: response_nmr_spin-spin
+124/163 Test  #57: response_excitation_energies ...............   Passed   19.67 sec
+        Start  59: response_qr
+125/163 Test  #48: fscc_restart ...............................   Passed  147.44 sec
+        Start  60: visual_lao_current
+126/163 Test  #59: response_qr ................................   Passed   33.45 sec
+        Start  61: visual_lao_symmetry
+127/163 Test  #56: mcscf_energy ...............................   Passed   68.51 sec
+        Start  62: xyz_input
+128/163 Test  #58: response_nmr_spin-spin .....................   Passed   59.05 sec
+        Start  63: krci_energy_q_corrections
+129/163 Test  #60: visual_lao_current .........................   Passed   42.47 sec
+        Start  64: dirrci_property
+130/163 Test  #64: dirrci_property ............................   Passed    4.37 sec
+        Start  65: general_property_krci
+131/163 Test  #62: xyz_input ..................................   Passed   30.81 sec
+        Start  66: nmqm_property_krci
+132/163 Test  #65: general_property_krci ......................   Passed   23.95 sec
+        Start  67: eedm_mhyp_ensps_krci
+133/163 Test  #61: visual_lao_symmetry ........................   Passed   76.61 sec
+        Start  77: cc_essential
+134/163 Test  #66: nmqm_property_krci .........................   Passed   44.89 sec
+        Start  79: cc_gradient
+135/163 Test  #67: eedm_mhyp_ensps_krci .......................   Passed   23.81 sec
+        Start  80: cc_frozen_open_shell
+136/163 Test  #63: krci_energy_q_corrections ..................   Passed   81.29 sec
+        Start  81: cc_mcscf
+137/163 Test  #77: cc_essential ...............................   Passed   33.80 sec
+        Start 103: projection_analysis
+138/163 Test #103: projection_analysis ........................   Passed   28.10 sec
+        Start 114: visual_lao_shielding
+139/163 Test  #81: cc_mcscf ...................................   Passed   61.11 sec
+        Start 126: symmetry_scf_energy
+140/163 Test #114: visual_lao_shielding .......................   Passed   51.89 sec
+        Start 137: spinrot
+141/163 Test  #79: cc_gradient ................................   Passed  109.54 sec
+        Start 138: rotg
+142/163 Test #138: rotg .......................................   Passed   41.12 sec
+        Start 142: blockd_twocomp
+143/163 Test #142: blockd_twocomp .............................   Passed    6.27 sec
+        Start 143: cosci_energy_blockd
+144/163 Test #143: cosci_energy_blockd ........................   Passed    2.74 sec
+        Start 144: fscc_intensities
+145/163 Test  #80: cc_frozen_open_shell .......................   Passed  160.31 sec
+        Start 145: dft_overlap_diagnostic
+146/163 Test #144: fscc_intensities ...........................   Passed   12.29 sec
+        Start 146: dft_minnesota
+147/163 Test #137: spinrot ....................................   Passed   68.73 sec
+        Start 147: dft_cosci
+148/163 Test #147: dft_cosci ..................................   Passed    2.34 sec
+        Start 149: e_edm_finite_field
+149/163 Test #126: symmetry_scf_energy ........................   Passed  119.93 sec
+        Start 150: ne_sps_finite_field
+150/163 Test #149: e_edm_finite_field .........................   Passed   16.44 sec
+        Start 151: nucl_anapole_cc_finite_field
+151/163 Test #150: ne_sps_finite_field ........................   Passed   16.37 sec
+        Start 152: magn_hyperfine_finite_field
+152/163 Test #146: dft_minnesota ..............................   Passed   38.51 sec
+        Start 153: nmqm_operator
+153/163 Test #151: nucl_anapole_cc_finite_field ...............   Passed   24.06 sec
+        Start 154: laplace
+154/163 Test #152: magn_hyperfine_finite_field ................   Passed   18.53 sec
+        Start 157: pcm_response
+155/163 Test #153: nmqm_operator ..............................   Passed   15.03 sec
+        Start 158: lao_shield_rearranged
+156/163 Test #145: dft_overlap_diagnostic .....................   Passed   64.99 sec
+        Start 159: atomic_x2c_2esoc_models_energy
+157/163 Test #154: laplace ....................................   Passed    7.46 sec
+        Start 160: atomic_x2c_spinfree_energy
+158/163 Test #157: pcm_response ...............................   Passed   55.62 sec
+        Start 161: pe_energy
+159/163 Test #159: atomic_x2c_2esoc_models_energy .............   Passed   58.27 sec
+        Start 162: pe_response
+160/163 Test #160: atomic_x2c_spinfree_energy .................   Passed   65.74 sec
+161/163 Test #158: lao_shield_rearranged ......................   Passed   67.47 sec
+162/163 Test #162: pe_response ................................   Passed   28.37 sec
+163/163 Test #161: pe_energy ..................................   Passed   37.28 sec
+
+98% tests passed, 4 tests failed out of 163
+
+Label Time Summary:
+4c                   =   9.16 sec*proc (1 test)
+basis                =  75.28 sec*proc (5 tests)
+bed                  =  19.08 sec*proc (2 tests)
+cc                   = 1734.17 sec*proc (27 tests)
+cc_gradient          = 109.54 sec*proc (1 test)
+ci                   = 269.02 sec*proc (10 tests)
+complex              =   5.47 sec*proc (1 test)
+cosci                =  70.47 sec*proc (4 tests)
+dft                  = 658.29 sec*proc (18 tests)
+dirrci               =   4.37 sec*proc (1 test)
+ecp                  =   6.46 sec*proc (2 tests)
+efg                  =  47.58 sec*proc (1 test)
+elp                  = 146.03 sec*proc (1 test)
+eomcc                = 1123.01 sec*proc (11 tests)
+fde                  = 472.02 sec*proc (7 tests)
+frozen               = 234.75 sec*proc (2 tests)
+fscc                 = 234.76 sec*proc (5 tests)
+gascip               =  17.83 sec*proc (1 test)
+gaunt                =  14.24 sec*proc (1 test)
+geoopt               = 532.26 sec*proc (5 tests)
+grid                 =   8.09 sec*proc (1 test)
+huckel               =  15.26 sec*proc (1 test)
+import               =   8.65 sec*proc (1 test)
+input                =  30.81 sec*proc (1 test)
+krci                 = 229.52 sec*proc (9 tests)
+lao                  = 378.08 sec*proc (10 tests)
+laplace              =   7.46 sec*proc (1 test)
+levelshift           =   7.94 sec*proc (1 test)
+localization         =  25.72 sec*proc (1 test)
+long                 = 929.22 sec*proc (10 tests)
+magnetizabilities    =  79.07 sec*proc (3 tests)
+mcscf                = 100.90 sec*proc (3 tests)
+meanfield            =  30.48 sec*proc (1 test)
+medium               = 670.15 sec*proc (12 tests)
+mp2                  =  81.04 sec*proc (6 tests)
+nmr                  =  65.55 sec*proc (2 tests)
+nonrel               =  14.48 sec*proc (1 test)
+operators            =  11.70 sec*proc (1 test)
+pam                  =   2.23 sec*proc (1 test)
+pcm                  =  85.36 sec*proc (2 tests)
+pelib                =  91.67 sec*proc (3 tests)
+polarizabilities     =  97.61 sec*proc (3 tests)
+polprp               =   3.39 sec*proc (1 test)
+projection           =  42.11 sec*proc (3 tests)
+property             = 178.04 sec*proc (7 tests)
+pvc                  =   8.23 sec*proc (1 test)
+qcorr                =  97.65 sec*proc (2 tests)
+qr                   =  33.45 sec*proc (1 test)
+reladc               =   5.13 sec*proc (4 tests)
+resolve              =  22.15 sec*proc (1 test)
+response             = 656.50 sec*proc (20 tests)
+restart              = 211.07 sec*proc (2 tests)
+scf                  = 274.22 sec*proc (9 tests)
+shield               =   6.79 sec*proc (1 test)
+shielding            =  71.73 sec*proc (2 tests)
+short                = 1324.47 sec*proc (75 tests)
+srdft                =   8.59 sec*proc (1 test)
+stex                 =  12.58 sec*proc (1 test)
+structures           =   9.79 sec*proc (1 test)
+twocomp              =   6.27 sec*proc (1 test)
+visual               = 257.28 sec*proc (8 tests)
+x2c                  =  16.96 sec*proc (2 tests)
+xyz                  =  30.81 sec*proc (1 test)
+zora                 =  11.82 sec*proc (1 test)
+
+Total Test time (real) = 1558.71 sec
+
+The following tests FAILED:
+	 27 - eomea_energy_symmetry (Failed)
+	 52 - ihfscc_newshift (Failed)
+	 92 - ecp (Failed)
+	 93 - ecp_nio6 (Failed)
+Errors while running CTest

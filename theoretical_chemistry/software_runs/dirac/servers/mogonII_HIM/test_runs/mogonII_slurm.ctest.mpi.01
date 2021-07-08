@@ -103,10 +103,6 @@ echo -e "ctest ? \c"; which ctest; ctest  --version
 echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
 
 echo -e "\nMy PATH=$PATH\n"
-#unset DIRAC_MPI_COMMAND
-#export DIRAC_MPI_COMMAND="mpirun -np $SLURM_CPUS_ON_NODE"
-export DIRAC_MPI_COMMAND="mpirun -np 2"
-echo -e "DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
 
 echo -e "\nldd $DIRAC_BUILDDIR/dirac.x:"
 ldd $DIRAC_BUILDDIR/dirac.x
@@ -138,10 +134,14 @@ export MKL_NUM_THREADS=1
 #
 #
 
+unset DIRAC_MPI_COMMAND
+export DIRAC_MPI_COMMAND="mpirun -np 2"
+echo -e "DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
+
 let "NUMTHR=$SLURM_NPROCS/2"; echo "SLURM_NPROCS=$SLURM_NPROCS, then divided by 2,  NUMTHR=$NUMTHR"
 
 cd $DIRAC_BUILDDIR; echo -e "\nI am in: \c"; pwd
 echo -e "Running 'ctest -VV -j$NUMTHR'"
-ctest -VV  -j$NUMTHR
+ctest -VV  -j$NUMTHR 
 
 exit

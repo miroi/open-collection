@@ -47,6 +47,7 @@ echo -e "and is employing SLURM_JOB_NUM_NODES=$SLURM_JOB_NUM_NODES node/nodes:"
 echo -e "SLURM_JOB_NODELIST = $SLURM_JOB_NODELIST"
 echo
 echo -e "Job partition is SLURM_JOB_PARTITION=$SLURM_JOB_PARTITION \n"
+echo -e "Directory is SLURM_SUBMIT_DIR=$SLURM_SUBMIT_DIR \n"
 #echo -e "\nThe job requests SLURM_CPUS_ON_NODE=$SLURM_CPUS_ON_NODE CPU per task.\n"
 
 module purge
@@ -102,8 +103,6 @@ echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
 
 echo -e "\nMy PATH=$PATH\n"
 unset DIRAC_MPI_COMMAND
-#export DIRAC_MPI_COMMAND="mpirun -np $SLURM_CPUS_ON_NODE"
-#echo -e "DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
 
 echo -e "\nldd $DIRAC_BUILDDIR/dirac.x:"
 ldd $DIRAC_BUILDDIR/dirac.x
@@ -117,9 +116,8 @@ echo -e "\n For comparison, /tmp local disk;  df -h /tmp/."; df -h /tmp
 echo -e "\n"
 
 # for running jobs from your homedir
-#cd $SLURM_SUBMIT_DIR
+cd $SLURM_SUBMIT_DIR
 
-#THISMPI=10
 #THISMPI=4
 #let "NUMTHR=$NPROCS/$THISMPI"
 #export MKL_NUM_THREADS=$NUMTHR
@@ -130,15 +128,13 @@ export MKL_NUM_THREADS=1
 #$PAM --noarch --mpi=$SLURM_CPUS_ON_NODE --gb=47.0 --ag=47.8 --mol=Cf2.xyz  --inp=Cf2.x2c-a4p.scf_occ98_98_mj1_v3z.inp --suffix=i17mkl_mpi$SLURM_CPUS_ON_NODE-$SLURM_JOB_PARTITION-$SLURM_JOBID-out  --get="DFPCMO=DFPCMO.Cf2.lsym_x2c-a4p_scf_v3z_occ98_98_mj1"  
 #
 #$PAM --noarch --mpi=$SLURM_CPUS_ON_NODE --gb=2.0 --ag=2.2 --mol=$DIRAC_ROOTDIR/test/cc_energy_and_mp2_dipole/H2O.mol --inp=$DIRAC_ROOTDIR/test/cc_energy_and_mp2_dipole/ccsd.inp
-
-$PAM --noarch --mpi=$SLURM_NPROCS --gb=2.0 --ag=2.2 --mol=$DIRAC_ROOTDIR/test/cc_energy_and_mp2_dipole/H2O.mol --inp=$DIRAC_ROOTDIR/test/cc_energy_and_mp2_dipole/ccsd.inp --suffix=out_mkl1_mpi$SLURM_NPROCS
 #
 
 export DIRAC_MPI_COMMAND="mpirun -np $SLURM_NPROCS"
-echo -e "\n DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
+echo -e "\n For test runs, DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
 
-test -w $DIRAC_ROOTDIR/test/benchmark_cc_linear  -b $DIRAC_BUILDDIR -v
-test -w $DIRAC_ROOTDIR/test/dft_geo_opt/  -b $DIRAC_BUILDDIR -v
+$DIRAC_ROOTDIR/test/benchmark_cc_linear/test  -b $DIRAC_BUILDDIR -v
+$DIRAC_ROOTDIR/test/dft_geo_opt/test  -b $DIRAC_BUILDDIR -v
 
 
 exit

@@ -63,7 +63,8 @@ echo -e "Time is `date` \n"
 echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
 NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
 echo "This node has total $NPROCS CPUs available for an EXCLUSIVE job."
-echo "This node has $SLURM_CPUS_ON_NODE CPUs allocated for SLURM calculations."
+echo "This node has SLURM_CPUS_ON_NODE=$SLURM_CPUS_ON_NODE CPUs."
+echo "This node has SLURM_NPROCS=$SLURM_NPROCS CPUs allocated for SLURM calculations."
 
 echo -e "\n The memory at the node (in GB)"
 free -t -g
@@ -91,16 +92,18 @@ export DIRAC_BUILDDIR=$DIRAC_ROOTDIR/build_openmpi_intel_mklpar_i8
 export PAM=$DIRAC_BUILDDIR/pam
 export BASDIR=$DIRAC_ROOTDIR/basis_dalton:$DIRAC_ROOTDIR/basis:$DIRAC_ROOTDIR/basis_ecp
 
-echo -e "\n ifort -V: \c"; ifort -V
-echo -e "mpif90 -V: \c "; mpif90 -V
-echo -e "Python -v :\c"; python -V
-echo -e "cmake ? which cmake = \c"; which cmake
+echo -e "\n ifort ?: \c"; which ifort; ifort -V
+echo -e "mpif90 ?: \c "; which mpif90; mpif90 -V
+echo -e "mpicc ?: \c "; which mpicc; mpicc -V
+echo -e "mpicxx ?: \c "; which mpicxx;  mpicxx -V
+echo -e "Python ? :\c"; which python; python -V
+echo -e "cmake ? which cmake = \c"; which cmake; cmake --version
 echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
 
 echo -e "\nMy PATH=$PATH\n"
 unset DIRAC_MPI_COMMAND
 #export DIRAC_MPI_COMMAND="mpirun -np $SLURM_CPUS_ON_NODE"
-echo -e "DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
+#echo -e "DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
 
 echo -e "\nldd $DIRAC_BUILDDIR/dirac.x:"
 ldd $DIRAC_BUILDDIR/dirac.x
@@ -124,18 +127,18 @@ export MKL_NUM_THREADS=1
 #echo -e "\nThis node has $NPROCS CPUs available for this EXCLUSIVE JOB and dirac.x is running via $THISMPI threads."
 #echo -e "Therefore, for the MKL internal parallelization, number of calculated threads=$MKL_NUM_THREADS \n"
 #
-
-#$PAM --noarch --mpi=2 --gb=55.5 --ag=62.5  --mol=Bh-CO_4.x2c_a4p_bp86_v2z.Cs.mol --inp=Bh-CO_4.x2c_a4.scf_relcc_o20-19_v15.inp  --put "DFPCMO.x2c_a4.scf.v2z=DFPCMO" --keep_scratch
-
 #$PAM --noarch --mpi=$SLURM_CPUS_ON_NODE --gb=47.0 --ag=47.8 --mol=Cf2.xyz  --inp=Cf2.x2c-a4p.scf_occ98_98_mj1_v3z.inp --suffix=i17mkl_mpi$SLURM_CPUS_ON_NODE-$SLURM_JOB_PARTITION-$SLURM_JOBID-out  --get="DFPCMO=DFPCMO.Cf2.lsym_x2c-a4p_scf_v3z_occ98_98_mj1"  
-
-#
 #
 #$PAM --noarch --mpi=$SLURM_CPUS_ON_NODE --gb=2.0 --ag=2.2 --mol=$DIRAC_ROOTDIR/test/cc_energy_and_mp2_dipole/H2O.mol --inp=$DIRAC_ROOTDIR/test/cc_energy_and_mp2_dipole/ccsd.inp
 
-$PAM --noarch --mpi=4 --gb=2.0 --ag=2.2 --mol=$DIRAC_ROOTDIR/test/cc_energy_and_mp2_dipole/H2O.mol --inp=$DIRAC_ROOTDIR/test/cc_energy_and_mp2_dipole/ccsd.inp
+$PAM --noarch --mpi=$SLURM_NPROCS --gb=2.0 --ag=2.2 --mol=$DIRAC_ROOTDIR/test/cc_energy_and_mp2_dipole/H2O.mol --inp=$DIRAC_ROOTDIR/test/cc_energy_and_mp2_dipole/ccsd.inp --suffix=out_mkl1_mpi$SLURM_NPROCS
 #
-#
+
+export DIRAC_MPI_COMMAND="mpirun -np $SLURM_NPROCS"
+echo -e "\n DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
+
+test -w $DIRAC_ROOTDIR/test/benchmark_cc_linear  -b $DIRAC_BUILDDIR -v
+test -w $DIRAC_ROOTDIR/test/dft_geo_opt/  -b $DIRAC_BUILDDIR -v
 
 
 exit

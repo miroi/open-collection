@@ -7,6 +7,11 @@ Currently Loaded Modulefiles:
  5) mpi/OpenMPI/3.1.1-iccifort-2018.3.222-GCC-6.3.0  10) lang/Python/2.7.15-intel-2018.03                   
 
 
+
+mirilias@login23.mogon:~/work/software/wien2k/wien2k-openmpi-intel/.ep
+$PATH: /cluster/easybuild/broadwell/software/numlib/FFTW/3.3.7/bin:/cluster/easybuild/broadwell/software/lang/Python/2.7.15-intel-2018.03/bin:/cluster/easybuild/broadwell/software/mpi/impi/2018.3.222-iccifort-2018.3.222-GCC-6.3.0/bin64:/cluster/easybuild/broadwell/software/mpi/OpenMPI/3.1.1-iccifort-2018.3.222-GCC-6.3.0/bin:/cluster/easybuild/broadwell/software/compiler/ifort/2018.3.222-GCC-6.3.0/compilers_and_libraries_2018.3.222/linux/bin/intel64:/cluster/easybuild/broadwell/software/compiler/icc/2018.3.222-GCC-6.3.0/compilers_and_libraries_2018.3.222/linux/bin/intel64:/cluster/easybuild/broadwell/software/compiler/GCCcore/6.3.0/bin:/home/mirilias/work/software/open-mpi/openmpi-4.1.1-intel-2017.02-i8/bin:/usr/share/Modules/bin:/usr/lpp/mmfs/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/var/cfengine/bin:.
+
+
 mirilias@login23.mogon:~/work/software/wien2k/wien2k-openmpi-intel/../check_minimal_software_requirements.sh
 
 *******************************************************************************

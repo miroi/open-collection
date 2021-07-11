@@ -1,0 +1,137 @@
+#!/bin/sh
+
+"$AMSBIN/ams" << eor
+
+Task GeometryOptimization
+Properties
+    NormalModes Yes
+End
+GeometryOptimization
+    Convergence
+        Step 0.001
+    End
+End
+PESPointCharacter
+    Tolerance 0.02
+End
+System
+    Atoms
+        Cl 3.016416883351255 -0.04560345858520565 0.7028720549155847 adf.R=1.725
+        P 1.58907378258434 -0.5206494374114384 -0.8209408301050504 adf.R=1.850
+        O 0.6931692454377001 0.8131517581426462 -0.9397703548223334 adf.R=1.517
+        O 0.5016747995985189 -1.334596471860494 0.05743586889023656 adf.R=1.517
+        C -0.4570782933801318 0.8374748328394677 -0.03896074194549991 adf.R=1.700
+        C -0.7962608323790195 -0.6734245701358769 0.1332011072946765 adf.R=1.700
+        C -0.04830590139878536 1.524107547326977 1.252308501522845 adf.R=1.700
+        C -1.539720119557775 1.636505226653852 -0.7324329213481793 adf.R=1.700
+        C -1.637922304323788 -1.233682724565491 -1.001090885580968 adf.R=1.700
+        C -1.411501576881559 -1.020017018577142 1.471289025557948 adf.R=1.700
+        H -0.9202523382860419 1.677344116227793 1.888832271933642 adf.R=1.350
+        H 0.6946616834480659 0.9548778830086232 1.80700556364726 adf.R=1.350
+        H 0.3743147663060377 2.500215547109359 1.013423294914851 adf.R=1.350
+        H -1.736824084892912 1.264863912147592 -1.73596356089635 adf.R=1.350
+        H -2.464175465398426 1.59414077811574 -0.1540209764337364 adf.R=1.350
+        H -1.233489773768161 2.68031621906209 -0.8028104965180054 adf.R=1.350
+        H -2.659083853919647 -0.8554963404464292 -0.9544859993840019 adf.R=1.350
+        H -1.21782130448328 -0.9834399696302467 -1.976232775822837 adf.R=1.350
+        H -1.670811388484156 -2.31940982487342 -0.9102575652186946 adf.R=1.350
+        H -2.355696838253008 -0.4872690085174228 1.597621472313492 adf.R=1.350
+        H -1.619553579250044 -2.089287165100906 1.511593335314683 adf.R=1.350
+        H -0.7515135030526352 -0.7637218315384404 2.297384611063848 adf.R=1.350
+    End
+    BondOrders
+         1 2 1.0
+         2 3 1.0
+         2 4 1.0
+         3 5 1.0
+         4 6 1.0
+         5 6 1.0
+         5 7 1.0
+         5 8 1.0
+         6 9 1.0
+         6 10 1.0
+         7 11 1.0
+         7 12 1.0
+         7 13 1.0
+         8 14 1.0
+         8 15 1.0
+         8 16 1.0
+         9 17 1.0
+         9 18 1.0
+         9 19 1.0
+         10 20 1.0
+         10 21 1.0
+         10 22 1.0
+    End
+End
+
+Engine ADF
+    Basis
+        Type TZ2P
+        Core None
+    End
+    Save TAPE10
+    XC
+        Hybrid PBE0
+    End
+    Relativity
+        Level None
+    End
+    Symmetry NOSYM
+    Solvation
+        Surf Delley
+        Solv name=Chloroform cav0=0.0 cav1=0.0067639
+        Charged method=CONJ
+        C-Mat POT
+        SCF VAR ALL 
+        CSMRSP
+    End
+    NumericalQuality Good
+    UseSPCode Yes
+EndEngine
+eor
+
+# =======
+# NMR NMR
+# =======
+
+cp "${AMS_RESULTSDIR-${AMS_JOBNAME-ams}.results}/adf.rkf" TAPE21
+cp "${AMS_RESULTSDIR-${AMS_JOBNAME-ams}.results}/TAPE10" TAPE10
+
+"$AMSBIN/nmr" << eor
+NMR
+    out    iso    tens
+    adfgui
+    Atoms 2 5 6 7 8 9 10 11 12 13 
+    Atoms 14 15 16 17 18 19 20 21 22 
+    u1k best
+    calc all
+End
+
+eor
+
+mv TAPE21 "${AMS_RESULTSDIR-${AMS_JOBNAME-ams}.results}/adf.rkf"
+rm -f TAPE10 TAPE15
+
+
+# ===
+# CPL
+# ===
+
+cp "${AMS_RESULTSDIR-${AMS_JOBNAME-ams}.results}/adf.rkf" TAPE21
+
+"$AMSBIN/cpl" << eor
+gga
+NMRCOUPLING
+  ATOMPERT 2 5 6 7 8 9 10 11 12 13 
+  ATOMPERT 14 15 16 17 18 19 20 21 22 
+  ATOMRESP 2 5 6 7 8 9 10 11 12 13 
+  ATOMRESP 14 15 16 17 18 19 20 21 22 
+  fc 
+ADFGUI
+END
+eor
+
+mv TAPE21 "${AMS_RESULTSDIR-${AMS_JOBNAME-ams}.results}/adf.rkf"
+
+

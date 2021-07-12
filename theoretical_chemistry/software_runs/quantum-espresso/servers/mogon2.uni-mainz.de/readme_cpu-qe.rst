@@ -14,7 +14,8 @@ Currently Loaded Modulefiles:
  3) lib/UCX/1.8.0-GCCcore-9.3.0    6) numlib/imkl/2020.1.217-iimpi-2020a        9) chem/libxc/4.3.4-iccifort-2020.1.217  
 
 
-./configure --with-scalapack --with-libxc  
+./configure --with-scalapack --with-libxc  --prefix=/home/mirilias//work/software/quantum_espresso/qe-6.7/bin
+
 
 mirilias@login23.mogon:~/work/software/quantum_espresso/qe-6.7/../configure --with-scalapack --with-libxc
 checking build system type... x86_64-pc-linux-gnu
@@ -108,6 +109,5 @@ Configured for compilation of parallel executables.
 .
 .
 configure: success
-
 
 

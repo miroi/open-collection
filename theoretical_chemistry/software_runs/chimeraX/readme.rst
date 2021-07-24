@@ -1,7 +1,9 @@
-=======
-Chimera
-=======
+=========
+Chimera X
+==========
 
-https://www.rbvi.ucsf.edu/chimera/tutorials.html
+Tutorials
+---------
+https://www.rbvi.ucsf.edu/chimerax/tutorials.html
 
 

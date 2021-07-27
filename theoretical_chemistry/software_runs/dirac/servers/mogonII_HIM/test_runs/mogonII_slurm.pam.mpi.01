@@ -41,13 +41,15 @@ echo -e "User job SLURM_JOB_NAME=$SLURM_JOB_NAME has assigned ID SLURM_JOBID=$SL
 
 echo -e "This job was submitted from the computer SLURM_SUBMIT_HOST=$SLURM_SUBMIT_HOST"
 echo -e " and from the home directory SLURM_SUBMIT_DIR=$SLURM_SUBMIT_DIR"
-
 echo -e "Job is running on the cluster compute node: SLURM_CLUSTER_NAME=$SLURM_CLUSTER_NAME"
 echo -e "and is employing SLURM_JOB_NUM_NODES=$SLURM_JOB_NUM_NODES node/nodes:"
 echo -e "SLURM_JOB_NODELIST = $SLURM_JOB_NODELIST"
-echo
 echo -e "Job partition is SLURM_JOB_PARTITION=$SLURM_JOB_PARTITION \n"
-#echo -e "\nThe job requests SLURM_CPUS_ON_NODE=$SLURM_CPUS_ON_NODE CPU per task.\n"
+echo -e "Default memory per node, DefMemPerNode=$DefMemPerNode"
+echo -e "Maximum memory per node, MaxMemPerNode=$MaxMemPerNode"
+echo -e "Default memory per CPU, DefMemPerCPU=$DefMemPerCPU"
+echo -e "Maximum memory per CPU, MaxMemPerNode=$MaxMemPerCPU"
+
 
 module purge
 module load lang/Python/3.6.1-intel-2017.02
@@ -63,8 +65,8 @@ echo -e "Time is `date` \n"
 echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
 NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
 echo "This node has total $NPROCS CPUs available for an EXCLUSIVE job."
-echo "This node has SLURM_CPUS_ON_NODE=$SLURM_CPUS_ON_NODE CPUs."
-echo "This node has SLURM_NPROCS=$SLURM_NPROCS CPUs allocated for SLURM calculations."
+echo "This node has variable SLURM_CPUS_ON_NODE=$SLURM_CPUS_ON_NODE CPUs."
+echo "This node has variable SLURM_NPROCS=$SLURM_NPROCS CPUs allocated for SLURM calculations."
 
 echo -e "\n The memory at the node (in GB)"
 free -t -g

@@ -5,3 +5,7 @@ https://www.rbvi.ucsf.edu/chimerax/docs/user/tutorials/binding-sites.html
 
 
 
+open 2hyy
+.
+.
+.

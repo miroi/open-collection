@@ -3,10 +3,15 @@ Black beetle virus capsid
 
 https://www.rbvi.ucsf.edu/chimerax/docs/quickstart/index.html
 
-Download structure from
-https://www.rcsb.org/structure/2bbv
-via command:
+structure from  https://www.rcsb.org/structure/2bbv
+
+Apply commands:
 
 open 2bbv 
-
-and apply futher commands...
+light full
+style /b stick
+hide /c
+ribbon /c
+.
+.
+.

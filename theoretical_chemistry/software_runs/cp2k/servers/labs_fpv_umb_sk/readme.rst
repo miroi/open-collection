@@ -1,18 +1,10 @@
-CP2K test runs
-==============
+CP2K at @labs.fpv.umb.sk
+========================
 
-@labs.fpv.umb.sk
-----------------
-/home/milias/work/qch_software/cp2k/exe/local
-
-@login.grid.umb.sk
-------------------
-milias@login.grid.umb.sk:~/Work/qch/software/cp2k/cp2k_master/tools/toolchain/../install_cp2k_toolchain.sh -h
-
-# problems with lagrind installation, skip it, with cmake
-./install_cp2k_toolchain.sh -j 2 --install-all  --math-mode=mkl --mpi-mode=openmpi  --with-valgrind=no  --with-cmake=no
-
-
+milias@labs.fpv.umb.sk:~/.cp2k --version
+ CP2K version 6.1
+ SVN source code revision svn:18464
+ cp2kflags: libint fftw3 libxc elpa=201605 elpa_qr parallel mpi3 scalapack libderiv_max_am1=5 libint_max_am=6
 
 
 

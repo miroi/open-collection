@@ -13,5 +13,4 @@ nvcc found, enabling CUDA by default
 You have chosen to install GCC, therefore MPI libraries will have to be installed too
 ERROR: (./install_cp2k_toolchain.sh) CUDA enabled, please choose GPU architecture to compile for with --gpu-ver
 
-
-
+see https://groups.google.com/g/cp2k/c/cAsZSOp68hQ/m/AufLyIE5AwAJ

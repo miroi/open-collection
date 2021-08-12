@@ -17,5 +17,9 @@ Currently Loaded Modulefiles:
   3) GVR/v1.0-1                              6) ELPA/v2020.05.001_intel2018_python365
 
 milias@hydra.jinr.ru:~/work/software/quantum-espresso/q-e-qe-6.8/../configure --enable-parallel --enable-openmp --prefix=/zfs/hybrilit.jinr.ru/user/m/milias/work/software/quantum-espresso/q-e-qe-6.8/bin
+.
+.
+.
+Quantum ESPRESSO binaries are installed in /zfs/hybrilit.jinr.ru/user/m/milias/work/software/quantum-espresso/q-e-qe-6.8/bin/bin
 
 

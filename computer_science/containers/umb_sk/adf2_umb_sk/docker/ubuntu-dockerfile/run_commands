@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# give sudo permission for mightybuilder user
+# user creation is postponed to the entrypoint,
+# so we can create a user with the same id as the host
+echo 'mightybuilder ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+# Install tini, from https://github.com/krallin/tini
+
+TINI_VERSION="v0.18.0"
+curl -Ls https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini -o /opt/docker/bin/tini
+chmod +x /opt/docker/bin/tini
+
+# Create lucky group
+groupadd -g 32766 lucky

@@ -1,16 +1,20 @@
 # Most recent Ubuntu LTS
 FROM ubuntu:20.04
 
+ENV TZ=Europe/Bratislava
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 # Set an encoding to make things work smoothly.
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
 
 # Add a timestamp for the build. Also, bust the cache.
-ADD http://worldclockapi.com/api/json/utc/now /opt/docker/etc/timestamp
+#ADD http://worldclockapi.com/api/json/utc/now /opt/docker/etc/timestamp
 
-# Install system packages
+# Install system packages (fix by https://github.com/phusion/baseimage-docker/issues/319 )
 RUN apt-get --yes -qq update \
  && apt-get --yes -qq upgrade \
+ && apt-get install -y --no-install-recommends apt-utils \
  && apt-get --yes -qq install \
                       bzip2 \
                       cmake \

@@ -116,12 +116,14 @@ ls -lt $SINGULARITY_CONTAINERS/debian8.sif
 
 #singularity exec $SINGULARITY_CONTAINERS/python.sif python --version
 #singularity exec $SINGULARITY_CONTAINERS/root.sif g++ --version
-# .. access the GSI IT departments CVMFS repository
+
+
+echo -e " .. accessing the GSI IT departments CVMFS repository"
 singularity exec --bind /cvmfs $SINGULARITY_CONTAINERS/debian8.sif ls -l /cvmfs/it.gsi.de
-echo -e  "Virgo modules:"
+echo -e  "\n Virgo modules via container:"
 module avail
 
-echo -e "singularity exec $SINGULARITY_CONTAINERS/debian8.sif ./os_info.sh"
+echo -e "\n singularity exec $SINGULARITY_CONTAINERS/debian8.sif ./os_info.sh"
 singularity exec $SINGULARITY_CONTAINERS/debian8.sif ./os_info.sh
 
 exit

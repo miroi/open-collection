@@ -36,5 +36,5 @@ lxbk0595 3.10.0-1127.18.2.el7.x86_64
 
 Submitting SLURM batch file
 ---------------------------
-
+sbarch virgo_slurm.01
 

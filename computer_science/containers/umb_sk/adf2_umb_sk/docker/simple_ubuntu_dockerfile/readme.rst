@@ -10,4 +10,6 @@ Removing intermediate container 1682ff53c633
 Successfully built f00ea29a7a53
 
 
+milias@adf2:~/work/projects/open-collection/computer_science/containers/umb_sk/adf2_umb_sk/docker/simple_ubuntu_dockerfile/.docker run -it f00ea29a7a53 
+
 

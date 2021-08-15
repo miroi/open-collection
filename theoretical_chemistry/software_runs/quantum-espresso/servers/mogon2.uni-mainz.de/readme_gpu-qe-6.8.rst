@@ -25,3 +25,5 @@ GPU-QE 6.8
 ----------
 mirilias@login22.mogon:~/work/software/quantum_espresso/.wget https://github.com/QEF/q-e/archive/refs/tags/qe-6.8.zip
 
+
+

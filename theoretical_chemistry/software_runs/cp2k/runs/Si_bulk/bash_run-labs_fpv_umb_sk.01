@@ -1,0 +1,10 @@
+#!/bin/bash
+
+export CP2K=cp2k.popt
+
+echo -e "\n running CP2K=$CP2K on \"`hostname`\"  "
+
+project=Si_bulk8
+mpirun -np 4 $CP2K  $project.inp  -o $project.out
+
+exit 0

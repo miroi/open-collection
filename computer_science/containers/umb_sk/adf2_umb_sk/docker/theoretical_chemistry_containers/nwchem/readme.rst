@@ -1,6 +1,8 @@
 NWChem
 ------
 
+https://hub.docker.com/r/nwchemorg/nwchem-702.mpipr.nersc
+
 milias@adf2:~/work/projects/open-collection/computer_science/containers/umb_sk/adf2_umb_sk/docker/simple_ubuntu_dockerfile/.docker pull nwchemorg/nwchem-702.mpipr.nersc
 Using default tag: latest
 latest: Pulling from nwchemorg/nwchem-702.mpipr.nersc

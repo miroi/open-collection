@@ -39,3 +39,7 @@ Storing signatures
 2021/08/14 23:13:25  info unpack layer: sha256:cadb02169db62b58185ae002dac457bd0e7ebdf79468ef6c5a13db393b5e87a8
 INFO:    Creating SIF file...
 
+milias@lxbk0595.gsi.de:/lustre/ukt/milias/work/projects/open-collection/computer_science/containers/gsi_de/singularity_virgo-gsi-de/theoretical_chemistry_containers/.singularity run $SINGULARITY_CONTAINERS/nwchem.sif     
+  Unable to open nwchem.nw --- appending .nw
+
+see https://github.com/nwchemgit/nwchem-dockerfiles/issues/10

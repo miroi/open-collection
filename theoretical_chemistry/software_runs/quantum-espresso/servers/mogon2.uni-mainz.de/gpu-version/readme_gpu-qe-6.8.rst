@@ -26,4 +26,11 @@ GPU-QE 6.8
 mirilias@login22.mogon:~/work/software/quantum_espresso/.wget https://github.com/QEF/q-e/archive/refs/tags/qe-6.8.zip
 
 
+Help:
+
+This version requires the nvfortran (previously PGI) compiler from the
+freely available NVidia HPC SDK. You are adviced to use a recent version
+of NVidia software. Any version later than 17.4 should work, but many glitches
+are know to exist in older versions.
+
 

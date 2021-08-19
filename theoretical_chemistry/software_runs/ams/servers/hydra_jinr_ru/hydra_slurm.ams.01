@@ -54,7 +54,9 @@ module avail
 echo
 
 #
-module load intel
+module purge
+#module load intel
+module load intel/v2018.1.163-9
 module load AMS/v2021.102
 echo -e "\n\n loaded modules:"
 module list
@@ -62,6 +64,11 @@ module list
 source /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/AMS/v2021.102/amsbashrc.sh
 
       export SCM_TMPDIR=/tmp
+      # export DIRAC_TMPDIR=/zfs/hybrilit.jinr.ru/user/m/milias/scratch
+
+      echo -e "Disk space: df -h $SCM_TMPDIR "
+      df -h $SCM_TMPDIR
+
       export ADFBIN=$ADFHOME/bin
       export AMSBIN=$AMSHOME/bin
       export ADFRESOURCES=$AMSHOME/atomicdata
@@ -89,9 +96,10 @@ echo -e "\n The total memory at the node (in GB)"
 free -t -g
 echo -e "\n"
 
-echo -e "\nldd $DIRAC_BUILDDIR/dirac.x:"
-ldd $DIRAC_BUILDDIR/dirac.x
-echo -e "\n ifort -V: \c"; ifort -V
+echo -e "\nldd $AMSHOME/bin/ams.exe:"
+ldd  $AMSHOME/bin/ams.exe
+
+#echo -e "\n ifort -V: \c"; ifort -V
 
 echo -e "\nMy PATH=$PATH\n"
 echo -e "Python -v :\c"; python -V
@@ -101,8 +109,8 @@ echo
 # for running jobs from your homedir
 cd $SLURM_SUBMIT_DIR
 
-$AMSHOME/Utils/run_test dftb
+#$AMSHOME/Utils/run_test dftb
 $AMSHOME/Utils/run_test band
-$AMSHOME/Utils/run_test reaxff
+#$AMSHOME/Utils/run_test reaxff
 
 exit

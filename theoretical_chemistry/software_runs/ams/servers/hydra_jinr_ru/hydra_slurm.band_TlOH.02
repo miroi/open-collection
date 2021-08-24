@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH -J TlOH
+#SBATCH -J TlOH2
 
 ##  partition (queue)
 ##SBATCH -p cpu
@@ -55,8 +55,8 @@ echo
 
 #
 module purge
+module load openmpi/v3.1.3
 #module load intel
-
 #module load intel/v2018.1.163-9
 #module load AMS/v2021.102
 
@@ -64,17 +64,18 @@ echo -e "\n\n loaded modules:"
 module list
 
 # load AMS envirovariables
-source /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/AMS/v2021.102/amsbashrc.sh
+#source /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/AMS/v2021.102/amsbashrc.sh
+source /zfs/hybrilit.jinr.ru/user/m/milias/work/software/ams/linux.openmpi/ams2021.103/amsbashrc.sh
 
-      export SCM_TMPDIR=/tmp
+      #export SCM_TMPDIR=/tmp
       # export DIRAC_TMPDIR=/zfs/hybrilit.jinr.ru/user/m/milias/scratch
 
       echo -e "Disk space: df -h $SCM_TMPDIR "
       df -h $SCM_TMPDIR
 
-      export ADFBIN=$ADFHOME/bin
-      export AMSBIN=$AMSHOME/bin
-      export ADFRESOURCES=$AMSHOME/atomicdata
+     # export ADFBIN=$ADFHOME/bin
+     # export AMSBIN=$AMSHOME/bin
+     # export ADFRESOURCES=$AMSHOME/atomicdata
       #export SCM_OPENGL1_FALLBACK=1
       unset SCM_OPENGL1_FALLBACK
       export  SCM_OPENGL_SOFTWARE=1
@@ -83,7 +84,7 @@ source /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/AMS/v2021.102/amsbashrc.sh
       echo 'ADF AMSHOME='$AMSHOME
       echo 'ADF SCM_TMPDIR='$SCM_TMPDIR
       echo 'ADF SCMLICENSE='$SCMLICENSE
-      echo '/home/milias/Work/software/ams/opengl_lib/fallback SCM_OPENGL1_FALLBACK='$SCM_OPENGL1_FALLBACK
+     # echo '/home/milias/Work/software/ams/opengl_lib/fallback SCM_OPENGL1_FALLBACK='$SCM_OPENGL1_FALLBACK
       echo 'SCM_OPENGL_SOFTWARE='$SCM_OPENGL_SOFTWARE
 
 echo -e "\nRunning on host `hostname`"
@@ -92,7 +93,7 @@ echo -e "Time is `date` \n"
 # CPU model, total numer of CPUs, number of allocated CPUs
 echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
 NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
-echo "This node has total $NPROCS CPUs available for EXCLUSIVE job."
+echo "This node has total $NPROCS CPUs available for anEXCLUSIVE job."
 #echo "This node has $SLURM_CPUS_ON_NODE CPUs allocated for SLURM calculations."
 
 echo -e "\n The total memory at the node (in GB)"

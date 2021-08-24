@@ -5,13 +5,11 @@
 ##  partition (queue)
 ##SBATCH -p cpu
 ##SBATCH -p test
+#SBATCH -p cascade
 
 ## max. execution time
 ##SBATCH -t 1-00:00:00
-#SBATCH -t 0-02:00:00
-
-# number of nodes
-#SBATCH -N 1
+#SBATCH -t 0-01:00:00
 
 ##SBATCH --exclusive
 
@@ -23,8 +21,10 @@
 #SBATCH --no-requeue
 #SBATCH --no-kill
 
-##  CPU nodes for JIRN AMS license
-#SBATCH --nodelist=n02p042,n01p001
+##  allowed CPU nodes for JIRN AMS license
+##SBATCH -N 1 --nodelist=n02p042,n01p001
+#SBATCH -N 1 --nodelist=n02p042
+#SBATCH -n 4
 
 ## memory NO !!!
 ##SBATCH --mem-per-cpu=28G
@@ -62,6 +62,7 @@ module load AMS/v2021.102
 echo -e "\n\n loaded modules:"
 module list
 
+# load AMS envirovariables
 source /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/AMS/v2021.102/amsbashrc.sh
 
       export SCM_TMPDIR=/tmp

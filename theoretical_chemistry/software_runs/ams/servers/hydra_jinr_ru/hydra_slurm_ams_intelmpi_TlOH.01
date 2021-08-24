@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH -J TlOH3
+#SBATCH -J intelmpiams
 
 ##  partition (queue)
 ##SBATCH -p cpu
@@ -21,8 +21,8 @@
 #SBATCH --no-requeue
 #SBATCH --no-kill
 
-##  allowed CPU nodes for JIRN AMS license
-##SBATCH -N 1 --nodelist=n02p042,n01p001
+##  allowed CPU nodes for JIRN AMS license:  n02p042,n01p001
+#
 #SBATCH -N 1 -n 4  --nodelist=n02p042
 
 ## memory NO !!!
@@ -58,8 +58,10 @@ module purge
 #module load openmpi/v3.1.3
 #module load intel
 #module load intel/v2018.1.163-9
+module load intel/v2021.1
+
 #module load AMS/v2021.102
-module load intel-qs/v21-01-14
+#module load intel-qs/v21-01-14
 
 echo -e "\n\n loaded modules:"
 module list

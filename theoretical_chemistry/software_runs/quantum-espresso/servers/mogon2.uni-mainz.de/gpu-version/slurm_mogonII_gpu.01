@@ -2,8 +2,7 @@
 
 #SBATCH -J GPUtest
 
-#SBATCH -A m2_him_exp
-
+#SBATCH -A m2_jgu-gpu-qe-calcs
 #SBATCH -p m2_gpu
 
 # ... other SBATCH statements
@@ -40,13 +39,17 @@ echo -e "Default memory per CPU, DefMemPerCPU=$DefMemPerCPU"
 echo -e "Maximum memory per CPU, MaxMemPerNode=$MaxMemPerCPU"
 
 
-
-
-echo -e "Hello"
+echo -e "\n Modules :"
 
 module purge
 module load compiler/NVHPC/21.7
 module list
+
+echo -e  "\n CUDA_HOME = $CUDA_HOME "
+
+which python; python -V
+
+python /home/mirilias/work/software/quantum_espresso/gpu-qe-6.8/q-e-qe-6.8/dev-tools/get_device_props.py
 
 
 exit

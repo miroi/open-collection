@@ -25,4 +25,4 @@ mirilias@login23.mogon:~/work/software/quantum_espresso/q-e-gpu-qe-gpu-6.7/../co
 
 ERROR in configure - reported missing stuff
 
-
+he logins still don't have GPUs hence there is no system CUDA driver lib. Try again in an interactive session in m2_gpu.

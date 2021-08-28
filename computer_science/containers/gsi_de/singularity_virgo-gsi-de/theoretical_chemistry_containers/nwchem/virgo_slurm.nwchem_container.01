@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH -J NWcontainer
 
-#SBATCH --singularity-container=$SINGULARITY_CONTAINERS/nwchem.sif
+##SBATCH --singularity-container=$SINGULARITY_CONTAINERS/nwchem.sif
 
 ## max. execution time
 ##SBATCH -t 7-00:00:00
@@ -92,6 +92,7 @@ echo -e "\n"
 #export OMP_DYNAMIC="FALSE"
 
 echo -e "\n SINGULARITY_CONTAINERS=$SINGULARITY_CONTAINERS"
+#SBATCH --singularity-container=$SINGULARITY_CONTAINERS/nwchem.sif
 
 # for running jobs from your homedir
 cd $SLURM_SUBMIT_DIR

@@ -1,6 +1,8 @@
 #!/bin/bash
 #SBATCH -J NWcontainer
 
+#SBATCH --singularity-container=$SINGULARITY_CONTAINERS/nwchem.sif
+
 ## max. execution time
 ##SBATCH -t 7-00:00:00
 #SBATCH -t 0-00:30:00
@@ -95,6 +97,8 @@ echo -e "\n SINGULARITY_CONTAINERS=$SINGULARITY_CONTAINERS"
 cd $SLURM_SUBMIT_DIR
 echo -e "Running in SLURM_SUBMIT_DIR=$SLURM_SUBMIT_DIR..."
 echo -e "singularity run $SINGULARITY_CONTAINERS/nwchem.sif h2o_scf_6-31g.nw > out"
-singularity run $SINGULARITY_CONTAINERS/nwchem.sif h2o_scf_6-31g.nw > out
+
+#singularity run $SINGULARITY_CONTAINERS/nwchem.sif h2o_scf_6-31g.nw > out
+srun nwchem.sif h2o_scf_6-31g.nw > out
 
 exit

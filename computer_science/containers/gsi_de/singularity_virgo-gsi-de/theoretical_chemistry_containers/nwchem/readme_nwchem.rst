@@ -43,3 +43,10 @@ milias@lxbk0595.gsi.de:/lustre/ukt/milias/work/projects/open-collection/computer
   Unable to open nwchem.nw --- appending .nw
 
 see https://github.com/nwchemgit/nwchem-dockerfiles/issues/10
+
+Force downloading
+-----------------
+milias@lxbk0595.gsi.de:/lustre/ukt/milias/work/projects/open-collection/computer_science/containers/gsi_de/singularity_virgo-gsi-de/theoretical_chemistry_containers/nwchem/.singularity pull -F  $SINGULARITY_CONTAINERS/nwchem.sif  docker://nwchemorg/nwchem-702.mpipr.nersc
+INFO:    Using cached SIF image
+
+

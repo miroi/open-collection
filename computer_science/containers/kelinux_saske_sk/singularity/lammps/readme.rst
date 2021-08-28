@@ -44,4 +44,10 @@ INFO:    Creating SIF file...
 ilias@login1.kelinux.saske.sk:~/work/qch/projects/open-collection/computer_science/containers/kelinux_saske_sk/singularity/.
 
 
+ilias@login1.kelinux.saske.sk:~/work/qch/projects/open-collection/computer_science/containers/kelinux_saske_sk/singularity/lammps_software/.singularity run  $SINGULARITY_CONTAINERS/lammps.sif 
+LAMMPS (8 Apr 2021)
+OMP_NUM_THREADS environment is not set. Defaulting to 1 thread. (src/comm.cpp:94)
+  using 1 OpenMP thread(s) per MPI task
+
+
 

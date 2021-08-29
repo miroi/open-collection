@@ -17,3 +17,7 @@ Runs
 ----
 milias@adf2:~/work/projects/open-collection/computer_science/containers/umb_sk/adf2_umb_sk/singularity/nwchem/.singularity run $SINGULARITY_CONTAINERS/nwchem.sif h2o_scf_6-31g.nw > out
 
+
+Problem: https://github.com/nwchemgit/nwchem-dockerfiles/issues/13
+
+

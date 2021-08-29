@@ -57,14 +57,15 @@ echo
 module purge
 #module load intel/v2021.1
 
-
 echo -e "\n\n loaded modules:"
 module list
 
+# use server's IntelMPI, that is intel/v2021.1
 #export SCM_USE_LOCAL_IMPI=1
 
-# Use AMS
+####   Use AMS's shipped  IntelMPI   ####
 export SCM_USE_IMPI_2021=1
+#source /zfs/hybrilit.jinr.ru/user/m/milias/work/software/ams/linux.intelmpi/ams2021.103/bin/intelmpi/bin/mpivars.sh
 #
 #
 # In both cases you might need to edit the $AMSBIN/start script around line 287, to change the location pointed to by the "I_MPI_PMI_LIBRARY" variable. 
@@ -80,8 +81,7 @@ source /zfs/hybrilit.jinr.ru/user/m/milias/work/software/ams/linux.intelmpi/ams2
       #export SCM_TMPDIR=/tmp
       #export DIRAC_TMPDIR=/zfs/hybrilit.jinr.ru/user/m/milias/scratch
 
-      echo -e "Disk space: df -h $SCM_TMPDIR "
-      df -h $SCM_TMPDIR
+      echo -e "Disk space for AMS: df -h $SCM_TMPDIR "; df -h $SCM_TMPDIR
 
      # export ADFBIN=$ADFHOME/bin
      # export AMSBIN=$AMSHOME/bin

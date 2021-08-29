@@ -66,8 +66,15 @@ module load intel/v2021.1
 echo -e "\n\n loaded modules:"
 module list
 
-export SCM_USE_LOCAL_IMPI=1
+#export SCM_USE_LOCAL_IMPI=1
+
+# Use AMS
 export SCM_USE_IMPI_2021=1
+#
+#
+# In both cases you might need to edit the $AMSBIN/start script around line 287, to change the location pointed to by the "I_MPI_PMI_LIBRARY" variable. 
+#
+#
 
 # load AMS envirovariables
 #source /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/AMS/v2021.102/amsbashrc.sh
@@ -85,8 +92,8 @@ source /zfs/hybrilit.jinr.ru/user/m/milias/work/software/ams/linux.intelmpi/ams2
      # export AMSBIN=$AMSHOME/bin
      # export ADFRESOURCES=$AMSHOME/atomicdata
       #export SCM_OPENGL1_FALLBACK=1
-      unset SCM_OPENGL1_FALLBACK
-      export  SCM_OPENGL_SOFTWARE=1
+      #unset SCM_OPENGL1_FALLBACK
+      #export  SCM_OPENGL_SOFTWARE=1
       #extend_string LD_LIBRARY_PATH  /home/milias/Work/software/ams/opengl_lib/fallback  $LD_LIBRARY_PATH
       echo 'AMS environmental variables activated on' $THIS_HOSTNAME
       echo 'AMS AMSHOME='$AMSHOME

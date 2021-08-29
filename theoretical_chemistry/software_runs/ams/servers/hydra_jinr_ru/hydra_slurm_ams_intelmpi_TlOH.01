@@ -66,13 +66,17 @@ module load intel/v2021.1
 echo -e "\n\n loaded modules:"
 module list
 
+export SCM_USE_LOCAL_IMPI=1
+export SCM_USE_IMPI_2021=1
+
 # load AMS envirovariables
 #source /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/AMS/v2021.102/amsbashrc.sh
 #source /zfs/hybrilit.jinr.ru/user/m/milias/work/software/ams/linux.openmpi/ams2021.103/amsbashrc.sh
-source /zfs/hybrilit.jinr.ru/user/m/milias/work/software/ams/linux.intelmpi+StaticMKL/ams2021.103/amsbashrc.sh
+#source /zfs/hybrilit.jinr.ru/user/m/milias/work/software/ams/linux.intelmpi+StaticMKL/ams2021.103/amsbashrc.sh
+source /zfs/hybrilit.jinr.ru/user/m/milias/work/software/ams/linux.intelmpi/ams2021.103/amsbashrc.sh
 
       #export SCM_TMPDIR=/tmp
-      # export DIRAC_TMPDIR=/zfs/hybrilit.jinr.ru/user/m/milias/scratch
+      #export DIRAC_TMPDIR=/zfs/hybrilit.jinr.ru/user/m/milias/scratch
 
       echo -e "Disk space: df -h $SCM_TMPDIR "
       df -h $SCM_TMPDIR
@@ -84,10 +88,11 @@ source /zfs/hybrilit.jinr.ru/user/m/milias/work/software/ams/linux.intelmpi+Stat
       unset SCM_OPENGL1_FALLBACK
       export  SCM_OPENGL_SOFTWARE=1
       #extend_string LD_LIBRARY_PATH  /home/milias/Work/software/ams/opengl_lib/fallback  $LD_LIBRARY_PATH
-      echo 'ADF environmental variables activated on' $THIS_HOSTNAME
-      echo 'ADF AMSHOME='$AMSHOME
-      echo 'ADF SCM_TMPDIR='$SCM_TMPDIR
-      echo 'ADF SCMLICENSE='$SCMLICENSE
+      echo 'AMS environmental variables activated on' $THIS_HOSTNAME
+      echo 'AMS AMSHOME='$AMSHOME
+      echo 'AMS AMSBIN='$AMSBIN
+      echo 'AMS SCM_TMPDIR='$SCM_TMPDIR
+      echo 'AMS SCMLICENSE='$SCMLICENSE
      # echo '/home/milias/Work/software/ams/opengl_lib/fallback SCM_OPENGL1_FALLBACK='$SCM_OPENGL1_FALLBACK
       echo 'SCM_OPENGL_SOFTWARE='$SCM_OPENGL_SOFTWARE
 
@@ -97,7 +102,7 @@ echo -e "Time is `date` \n"
 # CPU model, total numer of CPUs, number of allocated CPUs
 echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
 NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
-echo "This node has total $NPROCS CPUs available for anEXCLUSIVE job."
+echo "This node has total $NPROCS CPUs available for an EXCLUSIVE job."
 #echo "This node has $SLURM_CPUS_ON_NODE CPUs allocated for SLURM calculations."
 
 echo -e "\n The total memory at the node (in GB)"
@@ -125,7 +130,9 @@ export NSCM=$SLURM_CPUS_ON_NODE
 #echo -e "\n Running  $ADFBIN/ams.exe $AMSHOME/examples/band/NaCl/NaCl.run  with NSCM=$SLURM_CPUS_ON_NODE"
 #$ADFBIN/ams.exe $AMSHOME/examples/band/NaCl/NaCl.run
 
-export SCM_USE_LOCAL_IMPI=1
+#
+# In both cases you might need to edit the $AMSBIN/start script around line 287, to change the location pointed to by the "I_MPI_PMI_LIBRARY" variable. 
+#
 
 echo -e "\n Running $SLURM_SUBMIT_DIR/TlOH.band-revpbe_srzora_tzp_sc.run  : "
   $SLURM_SUBMIT_DIR/TlOH.band-revpbe_srzora_tzp_sc.run

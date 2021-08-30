@@ -98,8 +98,14 @@ echo -e "\n SINGULARITY_CONTAINERS=$SINGULARITY_CONTAINERS"
 cd $SLURM_SUBMIT_DIR
 echo -e "Running in SLURM_SUBMIT_DIR=$SLURM_SUBMIT_DIR..."
 echo -e "singularity run $SINGULARITY_CONTAINERS/nwchem.sif h2o_scf_6-31g.nw > out"
+#
 
-singularity run $SINGULARITY_CONTAINERS/nwchem.sif h2o_scf_6-31g.nw > out
+#singularity run $SINGULARITY_CONTAINERS/nwchem.sif h2o_scf_6-31g.nw > out
 #srun $SINGULARITY_CONTAINERS/nwchem.sif  h2o_scf_6-31g.nw > out
+
+#singularity run ./nwchem-702.ompi313.ivybridge_sha256.cf4e2661f
+#224ae6e5822756b4204f76e51c4eaaca71f7ac96a3a3a464d0b68d7.sif  mpirun -np 3 nwchem h2o_scf_6-31g.nw > out_2
+
+singularity run $SINGULARITY_CONTAINERS/nwchem-702.impi313.sif   mpirun -np 3 nwchem h2o_scf_6-31g.nw > out_2
 
 exit

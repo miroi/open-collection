@@ -1,0 +1,42 @@
+echo
+
+start molecule
+
+memory total 40 gb
+
+print low
+
+title "der1"
+charge 0
+
+geometry units angstroms print xyz autosym
+#  load format xyz VX.converged_geometry_blyp_tz2p-solvent-chcl3.xyz
+#  load format xyz VX.geom.xyz
+  load format xyz der1.pbe0_tz2p_good_cosmo-chcl3_optimized_geom.xyz
+end
+
+basis
+  * library cc-pvdz
+end
+
+dft
+  direct
+  grid fine
+  xc b3lyp
+  mult 1
+# Reduce output during geometry optimization
+  #noprint "final vectors analysis"
+end
+
+property
+  giao
+  shielding
+  spinspin
+end
+
+cosmo
+  solvent chcl3
+end
+
+task dft energy
+task dft property

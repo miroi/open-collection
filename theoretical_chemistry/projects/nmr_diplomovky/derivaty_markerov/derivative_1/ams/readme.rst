@@ -10,3 +10,7 @@ Derivative-1 with AMS
     Numerical quality: Good
 
   ADF-GUI atoms  P(2) -  H(30):       k=       1.958 , j=       9.531 (exp. 9.48(t))
+
+Previous calc - PBE0,TZ2P
+<Aug03-2021> <07:56:24>  ADF-GUI atoms  P(2) -  H(30):       k=       2.518 , j=      12.255 (!)
+

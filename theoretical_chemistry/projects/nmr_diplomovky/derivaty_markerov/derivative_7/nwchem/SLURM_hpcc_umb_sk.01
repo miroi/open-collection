@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## job name
-#SBATCH -J der1nw
+#SBATCH -J der7nw
 
 ##   number of nodes
 #SBATCH -N 1
@@ -113,8 +113,8 @@ echo -e "The local home directory with NWChem input file, SLURM_SUBMIT_DIR=${SLU
 # copy starting geometry to the workdir
 #cp ${SLURM_SUBMIT_DIR}/VX.converged_geometry_blyp_tz2p-solvent-chcl3.xyz   $TMPDIR/.
 #cp ${SLURM_SUBMIT_DIR}/VX.geom.xyz   $TMPDIR/.
-cp ${SLURM_SUBMIT_DIR}/der1.pbe0_tz2p_good_cosmo-chcl3_optimized_geom.xyz   $TMPDIR/.
-project=der1.nmr_b3lyp_ccpvdz_cosmo-chcl3
+cp ${SLURM_SUBMIT_DIR}/der7.geopt_freq_nmr_pbe0_tz2p_good_cosmo-chcl3_converged_geometry.xyz   $TMPDIR/.
+project=der7.nmr_b3lyp_ccpvdz_cosmo-chcl3
 echo -e "\n Launching NWChem run of project=$project"
 mpirun -np  $SLURM_CPUS_ON_NODE $NWCHEM_EXECUTABLE  ${SLURM_SUBMIT_DIR}/$project.nw  > ${SLURM_SUBMIT_DIR}/$project.${SLURM_JOBID}.out
 # save conveged geometry to homedir 

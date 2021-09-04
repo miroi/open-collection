@@ -1,3 +1,3 @@
-NWCHEM run of der1
+NWCHEM run of der7
 ==================
 

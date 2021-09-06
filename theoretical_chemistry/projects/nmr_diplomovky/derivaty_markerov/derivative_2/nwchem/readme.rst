@@ -12,7 +12,7 @@ No solvent
 ----------
 Atom    2:  31-P  and Atom   30:   1-H:  Isotropic Spin-Spin Coupling =       9.5564 Hz (exp. JP-a = 7.73 (t) )
 
-NMR shield: 246.6143 ppm (exp. 147.15(±0.20) ppm)
+NMR shield: abs.val. 246.6143 ppm (exp. shift 147.15(±0.20) ppm)
 
 
 

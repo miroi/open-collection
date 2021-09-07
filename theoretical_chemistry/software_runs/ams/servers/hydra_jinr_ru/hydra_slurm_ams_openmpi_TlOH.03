@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH -J CH4test
+#SBATCH -J TlOHopenmpi
 
 ##  partition (queue)
 ##SBATCH -p cpu
@@ -15,7 +15,7 @@
 
 ##SBATCH --mem=32GB
 ##SBATCH --mem=24GB
-#SBATCH --mem=4GB
+#SBATCH --mem=8GB
 
 # do not restart in the case of nodefail!
 #SBATCH --no-requeue
@@ -23,7 +23,7 @@
 
 ##  allowed CPU nodes for JIRN AMS license: n02p042,n01p001
 ##SBATCH -N 1 -n 4  --nodelist=n02p042
-#SBATCH -N 1 -n 4 
+#SBATCH -n 4  
 
 ## memory NO !!!
 ##SBATCH --mem-per-cpu=28G
@@ -118,8 +118,8 @@ export NSCM=$SLURM_CPUS_ON_NODE
 #echo -e "\n Running  $ADFBIN/ams.exe $AMSHOME/examples/band/NaCl/NaCl.run  with NSCM=$SLURM_CPUS_ON_NODE"
 #$ADFBIN/ams.exe $AMSHOME/examples/band/NaCl/NaCl.run
 
-echo -e "\n Running $SLURM_SUBMIT_DIR/ runfile.run  : "
+echo -e "\n Running $SLURM_SUBMIT_DIR/TlOH.band-revpbe_srzora_tzp_sc.run  : "
 
-  $SLURM_SUBMIT_DIR/methane_test.run
+  $SLURM_SUBMIT_DIR/TlOH.band-revpbe_srzora_tzp_sc.run
 
 exit

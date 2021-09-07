@@ -7,7 +7,7 @@
 
 # number of nodes
 #SBATCH -N 1
-#SBATCH --exclusive
+##SBATCH --exclusive
 ##SBATCH --mem=120GB
 ##SBATCH --mem=248GB
 #SBATCH --mem=4GB
@@ -80,6 +80,6 @@ echo -e "Running in SLURM_SUBMIT_DIR=$SLURM_SUBMIT_DIR..."
 echo -e "singularity run $SINGULARITY_CONTAINERS/nwchem.sif h2o_scf_6-31g.nw > out"
 #
 
-singularity run $SINGULARITY_CONTAINERS/nwchem-702.impi313.sif   mpirun -np 3 nwchem h2o_scf_6-31g.nw > out_2
+singularity run $SINGULARITY_CONTAINERS/nwchem-702.impi313.sif   mpirun -np  $SLURM_CPUS_ON_NODE nwchem h2o_scf_6-31g.nw > out_$SLURM_CPUS_ON_NODE
 
 exit

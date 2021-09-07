@@ -1,14 +1,12 @@
 echo
 
 start molecule
-
 memory total 40 gb
 
 print low
 
 title "der2"
 charge 0
-
 
 geometry units angstroms print xyz autosym
 #  load format xyz VX.converged_geometry_blyp_tz2p-solvent-chcl3.xyz
@@ -22,13 +20,13 @@ basis
 end
 
 dft
-#  odft
+  odft # for spinspin coupling
   direct
   grid fine
   xc b3lyp
   mult 1
 # Reduce output during geometry optimization
-  #noprint "final vectors analysis"
+  noprint "final vectors analysis"
 end
 
 property

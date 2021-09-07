@@ -9,11 +9,6 @@ print low
 title "der2"
 charge 0
 
-# spin-spin coupling only for odft
-dft
-  odft
-  mult 1
-end
 
 geometry units angstroms print xyz autosym
 #  load format xyz VX.converged_geometry_blyp_tz2p-solvent-chcl3.xyz
@@ -27,6 +22,7 @@ basis
 end
 
 dft
+#  odft
   direct
   grid fine
   xc b3lyp

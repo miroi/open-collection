@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH -J CH4test
+#SBATCH -J FlonQBAND
 
 ##  partition (queue)
 ##SBATCH -p cpu
@@ -21,7 +21,6 @@
 # do not restart in the case of nodefail!
 #SBATCH --no-requeue
 #SBATCH --no-kill
-
 #SBATCH --start
 
 ##  allowed CPU nodes for JIRN AMS license: n02p042,n01p001
@@ -123,6 +122,6 @@ export NSCM=$SLURM_CPUS_ON_NODE
 
 echo -e "\n Running $SLURM_SUBMIT_DIR/ runfile.run  : "
 
-  $SLURM_SUBMIT_DIR/methane_test.run
+  $SLURM_SUBMIT_DIR/Fl_on_smallQuartz_test.run
 
 exit

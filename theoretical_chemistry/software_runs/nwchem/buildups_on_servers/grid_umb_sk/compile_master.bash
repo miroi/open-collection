@@ -86,7 +86,7 @@
   cd $NWCHEM_TOP/src
   echo -e "\n I am in :\c";pwd;ls -lt
   # clean out !!!
-  echo -e "make clean:"; make clean
+ # echo -e "make clean:"; make clean
   echo -e " make nwchem_config: ";make nwchem_config 
   echo -e "\n  launching make -j4 :"; make -j4
 

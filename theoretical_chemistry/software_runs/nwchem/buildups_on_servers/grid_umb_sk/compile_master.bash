@@ -23,7 +23,8 @@
   #export CC=icc
   export MPI_F90=mpif90
   echo -e "MPI_F90=$MPI_F90"
-  which mpif90
+  which mpif90; mpif90 --version
+  which ifort; ifort --version
   which mpirun
 
  # export MPI_CC=mpicc
@@ -86,7 +87,7 @@
   cd $NWCHEM_TOP/src
   echo -e "\n I am in :\c";pwd;ls -lt
   # clean out !!!
- # echo -e "make clean:"; make clean
+  echo -e "make clean:"; make clean
   echo -e " make nwchem_config: ";make nwchem_config 
   echo -e "\n  launching make -j4 :"; make -j4
 

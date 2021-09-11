@@ -10,3 +10,5 @@ NWChem on grid.umb.sk
 ---------------------------------------------------------
  nohup compile_release7_0_2.bash &> compile__release7_0_2.log 2>&1
 
+
+see also https://groups.google.com/g/nwchem-forum/c/EL7Rg0lTdZA/m/p142lrWHCAAJ - fix with patch

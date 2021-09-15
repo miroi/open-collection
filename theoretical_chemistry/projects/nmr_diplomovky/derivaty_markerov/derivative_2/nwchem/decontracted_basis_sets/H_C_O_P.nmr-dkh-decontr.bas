@@ -9,8 +9,7 @@
 #     Version: 0  (Data from the original Basis Set Exchange)
 #----------------------------------------------------------------------
 
-
-BASIS "ao basis" PRINT
+basis "H_NMR-DKH_TZ2P" Spherical
 #BASIS SET: (7s,2p) -> [7s,2p]
 H    S
     282.952156333090         1.00000000E+00
@@ -30,6 +29,8 @@ H    P
       0.88150000000000       1.00000000E+00
 H    P
       0.17989200000000       1.00000000E+00
+END
+basis "C_NMR-DKH_TZ2P" Spherical
 #BASIS SET: (11s,6p,2d) -> [11s,6p,2d]
 C    S
    8846.12353391750          1.00000000E+00
@@ -69,6 +70,8 @@ C    D
       0.47750000000000       1.00000000E+00
 C    D
       0.11998000000000       1.00000000E+00
+END
+basis "O_NMR-DKH_TZ2P" Spherical
 #BASIS SET: (11s,6p,2d) -> [11s,6p,2d]
 O    S
   16178.1182314232           1.00000000E+00
@@ -108,6 +111,8 @@ O    D
       0.92880000000000       1.00000000E+00
 O    D
       0.22975000000000       1.00000000E+00
+END
+basis "P_NMR-DKH_TZ2P" Spherical
 #BASIS SET: (15s,10p,2d) -> [15s,10p,2d]
 P    S
   59538.0043013517           1.00000000E+00

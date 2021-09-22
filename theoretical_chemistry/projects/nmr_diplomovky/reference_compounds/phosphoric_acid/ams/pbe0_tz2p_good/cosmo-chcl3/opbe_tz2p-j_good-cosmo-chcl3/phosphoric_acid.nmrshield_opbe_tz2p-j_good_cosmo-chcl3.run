@@ -75,19 +75,3 @@ mv TAPE21 "${AMS_RESULTSDIR-${AMS_JOBNAME-ams}.results}/adf.rkf"
 rm -f TAPE10 TAPE15
 
 
-# ===
-# CPL
-# ===
-
-cp "${AMS_RESULTSDIR-${AMS_JOBNAME-ams}.results}/adf.rkf" TAPE21
-
-"$AMSBIN/cpl" << eor
-NMRCOUPLING
-  fc 
-ADFGUI
-END
-eor
-
-mv TAPE21 "${AMS_RESULTSDIR-${AMS_JOBNAME-ams}.results}/adf.rkf"
-
-

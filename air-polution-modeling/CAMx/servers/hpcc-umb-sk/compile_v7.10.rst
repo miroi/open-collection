@@ -38,4 +38,8 @@ Compilation v.7.10
 
 make COMPILER=gfortran MPI=openmpi NCF=NCF4
 
+.
+.
+.
+missing /usr/include/netcdf.inc !!!
 

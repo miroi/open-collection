@@ -1,3 +1,4 @@
+================
 Der2 with NWChem
 ================
 
@@ -42,4 +43,30 @@ der2.odft_geomopt_nmr_b3lyp_cosmo-chcl3_6-311++g2d_2p.4714.out_SAVED
 Atom    2:  31-P  and Atom   30:   1-H
  Isotropic Spin-Spin Coupling =      15.2082 Hz
 NMR shield isotropic:  isotropic =     120.4143 !!!!
+
+
+der2.dk_odft_nmr_b3lyp_nmr-dkh-decontr-expl_cosmo-chcl3.5029.out_SAVED
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Atom    2:  31-P  and Atom   30:   1-H
+Isotropic Spin-Spin Coupling =      16.7150 Hz
+ Total Shielding Tensor
+isotropic =     155.5095
+
+der2.dk_odft_nmr_pbe0_nmr-dkh-decontr-expl_cosmo-chcl3.5030.out_SAVED
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Atom    2:  31-P  and Atom   30:   1-H
+Isotropic Spin-Spin Coupling =      14.6105 Hz
+ Total Shielding Tensor
+isotropic =     174.1077
+
+der2.nonrel_odft_nmr_b3lyp_nmr-dkh-decontr-expl_cosmo-chcl3.5028.out_SAVED
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Atom    2:  31-P  and Atom   30:   1-H
+Isotropic Spin-Spin Coupling =      13.6713 Hz
+ Total Shielding Tensor
+isotropic =     157.8186
+
+
+
+
 

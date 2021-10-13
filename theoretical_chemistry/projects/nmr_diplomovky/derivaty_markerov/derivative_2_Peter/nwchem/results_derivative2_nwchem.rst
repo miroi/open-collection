@@ -66,7 +66,16 @@ Isotropic Spin-Spin Coupling =      13.6713 Hz
  Total Shielding Tensor
 isotropic =     157.8186
 
+der2.nonrel_odft_nmr_pbe0_nmr-dkh-decontr-expl_cosmo-chcl3.5092.out_SAVED
+---------------------------------------------------------------------------
+using ADF geometry of der2.geopt_freq_nmr_pbe0_tz2p_good_cosmo-chcl3_converged_geometry.xyz
 
+Atom    2:  31-P  and Atom   30:   1-H
+Isotropic Spin-Spin Coupling =      11.9401 Hz   <-------  (exp. JP-a = 7.73 (t) )
 
+ Atom:    1  P   
+Total Shielding Tensor:  isotropic =     176.2268  
+
+H3P3 reference:
 
 

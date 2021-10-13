@@ -5,8 +5,9 @@
 
  Time_Zone        = 0,                 ! casova zona, 0=UTC
  Restart          = .false.,           ! restartovanie
- Start_Date_Hour  =  2016,06,03,0000,   ! (YYYY,MM,DD,HHmm) ... cas startu
- End_Date_Hour    = 2016,06,03,0009,   ! (YYYY,MM,DD,HHmm)
+ Start_Date_Hour  = 2016,06,03,0000,   ! (YYYY,MM,DD,HHmm) ... cas startu
+ End_Date_Hour    = 2016,06,03,2400,   ! (YYYY,MM,DD,HHmm)
+
  Maximum_Timestep    = 15,            ! minutes ... musi byt vacsi ako 1 minuta
  Met_Input_Frequency = 60.,           ! minutes
  Ems_Input_Frequency = 60.,           ! minutes
@@ -18,28 +19,28 @@
  UTM_Zone       = 0,
  Longitude_Pole = -97.,      ! deg (west<0,south<0)
  Latitude_Pole  =  40.,      ! deg (west<0,south<0)
- True_Latitude1 =  45.,      ! deg (west<0,south<0)
- True_Latitude2 =  33.,      ! deg (west<0,south<0)
+ True_Latitude1 =  33.,      ! deg (west<0,south<0)
+ True_Latitude2 =  45.,      ! deg (west<0,south<0)
 
 !--- Parameters for the master (first) grid ---
-
  Number_of_Grids      = 2,
-! Number_of_Grids      = 1,
- Master_SW_XCoord     = -792.,         ! km or deg, SW corner of cell(1,1)
- Master_SW_YCoord     = -1656.,        ! km or deg, SW corner of cell (1,1)
+ Master_SW_XCoord     = -2556.,        ! km or deg, SW corner of cell(1,1)
+ Master_SW_YCoord     = -1872.,        ! km or deg, SW corner of cell (1,1)
  Master_Cell_XSize    = 36.,           ! km or deg
  Master_Cell_YSize    = 36.,           ! km or deg
- Master_Grid_Columns  = 68 ,
- Master_Grid_Rows     = 68,
- Number_of_Layers     = 16,
+ Master_Grid_Columns  = 158,
+ Master_Grid_Rows     = 91,
+ Number_of_Layers     = 20,
+
 
 !--- Parameters for the second grid ---
 
  Nest_Meshing_Factor(2) = 3,           ! Cell size relative to master grid
- Nest_Beg_I_Index(2)    = 22,          ! Relative to master grid
- Nest_End_I_Index(2)    = 51,          ! Relative to master grid
- Nest_Beg_J_Index(2)    = 22,          ! Relative to master grid
- Nest_End_J_Index(2)    = 58,          ! Relative to master grid
+ Nest_Beg_I_Index(2)    = 85,          ! Relative to master grid
+ Nest_End_I_Index(2)    = 134,         ! Relative to master grid
+ Nest_Beg_J_Index(2)    = 26,          ! Relative to master grid
+ Nest_End_J_Index(2)    = 74,          ! Relative to master grid
+
 
 !--- Model options ---
 !  ... parametre modelu ...

@@ -1,14 +1,65 @@
+#!/bin/csh
+#
+# CAMx v7.10
+#
+
+###setenv NCPUS 8
+###setenv OMP_NUM_THREADS 8
+###setenv OMP_STACKSIZE 128M
+limit stacksize unlimited
+
+#set EXEC      = "../../src/CAMx.v7.10.MPICH3.NCF4.pgf"
+set EXEC      = "/home/milias/work/software/air_pollution/CAMx/v7.10/src.v7.10/CAMx.v7.10.openMPI.NCF4.gfortran"
+#
+set RUN     = "v7.10.36.12"
+set ICBC    = "/home/milias/work/software/air_pollution/CAMx/v7.10/icbc"
+set INPUT   = "/home/milias/work/software/air_pollution/CAMx/v7.10/inputs"
+set MET     = "/home/milias/work/software/air_pollution/CAMx/v7.10/met"
+set EMIS    = "/home/milias/work/software/air_pollution/CAMx/v7.10/emiss"
+set PTSRCE  = "/home/milias/work/software/air_pollution/CAMx/v7.10/ptsrce"
+set OUTPUT  = "/home/milias/work/software/air_pollution/CAMx/v7.10/outputs"
+#
+mkdir -p $OUTPUT
+#
+#  --- Create the nodes file ---
+#
+cat << ieof > nodes
+10.1.4.2:3
+10.1.4.3:2
+10.1.4.4:2
+10.1.4.5:2
+ieof
+set NUMPROCS = 4
+#
+#  --- set the dates and times ----
+#
+set RESTART = "NO"
+foreach today (10.162 11.163)
+set JUL = $today:e
+set CAL = $today:r
+set CALDAY = 201606${CAL}
+set YESTERDAY = `echo ${CALDAY} | awk '{printf("%d",$1-1)}'`
+#
+if( ${RESTART} == "NO" ) then
+        set RESTART = "false"
+else
+        set RESTART = "true"
+endif
+#
+#  --- Create the input file (always called CAMx.in)
+#
+cat << ieof > CAMx.in
 
  &CAMx_Control
 
- Run_Message      = 'CAMx 7.10 Test Problem -- CB6R4 CF SOAP 20160610',
+ Run_Message      = 'CAMx 7.10 Test Problem -- CB6R4 CF SOAP $CALDAY',
 
 !--- Model clock control ---
 
  Time_Zone        = 0,                 ! (0=UTC,5=EST,6=CST,7=MST,8=PST)
- Restart          = .false.,
- Start_Date_Hour  = 2016,06,10,0000,   ! (YYYY,MM,DD,HHmm)
- End_Date_Hour    = 2016,06,10,2400,   ! (YYYY,MM,DD,HHmm)
+ Restart          = .${RESTART}.,
+ Start_Date_Hour  = 2016,06,${CAL},0000,   ! (YYYY,MM,DD,HHmm)
+ End_Date_Hour    = 2016,06,${CAL},2400,   ! (YYYY,MM,DD,HHmm)
 
  Maximum_Timestep    = 15.,            ! minutes
  Met_Input_Frequency = 60.,            ! minutes
@@ -65,7 +116,7 @@
 
 !--- Output specifications ---
 
- Root_Output_Name         = '/home/milias/work/software/air_pollution/CAMx/v7.10/outputs/CAMx.v7.10.36.12.20160610',
+ Root_Output_Name         = '$OUTPUT/CAMx.$RUN.${CALDAY}',
  Average_Output_3D        = .false.,
  NetCDF_Format_Output     = .true.,
  NetCDF_Use_Compression   = .false.,
@@ -92,36 +143,47 @@
 
 !--- Input files ---
 
- Chemistry_Parameters = '/home/milias/work/software/air_pollution/CAMx/v7.10/inputs/CAMx7.1.chemparam.CB6r4_CF2',
- Photolysis_Rates     = '/home/milias/work/software/air_pollution/CAMx/v7.10/inputs/tuv.do_CB6r4.20160610',
- Ozone_Column         = '/home/milias/work/software/air_pollution/CAMx/v7.10/inputs/o3map.201606.txt',
- Initial_Conditions   = '/home/milias/work/software/air_pollution/CAMx/v7.10/icbc/ic.36km.20160610.GMT.hr0.nc',
- Boundary_Conditions  = '/home/milias/work/software/air_pollution/CAMx/v7.10/icbc/bc.36km.20160610.GMT.nc',
- Point_Sources(1)     = '/home/milias/work/software/air_pollution/CAMx/v7.10/ptsrce/point.camx.othpt.20160610.nc',
- Point_Sources(2)     = '/home/milias/work/software/air_pollution/CAMx/v7.10/ptsrce/point.camx.ptnonipm.20160610.nc',
- Point_Sources(3)     = '/home/milias/work/software/air_pollution/CAMx/v7.10/ptsrce/point.camx.pt_oilgas.20160610.nc',
- Master_Grid_Restart  = '/home/milias/work/software/air_pollution/CAMx/v7.10/outputs/CAMx.v7.10.36.12.20160609.inst',
- Nested_Grid_Restart  = '/home/milias/work/software/air_pollution/CAMx/v7.10/outputs/CAMx.v7.10.36.12.20160609.finst',
+ Chemistry_Parameters = '$INPUT/CAMx7.1.chemparam.CB6r4_CF2',
+ Photolysis_Rates     = '$INPUT/tuv.do_CB6r4.${CALDAY}',
+ Ozone_Column         = '$INPUT/o3map.201606.txt',
+ Initial_Conditions   = '$ICBC/ic.36km.${CALDAY}.GMT.hr0.nc',
+ Boundary_Conditions  = '$ICBC/bc.36km.${CALDAY}.GMT.nc',
+ Point_Sources(1)     = '$PTSRCE/point.camx.othpt.${CALDAY}.nc',
+ Point_Sources(2)     = '$PTSRCE/point.camx.ptnonipm.${CALDAY}.nc',
+ Point_Sources(3)     = '$PTSRCE/point.camx.pt_oilgas.${CALDAY}.nc',
+ Master_Grid_Restart  = '$OUTPUT/CAMx.$RUN.${YESTERDAY}.inst',
+ Nested_Grid_Restart  = '$OUTPUT/CAMx.$RUN.${YESTERDAY}.finst',
  PiG_Restart          = ' ',
 
- Surface_Grid(1) = '/home/milias/work/software/air_pollution/CAMx/v7.10/met/camx.lu.36km.20160610.nc',
- Met3D_Grid(1)   = '/home/milias/work/software/air_pollution/CAMx/v7.10/met/camx.3d.36km.20160610.nc',
- Met2D_Grid(1)   = '/home/milias/work/software/air_pollution/CAMx/v7.10/met/camx.2d.36km.20160610.nc',
- Vdiff_Grid(1)   = '/home/milias/work/software/air_pollution/CAMx/v7.10/met/camx.kv.36km.20160610.YSU.nc',
- Emiss_Grid(1,1) = '/home/milias/work/software/air_pollution/CAMx/v7.10/emiss/camx_area.area.20160610.36km.nc',
- Emiss_Grid(1,2) = '/home/milias/work/software/air_pollution/CAMx/v7.10/emiss/camx_area.mobile.20160610.36km.nc',
- Emiss_Grid(1,3) = '/home/milias/work/software/air_pollution/CAMx/v7.10/emiss/camx_area.pt.20160610.36km.nc',
- Emiss_Grid(1,4) = '/home/milias/work/software/air_pollution/CAMx/v7.10/emiss/camx_area.natural.20160610.36km.nc',
+ Surface_Grid(1) = '$MET/camx.lu.36km.${CALDAY}.nc',
+ Met3D_Grid(1)   = '$MET/camx.3d.36km.${CALDAY}.nc',
+ Met2D_Grid(1)   = '$MET/camx.2d.36km.${CALDAY}.nc',
+ Vdiff_Grid(1)   = '$MET/camx.kv.36km.${CALDAY}.YSU.nc',
+ Emiss_Grid(1,1) = '$EMIS/camx_area.area.${CALDAY}.36km.nc',
+ Emiss_Grid(1,2) = '$EMIS/camx_area.mobile.${CALDAY}.36km.nc',
+ Emiss_Grid(1,3) = '$EMIS/camx_area.pt.${CALDAY}.36km.nc',
+ Emiss_Grid(1,4) = '$EMIS/camx_area.natural.${CALDAY}.36km.nc',
 
- Surface_Grid(2) = '/home/milias/work/software/air_pollution/CAMx/v7.10/met/camx.lu.12km.20160610.nc',
- Met3D_Grid(2)   = '/home/milias/work/software/air_pollution/CAMx/v7.10/met/camx.3d.12km.20160610.nc',
- Met2D_Grid(2)   = '/home/milias/work/software/air_pollution/CAMx/v7.10/met/camx.2d.12km.20160610.nc',
- Vdiff_Grid(2)   = '/home/milias/work/software/air_pollution/CAMx/v7.10/met/camx.kv.12km.20160610.YSU.nc',
- Emiss_Grid(2,1) = '/home/milias/work/software/air_pollution/CAMx/v7.10/emiss/camx_area.area.20160610.12km.nc',
- Emiss_Grid(2,2) = '/home/milias/work/software/air_pollution/CAMx/v7.10/emiss/camx_area.mobile.20160610.12km.nc',
- Emiss_Grid(2,3) = '/home/milias/work/software/air_pollution/CAMx/v7.10/emiss/camx_area.pt.20160610.12km.nc',
- Emiss_Grid(2,4) = '/home/milias/work/software/air_pollution/CAMx/v7.10/emiss/camx_area.natural.20160610.12km.nc',
+ Surface_Grid(2) = '$MET/camx.lu.12km.${CALDAY}.nc',
+ Met3D_Grid(2)   = '$MET/camx.3d.12km.${CALDAY}.nc',
+ Met2D_Grid(2)   = '$MET/camx.2d.12km.${CALDAY}.nc',
+ Vdiff_Grid(2)   = '$MET/camx.kv.12km.${CALDAY}.YSU.nc',
+ Emiss_Grid(2,1) = '$EMIS/camx_area.area.${CALDAY}.12km.nc',
+ Emiss_Grid(2,2) = '$EMIS/camx_area.mobile.${CALDAY}.12km.nc',
+ Emiss_Grid(2,3) = '$EMIS/camx_area.pt.${CALDAY}.12km.nc',
+ Emiss_Grid(2,4) = '$EMIS/camx_area.natural.${CALDAY}.12km.nc',
 
  /
 !-------------------------------------------------------------------------------
 
+ieof
+
+#
+#  --- Execute the model ---
+#
+if( ! { mpiexec  -np $NUMPROCS $EXEC } ) then
+   exit
+endif
+set RESTART = "YES"
+
+end

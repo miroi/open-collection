@@ -1,10 +1,12 @@
 #!/bin/bash
 
 ## job name
-#SBATCH -J d1nw_dec
+#SBATCH -J d7nw-ssbd
 
 ##   number of nodes
 #SBATCH -N 1
+
+##SBATCH --nodelist=comp06
 
 ##   number of CPUs, max 12 on old nodes
 #SBATCH -n 12
@@ -13,7 +15,7 @@
 #SBATCH -p compute
 
 ## max. execution time
-#SBATCH -t 10-10:00:00
+#SBATCH -t 8-10:00:00
 
 # allocated total memory per this job
 #SBATCH --mem=42GB
@@ -110,15 +112,18 @@ echo -e "The local home directory with NWChem input file, SLURM_SUBMIT_DIR=${SLU
 
 # copy starting geometry to the workdir
 #cp ${SLURM_SUBMIT_DIR}/VX.geom.xyz   $TMPDIR/.
-cp ${SLURM_SUBMIT_DIR}/der1.pbe0_tz2p_good_cosmo-chcl3_optimized_geom.xyz   $TMPDIR/.
+#cp ${SLURM_SUBMIT_DIR}/der2.geopt_freq_nmr_pbe0_tz2p_good_cosmo-chcl3_converged_geometry.xyz   $TMPDIR/.
+cp ${SLURM_SUBMIT_DIR}/der7.geopt_freq_nmr_pbe0_tz2p_good_cosmo-chcl3_converged_geometry.xyz   $TMPDIR/.
 # copy basis set to the workdir
 #cp ${SLURM_SUBMIT_DIR}/H_C_O_P.nmr-dkh-decontr.bas   $TMPDIR/.
 
+#project=der2.nmr_b3lyp_ccpvdz_cosmo-chcl3
+#project=der2.uhf_nmr_b3lyp_ccpvdz_cosmo-chcl3
 #project=der2.odft_nmr_b3lyp_ccpvdz_cosmo-chcl3
 #project=der2.nonrel_odft_nmr_b3lyp_nmr-dkh-decontr-expl_cosmo-chcl3
 #project=der2.nonrel_odft_nmr_pbe0_nmr-dkh-decontr-expl_cosmo-chcl3
-#project=der1.nonrel_odft_nmr_pbe0_nmr-dkh-decontr-expl_cosmo-chcl3
-project=der1.nonrel_odft_nmr_ssb-d_nmr-dkh-decontr-expl_cosmo-chcl3
+#project=der7.nonrel_odft_nmr_pbe0_nmr-dkh-decontr-expl_cosmo-chcl3
+project=der7.nonrel_odft_nmr_ssb-d_nmr-dkh-decontr-expl_cosmo-chcl3
 echo -e "\n Launching NWChem run of project=$project"
 mpirun -np  $SLURM_CPUS_ON_NODE $NWCHEM_EXECUTABLE  ${SLURM_SUBMIT_DIR}/$project.nw  > ${SLURM_SUBMIT_DIR}/$project.${SLURM_JOBID}.out
 

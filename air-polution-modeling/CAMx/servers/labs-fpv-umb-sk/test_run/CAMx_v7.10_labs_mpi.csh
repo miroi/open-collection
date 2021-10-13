@@ -3,12 +3,13 @@
 # CAMx v7.10
 #
 
-###setenv NCPUS 8
+setenv NCPUS 4
 ###setenv OMP_NUM_THREADS 8
 ###setenv OMP_STACKSIZE 128M
 limit stacksize unlimited
 
-set EXEC      = "../../src/CAMx.v7.10.MPICH3.NCF4.pgf"
+#set EXEC      = "../../src/CAMx.v7.10.MPICH3.NCF4.pgf"
+set EXEC      = "/home/milias/work/software/air_pollution/CAMx/v7.10/src.v7.10/CAMx.v7.10.openMPI.NCF4.gfortran"
 #
 set RUN     = "v7.10.36.12"
 set ICBC    = "../icbc"

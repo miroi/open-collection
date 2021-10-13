@@ -23,8 +23,8 @@
 
 !--- Parameters for the master (first) grid ---
 
-! Number_of_Grids      = 2,
- Number_of_Grids      = 1,
+ Number_of_Grids      = 2,
+! Number_of_Grids      = 1,
  Master_SW_XCoord     = -792.,         ! km or deg, SW corner of cell(1,1)
  Master_SW_YCoord     = -1656.,        ! km or deg, SW corner of cell (1,1)
  Master_Cell_XSize    = 36.,           ! km or deg
@@ -44,6 +44,7 @@
 !--- Model options ---
 !  ... parametre modelu ...
  Diagnostic_Error_Check = .false.,      ! True = will stop after 1st timestep
+ Flexi_Nest             = .false.,      ! True = expect flexi-nested inputs
  Advection_Solver       = 'PPM',        ! (PPM,BOTT)
  Chemistry_Solver       = 'EBI',        ! (EBI,IEH,LSODE)
  PiG_Submodel           = 'None',       ! (None,GREASD,IRON)
@@ -93,7 +94,7 @@
  Photolysis_Rates     = '/home/milias/work/software/air_pollution/CAMx/v7.10/inputs/tuv.do_CB6r4.20160611',
  Ozone_Column         = '/home/milias/work/software/air_pollution/CAMx/v7.10/inputs/o3map.201606.txt',
 
- Initial_Conditions   = '/home/milias/work/software/air_pollution/CAMx/v7.10/icbc/ic.36km.20160611.GMT.hr0.nc',
+ Initial_Conditions   = '/home/milias/work/software/air_pollution/CAMx/v7.10/icbc/ic.36km.20160610.GMT.hr0.nc',
  Boundary_Conditions  = '/home/milias/work/software/air_pollution/CAMx/v7.10/icbc/bc.36km.20160611.GMT.nc',
 
  Point_Sources(1)     = '/home/milias/work/software/air_pollution/CAMx/v7.10/ptsrce/point.camx.othpt.20160611.nc',

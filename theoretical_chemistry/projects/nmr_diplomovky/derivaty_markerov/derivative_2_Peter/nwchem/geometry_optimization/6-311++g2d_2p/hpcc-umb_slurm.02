@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## job name
-#SBATCH -J d2go
+#SBATCH -J d2go1
 
 ##   number of nodes
 #SBATCH -N 1
@@ -118,12 +118,12 @@ cp ${SLURM_SUBMIT_DIR}/der2.geopt_freq_nmr_pbe0_tz2p_good_cosmo-chcl3_converged_
 #project=der2.uhf_nmr_b3lyp_ccpvdz_cosmo-chcl3
 #project=der2.odft_nmr_b3lyp_ccpvdz_cosmo-chcl3
 #project=der1.geomopt_b3lyp_cosmo-chcl3_6-311++g2d_2p
-project=der2.geomopt_b3lyp_cosmo-chcl3_6-311++g2d_2p
+project=der2.geomopt_pbe0_cosmo-chcl3_6-311++g2d_2p
 echo -e "\n Launching NWChem run of project=$project"
 mpirun -np  $SLURM_CPUS_ON_NODE $NWCHEM_EXECUTABLE  ${SLURM_SUBMIT_DIR}/$project.nw  > ${SLURM_SUBMIT_DIR}/$project.${SLURM_JOBID}.out
 
 # save conveged geometry to homedir 
-cp $TMPDIR/der2_b3lyp_geom_6-311++g2d_2p*   ${SLURM_SUBMIT_DIR}/.
+cp $TMPDIR/der2_pbe0_geom_6-311++g2d_2p*   ${SLURM_SUBMIT_DIR}/.
 
 echo -e "\n Working files remained in scratch dir $TMPDIR:"
 ls -lt $TMPDIR 

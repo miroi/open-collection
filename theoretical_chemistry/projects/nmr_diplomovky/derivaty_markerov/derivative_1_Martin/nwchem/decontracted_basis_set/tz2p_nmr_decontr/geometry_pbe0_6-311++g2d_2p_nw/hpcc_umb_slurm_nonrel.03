@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## job name
-#SBATCH -J d1nw_bh
+#SBATCH -J d1_pbe0
 
 ##   number of nodes
 #SBATCH -N 1
@@ -115,7 +115,8 @@ cp ${SLURM_SUBMIT_DIR}/der1_pbe0_geom_6-311++g2d_2p-038_converged.xyz   $TMPDIR/
 
 #project=der1.nonrel_odft_nmr_pbe0_nmr-dkh-decontr-expl_cosmo-chcl3
 #project=der1.nonrel_odft_nmr_b3lyp_nmr-dkh-decontr-expl_cosmo-chcl3.nw
-project=der1.beckehandh
+#project=der1.beckehandh
+project=der1.pbe0
 echo -e "\n Launching NWChem run of project=$project"
 mpirun -np  $SLURM_CPUS_ON_NODE $NWCHEM_EXECUTABLE  ${SLURM_SUBMIT_DIR}/$project.nw  > ${SLURM_SUBMIT_DIR}/$project.${SLURM_JOBID}.out
 

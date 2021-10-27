@@ -26,6 +26,7 @@ mpirun (Open MPI) 4.0.1
 
 in Makefile:
 ~~~~~~~~~~~~
+/home/milias/Work/software/air-pollution-modeling/CAMx_suite/v7.10/src.v7.10/Makefile:
 
 #MPI_INST = /usr/local/mpich3
 MPI_INST = /home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_gnu6.3

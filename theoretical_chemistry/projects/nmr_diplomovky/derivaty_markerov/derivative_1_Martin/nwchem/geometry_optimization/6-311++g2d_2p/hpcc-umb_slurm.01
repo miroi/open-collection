@@ -15,7 +15,7 @@
 #SBATCH -p compute
 
 ## max. execution time
-#SBATCH -t 3-10:00:00
+#SBATCH -t 6-00:00:00
 
 # allocated total memory per this job
 #SBATCH --mem=42GB
@@ -112,7 +112,8 @@ echo -e "The local home directory with NWChem input file, SLURM_SUBMIT_DIR=${SLU
 
 # copy starting geometry to the workdir
 #cp ${SLURM_SUBMIT_DIR}/VX.converged_geometry_blyp_tz2p-solvent-chcl3.xyz   $TMPDIR/.
-cp ${SLURM_SUBMIT_DIR}/der1.pbe0_tz2p_good_cosmo-chcl3_optimized_geom.xyz   $TMPDIR/.
+#cp ${SLURM_SUBMIT_DIR}/der1.pbe0_tz2p_good_cosmo-chcl3_optimized_geom.xyz   $TMPDIR/.
+cp ${SLURM_SUBMIT_DIR}/der1_pbe0_geom_6-311++g2d_2p-038_converged.xyz   $TMPDIR/.
 
 #project=der2.nmr_b3lyp_ccpvdz_cosmo-chcl3
 #project=der2.uhf_nmr_b3lyp_ccpvdz_cosmo-chcl3

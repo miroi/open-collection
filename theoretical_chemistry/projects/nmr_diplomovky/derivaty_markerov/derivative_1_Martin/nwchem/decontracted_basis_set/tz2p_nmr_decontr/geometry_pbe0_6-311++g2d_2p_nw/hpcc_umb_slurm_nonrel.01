@@ -114,7 +114,8 @@ echo -e "The local home directory with NWChem input file, SLURM_SUBMIT_DIR=${SLU
 cp ${SLURM_SUBMIT_DIR}/der1_pbe0_geom_6-311++g2d_2p-038_converged.xyz   $TMPDIR/.
 
 #project=der1.nonrel_odft_nmr_pbe0_nmr-dkh-decontr-expl_cosmo-chcl3
-project=der1.nonrel_odft_nmr_b3lyp_nmr-dkh-decontr-expl_cosmo-chcl3
+#project=der1.nonrel_odft_nmr_b3lyp_nmr-dkh-decontr-expl_cosmo-chcl3
+project=der1.b3lyp
 echo -e "\n Launching NWChem run of project=$project"
 mpirun -np  $SLURM_CPUS_ON_NODE $NWCHEM_EXECUTABLE  ${SLURM_SUBMIT_DIR}/$project.nw  > ${SLURM_SUBMIT_DIR}/$project.${SLURM_JOBID}.out
 

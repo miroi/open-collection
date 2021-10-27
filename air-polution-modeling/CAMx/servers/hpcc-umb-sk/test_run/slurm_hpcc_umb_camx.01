@@ -1,15 +1,86 @@
 #!/bin/bash
 
+## job name
+#SBATCH -J camx
 
-echo -e "\n Running CAMx v7.10 (example) on labs.fpv.umb.sk "
+##   number of nodes
+#SBATCH -N 1
 
-CAMxDIR=/home/milias/work/software/air_pollution/CAMx/v7.10/src.v7.10
+##SBATCH --nodelist=comp06
+
+##   number of CPUs, max 12 on old nodes
+#SBATCH -n 4
+
+## partition
+#SBATCH -p compute
+
+## max. execution time
+#SBATCH -t 1-10:00:00
+
+# allocated total memory per this job
+##SBATCH --mem=42GB
+#SBATCH --mem=24GB
+
+# do not restart in the case of nodefail!
+#SBATCH --no-requeue
+#SBATCH --no-kill
+
+## logfile
+#SBATCH -o log_slurm_job.%j.%N.std_out_err
+
+## mail
+#SBATCH --mail-user=Miroslav.Ilias@umb.sk
+#SBATCH --mail-type=ALL
+
+#echo -e "\nWorking host is: \c"; hostname -f
+echo -e "\nRunning on host `hostname -f`"
+echo -e "Time is `date` \n"
+
+# provide OpenMPI-GNU local installation 
+export PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_gnu6.3/bin:$PATH
+export LD_LIBRARY_PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_gnu6.3/lib:$LD_LIBRARY_PATH
+export PMIX_MCA_gds=hash
+echo -e "PATH, LD_LIBRARY_PATH and PMIX_MCA_gds adjusted for /home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++"
+
+echo -e "\nMy PATH=$PATH"
+echo -e "My LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
+
+echo -e "\npython -V \c"; python -V
+echo -e "mpif90 ? \c"; which mpif90; mpif90 --version
+echo -e "mpicc ? \c"; which mpicc; mpicc --version
+echo -e "mpirun ? \c"; which mpirun; mpirun --version
+
+echo Job user is $SLURM_JOB_USER and his job $SLURM_JOB_NAME has assigned ID $SLURM_JOBID
+echo This job was submitted from the computer $SLURM_SUBMIT_HOST
+echo and from the home directory:
+echo $SLURM_SUBMIT_DIR
+echo
+echo It is running on the cluster compute node:
+echo $SLURM_CLUSTER_NAME
+echo and is employing $SLURM_JOB_NUM_NODES node/nodes:
+echo $SLURM_JOB_NODELIST
+echo -e "  Job partition is $SLURM_JOB_PARTITION \n"
+
+# CPU model, total numer of CPUs, number of allocated CPUs
+echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
+NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
+echo "This node has total $NPROCS CPUs available for an EXCLUSIVE job on this node."
+echo "This node has $SLURM_CPUS_ON_NODE CPUs allocated for this SLURM job."
+echo -e "\n The job requests SLURM_MEM_PER_NODE=$SLURM_MEM_PER_NODE memory."
+
+echo -e "\n The total memory at the node (in GB)"
+free -t -g
+echo -e "\n"
+
+CAMxDIR=/home/milias/Work/software/air-pollution-modeling/CAMx_suite/v7.10/src.v7.10
 CAMx=$CAMxDIR/CAMx.v7.10.openMPI.NCF4.gfortran
 
 date; ldd $CAMx
-ldd $CAMx
+
+cd ${SLURM_SUBMIT_DIR}
 
   echo "Running CAMx=$CAMx  ...."
-  mpirun -np 4  $CAMx
+  #mpirun -np 4  $CAMx
+  mpirun -np  $SLURM_CPUS_ON_NODE  $CAMx
 
 exit 0

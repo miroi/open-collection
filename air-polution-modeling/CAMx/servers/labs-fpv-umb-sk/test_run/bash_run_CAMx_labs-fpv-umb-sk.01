@@ -6,8 +6,13 @@ echo -e "\n Running CAMx v7.10 (example) on labs.fpv.umb.sk "
 CAMxDIR=/home/milias/work/software/air_pollution/CAMx/v7.10/src.v7.10
 CAMx=$CAMxDIR/CAMx.v7.10.openMPI.NCF4.gfortran
 
-echo -e "CAMx=$CAMx"
+date;
 
-  $CAMx
+ldd $CAMx
+
+echo -e "\n CAMx=$CAMx \n "
+
+  echo "Running CAMX ...."
+  mpirun -np 4  $CAMx
 
 exit 0

@@ -1,0 +1,1002 @@
+ argument  1 = /home/milias/Work/open-collection/theoretical_chemistry/projects/nmr_diplomovky/reference_compounds/phosphoric_acid/nwchem/cosmo-chcl3/decontracted_basis_set/tz2p_nmr_decontr/geometry_b3lyp_6-311++g2d_2p_nw/h3po4.ssb-d.nw
+ 
+
+
+============================== echo of input deck ==============================
+echo
+
+start molecule
+
+# https://nwchemgit.github.io/Memory.html
+memory total 40 gb
+
+print low
+
+title "H3PO4"
+charge 0
+
+geometry units angstroms print xyz autosym
+#  load format xyz h3po4_startgeom.xyz
+ # load format xyz phosporic_acid.geopt_freq_nmrshield_pbe0_tz2p_good_cosmo-chcl3_converged_geometry.xyz
+  load format xyz h3po4_geom_b3lyp-098_converged.xyz
+end
+
+basis
+## BASIS SET: (7s,2p) -> [7s,2p]
+##  H library "H_NMR-DKH_TZ2P"
+H    S
+    282.952156333090         1.00000000E+00
+H    S
+     87.0622019486430        1.00000000E+00
+H    S
+     26.7883698303517        1.00000000E+00
+H    S
+      8.24257533241590       1.00000000E+00
+H    S
+      2.53617702535874       1.00000000E+00
+H    S
+      0.78036216164884       1.00000000E+00
+H    S
+      0.24011143435349       1.00000000E+00
+H    P
+      0.88150000000000       1.00000000E+00
+H    P
+      0.17989200000000       1.00000000E+00
+##  O library "O_NMR-DKH_TZ2P" file
+## BASIS SET: (11s,6p,2d) -> [11s,6p,2d]
+O    S
+  16178.1182314232           1.00000000E+00
+O    S
+   5392.70607714106          1.00000000E+00
+O    S
+   1797.56869238035          1.00000000E+00
+O    S
+    599.189564126785         1.00000000E+00
+O    S
+    199.729854708928         1.00000000E+00
+O    S
+     66.5766182363094        1.00000000E+00
+O    S
+     22.1922060787698        1.00000000E+00
+O    S
+      7.39740202625660       1.00000000E+00
+O    S
+      2.46580067541887       1.00000000E+00
+O    S
+      0.82193355847296       1.00000000E+00
+O    S
+      0.27397785282432       1.00000000E+00
+O    P
+     73.8543986696091        1.00000000E+00
+O    P
+     22.7244303598797        1.00000000E+00
+O    P
+      6.99213241842453       1.00000000E+00
+O    P
+      2.15142535951524       1.00000000E+00
+O    P
+      0.66197703369700       1.00000000E+00
+O    P
+      0.20368524113754       1.00000000E+00
+O    D
+      0.92880000000000       1.00000000E+00
+O    D
+      0.22975000000000       1.00000000E+00
+##
+##  P library "P_NMR-DKH_TZ2P"
+## BASIS SET: (15s,10p,2d) -> [15s,10p,2d]
+P    S
+  59538.0043013517           1.00000000E+00
+P    S
+  21650.1833823097           1.00000000E+00
+P    S
+   7872.79395720353          1.00000000E+00
+P    S
+   2862.83416625583          1.00000000E+00
+P    S
+   1041.03060591121          1.00000000E+00
+P    S
+    378.556583967713         1.00000000E+00
+P    S
+    137.656939624623         1.00000000E+00
+P    S
+     50.0570689544083        1.00000000E+00
+P    S
+     18.2025705288757        1.00000000E+00
+P    S
+      6.61911655595482       1.00000000E+00
+P    S
+      2.40695147489266       1.00000000E+00
+P    S
+      0.87525508177915       1.00000000E+00
+P    S
+      0.31827457519242       1.00000000E+00
+P    S
+      0.11573620916088       1.00000000E+00
+P    S
+      0.04208589424032       1.00000000E+00
+P    P
+    487.996723151500         1.00000000E+00
+P    P
+    162.665574383833         1.00000000E+00
+P    P
+     54.2218581279445        1.00000000E+00
+P    P
+     18.0739527093148        1.00000000E+00
+P    P
+      6.02465090310494       1.00000000E+00
+P    P
+      2.00821696770165       1.00000000E+00
+P    P
+      0.66940565590055       1.00000000E+00
+P    P
+      0.22313521863352       1.00000000E+00
+P    P
+      0.07437840621117       1.00000000E+00
+P    P
+      0.02479280207039       1.00000000E+00
+P    D
+      0.35395000000000       1.00000000E+00
+P    D
+      0.08909800000000       1.00000000E+00
+end
+
+dft
+  odft # for spinspin coupling
+  direct
+  grid fine
+  xc ssb-d
+  mult 1
+# Reduce output during geometry optimization
+#  noprint "final vectors analysis"
+end
+
+property
+  giao
+  shielding
+end
+
+cosmo
+  solvent chcl3
+end
+
+#task dft optimize
+#task dft freq
+task dft property
+
+================================================================================
+
+
+                                         
+                                         
+ 
+ 
+             Northwest Computational Chemistry Package (NWChem) 7.0.1
+             --------------------------------------------------------
+ 
+ 
+                    Environmental Molecular Sciences Laboratory
+                       Pacific Northwest National Laboratory
+                                Richland, WA 99352
+ 
+                              Copyright (c) 1994-2020
+                       Pacific Northwest National Laboratory
+                            Battelle Memorial Institute
+ 
+             NWChem is an open-source computational chemistry package
+                        distributed under the terms of the
+                      Educational Community License (ECL) 2.0
+             A copy of the license is included with this distribution
+                              in the LICENSE.TXT file
+ 
+                                  ACKNOWLEDGMENT
+                                  --------------
+
+            This software and its documentation were developed at the
+            EMSL at Pacific Northwest National Laboratory, a multiprogram
+            national laboratory, operated for the U.S. Department of Energy
+            by Battelle under Contract Number DE-AC05-76RL01830. Support
+            for this work was provided by the Department of Energy Office
+            of Biological and Environmental Research, Office of Basic
+            Energy Sciences, and the Office of Advanced Scientific Computing.
+
+
+           Job information
+           ---------------
+
+    hostname        = comp18.grid.umb.sk
+    program         = /home/milias/Work/qch/software/nwchem_suite/nwchem_master/bin/LINUX64/nwchem
+    date            = Wed Nov  3 09:29:45 2021
+
+    compiled        = Sat_Sep_11_13:54:11_2021
+    source          = /home/milias/Work/qch/software/nwchem_suite/nwchem_master
+    nwchem branch   = 7.0.0
+    nwchem revision = nwchem_on_git-2853-g04c637f
+    ga revision     = 5.8.0
+    use scalapack   = F
+    input           = /home/milias/Work/open-collection/theoretical_chemistry/projects/nmr_diplomovky/reference_compounds/phosphoric_acid/nwchem/cosmo-chcl3/decontracted_basis_set/tz2p_nmr_decontr/geometry_b3lyp_6-311++g2d_2p_nw/h3po4.ssb-d.nw
+    prefix          = molecule.
+    data base       = ./molecule.db
+    status          = startup
+    nproc           =       12
+    time left       =     -1s
+
+
+
+           Memory information
+           ------------------
+
+    heap     = 1342177276 doubles =  10240.0 Mbytes
+    stack    = 1342177281 doubles =  10240.0 Mbytes
+    global   = 2684354560 doubles =  20480.0 Mbytes (distinct from heap & stack)
+    total    = 5368709117 doubles =  40960.0 Mbytes
+    verify   = yes
+    hardfail = no 
+
+
+           Directory information
+           ---------------------
+ 
+  0 permanent = .
+  0 scratch   = .
+ 
+ 
+ 
+ 
+                                NWChem Input Module
+                                -------------------
+ 
+ 
+                                       H3PO4
+                                       -----
+
+ Scaling coordinates for geometry "geometry" by  1.889725989
+ (inverse scale =  0.529177249)
+
+
+          ------
+          auto-z
+          ------
+  no constraints, skipping   0.000000000000000E+000
+  no constraints, skipping   0.000000000000000E+000
+ 
+ 
+                             Geometry "geometry" -> ""
+                             -------------------------
+ 
+ Output coordinates in angstroms (scale by  1.889725989 to convert to a.u.)
+ 
+  No.       Tag          Charge          X              Y              Z
+ ---- ---------------- ---------- -------------- -------------- --------------
+    1 P                   15.0000    -0.00000000     0.00000000     0.12019728
+    2 O                    8.0000    -0.00000003     1.42486499    -0.59396936
+    3 O                    8.0000     1.23396930    -0.71243247    -0.59396936
+    4 O                    8.0000    -1.23396927    -0.71243252    -0.59396936
+    5 O                    8.0000    -0.00000000     0.00000000     1.59185417
+    6 H                    1.0000    -0.47394867     2.10519929    -0.09417602
+    7 H                    1.0000     2.06013040    -0.64214806    -0.09417602
+    8 H                    1.0000    -1.58618173    -1.46305123    -0.09417602
+ 
+      Atomic Mass 
+      ----------- 
+ 
+      P                 30.973760
+      O                 15.994910
+      H                  1.007825
+ 
+
+ Effective nuclear repulsion energy (a.u.)     280.0465558531
+
+            Nuclear Dipole moment (a.u.) 
+            ----------------------------
+        X                 Y               Z
+ ---------------- ---------------- ----------------
+     0.0000000000     0.0000000000    -0.0000000000
+ 
+      Symmetry information
+      --------------------
+ 
+ Group name             C3        
+ Group number              5
+ Group order               3
+ No. of unique centers     4
+ 
+      Symmetry unique atoms
+ 
+     1    2    5    6
+ 
+
+
+                                Z-matrix (autoz)
+                                -------- 
+
+ Units are Angstrom for bonds and degrees for angles
+ 
+      Type          Name      I     J     K     L     M      Value
+      ----------- --------  ----- ----- ----- ----- ----- ----------
+    1 Stretch                  1     2                       1.59382
+    2 Stretch                  1     3                       1.59382
+    3 Stretch                  1     4                       1.59382
+    4 Stretch                  1     5                       1.47166
+    5 Stretch                  2     6                       0.96813
+    6 Stretch                  3     7                       0.96813
+    7 Stretch                  4     8                       0.96813
+    8 Bend                     1     2     6               113.38537
+    9 Bend                     1     3     7               113.38537
+   10 Bend                     1     4     8               113.38537
+   11 Bend                     2     1     3               101.46863
+   12 Bend                     2     1     4               101.46863
+   13 Bend                     2     1     5               116.62081
+   14 Bend                     3     1     4               101.46863
+   15 Bend                     3     1     5               116.62081
+   16 Bend                     4     1     5               116.62081
+   17 Torsion                  2     1     3     7          95.58220
+   18 Torsion                  2     1     4     8        -160.04816
+   19 Torsion                  3     1     2     6        -160.04816
+   20 Torsion                  3     1     4     8          95.58220
+   21 Torsion                  4     1     2     6          95.58220
+   22 Torsion                  4     1     3     7        -160.04816
+   23 Torsion                  5     1     2     6         -32.23298
+   24 Torsion                  5     1     3     7         -32.23298
+   25 Torsion                  5     1     4     8         -32.23298
+ 
+ 
+            XYZ format geometry
+            -------------------
+     8
+ geometry
+ P                    -0.00000000     0.00000000     0.12019728
+ O                    -0.00000003     1.42486499    -0.59396936
+ O                     1.23396930    -0.71243247    -0.59396936
+ O                    -1.23396927    -0.71243252    -0.59396936
+ O                    -0.00000000     0.00000000     1.59185417
+ H                    -0.47394867     2.10519929    -0.09417602
+ H                     2.06013040    -0.64214806    -0.09417602
+ H                    -1.58618173    -1.46305123    -0.09417602
+ 
+ ==============================================================================
+                                internuclear distances
+ ------------------------------------------------------------------------------
+       center one      |      center two      | atomic units |  angstroms
+ ------------------------------------------------------------------------------
+    2 O                |   1 P                |     3.01189  |     1.59382
+    3 O                |   1 P                |     3.01189  |     1.59382
+    4 O                |   1 P                |     3.01189  |     1.59382
+    5 O                |   1 P                |     2.78103  |     1.47166
+    6 H                |   2 O                |     1.82950  |     0.96813
+    7 H                |   3 O                |     1.82950  |     0.96813
+    8 H                |   4 O                |     1.82950  |     0.96813
+ ------------------------------------------------------------------------------
+                         number of included internuclear distances:          7
+ ==============================================================================
+
+
+
+ ==============================================================================
+                                 internuclear angles
+ ------------------------------------------------------------------------------
+        center 1       |       center 2       |       center 3       |  degrees
+ ------------------------------------------------------------------------------
+    2 O                |   1 P                |   3 O                |   101.47
+    2 O                |   1 P                |   4 O                |   101.47
+    2 O                |   1 P                |   5 O                |   116.62
+    3 O                |   1 P                |   4 O                |   101.47
+    3 O                |   1 P                |   5 O                |   116.62
+    4 O                |   1 P                |   5 O                |   116.62
+    1 P                |   2 O                |   6 H                |   113.39
+    1 P                |   3 O                |   7 H                |   113.39
+    1 P                |   4 O                |   8 H                |   113.39
+ ------------------------------------------------------------------------------
+                            number of included internuclear angles:          9
+ ==============================================================================
+
+
+
+                      Basis "ao basis" -> "" (cartesian)
+                      -----
+  H (Hydrogen)
+  ------------
+            Exponent  Coefficients 
+       -------------- ---------------------------------------------------------
+  1 S  2.82952156E+02  1.000000
+ 
+  2 S  8.70622019E+01  1.000000
+ 
+  3 S  2.67883698E+01  1.000000
+ 
+  4 S  8.24257533E+00  1.000000
+ 
+  5 S  2.53617703E+00  1.000000
+ 
+  6 S  7.80362162E-01  1.000000
+ 
+  7 S  2.40111434E-01  1.000000
+ 
+  8 P  8.81500000E-01  1.000000
+ 
+  9 P  1.79892000E-01  1.000000
+ 
+  O (Oxygen)
+  ----------
+            Exponent  Coefficients 
+       -------------- ---------------------------------------------------------
+  1 S  1.61781182E+04  1.000000
+ 
+  2 S  5.39270608E+03  1.000000
+ 
+  3 S  1.79756869E+03  1.000000
+ 
+  4 S  5.99189564E+02  1.000000
+ 
+  5 S  1.99729855E+02  1.000000
+ 
+  6 S  6.65766182E+01  1.000000
+ 
+  7 S  2.21922061E+01  1.000000
+ 
+  8 S  7.39740203E+00  1.000000
+ 
+  9 S  2.46580068E+00  1.000000
+ 
+ 10 S  8.21933558E-01  1.000000
+ 
+ 11 S  2.73977853E-01  1.000000
+ 
+ 12 P  7.38543987E+01  1.000000
+ 
+ 13 P  2.27244304E+01  1.000000
+ 
+ 14 P  6.99213242E+00  1.000000
+ 
+ 15 P  2.15142536E+00  1.000000
+ 
+ 16 P  6.61977034E-01  1.000000
+ 
+ 17 P  2.03685241E-01  1.000000
+ 
+ 18 D  9.28800000E-01  1.000000
+ 
+ 19 D  2.29750000E-01  1.000000
+ 
+  P (Phosphorous)
+  ---------------
+            Exponent  Coefficients 
+       -------------- ---------------------------------------------------------
+  1 S  5.95380043E+04  1.000000
+ 
+  2 S  2.16501834E+04  1.000000
+ 
+  3 S  7.87279396E+03  1.000000
+ 
+  4 S  2.86283417E+03  1.000000
+ 
+  5 S  1.04103061E+03  1.000000
+ 
+  6 S  3.78556584E+02  1.000000
+ 
+  7 S  1.37656940E+02  1.000000
+ 
+  8 S  5.00570690E+01  1.000000
+ 
+  9 S  1.82025705E+01  1.000000
+ 
+ 10 S  6.61911656E+00  1.000000
+ 
+ 11 S  2.40695147E+00  1.000000
+ 
+ 12 S  8.75255082E-01  1.000000
+ 
+ 13 S  3.18274575E-01  1.000000
+ 
+ 14 S  1.15736209E-01  1.000000
+ 
+ 15 S  4.20858942E-02  1.000000
+ 
+ 16 P  4.87996723E+02  1.000000
+ 
+ 17 P  1.62665574E+02  1.000000
+ 
+ 18 P  5.42218581E+01  1.000000
+ 
+ 19 P  1.80739527E+01  1.000000
+ 
+ 20 P  6.02465090E+00  1.000000
+ 
+ 21 P  2.00821697E+00  1.000000
+ 
+ 22 P  6.69405656E-01  1.000000
+ 
+ 23 P  2.23135219E-01  1.000000
+ 
+ 24 P  7.43784062E-02  1.000000
+ 
+ 25 P  2.47928021E-02  1.000000
+ 
+ 26 D  3.53950000E-01  1.000000
+ 
+ 27 D  8.90980000E-02  1.000000
+ 
+
+
+ Summary of "ao basis" -> "" (cartesian)
+ ------------------------------------------------------------------------------
+       Tag                 Description            Shells   Functions and Types
+ ---------------- ------------------------------  ------  ---------------------
+ H                       user specified              9       13   7s2p
+ O                       user specified             19       41   11s6p2d
+ P                       user specified             27       57   15s10p2d
+
+
+                              NWChem Property Module
+                              ----------------------
+ 
+ 
+                                 NWChem DFT Module
+                                 -----------------
+ 
+ 
+                                       H3PO4
+ 
+ 
+ 
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1 15.000  2.106
+    2  8.000  1.720
+    3  8.000  1.720
+    4  8.000  1.720
+    5  8.000  1.720
+    6  1.000  1.300
+    7  1.000  1.300
+    8  1.000  1.300
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1   -0.00000000    0.00000000    0.22713993     2.106
+     2   -0.00000005    2.69260441   -1.12243933     1.720
+     3    2.33186385   -1.34630216   -1.12243933     1.720
+     4   -2.33186380   -1.34630225   -1.12243933     1.720
+     5   -0.00000000    0.00000000    3.00816820     1.720
+     6   -0.89563312    3.97824980   -0.17796687     1.300
+     7    3.89308195   -1.21348387   -0.17796687     1.300
+     8   -2.99744884   -2.76476593   -0.17796687     1.300
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (     10,     0 )       0
+    2 (     20,     0 )       0
+    3 (     18,     0 )       0
+    4 (     18,     0 )       0
+    5 (     24,     0 )       0
+    6 (     17,     0 )       0
+    7 (     16,     0 )       0
+    8 (     17,     0 )       0
+ number of -cosmo- surface points =      140
+ molecular surface =    103.627 angstrom**2
+ molecular volume  =     57.176 angstrom**3
+ G(cav/disp)       =      1.378 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+  Caching 1-el integrals 
+   Time after variat. SCF:      1.3
+   Time prior to 1st pass:      1.3
+  Resetting Diis
+
+
+         Total DFT energy =     -647.707323039505
+      One electron energy =    -1446.157760037411
+           Coulomb energy =      580.860370920275
+    Exchange-Corr. energy =      -62.614626307094
+ Nuclear repulsion energy =      280.046555853058
+
+    Dispersion correction =       -0.002889956762
+
+             COSMO energy =        0.161026488428
+
+ Numeric. integr. density =       50.000000512879
+
+     Total iterative time =    112.7s
+
+
+                                   COSMO solvation results
+                                   -----------------------
+
+                 gas phase energy =      -647.688925819501
+                 sol phase energy =      -647.707323039505
+ (electrostatic) solvation energy =         0.018397220005 (   11.54 kcal/mol)
+
+     --------------------------
+     Expectation value of S2:  
+     --------------------------
+      <S2> =     -0.0000 (Exact =     0.0000)
+ 
+
+          -----------------------------------------
+          Chemical Shielding Tensors (GIAO, in ppm)
+          -----------------------------------------
+
+ 
+ solvent parameters
+ solvname_short: chcl3   
+ solvname_long:  chloroform                         
+ dielec:        4.7113
+ dielecinf:     2.0906
+
+          ---------------
+          -cosmo- solvent
+          ---------------
+ Cosmo: York-Karplus, doi: 10.1021/jp992097l
+ dielectric constant -eps-     =   4.71
+ screen = (eps-1)/(eps    )    =   0.78774
+ surface charge correction     = lagrangian
+ -lineq- algorithm             =   0
+ -bem- low  level              =   2
+ -bem- from -octahedral-
+ gaussian surface charge width =   0.98000
+ degree of switching           =   1.00000
+ switching function tolerance  =   0.00010
+ atomic radii = 
+ --------------
+    1 15.000  2.106
+    2  8.000  1.720
+    3  8.000  1.720
+    4  8.000  1.720
+    5  8.000  1.720
+    6  1.000  1.300
+    7  1.000  1.300
+    8  1.000  1.300
+
+ solvent accessible surface
+ --------------------------
+
+ ---------- ATOMIC COORDINATES (A.U.) ------------ VDWR(ANG.) --
+     1   -0.00000000    0.00000000    0.22713993     2.106
+     2   -0.00000005    2.69260441   -1.12243933     1.720
+     3    2.33186385   -1.34630216   -1.12243933     1.720
+     4   -2.33186380   -1.34630225   -1.12243933     1.720
+     5   -0.00000000    0.00000000    3.00816820     1.720
+     6   -0.89563312    3.97824980   -0.17796687     1.300
+     7    3.89308195   -1.21348387   -0.17796687     1.300
+     8   -2.99744884   -2.76476593   -0.17796687     1.300
+ number of segments per atom =         32
+ number of   points per atom =         32
+ atom (   nspa,  nppa )
+ ----------------------
+    1 (     10,     0 )       0
+    2 (     20,     0 )       0
+    3 (     18,     0 )       0
+    4 (     18,     0 )       0
+    5 (     24,     0 )       0
+    6 (     17,     0 )       0
+    7 (     16,     0 )       0
+    8 (     17,     0 )       0
+ number of -cosmo- surface points =      140
+ molecular surface =    103.627 angstrom**2
+ molecular volume  =     57.176 angstrom**3
+ G(cav/disp)       =      1.378 kcal/mol
+ ...... end of -cosmo- initialization ......
+
+
+ SCF residual:   1.230719655464257E-004
+
+ Wrote CPHF data to ./molecule.shieldcphf
+
+ Calc. par tensor-> nonrel
+      Atom:    1  P 
+        Diamagnetic
+   1000.5576     -0.0002      0.0103
+     -0.0002   1000.5604     -0.0016
+      0.0103     -0.0016    996.2964
+
+        Paramagnetic
+   -719.7757      0.0313      0.1093
+      0.0313   -719.8421      0.0130
+      0.1093      0.0130   -529.6081
+
+        Total Shielding Tensor
+    280.7819      0.0310      0.1196
+      0.0310    280.7183      0.0114
+      0.1196      0.0114    466.6884
+
+           isotropic =     342.7295
+          anisotropy =     185.9384
+
+          Principal Components and Axis System
+                 1           2           3
+              466.6885    280.7945    280.7056
+
+      1         0.0006      0.9261     -0.3772
+      2         0.0001      0.3772      0.9261
+      3         1.0000     -0.0006      0.0002
+
+
+
+      Atom:    2  O 
+        Diamagnetic
+    352.8529     -4.5216     -4.6526
+     -4.5216    414.5396    -21.6654
+     -4.6526    -21.6654    363.4543
+
+        Paramagnetic
+   -156.0879     -0.4590     13.0165
+     -0.4590   -145.0966    -25.9423
+     13.0165    -25.9423   -151.9378
+
+        Total Shielding Tensor
+    196.7649     -4.9806      8.3639
+     -4.9806    269.4429    -47.6076
+      8.3639    -47.6076    211.5165
+
+           isotropic =     225.9081
+          anisotropy =     106.5151
+
+          Principal Components and Axis System
+                 1           2           3
+              296.9182    197.8386    182.9676
+
+      1        -0.0841      0.9346     -0.3455
+      2         0.8668      0.2397      0.4372
+      3        -0.4915      0.2627      0.8303
+
+
+
+      Atom:    3  O 
+        Diamagnetic
+    403.0162    -24.3200    -16.3914
+    -24.3200    364.3157     14.8732
+    -16.3914     14.8732    363.5262
+
+        Paramagnetic
+   -146.4417     -4.8423    -28.9411
+     -4.8423   -153.1549      1.7031
+    -28.9411      1.7031   -151.6599
+
+        Total Shielding Tensor
+    256.5746    -29.1623    -45.3325
+    -29.1623    211.1608     16.5763
+    -45.3325     16.5763    211.8663
+
+           isotropic =     226.5339
+          anisotropy =     106.8135
+
+          Principal Components and Axis System
+                 1           2           3
+              297.7429    198.2891    183.5697
+
+      1         0.7941      0.2614      0.5487
+      2        -0.3611      0.9291      0.0800
+      3        -0.4889     -0.2616      0.8322
+
+
+
+      Atom:    4  O 
+        Diamagnetic
+    395.0844     28.9426     21.1591
+     28.9426    372.4293      6.8746
+     21.1591      6.8746    363.5355
+
+        Paramagnetic
+   -147.3234      5.1157     15.8369
+      5.1157   -152.6872     24.3787
+     15.8369     24.3787   -151.8818
+
+        Total Shielding Tensor
+    247.7610     34.0583     36.9960
+     34.0583    219.7421     31.2534
+     36.9960     31.2534    211.6537
+
+           isotropic =     226.3856
+          anisotropy =     106.8478
+
+          Principal Components and Axis System
+                 1           2           3
+              297.6175    198.4508    183.0886
+
+      1         0.7095     -0.6758     -0.1998
+      2         0.5068      0.6864     -0.5216
+      3         0.4896      0.2688      0.8295
+
+
+
+      Atom:    5  O 
+        Diamagnetic
+    345.7222     -0.0095      0.1128
+     -0.0095    345.7187     -0.0618
+      0.1128     -0.0618    426.7798
+
+        Paramagnetic
+   -175.6438     -0.1553     -0.0378
+     -0.1553   -175.7104     -0.2018
+     -0.0378     -0.2018   -195.9189
+
+        Total Shielding Tensor
+    170.0784     -0.1649      0.0750
+     -0.1649    170.0083     -0.2636
+      0.0750     -0.2636    230.8608
+
+           isotropic =     190.3158
+          anisotropy =      60.8194
+
+          Principal Components and Axis System
+                 1           2           3
+              230.8621    170.2110    169.8744
+
+      1         0.0012      0.7782      0.6280
+      2        -0.0043     -0.6280      0.7782
+      3         1.0000     -0.0037      0.0026
+
+
+
+      Atom:    6  H 
+        Diamagnetic
+     21.5315    -10.4061     -3.9472
+    -10.4061     45.5518      4.3986
+     -3.9472      4.3986     19.7456
+
+        Paramagnetic
+      2.8537      4.2956      1.3169
+      4.2956    -10.1897     -0.7113
+      1.3169     -0.7113      3.9860
+
+        Total Shielding Tensor
+     24.3852     -6.1105     -2.6303
+     -6.1105     35.3621      3.6873
+     -2.6303      3.6873     23.7315
+
+           isotropic =      27.8263
+          anisotropy =      17.2889
+
+          Principal Components and Axis System
+                 1           2           3
+               39.3522     23.0200     21.1066
+
+      1        -0.4044     -0.3925      0.8261
+      2         0.8726     -0.4362      0.2199
+      3         0.2741      0.8097      0.5189
+
+
+
+      Atom:    7  H 
+        Diamagnetic
+     48.5263     -5.1754      5.8045
+     -5.1754     18.4787      1.2373
+      5.8045      1.2373     19.7326
+
+        Paramagnetic
+    -10.6379      3.5106     -1.2657
+      3.5106      3.3206     -0.7932
+     -1.2657     -0.7932      3.9751
+
+        Total Shielding Tensor
+     37.8883     -1.6647      4.5388
+     -1.6647     21.7993      0.4441
+      4.5388      0.4441     23.7077
+
+           isotropic =      27.7984
+          anisotropy =      17.3133
+
+          Principal Components and Axis System
+                 1           2           3
+               39.3407     22.9849     21.0697
+
+      1         0.9576     -0.1834      0.2222
+      2        -0.0839      0.5602      0.8241
+      3         0.2756      0.8078     -0.5210
+
+
+
+      Atom:    8  H 
+        Diamagnetic
+     30.4332     15.6207     -1.8220
+     15.6207     36.5372     -5.6510
+     -1.8220     -5.6510     19.6767
+
+        Paramagnetic
+     -3.1936     -7.8207     -0.0707
+     -7.8207     -4.1453      1.5012
+     -0.0707      1.5012      4.0144
+
+        Total Shielding Tensor
+     27.2396      7.8000     -1.8927
+      7.8000     32.3919     -4.1499
+     -1.8927     -4.1499     23.6911
+
+           isotropic =      27.7742
+          anisotropy =      17.3096
+
+          Principal Components and Axis System
+                 1           2           3
+               39.3139     22.9577     21.0509
+
+      1         0.5517      0.5747      0.6044
+      2         0.7871     -0.1191     -0.6052
+      3        -0.2759      0.8096     -0.5181
+
+
+
+ 
+ 
+                                NWChem Input Module
+                                -------------------
+ 
+ 
+ 
+ 
+                                     CITATION
+                                     --------
+                Please cite the following reference when publishing
+                           results obtained with NWChem:
+ 
+          E. Apra, E. J. Bylaska, W. A. de Jong, N. Govind, K. Kowalski,
+       T. P. Straatsma, M. Valiev, H. J. J. van Dam, Y. Alexeev, J. Anchell,
+       V. Anisimov, F. W. Aquino, R. Atta-Fynn, J. Autschbach, N. P. Bauman,
+     J. C. Becca, D. E. Bernholdt, K. Bhaskaran-Nair, S. Bogatko, P. Borowski,
+         J. Boschen, J. Brabec, A. Bruner, E. Cauet, Y. Chen, G. N. Chuev,
+      C. J. Cramer, J. Daily, M. J. O. Deegan, T. H. Dunning Jr., M. Dupuis,
+   K. G. Dyall, G. I. Fann, S. A. Fischer, A. Fonari, H. Fruchtl, L. Gagliardi,
+      J. Garza, N. Gawande, S. Ghosh, K. Glaesemann, A. W. Gotz, J. Hammond,
+       V. Helms, E. D. Hermes, K. Hirao, S. Hirata, M. Jacquelin, L. Jensen,
+   B. G. Johnson, H. Jonsson, R. A. Kendall, M. Klemm, R. Kobayashi, V. Konkov,
+      S. Krishnamoorthy, M. Krishnan, Z. Lin, R. D. Lins, R. J. Littlefield,
+      A. J. Logsdail, K. Lopata, W. Ma, A. V. Marenich, J. Martin del Campo,
+   D. Mejia-Rodriguez, J. E. Moore, J. M. Mullin, T. Nakajima, D. R. Nascimento,
+    J. A. Nichols, P. J. Nichols, J. Nieplocha, A. Otero-de-la-Roza, B. Palmer,
+    A. Panyala, T. Pirojsirikul, B. Peng, R. Peverati, J. Pittner, L. Pollack,
+   R. M. Richard, P. Sadayappan, G. C. Schatz, W. A. Shelton, D. W. Silverstein,
+   D. M. A. Smith, T. A. Soares, D. Song, M. Swart, H. L. Taylor, G. S. Thomas,
+            V. Tipparaju, D. G. Truhlar, K. Tsemekhman, T. Van Voorhis,
+      A. Vazquez-Mayagoitia, P. Verma, O. Villa, A. Vishnu, K. D. Vogiatzis,
+        D. Wang, J. H. Weare, M. J. Williamson, T. L. Windus, K. Wolinski,
+        A. T. Wong, Q. Wu, C. Yang, Q. Yu, M. Zacharias, Z. Zhang, Y. Zhao,
+                                and R. J. Harrison
+                        "NWChem: Past, present, and future
+                         J. Chem. Phys. 152, 184102 (2020)
+                               doi:10.1063/5.0004997
+ 
+                                      AUTHORS
+                                      -------
+     E. Apra, E. J. Bylaska, N. Govind, K. Kowalski, M. Valiev, W. A. de Jong,
+      T. P. Straatsma, H. J. J. van Dam, D. Wang, T. L. Windus, N. P. Bauman,
+       A. Panyala, J. Hammond, J. Autschbach, K. Bhaskaran-Nair, J. Brabec,
+    K. Lopata, S. A. Fischer, S. Krishnamoorthy, M. Jacquelin, W. Ma, M. Klemm,
+       O. Villa, Y. Chen, V. Anisimov, F. Aquino, S. Hirata, M. T. Hackler,
+           Eric Hermes, L. Jensen, J. E. Moore, J. C. Becca, V. Konjkov,
+            D. Mejia-Rodriguez, T. Risthaus, M. Malagoli, A. Marenich,
+   A. Otero-de-la-Roza, J. Mullin, P. Nichols, R. Peverati, J. Pittner, Y. Zhao,
+        P.-D. Fan, A. Fonari, M. J. Williamson, R. J. Harrison, J. R. Rehr,
+      M. Dupuis, D. Silverstein, D. M. A. Smith, J. Nieplocha, V. Tipparaju,
+      M. Krishnan, B. E. Van Kuiken, A. Vazquez-Mayagoitia, M. Swart, Q. Wu,
+   T. Van Voorhis, A. A. Auer, M. Nooijen, L. D. Crosby, E. Brown, G. Cisneros,
+     G. I. Fann, H. Fruchtl, J. Garza, K. Hirao, R. A. Kendall, J. A. Nichols,
+       K. Tsemekhman, K. Wolinski, J. Anchell, D. E. Bernholdt, P. Borowski,
+       T. Clark, D. Clerc, H. Dachsel, M. J. O. Deegan, K. Dyall, D. Elwood,
+      E. Glendening, M. Gutowski, A. C. Hess, J. Jaffe, B. G. Johnson, J. Ju,
+        R. Kobayashi, R. Kutteh, Z. Lin, R. Littlefield, X. Long, B. Meng,
+      T. Nakajima, S. Niu, L. Pollack, M. Rosing, K. Glaesemann, G. Sandrone,
+      M. Stave, H. Taylor, G. Thomas, J. H. van Lenthe, A. T. Wong, Z. Zhang.
+
+ Total times  cpu:      558.2s     wall:      559.3s

@@ -8,7 +8,6 @@ Atom    2:  31-P  and Atom   30:   1-H:
 Isotropic Spin-Spin Coupling =       9.5564 Hz (exp. JP-a = 7.73 (t) )
 NMR shield isotropic: abs.val. 246.6143 ppm (exp. shift 147.15(+/- 0.20) ppm)
 
-
 Solvent (der2.odft_nmr_b3lyp_ccpvdz_cosmo-chcl3.4685.out_SAVED)
 ----------------------------------------------------------------
 Atom    2:  31-P  and Atom   30:   1-H: 
@@ -59,6 +58,10 @@ Isotropic Spin-Spin Coupling =      14.6105 Hz
  Total Shielding Tensor
 isotropic =     174.1077
 
+geometry_pbe0_tz2p_adf
+----------------------
+using ADF geometry of der2.geopt_freq_nmr_pbe0_tz2p_good_cosmo-chcl3_converged_geometry.xyz
+
 der2.nonrel_odft_nmr_b3lyp_nmr-dkh-decontr-expl_cosmo-chcl3.5028.out_SAVED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Atom    2:  31-P  and Atom   30:   1-H
@@ -67,15 +70,44 @@ Isotropic Spin-Spin Coupling =      13.6713 Hz
 isotropic =     157.8186
 
 der2.nonrel_odft_nmr_pbe0_nmr-dkh-decontr-expl_cosmo-chcl3.5092.out_SAVED
----------------------------------------------------------------------------
-using ADF geometry of der2.geopt_freq_nmr_pbe0_tz2p_good_cosmo-chcl3_converged_geometry.xyz
-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Atom    2:  31-P  and Atom   30:   1-H
 Isotropic Spin-Spin Coupling =      11.9401 Hz   <-------  (exp. JP-a = 7.73 (t) )
 
  Atom:    1  P   
 Total Shielding Tensor:  isotropic =     176.2268  
-
 H3P3 reference:
 
+der2.nonrel_odft_nmr_beckehandh_nmr-dkh-decontr-expl_cosmo-chcl3.5239.out_SAVED
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Atom    2:  31-P  and Atom   30:   1-H
+Isotropic Spin-Spin Coupling =      11.3600 Hz   <-------  (exp. JP-a = 7.73 (t) )
+Atom:    1  P   isotropic =     183.1625 ppm
+
+der2.nonrel_odft_nmr_ssb-d_nmr-dkh-decontr-expl_cosmo-chcl3.5219.out_SAVED
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Atom    2:  31-P  and Atom   30:   1-H
+Isotropic Spin-Spin Coupling =      13.0805 Hz    <-------  (exp. JP-a = 7.73 (t) )
+
+geometry_b3lyp_6-311++g2d_2p_nw
+-------------------------------
+
+der2.b3lyp.5589.out_SAVED
+~~~~~~~~~~~~~~~~~~~~~~~~~
+Isotropic Spin-Spin Coupling =      14.8432 Hz
+
+der2.beckehandh.5590.out_SAVED
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Isotropic Spin-Spin Coupling =      12.3958 Hz
+
+der2.pbe0.5591.out_SAVED
+~~~~~~~~~~~~~~~~~~~~~~~~
+Isotropic Spin-Spin Coupling =      13.0776 Hz
+
+der2.ssb-d.5592.out_SAVED
+~~~~~~~~~~~~~~~~~~~~~~~~~
+Isotropic Spin-Spin Coupling =      14.4405 Hz
+
+geometry_pbe0_6-311++g2d_2p
+----------------------------
 

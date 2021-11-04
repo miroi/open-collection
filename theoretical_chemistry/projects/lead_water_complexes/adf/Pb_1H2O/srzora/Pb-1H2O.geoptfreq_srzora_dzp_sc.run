@@ -1,0 +1,30 @@
+#!/bin/sh
+
+"$AMSBIN/ams" << eor
+
+Task GeometryOptimization
+System
+    Atoms
+        Pb 0.0 2.146248560245748e-26 2.06444625661274 
+        H 1.72809743568894e-20 -0.7991490301174371 -0.8884398980401679 
+        H -1.72809743568894e-20 0.7991490301174371 -0.8884398980401679 
+        O 0.0 -1.055189176804305e-25 -0.2875664605324039 
+    End
+    Charge 2
+    BondOrders
+         2 4 1.0
+         3 4 1.0
+    End
+End
+
+Engine ADF
+    Basis
+        Type DZP
+        Core Small
+    End
+    XC
+        GGA BP86
+    End
+EndEngine
+eor
+

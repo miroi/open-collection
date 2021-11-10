@@ -1,0 +1,22 @@
+#!/bin/bash
+
+
+echo -e "\n Running CAMx v7.10 (example) on labs.fpv.umb.sk "
+
+CAMxDIR=/home/milias/work/software/air_pollution/CAMx/v7.10/src.v7.10
+
+#CAMx=$CAMxDIR/CAMx.v7.10.openMPI.NCF4.gfortran
+CAMx=$CAMxDIR/CAMx.v7.10.noMPI.NCF4.gfortran
+
+date;
+
+ldd $CAMx
+
+echo -e "\n CAMx=$CAMx \n "
+
+  echo "Running CAMX ...."
+  $CAMx
+
+date
+
+exit 0

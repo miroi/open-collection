@@ -91,6 +91,7 @@ Isotropic Spin-Spin Coupling =      13.0805 Hz    <-------  (exp. JP-a = 7.73 (t
 
 geometry_b3lyp_6-311++g2d_2p_nw
 -------------------------------
+using  der2_b3lyp_geom_6-311++g2d_2p-042_converged.xyz (NWChem)
 
 der2.b3lyp.5589.out_SAVED
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -110,4 +111,23 @@ Isotropic Spin-Spin Coupling =      14.4405 Hz
 
 geometry_pbe0_6-311++g2d_2p
 ----------------------------
+using der2_pbe0_geom_6-311++g2d_2p-050_converged.xyz (NWChem)
+
+der2.b3lyp.5828.out_SAVED
+~~~~~~~~~~~~~~~~~~~~~~~~~
+Isotropic Spin-Spin Coupling =      16.3960 Hz
+
+der2.beckehandh.5829.out_SAVED
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Isotropic Spin-Spin Coupling =      13.9435 Hz
+
+der2.pbe0.5830.out_SAVED
+~~~~~~~~~~~~~~~~~~~~~~~~
+Isotropic Spin-Spin Coupling =      14.5503 Hz 
+
+der2.ssb-d.5831.out_SAVED
+~~~~~~~~~~~~~~~~~~~~~~~~~
+Isotropic Spin-Spin Coupling =      15.8022 Hz
+
+
 

@@ -43,3 +43,25 @@ phosphoric_acid.sozora_nmrshield_opbe_tz2p-j_good_cosmo-chcl3.logfile_SAVED: NMR
  delta(P)=317.78-162.39 = 155.39 ppm  EXP 146.19(+-0.09)
 
 
+opbe qz4p-j
+===========
+Geometry:  PBE0-TZP-GOOD-COSMOCHCL3 (nonrel & SRZORA)
+
+der7.nmr_opbe_srzora_gnuc_qz4p-j_good_cosmo-chcl3.logfile_SAVED
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ADF-GUI atoms  P(2) -  H(31):       k=       3.090 , j=      15.043   <---  exper. J(P-a) =10.01(d)
+
+NMR Shielding ADF-GUI atom   P(2):         154.26 ppm
+
+der7.nmr_opbe_sozora_gnuc_qz4p-j_good_cosmo-chcl3.logfile_SAVED
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ADF-GUI atoms  P(2) -  H(31):       k=       3.034 , j=      14.771  <---  exper. J(P-a) =10.01(d)
+
+NMR Shielding ADF-GUI atom   P(2):         165.27 ppm
+
+
+
+
+
+
+

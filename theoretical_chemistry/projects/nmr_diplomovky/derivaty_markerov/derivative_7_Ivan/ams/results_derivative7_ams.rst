@@ -47,17 +47,25 @@ opbe qz4p-j
 ===========
 Geometry:  PBE0-TZP-GOOD-COSMOCHCL3 (nonrel & SRZORA)
 
+der7.nonrel_nmr_opbe_srzora_gnuc_qz4p-j_good_cosmo-chcl3.logfile_SAVED
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 der7.nmr_opbe_srzora_gnuc_qz4p-j_good_cosmo-chcl3.logfile_SAVED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  ADF-GUI atoms  P(2) -  H(31):       k=       3.090 , j=      15.043   <---  exper. J(P-a) =10.01(d)
 
 NMR Shielding ADF-GUI atom   P(2):         154.26 ppm
+phosphoric_acid.srzora_nmrshield_opbe_qz4p-j_good_cosmo-chcl3.logfile_SAVED:  NMR Shielding ADF-GUI atom   P(1):         306.33 ppm
+delta(P) = 306.33-154.26 = 152.07 ppm  EXP 146.19(+-0.09)
+
 
 der7.nmr_opbe_sozora_gnuc_qz4p-j_good_cosmo-chcl3.logfile_SAVED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ADF-GUI atoms  P(2) -  H(31):       k=       3.034 , j=      14.771  <---  exper. J(P-a) =10.01(d)
 
 NMR Shielding ADF-GUI atom   P(2):         165.27 ppm
+phosphoric_acid.sozora_nmrshield_opbe_qz4p-j_good_cosmo-chcl3.logfile_SAVED: NMR Shielding ADF-GUI atom   P(1):         320.32 ppm
+delta(P) = 320.32 - 165.27 = 155.05 ppm   EXP 146.19(+-0.09)
 
 
 

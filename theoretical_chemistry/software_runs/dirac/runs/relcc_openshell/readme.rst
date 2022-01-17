@@ -8,14 +8,16 @@ LiH(+), 3 electrons
 
 Does not work
 ~~~~~~~~~~~~~
-.NELEC
-1 1
-.NELEC_OPEN
-1 0
+::
+ .NELEC
+ 1 1
+ .NELEC_OPEN
+ 1 0
 
 Does work
 ~~~~~~~~~
-.NELEC
-2 1
+::
+ .NELEC
+ 2 1
 
 

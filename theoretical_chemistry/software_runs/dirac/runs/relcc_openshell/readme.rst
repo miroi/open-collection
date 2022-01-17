@@ -8,7 +8,6 @@ LiH(+), 3 electrons
 
 Does not work
 ~~~~~~~~~~~~~
-::
  .NELEC
  1 1
  .NELEC_OPEN
@@ -16,7 +15,6 @@ Does not work
 
 Does work
 ~~~~~~~~~
-::
  .NELEC
  2 1
 

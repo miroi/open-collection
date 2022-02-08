@@ -1,0 +1,63 @@
+#!/bin/sh
+
+"$AMSBIN/ams" << eor
+
+Task GeometryOptimization
+Properties
+    NormalModes Yes
+End
+System
+    Atoms
+        O -2.946 0.3774 -0.3769 adf.R=1.517
+        O 1.1568 1.6569 -0.3326 adf.R=1.517
+        O -1.5445 0.0245 1.38 adf.R=1.517
+        O 2.7039 0.2103 0.4842 adf.R=1.517
+        C -0.7423999999999999 -0.2395 -0.916 adf.R=1.700
+        C 0.5935 -0.615 -0.3382 adf.R=1.700
+        C -1.7483 0.0511 0.1755 adf.R=1.700
+        C 1.6067 0.422 -0.0094 adf.R=1.700
+        C 0.9201 -1.8878 -0.0664 adf.R=1.700
+        H -0.6617 0.6287 -1.5779 adf.R=1.350
+        H -1.1338 -1.0706 -1.5162 adf.R=1.350
+        H 0.2221 -2.6944 -0.2684 adf.R=1.350
+        H 1.8766 -2.17 0.3607 adf.R=1.350
+        H -3.6199 0.5810999999999999 0.3061 adf.R=1.350
+        H 1.8142 2.3541 -0.1227 adf.R=1.350
+    End
+    BondOrders
+         1 7 1.0
+         1 14 1.0
+         2 8 1.0
+         2 15 1.0
+         3 7 2.0
+         4 8 2.0
+         5 6 1.0
+         5 7 1.0
+         5 10 1.0
+         5 11 1.0
+         6 8 1.0
+         6 9 2.0
+         9 12 1.0
+         9 13 1.0
+    End
+End
+
+Engine ADF
+    Basis
+        Type TZP
+        Core None
+    End
+    XC
+        libxc CAM-B3LYP
+    End
+    Solvation
+        Surf Delley
+        Solv name=Water cav0=0.0 cav1=0.0067639
+        Charged method=CONJ
+        C-Mat POT
+        SCF VAR ALL 
+        CSMRSP
+    End
+EndEngine
+eor
+

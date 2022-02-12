@@ -91,8 +91,8 @@ echo -e "\n SINGULARITY_CONTAINERS=$SINGULARITY_CONTAINERS \n"
 # for running jobs from your homedir
 cd $SLURM_SUBMIT_DIR
 
-npr=$SLURM_CPUS_ON_NODE/2
-echo -e "npr=$npr"
+npr=$((SLURM_CPUS_ON_NODE/2))
+echo -e "number of MPI threads npr=$npr"
 
 singularity run $SINGULARITY_CONTAINERS/nwchem-dev.ompi40x.ifort.skylake_latest.sif   mpirun -np $npr  nwchem h2o_scf_6-31g.nw > out_$SLURM_CPUS_ON_NODE
 

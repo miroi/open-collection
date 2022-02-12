@@ -22,7 +22,8 @@
 ##  partition (queue)
 ##SBATCH -p parallel
 ##SBATCH -p long
-#SBATCH -p main
+##SBATCH -p main
+#SBATCH -p debug
 
 ## memory NO !!!
 ##SBATCH --mem-per-cpu=28G
@@ -90,6 +91,9 @@ echo -e "\n SINGULARITY_CONTAINERS=$SINGULARITY_CONTAINERS \n"
 # for running jobs from your homedir
 cd $SLURM_SUBMIT_DIR
 
-singularity run $SINGULARITY_CONTAINERS/nwchem-dev.ompi40x.ifort.skylake_latest.sif   mpirun -np  $SLURM_CPUS_ON_NODE/2  nwchem h2o_scf_6-31g.nw > out_$SLURM_CPUS_ON_NODE
+npr=$SLURM_CPUS_ON_NODE/2
+echo -e "npr=$npr"
+
+singularity run $SINGULARITY_CONTAINERS/nwchem-dev.ompi40x.ifort.skylake_latest.sif   mpirun -np $npr  nwchem h2o_scf_6-31g.nw > out_$SLURM_CPUS_ON_NODE
 
 exit

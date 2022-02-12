@@ -45,8 +45,8 @@ echo $SLURM_CLUSTER_NAME
 echo and is employing $SLURM_JOB_NUM_NODES node/nodes:
 echo $SLURM_JOB_NODELIST
 echo
-echo -e "Job partition is $SLURM_JOB_PARTITION \n"
-#echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
+echo -e "Job partition is: $SLURM_JOB_PARTITION \n"
+echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
 
 module use /cvmfs/it.gsi.de/modulefiles/
 #echo "modules at disposal:"
@@ -63,7 +63,8 @@ echo -e "Time is `date` \n"
 # CPU model, total numer of CPUs, number of allocated CPUs
 echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
 NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
-#echo "This node has total $NPROCS CPUs available for EXCLUSIVE job."
+echo "This node has total $NPROCS CPUs available for an EXCLUSIVE job."
+#
 echo "This node has $SLURM_CPUS_ON_NODE CPUs allocated for SLURM calculations."
 
 echo -e "\n the memory at the node (in GB)"
@@ -83,12 +84,12 @@ export OMP_DYNAMIC="FALSE"
 echo -e "\nMy PATH=$PATH\n"
 #echo -e "Python -v :\c"; python -V
 
-echo -e "\n SINGULARITY_CONTAINERS=$SINGULARITY_CONTAINERS"
+echo -e "\n SINGULARITY_CONTAINERS=$SINGULARITY_CONTAINERS \n"
 
 
 # for running jobs from your homedir
 cd $SLURM_SUBMIT_DIR
 
-singularity run $SINGULARITY_CONTAINERS/nwchem-dev.ompi40x.ifort.skylake_latest.sif   mpirun -np  $SLURM_CPUS_ON_NODE nwchem h2o_scf_6-31g.nw > out_$SLURM_CPUS_ON_NODE
+singularity run $SINGULARITY_CONTAINERS/nwchem-dev.ompi40x.ifort.skylake_latest.sif   mpirun -np  $SLURM_CPUS_ON_NODE/2  nwchem h2o_scf_6-31g.nw > out_$SLURM_CPUS_ON_NODE
 
 exit

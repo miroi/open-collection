@@ -94,6 +94,8 @@ cd $SLURM_SUBMIT_DIR
 npr=$((SLURM_CPUS_ON_NODE/2))
 echo -e "number of MPI threads npr=$npr"
 
-singularity run $SINGULARITY_CONTAINERS/nwchem-dev.ompi40x.ifort.skylake_latest.sif   mpirun -np $npr  nwchem h2o_scf_6-31g.nw > out_$SLURM_CPUS_ON_NODE
+project=h2o_scf_6-31g
+
+singularity run $SINGULARITY_CONTAINERS/nwchem-dev.ompi40x.ifort.skylake_latest.sif   mpirun -np $npr  nwchem $project.nw > $project.$SLURM_JOBID.mpi_$npr.out
 
 exit

@@ -1,0 +1,56 @@
+#!/bin/bash -l
+
+#SBATCH --job-name="Test ORCA 5.0.2"
+
+# CPUs
+#SBATCH --ntasks-per-node=4
+ 
+
+# that if the job runs longer than what is written here, it will be
+# force-stopped by the server. If you make the expected time too long, it will
+# take longer for the job to start. Here, we say the job will take 5 minutes.
+#              d-hh:mm:ss
+
+#SBATCH --time=14-00:00:00
+
+##SBATCH --mem 40000
+#SBATCH --mem=2GB
+ 
+
+# Define the partition on which the job shall run. May be omitted.
+
+#SBATCH --partition compute
+#SBATCH --account="UMB-APVV-20-0098"
+
+# You may not place any commands before the last SBATCH directive
+
+# Define and create a unique scratch directory for this job
+
+SCRATCH_DIRECTORY=/mnt/local/${USER}/job-${SLURM_JOBID}
+
+export PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/sbudzak/bin/openmpi/4.1.1/bin
+export LD_LIBRARY_PATH=/mnt/apps/umb_chem/orca/orca_5_0_2:/home/sbudzak/bin/openmpi/4.1.1/lib
+export PATH=$PATH:/mnt/apps/umb_chem/orca/orca_5_0_2
+#########################################
+
+ipcs -l
+mkdir -p ${SCRATCH_DIRECTORY}
+cd ${SCRATCH_DIRECTORY}
+cp  ${SLURM_SUBMIT_DIR}/$Project.inp ${SCRATCH_DIRECTORY}
+
+export Project=CO
+/mnt/apps/umb_chem/orca/orca_5_0_2/orca $Project.inp > ${SLURM_SUBMIT_DIR}/$Project.log
+cp  ${SCRATCH_DIRECTORY}/$Project.gbw ${SLURM_SUBMIT_DIR}
+
+time sleep 10
+
+# After everything is saved to the home directory, delete the work directory to
+# save space on /global/work
+
+cd ${SLURM_SUBMIT_DIR}
+rm -rf ${SCRATCH_DIRECTORY}
+
+# Finish the script
+
+exit 0
+

@@ -1,0 +1,91 @@
+#!/bin/bash -l
+
+#SBATCH --account="UMB-APVV-20-0098"
+#SBATCH --job-name="Test ORCA 5.0.2"
+
+#SBATCH -N 1
+#SBATCH --ntasks-per-node=8
+
+#SBATCH --partition compute
+#SBATCH --mem=2GB
+#SBATCH --time=0-01:00:00
+
+## logfile
+#SBATCH -o log_slurm_job.%j.%N.std_out_err
+
+## mail
+#SBATCH --mail-user=Miroslav.Ilias@umb.sk
+#SBATCH --mail-type=ALL
+
+# You may not place any commands before the last SBATCH directive
+# Define and create a unique scratch directory for this job
+
+SCRATCH_DIRECTORY=/mnt/local/${USER}/orca_job-${SLURM_JOBID}
+
+export PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/sbudzak/bin/openmpi/4.1.1/bin
+export LD_LIBRARY_PATH=/mnt/apps/umb_chem/orca/orca_5_0_2:/home/sbudzak/bin/openmpi/4.1.1/lib
+export PATH=$PATH:/mnt/apps/umb_chem/orca/orca_5_0_2
+#########################################
+
+echo -e "\nRunning on host `hostname -f`"
+echo -e "Time is `date` \n"
+echo Job user is $SLURM_JOB_USER and his job $SLURM_JOB_NAME has assigned ID $SLURM_JOBID
+echo This job was submitted from the computer $SLURM_SUBMIT_HOST
+echo and from the home directory:
+echo $SLURM_SUBMIT_DIR
+echo
+echo It is running on the cluster compute node:
+echo $SLURM_CLUSTER_NAME
+echo and is employing $SLURM_JOB_NUM_NODES node/nodes:
+echo $SLURM_JOB_NODELIST
+echo -e "  Job partition is $SLURM_JOB_PARTITION \n"
+# CPU model, total numer of CPUs, number of allocated CPUs
+echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
+NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
+echo "This node has total $NPROCS CPUs available for an EXCLUSIVE job on this node."
+echo "This node has $SLURM_CPUS_ON_NODE CPUs allocated for this SLURM job."
+echo -e "\n The job requests SLURM_MEM_PER_NODE=$SLURM_MEM_PER_NODE memory."
+echo -e "\n The total memory at the node (in GB)"
+free -t -g
+echo -e "\n"
+
+echo -e "ipcs -l"
+ipcs -l
+
+echo -e "\nPATH=$PATH"
+echo -e "LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
+echo -e "mpif90 ?"; which mpif90; mpif90 --version
+echo -e "mpirun ?"; which mpirun; mpirun --version
+
+export ORCABIN=/mnt/apps/umb_chem/orca/orca_5_0_2/orca
+echo -e "ldd orca = ldd $ORCABIN";
+ldd $ORCABIN
+
+mkdir -p ${SCRATCH_DIRECTORY}
+cd ${SCRATCH_DIRECTORY}
+echo -e "\n I am in local scratch directory:${SCRATCH_DIRECTORY}"; pwd; df -h ${SCRATCH_DIRECTORY}
+
+
+export Project=CO
+cp  ${SLURM_SUBMIT_DIR}/$Project.inp ${SCRATCH_DIRECTORY}
+/mnt/apps/umb_chem/orca/orca_5_0_2/orca $Project.inp > ${SLURM_SUBMIT_DIR}/$Project.orca.out
+
+#cp  ${SCRATCH_DIRECTORY}/$Project.gbw ${SLURM_SUBMIT_DIR}
+#cp  ${SCRATCH_DIRECTORY}/$Project.hess ${SLURM_SUBMIT_DIR}
+
+time sleep 10
+
+cd ${SLURM_SUBMIT_DIR}
+
+echo -e  "\n List of files in the scratch directory, ${SCRATCH_DIRECTORY}":
+ls -lt ${SCRATCH_DIRECTORY}
+echo -e "Size of the ${SCRATCH_DIRECTORY} :"
+du -h -s ${SCRATCH_DIRECTORY}; df -h ${SCRATCH_DIRECTORY}
+
+
+rm -rf ${SCRATCH_DIRECTORY}
+
+# Finish the script
+
+exit 0
+

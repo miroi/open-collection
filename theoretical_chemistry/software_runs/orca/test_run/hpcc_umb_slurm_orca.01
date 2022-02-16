@@ -20,7 +20,7 @@
 # You may not place any commands before the last SBATCH directive
 # Define and create a unique scratch directory for this job
 
-SCRATCH_DIRECTORY=/mnt/local/${USER}/job-${SLURM_JOBID}
+SCRATCH_DIRECTORY=/mnt/local/${USER}/orca_job-${SLURM_JOBID}
 
 export PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/sbudzak/bin/openmpi/4.1.1/bin
 export LD_LIBRARY_PATH=/mnt/apps/umb_chem/orca/orca_5_0_2:/home/sbudzak/bin/openmpi/4.1.1/lib
@@ -52,18 +52,18 @@ echo -e "\n"
 echo -e "ipcs -l"
 ipcs -l
 
-echo -e "\nMy PATH=$PATH"
-echo -e "My LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
-echo -e "which mpif90"; which mpif90
-echo -e "which mpirun"; which mpirun
+echo -e "\nPATH=$PATH"
+echo -e "LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
+echo -e "mpif90 ?"; which mpif90; mpif90 --version
+echo -e "mpirun ?"; which mpirun; mpirun --version
 
 export ORCABIN=/mnt/apps/umb_chem/orca/orca_5_0_2/orca
-echo -e "orca = $ORCABIN";
+echo -e "ldd orca = ldd $ORCABIN";
 ldd $ORCABIN
 
 mkdir -p ${SCRATCH_DIRECTORY}
 cd ${SCRATCH_DIRECTORY}
-echo -e "I am in local scratch directory:${SCRATCH_DIRECTORY}"; pwd; df -h ${SCRATCH_DIRECTORY}
+echo -e "\n I am in local scratch directory:${SCRATCH_DIRECTORY}"; pwd; df -h ${SCRATCH_DIRECTORY}
 
 
 export Project=CO
@@ -79,7 +79,8 @@ time sleep 10
 # save space on /global/work
 
 cd ${SLURM_SUBMIT_DIR}
-echo -e  "size of the  ${SCRATCH_DIRECTORY}"; du -h -s ${SCRATCH_DIRECTORY}; df -h ${SCRATCH_DIRECTORY}
+echo -e  "\n size of the  ${SCRATCH_DIRECTORY}"; du -h -s ${SCRATCH_DIRECTORY}; df -h ${SCRATCH_DIRECTORY}
+ls -lt ${SCRATCH_DIRECTORY}
 rm -rf ${SCRATCH_DIRECTORY}
 
 # Finish the script

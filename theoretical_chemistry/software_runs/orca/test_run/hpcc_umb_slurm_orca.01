@@ -1,29 +1,23 @@
 #!/bin/bash -l
 
+#SBATCH --account="UMB-APVV-20-0098"
 #SBATCH --job-name="Test ORCA 5.0.2"
 
-# CPUs
+#SBATCH -N 1
 #SBATCH --ntasks-per-node=8
- 
-
-# that if the job runs longer than what is written here, it will be
-# force-stopped by the server. If you make the expected time too long, it will
-# take longer for the job to start. Here, we say the job will take 5 minutes.
-#              d-hh:mm:ss
-
-##SBATCH --time=14-00:00:00
-#SBATCH --time=0-01:00:00
-
-#SBATCH --mem=2GB
- 
-
-# Define the partition on which the job shall run. May be omitted.
 
 #SBATCH --partition compute
-#SBATCH --account="UMB-APVV-20-0098"
+#SBATCH --mem=2GB
+#SBATCH --time=0-01:00:00
+
+## logfile
+#SBATCH -o log_slurm_job.%j.%N.std_out_err
+
+## mail
+#SBATCH --mail-user=Miroslav.Ilias@umb.sk
+#SBATCH --mail-type=ALL
 
 # You may not place any commands before the last SBATCH directive
-
 # Define and create a unique scratch directory for this job
 
 SCRATCH_DIRECTORY=/mnt/local/${USER}/job-${SLURM_JOBID}

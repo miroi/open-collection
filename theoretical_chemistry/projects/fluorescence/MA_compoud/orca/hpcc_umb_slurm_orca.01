@@ -1,7 +1,7 @@
 #!/bin/bash -l
 
 #SBATCH --account="UMB-APVV-20-0098"
-#SBATCH --job-name="Test ORCA 5.0.2"
+#SBATCH --job-name="Domca"
 
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=8
@@ -66,7 +66,7 @@ cd ${SCRATCH_DIRECTORY}
 echo -e "\n I am in local scratch directory:${SCRATCH_DIRECTORY}"; pwd; df -h ${SCRATCH_DIRECTORY}
 
 
-export Project=CO
+export Project=MA.tddft
 cp  ${SLURM_SUBMIT_DIR}/$Project.inp ${SCRATCH_DIRECTORY}
 /mnt/apps/umb_chem/orca/orca_5_0_2/orca $Project.inp > ${SLURM_SUBMIT_DIR}/$Project.orca.out
 

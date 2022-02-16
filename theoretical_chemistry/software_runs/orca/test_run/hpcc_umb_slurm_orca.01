@@ -68,19 +68,21 @@ echo -e "\n I am in local scratch directory:${SCRATCH_DIRECTORY}"; pwd; df -h ${
 
 export Project=CO
 cp  ${SLURM_SUBMIT_DIR}/$Project.inp ${SCRATCH_DIRECTORY}
-/mnt/apps/umb_chem/orca/orca_5_0_2/orca $Project.inp > ${SLURM_SUBMIT_DIR}/$Project.log
+/mnt/apps/umb_chem/orca/orca_5_0_2/orca $Project.inp > ${SLURM_SUBMIT_DIR}/$Project.orca.out
 
 #cp  ${SCRATCH_DIRECTORY}/$Project.gbw ${SLURM_SUBMIT_DIR}
 #cp  ${SCRATCH_DIRECTORY}/$Project.hess ${SLURM_SUBMIT_DIR}
 
 time sleep 10
 
-# After everything is saved to the home directory, delete the work directory to
-# save space on /global/work
-
 cd ${SLURM_SUBMIT_DIR}
-echo -e  "\n size of the  ${SCRATCH_DIRECTORY}"; du -h -s ${SCRATCH_DIRECTORY}; df -h ${SCRATCH_DIRECTORY}
+
+echo -e  "\n List of files in the scratch directory, ${SCRATCH_DIRECTORY}":
 ls -lt ${SCRATCH_DIRECTORY}
+echo -e "Size of the ${SCRATCH_DIRECTORY} :"
+du -h -s ${SCRATCH_DIRECTORY}; df -h ${SCRATCH_DIRECTORY}
+
+
 rm -rf ${SCRATCH_DIRECTORY}
 
 # Finish the script

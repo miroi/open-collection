@@ -36,9 +36,11 @@ export PATH=$PATH:/mnt/apps/umb_chem/orca/orca_5_0_2
 ipcs -l
 mkdir -p ${SCRATCH_DIRECTORY}
 cd ${SCRATCH_DIRECTORY}
-cp  ${SLURM_SUBMIT_DIR}/$Project.inp ${SCRATCH_DIRECTORY}
+echo -e "I am in local scratch directory:${SCRATCH_DIRECTORY}"; pwd
+
 
 export Project=CO
+cp  ${SLURM_SUBMIT_DIR}/$Project.inp ${SCRATCH_DIRECTORY}
 /mnt/apps/umb_chem/orca/orca_5_0_2/orca $Project.inp > ${SLURM_SUBMIT_DIR}/$Project.log
 cp  ${SCRATCH_DIRECTORY}/$Project.gbw ${SLURM_SUBMIT_DIR}
 

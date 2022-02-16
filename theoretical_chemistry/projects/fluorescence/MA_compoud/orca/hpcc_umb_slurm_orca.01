@@ -70,7 +70,7 @@ export Project=MA.tddft
 cp  ${SLURM_SUBMIT_DIR}/$Project.inp ${SCRATCH_DIRECTORY}/.
 cp  ${SLURM_SUBMIT_DIR}/MA.adf_geom.xyz  ${SCRATCH_DIRECTORY}/.
 echo -e "\n Contect of local scratch directory before running orca: "; ls -lt ${SCRATCH_DIRECTORY}/.
-/mnt/apps/umb_chem/orca/orca_5_0_2/orca $Project.inp > ${SLURM_SUBMIT_DIR}/$Project.orca.out
+/mnt/apps/umb_chem/orca/orca_5_0_2/orca $Project.inp > ${SLURM_SUBMIT_DIR}/$Project.${SLURM_JOBID}-out
 
 #cp  ${SCRATCH_DIRECTORY}/$Project.gbw ${SLURM_SUBMIT_DIR}
 #cp  ${SCRATCH_DIRECTORY}/$Project.hess ${SLURM_SUBMIT_DIR}

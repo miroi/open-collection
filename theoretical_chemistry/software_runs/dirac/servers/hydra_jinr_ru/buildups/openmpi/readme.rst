@@ -23,4 +23,7 @@ configuration
 --------------
 milias@hydra.jinr.ru:~/work/software/dirac/master_production/../setup --mpi --int64 --fc=mpif90  --cc=mpicc --cxx=mpicxx --mkl=parallel build_openmpi_intel_i8_mklpar
 
+test runs
+---------
 
+test are running; just minor issue https://gitlab.com/dirac/dirac/-/issues/10

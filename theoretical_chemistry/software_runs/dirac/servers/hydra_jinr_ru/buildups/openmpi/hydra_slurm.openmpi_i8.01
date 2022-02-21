@@ -54,6 +54,7 @@ echo
 #
 module load intel
 module load cmake
+module load Python/v3.6.5
 echo -e "\n\n loaded modules:"
 module list
 
@@ -121,25 +122,8 @@ echo -e "DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
 export MKL_NUM_THREADS=1
 time ctest -j4 -VV -L short
 unset DIRAC_MPI_COMMAND
-echo -e "Variable DIRAC_MPI_COMMAND was unset."
+echo -e "Variable DIRAC_MPI_COMMAND was unset. END"
 
-# for running jobs from your homedir
-cd $SLURM_SUBMIT_DIR
-
-#$PAM --noarch --mw=2200 --nw=900 --aw=7800  --mol=Sg-CO_6.v3z.D2h.mol --inp=Sg-CO6.x2c_a4p.2fs_scf_relcc54ce_v26.inp   --put "DFCOEF.Sg-CO_6.x2c_a4p.scf.v3z=DFCOEF" --suffix=out_mpi
-#$PAM --noarch --mw=2200 --nw=900 --aw=8000  --mol=Bh-CO_4.x2c_a4p_bp86_v2z.Cs.mol --inp=Bh-CO_4.x2c_a4.scf_relcc_o_m1.2_v100.inp --keep_scratch
-#$PAM --noarch --mpi=1 --gb=100.5 --ag=120.5  --mol=Bh-CO_4.x2c_a4p_bp86_v2z.Cs.mol --inp=Bh-CO_4.x2c_a4.relcc_o20-19_v15.inp  --scratchfull=/lustre/nyx/ukt/milias/scratch/milias/DIRAC_Bh-CO_4.x2c_a4.scf_relcc_o20-19_v15_Bh-CO_4.x2c_a4p_bp86_v2z.Cs_5327
-
-#THISMPI=10
-#THISMPI=4
-#let "NUMTHR=$NPROCS/$THISMPI"
-#export MKL_NUM_THREADS=$NUMTHR
-#export MKL_NUM_THREADS=2
-#echo -e "\nThis node has $NPROCS CPUs available for this EXCLUSIVE JOB and dirac.x is running via $THISMPI threads."
-#echo -e "Therefore, for the MKL internal parallelization, number of calculated threads=$MKL_NUM_THREADS \n"
-#
-#$PAM --noarch --mpi=$THISMPI --gb=23 --ag=24 --mol=TsOH.dirac_geom.v2z.Cs.mol --inp=TsOH.geomopt-x2c_a.scf_relcc-46e-1000v.inp  --suffix=i17mkl_mpi$THISMPI-omp$MKL_NUM_THREADS-$SLURM_JOB_PARTITION-$SLURM_JOBID-out --put="DFPCMO.TsOH.Cs_v2z=DFPCMO"
-#$PAM --noarch --mpi=$THISMPI --gb=19 --ag=20 --mol=TsOH.acv3z.Cs.mol  --inp=TsOH.x2c_a2p.scf_relcc-46e-5000v.inp  --suffix=mkl_mpi$THISMPI-omp$MKL_NUM_THREADS-$SLURM_JOB_PARTITION-$SLURM_JOBID-out --put="DFPCMO.TsOH.Cs_acv3z=DFPCMO"
 #
 
 exit

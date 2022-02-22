@@ -70,6 +70,7 @@ echo -e "\n I am in local scratch directory:${SCRATCH_DIRECTORY}"; pwd; df -h ${
 export Project=cza-cam-svp-FLU-AH-WAT
 cp  ${SLURM_SUBMIT_DIR}/$Project.inp ${SCRATCH_DIRECTORY}/.
 #cp  ${SLURM_SUBMIT_DIR}/MA.adf_geom.xyz  ${SCRATCH_DIRECTORY}/.
+cp  ${SLURM_SUBMIT_DIR}/*.hess ${SCRATCH_DIRECTORY}/.
 echo -e "\n Contect of local scratch directory before running orca: "; ls -lt ${SCRATCH_DIRECTORY}/.
 /mnt/apps/umb_chem/orca/orca_5_0_2/orca $Project.inp > ${SLURM_SUBMIT_DIR}/$Project.${SLURM_JOBID}-out
 

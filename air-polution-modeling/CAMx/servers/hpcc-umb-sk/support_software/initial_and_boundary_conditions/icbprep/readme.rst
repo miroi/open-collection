@@ -11,4 +11,6 @@ test run
 --------
 milias@login.grid.umb.sk:~/Work/software/air-pollution-modeling/CAMx_suite/support_software_CAMx/icbprep/icbcprep/../sample.job
 
+milias@login.grid.umb.sk:~/Work/software/air-pollution-modeling/CAMx_suite/support_software_CAMx/icbprep/icbcprep/../sample.job  > sample.logfile
+
 

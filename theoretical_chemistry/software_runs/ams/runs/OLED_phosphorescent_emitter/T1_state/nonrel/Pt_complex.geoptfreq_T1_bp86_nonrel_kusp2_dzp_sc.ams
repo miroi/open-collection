@@ -1122,7 +1122,7 @@ adf.radialcoregrid.nrad 5000
 adf.radialcoregrid.rmax 100.0
 adf.radialcoregrid.rmin 1e-06
 adf.relativity.formalism ZORA
-adf.relativity.level Spin-Orbit
+adf.relativity.level Scalar
 adf.relativity.potential MAPA
 adf.relativity.spinorbitmagnetization {Collinear Z}
 adf.removeallfragvirtuals 0
@@ -1271,7 +1271,7 @@ adf.tidegeneracythreshold 0.1
 adf.title {*** (NO TITLE) ***}
 adf.totalenergy 0
 adf.transferintegrals 0
-adf.unrestricted 0
+adf.unrestricted 1
 adf.unrestrictedfragments 0
 adf.usespcode 0
 adf.vectorlength {}
@@ -1832,12 +1832,6 @@ band.xc.dfthalf.enabled 0
 band.xc.dfthalf.prepare 0
 band.xc.dfthalf.selfconsistent 1
 band.zlmfit.quality Auto
-basis,C {}
-basis,F {}
-basis,H {}
-basis,N {}
-basis,O {}
-basis,Pt {}
 basisdoc {}
 bzpath.band {}
 bzpath.dftb {}
@@ -1860,7 +1854,6 @@ constraints,atomsx {}
 constraints,atomsy {}
 constraints,atomsz {}
 constraints,blocks {}
-constraints,bytask,SinglePoint {constraints,freezestrain {} constraints,blocks {} constraints,atoms {} constraints,distance,n 0 constraints,angle,n 0 constraints,atomsx {} constraints,atomsy {} constraints,atomsz {} constraints,regions {} constraints,bytask,init {constraints,freezestrain {} constraints,blocks {} constraints,atoms {} constraints,distance,n 0 constraints,angle,n 0 constraints,atomsx {} constraints,atomsy {} constraints,atomsz {} constraints,regions {} constraints,equalstrain {} constraints,sumdifdist,+,n 0 constraints,dihedral,n 0 constraints,sumdifdist,-,n 0} constraints,equalstrain {} constraints,sumdifdist,+,n 0 constraints,dihedral,n 0 constraints,sumdifdist,-,n 0}
 constraints,bytask,init {constraints,freezestrain {} constraints,blocks {} constraints,atoms {} constraints,distance,n 0 constraints,angle,n 0 constraints,atomsx {} constraints,atomsy {} constraints,atomsz {} constraints,regions {} constraints,equalstrain {} constraints,sumdifdist,+,n 0 constraints,dihedral,n 0 constraints,sumdifdist,-,n 0}
 constraints,dihedral,n 0
 constraints,distance,n 0
@@ -2413,7 +2406,6 @@ response.vanderwaals 10
 restart.fullpathrestart 0
 restart.selectfile { }
 restraints,angle,n 0
-restraints,bytask,SinglePoint {restraints,sumdifdist,+,n 0 restraints,wall,halfwidth 1.0 restraints,sumdifdist,-,n 0 restraints.yes 0 restraints,angle,n 0 restraints,dihedral,n 0 restraintstask SinglePoint restraints,wall,height 100.0 restraints,wall 0 restraints,wall,show 1 restraints,wall,coord 0.0 restraints,wall,axisindex 3 restraints,distance,n 0 restraints,bytask,init {restraints,sumdifdist,+,n 0 restraints,wall,halfwidth 1.0 restraints,sumdifdist,-,n 0 restraints.yes 0 restraints,angle,n 0 restraints,dihedral,n 0 restraints,wall,height 100.0 restraints,wall 0 restraints,wall,show 1 restraints,wall,coord 0.0 restraints,wall,axisindex 3 restraints,distance,n 0}}
 restraints,bytask,init {restraints,sumdifdist,+,n 0 restraints,wall,halfwidth 1.0 restraints,sumdifdist,-,n 0 restraints.yes 0 restraints,angle,n 0 restraints,dihedral,n 0 restraints,wall,height 100.0 restraints,wall 0 restraints,wall,show 1 restraints,wall,coord 0.0 restraints,wall,axisindex 3 restraints,distance,n 0}
 restraints,dihedral,n 0
 restraints,distance,n 0
@@ -2426,7 +2418,7 @@ restraints,wall,halfwidth 1.0
 restraints,wall,height 100.0
 restraints,wall,show 1
 restraints.yes 0
-restraintstask GeometryOptimization
+restraintstask SinglePoint
 runscript {}
 runscript.unlocked 1
 save.0_tape41 1

@@ -8,10 +8,14 @@ milias@login.grid.umb.sk:~/Work/software/air-pollution-modeling/WRF_suite/.wget 
 Configuration and Compilation
 -----------------------------
 milias@login.grid.umb.sk:~/Work/software/air-pollution-modeling/WRF_suite/WRF-4.3.3/.export NETCDF=/usr/bin/
+export NETCDF_classic=1
 
 milias@login.grid.umb.sk:~/Work/software/air-pollution-modeling/WRF_suite/WRF-4.3.3/../configure
-.
-.
+
+Enter selection [1-75] : 13
+Compile for nesting? (0=no nesting, 1=basic, 2=preset moves, 3=vortex following) [default 0]:
+
+milias@login.grid.umb.sk:~/Work/software/air-pollution-modeling/WRF_suite/WRF-4.3.3/.compile -j 4 wrf
 
 
 netcdf

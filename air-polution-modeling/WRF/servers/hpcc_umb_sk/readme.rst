@@ -3,7 +3,7 @@ WRF on HPCC UMB cluster
 
 Download
 --------
-milias@login.grid.umb.sk:~/Work/software/air-pollution-modeling/WRF_suite/.wget https://github.com/wrf-model/WRF/arch                          
+milias@login.grid.umb.sk:~/Work/software/air-pollution-modeling/WRF_suite/.wget https://github.com/wrf-model/WRF/archive/refs/tags/v4.3.3.zip
 
 Configuration and Compilation
 -----------------------------

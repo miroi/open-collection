@@ -8,24 +8,52 @@ git clone https://github.com/wrf-model/WRF
 
 Configuration
 -------------
-
 see https://www2.mmm.ucar.edu/wrf/OnLineTutorial/compilation_tutorial.php
 
-Error : Not found /usr/lib/x86_64-linux-gnu/include/netcdf.inc
-        Please check this installation of NetCDF and re-run this configure script
+milias@194.160.44.72:~/work/software/air_pollution/WRF_suite/WRF/.export NETCDF=/home/milias/work/software/air_pollution/WRF_suite/netcdf
+
+
 
 
 NetCDF
-~~~~~~
+------
 sudo apt-get install  libnetcdf-dev python3-h5netcdf pnetcdf-bin libnetcdf-mpi-dev
+nc-config --all
+export NETCDF=/usr/lib/x86_64-linux-gnu
 
 
-nc-config --libdir
-export NETCDF="/usr/lib/x86_64-linux-gnu"
+NETCDF4 IO features are requested, but this installation of NetCDF
+  /usr
+Please make sure NETCDF version is 4.1.3 or later and was built with
+--enable-netcdf4
 
-HDF5 not set in environment
-PHDF5 not set in environment
-$JASPERLIB or $JASPERINC not found in environment
+NetCDF own installation
+-----------------------
+
+NetCDF-C
+~~~~~~~~
+
+see https://downloads.unidata.ucar.edu/netcdf/
+
+
+milias@194.160.44.72:~/work/software/air_pollution/WRF_suite/netcdf_c_suite/.wget https://downloads.unidata.ucar.edu/netcdf-c/4.8.1/netcdf-c-4.8.1.zip
+
+milias@194.160.44.72:~/work/software/air_pollution/WRF_suite/netcdf_c_suite/netcdf-c-4.8.1/../configure --prefix=/home/milias/work/software/air_pollution/WRF_suite/netcdf_c_suite/  --disable-hdf5
+
+milias@194.160.44.72:~/work/software/air_pollution/WRF_suite/netcdf_c_suite/netcdf-c-4.8.1/.make -j4; make install
+ ... Congratulations! You have successfully installed netCDF! 
+
+NetCDF-Fortran
+~~~~~~~~~~~~~~
+wget https://downloads.unidata.ucar.edu/netcdf-fortran/4.5.4/netcdf-fortran-4.5.4.zip
+
+vyzaduje netcdf-c !!!
+
+milias@194.160.44.72:~/work/software/air_pollution/WRF_suite/netcdf_fortran_suite/netcdf-fortran-4.5.4/../configure  --prefix=/home/milias/work/software/air_pollution/WRF_suite/netcdf_fortran_suite --disable-hdf5
+
+configure: error: netcdf-c version 4.7.4 or greater is required
+
+
 
 
 Jasper

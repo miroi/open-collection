@@ -54,6 +54,8 @@ milias@194.160.44.72:~/work/software/air_pollution/WRF_suite/netcdf_fortran_suit
 configure: error: netcdf-c version 4.7.4 or greater is required
 
 
+milias@194.160.44.72:~/work/software/air_pollution/WRF_suite/netcdf_c_suite/include/.cp /usr/include/netcdf.inc . 
+
 
 
 Jasper

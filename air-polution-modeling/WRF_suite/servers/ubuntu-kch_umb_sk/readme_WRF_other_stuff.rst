@@ -6,19 +6,9 @@ see  https://www2.mmm.ucar.edu/wrf/users/download/get_sources_new.php
 
 git clone https://github.com/wrf-model/WRF
 
-Configuration
--------------
 see https://www2.mmm.ucar.edu/wrf/OnLineTutorial/compilation_tutorial.php
 
 see https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_v4/v4.3/users_guide_chap2.html#_Required_Compilers_and_1
-
-milias@194.160.44.72:~/work/software/air_pollution/WRF_suite/WRF/.export NETCDF="/usr"; export NETCDF_classic=1
-
-Settings listed above are written to configure.wrf.
-If you wish to change settings, please edit that file.
-If you wish to change the default options, edit the file:
-     arch/configure.defaults
-
 
 
 NetCDF
@@ -71,13 +61,6 @@ sudo apt-get install jasper
 dpkg -S jasper
 
 sudo apt-get install  jasper libequinox-jsp-jasper-java  libequinox-jsp-jasper-registry-java 
-
-
-
-Compilation
------------
-
-milias@194.160.44.72:~/work/software/air_pollution/WRF_suite/WRF/../compile -j 2 wrf
 
 
 

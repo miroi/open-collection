@@ -14,11 +14,12 @@ see https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_v4/v4.3/users_guide_chap
 
 milias@194.160.44.72:~/work/software/air_pollution/WRF_suite/WRF/.export NETCDF="/usr"; export NETCDF_classic=1
 
+set dmpar (34) :  means Distributed Memory Parallel (MPI)
+
 Settings listed above are written to configure.wrf.
 If you wish to change settings, please edit that file.
 If you wish to change the default options, edit the file:
      arch/configure.defaults
-
 
 
 NetCDF

@@ -27,34 +27,26 @@ Configuration successful!
 Compilation
 -----------
 
-milias@labs.fpv.umb.sk:~/work/software/air_pollution/WRF_suite/WRF-4.3.3/.less configure.wrf
+
+milias@labs.fpv.umb.sk:~/work/software/air_pollution/WRF_suite/WRF-4.3.3/.vim configure.wrf
+
+ LIB_EXTERNAL    = \
+                      -L$(WRF_SRC_ROOT_DIR)/external/io_netcdf -lwrfio_nf -L/usr/lib  \
+                      -L/usr/lib/x86_64-linux-gnu -L/usr/lib/x86_64-linux-gnu/hdf5/serial -lnetcdf -lhdf5_hl -lhdf5 -lpthread -lsz -lz -ldl -lm -lcurl -L/usr/lib -lnetcdff
+
 
 milias@labs.fpv.umb.sk:~/work/software/air_pollution/WRF_suite/WRF-4.3.3/.compile -j 4 wrf
 
-.
-.
-/usr/bin/ld: libwrflib.a(module_trajectory.o): in function `__module_trajectory_MOD_handle_ncerr.part.1'
-module_trajectory.f90:(.text+0x8a5): undefined reference to `nf_strerror_'
-/usr/bin/ld: libwrflib.a(module_trajectory.o): in function `def_vars.16614':
-module_trajectory.f90:(.text+0xde8): undefined reference to `nf_def_var_'
-/usr/bin/ld: module_trajectory.f90:(.text+0xf4e): undefined reference to `nf_put_att_text_'
-/usr/bin/ld: module_trajectory.f90:(.text+0x109b): undefined reference to `nf_put_att_text_'
-/usr/bin/ld: module_trajectory.f90:(.text+0x15d4): undefined reference to `nf_def_var_'
-/usr/bin/ld: module_trajectory.f90:(.text+0x1720): undefined reference to `nf_put_att_text_'
+milias@labs.fpv.umb.sk:~/work/software/air_pollution/WRF_suite/WRF/.ldd main/wrf.exe
 
-needs netcdf-fortran package
 
 netcdf
 ~~~~~~
-
 see https://docs.unidata.ucar.edu/netcdf-fortran/current/
 
 milias@labs.fpv.umb.sk:~/work/software/air_pollution/WRF_suite/.nc-config --version
 netCDF 4.6.2
-
 milias@labs.fpv.umb.sk:~/work/software/air_pollution/WRF_suite/.nc-config --all
-
-
 
 
 

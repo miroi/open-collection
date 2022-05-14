@@ -1,0 +1,15 @@
+#!/bin/bash
+
+
+export APBS=/home/milias/work/software/theoretical_chemistry/apbs/APBS-3.4.1.Linux
+
+export LD_LIBRARY_PATH=$APBS/lib:$LD_LIBRARY_PATH
+export PATH=$APBS/bin:$PATH
+
+input=molekula_pm7_geopt_thermo.mop
+
+echo -e "\n running  system - $input "
+# samotne spustenie programu
+$MOPAC/MOPAC2016.exe $input
+
+exit 0

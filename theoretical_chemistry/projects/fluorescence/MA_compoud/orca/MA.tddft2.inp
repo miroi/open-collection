@@ -1,0 +1,27 @@
+!CAM-B3LYP DEF2-TZVP DEF2-TZVP/C RIJDX ESD(ABS) 
+!pal8 
+
+%id "ma wat ABS"
+%scf
+Maxiter  200
+TolE 1.0e-12
+end
+
+%TDDFT NROOTS 5
+       IROOT  1
+END
+
+%CPCM SMD TRUE
+      SMDSOLVENT "WATER"
+END
+
+%ESD   GSHESSIAN   "ma-cam-svp-GS.hess"
+       ESHESSIAN   "ma-cam-svp-ES.hess"
+       DOHT        TRUE
+       LINES VOIGT
+       LINEW 75 # FHWM_lorentz =  2*LINEW
+       INLINEW 1700 # FHWM_gauss =  2.355*INLINEW (0.5 eV)
+END
+
+%maxcore 6000
+* XYZfile 0 1 MA.adf_geom.xyz

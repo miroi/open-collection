@@ -77,8 +77,15 @@ sudo apt-get install  jasper libequinox-jsp-jasper-java  libequinox-jsp-jasper-r
 
 Compilation
 -----------
+configure.wrf:
+ LIB_EXTERNAL    = \
+                      -L$(WRF_SRC_ROOT_DIR)/external/io_netcdf -lwrfio_nf -L/usr/lib \
+                      -L/usr/lib/x86_64-linux-gnu -lnetcdff -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -lnetcdf -ldl -lm \
+                      -L/usr/lib/x86_64-linux-gnu -L/usr/lib/x86_64-linux-gnu/hdf5/serial -lnetcdf  -lnetcdff
 
 milias@194.160.44.72:~/work/software/air_pollution/WRF_suite/WRF/../compile -j 2 wrf
+
+milias@194.160.44.72:~/work/software/air_pollution/WRF_suite/WRF/.ldd main/wrf.exe
 
 
 

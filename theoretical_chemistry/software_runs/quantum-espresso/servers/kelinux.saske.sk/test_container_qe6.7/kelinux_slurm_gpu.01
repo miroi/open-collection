@@ -1,10 +1,11 @@
 #!/bin/bash
 #SBATCH --job-name=qe-test       # create a short name for your job
-#SBATCH --nodes=1:comp[17-23,39-46]     # node count
-##SBATCH --constraint=
-#SBATCH --ntasks-per-node=8      # number of tasks per node
-#SBATCH --cpus-per-task=1        # cpu-cores per task (>1 if multi-threaded tasks)
+#SBATCH --nodes=1     # node count
+#SBATCH --nodelist=comp[17-23,39-46]  # 2x NVIDIA Tesla M2070 6GB RAM
 
+##SBATCH --constraint="gpu"  # Nvidia
+#SBATCH --ntasks-per-node=6      # number of tasks per node
+##SBATCH --cpus-per-task=1        # cpu-cores per task (>1 if multi-threaded tasks)
 ##SBATCH --mem=32G                # total memory per node
 ##SBATCH --gres=gpu:2             # number of gpus per node
 ##SBATCH --time=00:15:00          # total run time limit (HH:MM:SS)
@@ -30,8 +31,9 @@ echo
 echo -e "Job partition is $SLURM_JOB_PARTITION \n"
 #echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
 
+module avail
 
-module purge
+#module purge
 export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 
 srun --mpi=pmi2 \

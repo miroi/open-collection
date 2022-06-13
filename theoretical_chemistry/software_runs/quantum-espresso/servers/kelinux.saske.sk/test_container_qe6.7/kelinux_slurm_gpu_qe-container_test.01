@@ -36,13 +36,8 @@ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 echo -e "\n ... launching singularity run = first container test :"
 
 singularity exec /lustre/home/ilias/containers/quantum_espresso_v6.7.sif /bin/ls -lt
+singularity exec /lustre/home/ilias/containers/quantum_espresso_v6.7.sif /bin/df -h
 singularity exec /lustre/home/ilias/containers/quantum_espresso_v6.7.sif /bin/date
 singularity exec /lustre/home/ilias/containers/quantum_espresso_v6.7.sif pw.x
-
-echo -e "\n ... launching singularity run = quantum_espresso_v6.7.sif container :"
-srun --mpi=pmi2 \
-singularity run --nv \
-     /lustre/home/ilias/containers/quantum_espresso_v6.7.sif \
-     pw.x -input ausurf.in -npool 2
 
 exit

@@ -63,7 +63,7 @@ free -t -g
 echo
 
 #export QE=/software/software/QuantumESPRESSO/6.5-foss-2019b/bin
-export QE=/lustre/home/ilias/work/qch/software/quantum-espresso/qe-7.0/build_intelmpi/bin
+export QE=/lustre/home/ilias/work/qch/software/quantum-espresso/qe-7.0/build_intelmpi/
 
 echo -e "\n Dependencies of QE main executable, ldd $QE/pw.x:"
 ldd $QE/pw.x
@@ -91,9 +91,6 @@ echo " It has the disk space of (df -h) :"
 df -h .
 echo
 
- #mpirun -np $SLURM_CPUS_ON_NODE  $QE/pw.x < $inp > $out
-
- # make run-custom-test-parallel testdir=pw_atom
-  make run-tests-parallel
+  make run-custom-test-parallel testdir=pw_atom
 
 exit

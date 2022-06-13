@@ -1,10 +1,9 @@
 #!/bin/bash
 #SBATCH --job-name=qe-test       # create a short name for your job
-#SBATCH --nodes=1     # node count
-#SBATCH --nodelist=comp[17-23,39-46]  # 2x NVIDIA Tesla M2070 6GB RAM
+#SBATCH --nodes=1 --constraint=k20m     # node count
 
-##SBATCH --constraint="gpu"  # Nvidia
 #SBATCH --ntasks-per-node=6      # number of tasks per node
+
 ##SBATCH --cpus-per-task=1        # cpu-cores per task (>1 if multi-threaded tasks)
 ##SBATCH --mem=32G                # total memory per node
 ##SBATCH --gres=gpu:2             # number of gpus per node

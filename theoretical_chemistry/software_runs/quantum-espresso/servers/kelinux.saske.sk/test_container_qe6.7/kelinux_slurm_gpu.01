@@ -4,7 +4,7 @@
 #SBATCH --nodes=1 --constraint=k20m     # node count
 #SBATCH --ntasks-per-node=6      # number of tasks per node
 
-#SBATCH --partition=devel
+#SBATCH --partition=short
 #SBATCH --time=01:00:00          # total run time limit (HH:MM:SS)
 
 ## stdout/stderr output file
@@ -23,13 +23,17 @@ echo $SLURM_CLUSTER_NAME
 echo and is employing $SLURM_JOB_NUM_NODES node/nodes:
 echo $SLURM_JOB_NODELIST
 echo
-echo -e "Job partition is $SLURM_JOB_PARTITION \n"
+echo -e "Job partition is: $SLURM_JOB_PARTITION \n"
 #echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
+echo -e "\n SLURM_CPUS_PER_TASK=$SLURM_CPUS_PER_TASK"
 
+echo -e "avaiable modules on the node:"
 module avail
 
 #module purge
 export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+
+echo -e "\n ... launching singularity run :"
 
 srun --mpi=pmi2 \
 singularity run --nv \

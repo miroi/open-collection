@@ -30,13 +30,13 @@ milias@lxir127.gsi.de:/data.local1/milias/software/quantum-epresso/qe-7.0/build_
 
 but https://gitlab.com/QEF/q-e/-/issues/503
 
-works
+again try ..
 ~~~~~
 module load openmpi/gcc/4.0.3_gcc8
 
 milias@lxir127.gsi.de:/data.local1/milias/software/quantum-epresso/qe-7.0/build_openmpi/.cmake -DCMAKE_C_COMPILER=mpicc -DCMAKE_Fortran_COMPILER=mpif90  ..
 
-
+again error ... wrong modules ! See https://hpc.gsi.de/virgo/platform/cvmfs.html#software-repositories
 
 
 

@@ -1,6 +1,5 @@
-Install MKL
-===========
-
+QE-devel with GPU
+=================
 
 mirilias@login22.mogon:~/work/software/mkl_lib/.srun --pty -p m2_gpu -A m2_jgu-gpu-qe-calcs bash -i
 

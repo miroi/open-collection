@@ -28,11 +28,6 @@ see https://gitlab.com/QEF/q-e/-/issues/513#note_999729587
 
 Buildup and compilations
 ------------------------
-
-
-
-
-
-
+ mirilias@s0014.mogon:~/work/software/quantum_espresso/qe-devel/build_gpu/.cmake -D QE_ENABLE_CUDA=ON -D QE_ENABLE_MPI_GPU_AWARE=ON -D CMAKE_Fortran_COMPILER=nvfortran -D CMAKE_C_COMPILER=nvc    ..
 
 

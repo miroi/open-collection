@@ -1,8 +1,10 @@
 #!/bin/bash
+
 #SBATCH --job-name=Si_surf
+#SBATCH -A m2_jgu-gpu-qe-calcs
 
 #SBATCH --nodes=4
-##SBATCH --ntasks-per-node=4
+#SBATCH --ntasks-per-node=4
 
 ##SBATCH --mem=12gb
 
@@ -23,7 +25,8 @@
 #SBATCH --mail-user=Miroslav.Ilias@umb.sk
 
  
-echo -e "Job user is SLURM_JOB_USER=$SLURM_JOB_USER"
+echo -e "\nJob user is SLURM_JOB_USER=$SLURM_JOB_USER"
+echo -e "Job partition is: $SBATCH_PARTITION"
 echo -e "User's job is SLURM_JOB_NAME=$SLURM_JOB_NAME has assigned ID SLURM_JOBID=$SLURM_JOBID"
 echo -e "This job was submitted from the computer SLURM_SUBMIT_HOST=$SLURM_SUBMIT_HOST"
 echo -e "and from the home directory: SLURM_SUBMIT_DIR=$SLURM_SUBMIT_DIR"
@@ -33,7 +36,8 @@ echo -e "SLURM_JOB_NODELIST=$SLURM_JOB_NODELIST"
 echo -e "The job requests SLURM_CPUS_ON_NODE=$SLURM_CPUS_ON_NODE CPU per task."
 
 
-ml load devel/CMake/3.21.1 mpi/impi/2021.5.1-intel-compilers-2022.0.2  system/CUDA/11.4.2 compiler/PGI/20.4-GCC-8.3.0 compiler/NVHPC/21.7 numlib/imkl/2022.0.2
+ml load devel/CMake/3.21.1 mpi/impi/2021.5.1-intel-compilers-2022.0.2 
+ml load system/CUDA/11.4.2 compiler/PGI/20.4-GCC-8.3.0 compiler/NVHPC/21.7 numlib/imkl/2022.0.2
 echo -e "List of loaded modules:"
 module list
 

@@ -1,13 +1,13 @@
 #!/bin/bash
 #SBATCH --job-name=Si_surf
 
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=4
+#SBATCH --nodes=4
+##SBATCH --ntasks-per-node=4
 
 ##SBATCH --mem=12gb
 
-##SBATCH --partition=devel
-#SBATCH --partition=short
+#SBATCH --partition=m2_gpu
+#SBATCH --gres=gpu:6
 
 ##SBATCH --time=1-00:10:00
 #SBATCH --time=0-12:00:00
@@ -32,23 +32,11 @@ echo -e "Job  is employing SLURM_JOB_NUM_NODES=$SLURM_JOB_NUM_NODES node/nodes:"
 echo -e "SLURM_JOB_NODELIST=$SLURM_JOB_NODELIST"
 echo -e "The job requests SLURM_CPUS_ON_NODE=$SLURM_CPUS_ON_NODE CPU per task."
 
-#module load git/2.8.0-foss-2016a
-#module load intel/2016a
-#module load imkl/11.3.1.150-iimpi-8.1.5-GCC-4.9.3-2.25
-#module load OpenMPI/1.8.6-iccifort-2015.2.164-i8
-#module load CMake/3.6.1-foss-2016a
 
-#echo -e "\n Loadig module QuantumESPRESSO/6.5-foss-2019b:"
-#module load QuantumESPRESSO/6.5-foss-2019b
-
+ml load devel/CMake/3.21.1 mpi/impi/2021.5.1-intel-compilers-2022.0.2  system/CUDA/11.4.2 compiler/PGI/20.4-GCC-8.3.0 compiler/NVHPC/21.7 numlib/imkl/2022.0.2
 echo -e "List of loaded modules:"
 module list
 
-#module unload OpenMPI/1.8.6-iccifort-2015.2.164-i8
-#echo -e "\n Removed system provided module OpenMPI/1.8.6-iccifort-2015.2.164-i8"
-# my openmpi installation
-#export PATH=/home/f113112/work/qch/software/openmpi-2.1.1_intel-15/bin:$PATH
-#export LD_LIBRARY_PATH=/home/f113112/work/qch/software/openmpi-2.1.1_intel-15/lib:$LD_LIBRARY_PATH
 
 echo -e "\nRunning on host `hostname`"
 echo -e "Time is `date` \n"
@@ -78,7 +66,8 @@ echo
 
 #export QE=/software/software/QuantumESPRESSO/6.5-foss-2019b/bin
 #export QE=/home/f113112/work/qch/software/quantum_espresso/qe-6.7/bin
-export QE=/lustre/home/ilias/work/qch/software/quantum-espresso/qe-6.7/bin
+#export QE=/lustre/home/ilias/work/qch/software/quantum-espresso/qe-6.7/bin
+export QE=/home/mirilias/work/software/quantum_espresso/qe-devel/build_gpu/bin
 
 echo -e "\n Dependencies of QE main executable, ldd $QE/pw.x:"
 ldd $QE/pw.x

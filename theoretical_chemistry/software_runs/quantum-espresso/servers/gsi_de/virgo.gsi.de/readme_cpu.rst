@@ -28,5 +28,10 @@ buildup
 ~~~~~~~
 cmake -DCMAKE_C_COMPILER=mpicc -DCMAKE_Fortran_COMPILER=mpif90  ..
 
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /lustre/ukt/milias/work/software/quantum-espresso/q-e_develop/build_openmpi_cpu
+
+
 
 

@@ -1,0 +1,33 @@
+#!/bin/sh
+
+"$AMSBIN/ams" << eor
+
+Task GeometryOptimization
+Properties
+    NormalModes Yes
+End
+System
+    Atoms
+        Pb 0.0 1.03524234883945e-26 2.064782007132001 
+        H 2.813598999423732e-20 -0.7989717539507127 -0.8886469542443209 
+        H -2.813598999423732e-20 0.7989717539507127 -0.8886469542443209 
+        O 0.0 -5.092048389039132e-26 -0.2874880986433587 
+    End
+    Charge 2
+    BondOrders
+         2 4 1.0
+         3 4 1.0
+    End
+End
+
+Engine ADF
+    Basis
+        Type DZP
+        Core Small
+    End
+    XC
+        GGA BP86
+    End
+EndEngine
+eor
+

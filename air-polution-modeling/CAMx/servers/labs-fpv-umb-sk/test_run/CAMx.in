@@ -1,0 +1,145 @@
+
+ &CAMx_Control
+
+ Run_Message      = 'CAMx 7.10 Test Problem -- CB6R4 CF SOAP 20160610',
+
+!--- Model clock control ---
+
+ Time_Zone        = 0,                 ! (0=UTC,5=EST,6=CST,7=MST,8=PST)
+ Restart          = .false.,
+ Start_Date_Hour  = 2016,06,10,0000,   ! (YYYY,MM,DD,HHmm)
+ End_Date_Hour    = 2016,06,10,2400,   ! (YYYY,MM,DD,HHmm)
+
+ !Maximum_Timestep    = 15.,            ! minutes
+ Maximum_Timestep    = 60.,            ! minutes
+
+ Met_Input_Frequency = 60.,            ! minutes
+ Ems_Input_Frequency = 60.,            ! minutes
+ Output_Frequency    = 60.,            ! minutes
+
+!--- Map projection parameters ---
+
+ Map_Projection = 'LAMBERT',  ! (LAMBERT,POLAR,RPOLAR,MERCATOR,LATLON,UTM)
+ UTM_Zone       = 0,
+ Longitude_Pole = -97.,      ! deg (west<0,south<0)
+ Latitude_Pole  =  40.,      ! deg (west<0,south<0)
+ True_Latitude1 =  33.,      ! deg (west<0,south<0)
+ True_Latitude2 =  45.,      ! deg (west<0,south<0, can = True_Latitude1)
+
+!--- Parameters for the master (first) grid ---
+
+! Number_of_Grids      = 2,
+ Number_of_Grids      = 1,
+
+! MI: zmensene ...
+ Master_SW_XCoord     = -2556.,        ! km or deg, SW corner of cell(1,1)
+ Master_SW_YCoord     = -1872.,        ! km or deg, SW corner of cell (1,1)
+
+ Master_Cell_XSize    = 36.,           ! km or deg
+ !Master_Cell_XSize    = 4.,           ! km or deg
+
+ Master_Cell_YSize    = 36.,           ! km or deg
+ !Master_Cell_YSize    = 4.,           ! km or deg
+
+ Master_Grid_Columns  = 158,
+
+ Master_Grid_Rows     = 91,
+
+ Number_of_Layers     = 20,
+ !Number_of_Layers     = 2,
+
+!--- Parameters for the second grid ---
+
+ Nest_Meshing_Factor(2) = 3,           ! Cell size relative to master grid
+ Nest_Beg_I_Index(2)    = 85,          ! Relative to master grid
+ Nest_End_I_Index(2)    = 134,         ! Relative to master grid
+ Nest_Beg_J_Index(2)    = 26,          ! Relative to master grid
+ Nest_End_J_Index(2)    = 74,          ! Relative to master grid
+
+!--- Model options ---
+
+ Diagnostic_Error_Check = .false.,      ! True = will stop after model setup
+! Diagnostic_Error_Check = .true.,      ! True = will stop after model setup
+ Flexi_Nest             = .false.,      ! True = expect flexi-nested inputs
+ Advection_Solver       = 'PPM',        ! (PPM,BOTT)
+ Chemistry_Solver       = 'EBI',        ! (EBI,LSODE)
+ PiG_Submodel           = 'None',       ! (None,GREASD,IRON)
+ Probing_Tool           = 'None',       ! (None,SA,DDM,HDDM,PA,IPR,IRR,RTRAC,RTCMC)
+ Chemistry              = .true.,
+ Drydep_Model           = 'ZHANG03',    ! (None,WESELY89,ZHANG03)
+ Bidi_NH3_Drydep        = .false.,
+ Wet_Deposition         = .true.,
+ ACM2_Diffusion         = .false.,
+ Surface_Model          = .false.,
+ Inline_Ix_Emissions    = .true.,
+ Super_Stepping         = .true.,
+ Gridded_Emissions      = .true.,
+ Point_Emissions        = .true.,
+ Ignore_Emission_Dates  = .true.,
+
+!--- Output specifications ---
+
+! Root_Output_Name         = '/home/milias/work/software/air_pollution/CAMx/v7.10/outputs/CAMx.v7.10.36.12.20160610',
+!  Root_Output_Name         = '/home/milias/work/open-collection/air-polution-modeling/CAMx/servers/labs-fpv-umb-sk/test_run/testrun',
+  Root_Output_Name         = './testrun',
+
+
+ Average_Output_3D        = .false.,
+ NetCDF_Format_Output     = .true.,
+ NetCDF_Use_Compression   = .false.,
+ Output_Species_Names(1)   = 'NO',     ! or set "ALL" or "ALLR"
+ Output_Species_Names(2)   = 'NO2',
+ Output_Species_Names(3)   = 'O3',
+ Output_Species_Names(4)   = 'SO2',
+ Output_Species_Names(5)   = 'H2O2',
+ Output_Species_Names(6)   = 'HNO3',
+ Output_Species_Names(7)   = 'NH3',
+ Output_Species_Names(8)   = 'PNO3',
+ Output_Species_Names(9)   = 'PSO4',
+ Output_Species_Names(10)  = 'PNH4',
+ Output_Species_Names(11)  = 'POA',
+ Output_Species_Names(12)  = 'PEC',
+ Output_Species_Names(13)  = 'FPRM',
+ Output_Species_Names(14)  = 'CPRM',
+ Output_Species_Names(15)  = 'CCRS',
+ Output_Species_Names(16)  = 'FCRS',
+ Output_Species_Names(17)  = 'SOA1',
+ Output_Species_Names(18)  = 'SOA2',
+ Output_Species_Names(19)  = 'SOA3',
+ Output_Species_Names(20)  = 'SOA4',
+
+!--- Input files ---
+
+ Chemistry_Parameters = '/home/milias/work/software/air_pollution/CAMx/v7.10/inputs/CAMx7.1.chemparam.CB6r4_CF2',
+ Photolysis_Rates     = '/home/milias/work/software/air_pollution/CAMx/v7.10/inputs/tuv.do_CB6r4.20160610',
+ Ozone_Column         = '/home/milias/work/software/air_pollution/CAMx/v7.10/inputs/o3map.201606.txt',
+ Initial_Conditions   = '/home/milias/work/software/air_pollution/CAMx/v7.10/icbc/ic.36km.20160610.GMT.hr0.nc',
+ Boundary_Conditions  = '/home/milias/work/software/air_pollution/CAMx/v7.10/icbc/bc.36km.20160610.GMT.nc',
+ Point_Sources(1)     = '/home/milias/work/software/air_pollution/CAMx/v7.10/ptsrce/point.camx.othpt.20160610.nc',
+ Point_Sources(2)     = '/home/milias/work/software/air_pollution/CAMx/v7.10/ptsrce/point.camx.ptnonipm.20160610.nc',
+ Point_Sources(3)     = '/home/milias/work/software/air_pollution/CAMx/v7.10/ptsrce/point.camx.pt_oilgas.20160610.nc',
+ Master_Grid_Restart  = '/home/milias/work/software/air_pollution/CAMx/v7.10/outputs/CAMx.v7.10.36.12.20160609.inst',
+ Nested_Grid_Restart  = '/home/milias/work/software/air_pollution/CAMx/v7.10/outputs/CAMx.v7.10.36.12.20160609.finst',
+ PiG_Restart          = ' ',
+
+ Surface_Grid(1) = '/home/milias/work/software/air_pollution/CAMx/v7.10/met/camx.lu.36km.20160610.nc',
+ Met3D_Grid(1)   = '/home/milias/work/software/air_pollution/CAMx/v7.10/met/camx.3d.36km.20160610.nc',
+ Met2D_Grid(1)   = '/home/milias/work/software/air_pollution/CAMx/v7.10/met/camx.2d.36km.20160610.nc',
+ Vdiff_Grid(1)   = '/home/milias/work/software/air_pollution/CAMx/v7.10/met/camx.kv.36km.20160610.YSU.nc',
+ Emiss_Grid(1,1) = '/home/milias/work/software/air_pollution/CAMx/v7.10/emiss/camx_area.area.20160610.36km.nc',
+ Emiss_Grid(1,2) = '/home/milias/work/software/air_pollution/CAMx/v7.10/emiss/camx_area.mobile.20160610.36km.nc',
+ Emiss_Grid(1,3) = '/home/milias/work/software/air_pollution/CAMx/v7.10/emiss/camx_area.pt.20160610.36km.nc',
+ Emiss_Grid(1,4) = '/home/milias/work/software/air_pollution/CAMx/v7.10/emiss/camx_area.natural.20160610.36km.nc',
+
+ Surface_Grid(2) = '/home/milias/work/software/air_pollution/CAMx/v7.10/met/camx.lu.12km.20160610.nc',
+ Met3D_Grid(2)   = '/home/milias/work/software/air_pollution/CAMx/v7.10/met/camx.3d.12km.20160610.nc',
+ Met2D_Grid(2)   = '/home/milias/work/software/air_pollution/CAMx/v7.10/met/camx.2d.12km.20160610.nc',
+ Vdiff_Grid(2)   = '/home/milias/work/software/air_pollution/CAMx/v7.10/met/camx.kv.12km.20160610.YSU.nc',
+ Emiss_Grid(2,1) = '/home/milias/work/software/air_pollution/CAMx/v7.10/emiss/camx_area.area.20160610.12km.nc',
+ Emiss_Grid(2,2) = '/home/milias/work/software/air_pollution/CAMx/v7.10/emiss/camx_area.mobile.20160610.12km.nc',
+ Emiss_Grid(2,3) = '/home/milias/work/software/air_pollution/CAMx/v7.10/emiss/camx_area.pt.20160610.12km.nc',
+ Emiss_Grid(2,4) = '/home/milias/work/software/air_pollution/CAMx/v7.10/emiss/camx_area.natural.20160610.12km.nc',
+
+ /
+!-------------------------------------------------------------------------------
+

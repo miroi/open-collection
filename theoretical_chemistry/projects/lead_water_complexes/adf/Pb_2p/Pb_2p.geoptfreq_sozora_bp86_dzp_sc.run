@@ -1,0 +1,29 @@
+#!/bin/sh
+
+"$AMSBIN/ams" << eor
+
+Task GeometryOptimization
+Properties
+    NormalModes Yes
+End
+System
+    Atoms
+        Pb 0.0 0.0 0.0 
+    End
+    Charge 2
+End
+
+Engine ADF
+    Basis
+        Type DZP
+        Core Small
+    End
+    XC
+        GGA BP86
+    End
+    Relativity
+        Level Spin-Orbit
+    End
+EndEngine
+eor
+

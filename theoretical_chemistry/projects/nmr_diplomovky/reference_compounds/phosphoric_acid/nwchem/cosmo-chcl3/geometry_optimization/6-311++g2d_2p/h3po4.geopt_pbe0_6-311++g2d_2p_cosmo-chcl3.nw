@@ -1,0 +1,45 @@
+echo
+
+start molecule
+
+# https://nwchemgit.github.io/Memory.html
+memory total 40 gb
+
+print low
+
+title "H3PO4"
+charge 0
+
+geometry units angstroms print xyz autosym
+  load format xyz h3po4_startgeom.xyz
+end
+
+basis
+  * library 6-311++G(2d,2p)
+end
+
+dft
+  grid fine
+ # grid huge
+  xc pbe0
+  mult 1
+# Reduce output during geometry optimization
+  noprint "final vectors analysis"
+  print low
+end
+
+driver
+#  clear
+  tight
+#  linopt 0
+  maxiter 9999
+  xyz h3po4_geom_pbe0
+  print low
+end
+
+cosmo
+  solvent chcl3
+end
+
+task dft optimize
+

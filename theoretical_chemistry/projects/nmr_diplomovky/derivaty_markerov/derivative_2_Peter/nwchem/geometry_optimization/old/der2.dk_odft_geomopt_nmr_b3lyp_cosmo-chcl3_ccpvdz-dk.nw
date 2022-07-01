@@ -1,0 +1,61 @@
+echo
+
+start molecule
+
+memory total 40 gb
+
+print low
+
+title "der2"
+charge 0
+
+# spin-spin coupling only for odft
+dft
+  odft
+  mult 1
+end
+
+relativistic
+   douglas-kroll
+end
+
+
+geometry units angstroms print xyz autosym
+#  load format xyz VX.converged_geometry_blyp_tz2p-solvent-chcl3.xyz
+#  load format xyz VX.geom.xyz
+ # load format xyz der1.pbe0_tz2p_good_cosmo-chcl3_optimized_geom.xyz
+  load format xyz der2.geopt_freq_nmr_pbe0_tz2p_good_cosmo-chcl3_converged_geometry.xyz
+end
+
+basis
+  * library cc-pvdz-dk
+end
+
+dft
+  direct
+  grid fine
+  xc b3lyp
+  mult 1
+# Reduce output during geometry optimization
+  noprint "final vectors analysis"
+end
+
+driver
+  tight
+  maxiter 9999
+  xyz der2_geom_ccpvdz-dk
+end
+
+
+property
+  giao
+  shielding 1  2
+  spinspin  3  2 23 2 30 2 31
+end
+
+cosmo
+  solvent chcl3
+end
+
+task dft optimize
+task dft property

@@ -1,0 +1,22 @@
+#!/bin/sh
+
+"$AMSBIN/ams" << eor
+
+Task SinglePoint
+System
+    Atoms
+        Ubn -2.804196027207449 0.01416260619801831 -1.769246207142267e-15 
+    End
+End
+
+Engine BAND
+    Basis
+        Core Small
+    End
+    XC
+        GGA revPBE
+        DISPERSION GRIMME3 BJDAMP
+    End
+EndEngine
+eor
+

@@ -1,0 +1,31 @@
+#!/bin/sh
+
+"$AMSBIN/ams" << eor
+
+Task SinglePoint
+System
+    Atoms
+        Tl -0.9455788945970109 -3.479453747359893 2.844952513543591 
+        O -0.5236824922513191 -1.825653202037453 1.456595873323217 
+        H -1.081832721009684 -1.769901712048605 0.658780494922154 
+    End
+    BondOrders
+         1 2 1.0
+         2 3 1.0
+    End
+End
+
+Engine BAND
+    Basis
+        Type TZP
+        Core Small
+    End
+    Relativity
+        Level Scalar
+    End
+    XC
+        GGA revPBE
+    End
+EndEngine
+eor
+

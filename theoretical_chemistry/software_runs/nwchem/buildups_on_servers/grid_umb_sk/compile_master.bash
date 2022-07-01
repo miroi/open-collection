@@ -23,7 +23,8 @@
   #export CC=icc
   export MPI_F90=mpif90
   echo -e "MPI_F90=$MPI_F90"
-  which mpif90
+  which mpif90; mpif90 --version
+  which ifort; ifort --version
   which mpirun
 
  # export MPI_CC=mpicc

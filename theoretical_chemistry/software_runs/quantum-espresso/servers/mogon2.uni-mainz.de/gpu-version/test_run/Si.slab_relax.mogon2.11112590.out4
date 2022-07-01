@@ -1,0 +1,234 @@
+
+     Program PWSCF v.7.1 starts on 22Jun2022 at 19:25:24 
+        Git branch: develop
+        Last git commit: d50f574154e75c88044778d91e67d6e00f487b1e
+        Last git commit date: Mon Jun 20 17:16:00 2022 +0000
+        Last git commit subject: Merge branch 'small-doc-fixes' into 'develop'
+
+     This program is part of the open-source Quantum ESPRESSO suite
+     for quantum simulation of materials; please cite
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 21 395502 (2009);
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 29 465901 (2017);
+         "P. Giannozzi et al., J. Chem. Phys. 152 154105 (2020);
+          URL http://www.quantum-espresso.org", 
+     in publications or presentations arising from this work. More details at
+     http://www.quantum-espresso.org/quote
+
+     Parallel version (MPI & OpenMP), running on       4 processor cores
+     Number of MPI processes:                 4
+     Threads/MPI process:                     1
+
+     MPI processes distributed on     1 nodes
+     123927 MiB available memory on the printing compute node when the environment starts
+ 
+     Waiting for input...
+     Reading input from standard input
+
+     Current dimensions of program PWSCF are:
+     Max number of different atomic species (ntypx) = 10
+     Max number of k-points (npk) =  40000
+     Max angular momentum in pseudopotentials (lmaxx) =  4
+
+    ============================================================
+    |  pseudopotential report for atomic species:  2           |
+    |        pseudo potential version   7   3   2              |
+    ------------------------------------------------------------
+    |  hydrogen            PBE                  exchange-corr  |
+    |  z =   1.    zv( 2) =   1.    exfact =   5.00000         |
+    |  ifpcor =  0           atomic energy =  -0.91772 Ry      |
+    |  index    orbital      occupation    energy              |
+    |    1        100           1.00       -0.48               |
+    |  rinner =  0.5000                                        |
+    |    new generation scheme:                                |
+    |    nbeta =  1     kkbeta =  271     rcloc =    0.6000    |
+    |    ibeta    l     epsilon   rcut                         |
+    |      1       0      -0.48   0.80                         |
+    ============================================================
+ 
+     R & G space division:  proc/nbgrp/npool/nimage =       4
+     Subspace diagonalization in iterative solution of the eigenvalue problem:
+     a serial algorithm will be used
+
+ 
+     Parallelization info
+     --------------------
+     sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
+     Min        1016    1016    277               103947   103947   14767
+     Max        1017    1017    278               103950   103950   14774
+     Sum        4067    4067   1111               415795   415795   59085
+ 
+     Using Slab Decomposition
+ 
+
+
+     bravais-lattice index     =            8
+     lattice parameter (alat)  =      29.2337  a.u.
+     unit-cell volume          =   18737.6348 (a.u.)^3
+     number of atoms/cell      =           56
+     number of atomic types    =            2
+     number of electrons       =       176.00
+     number of Kohn-Sham states=          106
+     kinetic-energy cutoff     =      30.0000  Ry
+     charge density cutoff     =     120.0000  Ry
+     scf convergence threshold =      1.0E-07
+     mixing beta               =       0.7000
+     number of iterations used =            8  plain     mixing
+     energy convergence thresh.=      5.0E-05
+     force convergence thresh. =      5.0E-04
+     Exchange-correlation= PBE
+                           (   1   4   3   4   0   0   0)
+     nstep                     =          200
+
+
+     GPU acceleration is ACTIVE.
+     GPU-aware MPI enabled
+
+
+     celldm(1)=  29.233748  celldm(2)=   0.500000  celldm(3)=   1.500000
+     celldm(4)=   0.000000  celldm(5)=   0.000000  celldm(6)=   0.000000
+
+     crystal axes: (cart. coord. in units of alat)
+               a(1) = (   1.000000   0.000000   0.000000 )  
+               a(2) = (   0.000000   0.500000   0.000000 )  
+               a(3) = (   0.000000   0.000000   1.500000 )  
+
+     reciprocal axes: (cart. coord. in units 2 pi/alat)
+               b(1) = (  1.000000  0.000000  0.000000 )  
+               b(2) = (  0.000000  2.000000  0.000000 )  
+               b(3) = (  0.000000  0.000000  0.666667 )  
+
+
+     PseudoPot. # 1 for Si read from file:
+     ./Si_r.upf
+     MD5 check sum: c84abb4b0aac9c93a8e9f74896432a0a
+     Pseudo is Norm-conserving + core correction, Zval =  4.0
+     Generated using ONCVPSP code by D. R. Hamann
+     Using radial grid of 1528 points,  6 beta functions with: 
+                l(1) =   0
+                l(2) =   0
+                l(3) =   1
+                l(4) =   1
+                l(5) =   2
+                l(6) =   2
+
+     PseudoPot. # 2 for hy read from file:
+     ./H_US.van
+     MD5 check sum: a9a9bfe98ff56cf4de197d71fc46bb44
+     Pseudo is Ultrasoft, Zval =  1.0
+     Generated by Vanderbilt code, v. 7.3.2
+     Using radial grid of  399 points,  1 beta functions with: 
+                l(1) =   0
+     Q(r) pseudized with  8 coefficients,  rinner =    0.500
+
+     atomic species   valence    mass     pseudopotential
+        Si             4.00    28.08550     Si( 1.00)
+        H              1.00     1.00784     hy( 1.00)
+
+     No symmetry found
+
+
+
+   Cartesian axes
+
+     site n.     atom                  positions (alat units)
+         1           H   tau(   1) = (   0.0000000  -0.0675500  -0.0675500  )
+         2           H   tau(   2) = (   0.0000000   0.0675500  -0.0675500  )
+         3           H   tau(   3) = (   0.2500000  -0.0675500  -0.0675500  )
+         4           H   tau(   4) = (   0.2500000   0.0675500  -0.0675500  )
+         5           H   tau(   5) = (   0.2500000   0.1824500  -0.0675500  )
+         6           H   tau(   6) = (   0.2500000   0.3175500  -0.0675500  )
+         7           H   tau(   7) = (   0.5000000   0.1824500  -0.0675500  )
+         8           H   tau(   8) = (   0.5000000   0.3175500  -0.0675500  )
+         9           H   tau(   9) = (   0.7500000   0.1824500  -0.0675500  )
+        10           H   tau(  10) = (   0.7500000   0.3175500  -0.0675500  )
+        11           H   tau(  11) = (   0.0000000   0.1824500  -0.0675500  )
+        12           H   tau(  12) = (   0.0000000   0.3175500  -0.0675500  )
+        13           H   tau(  13) = (   0.5000000  -0.0675500  -0.0675500  )
+        14           H   tau(  14) = (   0.5000000   0.0675500  -0.0675500  )
+        15           H   tau(  15) = (   0.7500000  -0.0675500  -0.0675500  )
+        16           H   tau(  16) = (   0.7500000   0.0675500  -0.0675500  )
+        17           Si  tau(  17) = (   0.0000000   0.0000000   0.0000000  )
+        18           Si  tau(  18) = (   0.2500000   0.0000000   0.0000000  )
+        19           Si  tau(  19) = (   0.0000000   0.2500000   0.0000000  )
+        20           Si  tau(  20) = (   0.2500000   0.2500000   0.0000000  )
+        21           Si  tau(  21) = (   0.5000000   0.0000000   0.0000000  )
+        22           Si  tau(  22) = (   0.7500000   0.0000000   0.0000000  )
+        23           Si  tau(  23) = (   0.5000000   0.2500000   0.0000000  )
+        24           Si  tau(  24) = (   0.7500000   0.2500000   0.0000000  )
+        25           Si  tau(  25) = (   0.1250000   0.0000000   0.0883883  )
+        26           Si  tau(  26) = (   0.3750000   0.0000000   0.0883883  )
+        27           Si  tau(  27) = (   0.1250000   0.2500000   0.0883883  )
+        28           Si  tau(  28) = (   0.3750000   0.2500000   0.0883883  )
+        29           Si  tau(  29) = (   0.6250000   0.0000000   0.0883883  )
+        30           Si  tau(  30) = (   0.8750000   0.0000000   0.0883883  )
+        31           Si  tau(  31) = (   0.6250000   0.2500000   0.0883883  )
+        32           Si  tau(  32) = (   0.8750000   0.2500000   0.0883883  )
+        33           Si  tau(  33) = (   0.6250000   0.3750000   0.1767767  )
+        34           Si  tau(  34) = (   0.1250000   0.1250000   0.1767767  )
+        35           Si  tau(  35) = (   0.3750000   0.1250000   0.1767767  )
+        36           Si  tau(  36) = (   0.3750000   0.3750000   0.1767767  )
+        37           Si  tau(  37) = (   0.8750000   0.1250000   0.1767767  )
+        38           Si  tau(  38) = (   0.8750000   0.3750000   0.1767767  )
+        39           Si  tau(  39) = (   0.1250000   0.3750000   0.1767767  )
+        40           Si  tau(  40) = (   0.6250000   0.1250000   0.1767767  )
+        41           Si  tau(  41) = (   0.7500000   0.3750000   0.2651650  )
+        42           Si  tau(  42) = (   0.2500000   0.1250000   0.2651650  )
+        43           Si  tau(  43) = (   0.5000000   0.1250000   0.2651650  )
+        44           Si  tau(  44) = (   0.5000000   0.3750000   0.2651650  )
+        45           Si  tau(  45) = (   0.0000000   0.1250000   0.2651650  )
+        46           Si  tau(  46) = (   0.0000000   0.3750000   0.2651650  )
+        47           Si  tau(  47) = (   0.2500000   0.3750000   0.2651650  )
+        48           Si  tau(  48) = (   0.7500000   0.1250000   0.2651650  )
+        49           Si  tau(  49) = (   0.0010000   0.0000000   0.3535534  )
+        50           Si  tau(  50) = (   0.2490000   0.0000000   0.3535534  )
+        51           Si  tau(  51) = (   0.0020000   0.2500000   0.3535534  )
+        52           Si  tau(  52) = (   0.2480000   0.2500000   0.3535534  )
+        53           Si  tau(  53) = (   0.5020000   0.0000000   0.3535534  )
+        54           Si  tau(  54) = (   0.7490000   0.0000000   0.3535534  )
+        55           Si  tau(  55) = (   0.5010000   0.2500000   0.3535534  )
+        56           Si  tau(  56) = (   0.7470000   0.2500000   0.3535534  )
+
+     number of k points=     6  Gaussian smearing, width (Ry)=  0.0050
+                       cart. coord. in units 2pi/alat
+        k(    1) = (   0.0000000   0.0000000   0.0000000), wk =   0.2500000
+        k(    2) = (   0.0000000   0.5000000   0.0000000), wk =   0.5000000
+        k(    3) = (   0.0000000  -1.0000000   0.0000000), wk =   0.2500000
+        k(    4) = (  -0.5000000   0.0000000   0.0000000), wk =   0.2500000
+        k(    5) = (  -0.5000000   0.5000000   0.0000000), wk =   0.5000000
+        k(    6) = (  -0.5000000  -1.0000000   0.0000000), wk =   0.2500000
+
+     Dense  grid:   415795 G-vectors     FFT dimensions: ( 108,  54, 160)
+
+     Estimated max dynamical RAM per process >     486.70 MB
+
+     Estimated total dynamical RAM >       1.90 GB
+
+     Initial potential from superposition of free atoms
+
+     starting charge     175.9753, renormalised to     176.0000
+
+     negative rho (up, down):  1.152E-02 0.000E+00
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 0 PID 50358 RUNNING AT s0001
+=   KILLED BY SIGNAL: 11 (Segmentation fault)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 1 PID 50359 RUNNING AT s0001
+=   KILLED BY SIGNAL: 11 (Segmentation fault)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 2 PID 50360 RUNNING AT s0001
+=   KILLED BY SIGNAL: 11 (Segmentation fault)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 3 PID 50361 RUNNING AT s0001
+=   KILLED BY SIGNAL: 11 (Segmentation fault)
+===================================================================================

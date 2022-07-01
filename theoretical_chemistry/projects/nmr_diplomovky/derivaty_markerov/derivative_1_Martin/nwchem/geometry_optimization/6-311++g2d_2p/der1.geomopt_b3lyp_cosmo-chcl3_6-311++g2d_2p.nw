@@ -1,0 +1,46 @@
+echo
+
+start molecule
+
+memory total 40 gb
+
+print low
+
+title "der1"
+charge 0
+
+dft
+  mult 1
+end
+
+geometry units angstroms print xyz autosym
+ # load format xyz der1.pbe0_tz2p_good_cosmo-chcl3_optimized_geom.xyz
+  load format xyz der1_pbe0_geom_6-311++g2d_2p-038_converged.xyz
+end
+
+basis
+  * library 6-311++G(2d,2p)
+end
+
+dft
+  direct
+  grid fine
+  xc b3lyp
+  mult 1
+# Reduce output during geometry optimization
+  noprint "final vectors analysis"
+end
+
+#end
+
+driver
+  tight
+  maxiter 9999
+  xyz der1_b3lyp_geom_6-311++g2d_2p
+end
+
+cosmo
+  solvent chcl3
+end
+
+task dft optimize

@@ -11,26 +11,25 @@ mirilias@login22.mogon:~/work/software/quantum_espresso/qe-devel/.srun --pty -p 
 
 Loading necessary modules
 -------------------------
-mirilias@s0026.mogon:~/work/software/quantum_espresso/qe-devel/build_gpu/.ml load devel/CMake/3.21.1 mpi/OpenMPI/4.1.1-intel-compilers-2021.4.0 system/CUDA/11.4.2 compiler/PGI/20.4-GCC-8.3.0  compiler/NVHPC/21.7   numlib/imkl/2022.0.2
-
+mirilias@s0026.mogon:~/work/software/quantum_espresso/qe-devel/build_gpu_openmpi/.ml load devel/CMake/3.21.1   mpi/OpenMPI/4.0.5-gcccuda-2020b   system/CUDA/11.4.2 compiler/PGI/20.4-GCC-8.3.0  compiler/NVHPC/21.7   numlib/imkl/2022.0.2
 mirilias@s0026.mogon:~/work/software/quantum_espresso/qe-devel/build_gpu_openmpi/.ml
 
 Currently Loaded Modules:
   1) devel/CMake/3.21.1
-  2) compiler/intel-compilers/2021.4.0
-  3) system/hwloc/2.5.0-GCCcore-11.2.0
-  4) lib/libfabric/1.13.2-GCCcore-11.2.0
-  5) system/OpenSSL/1.1
-  6) lib/libevent/2.1.12-GCCcore-11.2.0
-  7) lib/PMIx/4.1.0-GCCcore-11.2.0
-  8) mpi/OpenMPI/4.1.1-intel-compilers-2021.4.0
-  9) system/CUDA/11.4.2
- 10) compiler/GCCcore/8.3.0
- 11) compiler/PGI/20.4-GCC-8.3.0
- 12) system/CUDAcore/11.2.2
- 13) compiler/NVHPC/21.7
- 14) numlib/imkl/2022.0.2
-
+  2) compiler/GCC/10.2.0
+  3) toolchain/gcccuda/2020b
+  4) lib/Check/0.15.2-GCCcore-10.2.0
+  5) lib/GDRCopy/2.1-GCCcore-10.2.0-CUDA-11.1.1
+  6) lib/UCX/1.9.0-GCCcore-10.2.0-CUDA-11.1.1
+  7) lib/libfabric/1.11.0-GCCcore-10.2.0
+  8) lib/PMIx/3.1.5-GCCcore-10.2.0-CUDA-11.1.1
+  9) mpi/OpenMPI/4.0.5-gcccuda-2020b
+ 10) system/CUDA/11.4.2
+ 11) compiler/GCCcore/8.3.0
+ 12) compiler/PGI/20.4-GCC-8.3.0
+ 13) system/CUDAcore/11.2.2
+ 14) compiler/NVHPC/21.7
+ 15) numlib/imkl/2022.0.2
 
 
 see https://gitlab.com/QEF/q-e/-/issues/513#note_999729587

@@ -11,7 +11,7 @@ mirilias@login22.mogon:~/work/software/quantum_espresso/qe-devel/.srun --pty -p 
 
 Loading necessary modules
 -------------------------
-mirilias@s0026.mogon:~/work/software/quantum_espresso/qe-devel/build_gpu/.ml load devel/CMake/3.21.1 mpi/impi/2021.5.1-intel-compilers-2022.0.2  system/CUDA/11.4.2 compiler/PGI/20.4-GCC-8.3.0  compiler/NVHPC/21.7   numlib/imkl/2022.0.2
+mirilias@s0026.mogon:~/work/software/quantum_espresso/qe-devel/build_gpu/.ml load devel/CMake/3.21.1     system/CUDA/11.4.2 compiler/PGI/20.4-GCC-8.3.0  compiler/NVHPC/21.7   numlib/imkl/2022.0.2
 
 mirilias@s0014.mogon:~/work/software/quantum_espresso/qe-devel/build_gpu/.ml
 

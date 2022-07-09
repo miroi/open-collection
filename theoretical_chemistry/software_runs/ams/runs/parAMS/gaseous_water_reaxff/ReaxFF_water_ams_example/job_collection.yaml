@@ -1,0 +1,27 @@
+---
+Engines: job_collection_engines.yaml
+dtype: JobCollection
+version: '2022.101'
+---
+ID: 'H2O_pesscan'
+ReferenceEngineID: adf;;xc;;gga;PBE;
+AMSInput: |
+   geometryoptimization
+     MaxIterations 30
+     PretendConverged Yes
+   End
+   pesscan
+     scancoordinate
+       distance 1 2 0.85 1.35
+       npoints 11
+     End
+   End
+   system
+     Atoms
+                 O      -0.0008161597       0.3663784285      -0.0000000000 
+                 H      -0.8123162006      -0.1834821079      -0.0000000000 
+                 H       0.8131323603      -0.1828963206       0.0000000000 
+     End
+   End
+   task pesscan
+...

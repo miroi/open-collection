@@ -100,4 +100,4 @@ mirilias@s0021.mogon:~/work/software/quantum_espresso/qe-devel/build_gpu/.ldd bi
         libstdc++.so.6 => /cluster/easybuild/broadwell/software/compiler/GCCcore/8.3.0/lib64/libstdc++.so.6 (0x00007f4870805000)
 mirilias@s0021.mogon:~/work/software/quantum_espresso/qe-devel/build_gpu/.
 
-
+does not work !!! see https://gitlab.com/QEF/q-e/-/issues/514

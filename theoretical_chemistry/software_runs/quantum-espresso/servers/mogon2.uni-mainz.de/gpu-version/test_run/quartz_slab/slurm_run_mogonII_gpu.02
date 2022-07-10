@@ -3,13 +3,14 @@
 #SBATCH --job-name=QuartzV
 #SBATCH -A m2_jgu-gpu-qe-calcs
 
-#SBATCH --nodes=14
-#SBATCH --ntasks-per-node=24
-
-##SBATCH --mem=12gb
-
 #SBATCH --partition=m2_gpu
 #SBATCH --gres=gpu:6
+
+#SBATCH -N 12
+#SBATCH -n 6
+#SBATCH -c 8
+
+##SBATCH --mem=12gb
 
 ##SBATCH --time=1-00:10:00
 ##SBATCH --time=0-12:00:00

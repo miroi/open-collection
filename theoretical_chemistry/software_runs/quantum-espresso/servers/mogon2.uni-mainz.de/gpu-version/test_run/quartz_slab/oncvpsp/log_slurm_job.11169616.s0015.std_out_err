@@ -1,0 +1,741 @@
+
+Job user is SLURM_JOB_USER=mirilias
+Job partition is: 
+User's job is SLURM_JOB_NAME=QuartzV has assigned ID SLURM_JOBID=11169616
+This job was submitted from the computer SLURM_SUBMIT_HOST=login22.mogon
+and from the home directory: SLURM_SUBMIT_DIR=/gpfs/fs1/home/mirilias/work/projects/open-collection/theoretical_chemistry/software_runs/quantum-espresso/servers/mogon2.uni-mainz.de/gpu-version/test_run/quartz_slab/oncvpsp
+It is running on the cluster compute node: SLURM_CLUSTER_NAME=mogon2
+Job  is employing SLURM_JOB_NUM_NODES=1 node/nodes:
+SLURM_JOB_NODELIST=s0015
+The job requests SLURM_CPUS_ON_NODE=48 CPU per task.
+
+The following have been reloaded with a version change:
+  1) compiler/GCCcore/11.2.0 => compiler/GCCcore/8.3.0
+
+List of loaded modules:
+
+Currently Loaded Modules:
+  1) devel/CMake/3.21.1
+  2) compiler/intel-compilers/2022.0.2
+  3) lib/UCX/1.11.2-GCCcore-11.2.0
+  4) mpi/impi/2021.5.1-intel-compilers-2022.0.2
+  5) system/CUDA/11.4.2
+  6) compiler/GCCcore/8.3.0
+  7) compiler/PGI/20.4-GCC-8.3.0
+  8) system/CUDAcore/11.2.2
+  9) compiler/NVHPC/21.7
+ 10) numlib/imkl/2022.0.2
+
+Running on host s0015.mogon
+Time is Mon Jul 11 09:30:23 CEST 2022 
+
+
+My PATH=/cluster/easybuild/broadwell/software/NVHPC/21.7:/cluster/easybuild/broadwell/software/NVHPC/21.7/Linux_x86_64/21.7/compilers/bin:/cluster/easybuild/broadwell/software/CUDAcore/11.2.2:/cluster/easybuild/broadwell/software/CUDAcore/11.2.2/nvvm/bin:/cluster/easybuild/broadwell/software/CUDAcore/11.2.2/bin:/cluster/easybuild/broadwell/software/PGI/20.4-GCC-8.3.0:/cluster/easybuild/broadwell/software/PGI/20.4-GCC-8.3.0/linux86-64/20.4/bin:/cluster/easybuild/broadwell/software/compiler/GCCcore/8.3.0/bin:/cluster/easybuild/broadwell/software/CUDA/11.4.2/nvvm/bin:/cluster/easybuild/broadwell/software/CUDA/11.4.2/bin:/cluster/easybuild/broadwell/software/impi/2021.5.1-intel-compilers-2022.0.2/mpi/2021.5.1/libfabric/bin:/cluster/easybuild/broadwell/software/impi/2021.5.1-intel-compilers-2022.0.2/mpi/2021.5.1/bin:/cluster/easybuild/broadwell/software/UCX/1.11.2-GCCcore-11.2.0/bin:/cluster/easybuild/broadwell/software/intel-compilers/2022.0.2/compiler/2022.0.2/linux/bin/intel64:/cluster/easybuild/broadwell/software/intel-compilers/2022.0.2/compiler/2022.0.2/linux/bin:/cluster/easybuild/broadwell/software/CMake/3.21.1/bin:/usr/lpp/mmfs/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/var/cfengine/bin:.
+
+My LD_LIBRARY_PATH=/cluster/easybuild/broadwell/software/imkl/2022.0.2/mkl/2022.0.2/lib/intel64:/cluster/easybuild/broadwell/software/imkl/2022.0.2/compiler/2022.0.2/linux/compiler/lib/intel64_lin:/cluster/easybuild/broadwell/software/NVHPC/21.7/Linux_x86_64/21.7/compilers/lib:/cluster/easybuild/broadwell/software/CUDAcore/11.2.2/nvvm/lib64:/cluster/easybuild/broadwell/software/CUDAcore/11.2.2/extras/CUPTI/lib64:/cluster/easybuild/broadwell/software/CUDAcore/11.2.2/lib:/cluster/easybuild/broadwell/software/PGI/20.4-GCC-8.3.0/linux86-64/20.4/lib:/cluster/easybuild/broadwell/software/compiler/GCCcore/8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0:/cluster/easybuild/broadwell/software/compiler/GCCcore/8.3.0/lib64:/cluster/easybuild/broadwell/software/compiler/GCCcore/8.3.0/lib:/cluster/easybuild/broadwell/software/CUDA/11.4.2/nvvm/lib64:/cluster/easybuild/broadwell/software/CUDA/11.4.2/extras/CUPTI/lib64:/cluster/easybuild/broadwell/software/CUDA/11.4.2/lib:/cluster/easybuild/broadwell/software/impi/2021.5.1-intel-compilers-2022.0.2/mpi/2021.5.1/libfabric/lib:/cluster/easybuild/broadwell/software/impi/2021.5.1-intel-compilers-2022.0.2/mpi/2021.5.1/lib/release:/cluster/easybuild/broadwell/software/impi/2021.5.1-intel-compilers-2022.0.2/mpi/2021.5.1/lib:/cluster/easybuild/broadwell/software/UCX/1.11.2-GCCcore-11.2.0/lib:/cluster/easybuild/broadwell/software/intel-compilers/2022.0.2/tbb/2021.5.1/lib/intel64/gcc4.8:/cluster/easybuild/broadwell/software/intel-compilers/2022.0.2/compiler/2022.0.2/linux/compiler/lib/intel64_lin:/cluster/easybuild/broadwell/software/intel-compilers/2022.0.2/compiler/2022.0.2/linux/lib/x64:/cluster/easybuild/broadwell/software/intel-compilers/2022.0.2/compiler/2022.0.2/linux/lib
+
+The node's CPU model name	: Intel(R) Xeon(R) CPU E5-2650 v4 @ 2.20GHz
+This node has 48 CPUs available.
+(i) This node has SLURM_CPUS_ON_NODE=48 CPUs allocated for SLURM calculations.
+
+ The TOTAL memory at the node (in GB); free -t -g
+              total        used        free      shared  buff/cache   available
+Mem:            125           2         122           0           0         119
+Swap:            48           0          48
+Total:          174           2         171
+
+
+ Dependencies of QE main executable, ldd /home/mirilias/work/software/quantum_espresso/qe-7.1/build_impi_gpu/bin/pw.x:
+	linux-vdso.so.1 (0x00007fff9771d000)
+	libmpifort.so.12 => /cluster/easybuild/broadwell/software/impi/2021.5.1-intel-compilers-2022.0.2/mpi/2021.5.1/lib/libmpifort.so.12 (0x00007f4aa1835000)
+	libmpi.so.12 => /cluster/easybuild/broadwell/software/impi/2021.5.1-intel-compilers-2022.0.2/mpi/2021.5.1/lib/release/libmpi.so.12 (0x00007f4aa0000000)
+	librt.so.1 => /usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/librt.so.1 (0x00007f4a9fdf8000)
+	libpthread.so.0 => /usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/libpthread.so.0 (0x00007f4a9fbd8000)
+	libdl.so.2 => /usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/libdl.so.2 (0x00007f4a9f9d4000)
+	libacchost.so => /cluster/easybuild/broadwell/software/NVHPC/21.7/Linux_x86_64/21.7/compilers/lib/libacchost.so (0x00007f4a9f764000)
+	libmkl_intel_lp64.so.2 => /cluster/easybuild/broadwell/software/imkl/2022.0.2/mkl/2022.0.2/lib/intel64/libmkl_intel_lp64.so.2 (0x00007f4a9e8c4000)
+	libmkl_intel_thread.so.2 => /cluster/easybuild/broadwell/software/imkl/2022.0.2/mkl/2022.0.2/lib/intel64/libmkl_intel_thread.so.2 (0x00007f4a9b162000)
+	libmkl_core.so.2 => /cluster/easybuild/broadwell/software/imkl/2022.0.2/mkl/2022.0.2/lib/intel64/libmkl_core.so.2 (0x00007f4a96dad000)
+	libiomp5.so => /cluster/easybuild/broadwell/software/imkl/2022.0.2/compiler/2022.0.2/linux/compiler/lib/intel64_lin/libiomp5.so (0x00007f4a9698c000)
+	libm.so.6 => /usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/libm.so.6 (0x00007f4a9660a000)
+	libcufft.so.10 => /cluster/easybuild/broadwell/software/CUDAcore/11.2.2/lib64/libcufft.so.10 (0x00007f4a8ae5b000)
+	libcudaforwraprand.so => /cluster/easybuild/broadwell/software/NVHPC/21.7/Linux_x86_64/21.7/compilers/lib/libcudaforwraprand.so (0x00007f4a8ac58000)
+	libcurand.so.10 => /cluster/easybuild/broadwell/software/CUDAcore/11.2.2/lib64/libcurand.so.10 (0x00007f4a854f1000)
+	libcusolver.so.11 => /cluster/easybuild/broadwell/software/CUDAcore/11.2.2/lib64/libcusolver.so.11 (0x00007f4a6d43b000)
+	libcublas.so.11 => /cluster/easybuild/broadwell/software/CUDAcore/11.2.2/lib64/libcublas.so.11 (0x00007f4a66478000)
+	libcublasLt.so.11 => /cluster/easybuild/broadwell/software/CUDAcore/11.2.2/lib64/libcublasLt.so.11 (0x00007f4a5a897000)
+	libcudaforwrapblas.so => /cluster/easybuild/broadwell/software/NVHPC/21.7/Linux_x86_64/21.7/compilers/lib/libcudaforwrapblas.so (0x00007f4a5a65a000)
+	libcudart.so.11.0 => /cluster/easybuild/broadwell/software/CUDAcore/11.2.2/lib64/libcudart.so.11.0 (0x00007f4a5a3cb000)
+	libcudafor_110.so => /cluster/easybuild/broadwell/software/NVHPC/21.7/Linux_x86_64/21.7/compilers/lib/libcudafor_110.so (0x00007f4a56818000)
+	libcudafor.so => /cluster/easybuild/broadwell/software/NVHPC/21.7/Linux_x86_64/21.7/compilers/lib/libcudafor.so (0x00007f4a565fb000)
+	libaccdevaux.so => /cluster/easybuild/broadwell/software/NVHPC/21.7/Linux_x86_64/21.7/compilers/lib/libaccdevaux.so (0x00007f4a563ef000)
+	libacccuda.so => /cluster/easybuild/broadwell/software/NVHPC/21.7/Linux_x86_64/21.7/compilers/lib/libacccuda.so (0x00007f4a560bd000)
+	libcudadevice.so => /cluster/easybuild/broadwell/software/NVHPC/21.7/Linux_x86_64/21.7/compilers/lib/libcudadevice.so (0x00007f4a55eaa000)
+	libcudafor2.so => /cluster/easybuild/broadwell/software/NVHPC/21.7/Linux_x86_64/21.7/compilers/lib/libcudafor2.so (0x00007f4a55ca7000)
+	libnvf.so => /cluster/easybuild/broadwell/software/NVHPC/21.7/Linux_x86_64/21.7/compilers/lib/libnvf.so (0x00007f4a5567d000)
+	libnvomp.so => /cluster/easybuild/broadwell/software/NVHPC/21.7/Linux_x86_64/21.7/compilers/lib/libnvomp.so (0x00007f4a54a03000)
+	libnvcpumath.so => /cluster/easybuild/broadwell/software/NVHPC/21.7/Linux_x86_64/21.7/compilers/lib/libnvcpumath.so (0x00007f4a545ce000)
+	libnvc.so => /cluster/easybuild/broadwell/software/NVHPC/21.7/Linux_x86_64/21.7/compilers/lib/libnvc.so (0x00007f4a54376000)
+	libc.so.6 => /usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/libc.so.6 (0x00007f4a53fb1000)
+	libgcc_s.so.1 => /usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/libgcc_s.so.1 (0x00007f4a53d99000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f4aa1be9000)
+	libstdc++.so.6 => /cluster/easybuild/broadwell/software/compiler/GCCcore/8.3.0/lib64/libstdc++.so.6 (0x00007f4aa1c76000)
+
+Python -v :Python 2.7.18
+mpirun ? which mpirun  = /cluster/easybuild/broadwell/software/impi/2021.5.1-intel-compilers-2022.0.2/mpi/2021.5.1/bin/mpirun
+mpirun --version Intel(R) MPI Library for Linux* OS, Version 2021.5 Build 20211102 (id: 9279b7d62)
+Copyright 2003-2021, Intel Corporation.
+
+ Current directory where this SLURM job is running /gpfs/fs1/home/mirilias/work/projects/open-collection/theoretical_chemistry/software_runs/quantum-espresso/servers/mogon2.uni-mainz.de/gpu-version/test_run/quartz_slab/oncvpsp
+ It has the disk space of (df -h) :
+Filesystem                 Size  Used Avail Use% Mounted on
+10.80.0.45:/gpfs/fs1/home  120T   41T   79T  35% /gpfs/fs1/home
+
+Out of memory allocating 1440266752 bytes of device memory
+Failing in Thread:2
+Out of memory allocating 1441739776 bytes of device memory
+Failing in Thread:1
+Out of memory allocating 1443353088 bytes of device memory
+Failing in Thread:1
+Out of memory allocating 1443914240 bytes of device memory
+Failing in Thread:1
+Out of memory allocating 1439144448 bytes of device memory
+Failing in Thread:1
+Out of memory allocating 1442721792 bytes of device memory
+Failing in Thread:1
+Out of memory allocating 1441950208 bytes of device memory
+Failing in Thread:1
+Out of memory allocating 1440617472 bytes of device memory
+Failing in Thread:2
+Out of memory allocating 1439074304 bytes of device memory
+Failing in Thread:1
+Out of memory allocating 1439565312 bytes of device memory
+Failing in Thread:1
+Out of memory allocating 1444685824 bytes of device memory
+Failing in Thread:5
+Out of memory allocating 1444966400 bytes of device memory
+Failing in Thread:1
+total/free CUDA memory: 11721572352/937885696
+Present table dump for device[5]: NVIDIA Tesla GPU 4, compute capability 6.1, threadid=2
+host:0x496cf40 device:0x7fd75c405000 size:1752 presentcount:0+1 line:-1 name:_xdm_module_21
+host:0x49b1c80 device:0x7fd75c404500 size:184 presentcount:0+1 line:-1 name:_cell_base_21
+host:0x4bdf500 device:0x7fd75c405a00 size:160 presentcount:0+1 line:-1 name:_vdw_df_21
+host:0x4bdf900 device:0x7fd75c405b00 size:160 presentcount:0+1 line:-1 name:_rvv10_21
+host:0x4da7020 device:0x7fd75c406300 size:240 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_mi
+host:0x4da8f18 device:0x7fd75c406400 size:4 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_beeforder
+host:0x4e19554 device:0x7fd75c406500 size:4 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_beeftype
+host:0x4e26580 device:0x7fd75c404e00 size:432 presentcount:0+1 line:-1 name:_exx_16
+host:0x519d3c0 device:0x7fd75c402500 size:336 presentcount:0+1 line:-1 name:_klist_16
+host:0x519d590 device:0x7fd74b5ff600 size:176 presentcount:0+1 line:93 name:descriptor
+host:0x51ac140 device:0x7fd75c404900 size:528 presentcount:0+1 line:-1 name:_wvfct_gpum_16
+host:0x51ac3c0 device:0x7fd75c405700 size:192 presentcount:0+1 line:-1 name:_scf_gpum_16
+host:0x51ad940 device:0x7fd75c404c00 size:192 presentcount:0+1 line:-1 name:_exx_band_16
+host:0x51adec0 device:0x7fd75c404300 size:384 presentcount:0+1 line:-1 name:_g_psi_mod_gpum_16
+host:0x51afb80 device:0x7fd75c405900 size:144 presentcount:0+1 line:-1 name:_electrons_base_16
+host:0x51afd80 device:0x7fd75c405800 size:144 presentcount:0+1 line:-1 name:_gvecw_16
+host:0x51b0f00 device:0x7fd75c404d00 size:144 presentcount:0+1 line:-1 name:_mp_exx_16
+host:0x51b23c0 device:0x7fd75c402700 size:1392 presentcount:0+1 line:-1 name:_gvect_16
+host:0x51b2b00 device:0x7fd767de1400 size:176 presentcount:0+1 line:123 name:descriptor
+host:0x51b2bc0 device:0x7fd767de1200 size:176 presentcount:0+1 line:123 name:descriptor
+host:0x51b2dd0 device:0x7fd74b5ff000 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b2e90 device:0x7fd74b5ff200 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b2f50 device:0x7fd74b5ff400 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b5f40 device:0x7fd75c404000 size:576 presentcount:0+1 line:-1 name:_wavefunctions_16
+host:0x5ebb300 device:0x7fd75c404600 size:528 presentcount:0+1 line:-1 name:_wavefunctions_gpum_16
+host:0x5ec0640 device:0x7fd75c402d00 size:336 presentcount:0+1 line:-1 name:_upf_spinorb_16
+host:0x5f23980 device:0x7fd75c402f00 size:4176 presentcount:0+1 line:-1 name:_uspp_16
+host:0x5f30f00 device:0x7fd75c405c00 size:768 presentcount:0+1 line:-1 name:_uspp_data_16
+host:0x606e500 device:0x7fd75c405f00 size:288 presentcount:0+1 line:-1 name:_fft_buffers_16
+host:0x6071500 device:0x7fd75c406100 size:288 presentcount:0+1 line:-1 name:_data_buffer_16
+host:0x8113bb0 device:0x7fd74a200000 size:3940800 presentcount:0+1 line:123 name:g
+host:0x84d63d0 device:0x7fd74a000000 size:1970400 presentcount:0+1 line:123 name:mill
+host:0xb548730 device:0x7fd748a00000 size:2053120 presentcount:0+1 line:43 name:eigts1
+host:0xb741940 device:0x7fd748c00000 size:2309120 presentcount:0+1 line:43 name:eigts2
+host:0xb979560 device:0x7fd749000000 size:3691520 presentcount:0+1 line:43 name:eigts3
+host:0x7fd74b7a9a00 device:0x7fd75df9c800 size:328528 presentcount:0+1 line:93 name:igk_k
+allocated block device:0x7fd748a00000 size:2053120 thread:2
+allocated block device:0x7fd748c00000 size:2309120 thread:2
+allocated block device:0x7fd749000000 size:3691520 thread:2
+allocated block device:0x7fd74a000000 size:1970688 thread:2
+allocated block device:0x7fd74a200000 size:3940864 thread:2
+allocated block device:0x7fd74b5ff000 size:512 thread:2
+allocated block device:0x7fd74b5ff200 size:512 thread:2
+allocated block device:0x7fd74b5ff400 size:512 thread:2
+allocated block device:0x7fd74b5ff600 size:512 thread:2
+allocated block device:0x7fd75df9c800 size:328704 thread:2
+allocated block device:0x7fd767de1200 size:512 thread:2
+allocated block device:0x7fd767de1400 size:512 thread:2
+call to cuMemAlloc returned error 2: Out of memory
+
+total/free CUDA memory: 11721572352/937885696
+Present table dump for device[5]: NVIDIA Tesla GPU 4, compute capability 6.1, threadid=1
+host:0x496cf40 device:0x7ff130405000 size:1752 presentcount:0+1 line:-1 name:_xdm_module_21
+host:0x49b1c80 device:0x7ff130404500 size:184 presentcount:0+1 line:-1 name:_cell_base_21
+host:0x4bdf500 device:0x7ff130405a00 size:160 presentcount:0+1 line:-1 name:_vdw_df_21
+host:0x4bdf900 device:0x7ff130405b00 size:160 presentcount:0+1 line:-1 name:_rvv10_21
+host:0x4da7020 device:0x7ff130406300 size:240 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_mi
+host:0x4da8f18 device:0x7ff130406400 size:4 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_beeforder
+host:0x4e19554 device:0x7ff130406500 size:4 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_beeftype
+host:0x4e26580 device:0x7ff130404e00 size:432 presentcount:0+1 line:-1 name:_exx_16
+host:0x519d3c0 device:0x7ff130402500 size:336 presentcount:0+1 line:-1 name:_klist_16
+host:0x519d590 device:0x7ff13bf40000 size:176 presentcount:0+1 line:93 name:descriptor
+host:0x51ac140 device:0x7ff130404900 size:528 presentcount:0+1 line:-1 name:_wvfct_gpum_16
+host:0x51ac3c0 device:0x7ff130405700 size:192 presentcount:0+1 line:-1 name:_scf_gpum_16
+host:0x51ad940 device:0x7ff130404c00 size:192 presentcount:0+1 line:-1 name:_exx_band_16
+host:0x51adec0 device:0x7ff130404300 size:384 presentcount:0+1 line:-1 name:_g_psi_mod_gpum_16
+host:0x51afb80 device:0x7ff130405900 size:144 presentcount:0+1 line:-1 name:_electrons_base_16
+host:0x51afd80 device:0x7ff130405800 size:144 presentcount:0+1 line:-1 name:_gvecw_16
+host:0x51b0f00 device:0x7ff130404d00 size:144 presentcount:0+1 line:-1 name:_mp_exx_16
+host:0x51b23c0 device:0x7ff130402700 size:1392 presentcount:0+1 line:-1 name:_gvect_16
+host:0x51b2b00 device:0x7ff13bde1400 size:176 presentcount:0+1 line:123 name:descriptor
+host:0x51b2bc0 device:0x7ff13bde1200 size:176 presentcount:0+1 line:123 name:descriptor
+host:0x51b2dd0 device:0x7ff13bf3fa00 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b2e90 device:0x7ff13bf3fc00 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b2f50 device:0x7ff13bf3fe00 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b5f40 device:0x7ff130404000 size:576 presentcount:0+1 line:-1 name:_wavefunctions_16
+host:0x5ebb300 device:0x7ff130404600 size:528 presentcount:0+1 line:-1 name:_wavefunctions_gpum_16
+host:0x5ec0640 device:0x7ff130402d00 size:336 presentcount:0+1 line:-1 name:_upf_spinorb_16
+host:0x5f23980 device:0x7ff130402f00 size:4176 presentcount:0+1 line:-1 name:_uspp_16
+host:0x5f30f00 device:0x7ff130405c00 size:768 presentcount:0+1 line:-1 name:_uspp_data_16
+host:0x606e500 device:0x7ff130405f00 size:288 presentcount:0+1 line:-1 name:_fft_buffers_16
+host:0x6071500 device:0x7ff130406100 size:288 presentcount:0+1 line:-1 name:_data_buffer_16
+host:0xcada9e0 device:0x7ff120200000 size:3940776 presentcount:0+1 line:123 name:g
+host:0xce9d1e0 device:0x7ff120000000 size:1970388 presentcount:0+1 line:123 name:mill
+host:0x1144ded0 device:0x7ff11ea00000 size:2053120 presentcount:0+1 line:43 name:eigts1
+host:0x116470e0 device:0x7ff11ec00000 size:2309120 presentcount:0+1 line:43 name:eigts2
+host:0x1187ed00 device:0x7ff11f000000 size:3691520 presentcount:0+1 line:43 name:eigts3
+host:0x7ff1217a9a00 device:0x7ff131f9c800 size:328864 presentcount:0+1 line:93 name:igk_k
+allocated block device:0x7ff11ea00000 size:2053120 thread:1
+allocated block device:0x7ff11ec00000 size:2309120 thread:1
+allocated block device:0x7ff11f000000 size:3691520 thread:1
+allocated block device:0x7ff120000000 size:1970688 thread:1
+allocated block device:0x7ff120200000 size:3940864 thread:1
+allocated block device:0x7ff131f9c800 size:329216 thread:1
+allocated block device:0x7ff13bde1200 size:512 thread:1
+total/free CUDA memory: 11721572352/944177152
+Present table dump for device[4]: NVIDIA Tesla GPU 3, compute capability 6.1, threadid=1
+host:0x496cf40 device:0x7f152c405000 size:1752 presentcount:0+1 line:-1 name:_xdm_module_21
+host:0x49b1c80 device:0x7f152c404500 size:184 presentcount:0+1 line:-1 name:_cell_base_21
+host:0x4bdf500 device:0x7f152c405a00 size:160 presentcount:0+1 line:-1 name:_vdw_df_21
+host:0x4bdf900 device:0x7f152c405b00 size:160 presentcount:0+1 line:-1 name:_rvv10_21
+host:0x4da7020 device:0x7f152c406300 size:240 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_mi
+allocated block device:0x7ff13bde1400 size:512 thread:1
+allocated block device:0x7ff13bf3fa00 size:512 thread:1
+allocated block device:0x7ff13bf3fc00 size:512 thread:1
+allocated block device:0x7ff13bf3fe00 size:512 thread:1
+allocated block device:0x7ff13bf40000 size:512 thread:1
+total/free CUDA memory: 11721572352/944177152
+Present table dump for device[4]: NVIDIA Tesla GPU 3, compute capability 6.1, threadid=1
+host:0x496cf40 device:0x7f6c00405000 size:1752 presentcount:0+1 line:-1 name:_xdm_module_21
+host:0x49b1c80 device:0x7f6c00404500 size:184 presentcount:0+1 line:-1 name:_cell_base_21
+host:0x4bdf500 device:0x7f6c00405a00 size:160 presentcount:0+1 line:-1 name:_vdw_df_21
+host:0x4bdf900 device:0x7f6c00405b00 size:160 presentcount:0+1 line:-1 name:_rvv10_21
+host:0x4da7020 device:0x7f6c00406300 size:240 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_mi
+host:0x4da8f18 device:0x7f6c00406400 size:4 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_beeforder
+host:0x4e19554 device:0x7f6c00406500 size:4 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_beeftype
+host:0x4e26580 device:0x7f6c00404e00 size:432 presentcount:0+1 line:-1 name:_exx_16
+host:0x519d3c0 device:0x7f6c00402500 size:336 presentcount:0+1 line:-1 name:_klist_16
+host:0x519d590 device:0x7f6c0bdff600 size:176 presentcount:0+1 line:93 name:descriptor
+host:0x51ac140 device:0x7f6c00404900 size:528 presentcount:0+1 line:-1 name:_wvfct_gpum_16
+host:0x51ac3c0 device:0x7f6c00405700 size:192 presentcount:0+1 line:-1 name:_scf_gpum_16
+host:0x51ad940 device:0x7f6c00404c00 size:192 presentcount:0+1 line:-1 name:_exx_band_16
+host:0x51adec0 device:0x7f6c00404300 size:384total/free CUDA memory: 11721572352/937885696
+Present table dump for device[6]: NVIDIA Tesla GPU 5, compute capability 6.1, threadid=1
+host:0x496cf40 device:0x7f6ea0405000 size:1752 presentcount:0+1 line:-1 name:_xdm_module_21
+host:0x49b1c80 device:0x7f6ea0404500 size:184 presentcount:0+1 line:-1 name:_cell_base_21
+host:0x4bdf500 device:0x7f6ea0405a00 size:160 presentcount:0+1 line:-1 name:_vdw_df_21
+host:0x4bdf900 device:0x7f6ea0405b00 size:160 presentcount:0+1 line:-1 name:_rvv10_21
+host:0x4da7020 device:0x7f6ea0406300 size:240 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_mi
+host:0x4da8f18 device:0x7f6ea0406400 size:4 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_beeforder
+host:0x4e19554 device:0x7f6ea0406500 size:4 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_beeftype
+host:0x4e26580 device:0x7f6ea0404e00 size:432 presentcount:0+1 line:-1 name:_exx_16
+host:0x519d3c0 device:0x7f6ea0402500 size:336 presentcount:0+1 line:-1 name:_klist_16
+host:0x519d590 device:0x7f6eabf40000 size:176 presentcount:0+1 line:93 name:descriptor
+host:0x51ac140 device:0x7f6ea0404900 size:528 presentcount:0+1 line:-1 name:_wvfct_gpum_16
+host:0x51ac3c0 device:0x7f6ea0405700 size:192 presentcount:0+1 line:-1 name:_scf_gpum_16
+host:0x51ad940 device:0x7f6ea0404c00 size:192 presentcount:0+1 line:-1 name:_exx_band_16
+host:0x51adec0 device:0x7f6ea0404300 size:384 presentcount:0+1 line:-1 name:_g_psi_mod_gpum_16
+host:0x51afb80 device:0x7f6ea0405900 size:144 presentcount:0+1 line:-1 name:_electrons_base_16
+host:0x51afd80 device:0x7f6ea0405800 size:144 presentcount:0+1 line:-1 name:_gvecw_16
+host:0x51b0f00 device:0x7f6ea0404d00 size:144 presentcount:0+1 line:-1 name:_mp_exx_16
+host:0x51b23c0 device:0x7f6ea0402700 size:1392 presentcount:0+1 line:-1 name:_gvect_16
+host:0x51b2b00 device:0x7f6eabde1400 size:176 presentcount:0+1 line:123 name:descriptor
+host:0x51b2bc0 device:0x7f6eabde1200 size:176 presentcount:0+1 line:123 name:descriptor
+host:0x4da8f18 device:0x7f152c406400 size:4 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_beeforder
+host:0x4e19554 device:0x7f152c406500 size:4 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_beeftype
+host:0x4e26580 device:0x7f152c404e00 size:432 presentcount:0+1 line:-1 name:_exx_16
+host:0x519d3c0 device:0x7f152c402500 size:336 presentcount:0+1 line:-1 name:_klist_16
+host:0x519d590 device:0x7f1537dff600 size:176 presentcount:0+1 line:93 name:descriptor
+host:0x51ac140 device:0x7f152c404900 size:528 presentcount:0+1 line:-1 name:_wvfct_gpum_16
+host:0x51ac3c0 device:0x7f152c405700 size:192 presentcount:0+1 line:-1 name:_scf_gpum_16
+host:0x51ad940 device:0x7f152c404c00 size:192 presentcount:0+1 line:-1 name:_exx_band_16
+host:0x51adec0 device:0x7f152c404300 size:384 presentcount:0+1 line:-1 name:_g_psi_mod_gpum_16
+host:0x51afb80 device:0x7f152c405900 size:144 presentcount:0+1 line:-1 name:_electrons_base_16
+host:0x51afd80 device:0x7f152c405800 size:144 presentcount:0+1 line:-1 name:_gvecw_16
+host:0x51b0f00 device:0x7f152c404d00 size:144 presentcount:0+1 line:-1 name:_mp_exx_16
+host:0x51b23c0 device:0x7f152c402700 size:1392 presentcount:0+1 line:-1 name:_gvect_16
+host:0x51b2b00 device:0x7f1537de1400 size:176 presentcount:0+1 line:123 name:descriptor
+host:0x51b2bc0 device:0x7f1537de1200 size:176 presentcount:0+1 line:123 name:descriptor
+host:0x51b2dd0 device:0x7f1537dff000 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b2e90 device:0x7f1537dff200 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b2f50 device:0x7f1537dff400 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b5f40 device:0x7f152c404000 size:576 presentcount:0+1 line:-1 name:_wavefunctions_16
+host:0x5ebb300 device:0x7f152c404600 size:528 presentcount:0+1 line:-1 name:_wavefunctions_gpum_16
+host:0x5ec0640 device:0x7f152c402d00 size:336 presentcount:0+1 line:-1 name:_upf_spinorb_16
+host:0x5f23980 device:0x7f152c402f00 size:4176 presentcount:0+1 line:-1 name:_uspp_16
+host:0x5f30f00 device:0x7f152c405c00 size:768 presentcount:0+1 line:-1 name:_uspp_data_16
+host:0x606e500 device:0x7f152c405f00 size:288 presentcount:0+1 line:-1 name:_fft_buffers_16
+host:0x6071500 device:0x7f152c406100 size:288 presentcount:0+1 line:-1 name:_data_buffer_16
+host:0xd181680 device:0x7f151c200000 size:3940776 presentcount:0+1 line:123 name:g
+host:0xedc6170 device:0x7f151c000000 size:1970388 presentcount:0+1 line:123 name:mill
+host:0x11e39340 device:0x7f151aa00000 size:2053120 presentcount:0+1 line:43 name:eigts1
+total/free CUDA memory: 11721572352/937885696
+Present table dump for device[6]: NVIDIA Tesla GPU 5, compute capability 6.1, threadid=1
+host:0x496cf40 device:0x7f1dce405000 size:1752 presentcount:0+1 line:-1 name:_xdm_module_21
+host:0x49b1c80 device:0x7f1dce404500 size:184 presentcount:0+1 line:-1 name:_cell_base_21
+host:0x4bdf500 device:0x7f1dce405a00 size:160 presentcount:0+1 line:-1 name:_vdw_df_21
+host:0x4bdf900 device:0x7f1dce405b00 size:160 presentcount:0+1 line:-1 name:_rvv10_21
+host:0x4da7020 device:0x7f1dce406300 size:240 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_mi
+host:0x4da8f18 device:0x7f1dce406400 size:4 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_beeforder
+host:0x4e19554 device:0x7f1dce406500 size:4 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_beeftype
+host:0x4e26580 device:0x7f1dce404e00 size:432 presentcount:0+1 line:-1 name:_exx_16
+host:0x519d3c0 device:0x7f1dce402500 size:336 presentcount:0+1 line:-1 name:_klist_16
+host:0x519d590 device:0x7f1e05dff600 size:176 presentcount:0+1 line:93 name:descriptor
+host:0x51ac140 device:0x7f1dce404900 size:528 presentcount:0+1 line:-1 name:_wvfct_gpum_16
+host:0x51ac3c0 device:0x7f1dce405700 size:192 presentcount:0+1 line:-1 name:_scf_gpum_16
+host:0x51ad940 device:0x7f1dce404c00 size:192 presentcount:0+1 line:-1 name:_exx_band_16
+host:0x51adec0 device:0x7f1dce404300 size:384 presentcount:0+1 line:-1 name:_g_psi_mod_gpum_16
+host:0x51afb80 device:0x7f1dce405900 size:144 presentcount:0+1 line:-1 name:_electrons_base_16
+host:0x51afd80 device:0x7f1dce405800 size:144 presentcount:0+1 line:-1 name:_gvecw_16
+host:0x51b0f00 device:0x7f1dce404d00 size:144 presentcount:0+1 line:-1 name:_mp_exx_16
+host:0x51b23c0 device:0x7f1dce402700 size:1392 presentcount:0+1 line:-1 name:_gvect_16
+host:0x51b2b00 device:0x7f1e05de1400 size:176 presentcount:0+1 line:123 name:descriptor
+host:0x51b2bc0 device:0x7f1e05de1200 size:176 presentcount:0+1 line:123 name:descriptor
+host:0x51b2dd0 device:0x7f1e05dff000 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b2e90 device:0x7f1e05dff200 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b2f50 device:0x7f1e05dff400 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b5f40 device:0x7f1dce404000 size:576 presentcount:0+1 line:-1 name:_wavefunctions_16
+host:0x5ebb300 device:0x7f1dce404600 size:528 presentcount:0+1 line:-1 name:_wavefunctions_gpum_16
+host:0x5ec0640 device:0x7f1dce402d00 size:336 presentcount:0+1 line:-1 name:_upf_spinorb_16
+host:0x5f23980 device:0x7f1dce402f00 size:4176 presentcount:0+1 line:-1 name:_uspp_16
+ presentcount:0+1 line:-1 name:_g_psi_mod_gpum_16
+host:0x51afb80 device:0x7f6c00405900 size:144 presentcount:0+1 line:-1 name:_electrons_base_16
+host:0x51afd80 device:0x7f6c00405800 size:144 presentcount:0+1 line:-1 name:_gvecw_16
+host:0x51b0f00 device:0x7f6c00404d00 size:144 presentcount:0+1 line:-1 name:_mp_exx_16
+host:0x51b23c0 device:0x7f6c00402700 size:1392 presentcount:0+1 line:-1 name:_gvect_16
+host:0x51b2b00 device:0x7f6c0bde1400 size:176 presentcount:0+1 line:123 name:descriptor
+host:0x51b2bc0 device:0x7f6c0bde1200 size:176 presentcount:0+1 line:123 name:descriptor
+host:0x51b2dd0 device:0x7f6c0bdff000 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b2e90 device:0x7f6c0bdff200 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b2f50 device:0x7f6c0bdff400 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b5f40 device:0x7f6c00404000 size:576 presentcount:0+1 line:-1 name:_wavefunctions_16
+host:0x5ebb300 device:0x7f6c00404600 size:528 presentcount:0+1 line:-1 name:_wavefunctions_gpum_16
+host:0x5ec0640 device:0x7f6c00402d00 size:336 presentcount:0+1 line:-1 name:_upf_spinorb_16
+host:0x5f23980 device:0x7f6c00402f00 size:4176 presentcount:0+1 line:-1 name:_uspp_16
+host:0x5f30f00 device:0x7f6c00405c00 size:768 presentcount:0+1 line:-1 name:_uspp_data_16
+host:0x606e500 device:0x7f6c00405f00 size:288 presentcount:0+1 line:-1 name:_fft_buffers_16
+host:0x6071500 device:0x7f6c00406100 size:288 presentcount:0+1 line:-1 name:_data_buffer_16
+host:0xc70d630 device:0x7f6bf0200000 size:3940728 presentcount:0+1 line:123 name:g
+host:0xcacfe00 device:0x7f6bf0000000 size:1970364 presentcount:0+1 line:123 name:mill
+host:0x105333f0 device:0x7f6beea00000 size:2053120 presentcount:0+1 line:43 name:eigts1
+host:0x1072c600 device:0x7f6beec00000 size:2309120 presentcount:0+1 line:43 name:eigts2
+host:0x10964220 device:0x7f6bef000000 size:3691520 presentcount:0+1 line:43 name:eigts3
+host:0x7f6bf17a9a00 device:0x7f6c01f9c800 size:329360 presentcount:0+1 line:93 name:igk_k
+allocated block device:0x7f6beea00000 size:2053120 thread:1
+allocated block device:0x7f6beec00000 size:2309120 thread:1
+allocated block device:0x7f6bef000000 size:3691520 thread:1
+allocated block device:0x7f6bf0000000 size:1970688 thread:1
+allocated block device:0x7f6bf0200000 size:3940864 thread:1
+allocated block device:0x7f6c01f9c800 size:329728 thread:1
+allocated block device:0x7f6c0bde1200 size:512 thread:1
+allocated block device:0x7f6c0bde1400 size:512 thread:1
+allocated block device:0x7f6c0bdff000 size:512 thread:1
+allocated block device:0x7f6c0bdff200 size:512 thread:1
+allocated block device:0x7f6c0bdff400 size:512 thread:1
+allocated block device:0x7f6c0bdff600 size:512 thread:1
+host:0x51b2dd0 device:0x7f6eabf3fa00 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b2e90 device:0x7f6eabf3fc00 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b2f50 device:0x7f6eabf3fe00 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b5f40 device:0x7f6ea0404000 size:576 presentcount:0+1 line:-1 name:_wavefunctions_16
+host:0x5ebb300 device:0x7f6ea0404600 size:528 presentcount:0+1 line:-1 name:_wavefunctions_gpum_16
+host:0x5ec0640 device:0x7f6ea0402d00 size:336 presentcount:0+1 line:-1 name:_upf_spinorb_16
+host:0x5f23980 device:0x7f6ea0402f00 size:4176 presentcount:0+1 line:-1 name:_uspp_16
+host:0x5f30f00 device:0x7f6ea0405c00 size:768 presentcount:0+1 line:-1 name:_uspp_data_16
+host:0x606e500 device:0x7f6ea0405f00 size:288 presentcount:0+1 line:-1 name:_fft_buffers_16
+host:0x6071500 device:0x7f6ea0406100 size:288 presentcount:0+1 line:-1 name:_data_buffer_16
+host:0xccad2f0 device:0x7f6e94200000 size:3940824 presentcount:0+1 line:123 name:g
+host:0xd06fb20 device:0x7f6e94000000 size:1970412 presentcount:0+1 line:123 name:mill
+host:0x10814f80 device:0x7f6e92a00000 size:2053120 presentcount:0+1 line:43 name:eigts1
+host:0x10a0e190 device:0x7f6e92c00000 size:2309120 presentcount:0+1 line:43 name:eigts2
+host:0x10c45db0 device:0x7f6e93000000 size:3691520 presentcount:0+1 line:43 name:eigts3
+host:0x7f6e957a9a00 device:0x7f6ea1f9c800 size:329088 presentcount:0+1 line:93 name:igk_k
+allocated block device:0x7f6e92a00000 size:2053120 thread:1
+allocated block device:0x7f6e92c00000 size:2309120 thread:1
+allocated block device:0x7f6e93000000 size:3691520 thread:1
+allocated block device:0x7f6e94000000 size:1970688 thread:1
+allocated block device:0x7f6e94200000 size:3940864 thread:1
+allocated block device:0x7f6ea1f9c800 size:329216 thread:1
+allocated block device:0x7f6eabde1200 size:512 thread:1
+allocated block device:0x7f6eabde1400 size:512 thread:1
+allocated block device:0x7f6eabf3fa00 size:512 thread:1
+allocated block device:0x7f6eabf3fc00 size:512 thread:1
+allocated block device:0x7f6eabf3fe00 size:512 thread:1
+allocated block device:0x7f6eabf40000 size:512 thread:1
+host:0x12032550 device:0x7f151ac00000 size:2309120 presentcount:0+1 line:43 name:eigts2
+host:0x1226a170 device:0x7f151b000000 size:3691520 presentcount:0+1 line:43 name:eigts3
+host:0x7f151d7a9a00 device:0x7f152df9c800 size:329232 presentcount:0+1 line:93 name:igk_k
+allocated block device:0x7f151aa00000 size:2053120 thread:1
+allocated block device:0x7f151ac00000 size:2309120 thread:1
+allocated block device:0x7f151b000000 size:3691520 thread:1
+allocated block device:0x7f151c000000 size:1970688 thread:1
+allocated block device:0x7f151c200000 size:3940864 thread:1
+allocated block device:0x7f152df9c800 size:329728 thread:1
+allocated block device:0x7f1537de1200 size:512 thread:1
+allocated block device:0x7f1537de1400 size:512 thread:1
+allocated block device:0x7f1537dff000 size:512 thread:1
+allocated block device:0x7f1537dff200 size:512 thread:1
+allocated block device:0x7f1537dff400 size:512 thread:1
+allocated block device:0x7f1537dff600 size:512 thread:1
+call to cuMemAlloc returned error 2: Out of memory
+
+host:0x5f30f00 device:0x7f1dce405c00 size:768 presentcount:0+1 line:-1 name:_uspp_data_16
+host:0x606e500 device:0x7f1dce405f00 size:288 presentcount:0+1 line:-1 name:_fft_buffers_16
+host:0x6071500 device:0x7f1dce406100 size:288 presentcount:0+1 line:-1 name:_data_buffer_16
+host:0xc630340 device:0x7f1dbe200000 size:3940800 presentcount:0+1 line:123 name:g
+host:0xdfd2cb0 device:0x7f1dbe000000 size:1970400 presentcount:0+1 line:123 name:mill
+host:0x10fa4850 device:0x7f1dbca00000 size:2053120 presentcount:0+1 line:43 name:eigts1
+host:0x1119da60 device:0x7f1dbcc00000 size:2309120 presentcount:0+1 line:43 name:eigts2
+host:0x113d5680 device:0x7f1dbd000000 size:3691520 presentcount:0+1 line:43 name:eigts3
+host:0x7f1dbf7a9a00 device:0x7f1dcff9c800 size:328272 presentcount:0+1 line:93 name:igk_k
+allocated block device:0x7f1dbca00000 size:2053120 thread:1
+allocated block device:0x7f1dbcc00000 size:2309120 thread:1
+allocated block device:0x7f1dbd000000 size:3691520 thread:1
+allocated block device:0x7f1dbe000000 size:1970688 thread:1
+allocated block device:0x7f1dbe200000 size:3940864 thread:1
+allocated block device:0x7f1dcff9c800 size:328704 thread:1
+allocated block device:0x7f1e05de1200 size:512 thread:1
+allocated block device:0x7f1e05de1400 size:512 thread:1
+allocated block device:0x7f1e05dff000 size:512 thread:1
+allocated block device:0x7f1e05dff200 size:512 thread:1
+allocated block device:0x7f1e05dff400 size:512 thread:1
+allocated block device:0x7f1e05dff600 size:512 thread:1
+total/free CUDA memory: 11721572352/933691392
+Present table dump for device[2]: NVIDIA Tesla GPU 1, compute capability 6.1, threadid=1
+host:0x496cf40 device:0x7f228a405000 size:1752 presentcount:0+1 line:-1 name:_xdm_module_21
+host:0x49b1c80 device:0x7f228a404500 size:184 presentcount:0+1 line:-1 name:_cell_base_21
+host:0x4bdf500 device:0x7f228a405a00 size:160 presentcount:0+1 line:-1 name:_vdw_df_21
+host:0x4bdf900 device:0x7f228a405b00 size:160 presentcount:0+1 line:-1 name:_rvv10_21
+host:0x4da7020 device:0x7f228a406300 size:240 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_mi
+host:0x4da8f18 device:0x7f228a406400 size:4 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_beeforder
+host:0x4e19554 device:0x7f228a406500 size:4 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_beeftype
+host:0x4e26580 device:0x7f228a404e00 size:432 presentcount:0+1 line:-1 name:_exx_16
+host:0x519d3c0 device:0x7f228a402500 size:336 presentcount:0+1 line:-1 name:_klist_16
+host:0x519d590 device:0x7f227d5ff400 size:176 presentcount:0+1 line:93 name:descriptor
+host:0x51ac140 device:0x7f228a404900 size:528 presentcount:0+1 line:-1 name:_wvfct_gpum_16
+host:0x51ac3c0 device:0x7f228a405700 size:192 presentcount:0+1 line:-1 name:_scf_gpum_16
+host:0x51ad940 device:0x7f228a404c00 size:192 presentcount:0+1 line:-1 name:_exx_band_16
+host:0x51adec0 device:0x7f228a404300 size:384 presentcount:0+1 line:-1 name:_g_psi_mod_gpum_16
+host:0x51afb80 device:0x7f228a405900 size:144 presentcount:0+1 line:-1 name:_electrons_base_16
+host:0x51afd80 device:0x7f228a405800 size:144 presentcount:0+1 line:-1 name:_gvecw_16
+host:0x51b0f00 device:0x7f228a404d00 size:144 presentcount:0+1 line:-1 name:_mp_exx_16
+host:0x51b23c0 device:0x7f228a402700 size:1392 presentcount:0+1 line:-1 name:_gvect_16
+host:0x51b2b00 device:0x7f228fde1400 size:176call to cuMemAlloc returned error 2: Out of memory
+
+call to cuMemAlloc returned error 2: Out of memory
+
+call to cuMemAlloc returned error 2: Out of memory
+
+ presentcount:0+1 line:123 name:descriptor
+host:0x51b2bc0 device:0x7f228fde1200 size:176 presentcount:0+1 line:123 name:descriptor
+host:0x51b2dd0 device:0x7f227d5fee00 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b2e90 device:0x7f227d5ff000 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b2f50 device:0x7f227d5ff200 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b5f40 device:0x7f228a404000 size:576 presentcount:0+1 line:-1 name:_wavefunctions_16
+host:0x5ebb300 device:0x7f228a404600 size:528 presentcount:0+1 line:-1 name:_wavefunctions_gpum_16
+host:0x5ec0640 device:0x7f228a402d00 size:336 presentcount:0+1 line:-1 name:_upf_spinorb_16
+host:0x5f23980 device:0x7f228a402f00 size:4176 presentcount:0+1 line:-1 name:_uspp_16
+host:0x5f30f00 device:0x7f228a405c00 size:768 presentcount:0+1 line:-1 name:_uspp_data_16
+host:0x606e500 device:0x7f228a405f00 size:288 presentcount:0+1 line:-1 name:_fft_buffers_16
+host:0x6071500 device:0x7f228a406100 size:288 presentcount:0+1 line:-1 name:_data_buffer_16
+host:0xd7511e0 device:0x7f227c200000 size:3940776 presentcount:0+1 line:123 name:g
+host:0xdb139e0 device:0x7f227c000000 size:1970388 presentcount:0+1 line:123 name:mill
+host:0x112c05d0 device:0x7f227aa00000 size:2053120 presentcount:0+1 line:43 name:eigts1
+host:0x114b97e0 device:0x7f227ac00000 size:2309120 presentcount:0+1 line:43 name:eigts2
+host:0x116f1400 device:0x7f227b000000 size:3691520 presentcount:0+1 line:43 name:eigts3
+host:0x7f227d7a9a00 device:0x7f228bf9c800 size:328912 presentcount:0+1 line:93 name:igk_k
+allocated block device:0x7f227aa00000 size:2053120 thread:1
+allocated block device:0x7f227ac00000 size:2309120 thread:1
+allocated block device:0x7f227b000000 size:3691520 thread:1
+allocated block device:0x7f227c000000 size:1970688 thread:1
+allocated block device:0x7f227c200000 size:3940864 thread:1
+allocated block device:0x7f227d5fee00 size:512 thread:1
+allocated block device:0x7f227d5ff000 size:512 thread:1
+allocated block device:0x7f227d5ff200 size:512 thread:1
+allocated block device:0x7f227d5ff400 size:512 thread:1
+allocated block device:0x7f228bf9c800 size:329216 thread:1
+allocated block device:0x7f228fde1200 size:512 thread:1
+allocated block device:0x7f228fde1400 size:512 thread:1
+call to cuMemAlloc returned error 2: Out of memory
+
+call to cuMemAlloc returned error 2: Out of memory
+
+total/free CUDA memory: 11721572352/933691392
+Present table dump for device[2]: NVIDIA Tesla GPU 1, compute capability 6.1, threadid=2
+host:0x496cf40 device:0x7fdea6405000 size:1752 presentcount:0+1 line:-1 name:_xdm_module_21
+host:0x49b1c80 device:0x7fdea6404500 size:184 presentcount:0+1 line:-1 name:_cell_base_21
+host:0x4bdf500 device:0x7fdea6405a00 size:160 presentcount:0+1 line:-1 name:_vdw_df_21
+host:0x4bdf900 device:0x7fdea6405b00 size:160 presentcount:0+1 line:-1 name:_rvv10_21
+host:0x4da7020 device:0x7fdea6406300 size:240 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_mi
+host:0x4da8f18 device:0x7fdea6406400 size:4 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_beeforder
+host:0x4e19554 device:0x7fdea6406500 size:4 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_beeftype
+host:0x4e26580 device:0x7fdea6404e00 size:432 presentcount:0+1 line:-1 name:_exx_16
+host:0x519d3c0 device:0x7fdea6402500 size:336 presentcount:0+1 line:-1 name:_klist_16
+host:0x519d590 device:0x7fdec7dff600 size:176 presentcount:0+1 line:93 name:descriptor
+host:0x51ac140 device:0x7fdea6404900 size:528 presentcount:0+1 line:-1 name:_wvfct_gpum_16
+host:0x51ac3c0 device:0x7fdea6405700 size:192 presentcount:0+1 line:-1 name:_scf_gpum_16
+host:0x51ad940 device:0x7fdea6404c00 size:192 presentcount:0+1 line:-1 name:_exx_band_16
+host:0x51adec0 device:0x7fdea6404300 size:384 presentcount:0+1 line:-1 name:_g_psi_mod_gpum_16
+host:0x51afb80 device:0x7fdea6405900 size:144 presentcount:0+1 line:-1 name:_electrons_base_16
+host:0x51afd80 device:0x7fdea6405800 size:144 presentcount:0+1 line:-1 name:_gvecw_16
+host:0x51b0f00 device:0x7fdea6404d00 size:144 presentcount:0+1 line:-1 name:_mp_exx_16
+host:0x51b23c0 device:0x7fdea6402700 size:1392 presentcount:0+1 line:-1 name:_gvect_16
+host:0x51b2b00 device:0x7fdec7de1400 size:176 presentcount:0+1 line:123 name:descriptor
+host:0x51b2bc0 device:0x7fdec7de1200 size:176 presentcount:0+1 line:123 name:descriptor
+host:0x51b2dd0 device:0x7fdec7dff000 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b2e90 device:0x7fdec7dff200 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b2f50 device:0x7fdec7dff400 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b5f40 device:0x7fdea6404000 size:576 presentcount:0+1 line:-1 name:_wavefunctions_16
+host:0x5ebb300 device:0x7fdea6404600 size:528 presentcount:0+1 line:-1 name:_wavefunctions_gpum_16
+host:0x5ec0640 device:0x7fdea6402d00 size:336 presentcount:0+1 line:-1 name:_upf_spinorb_16
+host:0x5f23980 device:0x7fdea6402f00 size:4176 presentcount:0+1 line:-1 name:_uspp_16
+host:0x5f30f00 device:0x7fdea6405c00 size:768 presentcount:0+1 line:-1 name:_uspp_data_16
+host:0x606e500 device:0x7fdea6405f00 size:288 presentcount:0+1 line:-1 name:_fft_buffers_16
+host:0x6071500 device:0x7fdea6406100 size:288 presentcount:0+1 line:-1 name:_data_buffer_16
+host:0x72f4930 device:0x7fde92200000 size:3940800 presentcount:0+1 line:123 name:gtotal/free CUDA memory: 11721572352/937885696
+Present table dump for device[3]: NVIDIA Tesla GPU 2, compute capability 6.1, threadid=1
+host:0x496cf40 device:0x7f6c84405000 size:1752 presentcount:0+1 line:-1 name:_xdm_module_21
+host:0x49b1c80 device:0x7f6c84404500 size:184 presentcount:0+1 line:-1 name:_cell_base_21
+host:0x4bdf500 device:0x7f6c84405a00 size:160 presentcount:0+1 line:-1 name:_vdw_df_21
+host:0x4bdf900 device:0x7f6c84405b00 size:160 presentcount:0+1 line:-1 name:_rvv10_21
+host:0x4da7020 device:0x7f6c84406300 size:240 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_mi
+host:0x76b7150 device:0x7fde92000000 size:1970400 presentcount:0+1 line:123 name:mill
+host:0xa72a8b0 device:0x7fde90a00000 size:2053120 presentcount:0+1 line:43 name:eigts1
+host:0xa923ac0 device:0x7fde90c00000 size:2309120 presentcount:0+1 line:43 name:eigts2
+host:0xab5b6e0 device:0x7fde91000000 size:3691520 presentcount:0+1 line:43 name:eigts3
+host:0x7fde937a9a00 device:0x7fdea7f9c800 size:328608 presentcount:0+1 line:93 name:igk_k
+allocated block device:0x7fde90a00000 size:2053120 thread:2
+allocated block device:0x7fde90c00000 size:2309120 thread:2
+allocated block device:0x7fde91000000 size:3691520 thread:2
+allocated block device:0x7fde92000000 size:1970688 thread:2
+allocated block device:0x7fde92200000 size:3940864 thread:2
+allocated block device:0x7fdea7f9c800 size:328704 thread:2
+allocated block device:0x7fdec7de1200 size:512 thread:2
+allocated block device:0x7fdec7de1400 size:512 thread:2
+allocated block device:0x7fdec7dff000 size:512 thread:2
+allocated block device:0x7fdec7dff200 size:512 thread:2
+allocated block device:0x7fdec7dff400 size:512 thread:2
+allocated block device:0x7fdec7dff600 size:512 thread:2
+
+host:0x4da8f18 device:0x7f6c84406400 size:4 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_beeforder
+host:0x4e19554 device:0x7f6c84406500 size:4 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_beeftype
+host:0x4e26580 device:0x7f6c84404e00 size:432 presentcount:0+1 line:-1 name:_exx_16
+host:0x519d3c0 device:0x7f6c84402500 size:336 presentcount:0+1 line:-1 name:_klist_16
+host:0x519d590 device:0x7f6c755ff600 size:176 presentcount:0+1 line:93 name:descriptor
+host:0x51ac140 device:0x7f6c84404900 size:528 presentcount:0+1 line:-1 name:_wvfct_gpum_16
+host:0x51ac3c0 device:0x7f6c84405700 size:192 presentcount:0+1 line:-1 name:_scf_gpum_16
+host:0x51ad940 device:0x7f6c84404c00 size:192 presentcount:0+1 line:-1 name:_exx_band_16
+host:0x51adec0 device:0x7f6c84404300 size:384 presentcount:0+1 line:-1 name:_g_psi_mod_gpum_16
+host:0x51afb80 device:0x7f6c84405900 size:144 presentcount:0+1 line:-1 name:_electrons_base_16
+host:0x51afd80 device:0x7f6c84405800 size:144 presentcount:0+1 line:-1 name:_gvecw_16
+host:0x51b0f00 device:0x7f6c84404d00 size:144 presentcount:0+1 line:-1 name:_mp_exx_16
+host:0x51b23c0 device:0x7f6c84402700 size:1392 presentcount:0+1 line:-1 name:_gvect_16
+host:0x51b2b00 device:0x7f6c8fde1400 size:176 presentcount:0+1 line:123 name:descriptor
+host:0x51b2bc0 device:0x7f6c8fde1200 size:176 presentcount:0+1 line:123 name:descriptor
+host:0x51b2dd0 device:0x7f6c755ff000 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b2e90 device:0x7f6c755ff200 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b2f50 device:0x7f6c755ff400 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b5f40 device:0x7f6c84404000 size:576 presentcount:0+1 line:-1 name:_wavefunctions_16
+host:0x5ebb300 device:0x7f6c84404600 size:528 presentcount:0+1 line:-1 name:_wavefunctions_gpum_16
+host:0x5ec0640 device:0x7f6c84402d00 size:336 presentcount:0+1 line:-1 name:_upf_spinorb_16
+host:0x5f23980 device:0x7f6c84402f00 size:4176 presentcount:0+1 line:-1 name:_uspp_16
+host:0x5f30f00 device:0x7f6c84405c00 size:768 presentcount:0+1 line:-1 name:_uspp_data_16
+host:0x606e500 device:0x7f6c84405f00 size:288 presentcount:0+1 line:-1 name:_fft_buffers_16
+host:0x6071500 device:0x7f6c84406100 size:288 presentcount:0+1 line:-1 name:_data_buffer_16
+host:0xd121a80 device:0x7f6c74200000 size:3940728 presentcount:0+1 line:123 name:g
+host:0xd4e4250 device:0x7f6c74000000 size:1970364 presentcount:0+1 line:123 name:mill
+host:0x11059380 device:0x7f6c72a00000 size:2053120 presentcount:0+1 line:43 name:eigts1
+host:0x11252590 device:0x7f6c72c00000 size:2309120 presentcount:0+1 line:43 name:eigts2
+host:0x1148a1b0 device:0x7f6c73000000 size:3691520 presentcount:0+1 line:43 name:eigts3
+host:0x7f6c757a9a00 device:0x7f6c85f9c800 size:328256 presentcount:0+1 line:93 name:igk_k
+allocated block device:0x7f6c72a00000 size:2053120 thread:1
+allocated block device:0x7f6c72c00000 size:2309120 thread:1
+allocated block device:0x7f6c73000000 size:3691520 thread:1
+allocated block device:0x7f6c74000000 size:1970688 thread:1
+allocated block device:0x7f6c74200000 size:3940864 thread:1
+allocated block device:0x7f6c755ff000 size:512 thread:1
+allocated block device:0x7f6c755ff200 size:512 thread:1
+allocated block device:0x7f6c755ff400 size:512 thread:1
+allocated block device:0x7f6c755ff600 size:512 thread:1
+allocated block device:0x7f6c85f9c800 size:328704 thread:1
+allocated block device:0x7f6c8fde1200 size:512 thread:1
+allocated block device:0x7f6c8fde1400 size:512 thread:1
+call to cuMemAlloc returned error 2: Out of memory
+
+call to cuMemAlloc returned error 2: Out of memory
+
+total/free CUDA memory: 11721572352/933691392
+Present table dump for device[1]: NVIDIA Tesla GPU 0, compute capability 6.1, threadid=1
+host:0x496cf40 device:0x7f004a405000 size:1752 presentcount:0+1 line:-1 name:_xdm_module_21
+host:0x49b1c80 device:0x7f004a404500 size:184 presentcount:0+1 line:-1 name:_cell_base_21
+host:0x4bdf500 device:0x7f004a405a00 size:160 presentcount:0+1 line:-1 name:_vdw_df_21
+host:0x4bdf900 device:0x7f004a405b00 size:160 presentcount:0+1 line:-1 name:_rvv10_21
+host:0x4da7020 device:0x7f004a406300 size:240 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_mi
+host:0x4da8f18 device:0x7f004a406400 size:4 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_beeforder
+host:0x4e19554 device:0x7f004a406500 size:4 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_beeftype
+host:0x4e26580 device:0x7f004a404e00 size:432 presentcount:0+1 line:-1 name:_exx_16
+host:0x519d3c0 device:0x7f004a402500 size:336 presentcount:0+1 line:-1 name:_klist_16
+host:0x519d590 device:0x7f004ff40000 size:176 presentcount:0+1 line:93 name:descriptor
+host:0x51ac140 device:0x7f004a404900 size:528 presentcount:0+1 line:-1 name:_wvfct_gpum_16
+host:0x51ac3c0 device:0x7f004a405700 size:192 presentcount:0+1 line:-1 name:_scf_gpum_16
+host:0x51ad940 device:0x7f004a404c00 size:192 presentcount:0+1 line:-1 name:_exx_band_16
+host:0x51adec0 device:0x7f004a404300 size:384 presentcount:0+1 line:-1 name:_g_psi_mod_gpum_16
+host:0x51afb80 device:0x7f004a405900 size:144 presentcount:0+1 line:-1 name:_electrons_base_16
+host:0x51afd80 device:0x7f004a405800 size:144 presentcount:0+1 line:-1 name:_gvecw_16
+host:0x51b0f00 device:0x7f004a404d00 size:144 presentcount:0+1 line:-1 name:_mp_exx_16
+host:0x51b23c0 device:0x7f004a402700 size:1392 presentcount:0+1 line:-1 name:_gvect_16
+host:0x51b2b00 device:0x7f004fde1400 size:176 presentcount:0+1 line:123 name:descriptor
+host:0x51b2bc0 device:0x7f004fde1200 size:176 presentcount:0+1 line:123 name:descriptor
+host:0x51b2dd0 device:0x7f004ff3fa00 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b2e90 device:0x7f004ff3fc00 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b2f50 device:0x7f004ff3fe00 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b5f40 device:0x7f004a404000 size:576 presentcount:0+1 line:-1 name:_wavefunctions_16
+host:0x5ebb300 device:0x7f004a404600 size:528 presentcount:0+1 line:-1 name:_wavefunctions_gpum_16
+host:0x5ec0640 device:0x7f004a402d00 size:336 presentcount:0+1 line:-1 name:_upf_spinorb_16
+host:0x5f23980 device:0x7f004a402f00 size:4176 presentcount:0+1 line:-1 name:_uspp_16
+host:0x5f30f00 device:0x7f004a405c00 size:768 presentcount:0+1 line:-1 name:_uspp_data_16
+host:0x606e500 device:0x7f004a405f00 size:288 presentcount:0+1 line:-1 name:_fft_buffers_16
+host:0x6071500 device:0x7f004a406100 size:288 presentcount:0+1 line:-1 name:_data_buffer_16
+host:0xd146c70 device:0x7f003a000000 size:1970400 presentcount:0+1 line:123 name:mill
+host:0xef8c870 device:0x7f003a200000 size:3940800 presentcount:0+1 line:123 name:g
+host:0x1209c1f0 device:0x7f0038a00000 size:2053120 presentcount:0+1 line:43 name:eigts1
+host:0x12295400 device:0x7f0038c00000 size:2309120 presentcount:0+1 line:43 name:eigts2
+host:0x124cd020 device:0x7f0039000000 size:3691520 presentcount:0+1 line:43 name:eigts3
+host:0x7f003b7a9a00 device:0x7f004bf9c800 size:328368 presentcount:0+1 line:93 name:igk_k
+allocated block device:0x7f0038a00000 size:2053120 thread:1
+allocated block device:0x7f0038c00000 size:2309120 thread:1
+allocated block device:0x7f0039000000 size:3691520 thread:1
+allocated block device:0x7f003a000000 size:1970688 thread:1
+allocated block device:0x7f003a200000 size:3940864 thread:1
+allocated block device:0x7f004bf9c800 size:328704 thread:1
+allocated block device:0x7f004fde1200 size:512 thread:1
+allocated block device:0x7f004fde1400 size:512 thread:1
+allocated block device:0x7f004ff3fa00 size:512 thread:1
+allocated block device:0x7f004ff3fc00 size:512 thread:1
+allocated block device:0x7f004ff3fe00 size:512 thread:1
+allocated block device:0x7f004ff40000 size:512 thread:1
+call to cuMemAlloc returned error 2: Out of memory
+
+total/free CUDA memory: 11721572352/937885696
+Present table dump for device[3]: NVIDIA Tesla GPU 2, compute capability 6.1, threadid=5
+host:0x496cf40 device:0x7fcff4405000 size:1752 presentcount:0+1 line:-1 name:_xdm_module_21
+host:0x49b1c80 device:0x7fcff4404500 size:184 presentcount:0+1 line:-1 name:_cell_base_21
+host:0x4bdf500 device:0x7fcff4405a00 size:160 presentcount:0+1 line:-1 name:_vdw_df_21
+host:0x4bdf900 device:0x7fcff4405b00 size:160 presentcount:0+1 line:-1 name:_rvv10_21
+host:0x4da7020 device:0x7fcff4406300 size:240 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_mi
+host:0x4da8f18 device:0x7fcff4406400 size:4 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_beeforder
+host:0x4e19554 device:0x7fcff4406500 size:4 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_beeftype
+host:0x4e26580 device:0x7fcff4404e00 size:432 presentcount:0+1 line:-1 name:_exx_16
+host:0x519d3c0 device:0x7fcff4402500 size:336 presentcount:0+1 line:-1 name:_klist_16
+host:0x519d590 device:0x7fcffff40000 size:176 presentcount:0+1 line:93 name:descriptor
+host:0x51ac140 device:0x7fcff4404900 size:528 presentcount:0+1 line:-1 name:_wvfct_gpum_16
+host:0x51ac3c0 device:0x7fcff4405700 size:192 presentcount:0+1 line:-1 name:_scf_gpum_16
+host:0x51ad940 device:0x7fcff4404c00 size:192 presentcount:0+1 line:-1 name:_exx_band_16
+host:0x51adec0 device:0x7fcff4404300 size:384 presentcount:0+1 line:-1 name:_g_psi_mod_gpum_16
+host:0x51afb80 device:0x7fcff4405900 size:144 presentcount:0+1 line:-1 name:_electrons_base_16
+host:0x51afd80 device:0x7fcff4405800 size:144 presentcount:0+1 line:-1 name:_gvecw_16
+host:0x51b0f00 device:0x7fcff4404d00 size:144 presentcount:0+1 line:-1 name:_mp_exx_16
+host:0x51b23c0 device:0x7fcff4402700 size:1392 presentcount:0+1 line:-1 name:_gvect_16
+host:0x51b2b00 device:0x7fcfffde1400 size:176 presentcount:0+1 line:123 name:descriptor
+host:0x51b2bc0 device:0x7fcfffde1200 size:176 presentcount:0+1 line:123 name:descriptor
+host:0x51b2dd0 device:0x7fcffff3fa00 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b2e90 device:0x7fcffff3fc00 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b2f50 device:0x7fcffff3fe00 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b5f40 device:0x7fcff4404000 size:576 presentcount:0+1 line:-1 name:_wavefunctions_16
+host:0x5ebb300 device:0x7fcff4404600 size:528 presentcount:0+1 line:-1 name:_wavefunctions_gpum_16
+host:0x5ec0640 device:0x7fcff4402d00 size:336 presentcount:0+1 line:-1 name:_upf_spinorb_16
+host:0x5f23980 device:0x7fcff4402f00 size:4176 presentcount:0+1 line:-1 name:_uspp_16
+host:0x5f30f00 device:0x7fcff4405c00 size:768 presentcount:0+1 line:-1 name:_uspp_data_16
+host:0x606e500 device:0x7fcff4405f00 size:288 presentcount:0+1 line:-1 name:_fft_buffers_16
+host:0x6071500 device:0x7fcff4406100 size:288 presentcount:0+1 line:-1 name:_data_buffer_16
+host:0x8fe2aa0 device:0x7fcfde200000 size:3940776 presentcount:0+1 line:123 name:g
+host:0x93a52a0 device:0x7fcfde000000 size:1970388 presentcount:0+1 line:123 name:mill
+host:0xc4167e0 device:0x7fcfdca00000 size:2053120 presentcount:0+1 line:43 name:eigts1
+host:0xc60f9f0 device:0x7fcfdcc00000 size:2309120 presentcount:0+1 line:43 name:eigts2
+host:0xc847610 device:0x7fcfdd000000 size:3691520 presentcount:0+1 line:43 name:eigts3
+host:0x7fcfdf7a9a00 device:0x7fcff5f9c800 size:329536 presentcount:0+1 line:93 name:igk_k
+total/free CUDA memory: 11721572352/933691392
+Present table dump for device[1]: NVIDIA Tesla GPU 0, compute capability 6.1, threadid=1
+allocated block device:0x7fcfdca00000 size:2053120 thread:5
+allocated block device:0x7fcfdcc00000 size:2309120 thread:5
+allocated block device:0x7fcfdd000000 size:3691520 thread:5
+allocated block device:0x7fcfde000000 size:1970688 thread:5
+allocated block device:0x7fcfde200000 size:3940864 thread:5
+allocated block device:0x7fcff5f9c800 size:329728 thread:5
+allocated block device:0x7fcfffde1200 size:512 thread:5
+allocated block device:0x7fcfffde1400 size:512 thread:5
+allocated block device:0x7fcffff3fa00 size:512 thread:5
+allocated block device:0x7fcffff3fc00 size:512 thread:5
+allocated block device:0x7fcffff3fe00 size:512 thread:5
+allocated block device:0x7fcffff40000 size:512 thread:5
+call to cuMemAlloc returned error 2: Out of memory
+
+host:0x496cf40 device:0x7f5a34405000 size:1752 presentcount:0+1 line:-1 name:_xdm_module_21
+host:0x49b1c80 device:0x7f5a34404500 size:184 presentcount:0+1 line:-1 name:_cell_base_21
+host:0x4bdf500 device:0x7f5a34405a00 size:160 presentcount:0+1 line:-1 name:_vdw_df_21
+host:0x4bdf900 device:0x7f5a34405b00 size:160 presentcount:0+1 line:-1 name:_rvv10_21
+host:0x4da7020 device:0x7f5a34406300 size:240 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_mi
+host:0x4da8f18 device:0x7f5a34406400 size:4 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_beeforder
+host:0x4e19554 device:0x7f5a34406500 size:4 presentcount:0+1 line:-1 name:_st__home_mirilias_work_software_quantum_espresso_qe_7_1_XClib_beefun_c_beeftype
+host:0x4e26580 device:0x7f5a34404e00 size:432 presentcount:0+1 line:-1 name:_exx_16
+host:0x519d3c0 device:0x7f5a34402500 size:336 presentcount:0+1 line:-1 name:_klist_16
+host:0x519d590 device:0x7f5a3ff40000 size:176 presentcount:0+1 line:93 name:descriptor
+host:0x51ac140 device:0x7f5a34404900 size:528 presentcount:0+1 line:-1 name:_wvfct_gpum_16
+host:0x51ac3c0 device:0x7f5a34405700 size:192 presentcount:0+1 line:-1 name:_scf_gpum_16
+host:0x51ad940 device:0x7f5a34404c00 size:192 presentcount:0+1 line:-1 name:_exx_band_16
+host:0x51adec0 device:0x7f5a34404300 size:384 presentcount:0+1 line:-1 name:_g_psi_mod_gpum_16
+host:0x51afb80 device:0x7f5a34405900 size:144 presentcount:0+1 line:-1 name:_electrons_base_16
+host:0x51afd80 device:0x7f5a34405800 size:144 presentcount:0+1 line:-1 name:_gvecw_16
+host:0x51b0f00 device:0x7f5a34404d00 size:144 presentcount:0+1 line:-1 name:_mp_exx_16
+host:0x51b23c0 device:0x7f5a34402700 size:1392 presentcount:0+1 line:-1 name:_gvect_16
+host:0x51b2b00 device:0x7f5a3fde1400 size:176 presentcount:0+1 line:123 name:descriptor
+host:0x51b2bc0 device:0x7f5a3fde1200 size:176 presentcount:0+1 line:123 name:descriptor
+host:0x51b2dd0 device:0x7f5a3ff3fa00 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b2e90 device:0x7f5a3ff3fc00 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b2f50 device:0x7f5a3ff3fe00 size:176 presentcount:0+1 line:43 name:descriptor
+host:0x51b5f40 device:0x7f5a34404000 size:576 presentcount:0+1 line:-1 name:_wavefunctions_16
+host:0x5ebb300 device:0x7f5a34404600 size:528 presentcount:0+1 line:-1 name:_wavefunctions_gpum_16
+host:0x5ec0640 device:0x7f5a34402d00 size:336 presentcount:0+1 line:-1 name:_upf_spinorb_16
+host:0x5f23980 device:0x7f5a34402f00 size:4176 presentcount:0+1 line:-1 name:_uspp_16
+host:0x5f30f00 device:0x7f5a34405c00 size:768 presentcount:0+1 line:-1 name:_uspp_data_16
+host:0x606e500 device:0x7f5a34405f00 size:288 presentcount:0+1 line:-1 name:_fft_buffers_16
+host:0x6071500 device:0x7f5a34406100 size:288 presentcount:0+1 line:-1 name:_data_buffer_16
+host:0xa768ed0 device:0x7f5a28000000 size:1970412 presentcount:0+1 line:123 name:mill
+host:0xd54b3c0 device:0x7f5a28200000 size:3940824 presentcount:0+1 line:123 name:g
+host:0x10659cf0 device:0x7f5a26a00000 size:2053120 presentcount:0+1 line:43 name:eigts1
+host:0x10852f00 device:0x7f5a26c00000 size:2309120 presentcount:0+1 line:43 name:eigts2
+host:0x10a8ab20 device:0x7f5a27000000 size:3691520 presentcount:0+1 line:43 name:eigts3
+host:0x7f5a297a9a00 device:0x7f5a35f9c800 size:329600 presentcount:0+1 line:93 name:igk_k
+allocated block device:0x7f5a26a00000 size:2053120 thread:1
+allocated block device:0x7f5a26c00000 size:2309120 thread:1
+allocated block device:0x7f5a27000000 size:3691520 thread:1
+allocated block device:0x7f5a28000000 size:1970688 thread:1
+allocated block device:0x7f5a28200000 size:3940864 thread:1
+allocated block device:0x7f5a35f9c800 size:329728 thread:1
+allocated block device:0x7f5a3fde1200 size:512 thread:1
+allocated block device:0x7f5a3fde1400 size:512 thread:1
+allocated block device:0x7f5a3ff3fa00 size:512 thread:1
+allocated block device:0x7f5a3ff3fc00 size:512 thread:1
+allocated block device:0x7f5a3ff3fe00 size:512 thread:1
+allocated block device:0x7f5a3ff40000 size:512 thread:1
+call to cuMemAlloc returned error 2: Out of memory
+

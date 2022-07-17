@@ -1,0 +1,52 @@
+#!/bin/bash
+
+#
+# 'Simplest' bash script driven run of the Wien2k TiC test case.
+#
+#  Thanks to hints and tips from Wien2k community
+#
+#  Written by Miro Ilias, www.GSI.de, Darmstadt, Germany at the end of July 2020/2022.
+#  Free for use.
+#
+
+#export WIEN2k=/data.local1/milias/software/wien2k/WIEN2k_19.2
+export WIEN2k=/home/milias/Work/qch/software/wien2k/WIEN2k_21.1
+
+# first link Wien2k executables into the directory
+ ln -sf $WIEN2k/dstart             $PWD/.
+ ln -sf $WIEN2k/init_lapw          $PWD/.
+ ln -sf $WIEN2k/instgen_lapw       $PWD/.
+ ln -sf $WIEN2k/kgen               $PWD/.
+ ln -sf $WIEN2k/lapw0              $PWD/.
+ ln -sf $WIEN2k/lapw1              $PWD/.
+ ln -sf $WIEN2k/lapw2              $PWD/.
+ ln -sf $WIEN2k/lapw3              $PWD/.
+ ln -sf $WIEN2k/lapw5              $PWD/.
+ ln -sf $WIEN2k/lapw7              $PWD/.
+ ln -sf $WIEN2k/lapwso             $PWD/.
+ ln -sf $WIEN2k/lapwso_mpi         $PWD/.
+ ln -sf $WIEN2k/lcore              $PWD/.
+ ln -sf $WIEN2k/lorentz            $PWD/.
+ ln -sf $WIEN2k/lstart             $PWD/.
+ ln -sf $WIEN2k/mixer              $PWD/.
+ ln -sf $WIEN2k/nn                 $PWD/.
+ ln -sf $WIEN2k/run_lapw           $PWD/.
+ ln -sf $WIEN2k/runsp_lapw         $PWD/.
+ ln -sf $WIEN2k/setrmt_lapw        $PWD/.
+ ln -sf $WIEN2k/sgroup             $PWD/.
+ ln -sf $WIEN2k/symmetry           $PWD/.
+ ln -sf $WIEN2k/testconv           $PWD/.
+ ln -sf $WIEN2k/testconv_lapw      $PWD/.
+ ln -sf $WIEN2k/x                  $PWD/.
+ ln -sf $WIEN2k/x_lapw             $PWD/.
+
+ case=TiC
+ inp=$case.struct
+
+#prep case dir with case.struct, i.e. mkdir/cif2struct/etc....>
+
+ init_lapw -b -vxc 13 -ecut -6.0 -rkmax 12.0 -gmax 24.0 -numk 30 -lmax 10 -lvns 8
+# run_lapw -ec 0.0001
+ # echo -e "\n Finished; check for ':ENE' in outputs."
+
+exit 0

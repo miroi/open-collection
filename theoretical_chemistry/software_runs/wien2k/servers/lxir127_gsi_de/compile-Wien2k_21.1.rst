@@ -17,11 +17,9 @@ To configure your Fortran-executables run:
 
 ./siteconfig_lapw
 
-Load software
--------------
+source /cvmfs/vae.gsi.de/debian10/spack-0.17/vaesoft/spack/share/spack/setup-env.sh
+spack load intel-parallel-studio@professional.2020.1
 
-needed intel compiler, see https://git.gsi.de/SDEGroup/SIR/-/issues/57
-
-
-
-
+.
+.
+serial compilation done

@@ -1,0 +1,4473 @@
+Job user is milias and his job Og_bcc has assigned ID 3759329
+This job was submitted from the computer space14.hydra.local
+and from the home directory:
+/zfs/store5.hydra.local/user/m/milias/work/projects/open-collection/theoretical_chemistry/software_runs/ams/runs/band/felix/Og/bcc
+
+It is running on the cluster compute node:
+gvr
+and is employing 1 node/nodes:
+n02p056
+
+Job partition is cascade 
+
+The job requests 8 CPU per task.
+modules at disposal:
+
+-------------- /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/modulefiles --------------
+ABINIT/v8.10.3_intel2018              Ginac/v1.7.3-1
+AmberTools/v20                        GMP/v6.2.1_gcc1120
+AMS/v2021.103_intel                   GROMACS/v2019.3
+AMS/v2021.103_openmpi                 GROMACS/v5.1.3_gcc485_cuda80
+BASE/1.0                              GSL/v1.16-1
+CLN/v1.3.4-1                          GSL/v2.6
+CMake/v3.16.5                         GVR/v1.0-1
+CMake/v3.19.1                         intel/oneapi
+CMake/v3.22.0                         intel/v2018.1.163-9
+COMSOL/v5.6                           intel/v2019.3.199
+COMSOL/v6.0                           intel/v2021.1
+cuda/v10.0-1                          intel-qs/v20-07-14
+cuda/v10.1-1                          intel-qs/v21-01-14
+cuda/v11.4                            JAM/v1.90596
+cuda/v8.0-1                           java/v8u181
+cuda/v9.2                             java/v8u91-1
+DIRAC/v19.0_intel2018                 LAMMPS/v12.12.18
+ELPA/v2020.05.001_intel2018_python365 LAPACK/v3.9.0
+EMACS/v25.3                           libpqxx/v7.0_gcc910
+EOS/v1.0                              MAGMA/v2.6.1_gcc830_cuda101
+FairRoot/oct17p1                      Maple/v2020.2
+FairRoot/v16.06_gcc485                Mathematica/v11.2-1
+FairRoot/v18.0.4                      MATLAB/R2020b
+FairRoot/v18.2.0_gcc485               ndm-lite/v1.0
+FairRoot/v18.2.1_gcc485               opencv/v4.1.0
+FairRoot/v18.4.2_gcc1120              openmpi/v1.8.8-1
+FairSoft/apr21patches_gcc1120         openmpi/v2.1.2-2
+FairSoft/june19p1_gcc485              openmpi/v3.1.2
+FairSoft/june19p2_gcc485              openmpi/v3.1.3
+FairSoft/may16p1_gcc485               openmpi/v3.1.3_psm2
+FairSoft/may18p1                      openmpi/v4.1.1_gcc1120
+FairSoft/oct17p1                      ORCA/v5.0.1
+fftw/v3.3.7-2                         PandaRoot/dec17p2b
+fftw/v3.3.7-5                         PandaRoot/may19
+FLAIR/v2.3.0                          PostgreSQL/v12.1_gcc910
+FLUKA/v2011.2x-8                      protobuf/v3.11.3
+FLUKA/v2020.0.3                       Python/v2.7.10-3
+FLUKA/v2021.2.2                       Python/v3.10.2
+gcc/v10.2.0                           Python/v3.6.5
+gcc/v11.2.0                           quantum-espresso/v6.4.1
+gcc/v4.9.3-1                          quantum-espresso/v6.6_oneapi
+gcc/v5.3.0-1                          reduce-algebra/svn-4830
+gcc/v6.2.0-2                          ROOT/v6-18-00
+gcc/v7.2.0-1                          SMASH_gcc485/v1.8
+gcc/v8.2.0-1                          Tesseract/v5.0.0_gcc1120
+gcc/v8.3.0                            TRNG/v4.24_gcc102
+gcc/v9.1.0-1                          Valgrind/v3.16.1_gcc485
+gcc/v9.4.0                            ViennaCL/v1.7.1_gcc1120_cuda101
+GEANT4/v4.10.07.p01_gcc910            zlib/v1.2.11-1
+
+
+
+ loaded modules:
+Currently Loaded Modulefiles:
+  1) BASE/1.0           2) openmpi/v2.1.2-2
+Disk space: df -h /tmp 
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda3       134G   95G   33G  75% /
+ADF environmental variables activated on
+ADF AMSHOME=/zfs/hybrilit.jinr.ru/user/m/milias/work/software/ams/linux.openmpi/ams2021.105
+ADF SCM_TMPDIR=/tmp
+ADF SCMLICENSE=/zfs/hybrilit.jinr.ru/user/m/milias/work/software/ams/linux.openmpi/ams2021.105/license.txt
+SCM_OPENGL_SOFTWARE=1
+
+Running on host n02p056.gvr.local
+Time is Wed Jul 20 18:35:12 MSK 2022 
+
+The node's CPU model name	: Intel(R) Xeon(R) Platinum 8268 CPU @ 2.90GHz
+This node has total 96 CPUs available for anEXCLUSIVE job.
+
+ The total memory at the node (in GB)
+              total        used        free      shared  buff/cache   available
+Mem:            187          20         158           0           7         165
+Swap:             3           0           3
+Total:          191          20         162
+
+
+
+ldd /zfs/hybrilit.jinr.ru/user/m/milias/work/software/ams/linux.openmpi/ams2021.105/bin/ams.exe:
+	linux-vdso.so.1 =>  (0x00007fffc5d5e000)
+	libprimme.so => /zfs/hybrilit.jinr.ru/user/m/milias/work/software/ams/linux.openmpi/ams2021.105/bin/lib/libprimme.so (0x00002ba6f69f4000)
+	libplumed.so.2.5.0 => /zfs/hybrilit.jinr.ru/user/m/milias/work/software/ams/linux.openmpi/ams2021.105/bin/lib/libplumed.so.2.5.0 (0x00002ba6f6c12000)
+	libmkl_intel_lp64.so.1 => /zfs/hybrilit.jinr.ru/user/m/milias/work/software/ams/linux.openmpi/ams2021.105/bin/libmath/libmkl_intel_lp64.so.1 (0x00002ba6f6e1d000)
+	libmkl_cdft_core.so.1 => /zfs/hybrilit.jinr.ru/user/m/milias/work/software/ams/linux.openmpi/ams2021.105/bin/libmath/libmkl_cdft_core.so.1 (0x00002ba6f7b58000)
+	libmkl_scalapack_lp64.so.1 => /zfs/hybrilit.jinr.ru/user/m/milias/work/software/ams/linux.openmpi/ams2021.105/bin/libmath/libmkl_scalapack_lp64.so.1 (0x00002ba6f7d80000)
+	libmkl_blacs_openmpi_lp64.so.1 => /zfs/hybrilit.jinr.ru/user/m/milias/work/software/ams/linux.openmpi/ams2021.105/bin/libmath/libmkl_blacs_openmpi_lp64.so.1 (0x00002ba6f86ab000)
+	libmkl_sequential.so.1 => /zfs/hybrilit.jinr.ru/user/m/milias/work/software/ams/linux.openmpi/ams2021.105/bin/libmath/libmkl_sequential.so.1 (0x00002ba6f88f2000)
+	libmkl_core.so.1 => /zfs/hybrilit.jinr.ru/user/m/milias/work/software/ams/linux.openmpi/ams2021.105/bin/libmath/libmkl_core.so.1 (0x00002ba6fa4fd000)
+	libmpi_mpifh.so.20 => /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/openmpi/v2.1.2-2/lib/libmpi_mpifh.so.20 (0x00002ba7024c3000)
+	libmpi.so.20 => /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/openmpi/v2.1.2-2/lib/libmpi.so.20 (0x00002ba702715000)
+	librt.so.1 => /lib64/librt.so.1 (0x00002ba702a48000)
+	libdl.so.2 => /lib64/libdl.so.2 (0x00002ba702c50000)
+	libpthread.so.0 => /lib64/libpthread.so.0 (0x00002ba702e54000)
+	libstdc++.so.6 => /zfs/hybrilit.jinr.ru/user/m/milias/work/software/ams/linux.openmpi/ams2021.105/bin/lib/libstdc++.so.6 (0x00002ba703070000)
+	libresolv.so.2 => /lib64/libresolv.so.2 (0x00002ba70344f000)
+	libiomp5.so => /zfs/hybrilit.jinr.ru/user/m/milias/work/software/ams/linux.openmpi/ams2021.105/bin/lib/libiomp5.so (0x00002ba703668000)
+	libc.so.6 => /lib64/libc.so.6 (0x00002ba703a0a000)
+	libgcc_s.so.1 => /zfs/hybrilit.jinr.ru/user/m/milias/work/software/ams/linux.openmpi/ams2021.105/bin/lib/libgcc_s.so.1 (0x00002ba703dd8000)
+	libplumedKernel.so.2.5.0 => /zfs/hybrilit.jinr.ru/user/m/milias/work/software/ams/linux.openmpi/ams2021.105/bin/lib/libplumedKernel.so.2.5.0 (0x00002ba703ff0000)
+	libm.so.6 => /lib64/libm.so.6 (0x00002ba70580d000)
+	libopen-rte.so.20 => /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/openmpi/v2.1.2-2/lib/libopen-rte.so.20 (0x00002ba705b0f000)
+	libopen-pal.so.20 => /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/openmpi/v2.1.2-2/lib/libopen-pal.so.20 (0x00002ba705dd2000)
+	libutil.so.1 => /lib64/libutil.so.1 (0x00002ba7060ed000)
+	/lib64/ld-linux-x86-64.so.2 (0x00002ba6f67d0000)
+	libz.so.1 => /zfs/hybrilit.jinr.ru/user/m/milias/work/software/ams/linux.openmpi/ams2021.105/bin/lib/../zlib/lib/libz.so.1 (0x00002ba7062f0000)
+
+My PATH=/zfs/hybrilit.jinr.ru/user/m/milias/work/software/ams/linux.openmpi/ams2021.105/bin:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/openmpi/v2.1.2-2/bin:/zfs/hybrilit.jinr.ru/user/m/milias/work/software/openmpi/openmpi-4.0.4-intel19.3-i8/bin:/zfs/hybrilit.jinr.ru/user/m/milias/work/software/cmake/cmake-3.22.2-linux-x86_64/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:.:/zfs/hybrilit.jinr.ru/user/m/milias/.local/bin:/zfs/hybrilit.jinr.ru/user/m/milias/bin
+
+Python -v :Python 2.7.5
+
+ mpirun ? /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/openmpi/v2.1.2-2/bin/mpirun
+mpirun (Open MPI) 2.1.2rc4
+
+Report bugs to http://www.open-mpi.org/community/help/
+
+
+ Running in  /zfs/store5.hydra.local/user/m/milias/work/projects/open-collection/theoretical_chemistry/software_runs/ams/runs/band/felix/Og/bcc : 
+
+
+ Parallel Execution: Process Information
+ ==============================================================================
+ Rank   Node Name                              NodeID   MyNodeRank  NodeMaster
+    0   n02p056.gvr.local                         0          0          0
+    1   n02p056.gvr.local                         0          1         -1
+    2   n02p056.gvr.local                         0          2         -1
+    3   n02p056.gvr.local                         0          3         -1
+    4   n02p056.gvr.local                         0          4         -1
+    5   n02p056.gvr.local                         0          5         -1
+    6   n02p056.gvr.local                         0          6         -1
+    7   n02p056.gvr.local                         0          7         -1
+ ==============================================================================
+
+
+May use up to 93110MB of RAM as shared memory on node 0
+
+ *******************************************************************************
+ *                                                                             *
+ *  --------------------------------                                           *
+ *   Amsterdam Modeling Suite (AMS)              2021.105                      *
+ *  --------------------------------                                           *
+ *                                               r97472 2021-09-27             *
+ *                                                                             *
+ *                                                                             *
+ *                              =================                              *
+ *                              |               |                              *
+ *                              |     A M S     |                              *
+ *                              |               |                              *
+ *                              =================                              *
+ *                                                                             *
+ *                                                                             *
+ *   Online information and documentation:  https://www.scm.com/support/       *
+ *   E-mail:  support@scm.com   info@scm.com                                   *
+ *                                                                             *
+ *   Scientific publications using AMS results must be properly referenced     *
+ *   See the User Manuals (or the web site) for recommended citations          *
+ *   The terms and conditions of the End User License Agreement apply to       *
+ *   the use of AMS, https://www.scm.com/license-terms/                        *
+ *                                                                             *
+ ***********************  x86_64_linux_intel / openmpi  ************************
+ 
+ Licensed to: Dr. Jan Busa / Joint Institute for Nuclear Research (JINR) / Dubna / RUSSIA 2021-09-28 17:42:24
+ SCM User ID: u24355
+  
+ AMS 2021.105  RunTime: Jul20-2022 18:35:15  ShM Nodes: 1  Procs: 8
+
+ AMS jobname: ams
+ AMS jobid  : 297904603
+
+ Start   directory: /zfs/store5.hydra.local/user/m/milias/work/projects/open-collection/theoretical_chemistry/software_runs/ams/runs/band/felix/Og/bcc/
+ Results directory: /zfs/store5.hydra.local/user/m/milias/work/projects/open-collection/theoretical_chemistry/software_runs/ams/runs/band/felix/Og/bcc/ams.results/
+ Scratch directory: /tmp/amstmp_ams_kid0.297904603/
+
+
+ Communication costs MPI_COMM_WORLD:      2.118 usec per message,   0.0328 usec per 8-byte item
+ Communication costs for intra-node:      2.058 usec per message,   0.0322 usec per 8-byte item
+
+ RNG seed: 780725424 -1464357159 1968867021 -261482346 -1938901371 1300089556 1774097531 1637701251
+       ***************************
+       *  GEOMETRY OPTIMIZATION  *
+       ***************************
+
+Optimization Method                    Quasi Newton
+Optimization Coordinates               Delocalized Coordinates
+Optimize lattice                       T
+ 
+ ------------------------------------------------------
+ Convergence criteria (Hartree,Angstrom)
+ ------------------------------------------------------
+ Maximum gradient               0.001000000000
+ Maximum rms gradient           0.000666666667
+ Maximum step allowed           0.010000000000
+ Maximum rms step allowed       0.006666666667
+ Maximum energy change allowe   0.000010000000
+ Maximum stress energy allowe   0.000500000000
+ 
+Initial model Hessian                  Automatic Hessian
+ 
+------------------------------------
+Quasi-Newton Optimizer Parameters
+------------------------------------
+Hessian Update Method                  BFGS
+Maximum number of steps                  250
+First GDIIS cycle                          0
+Maximum GDIIS vectors                      0
+Trust radius (bohr)                        0.200000
+Trust radius varies                        T
+Constraints converged at all steps         T
+Use projector                              T
+ 
+ Rigid motions settings for: old optimizer
+ Atomic rotations (x,y,z):     F F F
+ Atomic translations (x,y,z):  T T T
+ Tolerance:                   1.000000000000000E-006
+ 
+--------
+Geometry
+--------
+Formula: Og
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1     Og     0.00000000     0.00000000     0.00000000
+ 
+Lattice vectors (angstrom)
+      1    -1.58000000     1.58000000     1.58000000
+      2     1.58000000    -1.58000000     1.58000000
+      3     1.58000000     1.58000000    -1.58000000
+ 
+Unit cell volume (angstrom^3)        15.77725
+ 
+Total System Charge             0.00000
+Bonding info available!
+ 
+
+
+
+                     *************************************************************************
+                     *  BAND 2021.105  RunTime: Jul20-2022 18:35:18  ShM Nodes: 1  Procs: 8  *
+                     *************************************************************************
+  
+
+-----------------
+Band Engine Input
+-----------------
+
+Basis
+Type TZP
+Core None
+End
+NuclearModel Gaussian
+Relativity
+Level Spin-Orbit
+End
+XC
+SpinOrbitMagnetization CollinearZ
+GGA PBEsol
+End
+
+Number of symmetry operators: 48
+ Using automatic Hessian for delocalized coordinates.
+ Using the following basis set files:
+ 
+ Og             : /zfs/hybrilit.jinr.ru/user/m/milias/work/software/ams/linux.openmpi/ams2021.105/atomicdata/Band/TZP/Og
+
+
+
+ =====================
+ C O N F I N E M E N T
+ =====================
+  
+ Basis functions confinement radius         7.757
+ Width                                      0.776
+ use shared memory for sandwiching:  F
+
+
+
+ ===============================
+ M O D E L   P A R A M E T E R S
+ ===============================
+  
+ DENSITY FUNCTIONAL POTENTIAL (scf)
+    LDA:                               PW92                                    == Not Default ==
+    Gradient Corrections:              PBEsolx PBEsolc                         == Not Default ==
+ DENSITY FUNCTIONAL ENERGY (post-scf)
+    Gradient Corrections:              Becke88 Perdew86 PW91x PW91c EV93x PW...== Not Default ==
+
+ SPIN  (restricted / unrestr.)
+    Molecule:                          Collinear (Z)
+
+ OTHER ASPECTS
+    Relativistic Corrections:          Spin-Orbit (ZORA,APA)                   == Not Default ==
+
+    Nuclear Charge Density Model:      Gaussian Charge Distributions            *** SPECIAL ***
+
+
+
+ ========================
+ S. C. F.   O P T I O N S
+ ========================
+  
+
+ * DIIS settings info for DIRAC   *
+    Cond              0.1E+07
+    CLarge          20.00
+    CHuge           50.00
+    DiMix            1.00
+    IopPly              1
+    NCyDmp              5
+    IPrint              0
+    Adaptable           F
+    Method         diis                
+    Dimix Decay fac  1.00
+
+ * DIIS settings info for SCF     *
+    Cond              0.1E+07
+    CLarge          20.00
+    CHuge           20.00
+    DiMix            0.20
+    IopPly              1
+    NCyDmp              1
+    IPrint              0
+    Adaptable           T
+    Method         DIIS                
+    Dimix Decay fac  1.00
+ growth factor   1.10000000000000     
+ shrink factor  0.909090909100000     
+
+    Mix            0.0750
+    Degenerate          F
+    Edegen          1.0E-04
+    SCFRTX           9.90
+    Convrg          1.0E-06
+    Ncyclx            300
+ getinp: use Shared Memory T
+
+
+
+
+                             **  R A D I A L   F U N C T I O N S  **
+
+
+
+
+                             ---------------------
+                                   T Y P E   1
+                             ---------------------
+
+ RADIAL POINTS                                         3000
+
+
+
+
+ ............................ D I R A C ................................
+
+ NUCLEAR CHARGE                               118.0000               **>  Og  <**
+ (POINT NUCLEUS)
+ VALENCE CHARGE                               118.0000
+ NET CHARGE                                     0.0000
+
+ VALENCE ORBITALS INCLUDED IN THE CRYSTAL BASIS
+ Nuclear radius (bohr):    1.16E-04
+ Radial grid       nr of points               3000
+                   range                      0.10E-05     0.10E+03
+ Radius of nucleus  1.158E-04
+  
+  ** SCF-FUNCTIONAL INFO **
+    ZORA
+    DOUBLE GROUP
+  
+ Self consistent error   0.16E-08
+
+
+  Orbital    Q         E(a.u.)     E(eV)           <R>
+ -------------------------------------------------------------------
+  1S 1/2     2.00 -10682.619229    -290688.8596   0.007
+  2S 1/2     2.00  -1811.313449     -49288.3468   0.035
+  2P 1/2     2.00  -1773.510714     -48259.6820   0.027
+  2P 3/2     4.00  -1175.075393     -31975.4284   0.041
+  3S 1/2     2.00   -472.450244     -12856.0253   0.097
+  3P 1/2     2.00   -452.851419     -12322.7141   0.089
+  3P 3/2     4.00   -315.942414      -8597.2305   0.114
+  3D 3/2     4.00   -284.916024      -7752.9595   0.097
+  3D 5/2     6.00   -263.415970      -7167.9132   0.103
+  4S 1/2     2.00   -137.276166      -3735.4745   0.208
+  4P 1/2     2.00   -127.457713      -3468.3008   0.203
+  4P 3/2     4.00    -88.550143      -2409.5720   0.249
+  4D 3/2     4.00    -73.397012      -1997.2343   0.240
+  4D 5/2     6.00    -67.547538      -1838.0620   0.252
+  5S 1/2     2.00    -37.746911      -1027.1457   0.408
+  5P 1/2     2.00    -33.222161       -904.0210   0.412
+  5P 3/2     4.00    -21.716469       -590.9352   0.500
+  4F 5/2     6.00    -47.750168      -1299.3482   0.231
+  4F 7/2     8.00    -45.999714      -1251.7159   0.236
+  5D 3/2     4.00    -15.179457       -413.0540   0.523
+  5D 5/2     6.00    -13.627352       -370.8191   0.547
+  6S 1/2     2.00     -8.053871       -219.1570   0.805
+  6P 1/2     2.00     -6.290317       -171.1682   0.846
+  6P 3/2     4.00     -3.548830        -96.5686   1.056
+  5F 5/2     6.00     -5.779417       -157.2659   0.607
+  5F 7/2     8.00     -5.418742       -147.4515   0.620
+  6D 3/2     4.00     -1.440098        -39.1871   1.263
+  6D 5/2     6.00     -1.184245        -32.2249   1.344
+  7S 1/2     2.00     -0.997911        -27.1545   1.805
+  7P 1/2     2.00     -0.539049        -14.6683   2.091
+  7P 3/2     4.00     -0.203020         -5.5245   2.967
+
+
+ targetR   2.96742994065956      expectR   2.96742994065956      sigma
+   2.62981631280718      diffuseFactor   1.00000000000000     
+
+ NR. OF RADIAL VALENCE ORBITALS                          71
+ NR. OF RADIAL CORE ORBITALS                              0
+ NR. OF RADIAL FIT FUNCTIONS                              0
+
+
+
+ ======================================================
+ R A N G E S    F O R    A T O M I C    O R B I T A L S
+ ======================================================
+  
+   --------------------------------------------------------------------------------
+                            valence            core valence kinetic    core kinetic
+   --------------------------------------------------------------------------------
+
+             Cutoff       1.000E-06       1.000E-06       1.000E-06       1.000E-06
+   --------------------------------------------------------------------------------
+ 
+   --------------------------------------------------------------------------------
+               Type         valence            core valence kinetic    core kinetic
+   --------------------------------------------------------------------------------
+                 Og           13.42            0.00           13.67            0.00
+   --------------------------------------------------------------------------------
+ 
+
+
+
+ ====================
+ R U N    C O N F I G
+ ====================
+  
+ 
+ Use Symmetry  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  T
+ Calculate gradient of basis  .  .  .  .  .  .  .  .  .  .  .  T
+ Calculate sec. der. of basis .  .  .  .  .  .  .  .  .  .  .  F
+ Calculate operator T working on basis .  .  .  .  .  .  .  .  T
+ Calculate dk-basis  .  .  .  .  .  .  .  .  .  .  .  .  .  .  F
+ Calculate gradient of fit .  .  .  .  .  .  .  .  .  .  .  .  T
+ Calculate sec. der. of fit.  .  .  .  .  .  .  .  .  .  .  .  T
+ Calculate gradient of fit pot.  .  .  .  .  .  .  .  .  .  .  F
+ Kin. energy via grad.  .  .  .  .  .  .  .  .  .  .  .  .  .  F
+ Turnover rule for xc.  .  .  .  .  .  .  .  .  .  .  .  .  .  F
+ Calculate gradient of energy .  .  .  .  .  .  .  .  .  .  .  T
+ Calculate analytical strain derivatives  .  .  .  .  .  .  .  F
+ Calculate kin. energy density.  .  .  .  .  .  .  .  .  .  .  F
+ Calculate nuc. grad of kin. energy density  .  .  .  .  .  .  F
+ Calculate der. of density .  .  .  .  .  .  .  .  .  .  .  .  T
+ Calculate second der. of density.  .  .  .  .  .  .  .  .  .  T
+ Calculate nuc. grad. of density .  .  .  .  .  .  .  .  .  .  T
+ Calculate nuc. grad. of grad. density .  .  .  .  .  .  .  .  F
+ Exact rho during SCF.  .  .  .  .  .  .  .  .  .  .  .  .  .  T
+ Exact grad. rho during SCF.  .  .  .  .  .  .  .  .  .  .  .  F
+ Exact grad. rho post SCF  .  .  .  .  .  .  .  .  .  .  .  .  T
+ Store history of dens. matrix.  .  .  .  .  .  .  .  .  .  .  T
+ Store original Bloch functions  .  .  .  .  .  .  .  .  .  .  F
+ Direct fit .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  F
+ Direct basis  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  T
+ STO based fitting.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  F
+ Zlm fitting.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  T
+ Calculate fragment energy in mol. grid.  .  .  .  .  .  .  .  T
+ Map atoms to unit cell .  .  .  .  .  .  .  .  .  .  .  .  .  T
+ Print output for radial.  .  .  .  .  .  .  .  .  .  .  .  .  T
+ Calculate DOS .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  T
+ Calculate population analysis.  .  .  .  .  .  .  .  .  .  .  T
+ Calculate band structure  .  .  .  .  .  .  .  .  .  .  .  .  F
+ Calculate EFG .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  F
+ Calculate properties.  .  .  .  .  .  .  .  .  .  .  .  .  .  T
+ Calculate kinetic energy  .  .  .  .  .  .  .  .  .  .  .  .  T
+ Save file tape10 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  F
+ Save file Points .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  F
+
+
+
+ ==================================================
+ G E O M E T R Y    I N    X - Y - Z    F O R M A T
+ ==================================================
+  
+ Og      0.000000000     0.000000000     0.000000000
+ VEC1    -1.580000000     1.580000000     1.580000000
+ VEC2     1.580000000    -1.580000000     1.580000000
+ VEC3     1.580000000     1.580000000    -1.580000000
+
+   Total nr. of atoms:          1
+
+
+
+
+
+                       3 - D I M E N S I O N A L   C R Y S T A L
+
+
+
+
+   REAL SPACE LATTICE VECTORS                         LENGTH
+   --------------------------                         ------
+   1)  -2.9857672769   2.9857672769   2.9857672769     5.172
+   2)   2.9857672769  -2.9857672769   2.9857672769     5.172
+   3)   2.9857672769   2.9857672769  -2.9857672769     5.172
+
+   ----------------------------------------
+   Angles between lattice vectors
+   ----------------------------------------
+
+     pair          angle
+
+     2 1           109.471221
+     3 1           109.471221
+     3 2           109.471221
+ 
+
+   Volume of unit cell (a.u.):               106.47
+   Volume of unit cell (Angstrom**3):         15.78
+
+
+
+   K-SPACE LATTICE VECTORS                            LENGTH
+   -----------------------                            ------
+   1)   0.0000000000   1.0521893913   1.0521893913     1.488
+   2)   1.0521893913   0.0000000000   1.0521893913     1.488
+   3)   1.0521893913   1.0521893913   0.0000000000     1.488
+ BeckeGrid: periodic partition function using cells up to order           37
+
+
+
+ ===============================
+ K - S P A C E   S A M P L I N G
+ ===============================
+  
+ Automatic Regular k-space grid for quality: NORMAL
+ 
+    lattice-vec. size(real space)    size(k-space)   #points   delta-k
+               1             4.22             1.49         9     0.186
+               2             4.22             1.49         9     0.186
+               3             4.22             1.49         9     0.186
+ 
+             Total nr. of unique k-points    55
+
+
+
+
+ =========
+ C E L L S
+ =========
+  
+
+   Nr. of cells for valence functions:        175
+
+
+
+ ===========================
+ L I N E A R   S C A L I N G
+ ===========================
+  
+ Neglecting functions
+              Valence  1.00E-06
+                 Core  1.00E-06
+                  Fit  0.00E+00
+            Multipole  1.00E-08
+   Screening function  3.16E-05
+
+
+
+ =========================================
+ N U M E R I C A L   I N T E G R A T I O N
+ =========================================
+  
+ Becke grid quality: NORMAL         
+  
+ Lebedev angular grid order:             min:  11 max:  31
+ Nr. of radial points:                   min: 206 max: 206
+
+ Total nr. of points                                  61440
+ Block length                                           128
+ Nr. of unique blocks                                    10
+ Total nr. of blocks                                    480
+
+ Percentage dummy points                               0.00%
+ Nr. of k-points processed together in baspnt            30
+ Nr. of symmetry operators (real space)                  48
+ Symmetry operators in k-space                           48
+
+
+
+ Total charge,    analytically                          118.000000000000
+                  numerically                           117.999921635677
+                  relative error                     -0.66E-06
+
+ Valence density, analytically                          118.000000000000
+                  numerically                           117.999921635677
+                  relative error                     -0.66E-06
+
+
+
+ INTEGRATED CHARGE PER ATOM:
+
+  SET      TOTAL CHARGE      REL. ERROR      Valence CHARGE    REL. ERROR
+ ------------------------------------------------------------------------
+   1     117.9999216357      -0.664E-06    117.9999216357      -0.664E-06
+
+ Norms of functions from routine baspnt
+ Maximum error in norms     6.641E-05 for function      133
+ Minimum accuracy required  1.000E-03
+
+ Sparseness info - valence
+   nr. of functions             274
+   max. nr. of functions        274
+   min. nr. of functions        192
+   avr. nr. of functions        226
+   percentage stored           82.5
+ 
+ PrepareHam: needLdotB F
+
+
+
+ ========================
+ Density Fitting (zlmFit)
+ ========================
+  
+ ZlmFit Fit Quality: NORMAL         
+  
+ Max L-expansion:                        min:   8 max:   8
+ Nr. of radial interpolation points:     min: 132 max: 132
+ BeckeGrid: periodic partition function using cells up to order           18
+ BeckeGrid: periodic partition function using cells up to order           18
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.28752     -0.97102      1.00000
+        112     -1.28752     -0.97102      1.00000
+        113     -0.81552     -0.42240      1.00000
+        114     -0.81552     -0.42240      1.00000
+        115     -0.51395      0.17790      0.98509
+        116     -0.51395      0.17790      0.98509
+        117     -0.45340      0.22836      0.91294
+        118     -0.45340      0.22836      0.91294
+        119     -0.12702      0.31016      0.08837
+        120     -0.12702      0.31016      0.08837
+        121     -0.12702      0.47026      0.01360
+        122     -0.12702      0.47026      0.01360
+        123      0.14804      0.47026      0.00000
+        124      0.14804      0.47026      0.00000
+        125      0.24939      0.70764      0.00000
+        126      0.24939      0.70764      0.00000
+        127      0.44003      0.82995      0.00000
+        128      0.44003      0.82995      0.00000
+        129      0.48175      0.92669      0.00000
+        130      0.48175      0.92669      0.00000
+        131      0.78226      1.11584      0.00000
+        132      0.78226      1.11584      0.00000
+        133      0.84118      1.27832      0.00000
+        134      0.84118      1.27832      0.00000
+        135      0.93007      1.33612      0.00000
+        136      0.93007      1.33612      0.00000
+ =================================================
+ Final bond energy (PBESol)                                    0.55343158      15.0596      347.28
+ K-points configuration loaded from previous results: GOStep1.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.28786     -0.97096      1.00000
+        112     -1.28786     -0.97096      1.00000
+        113     -0.81648     -0.42213      1.00000
+        114     -0.81648     -0.42213      1.00000
+        115     -0.51452      0.17907      0.98495
+        116     -0.51452      0.17907      0.98495
+        117     -0.45388      0.22909      0.91297
+        118     -0.45388      0.22909      0.91297
+        119     -0.12720      0.31061      0.08845
+        120     -0.12720      0.31061      0.08845
+        121     -0.12720      0.46968      0.01363
+        122     -0.12720      0.46968      0.01363
+        123      0.14785      0.46968      0.00000
+        124      0.14785      0.46968      0.00000
+        125      0.24921      0.70784      0.00000
+        126      0.24921      0.70784      0.00000
+        127      0.44025      0.82970      0.00000
+        128      0.44025      0.82970      0.00000
+        129      0.48169      0.92706      0.00000
+        130      0.48169      0.92706      0.00000
+        131      0.78275      1.11637      0.00000
+        132      0.78275      1.11637      0.00000
+        133      0.84227      1.27792      0.00000
+        134      0.84227      1.27792      0.00000
+        135      0.93033      1.33720      0.00000
+        136      0.93033      1.33720      0.00000
+ =================================================
+ Final bond energy (PBESol)                                    0.55593141      15.1277      348.85
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step   1       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                                0.55343158 Hartree
+energy change                       0.55343158     0.00001000    F
+max stress energy / atom            1.41950016     0.00050000    F
+constrained gradient max            0.00000000     0.00100000    T
+constrained gradient rms            0.00000000     0.00066667    T
+gradient max                        0.00000000
+gradient rms                        0.00000000
+cart. step max                      0.00181335     0.01000000    T
+cart. step rms                      0.00090668     0.00666667    T
+ 
+ 
+--------
+Geometry
+--------
+Formula: Og
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1     Og     0.00000000     0.00000000     0.00000000
+ 
+Lattice vectors (angstrom)
+      1    -1.58541425     1.58541425     1.58541425
+      2     1.58541425    -1.58541425     1.58541425
+      3     1.58541425     1.58541425    -1.58541425
+ 
+Unit cell volume (angstrom^3)        15.94000
+ 
+Total System Charge             0.00000
+Bonding info available!
+ 
+ K-points configuration loaded from previous results: GOStep1.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.28549     -0.97136      1.00000
+        112     -1.28549     -0.97136      1.00000
+        113     -0.80991     -0.42394      1.00000
+        114     -0.80991     -0.42394      1.00000
+        115     -0.51056      0.17101      0.98586
+        116     -0.51056      0.17101      0.98586
+        117     -0.45051      0.22402      0.91282
+        118     -0.45051      0.22402      0.91282
+        119     -0.12590      0.30749      0.08793
+        120     -0.12590      0.30749      0.08793
+        121     -0.12590      0.47374      0.01339
+        122     -0.12590      0.47374      0.01339
+        123      0.14914      0.47374      0.00000
+        124      0.14914      0.47374      0.00000
+        125      0.25048      0.70679      0.00000
+        126      0.25048      0.70679      0.00000
+        127      0.43870      0.83135      0.00000
+        128      0.43870      0.83135      0.00000
+        129      0.48209      0.92461      0.00000
+        130      0.48209      0.92461      0.00000
+        131      0.77933      1.11263      0.00000
+        132      0.77933      1.11263      0.00000
+        133      0.83502      1.28007      0.00000
+        134      0.83502      1.28007      0.00000
+        135      0.92866      1.33187      0.00000
+        136      0.92866      1.33187      0.00000
+ =================================================
+ Final bond energy (PBESol)                                    0.53902992      14.6678      338.25
+ K-points configuration loaded from previous results: GOStep2.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.28583     -0.97130      1.00000
+        112     -1.28583     -0.97130      1.00000
+        113     -0.81085     -0.42368      1.00000
+        114     -0.81085     -0.42368      1.00000
+        115     -0.51113      0.17217      0.98573
+        116     -0.51113      0.17217      0.98573
+        117     -0.45099      0.22476      0.91284
+        118     -0.45099      0.22476      0.91284
+        119     -0.12609      0.30795      0.08801
+        120     -0.12609      0.30795      0.08801
+        121     -0.12609      0.47316      0.01342
+        122     -0.12609      0.47316      0.01342
+        123      0.14895      0.47316      0.00000
+        124      0.14895      0.47316      0.00000
+        125      0.25030      0.70685      0.00000
+        126      0.25030      0.70685      0.00000
+        127      0.43892      0.83112      0.00000
+        128      0.43892      0.83112      0.00000
+        129      0.48204      0.92495      0.00000
+        130      0.48204      0.92495      0.00000
+        131      0.77983      1.11318      0.00000
+        132      0.77983      1.11318      0.00000
+        133      0.83603      1.27985      0.00000
+        134      0.83603      1.27985      0.00000
+        135      0.92890      1.33206      0.00000
+        136      0.92890      1.33206      0.00000
+ =================================================
+ Final bond energy (PBESol)                                    0.54147580      14.7343      339.78
+
+ dE(predicted):    -0.72964E-02, dE(actual):    -0.14402E-01, Trust radius:    0.200000, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step   2       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                                0.53902992 Hartree
+energy change                      -0.01440166     0.00001000    F
+max stress energy / atom            1.38951381     0.00050000    F
+constrained gradient max            0.00000000     0.00100000    T
+constrained gradient rms            0.00000000     0.00066667    T
+gradient max                        0.00000000
+gradient rms                        0.00000000
+cart. step max                      0.00247971     0.01000000    T
+cart. step rms                      0.00123986     0.00666667    T
+ 
+ 
+--------
+Geometry
+--------
+Formula: Og
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1     Og     0.00000000     0.00000000     0.00000000
+ 
+Lattice vectors (angstrom)
+      1    -1.59281809     1.59281809     1.59281809
+      2     1.59281809    -1.59281809     1.59281809
+      3     1.59281809     1.59281809    -1.59281809
+ 
+Unit cell volume (angstrom^3)        16.16436
+ 
+Total System Charge             0.00000
+Bonding info available!
+ 
+ K-points configuration loaded from previous results: GOStep2.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.28284     -0.97181      1.00000
+        112     -1.28284     -0.97181      1.00000
+        113     -0.80238     -0.42602      1.00000
+        114     -0.80238     -0.42602      1.00000
+        115     -0.50598      0.16176      0.98692
+        116     -0.50598      0.16176      0.98692
+        117     -0.44660      0.21813      0.91272
+        118     -0.44660      0.21813      0.91272
+        119     -0.12430      0.30380      0.08726
+        120     -0.12430      0.30380      0.08726
+        121     -0.12430      0.47854      0.01310
+        122     -0.12430      0.47854      0.01310
+        123      0.15067      0.47854      0.00000
+        124      0.15067      0.47854      0.00000
+        125      0.25195      0.70608      0.00000
+        126      0.25195      0.70608      0.00000
+        127      0.43691      0.83301      0.00000
+        128      0.43691      0.83301      0.00000
+        129      0.48247      0.92197      0.00000
+        130      0.48247      0.92197      0.00000
+        131      0.77540      1.10801      0.00000
+        132      0.77540      1.10801      0.00000
+        133      0.82740      1.28079      0.00000
+        134      0.82740      1.28079      0.00000
+        135      0.92680      1.33076      0.00000
+        136      0.92680      1.33076      0.00000
+ =================================================
+ Final bond energy (PBESol)                                    0.51992138      14.1478      326.26
+ K-points configuration loaded from previous results: GOStep3.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.28316     -0.97176      1.00000
+        112     -1.28316     -0.97176      1.00000
+        113     -0.80331     -0.42576      1.00000
+        114     -0.80331     -0.42576      1.00000
+        115     -0.50655      0.16290      0.98679
+        116     -0.50655      0.16290      0.98679
+        117     -0.44708      0.21886      0.91273
+        118     -0.44708      0.21886      0.91273
+        119     -0.12451      0.30426      0.08735
+        120     -0.12451      0.30426      0.08735
+        121     -0.12451      0.47795      0.01314
+        122     -0.12451      0.47795      0.01314
+        123      0.15048      0.47795      0.00000
+        124      0.15048      0.47795      0.00000
+        125      0.25177      0.70619      0.00000
+        126      0.25177      0.70619      0.00000
+        127      0.43713      0.83282      0.00000
+        128      0.43713      0.83282      0.00000
+        129      0.48243      0.92228      0.00000
+        130      0.48243      0.92228      0.00000
+        131      0.77589      1.10860      0.00000
+        132      0.77589      1.10860      0.00000
+        133      0.82829      1.28080      0.00000
+        134      0.82829      1.28080      0.00000
+        135      0.92699      1.33086      0.00000
+        136      0.92699      1.33086      0.00000
+ =================================================
+ Final bond energy (PBESol)                                    0.52228998      14.2122      327.74
+
+ dE(predicted):    -0.19133E-01, dE(actual):    -0.19109E-01, Trust radius:    0.400000, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step   3       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                                0.51992138 Hartree
+energy change                      -0.01910854     0.00001000    F
+max stress energy / atom            1.34767690     0.00050000    F
+constrained gradient max            0.00000000     0.00100000    T
+constrained gradient rms            0.00000000     0.00066667    T
+gradient max                        0.00000000
+gradient rms                        0.00000000
+cart. step max                      0.00495943     0.01000000    T
+cart. step rms                      0.00247971     0.00666667    T
+ 
+ 
+--------
+Geometry
+--------
+Formula: Og
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1     Og     0.00000000     0.00000000     0.00000000
+ 
+Lattice vectors (angstrom)
+      1    -1.60762579     1.60762579     1.60762579
+      2     1.60762579    -1.60762579     1.60762579
+      3     1.60762579     1.60762579    -1.60762579
+ 
+Unit cell volume (angstrom^3)        16.61938
+ 
+Total System Charge             0.00000
+Bonding info available!
+ 
+ K-points configuration loaded from previous results: GOStep3.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.27791     -0.97273      1.00000
+        112     -1.27791     -0.97273      1.00000
+        113     -0.78787     -0.43010      1.00000
+        114     -0.78787     -0.43010      1.00000
+        115     -0.49701      0.14385      0.98900
+        116     -0.49701      0.14385      0.98900
+        117     -0.43894      0.20641      0.91278
+        118     -0.43894      0.20641      0.91278
+        119     -0.12172      0.29635      0.08567
+        120     -0.12172      0.29635      0.08567
+        121     -0.12089      0.48820      0.01255
+        122     -0.12089      0.48820      0.01255
+        123      0.15375      0.48820      0.00000
+        124      0.15375      0.48820      0.00000
+        125      0.25456      0.70362      0.00000
+        126      0.25456      0.70362      0.00000
+        127      0.43347      0.83541      0.00000
+        128      0.43347      0.83541      0.00000
+        129      0.48074      0.91866      0.00000
+        130      0.48074      0.91866      0.00000
+        131      0.76797      1.09789      0.00000
+        132      0.76797      1.09789      0.00000
+        133      0.81515      1.27741      0.00000
+        134      0.81515      1.27741      0.00000
+        135      0.92375      1.33507      0.00000
+        136      0.92375      1.33507      0.00000
+ =================================================
+ Final bond energy (PBESol)                                    0.48354156      13.1578      303.43
+ K-points configuration loaded from previous results: GOStep4.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.27821     -0.97267      1.00000
+        112     -1.27821     -0.97267      1.00000
+        113     -0.78876     -0.42984      1.00000
+        114     -0.78876     -0.42984      1.00000
+        115     -0.49757      0.14495      0.98887
+        116     -0.49757      0.14495      0.98887
+        117     -0.43941      0.20714      0.91277
+        118     -0.43941      0.20714      0.91277
+        119     -0.12187      0.29682      0.08578
+        120     -0.12187      0.29682      0.08578
+        121     -0.12112      0.48759      0.01258
+        122     -0.12112      0.48759      0.01258
+        123      0.15356      0.48759      0.00000
+        124      0.15356      0.48759      0.00000
+        125      0.25442      0.70382      0.00000
+        126      0.25442      0.70382      0.00000
+        127      0.43367      0.83529      0.00000
+        128      0.43367      0.83529      0.00000
+        129      0.48123      0.91873      0.00000
+        130      0.48123      0.91873      0.00000
+        131      0.76841      1.09856      0.00000
+        132      0.76841      1.09856      0.00000
+        133      0.81580      1.27778      0.00000
+        134      0.81580      1.27778      0.00000
+        135      0.92393      1.33462      0.00000
+        136      0.92393      1.33462      0.00000
+ =================================================
+ Final bond energy (PBESol)                                    0.48575893      13.2182      304.82
+
+ dE(predicted):    -0.36239E-01, dE(actual):    -0.36380E-01, Trust radius:    0.800000, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step   4       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                                0.48354156 Hartree
+energy change                      -0.03637981     0.00001000    F
+max stress energy / atom            1.26683419     0.00050000    F
+constrained gradient max            0.00000000     0.00100000    T
+constrained gradient rms            0.00000000     0.00066667    T
+gradient max                        0.00000000
+gradient rms                        0.00000000
+cart. step max                      0.00991887     0.01000000    T
+cart. step rms                      0.00495943     0.00666667    T
+ 
+ 
+--------
+Geometry
+--------
+Formula: Og
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1     Og     0.00000000     0.00000000     0.00000000
+ 
+Lattice vectors (angstrom)
+      1    -1.63724122     1.63724122     1.63724122
+      2     1.63724122    -1.63724122     1.63724122
+      3     1.63724122     1.63724122    -1.63724122
+ 
+Unit cell volume (angstrom^3)        17.55489
+ 
+Total System Charge             0.00000
+Bonding info available!
+ 
+ K-points configuration loaded from previous results: GOStep4.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.26235     -0.97453      1.00000
+        112     -1.26235     -0.97453      1.00000
+        113     -0.76087     -0.43793      1.00000
+        114     -0.76087     -0.43793      1.00000
+        115     -0.47983      0.11025      0.99329
+        116     -0.47983      0.11025      0.99329
+        117     -0.42425      0.18333      0.91391
+        118     -0.42425      0.18333      0.91391
+        119     -0.11661      0.28091      0.08133
+        120     -0.11661      0.28091      0.08133
+        121     -0.11320      0.50716      0.01147
+        122     -0.11320      0.50716      0.01147
+        123      0.15974      0.50716      0.00000
+        124      0.15974      0.50716      0.00000
+        125      0.25765      0.69425      0.00000
+        126      0.25765      0.69425      0.00000
+        127      0.42823      0.83601      0.00000
+        128      0.42823      0.83601      0.00000
+        129      0.46399      0.91778      0.00000
+        130      0.46399      0.91778      0.00000
+        131      0.75636      1.10029      0.00000
+        132      0.75636      1.10029      0.00000
+        133      0.80340      1.26561      0.00000
+        134      0.80340      1.26561      0.00000
+        135      0.89320      1.34062      0.00000
+        136      0.89320      1.34062      0.00000
+ =================================================
+ Final bond energy (PBESol)                                    0.41760773      11.3637      262.05
+ K-points configuration loaded from previous results: GOStep5.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.26325     -0.97448      1.00000
+        112     -1.26325     -0.97448      1.00000
+        113     -0.76169     -0.43769      1.00000
+        114     -0.76169     -0.43769      1.00000
+        115     -0.48036      0.11128      0.99315
+        116     -0.48036      0.11128      0.99315
+        117     -0.42471      0.18405      0.91385
+        118     -0.42471      0.18405      0.91385
+        119     -0.11678      0.28142      0.08149
+        120     -0.11678      0.28142      0.08149
+        121     -0.11347      0.50657      0.01150
+        122     -0.11347      0.50657      0.01150
+        123      0.15955      0.50657      0.00000
+        124      0.15955      0.50657      0.00000
+        125      0.25758      0.69465      0.00000
+        126      0.25758      0.69465      0.00000
+        127      0.42834      0.83601      0.00000
+        128      0.42834      0.83601      0.00000
+        129      0.46454      0.91777      0.00000
+        130      0.46454      0.91777      0.00000
+        131      0.75673      1.09880      0.00000
+        132      0.75673      1.09880      0.00000
+        133      0.80346      1.26606      0.00000
+        134      0.80346      1.26606      0.00000
+        135      0.89450      1.34085      0.00000
+        136      0.89450      1.34085      0.00000
+ =================================================
+ Final bond energy (PBESol)                                    0.41958771      11.4176      263.30
+
+ dE(predicted):    -0.64855E-01, dE(actual):    -0.65934E-01, Trust radius:    1.000000, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step   5       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                                0.41760773 Hartree
+energy change                      -0.06593383     0.00001000    F
+max stress energy / atom            1.13214416     0.00050000    F
+constrained gradient max            0.00000000     0.00100000    T
+constrained gradient rms            0.00000000     0.00066667    T
+gradient max                        0.00000000
+gradient rms                        0.00000000
+cart. step max                      0.01239859     0.01000000    F
+cart. step rms                      0.00619929     0.00666667    T
+ 
+ 
+--------
+Geometry
+--------
+Formula: Og
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1     Og     0.00000000     0.00000000     0.00000000
+ 
+Lattice vectors (angstrom)
+      1    -1.67426052     1.67426052     1.67426052
+      2     1.67426052    -1.67426052     1.67426052
+      3     1.67426052     1.67426052    -1.67426052
+ 
+Unit cell volume (angstrom^3)        18.77280
+ 
+Total System Charge             0.00000
+Bonding info available!
+ 
+ K-points configuration loaded from previous results: GOStep5.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.23010     -0.97700      1.00000
+        112     -1.23010     -0.97700      1.00000
+        113     -0.73088     -0.44736      1.00000
+        114     -0.73088     -0.44736      1.00000
+        115     -0.45988      0.07214      0.99674
+        116     -0.45988      0.07214      0.99674
+        117     -0.40720      0.15524      0.91831
+        118     -0.40720      0.15524      0.91831
+        119     -0.10949      0.25984      0.07454
+        120     -0.10949      0.25984      0.07454
+        121     -0.10209      0.49726      0.01041
+        122     -0.10209      0.49726      0.01041
+        123      0.16618      0.52778      0.00000
+        124      0.16618      0.52778      0.00000
+        125      0.25833      0.67518      0.00000
+        126      0.25833      0.67518      0.00000
+        127      0.42203      0.82922      0.00000
+        128      0.42203      0.82922      0.00000
+        129      0.44405      0.91854      0.00000
+        130      0.44405      0.91854      0.00000
+        131      0.74197      1.12597      0.00000
+        132      0.74197      1.12597      0.00000
+        133      0.79071      1.23337      0.00000
+        134      0.79071      1.23337      0.00000
+        135      0.84499      1.31717      0.00000
+        136      0.84499      1.31717      0.00000
+ =================================================
+ Final bond energy (PBESol)                                    0.34627135       9.4225      217.29
+ K-points configuration loaded from previous results: GOStep6.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.23102     -0.97693      1.00000
+        112     -1.23102     -0.97693      1.00000
+        113     -0.73161     -0.44712      1.00000
+        114     -0.73161     -0.44712      1.00000
+        115     -0.46038      0.07308      0.99668
+        116     -0.46038      0.07308      0.99668
+        117     -0.40763      0.15597      0.91816
+        118     -0.40763      0.15597      0.91816
+        119     -0.10968      0.26041      0.07473
+        120     -0.10968      0.26041      0.07473
+        121     -0.10240      0.49759      0.01043
+        122     -0.10240      0.49759      0.01043
+        123      0.16603      0.52732      0.00000
+        124      0.16603      0.52732      0.00000
+        125      0.25833      0.67575      0.00000
+        126      0.25833      0.67575      0.00000
+        127      0.42224      0.82959      0.00000
+        128      0.42224      0.82959      0.00000
+        129      0.44448      0.91853      0.00000
+        130      0.44448      0.91853      0.00000
+        131      0.74223      1.12673      0.00000
+        132      0.74223      1.12673      0.00000
+        133      0.79042      1.23441      0.00000
+        134      0.79042      1.23441      0.00000
+        135      0.84618      1.31799      0.00000
+        136      0.84618      1.31799      0.00000
+ =================================================
+ Final bond energy (PBESol)                                    0.34801992       9.4701      218.39
+
+ dE(predicted):    -0.70102E-01, dE(actual):    -0.71336E-01, Trust radius:    1.000000, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step   6       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                                0.34627135 Hartree
+energy change                      -0.07133638     0.00001000    F
+max stress energy / atom            0.99380704     0.00050000    F
+constrained gradient max            0.00000000     0.00100000    T
+constrained gradient rms            0.00000000     0.00066667    T
+gradient max                        0.00000000
+gradient rms                        0.00000000
+cart. step max                      0.01239859     0.01000000    F
+cart. step rms                      0.00619929     0.00666667    T
+ 
+ 
+--------
+Geometry
+--------
+Formula: Og
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1     Og     0.00000000     0.00000000     0.00000000
+ 
+Lattice vectors (angstrom)
+      1    -1.71127981     1.71127981     1.71127981
+      2     1.71127981    -1.71127981     1.71127981
+      3     1.71127981     1.71127981    -1.71127981
+ 
+Unit cell volume (angstrom^3)        20.04579
+ 
+Total System Charge             0.00000
+Bonding info available!
+ 
+ K-points configuration loaded from previous results: GOStep6.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.19746     -0.97977      1.00000
+        112     -1.19746     -0.97977      1.00000
+        113     -0.70479     -0.45649      1.00000
+        114     -0.70479     -0.45649      1.00000
+        115     -0.44163      0.03801      0.99869
+        116     -0.44163      0.03801      0.99869
+        117     -0.39165      0.12819      0.92617
+        118     -0.39165      0.12819      0.92617
+        119     -0.10177      0.23699      0.06575
+        120     -0.10177      0.23699      0.06575
+        121     -0.08931      0.48329      0.00939
+        122     -0.08931      0.48329      0.00939
+        123      0.17071      0.54047      0.00000
+        124      0.17071      0.54047      0.00000
+        125      0.25989      0.65237      0.00000
+        126      0.25989      0.65237      0.00000
+        127      0.42166      0.80938      0.00000
+        128      0.42166      0.80938      0.00000
+        129      0.43617      0.91177      0.00000
+        130      0.43617      0.91177      0.00000
+        131      0.70520      1.07090      0.00000
+        132      0.70520      1.07090      0.00000
+        133      0.80208      1.23662      0.00000
+        134      0.80208      1.23662      0.00000
+        135      0.80208      1.32597      0.00000
+        136      0.80208      1.32597      0.00000
+ =================================================
+ Final bond energy (PBESol)                                    0.28535986       7.7650      179.07
+ K-points configuration loaded from previous results: GOStep7.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.19827     -0.97970      1.00000
+        112     -1.19827     -0.97970      1.00000
+        113     -0.70544     -0.45626      1.00000
+        114     -0.70544     -0.45626      1.00000
+        115     -0.44210      0.03887      0.99865
+        116     -0.44210      0.03887      0.99865
+        117     -0.39204      0.12890      0.92592
+        118     -0.39204      0.12890      0.92592
+        119     -0.10198      0.23762      0.06601
+        120     -0.10198      0.23762      0.06601
+        121     -0.08967      0.48370      0.00942
+        122     -0.08967      0.48370      0.00942
+        123      0.17062      0.54029      0.00000
+        124      0.17062      0.54029      0.00000
+        125      0.25981      0.65299      0.00000
+        126      0.25981      0.65299      0.00000
+        127      0.42158      0.81002      0.00000
+        128      0.42158      0.81002      0.00000
+        129      0.43615      0.91262      0.00000
+        130      0.43615      0.91262      0.00000
+        131      0.70614      1.07307      0.00000
+        132      0.70614      1.07307      0.00000
+        133      0.80315      1.23643      0.00000
+        134      0.80315      1.23643      0.00000
+        135      0.80315      1.32622      0.00000
+        136      0.80315      1.32622      0.00000
+ =================================================
+ Final bond energy (PBESol)                                    0.28688807       7.8066      180.03
+
+ dE(predicted):    -0.60492E-01, dE(actual):    -0.60911E-01, Trust radius:    1.000000, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step   7       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                                0.28535986 Hartree
+energy change                      -0.06091149     0.00001000    F
+max stress energy / atom            0.86863163     0.00050000    F
+constrained gradient max            0.00000000     0.00100000    T
+constrained gradient rms            0.00000000     0.00066667    T
+gradient max                        0.00000000
+gradient rms                        0.00000000
+cart. step max                      0.01239859     0.01000000    F
+cart. step rms                      0.00619929     0.00666667    T
+ 
+ 
+--------
+Geometry
+--------
+Formula: Og
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1     Og     0.00000000     0.00000000     0.00000000
+ 
+Lattice vectors (angstrom)
+      1    -1.74829911     1.74829911     1.74829911
+      2     1.74829911    -1.74829911     1.74829911
+      3     1.74829911     1.74829911    -1.74829911
+ 
+Unit cell volume (angstrom^3)        21.37505
+ 
+Total System Charge             0.00000
+Bonding info available!
+ 
+ K-points configuration loaded from previous results: GOStep7.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.16942     -0.98266      1.00000
+        112     -1.16942     -0.98266      1.00000
+        113     -0.68213     -0.46519      1.00000
+        114     -0.68213     -0.46519      1.00000
+        115     -0.42488      0.00772      0.99964
+        116     -0.42488      0.00772      0.99964
+        117     -0.37741      0.10243      0.93755
+        118     -0.37741      0.10243      0.93755
+        119     -0.09342      0.21360      0.05466
+        120     -0.09342      0.21360      0.05466
+        121     -0.07576      0.46672      0.00815
+        122     -0.07576      0.46672      0.00815
+        123      0.17191      0.53924      0.00000
+        124      0.17191      0.53924      0.00000
+        125      0.26382      0.62948      0.00000
+        126      0.26382      0.62948      0.00000
+        127      0.42326      0.78338      0.00000
+        128      0.42326      0.78338      0.00000
+        129      0.44426      0.90154      0.00000
+        130      0.44426      0.90154      0.00000
+        131      0.67757      1.00785      0.00000
+        132      0.67757      1.00785      0.00000
+        133      0.76518      1.22625      0.00000
+        134      0.76518      1.22625      0.00000
+        135      0.76518      1.31861      0.00000
+        136      0.76518      1.31861      0.00000
+ =================================================
+ Final bond energy (PBESol)                                    0.23333385       6.3493      146.42
+ K-points configuration loaded from previous results: GOStep8.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.17013     -0.98258      1.00000
+        112     -1.17013     -0.98258      1.00000
+        113     -0.68271     -0.46496      1.00000
+        114     -0.68271     -0.46496      1.00000
+        115     -0.42532      0.00850      0.99963
+        116     -0.42532      0.00850      0.99963
+        117     -0.37779      0.10311      0.93719
+        118     -0.37779      0.10311      0.93719
+        119     -0.09365      0.21423      0.05499
+        120     -0.09365      0.21423      0.05499
+        121     -0.07591      0.46720      0.00819
+        122     -0.07591      0.46720      0.00819
+        123      0.17193      0.53950      0.00000
+        124      0.17193      0.53950      0.00000
+        125      0.26371      0.63010      0.00000
+        126      0.26371      0.63010      0.00000
+        127      0.42322      0.78411      0.00000
+        128      0.42322      0.78411      0.00000
+        129      0.44393      0.90146      0.00000
+        130      0.44393      0.90146      0.00000
+        131      0.67812      1.00948      0.00000
+        132      0.67812      1.00948      0.00000
+        133      0.76609      1.22232      0.00000
+        134      0.76609      1.22232      0.00000
+        135      0.76609      1.32018      0.00000
+        136      0.76609      1.32018      0.00000
+ =================================================
+ Final bond energy (PBESol)                                    0.23466664       6.3856      147.26
+ Rebuilding optimization coordinates
+
+ dE(predicted):    -0.51605E-01, dE(actual):    -0.52026E-01, Trust radius:    1.000000, all in a.u.
+ Oscillation detected, halving the step
+ Persistent oscillations may indicate discontinuity in the atomic forces.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step   8       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                                0.23333385 Hartree
+energy change                      -0.05202600     0.00001000    F
+max stress energy / atom            0.75577839     0.00050000    F
+constrained gradient max            0.00000000     0.00100000    T
+constrained gradient rms            0.00000000     0.00066667    T
+gradient max                        0.00000000
+gradient rms                        0.00000000
+cart. step max                      0.01041947     0.01000000    F
+cart. step rms                      0.00520974     0.00666667    T
+ 
+ 
+--------
+Geometry
+--------
+Formula: Og
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1     Og     0.00000000     0.00000000     0.00000000
+ 
+Lattice vectors (angstrom)
+      1    -1.77940923     1.77940923     1.77940923
+      2     1.77940923    -1.77940923     1.77940923
+      3     1.77940923     1.77940923    -1.77940923
+ 
+Unit cell volume (angstrom^3)        22.53655
+ 
+Total System Charge             0.00000
+Bonding info available!
+ 
+ K-points configuration loaded from previous results: GOStep8.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.14892     -0.98503      1.00000
+        112     -1.14892     -0.98503      1.00000
+        113     -0.66539     -0.47204      1.00000
+        114     -0.66539     -0.47204      1.00000
+        115     -0.41179     -0.01488      0.99994
+        116     -0.41179     -0.01488      0.99994
+        117     -0.36632      0.08199      0.94832
+        118     -0.36632      0.08199      0.94832
+        119     -0.08583      0.19431      0.04485
+        120     -0.08583      0.19431      0.04485
+        121     -0.07082      0.45131      0.00689
+        122     -0.07082      0.45131      0.00689
+        123      0.17172      0.52533      0.00000
+        124      0.17172      0.52533      0.00000
+        125      0.26685      0.61055      0.00000
+        126      0.26685      0.61055      0.00000
+        127      0.40504      0.76127      0.00000
+        128      0.40504      0.76127      0.00000
+        129      0.45349      0.89365      0.00000
+        130      0.45349      0.89365      0.00000
+        131      0.66103      0.96308      0.00000
+        132      0.66103      0.96308      0.00000
+        133      0.74061      1.16918      0.00000
+        134      0.74061      1.16918      0.00000
+        135      0.74061      1.27518      0.00000
+        136      0.74061      1.27518      0.00000
+ =================================================
+ Final bond energy (PBESol)                                    0.19574961       5.3266      122.83
+ K-points configuration loaded from previous results: GOStep9.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.14955     -0.98496      1.00000
+        112     -1.14955     -0.98496      1.00000
+        113     -0.66591     -0.47182      1.00000
+        114     -0.66591     -0.47182      1.00000
+        115     -0.41220     -0.01417      0.99993
+        116     -0.41220     -0.01417      0.99993
+        117     -0.36667      0.08264      0.94799
+        118     -0.36667      0.08264      0.94799
+        119     -0.08609      0.19493      0.04515
+        120     -0.08609      0.19493      0.04515
+        121     -0.07099      0.45183      0.00693
+        122     -0.07099      0.45183      0.00693
+        123      0.17172      0.52595      0.00000
+        124      0.17172      0.52595      0.00000
+        125      0.26677      0.61117      0.00000
+        126      0.26677      0.61117      0.00000
+        127      0.40764      0.76200      0.00000
+        128      0.40764      0.76200      0.00000
+        129      0.45327      0.89413      0.00000
+        130      0.45327      0.89413      0.00000
+        131      0.66197      0.96390      0.00000
+        132      0.66197      0.96390      0.00000
+        133      0.74130      1.17307      0.00000
+        134      0.74130      1.17307      0.00000
+        135      0.74130      1.27629      0.00000
+        136      0.74130      1.27629      0.00000
+ =================================================
+ Final bond energy (PBESol)                                    0.19692453       5.3586      123.57
+
+ dE(predicted):    -0.37408E-01, dE(actual):    -0.37584E-01, Trust radius:    1.000000, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step   9       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                                0.19574961 Hartree
+energy change                      -0.03758424     0.00001000    F
+max stress energy / atom            0.66604521     0.00050000    F
+constrained gradient max            0.00000000     0.00100000    T
+constrained gradient rms            0.00000000     0.00066667    T
+gradient max                        0.00000000
+gradient rms                        0.00000000
+cart. step max                      0.02083894     0.01000000    F
+cart. step rms                      0.01041947     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: Og
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1     Og     0.00000000     0.00000000     0.00000000
+ 
+Lattice vectors (angstrom)
+      1    -1.84162946     1.84162946     1.84162946
+      2     1.84162946    -1.84162946     1.84162946
+      3     1.84162946     1.84162946    -1.84162946
+ 
+Unit cell volume (angstrom^3)        24.98428
+ 
+Total System Charge             0.00000
+Bonding info available!
+ 
+ K-points configuration loaded from previous results: GOStep9.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.11485     -0.98923      1.00000
+        112     -1.11485     -0.98923      1.00000
+        113     -0.64044     -0.48426      1.00000
+        114     -0.64044     -0.48426      1.00000
+        115     -0.38791     -0.05267      1.00000
+        116     -0.38791     -0.05267      1.00000
+        117     -0.34613      0.04457      0.96665
+        118     -0.34613      0.04457      0.96665
+        119     -0.07061      0.15847      0.02923
+        120     -0.07061      0.15847      0.02923
+        121     -0.05965      0.41796      0.00412
+        122     -0.05965      0.41796      0.00412
+        123      0.17518      0.47699      0.00000
+        124      0.17518      0.47699      0.00000
+        125      0.26906      0.57363      0.00000
+        126      0.26906      0.57363      0.00000
+        127      0.39499      0.71888      0.00000
+        128      0.39499      0.71888      0.00000
+        129      0.45307      0.86464      0.00000
+        130      0.45307      0.86464      0.00000
+        131      0.61535      0.92286      0.00000
+        132      0.61535      0.92286      0.00000
+        133      0.71996      1.11641      0.00000
+        134      0.71996      1.11641      0.00000
+        135      0.71996      1.20076      0.00000
+        136      0.71996      1.20076      0.00000
+ =================================================
+ Final bond energy (PBESol)                                    0.13559255       3.6897       85.09
+ K-points configuration loaded from previous results: GOStep10.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.11537     -0.98917      1.00000
+        112     -1.11537     -0.98917      1.00000
+        113     -0.64078     -0.48407      1.00000
+        114     -0.64078     -0.48407      1.00000
+        115     -0.38829     -0.05210      1.00000
+        116     -0.38829     -0.05210      1.00000
+        117     -0.34646      0.04517      0.96635
+        118     -0.34646      0.04517      0.96635
+        119     -0.07088      0.15904      0.02947
+        120     -0.07088      0.15904      0.02947
+        121     -0.05986      0.41854      0.00418
+        122     -0.05986      0.41854      0.00418
+        123      0.17522      0.47791      0.00000
+        124      0.17522      0.47791      0.00000
+        125      0.26906      0.57425      0.00000
+        126      0.26906      0.57425      0.00000
+        127      0.39478      0.71958      0.00000
+        128      0.39478      0.71958      0.00000
+        129      0.45301      0.86536      0.00000
+        130      0.45301      0.86536      0.00000
+        131      0.61588      0.92350      0.00000
+        132      0.61588      0.92350      0.00000
+        133      0.71998      1.11749      0.00000
+        134      0.71998      1.11749      0.00000
+        135      0.71998      1.20145      0.00000
+        136      0.71998      1.20145      0.00000
+ =================================================
+ Final bond energy (PBESol)                                    0.13649392       3.7142       85.65
+
+ dE(predicted):    -0.58085E-01, dE(actual):    -0.60157E-01, Trust radius:    1.000000, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step  10       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                                0.13559255 Hartree
+energy change                      -0.06015706     0.00001000    F
+max stress energy / atom            0.50701720     0.00050000    F
+constrained gradient max            0.00000000     0.00100000    T
+constrained gradient rms            0.00000000     0.00066667    T
+gradient max                        0.00000000
+gradient rms                        0.00000000
+cart. step max                      0.02083894     0.01000000    F
+cart. step rms                      0.01041947     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: Og
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1     Og     0.00000000     0.00000000     0.00000000
+ 
+Lattice vectors (angstrom)
+      1    -1.90384970     1.90384970     1.90384970
+      2     1.90384970    -1.90384970     1.90384970
+      3     1.90384970     1.90384970    -1.90384970
+ 
+Unit cell volume (angstrom^3)        27.60311
+ 
+Total System Charge             0.00000
+Bonding info available!
+ 
+ K-points configuration loaded from previous results: GOStep10.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.08806     -0.99226      1.00000
+        112     -1.08806     -0.99226      1.00000
+        113     -0.62200     -0.49422      1.00000
+        114     -0.62200     -0.49422      1.00000
+        115     -0.36649     -0.08146      1.00000
+        116     -0.36649     -0.08146      1.00000
+        117     -0.32806      0.01198      0.98520
+        118     -0.32806      0.01198      0.98520
+        119     -0.05483      0.15671      0.01339
+        120     -0.05483      0.15671      0.01339
+        121     -0.04596      0.38359      0.00141
+        122     -0.04596      0.38359      0.00141
+        123      0.17203      0.42335      0.00000
+        124      0.17203      0.42335      0.00000
+        125      0.26697      0.53849      0.00000
+        126      0.26697      0.53849      0.00000
+        127      0.35952      0.67786      0.00000
+        128      0.35952      0.67786      0.00000
+        129      0.45149      0.83060      0.00000
+        130      0.45149      0.83060      0.00000
+        131      0.60297      0.88851      0.00000
+        132      0.60297      0.88851      0.00000
+        133      0.70098      1.05031      0.00000
+        134      0.70098      1.05031      0.00000
+        135      0.72819      1.13367      0.00000
+        136      0.72819      1.13367      0.00000
+        137      0.93429      1.63631      0.00000
+        138      0.93429      1.63631      0.00000
+ =================================================
+ Final bond energy (PBESol)                                    0.09128924       2.4841       57.28
+ K-points configuration loaded from previous results: GOStep11.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.08848     -0.99222      1.00000
+        112     -1.08848     -0.99222      1.00000
+        113     -0.62230     -0.49406      1.00000
+        114     -0.62230     -0.49406      1.00000
+        115     -0.36685     -0.08102      1.00000
+        116     -0.36685     -0.08102      1.00000
+        117     -0.32836      0.01252      0.98487
+        118     -0.32836      0.01252      0.98487
+        119     -0.05510      0.15728      0.01370
+        120     -0.05510      0.15728      0.01370
+        121     -0.04622      0.38419      0.00143
+        122     -0.04622      0.38419      0.00143
+        123      0.17208      0.42427      0.00000
+        124      0.17208      0.42427      0.00000
+        125      0.26703      0.53909      0.00000
+        126      0.26703      0.53909      0.00000
+        127      0.36081      0.67857      0.00000
+        128      0.36081      0.67857      0.00000
+        129      0.45162      0.83133      0.00000
+        130      0.45162      0.83133      0.00000
+        131      0.60291      0.88914      0.00000
+        132      0.60291      0.88914      0.00000
+        133      0.70164      1.05142      0.00000
+        134      0.70164      1.05142      0.00000
+        135      0.72797      1.13526      0.00000
+        136      0.72797      1.13526      0.00000
+        137      0.93575      1.63623      0.00000
+        138      0.93575      1.63623      0.00000
+ =================================================
+ Final bond energy (PBESol)                                    0.09198381       2.5030       57.72
+
+ dE(predicted):    -0.42179E-01, dE(actual):    -0.44303E-01, Trust radius:    1.000000, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step  11       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                                0.09128924 Hartree
+energy change                      -0.04430331     0.00001000    F
+max stress energy / atom            0.38867608     0.00050000    F
+constrained gradient max            0.00000000     0.00100000    T
+constrained gradient rms            0.00000000     0.00066667    T
+gradient max                        0.00000000
+gradient rms                        0.00000000
+cart. step max                      0.02083894     0.01000000    F
+cart. step rms                      0.01041947     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: Og
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1     Og     0.00000000     0.00000000     0.00000000
+ 
+Lattice vectors (angstrom)
+      1    -1.96606994     1.96606994     1.96606994
+      2     1.96606994    -1.96606994     1.96606994
+      3     1.96606994     1.96606994    -1.96606994
+ 
+Unit cell volume (angstrom^3)        30.39883
+ 
+Total System Charge             0.00000
+Bonding info available!
+ 
+ K-points configuration loaded from previous results: GOStep11.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.06745     -0.99475      1.00000
+        112     -1.06745     -0.99475      1.00000
+        113     -0.60713     -0.50266      1.00000
+        114     -0.60713     -0.50266      1.00000
+        115     -0.34764     -0.10304      1.00000
+        116     -0.34764     -0.10304      1.00000
+        117     -0.31220     -0.01652      0.99995
+        118     -0.31220     -0.01652      0.99995
+        119     -0.04018      0.12859      0.00015
+        120     -0.04018      0.12859      0.00015
+        121     -0.03251      0.34962     -0.00010
+        122     -0.03251      0.34962     -0.00010
+        123      0.16270      0.37309      0.00000
+        124      0.16270      0.37309      0.00000
+        125      0.26158      0.50472      0.00000
+        126      0.26158      0.50472      0.00000
+        127      0.32840      0.63724      0.00000
+        128      0.32840      0.63724      0.00000
+        129      0.44465      0.78729      0.00000
+        130      0.44465      0.78729      0.00000
+        131      0.58480      0.84261      0.00000
+        132      0.58480      0.84261      0.00000
+        133      0.66373      0.99215      0.00000
+        134      0.66373      0.99215      0.00000
+        135      0.74344      1.08393      0.00000
+        136      0.74344      1.08393      0.00000
+        137      0.87235      1.64003      0.00000
+        138      0.87235      1.64003      0.00000
+ =================================================
+ Final bond energy (PBESol)                                    0.05823643       1.5847       36.54
+ K-points configuration loaded from previous results: GOStep12.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.06777     -0.99469      1.00000
+        112     -1.06777     -0.99469      1.00000
+        113     -0.60736     -0.50250      1.00000
+        114     -0.60736     -0.50250      1.00000
+        115     -0.34794     -0.10270      1.00000
+        116     -0.34794     -0.10270      1.00000
+        117     -0.31246     -0.01603      0.99985
+        118     -0.31246     -0.01603      0.99985
+        119     -0.04042      0.12906      0.00026
+        120     -0.04042      0.12906      0.00026
+        121     -0.03273      0.35024     -0.00011
+        122     -0.03273      0.35024     -0.00011
+        123      0.16291      0.37397      0.00000
+        124      0.16291      0.37397      0.00000
+        125      0.26171      0.50533      0.00000
+        126      0.26171      0.50533      0.00000
+        127      0.32860      0.63799      0.00000
+        128      0.32860      0.63799      0.00000
+        129      0.44477      0.78807      0.00000
+        130      0.44477      0.78807      0.00000
+        131      0.58543      0.84360      0.00000
+        132      0.58543      0.84360      0.00000
+        133      0.66428      0.99316      0.00000
+        134      0.66428      0.99316      0.00000
+        135      0.74313      1.08462      0.00000
+        136      0.74313      1.08462      0.00000
+        137      0.87295      1.63999      0.00000
+        138      0.87295      1.63999      0.00000
+ =================================================
+ Final bond energy (PBESol)                                    0.05877773       1.5994       36.88
+ Rebuilding optimization coordinates
+
+ dE(predicted):    -0.31492E-01, dE(actual):    -0.33053E-01, Trust radius:    1.000000, all in a.u.
+ Oscillation detected, halving the step
+ Persistent oscillations may indicate discontinuity in the atomic forces.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step  12       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                                0.05823643 Hartree
+energy change                      -0.03305281     0.00001000    F
+max stress energy / atom            0.29954465     0.00050000    F
+constrained gradient max            0.00000000     0.00100000    T
+constrained gradient rms            0.00000000     0.00066667    T
+gradient max                        0.00000000
+gradient rms                        0.00000000
+cart. step max                      0.01796804     0.01000000    F
+cart. step rms                      0.00898402     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: Og
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1     Og     0.00000000     0.00000000     0.00000000
+ 
+Lattice vectors (angstrom)
+      1    -2.01971832     2.01971832     2.01971832
+      2     2.01971832    -2.01971832     2.01971832
+      3     2.01971832     2.01971832    -2.01971832
+ 
+Unit cell volume (angstrom^3)        32.95584
+ 
+Total System Charge             0.00000
+Bonding info available!
+ 
+ K-points configuration loaded from previous results: GOStep12.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.05486     -0.99781      1.00000
+        112     -1.05486     -0.99781      1.00000
+        113     -0.59772     -0.51005      1.00000
+        114     -0.59772     -0.51005      1.00000
+        115     -0.33418     -0.11760      1.00000
+        116     -0.33418     -0.11760      1.00000
+        117     -0.30092     -0.03908      1.00156
+        118     -0.30092     -0.03908      1.00156
+        119     -0.03908      0.10787     -0.00156
+        120     -0.03908      0.10787     -0.00156
+        121     -0.02117      0.32074      0.00000
+        122     -0.02117      0.32074      0.00000
+        123      0.15317      0.33303      0.00000
+        124      0.15317      0.33303      0.00000
+        125      0.25464      0.47621      0.00000
+        126      0.25464      0.47621      0.00000
+        127      0.31827      0.60197      0.00000
+        128      0.31827      0.60197      0.00000
+        129      0.42611      0.75028      0.00000
+        130      0.42611      0.75028      0.00000
+        131      0.55389      0.79470      0.00000
+        132      0.55389      0.79470      0.00000
+        133      0.64732      0.94426      0.00000
+        134      0.64732      0.94426      0.00000
+        135      0.72906      1.05479      0.00000
+        136      0.72906      1.05479      0.00000
+        137      0.80977      1.63319      0.00000
+        138      0.80977      1.63319      0.00000
+ =================================================
+ Final bond energy (PBESol)                                    0.03676104       1.0003       23.07
+ K-points configuration loaded from previous results: GOStep13.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.05509     -0.99774      1.00000
+        112     -1.05509     -0.99774      1.00000
+        113     -0.59790     -0.50989      1.00000
+        114     -0.59790     -0.50989      1.00000
+        115     -0.33445     -0.11733      1.00000
+        116     -0.33445     -0.11733      1.00000
+        117     -0.30115     -0.03862      1.00156
+        118     -0.30115     -0.03862      1.00156
+        119     -0.03862      0.10829     -0.00156
+        120     -0.03862      0.10829     -0.00156
+        121     -0.02143      0.32136      0.00000
+        122     -0.02143      0.32136      0.00000
+        123      0.15336      0.33386      0.00000
+        124      0.15336      0.33386      0.00000
+        125      0.25480      0.47681      0.00000
+        126      0.25480      0.47681      0.00000
+        127      0.31864      0.60273      0.00000
+        128      0.31864      0.60273      0.00000
+        129      0.42655      0.75109      0.00000
+        130      0.42655      0.75109      0.00000
+        131      0.55457      0.79574      0.00000
+        132      0.55457      0.79574      0.00000
+        133      0.64755      0.94531      0.00000
+        134      0.64755      0.94531      0.00000
+        135      0.72993      1.05554      0.00000
+        136      0.72993      1.05554      0.00000
+        137      0.81110      1.63386      0.00000
+        138      0.81110      1.63386      0.00000
+ =================================================
+ Final bond energy (PBESol)                                    0.03718825       1.0119       23.34
+
+ dE(predicted):    -0.20970E-01, dE(actual):    -0.21475E-01, Trust radius:    1.000000, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step  13       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                                0.03676104 Hartree
+energy change                      -0.02147540     0.00001000    F
+max stress energy / atom            0.23248170     0.00050000    F
+constrained gradient max            0.00000000     0.00100000    T
+constrained gradient rms            0.00000000     0.00066667    T
+gradient max                        0.00000000
+gradient rms                        0.00000000
+cart. step max                      0.03593608     0.01000000    F
+cart. step rms                      0.01796804     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: Og
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1     Og     0.00000000     0.00000000     0.00000000
+ 
+Lattice vectors (angstrom)
+      1    -2.12701510     2.12701510     2.12701510
+      2     2.12701510    -2.12701510     2.12701510
+      3     2.12701510     2.12701510    -2.12701510
+ 
+Unit cell volume (angstrom^3)        38.49211
+ 
+Total System Charge             0.00000
+Bonding info available!
+ 
+ K-points configuration loaded from previous results: GOStep13.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.03826     -1.00342      1.00000
+        112     -1.03826     -1.00342      1.00000
+        113     -0.58422     -0.52268      1.00000
+        114     -0.58422     -0.52268      1.00000
+        115     -0.31166     -0.13591      1.00000
+        116     -0.31166     -0.13591      1.00000
+        117     -0.28238     -0.07728      1.00156
+        118     -0.28238     -0.07728      1.00156
+        119     -0.07728      0.17004     -0.00156
+        120     -0.07728      0.17004     -0.00156
+        121      0.00197      0.27033      0.00000
+        122      0.00197      0.27033      0.00000
+        123      0.13666      0.27033      0.00000
+        124      0.13666      0.27033      0.00000
+        125      0.24139      0.43315      0.00000
+        126      0.24139      0.43315      0.00000
+        127      0.28922      0.53423      0.00000
+        128      0.28922      0.53423      0.00000
+        129      0.40864      0.66790      0.00000
+        130      0.40864      0.66790      0.00000
+        131      0.50593      0.73197      0.00000
+        132      0.50593      0.73197      0.00000
+        133      0.60845      0.88345      0.00000
+        134      0.60845      0.88345      0.00000
+        135      0.65617      0.97241      0.00000
+        136      0.65617      0.97241      0.00000
+        137      0.75999      1.50951      0.00000
+        138      0.75999      1.50951      0.00000
+ =================================================
+ Final bond energy (PBESol)                                    0.00897509       0.2442        5.63
+ K-points configuration loaded from previous results: GOStep14.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.03840     -1.00336      1.00000
+        112     -1.03840     -1.00336      1.00000
+        113     -0.58435     -0.52255      1.00000
+        114     -0.58435     -0.52255      1.00000
+        115     -0.31189     -0.13577      1.00000
+        116     -0.31189     -0.13577      1.00000
+        117     -0.28256     -0.07689      1.00156
+        118     -0.28256     -0.07689      1.00156
+        119     -0.07689      0.16916     -0.00156
+        120     -0.07689      0.16916     -0.00156
+        121      0.00169      0.27018      0.00000
+        122      0.00169      0.27018      0.00000
+        123      0.13682      0.27018      0.00000
+        124      0.13682      0.27018      0.00000
+        125      0.24154      0.43334      0.00000
+        126      0.24154      0.43334      0.00000
+        127      0.28947      0.53497      0.00000
+        128      0.28947      0.53497      0.00000
+        129      0.40864      0.66888      0.00000
+        130      0.40864      0.66888      0.00000
+        131      0.50641      0.73226      0.00000
+        132      0.50641      0.73226      0.00000
+        133      0.60915      0.88430      0.00000
+        134      0.60915      0.88430      0.00000
+        135      0.65693      0.97333      0.00000
+        136      0.65693      0.97333      0.00000
+        137      0.75976      1.51157      0.00000
+        138      0.75976      1.51157      0.00000
+ =================================================
+ Final bond energy (PBESol)                                    0.00923285       0.2512        5.79
+
+ dE(predicted):    -0.22721E-01, dE(actual):    -0.27786E-01, Trust radius:    1.000000, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step  14       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                                0.00897509 Hartree
+energy change                      -0.02778594     0.00001000    F
+max stress energy / atom            0.13242398     0.00050000    F
+constrained gradient max            0.00000000     0.00100000    T
+constrained gradient rms            0.00000000     0.00066667    T
+gradient max                        0.00000000
+gradient rms                        0.00000000
+cart. step max                      0.03593608     0.01000000    F
+cart. step rms                      0.01796804     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: Og
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1     Og     0.00000000     0.00000000     0.00000000
+ 
+Lattice vectors (angstrom)
+      1    -2.23431188     2.23431188     2.23431188
+      2     2.23431188    -2.23431188     2.23431188
+      3     2.23431188     2.23431188    -2.23431188
+ 
+Unit cell volume (angstrom^3)        44.61608
+ 
+Total System Charge             0.00000
+Bonding info available!
+ 
+ K-points configuration loaded from previous results: GOStep14.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.02876     -1.00764      1.00000
+        112     -1.02876     -1.00764      1.00000
+        113     -0.57526     -0.53219      1.00000
+        114     -0.57526     -0.53219      1.00000
+        115     -0.29346     -0.14229      1.00000
+        116     -0.29346     -0.14229      1.00000
+        117     -0.26773     -0.10723      1.00156
+        118     -0.26773     -0.10723      1.00156
+        119     -0.10723      0.17339     -0.00156
+        120     -0.10723      0.17339     -0.00156
+        121      0.02823      0.28708      0.00000
+        122      0.02823      0.28708      0.00000
+        123      0.12515      0.28708      0.00000
+        124      0.12515      0.28708      0.00000
+        125      0.22368      0.40379      0.00000
+        126      0.22368      0.40379      0.00000
+        127      0.28611      0.47406      0.00000
+        128      0.28611      0.47406      0.00000
+        129      0.41365      0.58978      0.00000
+        130      0.41365      0.58978      0.00000
+        131      0.46454      0.68597      0.00000
+        132      0.46454      0.68597      0.00000
+        133      0.55377      0.79535      0.00000
+        134      0.55377      0.79535      0.00000
+        135      0.59737      0.89493      0.00000
+        136      0.59737      0.89493      0.00000
+        137      0.74153      1.28791      0.00000
+        138      0.74153      1.28791      0.00000
+ =================================================
+ Final bond energy (PBESol)                                   -0.00551624      -0.1501       -3.46
+ K-points configuration loaded from previous results: GOStep15.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.02884     -1.00760      1.00000
+        112     -1.02884     -1.00760      1.00000
+        113     -0.57535     -0.53209      1.00000
+        114     -0.57535     -0.53209      1.00000
+        115     -0.29366     -0.14227      1.00000
+        116     -0.29366     -0.14227      1.00000
+        117     -0.26789     -0.10691      1.00156
+        118     -0.26789     -0.10691      1.00156
+        119     -0.10691      0.17380     -0.00156
+        120     -0.10691      0.17380     -0.00156
+        121      0.02790      0.28684      0.00000
+        122      0.02790      0.28684      0.00000
+        123      0.12525      0.28684      0.00000
+        124      0.12525      0.28684      0.00000
+        125      0.22416      0.40428      0.00000
+        126      0.22416      0.40428      0.00000
+        127      0.28595      0.47472      0.00000
+        128      0.28595      0.47472      0.00000
+        129      0.41355      0.59062      0.00000
+        130      0.41355      0.59062      0.00000
+        131      0.46504      0.68675      0.00000
+        132      0.46504      0.68675      0.00000
+        133      0.55435      0.79647      0.00000
+        134      0.55435      0.79647      0.00000
+        135      0.59799      0.89584      0.00000
+        136      0.59799      0.89584      0.00000
+        137      0.74217      1.29077      0.00000
+        138      0.74217      1.29077      0.00000
+ =================================================
+ Final bond energy (PBESol)                                   -0.00536576      -0.1460       -3.37
+ Rebuilding optimization coordinates
+
+ dE(predicted):    -0.11576E-01, dE(actual):    -0.14491E-01, Trust radius:    1.000000, all in a.u.
+ Oscillation detected, halving the step
+ Persistent oscillations may indicate discontinuity in the atomic forces.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step  15       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                               -0.00551624 Hartree
+energy change                      -0.01449133     0.00001000    F
+max stress energy / atom            0.06842443     0.00050000    F
+constrained gradient max            0.00000000     0.00100000    T
+constrained gradient rms            0.00000000     0.00066667    T
+gradient max                        0.00000000
+gradient rms                        0.00000000
+cart. step max                      0.01741515     0.01000000    F
+cart. step rms                      0.00870758     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: Og
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1     Og     0.00000000     0.00000000     0.00000000
+ 
+Lattice vectors (angstrom)
+      1    -2.28630947     2.28630947     2.28630947
+      2     2.28630947    -2.28630947     2.28630947
+      3     2.28630947     2.28630947    -2.28630947
+ 
+Unit cell volume (angstrom^3)        47.80409
+ 
+Total System Charge             0.00000
+Bonding info available!
+ 
+ K-points configuration loaded from previous results: GOStep15.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.02572     -1.00917      1.00000
+        112     -1.02572     -1.00917      1.00000
+        113     -0.57200     -0.53580      1.00000
+        114     -0.57200     -0.53580      1.00000
+        115     -0.28586     -0.14181      1.00000
+        116     -0.28586     -0.14181      1.00000
+        117     -0.26173     -0.11925      1.00156
+        118     -0.26173     -0.11925      1.00156
+        119     -0.11925      0.15791     -0.00156
+        120     -0.11925      0.15791     -0.00156
+        121      0.02825      0.29686      0.00000
+        122      0.02825      0.29686      0.00000
+        123      0.11984      0.29686      0.00000
+        124      0.11984      0.29686      0.00000
+        125      0.20523      0.38414      0.00000
+        126      0.20523      0.38414      0.00000
+        127      0.28873      0.46198      0.00000
+        128      0.28873      0.46198      0.00000
+        129      0.41274      0.55853      0.00000
+        130      0.41274      0.55853      0.00000
+        131      0.44860      0.65411      0.00000
+        132      0.44860      0.65411      0.00000
+        133      0.53200      0.75114      0.00000
+        134      0.53200      0.75114      0.00000
+        135      0.57363      0.86044      0.00000
+        136      0.57363      0.86044      0.00000
+        137      0.71865      1.17855      0.00000
+        138      0.71865      1.17855      0.00000
+ =================================================
+ Final bond energy (PBESol)                                   -0.00944339      -0.2570       -5.93
+ K-points configuration loaded from previous results: GOStep16.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.02578     -1.00914      1.00000
+        112     -1.02578     -1.00914      1.00000
+        113     -0.57207     -0.53571      1.00000
+        114     -0.57207     -0.53571      1.00000
+        115     -0.28604     -0.14185      1.00000
+        116     -0.28604     -0.14185      1.00000
+        117     -0.26188     -0.11896      1.00156
+        118     -0.26188     -0.11896      1.00156
+        119     -0.11896      0.15828     -0.00156
+        120     -0.11896      0.15828     -0.00156
+        121      0.02839      0.29661      0.00000
+        122      0.02839      0.29661      0.00000
+        123      0.11995      0.29661      0.00000
+        124      0.11995      0.29661      0.00000
+        125      0.20567      0.38461      0.00000
+        126      0.20567      0.38461      0.00000
+        127      0.28861      0.46214      0.00000
+        128      0.28861      0.46214      0.00000
+        129      0.41281      0.55926      0.00000
+        130      0.41281      0.55926      0.00000
+        131      0.44887      0.65492      0.00000
+        132      0.44887      0.65492      0.00000
+        133      0.53252      0.75222      0.00000
+        134      0.53252      0.75222      0.00000
+        135      0.57420      0.86119      0.00000
+        136      0.57420      0.86119      0.00000
+        137      0.71916      1.18114      0.00000
+        138      0.71916      1.18114      0.00000
+ =================================================
+ Final bond energy (PBESol)                                   -0.00932965      -0.2539       -5.85
+
+ dE(predicted):    -0.35932E-02, dE(actual):    -0.39272E-02, Trust radius:    1.000000, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step  16       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                               -0.00944339 Hartree
+energy change                      -0.00392715     0.00001000    F
+max stress energy / atom            0.04656341     0.00050000    F
+constrained gradient max            0.00000000     0.00100000    T
+constrained gradient rms            0.00000000     0.00066667    T
+gradient max                        0.00000000
+gradient rms                        0.00000000
+cart. step max                      0.02316693     0.01000000    F
+cart. step rms                      0.01158346     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: Og
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1     Og     0.00000000     0.00000000     0.00000000
+ 
+Lattice vectors (angstrom)
+      1    -2.35548053     2.35548053     2.35548053
+      2     2.35548053    -2.35548053     2.35548053
+      3     2.35548053     2.35548053    -2.35548053
+ 
+Unit cell volume (angstrom^3)        52.27554
+ 
+Total System Charge             0.00000
+Bonding info available!
+ 
+ K-points configuration loaded from previous results: GOStep16.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.02264     -1.01070      1.00000
+        112     -1.02264     -1.01070      1.00000
+        113     -0.56839     -0.53968      1.00000
+        114     -0.56839     -0.53968      1.00000
+        115     -0.27673     -0.13798      1.00000
+        116     -0.27673     -0.13798      1.00000
+        117     -0.25463     -0.13307      1.00156
+        118     -0.25463     -0.13307      1.00156
+        119     -0.13307      0.13939     -0.00156
+        120     -0.13307      0.13939     -0.00156
+        121      0.02198      0.31034      0.00000
+        122      0.02198      0.31034      0.00000
+        123      0.10822      0.31034      0.00000
+        124      0.10822      0.31034      0.00000
+        125      0.18362      0.37351      0.00000
+        126      0.18362      0.37351      0.00000
+        127      0.30180      0.45467      0.00000
+        128      0.30180      0.45467      0.00000
+        129      0.37665      0.52427      0.00000
+        130      0.37665      0.52427      0.00000
+        131      0.43665      0.61278      0.00000
+        132      0.43665      0.61278      0.00000
+        133      0.50754      0.69713      0.00000
+        134      0.50754      0.69713      0.00000
+        135      0.54651      0.81825      0.00000
+        136      0.54651      0.81825      0.00000
+        137      0.69623      1.06233      0.00000
+        138      0.69623      1.06233      0.00000
+ =================================================
+ Final bond energy (PBESol)                                   -0.01257941      -0.3423       -7.89
+ K-points configuration loaded from previous results: GOStep17.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.02270     -1.01068      1.00000
+        112     -1.02270     -1.01068      1.00000
+        113     -0.56845     -0.53962      1.00000
+        114     -0.56845     -0.53962      1.00000
+        115     -0.27690     -0.13809      1.00000
+        116     -0.27690     -0.13809      1.00000
+        117     -0.25476     -0.13282      1.00156
+        118     -0.25476     -0.13282      1.00156
+        119     -0.13282      0.13973     -0.00156
+        120     -0.13282      0.13973     -0.00156
+        121      0.02208      0.31008      0.00000
+        122      0.02208      0.31008      0.00000
+        123      0.10844      0.31008      0.00000
+        124      0.10844      0.31008      0.00000
+        125      0.18401      0.37347      0.00000
+        126      0.18401      0.37347      0.00000
+        127      0.30147      0.45480      0.00000
+        128      0.30147      0.45480      0.00000
+        129      0.37739      0.52488      0.00000
+        130      0.37739      0.52488      0.00000
+        131      0.43685      0.61356      0.00000
+        132      0.43685      0.61356      0.00000
+        133      0.50798      0.69814      0.00000
+        134      0.50798      0.69814      0.00000
+        135      0.54700      0.81912      0.00000
+        136      0.54700      0.81912      0.00000
+        137      0.69659      1.06424      0.00000
+        138      0.69659      1.06424      0.00000
+ =================================================
+ Final bond energy (PBESol)                                   -0.01250432      -0.3403       -7.85
+
+ dE(predicted):    -0.21196E-02, dE(actual):    -0.31360E-02, Trust radius:    1.000000, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step  17       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                               -0.01257941 Hartree
+energy change                      -0.00313602     0.00001000    F
+max stress energy / atom            0.02384252     0.00050000    F
+constrained gradient max            0.00000000     0.00100000    T
+constrained gradient rms            0.00000000     0.00066667    T
+gradient max                        0.00000000
+gradient rms                        0.00000000
+cart. step max                      0.02290037     0.01000000    F
+cart. step rms                      0.01145018     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: Og
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1     Og     0.00000000     0.00000000     0.00000000
+ 
+Lattice vectors (angstrom)
+      1    -2.42385570     2.42385570     2.42385570
+      2     2.42385570    -2.42385570     2.42385570
+      3     2.42385570     2.42385570    -2.42385570
+ 
+Unit cell volume (angstrom^3)        56.96135
+ 
+Total System Charge             0.00000
+Bonding info available!
+ 
+ K-points configuration loaded from previous results: GOStep17.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.02073     -1.01209      1.00000
+        112     -1.02073     -1.01209      1.00000
+        113     -0.56578     -0.54299      1.00000
+        114     -0.56578     -0.54299      1.00000
+        115     -0.26945     -0.14489      1.00000
+        116     -0.26945     -0.14489      1.00000
+        117     -0.24873     -0.14489      1.00000
+        118     -0.24873     -0.14489      1.00000
+        119     -0.13114      0.12296      0.00000
+        120     -0.13114      0.12296      0.00000
+        121      0.01786      0.32296      0.00000
+        122      0.01786      0.32296      0.00000
+        123      0.09606      0.32296      0.00000
+        124      0.09606      0.32296      0.00000
+        125      0.16509      0.37452      0.00000
+        126      0.16509      0.37452      0.00000
+        127      0.31725      0.44870      0.00000
+        128      0.31725      0.44870      0.00000
+        129      0.34075      0.49467      0.00000
+        130      0.34075      0.49467      0.00000
+        131      0.42850      0.57493      0.00000
+        132      0.42850      0.57493      0.00000
+        133      0.48781      0.64996      0.00000
+        134      0.48781      0.64996      0.00000
+        135      0.52400      0.77372      0.00000
+        136      0.52400      0.77372      0.00000
+        137      0.68108      0.98330      0.00000
+        138      0.68108      0.98330      0.00000
+ =================================================
+ Final bond energy (PBESol)                                   -0.01385996      -0.3771       -8.70
+ K-points configuration loaded from previous results: GOStep18.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.02077     -1.01208      1.00000
+        112     -1.02077     -1.01208      1.00000
+        113     -0.56584     -0.54294      1.00000
+        114     -0.56584     -0.54294      1.00000
+        115     -0.26960     -0.14468      1.00000
+        116     -0.26960     -0.14468      1.00000
+        117     -0.24885     -0.14468      1.00000
+        118     -0.24885     -0.14468      1.00000
+        119     -0.13132      0.12327      0.00000
+        120     -0.13132      0.12327      0.00000
+        121      0.01792      0.32271      0.00000
+        122      0.01792      0.32271      0.00000
+        123      0.09628      0.32271      0.00000
+        124      0.09628      0.32271      0.00000
+        125      0.16543      0.37452      0.00000
+        126      0.16543      0.37452      0.00000
+        127      0.31722      0.44880      0.00000
+        128      0.31722      0.44880      0.00000
+        129      0.34145      0.49521      0.00000
+        130      0.34145      0.49521      0.00000
+        131      0.42862      0.57566      0.00000
+        132      0.42862      0.57566      0.00000
+        133      0.48816      0.65080      0.00000
+        134      0.48816      0.65080      0.00000
+        135      0.52441      0.77463      0.00000
+        136      0.52441      0.77463      0.00000
+        137      0.68132      0.98461      0.00000
+        138      0.68132      0.98461      0.00000
+ =================================================
+ Final bond energy (PBESol)                                   -0.01381306      -0.3759       -8.67
+
+ dE(predicted):    -0.10415E-02, dE(actual):    -0.12806E-02, Trust radius:    1.000000, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step  18       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                               -0.01385996 Hartree
+energy change                      -0.00128055     0.00001000    F
+max stress energy / atom            0.00690292     0.00050000    F
+constrained gradient max            0.00000000     0.00100000    T
+constrained gradient rms            0.00000000     0.00066667    T
+gradient max                        0.00000000
+gradient rms                        0.00000000
+cart. step max                      0.00896795     0.01000000    T
+cart. step rms                      0.00448398     0.00666667    T
+ 
+ 
+--------
+Geometry
+--------
+Formula: Og
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1     Og     0.00000000     0.00000000     0.00000000
+ 
+Lattice vectors (angstrom)
+      1    -2.45063192     2.45063192     2.45063192
+      2     2.45063192    -2.45063192     2.45063192
+      3     2.45063192     2.45063192    -2.45063192
+ 
+Unit cell volume (angstrom^3)        58.87003
+ 
+Total System Charge             0.00000
+Bonding info available!
+ 
+ K-points configuration loaded from previous results: GOStep18.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.01991     -1.01230      1.00000
+        112     -1.01991     -1.01230      1.00000
+        113     -0.56470     -0.54387      1.00000
+        114     -0.56470     -0.54387      1.00000
+        115     -0.26666     -0.14886      1.00000
+        116     -0.26666     -0.14886      1.00000
+        117     -0.24648     -0.14886      1.00000
+        118     -0.24648     -0.14886      1.00000
+        119     -0.12752      0.11719      0.00000
+        120     -0.12752      0.11719      0.00000
+        121      0.01703      0.32775      0.00000
+        122      0.01703      0.32775      0.00000
+        123      0.09198      0.32775      0.00000
+        124      0.09198      0.32775      0.00000
+        125      0.15874      0.37421      0.00000
+        126      0.15874      0.37421      0.00000
+        127      0.32017      0.44690      0.00000
+        128      0.32017      0.44690      0.00000
+        129      0.33633      0.48475      0.00000
+        130      0.33633      0.48475      0.00000
+        131      0.42658      0.56135      0.00000
+        132      0.42658      0.56135      0.00000
+        133      0.48143      0.63432      0.00000
+        134      0.48143      0.63432      0.00000
+        135      0.51619      0.75650      0.00000
+        136      0.51619      0.75650      0.00000
+        137      0.67674      0.96020      0.00000
+        138      0.67674      0.96020      0.00000
+ =================================================
+ Final bond energy (PBESol)                                   -0.01401961      -0.3815       -8.80
+ K-points configuration loaded from previous results: GOStep19.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.01995     -1.01229      1.00000
+        112     -1.01995     -1.01229      1.00000
+        113     -0.56476     -0.54383      1.00000
+        114     -0.56476     -0.54383      1.00000
+        115     -0.26680     -0.14866      1.00000
+        116     -0.26680     -0.14866      1.00000
+        117     -0.24660     -0.14866      1.00000
+        118     -0.24660     -0.14866      1.00000
+        119     -0.12772      0.11749      0.00000
+        120     -0.12772      0.11749      0.00000
+        121      0.01706      0.32750      0.00000
+        122      0.01706      0.32750      0.00000
+        123      0.09219      0.32750      0.00000
+        124      0.09219      0.32750      0.00000
+        125      0.15906      0.37424      0.00000
+        126      0.15906      0.37424      0.00000
+        127      0.31991      0.44699      0.00000
+        128      0.31991      0.44699      0.00000
+        129      0.33591      0.48525      0.00000
+        130      0.33591      0.48525      0.00000
+        131      0.42667      0.56205      0.00000
+        132      0.42667      0.56205      0.00000
+        133      0.48175      0.63513      0.00000
+        134      0.48175      0.63513      0.00000
+        135      0.51665      0.75740      0.00000
+        136      0.51665      0.75740      0.00000
+        137      0.67696      0.96133      0.00000
+        138      0.67696      0.96133      0.00000
+ =================================================
+ Final bond energy (PBESol)                                   -0.01398085      -0.3804       -8.77
+
+ dE(predicted):    -0.11478E-03, dE(actual):    -0.15965E-03, Trust radius:    1.000000, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step  19       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                               -0.01401961 Hartree
+energy change                      -0.00015965     0.00001000    F
+max stress energy / atom            0.00263038     0.00050000    F
+constrained gradient max            0.00000000     0.00100000    T
+constrained gradient rms            0.00000000     0.00066667    T
+gradient max                        0.00000000
+gradient rms                        0.00000000
+cart. step max                      0.00542489     0.01000000    T
+cart. step rms                      0.00271245     0.00666667    T
+ 
+ 
+--------
+Geometry
+--------
+Formula: Og
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1     Og     0.00000000     0.00000000     0.00000000
+ 
+Lattice vectors (angstrom)
+      1    -2.46682939     2.46682939     2.46682939
+      2     2.46682939    -2.46682939     2.46682939
+      3     2.46682939     2.46682939    -2.46682939
+ 
+Unit cell volume (angstrom^3)        60.04507
+ 
+Total System Charge             0.00000
+Bonding info available!
+ 
+ K-points configuration loaded from previous results: GOStep19.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.01944     -1.01238      1.00000
+        112     -1.01944     -1.01238      1.00000
+        113     -0.56407     -0.54435      1.00000
+        114     -0.56407     -0.54435      1.00000
+        115     -0.26501     -0.15113      1.00000
+        116     -0.26501     -0.15113      1.00000
+        117     -0.24517     -0.15113      1.00000
+        118     -0.24517     -0.15113      1.00000
+        119     -0.12511      0.11385      0.00000
+        120     -0.12511      0.11385      0.00000
+        121      0.01671      0.33054      0.00000
+        122      0.01671      0.33054      0.00000
+        123      0.08970      0.33054      0.00000
+        124      0.08970      0.33054      0.00000
+        125      0.15510      0.37519      0.00000
+        126      0.15510      0.37519      0.00000
+        127      0.32382      0.44594      0.00000
+        128      0.32382      0.44594      0.00000
+        129      0.34089      0.47919      0.00000
+        130      0.34089      0.47919      0.00000
+        131      0.42574      0.55345      0.00000
+        132      0.42574      0.55345      0.00000
+        133      0.47788      0.62524      0.00000
+        134      0.47788      0.62524      0.00000
+        135      0.51109      0.74654      0.00000
+        136      0.51109      0.74654      0.00000
+        137      0.67445      0.94782      0.00000
+        138      0.67445      0.94782      0.00000
+ =================================================
+ Final bond energy (PBESol)                                   -0.01404519      -0.3822       -8.81
+ K-points configuration loaded from previous results: GOStep20.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.01948     -1.01238      1.00000
+        112     -1.01948     -1.01238      1.00000
+        113     -0.56413     -0.54431      1.00000
+        114     -0.56413     -0.54431      1.00000
+        115     -0.26515     -0.15094      1.00000
+        116     -0.26515     -0.15094      1.00000
+        117     -0.24529     -0.15094      1.00000
+        118     -0.24529     -0.15094      1.00000
+        119     -0.12533      0.11414      0.00000
+        120     -0.12533      0.11414      0.00000
+        121      0.01673      0.33030      0.00000
+        122      0.01673      0.33030      0.00000
+        123      0.08990      0.33030      0.00000
+        124      0.08990      0.33030      0.00000
+        125      0.15541      0.37490      0.00000
+        126      0.15541      0.37490      0.00000
+        127      0.32347      0.44602      0.00000
+        128      0.32347      0.44602      0.00000
+        129      0.34050      0.47966      0.00000
+        130      0.34050      0.47966      0.00000
+        131      0.42580      0.55414      0.00000
+        132      0.42580      0.55414      0.00000
+        133      0.47818      0.62603      0.00000
+        134      0.47818      0.62603      0.00000
+        135      0.51153      0.74738      0.00000
+        136      0.51153      0.74738      0.00000
+        137      0.67464      0.94887      0.00000
+        138      0.67464      0.94887      0.00000
+ =================================================
+ Final bond energy (PBESol)                                   -0.01401090      -0.3813       -8.79
+
+ dE(predicted):    -0.26170E-04, dE(actual):    -0.25583E-04, Trust radius:    1.000000, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step  20       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                               -0.01404519 Hartree
+energy change                      -0.00002558     0.00001000    F
+max stress energy / atom            0.00013854     0.00050000    T
+constrained gradient max            0.00000000     0.00100000    T
+constrained gradient rms            0.00000000     0.00066667    T
+gradient max                        0.00000000
+gradient rms                        0.00000000
+cart. step max                      0.00029952     0.01000000    T
+cart. step rms                      0.00014976     0.00666667    T
+ 
+ 
+--------
+Geometry
+--------
+Formula: Og
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1     Og     0.00000000     0.00000000     0.00000000
+ 
+Lattice vectors (angstrom)
+      1    -2.46772370     2.46772370     2.46772370
+      2     2.46772370    -2.46772370     2.46772370
+      3     2.46772370     2.46772370    -2.46772370
+ 
+Unit cell volume (angstrom^3)        60.11040
+ 
+Total System Charge             0.00000
+Bonding info available!
+ 
+ K-points configuration loaded from previous results: GOStep20.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.01941     -1.01239      1.00000
+        112     -1.01941     -1.01239      1.00000
+        113     -0.56404     -0.54438      1.00000
+        114     -0.56404     -0.54438      1.00000
+        115     -0.26493     -0.15126      1.00000
+        116     -0.26493     -0.15126      1.00000
+        117     -0.24511     -0.15126      1.00000
+        118     -0.24511     -0.15126      1.00000
+        119     -0.12497      0.11366      0.00000
+        120     -0.12497      0.11366      0.00000
+        121      0.01670      0.33070      0.00000
+        122      0.01670      0.33070      0.00000
+        123      0.08958      0.33070      0.00000
+        124      0.08958      0.33070      0.00000
+        125      0.15490      0.37537      0.00000
+        126      0.15490      0.37537      0.00000
+        127      0.32404      0.44588      0.00000
+        128      0.32404      0.44588      0.00000
+        129      0.34113      0.47889      0.00000
+        130      0.34113      0.47889      0.00000
+        131      0.42570      0.55302      0.00000
+        132      0.42570      0.55302      0.00000
+        133      0.47769      0.62475      0.00000
+        134      0.47769      0.62475      0.00000
+        135      0.51082      0.74602      0.00000
+        136      0.51082      0.74602      0.00000
+        137      0.67433      0.94716      0.00000
+        138      0.67433      0.94716      0.00000
+ =================================================
+ Final bond energy (PBESol)                                   -0.01404529      -0.3822       -8.81
+ K-points configuration loaded from previous results: GOStep21.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.01945     -1.01238      1.00000
+        112     -1.01945     -1.01238      1.00000
+        113     -0.56409     -0.54434      1.00000
+        114     -0.56409     -0.54434      1.00000
+        115     -0.26507     -0.15106      1.00000
+        116     -0.26507     -0.15106      1.00000
+        117     -0.24521     -0.15106      1.00000
+        118     -0.24521     -0.15106      1.00000
+        119     -0.12519      0.11395      0.00000
+        120     -0.12519      0.11395      0.00000
+        121      0.01672      0.33045      0.00000
+        122      0.01672      0.33045      0.00000
+        123      0.08977      0.33045      0.00000
+        124      0.08977      0.33045      0.00000
+        125      0.15522      0.37508      0.00000
+        126      0.15522      0.37508      0.00000
+        127      0.32369      0.44597      0.00000
+        128      0.32369      0.44597      0.00000
+        129      0.34075      0.47937      0.00000
+        130      0.34075      0.47937      0.00000
+        131      0.42576      0.55371      0.00000
+        132      0.42576      0.55371      0.00000
+        133      0.47799      0.62553      0.00000
+        134      0.47799      0.62553      0.00000
+        135      0.51125      0.74685      0.00000
+        136      0.51125      0.74685      0.00000
+        137      0.67452      0.94820      0.00000
+        138      0.67452      0.94820      0.00000
+ =================================================
+ Final bond energy (PBESol)                                   -0.01401131      -0.3813       -8.79
+ 
+---------------------------------------------------------
+Geometry Convergence after Step  21       ** CONVERGED **
+---------------------------------------------------------
+current energy                               -0.01404529 Hartree
+energy change                      -0.00000010     0.00001000    T
+max stress energy / atom            0.00004221     0.00050000    T
+constrained gradient max            0.00000000     0.00100000    T
+constrained gradient rms            0.00000000     0.00066667    T
+gradient max                        0.00000000
+gradient rms                        0.00000000
+cart. step max                      0.00006993     0.01000000    T
+cart. step rms                      0.00003497     0.00666667    T
+ 
+Geometry optimization converged
+
+Optimized geometry:
+ 
+--------
+Geometry
+--------
+Formula: Og
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1     Og     0.00000000     0.00000000     0.00000000
+ 
+Lattice vectors (angstrom)
+      1    -2.46772370     2.46772370     2.46772370
+      2     2.46772370    -2.46772370     2.46772370
+      3     2.46772370     2.46772370    -2.46772370
+ 
+Unit cell volume (angstrom^3)        60.11040
+ 
+Total System Charge             0.00000
+Bonding info available!
+ 
+Performing a single point calculation on the final geometry ...
+
+ K-points configuration loaded from previous results: GOStep21.rkf
+ SCF procedure tweaks
+   * counter           0
+   * addExtraPotential F
+   * addExtraPotentialOnLastCycle F
+   * extraPotentialName
+   * reuseEigenSystem F
+ 
+ skipDiagonalization F parmix=  7.500000000000000E-002 ncylx=         300
+ restartSCF T
+ forceRestartSolution F
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ Settings for convergence
+ --------------------------------------------------------------------------------
+   Initial density:          psi
+ --------------------------------------------------------------------------------
+
+ restarting scf, max mismatch in geometries:   0.000000000000000E+000
+ cyc=  0 err=9.59E-07 cpu=  86s ela=  87s
+ cyc=  1 err=7.59E-08 meth=m nvec= 1 mix=1.0000 cpu=  83s ela=  83s fit=8.61E-04
+
+ CONVERGENCE REACHED
+ cyc=  2 err=8.45E-08 meth=d nvec= 2 mix=0.7756 cpu=  84s ela=  84s fit=8.61E-04
+
+
+         -------------------- CYCLE    3 --------------------
+ Self consistent error (density)                       8.45E-08
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.01941     -1.01239      1.00000
+        112     -1.01941     -1.01239      1.00000
+        113     -0.56404     -0.54438      1.00000
+        114     -0.56404     -0.54438      1.00000
+        115     -0.26493     -0.15126      1.00000
+        116     -0.26493     -0.15126      1.00000
+        117     -0.24511     -0.15126      1.00000
+        118     -0.24511     -0.15126      1.00000
+        119     -0.12497      0.11366      0.00000
+        120     -0.12497      0.11366      0.00000
+        121      0.01670      0.33070      0.00000
+        122      0.01670      0.33070      0.00000
+        123      0.08958      0.33070      0.00000
+        124      0.08958      0.33070      0.00000
+        125      0.15490      0.37537      0.00000
+        126      0.15490      0.37537      0.00000
+        127      0.32404      0.44588      0.00000
+        128      0.32404      0.44588      0.00000
+        129      0.34113      0.47889      0.00000
+        130      0.34113      0.47889      0.00000
+        131      0.42570      0.55302      0.00000
+        132      0.42570      0.55302      0.00000
+        133      0.47769      0.62475      0.00000
+        134      0.47769      0.62475      0.00000
+        135      0.51082      0.74602      0.00000
+        136      0.51082      0.74602      0.00000
+        137      0.67433      0.94716      0.00000
+        138      0.67433      0.94716      0.00000
+ =================================================
+
+----------------------------------------
+Band gap information
+----------------------------------------
+Number of valence electrons                   118
+Valence band index                            118
+Top of valence band (a.u.)                 -0.151
+Bottom of conduction band (a.u.)           -0.125
+Top of valence band at k-point              0.000    -0.000     0.000
+Bottom of conduction band at k-point        0.000    -0.000     0.000
+Direct band gap
+Band gap (a.u.)                             0.026
+Band gap (eV)                               0.715
+Band gap (kcal/mol)                        16.496
+ 
+
+
+
+ =============================
+ E N E R G Y   A N A L Y S I S
+ =============================
+  
+ Formation energy w.r.t. spherically-symmetric spin-restricted atoms
+
+                                                             (a.u.)            (eV)     (kCal/mol)
+ --------------------------------------------------------------------------------------------------
+
+ Kinetic                                                      -0.83425281     -22.7012     -523.50
+ XC                                                           -0.02253128      -0.6131      -14.14
+ Electrostatic                                                -0.02845917      -0.7744      -17.86
+ V(atomic)*def                                                 0.87049675      23.6874      546.25
+ V(def)*def                                                    0.00070122       0.0191        0.44
+ --------------------------------------------------------------------------------------------------
+
+ Final bond energy (PBESol)                                   -0.01404529      -0.3822       -8.81
+ 
+ Fit error correction used (Vdef*err)                         -0.00000475      -0.0001       -0.00
+
+ ==================================================================================================
+ Rigid motions settings for: RemoveFreeMovements
+ Atomic rotations (x,y,z):     F F F
+ Atomic translations (x,y,z):  T T T
+ Tolerance:                   1.000000000000000E-006
+
+
+
+ ================================
+ E N E R G Y    G R A D I E N T S
+ ================================
+  
+ (Energy gradients wrt nuclear displacements in Hartree per Bohr)
+ 
+ 
+ FINAL GRADIENTS
+    1 Og  0.000000  0.000000  0.000000
+ 
+
+
+
+ =======================
+ F O R M   F A C T O R S
+ =======================
+  
+
+
+
+
+ Form factors (amplitude and phase/pi)
+
+ First line : direct projection 
+ Second line: overlap taken into account
+
+ N.B.: the coefficients in the expansion of the total coulomb potential
+       due to the nuclear charges have been removed analytically.
+
+ --------------------------------------------------------------------------------------------
+                                       Total            Total     Deformation     Deformation
+        Coordinates                  Density        Potential         Density       Potential
+ --------------------------------------------------------------------------------------------
+
+   1)      0      0      0     118.0000  1.00   91.1451  0.00    0.0002  1.00    2.7923  0.00
+       0.000  0.000  0.000     118.0053  1.00   91.1484  0.00    0.0002  1.00    2.7922 -0.00
+
+   2)     -1      0      0     107.0442  1.00  107.0432  1.00    0.0503 -0.00    0.0512  0.00
+       0.000 -0.674 -0.674     107.0126  1.00  107.0467  1.00    0.0503 -0.00    0.0511  0.00
+
+   3)     -1     -1      1     100.3478  1.00  100.3485  1.00    0.0201  1.00    0.0206  1.00
+       0.000 -0.000 -1.347     100.3567  1.00  100.3455  1.00    0.0201  1.00    0.0205  1.00
+
+ --------------------------------------------------------------------------------------------
+
+
+   min. nr. of func/process                    34
+   noper                                       48
+   nfunc                                      274
+   nprocsThisNode                               8
+   nfuncThisProcess                            35
+   safeMaxFuncSliceSize                         1
+   requestedMaxFuncSliceSize                  128
+   actual maxFuncSliceSize                     35
+   numSlices                                    1
+   storeCoopPerBasPair                          F
+   nEnergies                                  262
+       Nr. of bands used for DOS:    137
+
+
+
+ ======================
+ Atomic Charge Analysis
+ ======================
+  
+ Deformation charges with respect to neutral atoms.
+ 
+   ----------------------------------------------
+     Atom      Hirshfeld     Voronoi         CM5
+   ----------------------------------------------
+      1  Og       -0.000      -0.000      -0.000
+   ----------------------------------------------
+      Total:      -0.000      -0.000      -0.000
+   ----------------------------------------------
+ 
+
+
+
+ ============================================
+ Atomic Charge Analysis (Spin Up - Spin Down)
+ ============================================
+  
+   ----------------------------------------------
+     Atom      Hirshfeld     Voronoi         CM5
+   ----------------------------------------------
+      1  Og        0.000       0.000       0.000
+   ----------------------------------------------
+      Total:       0.000       0.000       0.000
+   ----------------------------------------------
+ 
+ WARNING: matrix written, but never read. Matrix name: S(V/V)
+ WARNING: matrix written, but never read. Matrix name: S(VOC/VOC)
+ Using the following basis set files:
+ 
+ Og             : /zfs/hybrilit.jinr.ru/user/m/milias/work/software/ams/linux.openmpi/ams2021.105/atomicdata/Band/TZP/Og
+
+
+
+ =====================
+ C O N F I N E M E N T
+ =====================
+  
+ Basis functions confinement radius        10.000
+ Width                                      1.000
+ use shared memory for sandwiching:  F
+
+
+
+ ===============================
+ M O D E L   P A R A M E T E R S
+ ===============================
+  
+ DENSITY FUNCTIONAL POTENTIAL (scf)
+    LDA:                               PW92                                    == Not Default ==
+    Gradient Corrections:              PBEsolx PBEsolc                         == Not Default ==
+ DENSITY FUNCTIONAL ENERGY (post-scf)
+    Gradient Corrections:              Becke88 Perdew86 PW91x PW91c EV93x PW...== Not Default ==
+
+ SPIN  (restricted / unrestr.)
+    Molecule:                          Collinear (Z)
+
+ OTHER ASPECTS
+    Relativistic Corrections:          Spin-Orbit (ZORA,APA)                   == Not Default ==
+
+    Nuclear Charge Density Model:      Gaussian Charge Distributions            *** SPECIAL ***
+
+
+
+ ========================
+ S. C. F.   O P T I O N S
+ ========================
+  
+
+ * DIIS settings info for DIRAC   *
+    Cond              0.1E+07
+    CLarge          20.00
+    CHuge           50.00
+    DiMix            1.00
+    IopPly              1
+    NCyDmp              5
+    IPrint              0
+    Adaptable           F
+    Method         diis                
+    Dimix Decay fac  1.00
+
+ * DIIS settings info for SCF     *
+    Cond              0.1E+07
+    CLarge          20.00
+    CHuge           20.00
+    DiMix            0.20
+    IopPly              1
+    NCyDmp              1
+    IPrint              0
+    Adaptable           T
+    Method         DIIS                
+    Dimix Decay fac  1.00
+ growth factor   1.10000000000000     
+ shrink factor  0.909090909100000     
+
+    Mix            0.0750
+    Degenerate          F
+    Edegen          1.0E-04
+    SCFRTX           9.90
+    Convrg          1.0E-06
+    Ncyclx            300
+ getinp: use Shared Memory T
+ K-points configuration loaded from previous results: band.rkf
+
+
+
+                                          *******************************
+                                          *  S C F   P R O C E D U R E  *
+                                          *******************************
+  
+
+ Nr. of basis functions                  274
+ Nr. of core functions                     0
+ Nr. of fit functions                      0
+ Nr. of symmetry unique K-points          55
+ Valence charge                          118.00
+
+ CONVERGENCE REACHED
+
+
+
+                                             *************************
+                                             *  P R O P E R T I E S  *
+                                             *************************
+  
+
+
+
+ ===================================
+ B A N D   E N E R G Y   R A N G E S
+ ===================================
+  
+ The energies below are in Hartree.
+ =================================================
+       band          min          max   occupation
+ =================================================
+        111     -1.01945     -1.01238      1.00000
+        112     -1.01945     -1.01238      1.00000
+        113     -0.56409     -0.54434      1.00000
+        114     -0.56409     -0.54434      1.00000
+        115     -0.26507     -0.15106      1.00000
+        116     -0.26507     -0.15106      1.00000
+        117     -0.24521     -0.15106      1.00000
+        118     -0.24521     -0.15106      1.00000
+        119     -0.12519      0.11395      0.00000
+        120     -0.12519      0.11395      0.00000
+        121      0.01672      0.33045      0.00000
+        122      0.01672      0.33045      0.00000
+        123      0.08977      0.33045      0.00000
+        124      0.08977      0.33045      0.00000
+        125      0.15522      0.37508      0.00000
+        126      0.15522      0.37508      0.00000
+        127      0.32369      0.44597      0.00000
+        128      0.32369      0.44597      0.00000
+        129      0.34075      0.47937      0.00000
+        130      0.34075      0.47937      0.00000
+        131      0.42576      0.55371      0.00000
+        132      0.42576      0.55371      0.00000
+        133      0.47799      0.62553      0.00000
+        134      0.47799      0.62553      0.00000
+        135      0.51125      0.74685      0.00000
+        136      0.51125      0.74685      0.00000
+        137      0.67452      0.94820      0.00000
+        138      0.67452      0.94820      0.00000
+ =================================================
+ Final bond energy (PBESol)                                   -0.01401131      -0.3813       -8.79
+
+
+    =====================
+     CALCULATION RESULTS
+    =====================
+
+Energy (hartree)            -0.01404529
+
+Gradients (hartree/bohr)
+  Index   Atom            d/dx            d/dy            d/dz
+      1     Og    0.0000000000    0.0000000000    0.0000000000
+
+ Stress Tensor (hartree/bohr^3)
+  Index               1               2               3
+      1    0.0000001041   -0.0000000000    0.0000000000
+      2   -0.0000000000    0.0000001041    0.0000000000
+      3    0.0000000000    0.0000000000    0.0000001041
+ 
+
+
+--------------
+Atomic charges
+--------------
+  Index   Atom    Charge
+      1     Og   -0.0000
+
+
+
+
+ =================
+ Timing Statistics
+ =================
+  
+ Total Used :                     CPU=    89006.72      System=      396.44     Elapsed=    89818.08
+
+ Calls  Section                     ( Mean, Percentage )
+ ---------------------------------------------------------------------------------------------------
+    46  ><      ................      0.00    0.00             0.00    0.01             0.02    0.00
+    66  GETINP  ................     11.02    0.82             0.17    2.80            11.50    0.85
+    44  DIRAC   ................      0.69    0.03             0.00    0.04             0.87    0.04
+    44  SLTORB  ................      0.04    0.00             0.00    0.00             0.04    0.00
+    44  FITRAD  ................      0.00    0.00             0.00    0.00             0.00    0.00
+    44  RADIAL  ................      0.11    0.01             0.02    0.19             0.17    0.01
+    44  POINTS  ................      0.72    0.04             0.01    0.10             0.81    0.04
+    44  CELLS   ................      2.18    0.11             0.01    0.08             2.38    0.12
+    44  ELSTAT  ................      0.02    0.00             0.00    0.01             0.05    0.00
+    44  ATMFNC  ................      0.11    0.01             0.02    0.24             0.19    0.01
+    44  NUMGRD  ................    166.62    8.24             0.51    5.63           168.63    8.26
+   436  RHOPMD  ................     52.77   25.85             0.21   22.72            53.17   25.81
+   436  RHOFIT  ................     36.25   17.76             0.14   15.52            36.50   17.72
+   436  PMATPROPS ..............      0.00    0.00             0.00    0.00             0.00    0.00
+   436  RHOPOT  ................      0.03    0.02             0.00    0.49             0.04    0.02
+   436  SCFEXTRA1 ..............      0.00    0.00             0.00    0.00             0.00    0.00
+   872  EIGSYS  ................     29.87   29.26             0.13   27.84            30.11   29.23
+   436  FERMI   ................      6.80    3.33             0.01    1.00             6.85    3.32
+   392  PMATRX  ................      0.26    0.11             0.11   10.47             0.39    0.17
+   392  GUESSRHO ...............      0.15    0.06             0.05    5.12             0.20    0.09
+    44  ENERGY  ................     75.55    3.73             0.26    2.90            76.10    3.73
+    22  GRADIENTS ..............    429.27   10.61             0.85    4.72           431.36   10.57
+     1  CHARGE  ................      0.01    0.00             0.00    0.00             0.01    0.00
+     1  CM5CHARGES .............      0.01    0.00             0.00    0.00             0.01    0.00
+     1  HIRSH   ................      0.00    0.00             0.00    0.00             0.00    0.00
+     1  DOS     ................     15.33    0.02             0.54    0.14            15.95    0.02
+
+AMS application finished. Exiting.
+NORMAL TERMINATION
+     Total cpu time:   89016.78
+  Total system time:     397.38
+ Total elapsed time:   89830.58
+NORMAL TERMINATION

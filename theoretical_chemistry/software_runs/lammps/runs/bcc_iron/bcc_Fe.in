@@ -2,20 +2,21 @@
 # get from http://www.u.arizona.edu/~stefanb/Files/HPCTutorials/MD-lammps-Final.pdf
 #
 # E n e r g y : eV D i s t a n c e : Angstrom Mass : Kg Time : p i c o s e c
-units
- metal
-#C l a s s i c a l
- particles
-atom style
- atomic
-#p=P e r i o d i c , i n x y z
-boundary
- p p p
-#l a t t i c e c o n s t a n t i . e . Fe?BCC 2 . 8 6 6 5
+
+units  metal
+#C l a s s i c a l particles
+atom_style atomic
+
+#p=Periodic , in x y z
+boundary  p p p
+
+#l a t t i c e  constant i . e . Fe-BCC 2.8665
 variable a equal 2.8665
+
 # BCC s t r u c t u r e
 lattice bcc $a
-# S p e c i f y s i m u l a t i o n box
+
+# S p e c i f y simulation box
 region box block 0 5 0 5 0 5
 
 # I n i t i a t e box w i t h 1 atom t y p e
@@ -56,5 +57,4 @@ thermo 500
 #Data that is output to screen
 thermo style custom step pe ke temp vol press
 run 10000
-
 

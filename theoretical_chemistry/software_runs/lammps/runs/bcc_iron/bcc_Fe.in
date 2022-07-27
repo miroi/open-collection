@@ -1,31 +1,37 @@
 #
 # get from http://www.u.arizona.edu/~stefanb/Files/HPCTutorials/MD-lammps-Final.pdf
 #
-# E n e r g y : eV D i s t a n c e : Angstrom Mass : Kg Time : p i c o s e c
+# Energy : eV 
+# Distance : Angstrom
+# Mass : Kg 
+# Time : picosec
 
 units  metal
-#C l a s s i c a l particles
+
+#Classical particles
 atom_style atomic
 
-#p=Periodic , in x y z
+#p=Periodic, in x y z
 boundary  p p p
 
-#l a t t i c e  constant i . e . Fe-BCC 2.8665
+#lattice  constant i.e. Fe-BCC 2.8665
 variable a equal 2.8665
 
-# BCC s t r u c t u r e
+# BCC structure
 lattice bcc $a
 
-# S p e c i f y simulation box
+# Specify simulation box
 region box block 0 5 0 5 0 5
 
-# I n i t i a t e box w i t h 1 atom t y p e
+# Initiate box with 1 atom type
 create_box 1 box
+
 # Create  1 atom type on lattice
 create_atoms 1 box
-mass 155.85
 
-# I n t e r a t o m i c p o t e n t i a l - Embedded Atom Method
+mass 1 55.85
+
+# I n t e r a t o m i c  p o t e n t i a l - Embedded Atom Method
 pairstyle eam/ fs
 
 # i n t e r a c t i o n p a i r s , f i l e n a m e , Element parameters

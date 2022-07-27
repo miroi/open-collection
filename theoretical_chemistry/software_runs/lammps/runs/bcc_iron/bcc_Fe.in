@@ -1,3 +1,60 @@
 #
 # get from http://www.u.arizona.edu/~stefanb/Files/HPCTutorials/MD-lammps-Final.pdf
 #
+# E n e r g y : eV D i s t a n c e : Angstrom Mass : Kg Time : p i c o s e c
+units
+ metal
+#C l a s s i c a l
+ particles
+atom style
+ atomic
+#p=P e r i o d i c , i n x y z
+boundary
+ p p p
+#l a t t i c e c o n s t a n t i . e . Fe?BCC 2 . 8 6 6 5
+variable a equal 2.8665
+# BCC s t r u c t u r e
+lattice bcc $a
+# S p e c i f y s i m u l a t i o n box
+region box block 0 5 0 5 0 5
+
+# I n i t i a t e box w i t h 1 atom t y p e
+create_box 1 box
+# Create  1 atom type on lattice
+create_atoms 1 box
+mass 155.85
+
+# I n t e r a t o m i c p o t e n t i a l - Embedded Atom Method
+pairstyle eam/ fs
+
+# i n t e r a c t i o n p a i r s , f i l e n a m e , Element parameters
+pair_coeff * * Fe_mm.eam.fs Fe
+
+#S p e c i f y b u i l d n e i g h b o r l i s t , u s e cutoff +0.3 A
+neighbor 0.3  bin
+#Frequency to rebuild neighborlist
+neigh_modify every 20 delay 0 check no
+
+#Compute t h e e n e r g y p e r atom
+compute eperat all pe/atom
+
+#Output x , y , z o f atoms LAMMPS s t a n d a r d f o r m a t
+dump config all atom 10 dump.FeBCC ${a}
+
+#Custom output of atom properties
+dump config all custom 10 dump.FeBCC ${a} &
+ id type x y z c_eperat
+
+timestep 0.001
+
+#E n s e m b l e
+fix 1 all nve
+
+#Frequency of Ensemble data output to s c r e e n
+thermo 500
+
+#Data that is output to screen
+thermo style custom step pe ke temp vol press
+run 10000
+
+

@@ -32,13 +32,14 @@ create_atoms 1 box
 mass 1 55.85
 
 # I n t e r a t o m i c  p o t e n t i a l - Embedded Atom Method
-pairstyle eam/ fs
+pair_style eam/fs
 
 # i n t e r a c t i o n p a i r s , f i l e n a m e , Element parameters
 pair_coeff * * Fe_mm.eam.fs Fe
 
 #S p e c i f y b u i l d n e i g h b o r l i s t , u s e cutoff +0.3 A
 neighbor 0.3  bin
+
 #Frequency to rebuild neighborlist
 neigh_modify every 20 delay 0 check no
 

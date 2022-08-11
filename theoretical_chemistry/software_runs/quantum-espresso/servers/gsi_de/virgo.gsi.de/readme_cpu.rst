@@ -33,5 +33,12 @@ cmake -DCMAKE_C_COMPILER=mpicc -DCMAKE_Fortran_COMPILER=mpif90  ..
 -- Build files have been written to: /lustre/ukt/milias/work/software/quantum-espresso/q-e_develop/build_openmpi_cpu
 
 
+QE 7.1
+------
+The same buildup for /lustre/ukt/milias/work/software/quantum-espresso/qe-7.1/build_openmpi_cpu/bin
 
+openblas
+~~~~~~~~
+https://github.com/xianyi/OpenBLAS/wiki
 
+https://stackoverflow.com/questions/55080295/openmp-openblas-nested-parallelism

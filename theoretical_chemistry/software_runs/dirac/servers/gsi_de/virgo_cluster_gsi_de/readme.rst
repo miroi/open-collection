@@ -1,3 +1,4 @@
+======================
 DIRAC on Virgo cluster
 ======================
 
@@ -109,6 +110,13 @@ milias@lxbk0598.gsi.de:/lustre/ukt/milias/work/software/dirac/devel_trunk/.which
 
 Compilation
 ~~~~~~~~~~~
+spack load cmake@3.21.4 target=x86_64
+
+milias@lxbk0598.gsi.de:/lustre/ukt/milias/work/software/dirac/devel_trunk/.which cmake
+/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/cmake-3.21.4-enblber3hx4opwmwlknv7i3vd522t3ln/bin/cmake
+milias@lxbk0598.gsi.de:/lustre/ukt/milias/work/software/dirac/devel_trunk/.cmake --version
+cmake version 3.21.4
+
 milias@lxbk0598.gsi.de:/lustre/ukt/milias/work/software/dirac/devel_trunk/../setup --mpi --mkl=parallel --int64 --fc=mpif90 --cc=mpicc --cxx=mpicxx build_openmpi4.1.4_intel20mkl_i8
 
 

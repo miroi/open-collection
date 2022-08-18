@@ -134,12 +134,13 @@ export MKL_NUM_THREADS=1
 
 unset DIRAC_MPI_COMMAND
 export DIRAC_MPI_COMMAND="mpirun -np 2"
-echo -e "DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
+echo -e "\nDIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
 
 let "NUMTHR=$SLURM_NPROCS/2"; echo "SLURM_NPROCS=$SLURM_NPROCS, then divided by 2,  NUMTHR=$NUMTHR"
 
 cd $DIRAC_BUILDDIR; echo -e "\nI am in: \c"; pwd
-echo -e "Running 'ctest -VV -j$NUMTHR'"
-ctest -VV  -j$NUMTHR -L short
+echo -e "\nRunning 'ctest -VV -j$NUMTHR'"
+#ctest -VV  -j$NUMTHR -L short
+ctest -VV  -j$NUMTHR 
 
 exit

@@ -111,11 +111,24 @@ milias@lxbk0598.gsi.de:/lustre/ukt/milias/work/software/dirac/devel_trunk/.which
 Compilation
 ~~~~~~~~~~~
 spack load cmake@3.21.4 target=x86_64
+spack load hdf5@1.10.7 target=x86_64
 
 milias@lxbk0598.gsi.de:/lustre/ukt/milias/work/software/dirac/devel_trunk/.which cmake
 /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/cmake-3.21.4-enblber3hx4opwmwlknv7i3vd522t3ln/bin/cmake
 milias@lxbk0598.gsi.de:/lustre/ukt/milias/work/software/dirac/devel_trunk/.cmake --version
 cmake version 3.21.4
+
+milias@lxbk0598.gsi.de:/lustre/ukt/milias/work/software/dirac/devel_trunk/.spack find --loaded
+==> 41 loaded packages
+-- linux-debian10-x86_64 / gcc@8.3.0 ----------------------------
+bzip2@1.0.8   hdf5@1.10.7                                libffi@3.3         libxml2@2.9.12  pcre@8.44      slurm@18-08-9-1
+cmake@3.21.4  hwloc@1.11.13                              libgcrypt@1.9.3    lz4@1.9.3       perl@5.28.1    sqlite@3.36.0
+curl@7.79.0   intel-mkl@2020.4.304                       libgpg-error@1.42  munge@0.5.13    pkgconf@1.8.0  tar@1.34
+expat@2.4.1   intel-parallel-studio@professional.2020.1  libiconv@1.16      ncurses@6.1     pmix@2.2.2     util-linux-uuid@2.36.2
+gdbm@1.21     json-c@0.15                                libmd@1.0.3        numactl@2.0.14  python@3.8.12  xz@5.2.5
+gettext@0.21  libbsd@0.11.3                              libnl@3.3.0        openmpi@3.1.6   rdma-core@20   zlib@1.2.11
+glib@2.70.0   libevent@2.1.8                             libpciaccess@0.16  openssl@1.1.1l  readline@8.1
+
 
 milias@lxbk0598.gsi.de:/lustre/ukt/milias/work/software/dirac/devel_trunk/../setup --mpi --mkl=parallel --int64 --fc=mpif90 --cc=mpicc --cxx=mpicxx build_openmpi4.1.4_intel20mkl_i8
 

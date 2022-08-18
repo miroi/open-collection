@@ -1,0 +1,1611 @@
+
+Job user is SLURM_JOB_USER= milias
+User job SLURM_JOB_NAME=DIRAC has assigned ID SLURM_JOBID=62075686
+This job was submitted from the computer SLURM_SUBMIT_HOST=lxbk0598
+ and from the home directory SLURM_SUBMIT_DIR=/lustre/ukt/milias/work/projects/open-collection/theoretical_chemistry/software_runs/dirac/servers/gsi_de/virgo_cluster_gsi_de/run_tests
+Job is running on the cluster compute node: SLURM_CLUSTER_NAME=virgo
+and is employing SLURM_JOB_NUM_NODES=1 node/nodes:
+SLURM_JOB_NODELIST = lxbk1077
+
+Job partition is SLURM_JOB_PARTITION=main 
+
+
+The job requests SLURM_CPUS_ON_NODE=16 CPU per task.
+
+/var/spool/slurm/d/job62075686/slurm_script: line 54: pack: command not found
+-- linux-debian10-x86_64 / gcc@8.3.0 ----------------------------
+bzip2@1.0.8
+cmake@3.21.4
+curl@7.79.0
+expat@2.4.1
+gdbm@1.21
+gettext@0.21
+glib@2.70.0
+hdf5@1.10.7
+hwloc@1.11.13
+intel-mkl@2020.4.304
+intel-parallel-studio@professional.2020.1
+json-c@0.15
+libbsd@0.11.3
+libevent@2.1.8
+libffi@3.3
+libgcrypt@1.9.3
+libgpg-error@1.42
+libiconv@1.16
+libmd@1.0.3
+libnl@3.3.0
+libpciaccess@0.16
+libxml2@2.9.12
+lz4@1.9.3
+munge@0.5.13
+ncurses@6.1
+numactl@2.0.14
+openmpi@3.1.6
+openssl@1.1.1l
+pcre@8.44
+perl@5.28.1
+pkgconf@1.8.0
+pmix@2.2.2
+python@3.8.12
+rdma-core@20
+readline@8.1
+slurm@18-08-9-1
+sqlite@3.36.0
+tar@1.34
+util-linux-uuid@2.36.2
+xz@5.2.5
+zlib@1.2.11
+
+Running on host lxbk1077
+Time is Thu 18 Aug 2022 06:37:38 PM CEST 
+
+The node's CPU model name	: AMD EPYC 7662 64-Core Processor
+This node has total 256 CPUs available for an EXCLUSIVE job.
+This node has 8 CPUs allocated for SLURM calculations.
+
+ The memory at the node (in GB)
+              total        used        free      shared  buff/cache   available
+Mem:           1007         503         489           0          14         501
+Swap:           124           0         124
+Total:         1132         503         614
+
+
+
+ ifort -V: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-parallel-studio-professional.2020.1-yr5yjb5uiztgkfs4qz6u5dxj5zrz455s/compilers_and_libraries_2020.1.217/linux/bin/intel64/ifort
+Intel(R) Fortran Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.1.1.217 Build 20200306
+Copyright (C) 1985-2020 Intel Corporation.  All rights reserved.
+
+GNU ld (GNU Binutils for Debian) 2.31.1
+ld: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-parallel-studio-professional.2020.1-yr5yjb5uiztgkfs4qz6u5dxj5zrz455s/compilers_and_libraries_2020.1.217/linux/compiler/lib/intel64_lin/for_main.o: in function `main':
+for_main.c:(.text+0x2e): undefined reference to `MAIN__'
+Intel MKL library ? MKLROOT=/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-mkl-2020.4.304-wcz55b7qqq66b7lh5vqt6qt7ftlkwa3z/compilers_and_libraries_2020.4.304/linux/mkl
+mpif90 -V: /lustre/ukt/milias/bin/openmpi-4.1.4-intel2020-i8/openmpi-4.1.4/bin/mpif90
+Intel(R) Fortran Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.1.1.217 Build 20200306
+Copyright (C) 1985-2020 Intel Corporation.  All rights reserved.
+
+GNU ld (GNU Binutils for Debian) 2.31.1
+ld: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-parallel-studio-professional.2020.1-yr5yjb5uiztgkfs4qz6u5dxj5zrz455s/compilers_and_libraries_2020.1.217/linux/compiler/lib/intel64_lin/for_main.o: in function `main':
+for_main.c:(.text+0x2e): undefined reference to `MAIN__'
+mpicc -V: Intel(R) C Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.1.1.217 Build 20200306
+Copyright (C) 1985-2020 Intel Corporation.  All rights reserved.
+
+GNU ld (GNU Binutils for Debian) 2.31.1
+ld: /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o: in function `_start':
+(.text+0x20): undefined reference to `main'
+mpicxx -V: Intel(R) C++ Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.1.1.217 Build 20200306
+Copyright (C) 1985-2020 Intel Corporation.  All rights reserved.
+
+GNU ld (GNU Binutils for Debian) 2.31.1
+ld: /usr/lib/gcc/x86_64-linux-gnu/8/../../../x86_64-linux-gnu/Scrt1.o: in function `_start':
+(.text+0x20): undefined reference to `main'
+Python -v :Python 3.8.12
+cmake ? /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/cmake-3.21.4-enblber3hx4opwmwlknv7i3vd522t3ln/bin/cmake
+cmake version 3.21.4
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
+ctest ? /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/cmake-3.21.4-enblber3hx4opwmwlknv7i3vd522t3ln/bin/ctest
+ctest version 3.21.4
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
+
+ mpirun ? /lustre/ukt/milias/bin/openmpi-4.1.4-intel2020-i8/openmpi-4.1.4/bin/mpirun
+mpirun (Open MPI) 4.1.4
+
+Report bugs to http://www.open-mpi.org/community/help/
+
+My PATH=/lustre/ukt/milias/bin/openmpi-4.1.4-intel2020-i8/openmpi-4.1.4/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-mkl-2020.4.304-wcz55b7qqq66b7lh5vqt6qt7ftlkwa3z/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-parallel-studio-professional.2020.1-yr5yjb5uiztgkfs4qz6u5dxj5zrz455s/advisor_2020.1.0.605410/bin64:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-parallel-studio-professional.2020.1-yr5yjb5uiztgkfs4qz6u5dxj5zrz455s/vtune_profiler_2020.1.0.607630/bin64:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-parallel-studio-professional.2020.1-yr5yjb5uiztgkfs4qz6u5dxj5zrz455s/inspector_2020.1.0.604266/bin64:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-parallel-studio-professional.2020.1-yr5yjb5uiztgkfs4qz6u5dxj5zrz455s/compilers_and_libraries_2020.1.217/linux/bin/intel64:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-parallel-studio-professional.2020.1-yr5yjb5uiztgkfs4qz6u5dxj5zrz455s/compilers_and_libraries_2020.1.217/linux/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-parallel-studio-professional.2020.1-yr5yjb5uiztgkfs4qz6u5dxj5zrz455s/compilers_and_libraries_2020.1.217/linux/mpi/intel64/libfabric/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-parallel-studio-professional.2020.1-yr5yjb5uiztgkfs4qz6u5dxj5zrz455s/compilers_and_libraries_2020.1.217/linux/mpi/intel64/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-parallel-studio-professional.2020.1-yr5yjb5uiztgkfs4qz6u5dxj5zrz455s/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/hdf5-1.10.7-co2mmgw6usbqgfaoxufoesgv7eew5om7/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/pkgconf-1.8.0-63unkjdmhofgx2zahtstc6bjy5jateoc/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/openmpi-3.1.6-65sbojuaajs6rxefpebpd3djlca6zo6y/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/slurm-18-08-9-1-wjrdd22t2jzbw7xy6y4blrl4sjlr47tn/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/munge-0.5.13-xnaqmnjrykzi7wsc6fn6qaoovfdy2kr6/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/libgcrypt-1.9.3-v2xavdyj75p2rifptlrzpedjmh7rrrbw/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/libgpg-error-1.42-756xr2pucmosycnx4w6n42hjykvrgg5l/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/lz4-1.9.3-zvigeivd6qxzwo2ulhbtfb7wdyedowq7/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/glib-2.70.0-7nmukrolrj26vw4jzwzmnmvi45k5sjzq/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/util-linux-uuid-2.36.2-kbohx2h3ei6jdlmbs5xstussgiqs4mcf/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/sqlite-3.36.0-4diuizj3yhymezxhnbmhhlr6xwed7c7b/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/gdbm-1.21-u3rsqpgbzzn76zzphepsr2awv7ev6h2j/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/readline-8.1-noj67yl2zkedbu2hjfvrsrdr5wygt6az/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/expat-2.4.1-xf3ljajgrohuqswnbm3jbwasddyulx5p/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/pcre-8.44-rl4x5ucyqs76spsqjfb772zhq5mizcxz/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/gettext-0.21-qnj73q3fl2mhcyuxdrmfor7sycfbo4yc/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/tar-1.34-qpci432lypg7xk3dmhwwsk3f3lyaeo3r/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/bzip2-1.0.8-wkzab6lp7zn2xm6eeyzamfgplkbdwx36/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/curl-7.79.0-k7n3oe5kzbwqleeeftswi4mu6d4n4kzh/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/rdma-core-20-aamz6ialzpnvmid3xaxik3euhi5jnj56/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/libnl-3.3.0-ysu7gs26slyt2bbrbbooucabflgpgpnv/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/libevent-2.1.8-zcqe3jfadqtrywugkc37jfkblusy7zyt/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/openssl-1.1.1l-yilxr74px7socgmb4mqi4jl2ri6sbppt/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/hwloc-1.11.13-hpfium4g5mdbfdblg2tm7mfsegobsget/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/libxml2-2.9.12-hw4p3x2uq5lsuv64gbikjhs7ndeqnuu6/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/xz-5.2.5-zrirl3zbkmhmcoylbdbtii7mbj2z5gly/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/libiconv-1.16-kei5vziwnj7zt6xbbjxzxsutkeulztmr/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/numactl-2.0.14-3235alolq2brejmaltbvaz3fivguywst/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/cmake-3.21.4-enblber3hx4opwmwlknv7i3vd522t3ln/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/openssl-1.1.1l-yilxr74px7socgmb4mqi4jl2ri6sbppt/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/slurm-18-08-9-1-wjrdd22t2jzbw7xy6y4blrl4sjlr47tn/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/tmux-3.2a-f3ogign3cbzsovneksrpkb723ysirjrs/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/screen-4.8.0-wov62cynhiudmd4kqxzdklirbb7dj4h6/bin:/u/milias/.local/bin:/usr/sbin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-zen/gcc-8.3.0/slurm-18-08-9-1-suqu4eahq5jonpif6dibt7fiyo546vmn/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-zen/gcc-8.3.0/tmux-3.2a-zqy2trabngczbq6lmsye4rdxhdcmhemq/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-zen/gcc-8.3.0/screen-4.8.0-x7rwrnhj5laegvx4q3byuxrytriieiiw/bin:/cvmfs/vae.gsi.de/debian10/spack-0.17/vaesoft/spack/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:.:/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-parallel-studio-professional.2020.1-yr5yjb5uiztgkfs4qz6u5dxj5zrz455s/parallel_studio_xe_2020.1.102/bin
+
+
+ldd /lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/dirac.x:
+	linux-vdso.so.1 (0x00007ffc533f4000)
+	libmkl_intel_ilp64.so => /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-mkl-2020.4.304-wcz55b7qqq66b7lh5vqt6qt7ftlkwa3z/compilers_and_libraries_2020.4.304/linux/mkl/lib/intel64_lin/libmkl_intel_ilp64.so (0x00002b12c167a000)
+	libmkl_intel_thread.so => /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-mkl-2020.4.304-wcz55b7qqq66b7lh5vqt6qt7ftlkwa3z/compilers_and_libraries_2020.4.304/linux/mkl/lib/intel64_lin/libmkl_intel_thread.so (0x00002b12c2302000)
+	libmkl_core.so => /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-mkl-2020.4.304-wcz55b7qqq66b7lh5vqt6qt7ftlkwa3z/compilers_and_libraries_2020.4.304/linux/mkl/lib/intel64_lin/libmkl_core.so (0x00002b12c5bed000)
+	libiomp5.so => /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-mkl-2020.4.304-wcz55b7qqq66b7lh5vqt6qt7ftlkwa3z/compilers_and_libraries_2020.4.304/linux/compiler/lib/intel64_lin/libiomp5.so (0x00002b12ca22e000)
+	libmpi.so.40 => /lustre/ukt/milias/bin/openmpi-4.1.4-intel2020-i8/openmpi-4.1.4/lib/libmpi.so.40 (0x00002b12ca634000)
+	libimf.so => /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-parallel-studio-professional.2020.1-yr5yjb5uiztgkfs4qz6u5dxj5zrz455s/compilers_and_libraries_2020.1.217/linux/compiler/lib/intel64_lin/libimf.so (0x00002b12ca77f000)
+	libsvml.so => /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-parallel-studio-professional.2020.1-yr5yjb5uiztgkfs4qz6u5dxj5zrz455s/compilers_and_libraries_2020.1.217/linux/compiler/lib/intel64_lin/libsvml.so (0x00002b12cae7c000)
+	libirng.so => /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-parallel-studio-professional.2020.1-yr5yjb5uiztgkfs4qz6u5dxj5zrz455s/compilers_and_libraries_2020.1.217/linux/compiler/lib/intel64_lin/libirng.so (0x00002b12cc92e000)
+	libstdc++.so.6 => /usr/lib/x86_64-linux-gnu/libstdc++.so.6 (0x00002b12ccca6000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00002b12cce2a000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00002b12ccfad000)
+	libirc.so => /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-parallel-studio-professional.2020.1-yr5yjb5uiztgkfs4qz6u5dxj5zrz455s/compilers_and_libraries_2020.1.217/linux/compiler/lib/intel64_lin/libirc.so (0x00002b12ccfc7000)
+	libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00002b12cd23f000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00002b12cd260000)
+	libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00002b12cd420000)
+	libz.so.1 => /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/zlib-1.2.11-p4munz26apd3ww5praazhorol6ozmhwr/lib/libz.so.1 (0x00002b12cd425000)
+	libhdf5.so.103 => /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/hdf5-1.10.7-co2mmgw6usbqgfaoxufoesgv7eew5om7/lib/libhdf5.so.103 (0x00002b12cd43f000)
+	libmpi_usempi_ignore_tkr.so.40 => /lustre/ukt/milias/bin/openmpi-4.1.4-intel2020-i8/openmpi-4.1.4/lib/libmpi_usempi_ignore_tkr.so.40 (0x00002b12cd7ef000)
+	libmpi_mpifh.so.40 => /lustre/ukt/milias/bin/openmpi-4.1.4-intel2020-i8/openmpi-4.1.4/lib/libmpi_mpifh.so.40 (0x00002b12cd7fc000)
+	/lib64/ld-linux-x86-64.so.2 (0x00002b12c164a000)
+	libopen-rte.so.40 => /lustre/ukt/milias/bin/openmpi-4.1.4-intel2020-i8/openmpi-4.1.4/lib/libopen-rte.so.40 (0x00002b12cd874000)
+	libopen-pal.so.40 => /lustre/ukt/milias/bin/openmpi-4.1.4-intel2020-i8/openmpi-4.1.4/lib/libopen-pal.so.40 (0x00002b12cd93c000)
+	libudev.so.1 => /lib/x86_64-linux-gnu/libudev.so.1 (0x00002b12cda7d000)
+	librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00002b12cdaa3000)
+	libutil.so.1 => /lib/x86_64-linux-gnu/libutil.so.1 (0x00002b12cdaad000)
+	libintlc.so.5 => /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-parallel-studio-professional.2020.1-yr5yjb5uiztgkfs4qz6u5dxj5zrz455s/compilers_and_libraries_2020.1.217/linux/compiler/lib/intel64_lin/libintlc.so.5 (0x00002b12cdab2000)
+	libifport.so.5 => /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-parallel-studio-professional.2020.1-yr5yjb5uiztgkfs4qz6u5dxj5zrz455s/compilers_and_libraries_2020.1.217/linux/compiler/lib/intel64_lin/libifport.so.5 (0x00002b12cdd2a000)
+	libifcoremt.so.5 => /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-parallel-studio-professional.2020.1-yr5yjb5uiztgkfs4qz6u5dxj5zrz455s/compilers_and_libraries_2020.1.217/linux/compiler/lib/intel64_lin/libifcoremt.so.5 (0x00002b12cdf58000)
+
+DIRAC scratch directory space, /lustre/ukt/milias/scratch
+Filesystem                             Size  Used Avail Use% Mounted on
+10.20.3.0@o2ib5:10.20.3.1@o2ib5:/hebe   47P   16P   31P  35% /lustre
+
+ For comparison, /tmp local disk;  df -h /tmp/.
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/nvme0n1p6  1.3T   41M  1.3T   1% /tmp
+
+
+DIRAC_MPI_COMMAND=mpirun -np 2
+SLURM_NPROCS=8, then divided by 2,  NUMTHR=4
+
+I am in: /lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8
+Running 'ctest -VV -j4'
+UpdateCTestConfiguration  from :/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/DartConfiguration.tcl
+Parse Config file:/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/DartConfiguration.tcl
+UpdateCTestConfiguration  from :/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/DartConfiguration.tcl
+Parse Config file:/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/DartConfiguration.tcl
+Test project /lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 84
+      Start  84: reladc_dip
+
+84: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/reladc_dip/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/reladc_dip" "--verbose"
+84: Test timeout computed to be: 1500
+test 85
+      Start  85: x2c-SCF_to_4c-SCF
+
+85: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/x2c-SCF_to_4c-SCF/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/x2c-SCF_to_4c-SCF" "--verbose"
+85: Test timeout computed to be: 1500
+test 86
+      Start  86: xyz_symmetry_recognition
+
+86: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/xyz_symmetry_recognition/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/xyz_symmetry_recognition" "--verbose"
+86: Test timeout computed to be: 1500
+test 87
+      Start  87: nmqm_operator
+
+87: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/nmqm_operator/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/nmqm_operator" "--verbose"
+87: Test timeout computed to be: 1500
+84: 
+84: running test: real_ne_dip ne_d2h
+84: found error which is expected/accepted: RELADC not parallelized
+84: 
+84: running test: complex_hcn_dip hcn_cs
+84: found error which is expected/accepted: RELADC not parallelized
+ 1/80 Test  #84: reladc_dip .......................   Passed   14.24 sec
+test 88
+      Start  88: visual_div_rot
+
+88: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/visual_div_rot/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/visual_div_rot" "--verbose"
+88: Test timeout computed to be: 1500
+85: 
+85: running test: x2c H2O
+85: found error which is expected/accepted: 2
+85: 
+85: running test: 4c H2O
+85: found error which is expected/accepted: 2
+85: 
+85: running test: x2c-SCF_to_4c-SCF H2O
+85: found error which is expected/accepted: 2
+ 2/80 Test  #85: x2c-SCF_to_4c-SCF ................   Passed   27.57 sec
+test 89
+      Start  89: bed_isotropic
+
+89: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/bed_isotropic/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/bed_isotropic" "--verbose"
+89: Test timeout computed to be: 1500
+87: 
+87: running test with input files ['MgF.dc_rkb.scf_prptra_nmqm.inp', 'MgF.sto-2g.C2v.mol'] and args None
+87: passed
+87: 
+87: running test with input files ['MgF.dc_rkb.scf_prptra_nmqm_def.inp', 'MgF.sto-2g.C2v.mol'] and args None
+87: passed
+87: 
+87: running test with input files ['MgF.dc_rkb.scf_relcc_nmqm.1e-4.inp', 'MgF.sto-2g.C2v.mol'] and args None
+87: passed
+ 3/80 Test  #87: nmqm_operator ....................   Passed   38.61 sec
+test 90
+      Start  90: localization
+
+90: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/localization/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/localization" "--verbose"
+90: Test timeout computed to be: 1500
+89: 
+89: running test: bed Mg
+89: passed
+ 4/80 Test  #89: bed_isotropic ....................   Passed   14.00 sec
+test 91
+      Start  91: krci_properties_perm_dipmom
+
+91: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/krci_properties_perm_dipmom/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/krci_properties_perm_dipmom" "--verbose"
+91: Test timeout computed to be: 1500
+91: 
+91: running test: h3 H3
+91: passed
+ 5/80 Test  #91: krci_properties_perm_dipmom ......   Passed   19.13 sec
+test 92
+      Start  92: huckel_start
+
+92: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/huckel_start/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/huckel_start" "--verbose"
+92: Test timeout computed to be: 1500
+92: 
+92: running test: H H
+92: finished (no reference)
+92: 
+92: running test: B B
+92: finished (no reference)
+92: 
+92: running test: HF BH3
+92: passed
+ 6/80 Test  #92: huckel_start .....................   Passed   27.67 sec
+test 93
+      Start  93: cosci_tmom
+
+93: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/cosci_tmom/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/cosci_tmom" "--verbose"
+93: Test timeout computed to be: 1500
+88: 
+88: running test with input files ['response_1z_bz.inp', 'co.mol'] and args --get="DFCOEF PAMXVC"
+88: finished (no reference)
+88: 
+88: running test with input files ['visual_1z_bz.inp', 'co.mol'] and args --copy="DFCOEF PAMXVC"
+88: passed
+88: 
+88: running test with input files ['visual_1z_bz_only_para.inp', 'co.mol'] and args --copy="DFCOEF PAMXVC"
+88: passed
+88: 
+88: running test with input files ['visual_divj.inp', 'co.mol'] and args --copy="DFCOEF PAMXVC"
+88: passed
+88: 
+88: running test with input files ['visual_divs.inp', 'co.mol'] and args --copy="DFCOEF PAMXVC"
+88: passed
+88: 
+88: running test with input files ['visual_j.inp', 'co.mol'] and args --copy="DFCOEF PAMXVC"
+88: passed
+88: 
+88: running test with input files ['visual_jdia.inp', 'co.mol'] and args --copy="DFCOEF PAMXVC"
+88: passed
+88: 
+88: running test with input files ['visual_rotj.inp', 'co.mol'] and args --copy="DFCOEF PAMXVC"
+88: passed
+88: 
+88: running test with input files ['visual_jpara.inp', 'co.mol'] and args --copy="DFCOEF PAMXVC"
+88: passed
+88: 
+88: running test with input files ['visual_s.inp', 'co.mol'] and args --copy="DFCOEF PAMXVC"
+88: passed
+88: 
+88: running test with input files ['visual_rots.inp', 'co.mol'] and args --copy="DFCOEF PAMXVC"
+88: passed
+ 7/80 Test  #88: visual_div_rot ...................   Passed   76.86 sec
+test 94
+      Start  94: reladc_sipeigv
+
+94: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/reladc_sipeigv/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/reladc_sipeigv" "--verbose"
+94: Test timeout computed to be: 1500
+94: 
+94: running test: real_ne_eigv ne_d2h
+94: found error which is expected/accepted: RELADC not parallelized
+94: 
+94: running test: complex_hcn_eigv hcn_cs
+94: found error which is expected/accepted: RELADC not parallelized
+ 8/80 Test  #94: reladc_sipeigv ...................   Passed    6.22 sec
+test 95
+      Start  95: bed_anisotropic
+
+95: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/bed_anisotropic/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/bed_anisotropic" "--verbose"
+95: Test timeout computed to be: 1500
+90: 
+90: running test: H H
+90: finished (no reference)
+90: 
+90: running test: C C
+90: finished (no reference)
+90: 
+90: running test: O O
+90: finished (no reference)
+90: 
+90: running test: CH4locmul_full CH4
+90: passed
+90: 
+90: running test: CH4locprj_full CH4
+90: passed
+90: 
+90: running test: CH4locprj_comb CH4
+90: passed
+90: 
+90: running test: CH4locprj_diag CH4
+90: passed
+90: 
+90: running test: H2Olocmul_full H2O
+90: passed
+90: 
+90: running test: H2Olocprj_full H2O
+90: passed
+90: 
+90: running test: H2Olocprj_comb H2O
+90: passed
+90: 
+90: running test: H2Olocprj_diag H2O
+90: passed
+ 9/80 Test  #90: localization .....................   Passed   70.16 sec
+test 96
+      Start  96: response_lao_magnetiz_dft
+
+96: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/response_lao_magnetiz_dft/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/response_lao_magnetiz_dft" "--verbose"
+96: Test timeout computed to be: 1500
+95: 
+95: running test: AnisotropicKedge H2O
+95: passed
+10/80 Test  #95: bed_anisotropic ..................   Passed   13.05 sec
+test 97
+      Start  97: dft_pp86
+
+97: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/dft_pp86/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/dft_pp86" "--verbose"
+97: Test timeout computed to be: 1500
+93: 
+93: running test: cosci.Li2 Li2
+93: passed
+93: 
+93: running test: cosci.H3 H3
+93: passed
+11/80 Test  #93: cosci_tmom .......................   Passed   22.64 sec
+test 98
+      Start  98: bss_energy
+
+98: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/bss_energy/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/bss_energy" "--verbose"
+98: Test timeout computed to be: 1500
+96: 
+96: running test: dc_pbe hf
+96: finished (no reference)
+96: 
+96: running test: dc_pbe_magn_sc_g0 hf
+96: passed
+12/80 Test  #96: response_lao_magnetiz_dft ........   Passed   28.87 sec
+test 99
+      Start  99: acmoin
+
+99: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/acmoin/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/acmoin" "--verbose"
+99: Test timeout computed to be: 1500
+98: 
+98: running test: HF.bss.cc Z80H.lsym.dir
+98: passed
+98: 
+98: running test: HF.bss_sfb.cc_cisd Z80H.lsym.dir
+98: passed
+98: 
+98: running test: HF.dk2_sfb.pnuc.cc_cisd Z80H.lsym.dir
+98: passed
+13/80 Test  #98: bss_energy .......................   Passed   30.59 sec
+test 100
+      Start 100: dft_cam
+
+100: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/dft_cam/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/dft_cam" "--verbose"
+100: Test timeout computed to be: 1500
+86: 
+86: running test with input files ['test_xyz.inp', 'molecule01.xyz'] and args None
+86: passed
+86: 
+86: running test with input files ['test_xyz.inp', 'molecule02.xyz'] and args None
+86: passed
+86: 
+86: running test with input files ['test_xyz.inp', 'molecule03.xyz'] and args None
+86: passed
+86: 
+86: running test with input files ['test_xyz.inp', 'molecule04.xyz'] and args None
+86: passed
+86: 
+86: running test with input files ['test_xyz.inp', 'molecule05.xyz'] and args None
+86: passed
+86: 
+86: running test with input files ['test_xyz.inp', 'molecule06.xyz'] and args None
+86: passed
+86: 
+86: running test with input files ['test_xyz.inp', 'molecule07.xyz'] and args None
+86: passed
+86: 
+86: running test with input files ['test_xyz.inp', 'molecule08.xyz'] and args None
+86: passed
+86: 
+86: running test with input files ['test_xyz.inp', 'molecule09.xyz'] and args None
+86: passed
+86: 
+86: running test with input files ['test_xyz.inp', 'molecule10.xyz'] and args None
+86: passed
+86: 
+86: running test with input files ['test_xyz.inp', 'molecule11.xyz'] and args None
+86: passed
+86: 
+86: running test with input files ['test_xyz.inp', 'molecule12.xyz'] and args None
+86: passed
+86: 
+86: running test with input files ['test_xyz.inp', 'molecule13.xyz'] and args None
+86: passed
+86: 
+86: running test with input files ['test_xyz.inp', 'molecule14.xyz'] and args None
+86: passed
+86: 
+86: running test with input files ['test_xyz.inp', 'molecule15.xyz'] and args None
+86: passed
+86: 
+86: running test with input files ['test_xyz.inp', 'molecule16.xyz'] and args None
+86: passed
+86: 
+86: running test with input files ['test_xyz.inp', 'molecule17.xyz'] and args None
+86: passed
+86: 
+86: running test with input files ['test_xyz.inp', 'molecule18.xyz'] and args None
+86: passed
+14/80 Test  #86: xyz_symmetry_recognition .........   Passed  147.70 sec
+test 101
+      Start 101: visual_frac_occupation
+
+101: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/visual_frac_occupation/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/visual_frac_occupation" "--verbose"
+101: Test timeout computed to be: 1500
+97: 
+97: running test with input files ['pp86.inp', 'ne.mol'] and args None
+97: passed
+97: 
+97: running test with input files ['pp86_ggakey.inp', 'ne.mol'] and args None
+97: passed
+97: 
+97: running test with input files ['pp86_xcfun.inp', 'ne.mol'] and args None
+97: passed
+97: 
+97: running test with input files ['pw86x.inp', 'ne.mol'] and args None
+97: passed
+97: 
+97: running test with input files ['pw86x_xcfun.inp', 'ne.mol'] and args None
+97: passed
+97: 
+97: running test with input files ['p86c.inp', 'ne.mol'] and args None
+97: passed
+97: 
+97: running test with input files ['p86c_xcfun.inp', 'ne.mol'] and args None
+97: passed
+15/80 Test  #97: dft_pp86 .........................   Passed   61.55 sec
+test 102
+      Start 102: eomee_fc_cvs
+
+102: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/eomee_fc_cvs/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/eomee_fc_cvs" "--verbose"
+102: Test timeout computed to be: 1500
+100: 
+100: running test: camb3lyp ne
+100: passed
+100: 
+100: running test: camb3lyp_explicit ne
+100: passed
+100: 
+100: running test: b3lyp ne
+100: passed
+100: 
+100: running test: b3lyp_via_cam ne
+100: passed
+16/80 Test #100: dft_cam ..........................   Passed   33.01 sec
+test 103
+      Start 103: response_lao_shield
+
+103: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/response_lao_shield/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/response_lao_shield" "--verbose"
+103: Test timeout computed to be: 1500
+102: 
+102: running test: fc_cvs_eom_ee_sym h2o
+102: passed
+102: 
+102: running test: fc_cvs_eom_ee_nosym h2o
+102: passed
+17/80 Test #102: eomee_fc_cvs .....................   Passed   21.33 sec
+test 104
+      Start 104: response_lao_magnetiz
+
+104: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/response_lao_magnetiz/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/response_lao_magnetiz" "--verbose"
+104: Test timeout computed to be: 1500
+101: 
+101: running test: density_1s he
+101: passed
+101: 
+101: running test: density_4s he
+101: passed
+101: 
+101: running test: density_total he
+101: passed
+101: 
+101: running test: density_1s ne
+101: passed
+101: 
+101: running test: density_4s ne
+101: passed
+101: 
+101: running test: density_total ne
+101: passed
+101: 
+101: running test: density_total_orbstring ne
+101: passed
+101: 
+101: running test: density_n n
+101: passed
+18/80 Test #101: visual_frac_occupation ...........   Passed   53.44 sec
+test 105
+      Start 105: krci_properties_omega_tdm
+
+105: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/krci_properties_omega_tdm/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/krci_properties_omega_tdm" "--verbose"
+105: Test timeout computed to be: 1500
+99: 
+99: running test: H H
+99: passed
+99: 
+99: running test: H_Cs H_Cs
+99: passed
+99: 
+99: running test: N N
+99: passed
+99: 
+99: running test: N_Cs N_Cs
+99: passed
+99: 
+99: running test: NH3 NH3
+99: passed
+99: 
+99: running test: H_sf H
+99: passed
+99: 
+99: running test: H_Cs_sf H_Cs
+99: passed
+99: 
+99: running test: N_sf N
+99: passed
+99: 
+99: running test: N_Cs_sf N_Cs
+99: passed
+99: 
+99: running test: NH3_sf NH3
+99: passed
+19/80 Test  #99: acmoin ...........................   Passed   64.28 sec
+test 106
+      Start 106: response_hf_polarizability
+
+106: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/response_hf_polarizability/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/response_hf_polarizability" "--verbose"
+106: Test timeout computed to be: 1500
+105: 
+105: running test: h2 H2
+105: passed
+20/80 Test #105: krci_properties_omega_tdm ........   Passed   20.72 sec
+test 107
+      Start 107: count_cc_memory
+
+107: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/count_cc_memory/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/count_cc_memory" "--verbose"
+107: Test timeout computed to be: 1500
+106: 
+106: running test: dc H2O
+106: passed
+106: 
+106: running test: bss H2O
+106: passed
+106: 
+106: running test: bss+mfsso H2O
+106: passed
+106: 
+106: running test: bss_rkb+mfsso H2O
+106: passed
+21/80 Test #106: response_hf_polarizability .......   Passed   26.23 sec
+test 108
+      Start 108: reladc_fano
+
+108: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/reladc_fano/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/reladc_fano" "--verbose"
+108: Test timeout computed to be: 1500
+108: 
+108: running test: fano_real ne_d2h
+108: found error which is expected/accepted: RELADC not parallelized
+22/80 Test #108: reladc_fano ......................   Passed    4.37 sec
+test 109
+      Start 109: cosci_methods
+
+109: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/cosci_methods/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/cosci_methods" "--verbose"
+109: Test timeout computed to be: 1500
+107: 
+107: running test with input files ['H2O.ae4z.x2c.scf_countmem-relcc.inp', 'H2O.xyz'] and args  --mw=32 --nw=32 --aw=64 --put "DFPCMO.H2O.x2c.ae4z=DFPCMO" 
+107: passed
+23/80 Test #107: count_cc_memory ..................   Passed   12.06 sec
+test 110
+      Start 110: response_nonrel
+
+110: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/response_nonrel/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/response_nonrel" "--verbose"
+110: Test timeout computed to be: 1500
+103: 
+103: running test: LiH.levyle.shield_lao_go=cm LiH.lsym.dir
+103: passed
+103: 
+103: running test: LiH.dc_ukb.shield_lao_go=cm LiH.lsym.dir
+103: passed
+103: 
+103: running test: LiH.dc_rkb.shield_lao_go=cm LiH.lsym.dir
+103: passed
+103: 
+103: running test: LiH.dc_sf.shield_lao_go=cm LiH.lsym.dir
+103: passed
+103: 
+103: running test: LiH.bss.shield_lao_go=cm LiH.lsym.dir
+103: passed
+103: 
+103: running test: LiH.bss+mfsso.shield_lao_go=cm LiH.lsym.dir
+103: passed
+103: 
+103: running test: LiH.bss_sfB.shield_lao_go=cm LiH.lsym.dir
+103: passed
+24/80 Test #103: response_lao_shield ..............   Passed   61.85 sec
+test 111
+      Start 111: eomip_fc_cvs
+
+111: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/eomip_fc_cvs/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/eomip_fc_cvs" "--verbose"
+111: Test timeout computed to be: 1500
+104: 
+104: running test: LiH.dc_ukb.linresp_ep_magnetiz_lao-go_cm LiH.lsym
+104: passed
+104: 
+104: running test: LiH.dc_rkb.linresp_ee_magnetiz_lao-go_cm LiH.lsym
+104: passed
+104: 
+104: running test: LiH.levyle.linresp_magnetiz_lao-go_cm LiH.lsym
+104: passed
+104: 
+104: running test: LiH.dc_ukb.linresp_ep_magnetiz_lao-go_1 LiH.C1
+104: passed
+104: 
+104: running test: LiH.dc_rkb.linresp_ee_magnetiz_lao-go_1 LiH.C1
+104: passed
+104: 
+104: running test: LiH.levyle.linresp_magnetiz_lao-go_1 LiH.C1
+104: passed
+25/80 Test #104: response_lao_magnetiz ............   Passed   52.04 sec
+test 112
+      Start 112: symmetry_recognition
+
+112: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/symmetry_recognition/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/symmetry_recognition" "--verbose"
+112: Test timeout computed to be: 1500
+110: 
+110: running test: levy-leblond hf
+110: passed
+110: 
+110: running test: nonrel hf
+110: found error which is expected/accepted: ERROR: response with .NONREL not possible
+26/80 Test #110: response_nonrel ..................   Passed   15.44 sec
+test 113
+      Start 113: reladc_sip
+
+113: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/reladc_sip/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/reladc_sip" "--verbose"
+113: Test timeout computed to be: 1500
+113: 
+113: running test: hcn_complex_1 hcn_cs
+113: found error which is expected/accepted: RELADC not parallelized
+27/80 Test #113: reladc_sip .......................   Passed    3.26 sec
+test 114
+      Start 114: ecp
+
+114: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/ecp/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/ecp" "--verbose"
+114: Test timeout computed to be: 1500
+111: 
+111: running test: fc_cvs_eom_ip_sym h2o
+111: passed
+111: 
+111: running test: fc_cvs_eom_ip_nosym h2o
+111: passed
+28/80 Test #111: eomip_fc_cvs .....................   Passed   23.01 sec
+test 115
+      Start 115: scf_levelshift
+
+115: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/scf_levelshift/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/scf_levelshift" "--verbose"
+115: Test timeout computed to be: 1500
+112: 
+112: running test: lda H2O
+112: passed
+112: 
+112: running test: lda CH4
+112: passed
+112: 
+112: running test: lda SF6
+112: passed
+112: 
+112: running test: lda transCHFCHF
+112: passed
+29/80 Test #112: symmetry_recognition .............   Passed   21.91 sec
+test 116
+      Start 116: basis_input
+
+116: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/basis_input/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/basis_input" "--verbose"
+116: Test timeout computed to be: 1500
+115: 
+115: running test: levelshift_virtuals Mg
+115: passed
+30/80 Test #115: scf_levelshift ...................   Passed   14.18 sec
+test 117
+      Start 117: visual_gamma5
+
+117: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/visual_gamma5/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/visual_gamma5" "--verbose"
+117: Test timeout computed to be: 1500
+114: 
+114: running test: HF HI_arep
+114: passed
+114: 
+114: running test: HF HI_sorep
+114: passed
+114: 
+114: running test: HF HI_ecplib
+114: passed
+114: 
+114: running test: DFT Bi2
+114: passed
+31/80 Test #114: ecp ..............................   Passed   25.77 sec
+test 118
+      Start 118: pvc_scf
+
+118: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/pvc_scf/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/pvc_scf" "--verbose"
+118: Test timeout computed to be: 1500
+117: 
+117: running test: gamma5 h2o2
+117: passed
+32/80 Test #117: visual_gamma5 ....................   Passed   16.79 sec
+test 119
+      Start 119: cosci_energy_spinfree
+
+119: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/cosci_energy_spinfree/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/cosci_energy_spinfree" "--verbose"
+119: Test timeout computed to be: 1500
+109: 
+109: running test: ci.1 O
+109: passed
+109: 
+109: running test: ci.2 O
+109: passed
+109: 
+109: running test: ci.3 O
+109: passed
+109: 
+109: running test: ci.4 O
+109: passed
+109: 
+109: running test: O.bss_sfB.scf_ci O
+109: passed
+109: 
+109: running test: O.bss+mfsso.postscf.ci O
+109: passed
+109: 
+109: running test: O.bss+mfsso.scf_ci O
+109: passed
+109: 
+109: running test: O.bss.scf_ci O
+109: passed
+33/80 Test #109: cosci_methods ....................   Passed   61.13 sec
+test 120
+      Start 120: density_at_nuclei
+
+120: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/density_at_nuclei/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/density_at_nuclei" "--verbose"
+120: Test timeout computed to be: 1500
+118: 
+118: running test: point_charge h2o2
+118: passed
+118: 
+118: running test: gaussian_model h2o2
+118: passed
+34/80 Test #118: pvc_scf ..........................   Passed   15.44 sec
+test 121
+      Start 121: dft_erf_xcfun
+
+121: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/dft_erf_xcfun/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/dft_erf_xcfun" "--verbose"
+121: Test timeout computed to be: 1500
+120: 
+120: running test: Rhonuc CO
+120: passed
+35/80 Test #120: density_at_nuclei ................   Passed    8.80 sec
+test 122
+      Start 122: mp2_natural_orbitals
+
+122: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/mp2_natural_orbitals/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/mp2_natural_orbitals" "--verbose"
+122: Test timeout computed to be: 1500
+116: 
+116: running test: ch4 ch4_temp
+116: passed
+116: 
+116: running test: ch4 ch4_explicit
+116: passed
+116: 
+116: running test: ch4 ch4_explicit_small
+116: passed
+116: 
+116: running test: ch4 ch4_family
+116: passed
+116: 
+116: running test: ch4 ch4_dualfamily
+116: passed
+116: 
+116: running test: ch4 ch4_basis
+116: passed
+116: 
+116: running test: ch4 ch4_bsse
+116: passed
+116: 
+116: running test: ch4 ch4_basis_vtz
+116: passed
+116: 
+116: running test: ch4 ch4_multibasis_vtz
+116: passed
+116: 
+116: running test: ch4 ch4_molfbas
+116: passed
+36/80 Test #116: basis_input ......................   Passed   42.75 sec
+test 123
+      Start 123: ffpt_dipmom_polariz_relcc
+
+123: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/ffpt_dipmom_polariz_relcc/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/ffpt_dipmom_polariz_relcc" "--verbose"
+123: Test timeout computed to be: 1500
+119: 
+119: running test: ci F
+119: passed
+119: 
+119: running test: bss_rkb_sfB.ci F
+119: passed
+119: 
+119: running test: bss_rkb_sfE.ci F
+119: passed
+119: 
+119: running test: bss_sfB.ci F
+119: passed
+37/80 Test #119: cosci_energy_spinfree ............   Passed   25.80 sec
+test 124
+      Start 124: mp2_srdft_energies
+
+124: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/mp2_srdft_energies/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/mp2_srdft_energies" "--verbose"
+124: Test timeout computed to be: 1500
+121: 
+121: running test: ldaerf he
+121: passed
+121: 
+121: running test: ldaerf ne
+121: passed
+121: 
+121: running test: ldaerf_jt he
+121: passed
+121: 
+121: running test: ldaerf_jt ne
+121: passed
+38/80 Test #121: dft_erf_xcfun ....................   Passed   29.02 sec
+test 125
+      Start 125: operators_mo_mtx_elements
+
+125: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/operators_mo_mtx_elements/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/operators_mo_mtx_elements" "--verbose"
+125: Test timeout computed to be: 1500
+123: 
+123: running test with input files ['BeH.x2c_scf_relcc_+0.0005.inp', 'BeH.sto-2g.C2v.mol'] and args --noarch --put "DFPCMO.BeH.x2c_scf_sto-2g.C2v=DFPCMO"
+123: passed
+123: 
+123: running test with input files ['BeH.x2c_scf_relcc_-0.0005.inp', 'BeH.sto-2g.C2v.mol'] and args --noarch --put "DFPCMO.BeH.x2c_scf_sto-2g.C2v=DFPCMO"
+123: passed
+123: 
+123: running test with input files ['BeH.x2c_scf_dipmom.inp', 'BeH.sto-2g.C2v.mol'] and args --noarch --put "DFPCMO.BeH.x2c_scf_sto-2g.C2v=DFPCMO"
+123: passed
+39/80 Test #123: ffpt_dipmom_polariz_relcc ........   Passed   23.87 sec
+test 126
+      Start 126: response_C6
+
+126: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/response_C6/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/response_C6" "--verbose"
+126: Test timeout computed to be: 1500
+122: ERROR: test hf_cinfv.out failed
+122: 
+122: .          Natural orbital occupation numbers, symmetry  1
+122: .       
+122: .          2.000000000   1.997877769   1.995515754   1.995514554   1.983350111
+122: ERROR                                  ########### expected: 1.988555884 (rel diff: 3.50e-03)
+122: ERROR                                                ########### expected: 1.98855362 (rel diff: 3.50e-03)
+122: .          0.015817026   0.004670851   0.004668739   0.002204291   0.000380906
+122: ERROR      ########### expected: 0.016073705 (rel diff: 1.60e-02)
+122: ERROR                    ########### expected: 0.011402021 (rel diff: 5.90e-01)
+122: ERROR                                  ########### expected: 0.011399111 (rel diff: 5.90e-01)
+122: ERROR                                                ########### expected: 0.002373632 (rel diff: 7.13e-02)
+122: ERROR                                                              ########### expected: 0.000414571 (rel diff: 8.12e-02)
+122: .          0.000000000   0.000000000   0.000000000   0.000000000   0.000000000
+122: .          0.000000000   0.000000000   0.000000000   0.000000000   0.000000000
+122: ERROR: test hf_c2v.out failed
+122: 
+122: .          Natural orbital occupation numbers, symmetry  1
+122: .       
+122: .          2.000000000   1.997877769   1.995515754   1.995514554   1.983350111
+122: ERROR                                  ########### expected: 1.988555884 (rel diff: 3.50e-03)
+122: ERROR                                                ########### expected: 1.98855362 (rel diff: 3.50e-03)
+122: .          0.015817026   0.004670851   0.004668739   0.002204291   0.000380906
+122: ERROR      ########### expected: 0.016073705 (rel diff: 1.60e-02)
+122: ERROR                    ########### expected: 0.011402021 (rel diff: 5.90e-01)
+122: ERROR                                  ########### expected: 0.011399111 (rel diff: 5.90e-01)
+122: ERROR                                                ########### expected: 0.002373632 (rel diff: 7.13e-02)
+122: ERROR                                                              ########### expected: 0.000414571 (rel diff: 8.12e-02)
+122: .          0.000000000   0.000000000   0.000000000   0.000000000   0.000000000
+122: .          0.000000000   0.000000000   0.000000000   0.000000000   0.000000000
+122: 
+122: running test: hf cinfv
+122: 
+122: running test: hf c2v
+122: 
+122: running test: f2 dinfh
+122: passed
+40/80 Test #122: mp2_natural_orbitals .............***Failed   36.69 sec
+test 127
+      Start 127: bsse
+
+127: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/bsse/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/bsse" "--verbose"
+127: Test timeout computed to be: 1500
+124: 
+124: running test: srLDA He2
+124: passed
+124: 
+124: running test: srPBEH He2
+124: passed
+124: 
+124: running test: srPBES He2
+124: passed
+41/80 Test #124: mp2_srdft_energies ...............   Passed   23.23 sec
+test 128
+      Start 128: import_mos
+
+128: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/import_mos/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/import_mos" "--verbose"
+128: Test timeout computed to be: 1500
+126: 
+126: running test: C6 Ne
+126: passed
+42/80 Test #126: response_C6 ......................   Passed    8.93 sec
+test 129
+      Start 129: stex
+
+129: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/stex/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/stex" "--verbose"
+129: Test timeout computed to be: 1500
+125: 
+125: running test with input files ['Ne.dc_sf.2fs.scf_prptra_x-y-z-dipole.inp', 'Rn_Ne-like.mol'] and args None
+125: passed
+125: 
+125: running test with input files ['Ne.levyle.2fs.scf_prptra_xy2z3.inp', 'Rn_Ne-like.mol'] and args None
+125: passed
+125: 
+125: running test with input files ['Ne.dc_rkb.2fs.scf_prptra_dsigmadot-nucfield.inp', 'Rn_Ne-like.mol'] and args None
+125: passed
+125: 
+125: running test with input files ['Ne.dc_rkb.2fs.scf_prptra_ibetagama_edm.inp', 'Rn_Ne-like.mol'] and args None
+125: passed
+125: 
+125: running test with input files ['Ne.dc_rkb.2fs.scf_prptra_alpha_fc.inp', 'Rn_Ne-like.mol'] and args None
+125: passed
+43/80 Test #125: operators_mo_mtx_elements ........   Passed   22.28 sec
+test 130
+      Start 130: zora
+
+130: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/zora/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/zora" "--verbose"
+130: Test timeout computed to be: 1500
+128: 
+128: running test: scf-nr-molcas h2o-cc-pV5Z-nosym
+128: passed
+128: 
+128: running test: scf-nr-molcas fh-cc-pV5Z-nosym
+128: passed
+128: 
+128: running test: scf-nr-respect h2o-cc-pVTZ-nosym
+128: passed
+128: 
+128: running test: scf-nr-turbomole h2o-cc-pV5Z-nosym-tm
+128: passed
+44/80 Test #128: import_mos .......................   Passed   22.76 sec
+test 131
+      Start 131: dft_grid_export_import
+
+131: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/dft_grid_export_import/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/dft_grid_export_import" "--verbose"
+131: Test timeout computed to be: 1500
+131: 
+131: running test: export hehe
+131: finished (no reference)
+131: 
+131: running test: import hegh
+131: passed
+45/80 Test #131: dft_grid_export_import ...........   Passed   14.00 sec
+test 132
+      Start 132: cosci_average
+
+132: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/cosci_average/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/cosci_average" "--verbose"
+132: Test timeout computed to be: 1500
+129: 
+129: running test: gs LiH-c1
+129: finished (no reference)
+129: 
+129: running test: ion LiH-c1
+129: finished (no reference)
+129: 
+129: running test: stex LiH-c1
+129: passed
+46/80 Test #129: stex .............................   Passed   39.15 sec
+test 133
+      Start 133: linear_structures
+
+133: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/linear_structures/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/linear_structures" "--verbose"
+133: Test timeout computed to be: 1500
+127: 
+127: running test: x2c.scf_autoocc HF.sto-2g.lsym
+127: passed
+127: 
+127: running test: x2c.scf_autoocc.xyz HF
+127: passed
+127: 
+127: running test: Gh_HF.x2c.scf Gh_HF.sto-2g.lsym
+127: passed
+127: 
+127: running test: Gh_HF.x2c.scf.xyz_GhH Gh_HF
+127: passed
+127: 
+127: running test: x2c.scf_autoocc HGh_F.sto-2g.lsym
+127: passed
+127: 
+127: running test: x2c.scf_autoocc.xyz_GhF HGh_F
+127: passed
+47/80 Test #127: bsse .............................   Passed   45.60 sec
+test 134
+      Start 134: gaunt
+
+134: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/gaunt/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/gaunt" "--verbose"
+134: Test timeout computed to be: 1500
+132: 
+132: running test: V_5+.x2c.scf V.v2z.Dinfh
+132: passed
+132: 
+132: running test: V.x2c.2fs.scf_os-ds_ovlsel_cosci V.v2z.Dinfh
+132: passed
+48/80 Test #132: cosci_average ....................   Passed   17.76 sec
+test 135
+      Start 135: dft_ac
+
+135: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/dft_ac/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/dft_ac" "--verbose"
+135: Test timeout computed to be: 1500
+130: 
+130: running test: 1el.dirac U.dyall.2p
+130: passed
+130: 
+130: running test: 1el.diracsf U.dyall.2p
+130: passed
+130: 
+130: running test: 1el.zora U.dyall.2p
+130: passed
+130: 
+130: running test: 1el.zorasf U.dyall.2p
+130: passed
+130: 
+130: running test: 1el.zorasc U.dyall.2p
+130: passed
+130: 
+130: running test: 1el.zorascsf U.dyall.2p
+130: passed
+49/80 Test #130: zora .............................   Passed   50.89 sec
+test 136
+      Start 136: dft_betasigma
+
+136: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/dft_betasigma/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/dft_betasigma" "--verbose"
+136: Test timeout computed to be: 1500
+134: 
+134: running test: gaunt Ne.C2
+134: passed
+50/80 Test #134: gaunt ............................   Passed   13.34 sec
+test 137
+      Start 137: lucita_short
+
+137: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/lucita_short/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/lucita_short" "--verbose"
+137: Test timeout computed to be: 1500
+137: 
+137: running test: He He
+137: passed
+51/80 Test #137: lucita_short .....................   Passed   10.59 sec
+test 138
+      Start 138: projection_analysis_overlaps
+
+138: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/projection_analysis_overlaps/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/projection_analysis_overlaps" "--verbose"
+138: Test timeout computed to be: 1500
+133: 
+133: running test: x2c.scf HeNe2.lsym1
+133: passed
+133: 
+133: running test: x2c.scf He2Ne2.lsym1
+133: passed
+133: 
+133: running test: x2c.scf HeNe3.lsym
+133: passed
+133: 
+133: running test: x2c.molecule.scf HeNe2
+133: passed
+52/80 Test #133: linear_structures ................   Passed   30.56 sec
+test 139
+      Start 139: lucita_large
+
+139: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/lucita_large/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/lucita_large" "--verbose"
+139: Test timeout computed to be: 1500
+135: 
+135: running test with input files ['PBE0gracLB94.inp', 'Ne.mol'] and args None
+135: passed
+135: 
+135: running test with input files ['GLLBsaopLBalpha.inp', 'Ne.mol'] and args None
+135: passed
+53/80 Test #135: dft_ac ...........................   Passed   20.50 sec
+test 140
+      Start 140: lucita_q_corrections
+
+140: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/lucita_q_corrections/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/lucita_q_corrections" "--verbose"
+140: Test timeout computed to be: 1500
+136: 
+136: running test: lda_sigma he
+136: passed
+136: 
+136: running test: lda_betasigma he
+136: passed
+136: 
+136: running test: blyp_sigma he
+136: passed
+136: 
+136: running test: blyp_betasigma he
+136: passed
+54/80 Test #136: dft_betasigma ....................   Passed   26.17 sec
+test 141
+      Start 141: basis_contraction
+
+141: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/basis_contraction/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/basis_contraction" "--verbose"
+141: Test timeout computed to be: 1500
+140: 
+140: running test: lucita-q h2o
+140: passed
+55/80 Test #140: lucita_q_corrections .............   Passed   13.07 sec
+test 142
+      Start 142: response_nmr_levy-leblond
+
+142: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/response_nmr_levy-leblond/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/response_nmr_levy-leblond" "--verbose"
+142: Test timeout computed to be: 1500
+139: 
+139: running test: HBr HBr
+139: passed
+56/80 Test #139: lucita_large .....................   Passed   18.74 sec
+test 143
+      Start 143: blockd_twocomp
+
+143: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/blockd_twocomp/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/blockd_twocomp" "--verbose"
+143: Test timeout computed to be: 1500
+138: 
+138: running test: F.x2c.scf.sto2g F
+138: passed
+138: 
+138: running test: P.x2c.scf.sto2g P
+138: passed
+138: 
+138: running test: PF5.x2c.scf.sto2g PF5
+138: passed
+138: 
+138: running test: PF5.x2c.projanal.sto2g PF5
+138: passed
+57/80 Test #138: projection_analysis_overlaps .....   Passed   25.84 sec
+test 144
+      Start 144: dft_cosci
+
+144: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/dft_cosci/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/dft_cosci" "--verbose"
+144: Test timeout computed to be: 1500
+142: 
+142: running test: levy-leblond H2O
+142: passed
+58/80 Test #142: response_nmr_levy-leblond ........   Passed    9.45 sec
+test 145
+      Start 145: molecular_mean_field_restart
+
+145: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/molecular_mean_field_restart/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/molecular_mean_field_restart" "--verbose"
+145: Test timeout computed to be: 1500
+141: 
+141: running test: dhf H2O.large+small
+141: passed
+141: 
+141: running test: dhf H2O.usingfiles
+141: passed
+59/80 Test #141: basis_contraction ................   Passed   16.26 sec
+test 146
+      Start 146: dirrci_property
+
+146: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/dirrci_property/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/dirrci_property" "--verbose"
+146: Test timeout computed to be: 1500
+143: 
+143: running test: bss_blockd.ci F
+143: passed
+143: 
+143: running test: F.bss_blockd.cisd F.1
+143: passed
+60/80 Test #143: blockd_twocomp ...................   Passed   12.46 sec
+test 147
+      Start 147: response_complex
+
+147: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/response_complex/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/response_complex" "--verbose"
+147: Test timeout computed to be: 1500
+144: 
+144: running test: F.x2c.2Paver_bp86_2fs_cosci F.sto-2g
+144: found error which is expected/accepted: DFT-COSCI not parallelized
+144: 
+144: running test: C.x2c.aver_b3lyp_2fs_cosci_novxc C.sto-2g
+144: found error which is expected/accepted: DFT-COSCI not parallelized
+144: 
+144: running test: N.x2c.aver_pbe_2fs_cosci N.sto-2g
+144: found error which is expected/accepted: DFT-COSCI not parallelized
+61/80 Test #144: dft_cosci ........................   Passed    9.61 sec
+test 148
+      Start 148: mp2_energy
+
+148: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/mp2_energy/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/mp2_energy" "--verbose"
+148: Test timeout computed to be: 1500
+146: 
+146: running test: BeH BeH
+146: passed
+62/80 Test #146: dirrci_property ..................   Passed    6.44 sec
+test 149
+      Start 149: dirac_mointegral_export
+
+149: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/dirac_mointegral_export/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/dirac_mointegral_export" "--verbose"
+149: Test timeout computed to be: 1500
+148: 
+148: running test: MP2 H2O
+148: passed
+63/80 Test #148: mp2_energy .......................   Passed   10.47 sec
+test 150
+      Start 150: response_rkbimp_shield
+
+150: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/response_rkbimp_shield/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/response_rkbimp_shield" "--verbose"
+150: Test timeout computed to be: 1500
+145: 
+145: running test: scf f2
+145: passed
+145: 
+145: running test: res f2
+145: passed
+64/80 Test #145: molecular_mean_field_restart .....   Passed   18.46 sec
+test 151
+      Start 151: free-particle_projection
+
+151: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/free-particle_projection/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/free-particle_projection" "--verbose"
+151: Test timeout computed to be: 1500
+147: 
+147: running test: cpp LiH
+147: passed
+65/80 Test #147: response_complex .................   Passed   16.46 sec
+test 152
+      Start 152: atomic_start
+
+152: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/atomic_start/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/atomic_start" "--verbose"
+152: Test timeout computed to be: 1500
+149: 
+149: running test with input files ['BeH.x2c_scf_relcc.inp', 'BeH.sto-2g.lsym.mol'] and args --get="MDCINT MRCONEE"
+149: passed
+149: 
+149: running test:  "/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/dirac_mointegral_export.x" fcidump  
+149: passed
+66/80 Test #149: dirac_mointegral_export ..........   Passed   20.73 sec
+test 153
+      Start 153: checkpoint_from_Dformat
+
+153: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/checkpoint_from_Dformat/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/checkpoint_from_Dformat" "--verbose"
+153: Test timeout computed to be: 1500
+153: 
+153: running test: hf h2
+153: passed
+67/80 Test #153: checkpoint_from_Dformat ..........   Passed    9.07 sec
+test 154
+      Start 154: cosci_energy_blockd
+
+154: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/cosci_energy_blockd/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/cosci_energy_blockd" "--verbose"
+154: Test timeout computed to be: 1500
+151: 
+151: running test: std Hg
+151: passed
+151: 
+151: running test: free Hg
+151: passed
+68/80 Test #151: free-particle_projection .........   Passed   19.11 sec
+test 155
+      Start 155: visual_elf
+
+155: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/visual_elf/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/visual_elf" "--verbose"
+155: Test timeout computed to be: 1500
+150: 
+150: running test: rkb He
+150: passed
+150: 
+150: running test: rkbimp He
+150: passed
+150: 
+150: running test: ukb He
+150: passed
+69/80 Test #150: response_rkbimp_shield ...........   Passed   30.74 sec
+test 156
+      Start 156: visual_density_derivs
+
+156: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/visual_density_derivs/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/visual_density_derivs" "--verbose"
+156: Test timeout computed to be: 1500
+155: 
+155: running test: elf ar
+155: passed
+70/80 Test #155: visual_elf .......................   Passed   12.77 sec
+test 157
+      Start 157: visual_custom_output
+
+157: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/visual_custom_output/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/visual_custom_output" "--verbose"
+157: Test timeout computed to be: 1500
+154: 
+154: running test: bss_rkb_blockd.ci F
+154: passed
+71/80 Test #154: cosci_energy_blockd ..............   Passed   13.99 sec
+test 158
+      Start 158: polprp_ph
+
+158: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/polprp_ph/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/polprp_ph" "--verbose"
+158: Test timeout computed to be: 1500
+152: 
+152: running test: H H
+152: finished (no reference)
+152: 
+152: running test: O O
+152: finished (no reference)
+152: 
+152: running test: O_atom O
+152: passed
+152: 
+152: running test: H2O H2O
+152: passed
+72/80 Test #152: atomic_start .....................   Passed   30.57 sec
+test 159
+      Start 159: pam_test
+
+159: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/pam_test/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/pam_test" "--verbose"
+159: Test timeout computed to be: 1500
+159: 
+159:   DIRAC pam script running:
+159: 
+159:   user           : milias
+159:   machine        : lxbk1077
+159:   date and time  : 2022-08-18 18:46:04.668463
+159:   input dir      : /lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8
+159:   pam command    : /lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/pam
+159:   all pam args   : ['--show']
+159:   executable     : /lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/dirac.x
+159:   scratch dir    : /lustre/ukt/milias/scratch/milias/DIRAC_dirac_output.121930_121930 (availspace=31963481.640[GB])
+159:   output file    : dirac_output.121930.out
+159:   DIRAC run      : parallel (launcher: /lustre/ukt/milias/bin/openmpi-4.1.4-intel2020-i8/openmpi-4.1.4/bin/mpirun)
+159:   local disks    : False
+159:   rsh/rcp        : ssh / scp
+159:   machine file   : None
+159: 
+159:   Setting MKL and OPENMP environment to default values (if not set already)
+159:    Variabl.MKL_NUM_THREADS =  1
+159:    Variabl.MKL_DYNAMIC =  FALSE
+159:    Variabl.OMP_NUM_THREADS =  1
+159:    Variabl.OMP_DYNAMIC= FALSE
+159:   Setting environment variables (as specified explicitly or in .diracrc)
+159: Operating system:      Linux
+159: Current settings:
+159:   Basis directories    /lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8:.:/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/basis:/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/basis_dalton:/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/basis_ecp
+159:   Scratch directory    /lustre/ukt/milias/scratch/milias/DIRAC_dirac_output.121930_121930 (avail=31963481.640[GB])
+159:   Relevant for parallel builds:
+159:     mpi launcher          /lustre/ukt/milias/bin/openmpi-4.1.4-intel2020-i8/openmpi-4.1.4/bin/mpirun
+159:     mpirun extra args     None
+159:     global scratch disk   True
+159:     Machine file          None
+159:     own mpirun command    None
+159:   Profiler             None
+159:   Debugger             None
+159:   Dirac command        None
+159:   Dirac executable     /lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/dirac.x
+158: 
+158: running test: be be_s
+158: passed
+73/80 Test #158: polprp_ph ........................   Passed    7.46 sec
+test 160
+      Start 160: basis_input_scripted
+
+160: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/basis_input_scripted/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/basis_input_scripted" "--verbose"
+160: Test timeout computed to be: 3600
+160: Comprehensive test on basis set files reading.
+160: - uses user provided environmental variables BSFILE, ZELEM, RANDOM_BSF_Z
+160: - without specified envirovariables it runs through all basis sets each 14 th day in the moth
+160: 
+160: Nothing to check today, empty pass. If you want me to test some basis sets, specify environmental variables BSFILE, ZELEM, RANDOM_BSF_Z.
+160: 
+160: Summary: out of total 0 tests, 0 tests crashed. 
+74/80 Test #160: basis_input_scripted .............   Passed    0.27 sec
+test 161
+      Start 161: laplace
+
+161: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/laplace/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/laplace" "--verbose"
+161: Test timeout computed to be: 1500
+159: PAM oriented test based on runtest-in-DIRAC:
+159: 
+159: pam script: python /lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/pam
+159: 
+159:  Running pam for showing of flags:
+159: 
+159: Running pam in parallel, with defined DIRAC_MPI_COMMAND =mpirun -np 2
+159: 
+159: running test with input files ['inptest.inp', 'CN.sto2g.mol'] and args --noarch
+159: passed
+75/80 Test #159: pam_test .........................   Passed    7.42 sec
+test 163
+      Start 163: pcm_energy
+
+163: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/pcm_energy/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/pcm_energy" "--verbose"
+163: Test timeout computed to be: 1500
+156: 
+156: running test: response_ez_ez_dc ne_d2h
+156: finished (no reference)
+156: 
+156: running test: visual_zo_dc_density_gradient ne_d2h
+156: passed
+156: 
+156: running test: visual_zo_dc_density_hessian ne_d2h
+156: passed
+156: 
+156: running test: visual_zo_dc_density_laplacian ne_d2h
+156: passed
+156: 
+156: running test: visual_zo_dc_sign_lambda2 ne_d2h
+156: passed
+156: 
+156: running test: visual_zo_dc_rdg ne_d2h
+156: passed
+76/80 Test #156: visual_density_derivs ............   Passed   23.74 sec
+test 171
+      Start 171: pe_cpp
+
+171: Test command: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/python-3.8.12-udq3dzylsc3iu2yrp5inan2ovwq3nnu6/bin/python "/lustre/ukt/milias/work/software/dirac/devel_trunk/test/pe_cpp/test" "--binary-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8" "--work-dir=/lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/test/pe_cpp" "--verbose"
+171: Test timeout computed to be: 1500
+161: 
+161: running test: lap_fix_number h2o
+161: passed
+161: 
+161: running test: lap_fix_tolerance h2o
+161: passed
+161: 
+161: running test: lap_restart h2o
+161: passed
+77/80 Test #161: laplace ..........................   Passed   19.57 sec
+157: 1,7c1,7
+157: <   -5.68576769E+000  -4.45832358E+000  -4.23341769E+000   6.67535215E-010
+157: <   -5.68576769E+000  -4.45832358E+000   4.23341769E+000   6.67535215E-010
+157: <   -5.68576769E+000   5.13304069E+000  -4.23341769E+000   3.93014394E-007
+157: <   -5.68576769E+000   5.13304069E+000   4.23341769E+000   3.93014394E-007
+157: <    5.68576769E+000  -4.45832358E+000  -4.23341769E+000   6.67535215E-010
+157: <    5.68576769E+000  -4.45832358E+000   4.23341769E+000   6.67535215E-010
+157: <    5.68576769E+000   5.13304069E+000  -4.23341769E+000   3.93014394E-007
+157: ---
+157: >   -6.74454374E+000  -4.42501054E+000  -4.00000000E+000   1.96187741E-010
+157: >   -6.74454374E+000  -4.42501054E+000   4.23341769E+000   1.22749136E-010
+157: >   -6.74454374E+000   5.13304069E+000  -4.00000000E+000   1.04541699E-007
+157: >   -6.74454374E+000   5.13304069E+000   4.23341769E+000   6.54090625E-008
+157: >    5.68576769E+000  -4.42501054E+000  -4.00000000E+000   1.17899364E-009
+157: >    5.68576769E+000  -4.42501054E+000   4.23341769E+000   7.37630184E-010
+157: >    5.68576769E+000   5.13304069E+000  -4.00000000E+000   6.28153541E-007
+157: scalar_field and result/scalar_field are different
+157: running test: dc h2o
+157: finished (no reference)
+157: 
+157: running test: vis_density_dc h2o
+157: finished (no reference)
+157: 
+157: running test: vis_jbz_dc h2o
+157: finished (no reference)
+157: 
+157: running test: vis_gradjbz_dc h2o
+157: finished (no reference)
+157: scalar_field and result/scalar_field are different
+78/80 Test #157: visual_custom_output .............   Passed   30.30 sec
+163: 
+163: running test: nonrel CH4
+163: passed
+163: 
+163: running test: levy CH4
+163: passed
+163: 
+163: running test: dc CH4
+163: passed
+163: 
+163: running test: dc-skipss CH4
+163: passed
+163: 
+163: running test: dc-lda CH4
+163: passed
+163: 
+163: running test: levy-lda CH4
+163: passed
+163: 
+163: running test: spinfree CH4
+163: passed
+79/80 Test #163: pcm_energy .......................   Passed   56.03 sec
+171: 
+171: running test: 4c h2o
+171: finished (no reference)
+171: 
+171: running test: 4c-eef h2o
+171: passed
+171: 
+171: running test: ll h2o
+171: passed
+171: 
+171: running test: ll-eef h2o
+171: passed
+80/80 Test #171: pe_cpp ...........................   Passed   50.33 sec
+
+99% tests passed, 1 tests failed out of 80
+
+Label Time Summary:
+4c                   =  27.57 sec*proc (1 test)
+basis                = 104.88 sec*proc (4 tests)
+bed                  =  27.05 sec*proc (2 tests)
+cc                   = 139.61 sec*proc (6 tests)
+ci                   = 146.85 sec*proc (6 tests)
+complex              =  16.46 sec*proc (1 test)
+cosci                =  41.36 sec*proc (3 tests)
+dft                  = 222.73 sec*proc (8 tests)
+dirrci               =   6.44 sec*proc (1 test)
+ecp                  =  25.77 sec*proc (1 test)
+eomcc                =  44.34 sec*proc (2 tests)
+gaunt                =  13.34 sec*proc (1 test)
+grid                 =  14.00 sec*proc (1 test)
+huckel               =  27.67 sec*proc (1 test)
+import               =  22.76 sec*proc (1 test)
+krci                 =  69.18 sec*proc (4 tests)
+lao                  = 142.76 sec*proc (3 tests)
+laplace              =  19.57 sec*proc (1 test)
+levelshift           =  14.18 sec*proc (1 test)
+localization         =  70.16 sec*proc (1 test)
+magnetizabilities    =  80.91 sec*proc (2 tests)
+mcscf                =  22.76 sec*proc (1 test)
+mp2                  = 108.42 sec*proc (5 tests)
+nmr                  =   9.45 sec*proc (1 test)
+nonel                =  15.44 sec*proc (1 test)
+operators            =  22.28 sec*proc (1 test)
+pam                  =   7.42 sec*proc (1 test)
+pcm                  =  56.03 sec*proc (1 test)
+pelib                =  50.33 sec*proc (1 test)
+polarizabilities     =  26.23 sec*proc (1 test)
+polprp               =   7.46 sec*proc (1 test)
+projection           =  44.96 sec*proc (2 tests)
+property             =  27.17 sec*proc (2 tests)
+pvc                  =  15.44 sec*proc (1 test)
+qcorr                =  13.07 sec*proc (1 test)
+reladc               =  28.09 sec*proc (4 tests)
+response             = 277.05 sec*proc (11 tests)
+scf                  = 135.98 sec*proc (5 tests)
+shield               =  30.74 sec*proc (1 test)
+shielding            =  61.85 sec*proc (1 test)
+short                = 2147.17 sec*proc (80 tests)
+srdft                =  23.23 sec*proc (1 test)
+stex                 =  39.15 sec*proc (1 test)
+structures           =  30.56 sec*proc (1 test)
+twocomp              =  12.46 sec*proc (1 test)
+visual               = 213.90 sec*proc (6 tests)
+x2c                  =  46.03 sec*proc (2 tests)
+zora                 =  50.89 sec*proc (1 test)
+
+Total Test time (real) = 560.86 sec
+
+The following tests FAILED:
+	122 - mp2_natural_orbitals (Failed)
+Errors while running CTest
+Output from these tests are in: /lustre/ukt/milias/work/software/dirac/devel_trunk/build_openmpi4.1.4_intel20mkl_i8/Testing/Temporary/LastTest.log
+Use "--rerun-failed --output-on-failure" to re-run the failed cases verbosely.

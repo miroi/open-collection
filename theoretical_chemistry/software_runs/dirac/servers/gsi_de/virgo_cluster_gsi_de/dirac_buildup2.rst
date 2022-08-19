@@ -22,7 +22,8 @@ libbsd@0.11.3                              openssl@1.1.1l
 libevent@2.1.8                             pcre@8.44
 milias@lxbk0598.gsi.de:/lustre/ukt/milias/work/software/dirac/production_trunk/.which mpif90
 /lustre/ukt/milias/bin/openmpi-4.1.4-intel2020-i8/openmpi-4.1.4/bin/mpif90
-milias@lxbk0598.gsi.de:/lustre/ukt/milias/work/software/dirac/production_trunk/../setup --mpi --mkl=parallel --int64 --extra-fc-flags=-xHost --extra-cc-flags=-xHost --extra-cxx-flags=-xHost   --fc=mpif90 --cc=mpicc --cxx=mpicxx build_openmpi4.1.4_intel20mkl_i8 
-cmake -DCMAKE_Fortran_COMPILER=mpif90 -DEXTRA_FCFLAGS="-xHost" -DCMAKE_C_COMPILER=mpicc -DEXTRA_CFLAGS="-xHost" -DCMAKE_CXX_COMPILER=mpicxx -DEXTRA_CXXFLAGS="-xHost" -DPREPROCESSOR_DEFINITIONS="''" -DPYTHON_INTERPRETER="''" -DENABLE_BLAS=auto -DENABLE_LAPACK=auto -DMKL_FLAG=parallel -DMATH_LIB_SEARCH_ORDER="MKL;ESSL;OPENBLAS;ATLAS;ACML;SYSTEM_NATIVE" -DBLAS_LANG=Fortran -DLAPACK_LANG=Fortran -DENABLE_MPI=True -DENABLE_OPENMP=True -DENABLE_CODE_COVERAGE=False -DENABLE_STATIC_LINKING=False -DENABLE_PROFILING=False -DENABLE_RUNTIMECHECK=False -DENABLE_64BIT_INTEGERS=True -DEXPLICIT_LIBS="off" -DENABLE_EXATENSOR=ON -DENABLE_PCMSOLVER=ON -DPCMSOLVER_ROOT='' -DCMAKE_BUILD_TYPE=release -G"Unix Makefiles" -H/lustre/ukt/milias/work/software/dirac/production_trunk -Bbuild_openmpi4.1.4_intel20mkl_i8
+
+milias@lxbk0598.gsi.de:/lustre/ukt/milias/work/software/dirac/production_trunk/../setup --mpi --mkl=parallel --int64  --fc=mpif90 --cc=mpicc --cxx=mpicxx build_openmpi4.1.4_intel20mkl_i8 
+
 
 

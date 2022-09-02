@@ -2,8 +2,29 @@
 QE-devel on CPU
 ===============
 
-mirilias@login22.mogon:~/work/software/quantum_espresso/qe-devel/build_openmpi_intel/.module load mpi/OpenMPI/4.1.1-intel-compilers-2021.4.0
-mirilias@login22.mogon:~/work/software/quantum_espresso/qe-devel/build_openmpi_intel/.module load numlib/imkl-FFTW/2021.4.0-iimpi-2021b
+modules
+~~~~~~~
+module load mpi/OpenMPI/4.1.1-intel-compilers-2021.4.0
+module load numlib/imkl-FFTW/2021.4.0-iimpi-2021b
+
+mirilias@login21.mogon:~/work/software/quantum_espresso/qe-devel/.module list
+
+Currently Loaded Modules:
+  1) compiler/GCCcore/11.2.0
+  2) compiler/intel-compilers/2021.4.0
+  3) system/hwloc/2.5.0-GCCcore-11.2.0
+  4) lib/libfabric/1.13.2-GCCcore-11.2.0
+  5) system/OpenSSL/1.1
+  6) lib/libevent/2.1.12-GCCcore-11.2.0
+  7) lib/PMIx/4.1.0-GCCcore-11.2.0
+  8) mpi/OpenMPI/4.1.1-intel-compilers-2021.4.0
+  9) mpi/impi/2021.4.0-intel-compilers-2021.4.0
+ 10) toolchain/iimpi/2021b
+ 11) numlib/imkl/2021.4.0
+ 12) numlib/imkl-FFTW/2021.4.0-iimpi-2021b
+
+buildup
+~~~~~~~
 
 mirilias@login22.mogon:~/work/software/quantum_espresso/qe-devel/build_openmpi_intel/.cmake -DCMAKE_Fortran_COMPILER=mpif90 -DCMAKE_C_COMPILER=mpicc ..
 -- Enable sanitizer QE_ENABLE_SANITIZER=none
@@ -163,4 +184,6 @@ Only pw and cp results from ctest are reliable, we are working on making the res
 -- Generating done
 -- Build files have been written to: /home/mirilias/work/software/quantum_espresso/qe-devel/build_openmpi_intel
 mirilias@login22.mogon:~/work/software/quantum_espresso/qe-devel/build_openmpi_intel/m -j8
+
+
 

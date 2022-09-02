@@ -1,0 +1,218 @@
+#!/bin/sh
+
+export NSCM=1
+
+"$AMSBIN/ams" << eor
+
+Task MolecularDynamics
+MolecularDynamics
+    NSteps 200000
+    Trajectory
+        SamplingFreq 10
+    End
+    InitialVelocities
+        Temperature 3500
+    End
+    Thermostat
+        Type NHC
+        Temperature 3500
+        Tau 10
+    End
+End
+System
+    Atoms
+        O 4.150946 -0.566187 -5.393612 region=Auto_Generated
+        O 4.32004 -1.529895 -5.916173 region=Auto_Generated
+        O 0.855241 -0.149285 -2.057723 region=Auto_Generated
+        O 0.06822599999999999 0.629628 -2.123277 region=Auto_Generated
+        O 2.249142 6.251939 1.779663 region=Auto_Generated
+        O 2.479992 5.686151 2.7054 region=Auto_Generated
+        O 3.985086 0.120069 6.250148 region=Auto_Generated
+        O 4.924499 0.243332 5.673342 region=Auto_Generated
+        O -4.920234 2.805094 2.776094 region=Auto_Generated
+        O -5.735259 3.543682 2.6325 region=Auto_Generated
+        O 0.887123 5.829286 5.92607 region=Auto_Generated
+        O 0.71533 6.23296 4.907281 region=Auto_Generated
+        O -0.863837 -5.551489 -3.337465 region=Auto_Generated
+        O -1.419525 -5.416243 -4.287894 region=Auto_Generated
+        O 6.037934 -4.306116 6.251206 region=Auto_Generated
+        O 5.503528 -3.338113 6.163012 region=Auto_Generated
+        O -2.798852 -5.771114 2.650327 region=Auto_Generated
+        O -1.980692 -6.250164 2.074548 region=Auto_Generated
+        O 0.679377 2.967818 -5.516406 region=Auto_Generated
+        O 0.455561 2.17866 -6.263087 region=Auto_Generated
+        O 3.085652 3.654131 5.655223 region=Auto_Generated
+        O 3.505704 2.67203 5.356174 region=Auto_Generated
+        O 2.912396 -3.835476 3.56607 region=Auto_Generated
+        O 3.392594 -4.821192 3.733905 region=Auto_Generated
+        O 3.770337 -1.149115 -2.787121 region=Auto_Generated
+        O 3.351267 -1.465985 -1.810203 region=Auto_Generated
+        O 1.136956 -0.656359 5.293377 region=Auto_Generated
+        O 1.059684 -0.109595 6.255393 region=Auto_Generated
+        O -3.649545 1.091694 0.590936 region=Auto_Generated
+        O -2.838898 1.67784 1.070188 region=Auto_Generated
+        O 0.757225 6.249853 -2.935327 region=Auto_Generated
+        O -0.284993 6.212717 -2.557439 region=Auto_Generated
+        O 2.991432 -3.665302 -3.49273 region=Auto_Generated
+        O 2.013975 -3.141755 -3.522263 region=Auto_Generated
+        O -2.877165 -0.338426 5.62741 region=Auto_Generated
+        O -2.732804 -1.437968 5.651116 region=Auto_Generated
+        O 2.606985 -6.254818 0.533631 region=Auto_Generated
+        O 2.043519 -5.60059 1.229971 region=Auto_Generated
+        O 6.225588 -1.326992 -3.863802 region=Auto_Generated
+        O 6.251571 -0.257558 -3.570488 region=Auto_Generated
+        H -2.153936 -3.229596 -2.654941 region=Auto_Generated
+        H -2.901169 -3.158268 -2.666615 region=Auto_Generated
+        H -3.346415 0.752572 -3.58761 region=Auto_Generated
+        H -2.819596 0.760292 -3.052838 region=Auto_Generated
+        H 6.270098 6.169846 1.55177 region=Auto_Generated
+        H 5.771904 6.050301 2.100488 region=Auto_Generated
+        H 3.69322 3.025028 -5.262493 region=Auto_Generated
+        H 3.268978 2.583018 -4.828643 region=Auto_Generated
+        H 4.380342 5.495027 -6.250998 region=Auto_Generated
+        H 3.642719 5.607349 -6.168071 region=Auto_Generated
+        H -3.97585 -1.969349 0.162124 region=Auto_Generated
+        H -3.96164 -1.997007 0.912199 region=Auto_Generated
+        H 6.173565 5.047494 -2.454655 region=Auto_Generated
+        H 6.263884 5.192805 -3.185618 region=Auto_Generated
+        H -6.253924 6.264469 2.123748 region=Auto_Generated
+        H -5.578189 6.158534 1.814328 region=Auto_Generated
+        H -3.701601 6.258484 5.346348 region=Auto_Generated
+        H -3.721026 6.187427 6.093445 region=Auto_Generated
+        H -0.877897 2.223395 5.955754 region=Auto_Generated
+        H -0.57441 2.008236 5.303694 region=Auto_Generated
+        H -4.064515 -6.251938 -1.339105 region=Auto_Generated
+        H -4.250311 -6.076684 -2.045041 region=Auto_Generated
+        H 1.952101 -5.758175 5.958578 region=Auto_Generated
+        H 2.655879 -5.738775 6.219154 region=Auto_Generated
+        H -1.200699 -3.603139 5.959861 region=Auto_Generated
+        H -0.538291 -3.807651 6.247909 region=Auto_Generated
+        H -0.675007 -3.563054 -6.198241 region=Auto_Generated
+        H -0.124294 -4.069637 -6.258828 region=Auto_Generated
+        H 1.01945 3.383329 3.522421 region=Auto_Generated
+        H 0.492075 3.910686 3.608153 region=Auto_Generated
+        H 4.841989 -5.022132 -1.247463 region=Auto_Generated
+        H 4.319252 -4.638303 -0.8693070000000001 region=Auto_Generated
+        H -0.269473 -4.469413 -0.048955 region=Auto_Generated
+        H -0.612134 -3.810459 -0.158238 region=Auto_Generated
+        H 4.910149 1.742124 0.131956 region=Auto_Generated
+        H 5.639055 1.766452 0.309958 region=Auto_Generated
+        H -0.638499 -2.572085 2.453703 region=Auto_Generated
+        H -0.606029 -2.63035 3.201454 region=Auto_Generated
+        H -4.042555 -6.160402 -5.259387 region=Auto_Generated
+        H -4.038274 -6.010187 -5.994912 region=Auto_Generated
+        H -1.264342 -0.740585 0.559076 region=Auto_Generated
+        H -0.94836 -0.82116 -0.117122 region=Auto_Generated
+        H 0.036312 4.049517 -0.425768 region=Auto_Generated
+        H 0.571759 4.574818 -0.456352 region=Auto_Generated
+        H 1.518118 1.217182 0.59134 region=Auto_Generated
+        H 1.242649 1.82731 0.931107 region=Auto_Generated
+        H 5.125679 -4.926687 -5.741002 region=Auto_Generated
+        H 4.59735 -4.850953 -6.268935 region=Auto_Generated
+        H -3.456606 3.409717 -1.401791 region=Auto_Generated
+        H -3.537555 3.493056 -2.143466 region=Auto_Generated
+        H -6.102605 -0.039029 1.64992 region=Auto_Generated
+        H -6.256838 0.269367 0.983073 region=Auto_Generated
+        H -6.256593 -2.475525 -2.638382 region=Auto_Generated
+        H -5.954943 -2.628883 -1.968256 region=Auto_Generated
+        H 2.673914 1.882626 -1.850343 region=Auto_Generated
+        H 2.147972 2.414851 -1.789502 region=Auto_Generated
+        H 6.242614 3.196746 -6.282206 region=Auto_Generated
+        H 6.289563 2.535709 -5.929495 region=Auto_Generated
+        H 5.420001 -5.908221 1.387084 region=Auto_Generated
+        H 5.830506 -5.550833 1.904134 region=Auto_Generated
+        H -1.425718 3.043008 -3.790901 region=Auto_Generated
+        H -1.950906 3.203323 -4.302817 region=Auto_Generated
+        H 1.377197 -6.25426 -6.232306 region=Auto_Generated
+        H 2.099519 -6.152257 -6.05503 region=Auto_Generated
+        H -1.468679 -6.330526 5.8231 region=Auto_Generated
+        H -1.848516 -6.156346 5.199429 region=Auto_Generated
+        H 4.751165 -1.256803 3.416351 region=Auto_Generated
+        H 4.766523 -1.260216 2.665796 region=Auto_Generated
+        H 0.633511 -0.941391 -6.250599 region=Auto_Generated
+        H 1.311682 -1.256181 -6.182975 region=Auto_Generated
+        H -1.932422 5.793743 1.401096 region=Auto_Generated
+        H -1.836952 5.767064 2.145243 region=Auto_Generated
+        H -5.756398 1.909815 -2.148454 region=Auto_Generated
+        H -5.802774 1.210728 -2.418099 region=Auto_Generated
+        H 5.699376 -2.22586 -0.096132 region=Auto_Generated
+        H 6.158115 -2.332401 0.488495 region=Auto_Generated
+        H 2.307386 -1.691224 0.820144 region=Auto_Generated
+        H 1.787591 -2.133578 1.132741 region=Auto_Generated
+        H -6.13231 5.069748 5.544948 region=Auto_Generated
+        H -6.277487 4.577244 6.09262 region=Auto_Generated
+    End
+    Lattice
+        15.0 0.0 0.0
+        0.0 15.0 0.0
+        0.0 0.0 15.0
+    End
+    BondOrders
+         1 2 2.0
+         3 4 2.0
+         5 6 2.0
+         7 8 2.0
+         9 10 2.0
+         11 12 2.0
+         13 14 2.0
+         15 16 2.0
+         17 18 2.0
+         19 20 2.0
+         21 22 2.0
+         23 24 2.0
+         25 26 2.0
+         27 28 2.0
+         29 30 2.0
+         31 32 2.0
+         33 34 2.0
+         35 36 2.0
+         37 38 2.0
+         39 40 2.0
+         41 42 1.0
+         43 44 1.0
+         45 46 1.0
+         47 48 1.0
+         49 50 1.0
+         51 52 1.0
+         53 54 1.0
+         55 56 1.0
+         57 58 1.0
+         59 60 1.0
+         61 62 1.0
+         63 64 1.0
+         65 66 1.0
+         67 68 1.0
+         69 70 1.0
+         71 72 1.0
+         73 74 1.0
+         75 76 1.0
+         77 78 1.0
+         79 80 1.0
+         81 82 1.0
+         83 84 1.0
+         85 86 1.0
+         87 88 1.0
+         89 90 1.0
+         91 92 1.0
+         93 94 1.0
+         95 96 1.0
+         97 98 1.0
+         99 100 1.0
+         101 102 1.0
+         103 104 1.0
+         105 106 1.0
+         107 108 1.0
+         109 110 1.0
+         111 112 1.0
+         113 114 1.0
+         115 116 1.0
+         117 118 1.0
+         119 120 1.0
+    End
+End
+
+Engine ReaxFF
+    ForceField CHON-2019.ff
+EndEngine
+eor
+

@@ -1,0 +1,20 @@
+Group/Expression                    N        MAE          RMSE*        Unit*          Weight     Loss*        Contribution[%]
+-----------------------------------------------------------------------------------------------------------------------------
+Total                               290      0.00318      +0.00443     Mixed!         5.000      0.003        100.00     Total
+
+   forces                           288      0.00320      +0.00444     eV/angstrom    3.000      0.002        99.03      Extractor
+      Ar32_frame003                 96       0.00367      +0.00538     eV/angstrom    1.000      0.001        48.34      Expression
+      Ar32_frame001                 96       0.00312      +0.00404     eV/angstrom    1.000      0.001        27.31      Expression
+      Ar32_frame002                 96       0.00282      +0.00374     eV/angstrom    1.000      0.001        23.38      Expression
+
+   energy                           2        0.00018      +0.00019     eV             2.000      0.000        0.97       Extractor
+      Ar32_frame003-Ar32_frame002   1        0.00024      -0.00024     eV             1.000      0.000        0.80       Expression
+      Ar32_frame001-Ar32_frame002   1        0.00011      -0.00011     eV             1.000      0.000        0.16       Expression
+-----------------------------------------------------------------------------------------------------------------------------
+The weighted total loss function is 0.003.
+N: number of numbers averaged for the MAE/RMSE
+MAE and RMSE: These are not weighted!
+RMSE*: if N == 1 the signed residual (reference-prediction) is given instead of the RMSE.
+Unit*: if the unit is "Mixed!" it means that the MAE and RMSE are meaningless.
+Loss function type: SSE(). The loss function value is affected by the Weight and Sigma of data_set entries.
+Contribution[%]: The contribution to the weighted loss function.

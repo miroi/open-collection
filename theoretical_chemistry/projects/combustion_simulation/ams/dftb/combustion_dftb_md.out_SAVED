@@ -1,0 +1,167 @@
+
+
+ Parallel Execution: Process Information
+ ==============================================================================
+ Rank   Node Name                              NodeID   MyNodeRank  NodeMaster
+    0   adf1                                      0          0          0
+    1   adf1                                      0          1         -1
+    2   adf1                                      0          2         -1
+    3   adf1                                      0          3         -1
+    4   adf1                                      0          4         -1
+    5   adf1                                      0          5         -1
+    6   adf1                                      1          0          1
+    7   adf1                                      1          1         -1
+    8   adf1                                      1          2         -1
+    9   adf1                                      1          3         -1
+   10   adf1                                      1          4         -1
+   11   adf1                                      1          5         -1
+ ==============================================================================
+
+
+May use up to 11697MB of RAM as shared memory on node 0
+May use up to 11718MB of RAM as shared memory on node 1
+
+ *******************************************************************************
+ *                                                                             *
+ *  --------------------------------                                           *
+ *   Amsterdam Modeling Suite (AMS)              2022.103                      *
+ *  --------------------------------                                           *
+ *                                               r104852 2022-06-15            *
+ *                                                                             *
+ *                                                                             *
+ *                              =================                              *
+ *                              |               |                              *
+ *                              |     A M S     |                              *
+ *                              |               |                              *
+ *                              =================                              *
+ *                                                                             *
+ *                                                                             *
+ *   Online information and documentation:  https://www.scm.com/support/       *
+ *   E-mail:  support@scm.com   info@scm.com                                   *
+ *                                                                             *
+ *   Scientific publications using AMS results must be properly referenced     *
+ *   See the User Manuals (or the web site) for recommended citations          *
+ *   The terms and conditions of the End User License Agreement apply to       *
+ *   the use of AMS, https://www.scm.com/license-terms/                        *
+ *                                                                             *
+ **********************  x86_64_linux_intel / intelmpi  ************************
+ 
+ Licensed to: Dr. Miroslav Ilias / Matej Bel University, Department Chemistry, Fac. Natural Sciences / Banska Bystrica / SLOVAKIA 2022-06-16 16:10:08
+ SCM User ID: u17848
+  
+ AMS 2022.103  RunTime: Jul29-2022 12:12:12  ShM Nodes: 2  Procs: 12
+
+ AMS jobname: ams
+ AMS jobid  : 1237148422
+
+ Start   directory: /home/milias/Work/projects/open-collection/theoretical_chemistry/projects/combustion_simulation/ams/dftb/tmp.milias.1037.0.noindex/
+ Results directory: /home/milias/Work/projects/open-collection/theoretical_chemistry/projects/combustion_simulation/ams/dftb/combustion_dftb_md.results/
+ Scratch directory: /tmp/amstmp_ams_kid0.1237148422/
+
+
+ Communication costs MPI_COMM_WORLD:      2.822 usec per message,   0.0270 usec per 8-byte item
+ Communication costs for intra-node:      1.602 usec per message,   0.0131 usec per 8-byte item
+
+ RNG seed: -255501238 927130144 1686247474 1219075158 1215120882 1993110447 -218012760 1549963042
+       ***********************
+       *  MOLECULAR DYNAMICS *
+       ***********************
+
+ 
+-------------------------------------------
+Molecular Dynamics Configuration Parameters
+-------------------------------------------
+Number of steps                         2000
+Time per step (fs)                    0.5000
+Thermostat                 Nose-Hoover chain
+  Tau (fs)                          100.0000
+  Chain length                            10
+  Temperature (K)                       3500.0000
+Barostat                                None
+Preserve                            TotalMomentum
+Checkpoint frequency                    1000
+Trajectory sampling frequency              5
+Printing frequency                         5
+Initial Velocities                     Random
+Initial Velocities Temperature (K)      3500.0000
+ 
+-------------------------
+DFTB Engine configuration
+-------------------------
+DFTB Resources dir                     /home/milias/Work/software/ams/intel_mpi/ams2022.103/atomicdata/DFTB/DFTB.org/mio-1-1
+ 
+SCC convergence enabled.
+Maximum SCC cycles                       500
+SCC charge convergence                   0.000000010000
+SCC charge mixing                        0.150000000000
+DIIS max dimension                       20
+DIIS maximum coeff.                     10.000000000000
+Adaptive SCC charge mixing             T
+Adaptive SCC mixing strategy              3
+Spin polarization                      F
+Orbital-dependent SCC                  F
+Orbital fill strategy                  Fermi
+Fermi temperature (kelvin)                    3500.0000
+  ... kT (Hartree)                               0.0111
+Use of symmetry                        T
+Radial function extrapolation method   Auto
+
+---------------------
+Periodic DFTB options
+---------------------
+ kpoints config
+ grid method with params
+Assume insulator                        F
+Ewald tolerance                    1.00E-10
+Ewald range factor                  2.00
+
+ BZStruct config
+ ---------------
+ Enabled        T
+ Automatic      T
+ CalcFatBands   T
+ useSymmetry    T
+ deltaK          0.100000000000000     
+ 
+ 
+--------------------
+ Molecular Dynamics 
+--------------------
+ 
+          Step       Time    Temp.         E Tot         E Pot         E Kin  <Temp.>       <E Tot>       <E Pot>       <E Kin>
+                     (fs)      (K)          (au)          (au)          (au)      (K)          (au)          (au)          (au)
+ 
+             0       0.00    3500.    -212.82459    -214.23778       1.41319    3500.    -212.82459    -214.23778       1.41319
+             5       2.50    3842.    -212.82828    -214.37947       1.55119    3547.    -212.82548    -214.25772       1.43224
+            10       5.00    4357.    -212.83086    -214.59020       1.75934    3889.    -212.82827    -214.39852       1.57025
+            15       7.50    3385.    -212.82946    -214.19633       1.36687    3870.    -212.82858    -214.39102       1.56244
+            20      10.00    2445.    -212.83477    -213.82185       0.98708    3606.    -212.82954    -214.28550       1.45597
+            25      12.50    2664.    -212.84732    -213.92290       1.07558    3400.    -212.83206    -214.20507       1.37300
+            30      15.00    3307.    -212.85901    -214.19447       1.33546    3332.    -212.83554    -214.18091       1.34537
+            35      17.50    4255.    -212.87426    -214.59249       1.71823    3413.    -212.84004    -214.21800       1.37796
+            40      20.00    3984.    -212.88868    -214.49743       1.60874    3515.    -212.84536    -214.26441       1.41905
+            45      22.50    2937.    -212.89540    -214.08116       1.18576    3486.    -212.85049    -214.25800       1.40751
+            50      25.00    4009.    -212.91326    -214.53190       1.61863    3487.    -212.85593    -214.26384       1.40791
+            55      27.50    4252.    -212.92540    -214.64224       1.71684    3560.    -212.86176    -214.29907       1.43731
+            60      30.00    3249.    -212.93275    -214.24477       1.31203    3569.    -212.86734    -214.30860       1.44125
+            65      32.50    2468.    -212.93831    -213.93489       0.99658    3506.    -212.87257    -214.28830       1.41573
+            70      35.00    2393.    -212.94363    -213.90965       0.96602    3426.    -212.87741    -214.26059       1.38318
+            75      37.50    3052.    -212.94554    -214.17799       1.23245    3378.    -212.88183    -214.24573       1.36390
+            80      40.00    4096.    -212.94758    -214.60123       1.65365    3400.    -212.88584    -214.25849       1.37265
+            85      42.50    4008.    -212.95121    -214.56956       1.61834    3444.    -212.88957    -214.28017       1.39060
+            90      45.00    3121.    -212.94987    -214.21010       1.26024    3443.    -212.89290    -214.28324       1.39034
+            95      47.50    3821.    -212.96239    -214.50528       1.54289    3442.    -212.89618    -214.28588       1.38971
+MD calculation interrupted by user.
+ 
+                                     Min                 Max                Mean              StdDev
+ 
+    Potential Energy       -214.68964726       -213.81414543       -214.28588284          0.26075134
+      Kinetic Energy          0.94166324          1.78236101          1.38970558          0.25869815
+        Total Energy       -212.96238553       -212.82421941       -212.89617726          0.04800594
+         Temperature       2332.18330446       4414.30910013       3441.83358609        640.70835528
+
+AMS application finished. Exiting.
+NORMAL TERMINATION
+     Total cpu time:     110.52
+  Total system time:       9.52
+ Total elapsed time:     126.23

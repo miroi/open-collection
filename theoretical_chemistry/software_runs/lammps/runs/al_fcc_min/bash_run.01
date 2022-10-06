@@ -3,12 +3,15 @@
 if [[ `hostname` = "labs.fpv.umb.sk" ]];
 then
     LAMMPS_EXE=/home/milias/work/qch_software/lammps_suite/lammps_stable/build/lmp
+elif [[ `hostname` = "lxir127" ]];
+then
+    LAMMPS_EXE=/data.local1/milias/software/lammps/lammps-stable_23Jun2022/build/lmp
 else
     LAMMPS_EXE=/usr/bin/lammps
 fi
 
 #
-echo -e "\n Running LAMMPS=$LAMMPS_EXE on the hostname `hostname`"
+echo -e "\n Running LAMMPS=$LAMMPS_EXE on the server  `hostname`"
 
 #linp=in.melt
 #linp=in.AuO

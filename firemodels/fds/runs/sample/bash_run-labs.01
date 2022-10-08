@@ -16,15 +16,19 @@ FDS=`which fds`
 echo -e "position of fds : $FDS"
 echo -e "linked libraries, ldd fds: "; ldd $FDS
 
-echo -e "impi_info"; impi_info
-impi_info
+#echo -e "impi_info"; impi_info
+#impi_info
 
-mpiexec $FDS --help
+#mpiexec $FDS --help
+which mpiexec
+mpiexec --version
 
+echo -e "\n running mpiexec -n 2 $FDS :"
+mpiexec -n 2 $FDS 
 
-inp=sample.fds
-
-echo -e "running $FDS $inp :"
-$FDS $inp
+#inp=sample.fds
+inp=box_burn_away1.fds
+echo -e "\n running mpiexec -n 2 $FDS $inp :"
+mpiexec -n 2 $FDS  $inp
 
 

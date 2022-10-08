@@ -24,6 +24,12 @@ $MPIEXEC --version
 
 echo -e "\n ldd $MPIEXEC :";ldd $MPIEXEC 
 
+
+TMPI=`which test_mpi`; echo -e "\n which test_mpi : $TMPI"
+echo -n "ldd $TMPI :"; ldd $TMPI
+$TMPI --help
+
+
 echo -e "\n running $MPIEXEC -n 2 $FDS :"
 $MPIEXEC -n 2 $FDS 
 

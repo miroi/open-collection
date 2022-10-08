@@ -1,0 +1,35 @@
+#!/bin/bash
+
+
+echo -e "\n Running  FDS ... "
+
+source /home/milias/FDS/FDS6/bin/FDS6VARS.sh
+
+echo -e "\nFI_PROVIDER_PATH=$FI_PROVIDER_PATH"
+echo -e "LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
+echo -e "PATH=$PATH"
+echo -e "OMP_NUM_THREADS=$OMP_NUM_THREADS"
+
+FDS=`which fds`
+
+echo -e "position of fds : $FDS"
+echo -e "linked libraries, ldd fds: "; ldd $FDS
+
+
+inp=sample.fds
+
+echo -e "running $FDS $inp :"
+$FDS $inp
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -19,16 +19,21 @@ echo -e "linked libraries, ldd fds: "; ldd $FDS
 #echo -e "impi_info"; impi_info
 #impi_info
 
-#mpiexec $FDS --help
-which mpiexec
-mpiexec --version
+MPIEXEC=`which mpiexec`; echo -e "MPIEXEC=$MPIEXEC"
+$MPIEXEC --version
 
-echo -e "\n running mpiexec -n 2 $FDS :"
-mpiexec -n 2 $FDS 
+echo -e "\n ldd $MPIEXEC :";ldd $MPIEXEC 
 
-#inp=sample.fds
-inp=box_burn_away1.fds
-echo -e "\n running mpiexec -n 2 $FDS $inp :"
-mpiexec -n 2 $FDS  $inp
 
+TMPI=`which test_mpi`; echo -e "\n which test_mpi : $TMPI"
+echo -n "ldd $TMPI :"; ldd $TMPI
+$TMPI --help
+
+
+echo -e "\n running $MPIEXEC -n 2 $FDS :"
+$MPIEXEC -n 2 $FDS 
+
+inp=sample.fds
+echo -e "\n running $MPIEXEC -n 2 $FDS $inp :"
+$MPIEXEC -n 2 $FDS  $inp
 

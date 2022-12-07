@@ -11,5 +11,5 @@ The reason for doing this is to avoid cluttering up the installation folder with
 
 Input file
 ----------
-   C:\Program Files\firemodels\FDS6\Examples\Fires\simple_test.fds
+   C:\\Program Files\\firemodels\\FDS6\\Examples\\Fires\\simple_test.fds
 

@@ -9,4 +9,7 @@ Find the file called simple_test.fds and copy it to a folder on your computer th
 
 The reason for doing this is to avoid cluttering up the installation folder with a lot of output files
 
-C:\Program Files\firemodels\FDS6\Examples\Fires
+Input file
+----------
+   C:\Program Files\firemodels\FDS6\Examples\Fires\simple_test.fds
+

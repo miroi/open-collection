@@ -1,0 +1,44 @@
+&HEAD CHID='simple_vents', TITLE='simple_vents' /
+
+&MESH XB= 0, 3, 0, 4, 0, 3, IJK= 30, 40, 30 /
+&SURF ID= 'OBST', RGB=150,150,150, DEFAULT=.TRUE./
+
+&TIME T_END=60. /
+&DUMP NFRAMES=60 /
+
+&REAC ID = 'propane reaction',
+SOOT_YIELD=0.03,
+CO_YIELD=0.05,
+FUEL='PROPANE'/
+
+#### fire design
+
+&OBST XB= 1.3, 1.7, 1.8, 2.2, 0, 0.5, COLOR='RED', SURF_ID='fire1' /
+&SURF ID='fire1', HRRPUA=150 /
+
+#### vents
+
+# supply
+
+&VENT XB=0,0,1,3,0.2,0.6, SURF_ID='supply', DEVC_ID='timer'/
+&SURF ID='supply', VOLUME_FLOW= -1, COLOR='GREEN' /
+
+# exhaust
+
+&VENT XB=3,3,1.5,2.5,2.6,3, SURF_ID='exhaust', DEVC_ID='timer'/
+&SURF ID='exhaust', VOLUME_FLOW=1, COLOR='BLUE' /
+
+# timer device for supply and exhaust
+
+&DEVC ID='timer', QUANTITY='TIME', XYZ = 1,1,1, SETPOINT=20, INITIAL_STATE=.FALSE. /
+
+#### outputs
+
+&SLCF PBY = 2, QUANTITY='VELOCITY', VECTOR=.TRUE./
+&SLCF PBY = 2, QUANTITY='TEMPERATURE'/
+&SLCF PBY = 2, QUANTITY='VOLUME FRACTION', SPEC_ID= 'SOOT' /
+
+&DEVC XB=0,0,1,3,0.2,0.6, QUANTITY='VOLUME FLOW', ID='supply volume flow' /
+&DEVC XB=3,3,1.5,2.5,2.6,3, QUANTITY='VOLUME FLOW', ID='exhaust volume flow' /
+
+&TAIL /

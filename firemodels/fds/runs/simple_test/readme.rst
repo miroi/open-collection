@@ -15,6 +15,10 @@ Linux run
 milias@194.160.44.72:~/work/projects/open-collection/firemodels/fds/runs/simple_test/.bash_run_ubuntu-kch.01
 .
 .
+ Time Step:   5783, Simulation Time:     60.00 s
+
+STOP: FDS completed successfully (CHID: simple_test)
+
 
 
 

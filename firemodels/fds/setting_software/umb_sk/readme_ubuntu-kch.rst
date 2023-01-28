@@ -28,6 +28,21 @@ milias@194.160.44.72:~/work/software/fds/fds-FDS6.7.9/Build/ompi_gnu_linux/.ldd 
 	libevent_core-2.1.so.7 => /lib/x86_64-linux-gnu/libevent_core-2.1.so.7 (0x00007f9f34231000)
 	libevent_pthreads-2.1.so.7 => /lib/x86_64-linux-gnu/libevent_pthreads-2.1.so.7 (0x00007f9f3422c000)
 	libudev.so.1 => /lib/x86_64-linux-gnu/libudev.so.1 (0x00007f9f34200000)
-milias@194.160.44.72:~/work/software/fds/fds-FDS6.7.9/Build/ompi_gnu_linux/.
+#
+milias@194.160.44.72:~/work/software/fds/fds-FDS6.7.9/Build/ompi_gnu_linux/.fds_ompi_gnu_linux 
 
+ Fire Dynamics Simulator
+
+ Current Date     : January 28, 2023  18:46:38
+ Revision         : -
+ Revision Date    : 
+ Compiler         : Gnu gfortran 11.3.0-1ubuntu1~22.04)
+ Compilation Date : jan 28, 2023  18:42:05
+
+ MPI Enabled;    Number of MPI Processes:       1
+ OpenMP Enabled; Number of OpenMP Threads:      4
+
+ MPI version: 3.1
+ MPI library version: Open MPI v4.1.2, package: Debian OpenMPI, ident: 4.1.2, repo rev: v4.1.2, Nov 24, 2021
+ Consult FDS Users Guide Chapter, Running FDS, for further instructions.
 

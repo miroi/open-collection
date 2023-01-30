@@ -35,10 +35,17 @@
 echo -e "\nRunning on host `hostname -f`"
 echo -e "Time is `date` \n"
 
+echo -e "\n scl stuff:"
+scl -l
+scl enable devtoolset-11 rh-git227 rh-python35 bash;
+echo -e "\n gfortran stuff:"
+gfortran --version
+gcc --version
+
 # provide OpenMPI-GNU local installation 
 export PATH=/home/milias/bin/openmpi/openmpi-4.1.4_gnu11.2.1/bin:$PATH
 export LD_LIBRARY_PATH=/home/milias/bin/openmpi/openmpi-4.1.4_gnu11.2.1/lib:$LD_LIBRARY_PATH
-echo -e "PATH, LD_LIBRARY_PATH adapted for /home/milias/bin/openmpi/openmpi-4.1.4_gnu11.2.1/bin"
+echo -e "\n PATH, LD_LIBRARY_PATH adapted for /home/milias/bin/openmpi/openmpi-4.1.4_gnu11.2.1/bin"
 
 unset MKLROOT
 

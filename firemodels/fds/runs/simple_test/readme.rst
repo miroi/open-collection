@@ -12,4 +12,8 @@ The reason for doing this is to avoid cluttering up the installation folder with
 Input file
 ----------
    C:\\Program Files\\firemodels\\FDS6\\Examples\\Fires\\simple_test.fds
+   
+Run
+---
+C:\\Users\\milias\\Documents\\Science\\projects\\open-collection\\firemodels\\fds\\runs\\simple_test>fds_local -p 1 -o 2 simple_test.fds
 

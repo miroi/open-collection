@@ -42,7 +42,7 @@ problem https://github.com/firemodels/fds/issues/11404
 Solved
 ------
 
-use fresh git version; deactivate MKLROOT
+use fresh git version; deactivate MKLROOT (unset MKLROOT)
 
 milias@login.grid.umb.sk:~/Work/software/firemodels/fds_cloned/Build/ompi_gnu_linux/.make_fds.sh
 .
@@ -69,8 +69,6 @@ milias@login.grid.umb.sk:~/Work/software/firemodels/fds_cloned/Build/ompi_gnu_li
         libutil.so.1 => /lib64/libutil.so.1 (0x00007f710a938000)
         libz.so.1 => /lib64/libz.so.1 (0x00007f710a722000)
         /lib64/ld-linux-x86-64.so.2 (0x00007f710c4fb000)
-
-
 
 
 

@@ -86,11 +86,12 @@ ldd $FDS_EXECUTABLE
 ### set local scratch directory for run
 #export TMPDIR=/mnt/local/$USER/SLURMjob-${SLURM_JOBID}
 export TMPDIR=${SLURM_SUBMIT_DIR}/FDS_SLURMjob-${SLURM_JOBID}
-echo -e "\n Node's local home directory, TMPDIR=$TMPDIR";
-echo -e "Size of this local scratch dir, df \$TMPDIR :";df -h $TMPDIR
 
 mkdir $TMPDIR
+echo -e "\n Node's local home directory, TMPDIR=$TMPDIR";
+echo -e "Size of this local scratch dir, df \$TMPDIR :";df -h $TMPDIR
 cd $TMPDIR
+
 echo -e "\nI am in working dir, TMPDIR=$TMPDIR"
 echo -e "For control pwd=\c";pwd
 echo -e "The local home directory with original FDS input file, SLURM_SUBMIT_DIR=${SLURM_SUBMIT_DIR}"

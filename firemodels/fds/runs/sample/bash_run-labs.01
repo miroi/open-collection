@@ -16,8 +16,8 @@ FDS=`which fds`
 echo -e "position of fds : $FDS"
 echo -e "linked libraries, ldd fds: "; ldd $FDS
 
-#echo -e "impi_info"; impi_info
-#impi_info
+echo -e "impi_info : \c"; which impi_info
+impi_info
 
 MPIEXEC=`which mpiexec`; echo -e "MPIEXEC=$MPIEXEC"
 $MPIEXEC --version
@@ -30,10 +30,10 @@ echo -n "ldd $TMPI :"; ldd $TMPI
 $TMPI --help
 
 
-echo -e "\n running $MPIEXEC -n 2 $FDS :"
-$MPIEXEC -n 2 $FDS 
+#echo -e "\n running $MPIEXEC -n 2 $FDS :"
+#$MPIEXEC -n 2 $FDS 
 
 inp=sample.fds
-echo -e "\n running $MPIEXEC -n 2 $FDS $inp :"
-$MPIEXEC -n 2 $FDS  $inp
+echo -e "\n running $MPIEXEC -n 1 $FDS $inp :"
+$MPIEXEC -n 1 $FDS  $inp
 

@@ -16,20 +16,25 @@ FDS=`which fds`
 echo -e "position of fds : $FDS"
 echo -e "linked libraries, ldd fds: "; ldd $FDS
 
-#echo -e "impi_info : \c"; which impi_info
+#echo -e "impi_info"; impi_info
 #impi_info
 
 MPIEXEC=`which mpiexec`; echo -e "MPIEXEC=$MPIEXEC"
 $MPIEXEC --version
-$MPIEXEC --help
 
 echo -e "\n ldd $MPIEXEC :";ldd $MPIEXEC 
+
+
+TMPI=`which test_mpi`; echo -e "\n which test_mpi : $TMPI"
+echo -n "ldd $TMPI :"; ldd $TMPI
+$TMPI --help
 
 
 #echo -e "\n running $MPIEXEC -n 2 $FDS :"
 #$MPIEXEC -n 2 $FDS 
 
-inp=dancing_eddies_default.fds
+#inp=sample.fds
+inp=box_burn_away1.fds
 echo -e "\n running $MPIEXEC -n 4 $FDS $inp :"
 $MPIEXEC -n 4 $FDS  $inp
 

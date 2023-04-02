@@ -1,0 +1,19 @@
+&HEAD CHID='sample', TITLE='sample' /
+
+&MESH XB=0, 3, 0, 4, 0, 3, IJK= 30, 40, 30 /
+
+&TIME T_END=60. /
+
+&VENT XB= 1, 2, 4, 4, 0, 2, SURF_ID='OPEN' / door
+&VENT XB= 3, 3, 2, 3, 1, 2, SURF_ID='OPEN' / window
+
+&REAC FUEL = 'PROPANE'
+
+&OBST XB= 1, 2, 1.5, 2.5, 0, 0.5, COLOR='RED', SURF_ID='fire1' /
+
+&SURF ID='fire1', HRRPUA=250 /
+
+&DEVC ID='T air 1', XYZ=1, 2, 2.8, QUANTITY='TEMPERATURE' /
+&SLCF PBY = 2, QUANTITY='TEMPERATURE'/
+
+&TAIL /

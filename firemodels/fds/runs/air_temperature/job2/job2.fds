@@ -1,0 +1,20 @@
+&HEAD CHID='job1', TITLE='job2' /
+
+&MESH XB= 0, 3, 0, 4, 0, 3, IJK= 30, 40, 30 /   room 3 x 4 x 3 m
+
+&TIME T_END=60. /  time of the simulation
+&DUMP NFRAMES=60 /
+
+&VENT XB= 1, 2, 4, 4, 0, 2, SURF_ID='OPEN' / door, passive opening to the outside
+&VENT XB= 3, 3, 2, 3, 1, 2, SURF_ID='OPEN' / window, passive opening to the outside
+
+&REAC FUEL = 'PROPANE' / palivo
+
+&OBST XB= 1, 2, 1.5, 2.5, 0, 0.5, COLOR='RED', SURF_ID='fire1' /
+&SURF ID='fire1', HRRPUA=250 /  Heat Release Rate Per Unit of Area expressed in kW/m2.
+
+&DEVC ID='T air 1', XYZ=1, 2, 3, QUANTITY='TEMPERATURE' /  teplomer na strope izby
+&DEVC ID='T window', XYZ=3, 2.5, 1.5, QUANTITY='TEMPERATURE' /  teplomer v okne
+&DEVC ID='T door', XYZ=1.5, 4, 1, QUANTITY='TEMPERATURE' /  teplomer vo dverách
+
+&TAIL /

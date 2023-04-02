@@ -1,0 +1,39 @@
+#!/bin/bash
+
+
+echo -e "\n Running  FDS ... "
+
+echo -e "sourcing /home/milias/FDS/FDS6/bin/FDS6VARS.sh"
+source /home/milias/FDS/FDS6/bin/FDS6VARS.sh
+
+echo -e "\nFI_PROVIDER_PATH=$FI_PROVIDER_PATH"
+echo -e "LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
+echo -e "PATH=$PATH"
+echo -e "OMP_NUM_THREADS=$OMP_NUM_THREADS"
+
+FDS=`which fds`
+
+echo -e "position of fds : $FDS"
+echo -e "linked libraries, ldd fds: "; ldd $FDS
+
+echo -e "impi_info : \c"; which impi_info
+impi_info
+
+MPIEXEC=`which mpiexec`; echo -e "MPIEXEC=$MPIEXEC"
+$MPIEXEC --version
+
+echo -e "\n ldd $MPIEXEC :";ldd $MPIEXEC 
+
+
+TMPI=`which test_mpi`; echo -e "\n which test_mpi : $TMPI"
+echo -n "ldd $TMPI :"; ldd $TMPI
+$TMPI --help
+
+
+#echo -e "\n running $MPIEXEC -n 2 $FDS :"
+#$MPIEXEC -n 2 $FDS 
+
+inp=sample.fds
+echo -e "\n running $MPIEXEC -n 1 $FDS $inp :"
+$MPIEXEC -n 1 $FDS  $inp
+

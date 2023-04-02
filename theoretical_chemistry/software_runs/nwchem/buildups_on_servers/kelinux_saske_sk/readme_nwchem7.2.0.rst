@@ -49,5 +49,10 @@ make -j8
 .
 .
 
+configure: WARNING: ScaLAPACK library not found, interfaces won't be defined
+configure: WARNING: ELPA library not found, interfaces won't be defined
+configure: WARNING: ELPA 2015 library not found, interfaces won't be defined
+configure: WARNING: ELPA 2016 library not found, interfaces won't be defined
+configure: WARNING: ELPA 2017 library not found, interfaces won't be defined
 
 

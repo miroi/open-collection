@@ -8,6 +8,9 @@
 
   echo -e "\n***   NWChem environmental variables for login.grid.umb.sk:   ***"
 
+export PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/bin:$PATH
+export LD_LIBRARY_PATH=/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib:$LD_LIBRARY_PATH
+
   export NWCHEM_TOP=/home/milias/Work/qch/software/nwchem_suite/nwchem_master
  # export NWCHEM_TOP=/home/milias/Work/qch/software/nwchem_suite/nwchem_release
   echo -e "NWCHEM_TOP=$NWCHEM_TOP"

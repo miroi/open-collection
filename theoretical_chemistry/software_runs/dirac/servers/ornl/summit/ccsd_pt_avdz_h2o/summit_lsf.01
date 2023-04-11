@@ -9,7 +9,7 @@
 
 # set the appropriate project for INCITE (chp109)
 #
-export ProjectNumber="chm160"
+export ProjectNumber="chp109"
 
 # set number of mpi processes (2*nnodes)
 export nmpi=16
@@ -43,6 +43,7 @@ export FILE_NAME=${INP_NAME}"_"${MOL_NAME}
 # if you need to keep the same scratch directory, add the flag  --keep_scratch  to the pam invocation line below
 #
 export DIRAC_SCRATCHDIR=${MEMBERWORK}/${ProjectNumber}/${FILE_NAME}
+echo -e "DIRAC_SCRATCHDIR=$DIRAC_SCRATCHDIR"
 ${DIRAC_PATH}/pam --scratchfull=${DIRAC_SCRATCHDIR} --mpi=$nmpi --mol=$MOL_FILE --inp=$INP_FILE --outqforce
 
 # moving results to 

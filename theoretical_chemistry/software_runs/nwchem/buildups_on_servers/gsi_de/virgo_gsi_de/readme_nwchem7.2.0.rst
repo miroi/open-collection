@@ -9,9 +9,12 @@ https://hpc.gsi.de/virgo/platform/software.html#available-software
 milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0/src/.spack find openmpi%intel
 -- linux-debian10-x86_64 / intel@19.1.1.217 ---------------------
 openmpi@4.1.5
-==> 1 installed package
-milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0/src/.spack load openmpi%intel
+#milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0/src/.spack load openmpi%intel
 
+milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0/src/.spack load  intel-mkl@2020.4.304%gcc@10.2.0  target=x86_64
+
+
+milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0/src/.spack load  openmpi%gcc target=x86_64
 milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0/.spack load elpa@2021.11.001 target=x86_64
 milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0/.spack load amdscalapack target=x86_64
 
@@ -42,9 +45,35 @@ openmpi@4.1.5  pkgconf@1.8.0
 ==> 67 loaded packages
 milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0/src/.
 
+milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0/src/.spack find --loaded
+-- linux-debian10-x86_64 / gcc@10.2.0 ---------------------------
+amdscalapack@3.2                    gdbm@1.23             libiconv@1.16      openblas@0.3.21       readline@8.1.2
+autoconf@2.69                       gettext@0.21.1        libmd@1.0.4        openmpi@4.1.5         slurm@21-08-8-2
+autoconf-archive@2022.02.11         glib@2.74.1           libpciaccess@0.16  openssh@9.1p1         sqlite@3.39.4
+automake@1.16.5                     gmp@6.2.1             libsigsegv@2.13    openssl@1.1.1s        tar@1.34
+bison@3.8.2                         hwloc@2.8.0           libtool@2.4.7      pcre2@10.39           texinfo@6.5
+bzip2@1.0.8                         intel-mkl@2020.4.304  libxml2@2.10.1     perl@5.16.3           ucx@1.9.0
+ca-certificates-mozilla@2022-10-11  json-c@0.16           lz4@1.9.4          pigz@2.7              util-linux-uuid@2.38.1
+cmake@3.24.3                        krb5@1.19.3           m4@1.4.19          pkgconf@1.8.0         util-macros@1.19.3
+cpio@2.13                           libbsd@0.11.5         meson@0.63.3       pmix@3.2.2            xz@5.2.7
+curl@7.85.0                         libedit@3.1-20210216  mpfr@4.1.0         py-pip@22.2.2         zlib@1.2.13
+diffutils@3.8                       libevent@2.1.12       munge@0.5.13       py-setuptools@59.4.0  zstd@1.5.2
+elpa@2021.11.001                    libffi@3.4.2          ncurses@6.1        py-wheel@0.37.1
+expat@2.4.8                         libgcrypt@1.10.1      ninja@1.11.1       python@3.10.8
+gawk@5.1.1                          libgpg-error@1.46     numactl@2.0.14     rdma-core@22.4
+
+-- linux-debian10-x86_64 / intel@19.1.1.217 ---------------------
+pkgconf@1.8.0
+==> 68 loaded packages
+
+
 
 milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0/.emkl
 Intel MKL library ? MKLROOT=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/intel-parallel-studio-professional.2020.1-ibhuetil7ipyeb4qfw4xldp4ib42v3ca/compilers_and_libraries_2020.1.217/linux/mkl
+
+milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0/src/.emkl
+Intel MKL library ? MKLROOT=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/intel-mkl-2020.4.304-r45z63ewc7vmz55z5lvij6digu73dcvn/compilers_and_libraries_2020.4.304/linux/mkl
+
 
 
 NWChem clone and variables setting
@@ -67,9 +96,17 @@ export LAPACK_LIB="-L${MKLROOT}/lib/intel64_lin -lmkl_lapack95_ilp64 -lmkl_intel
 
 Compiling:
 ~~~~~~~~~~
-milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0/src/.make -j16
-.
-.
 
+see also https://groups.google.com/g/nwchem-forum/c/Ec4xe3f9IoI/m/MiECLJinCAAJ
+
+milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0/src/make nwchem_config
+milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0/src/make -j16 2>&1 | tee make.log
+.
+.
+configure: WARNING: ScaLAPACK library not found, interfaces won't be defined
+configure: WARNING: ELPA library not found, interfaces won't be defined
+configure: WARNING: ELPA 2015 library not found, interfaces won't be defined
+configure: WARNING: ELPA 2016 library not found, interfaces won't be defined
+configure: WARNING: ELPA 2017 library not found, interfaces won't be defined
 
 

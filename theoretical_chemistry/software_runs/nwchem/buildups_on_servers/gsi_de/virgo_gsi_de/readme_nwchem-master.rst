@@ -31,7 +31,7 @@ export LAPACK_LIB="-L${MKLROOT}/lib/intel64_lin -lmkl_lapack95_ilp64 -lmkl_intel
 milias@lxbk0600.gsi.de:/lustre/ukt/milias/work/software/nwchem/nwchem-master/src/.make -j24
 .
 .
-
+.
 configure: WARNING: ScaLAPACK library not found, interfaces won't be defined
 configure: WARNING: ELPA library not found, interfaces won't be defined
 configure: WARNING: ELPA 2015 library not found, interfaces won't be defined

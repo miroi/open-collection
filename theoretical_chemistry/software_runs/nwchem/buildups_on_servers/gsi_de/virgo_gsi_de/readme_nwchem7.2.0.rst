@@ -4,10 +4,14 @@ NWChem on Virgo at GSI
 
 Virgo modules
 -------------
-https://hpc.gsi.de/virgo/preface.html
+https://hpc.gsi.de/virgo/platform/software.html#available-software
 
-milias@lxbk0598.gsi.de:/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0/.spack load intel-parallel-studio@professional.2020.1
+milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0/.spack load intel-parallel-studio@professional.2020.1
+milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0/.spack find | grep openmpi
+
+
 milias@lxbk0598.gsi.de:/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0/.spack load openmpi target=$(spack arch -t)
+
 milias@lxbk0600.gsi.de:/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0/src/.spack load amdscalapack target=$(spack arch -t) 
 
 NWChem clone and variables setting

@@ -33,18 +33,6 @@ export OMP_NUM_THREADS=1
 export MKL_DYNAMIC="FALSE"
 export OMP_DYNAMIC="FALSE"
 
-#
-export DIRAC=/data.local1/milias/software/dirac/dirac-public
-export DIRACBIN=$DIRAC/build_intelompi_mklpar_i8
-
-export PAM=$DIRACBIN/pam
-export BASDIR=$DIRAC/basis_dalton:$DIRAC/basis:$DIRAC/basis_ecp
-
-echo -e "DIRAC=$DIRAC"
-echo -e "DIRACBIN=$DIRACBIN"
-
-echo -e "\nldd $DIRAC/dirac.x:"
-ldd $DIRAC/dirac.x
 echo -e "\n ifort -V: \c"; 
 which ifort; ifort --version
 which icc; icc --version
@@ -56,7 +44,16 @@ echo -e "ctest ? which ctest = \c"; which ctest
 echo -e "ctest --version \c"; ctest --version
 echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
 which mpif90; mpif90 --version
-echo
+
+#
+export DIRAC=/data.local1/milias/software/dirac/dirac-public
+export DIRACBIN=$DIRAC/build_intelompi_mklpar_i8
+export PAM=$DIRACBIN/pam
+export BASDIR=$DIRAC/basis_dalton:$DIRAC/basis:$DIRAC/basis_ecp
+echo -e "DIRAC=$DIRAC"
+echo -e "DIRACBIN=$DIRACBIN"
+echo -e "\nldd $DIRAC/dirac.x:"
+ldd $DIRACBIN/dirac.x
 
 export DIRAC_TMPDIR=/data.local1/milias/scratch/
 echo -e "\nDIRAC scratch directory space, $DIRAC_TMPDIR"
@@ -76,7 +73,7 @@ export DIRAC_MPI_COMMAND="mpirun -np 2"
 echo -e "\n Set DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
 
 cd $DIRACBIN
-ctest -j6 -L short
+ctest -j8 -L short
 
 
 #$PAM --noarch --mpi=4  --gb=1.89 --ag=1.99 --mol=CO.mol  --inp=ccsd.small.inp  --suffix=$SLURM_JOB_PARTITION-$SLURM_JOBID-out 

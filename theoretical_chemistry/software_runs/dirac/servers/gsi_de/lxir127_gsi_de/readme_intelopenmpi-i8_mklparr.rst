@@ -110,3 +110,7 @@ milias@lxir127.gsi.de:/data.local1/milias/software/dirac/dirac-public/build_inte
         libatomic.so.1 => /usr/lib/x86_64-linux-gnu/libatomic.so.1 (0x00007faf2d936000)
 milias@lxir127.gsi.de:/data.local1/milias/software/dirac/dirac-public/build_intelompi_mklpar_i8/
 
+Control DIRAC run
+-----------------
+milias@lxir127.gsi.de:/data.local1/milias/projects/open-collection/theoretical_chemistry/software_runs/dirac/servers/gsi_de/lxir127_gsi_de/.nohup lxir127_intel-openmpi_i8_mklpar_01.bash > lxir127_intel-openmpi_i8_mklpar_01.logfile 2>&1 
+

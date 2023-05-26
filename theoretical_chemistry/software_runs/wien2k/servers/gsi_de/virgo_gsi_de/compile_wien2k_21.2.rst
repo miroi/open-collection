@@ -17,6 +17,9 @@ intel-mkl@2020.4.304
 
 spack load intel-parallel-studio@professional.2020.1
 
+milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2/.spack load amdfftw@3.0 target=$(spack arch -t)
+
+
 milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2/.spack find --loaded
 -- linux-debian10-x86_64 / gcc@8.3.0 ----------------------------
 intel-parallel-studio@professional.2020.1  patchelf@0.16.1
@@ -25,4 +28,14 @@ intel-parallel-studio@professional.2020.1  patchelf@0.16.1
 milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2/.gunzip *
 
 milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2/.expand_lapw
+.
+.
+case.win   linked to   template.win
+python found at /usr/bin/python.
+
+WIEN is now expanded. The shell-script commands were copied and links created.
+To configure your Fortran-executables run:
+
+./siteconfig_lapw
+
 

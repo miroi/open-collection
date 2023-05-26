@@ -74,6 +74,17 @@ Intel MKL library ? MKLROOT=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian1
 milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0/src/.emkl
 Intel MKL library ? MKLROOT=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/intel-mkl-2020.4.304-r45z63ewc7vmz55z5lvij6digu73dcvn/compilers_and_libraries_2020.4.304/linux/mkl
 
+milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0/.which gfortran 
+/usr/bin/gfortran
+milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0/.spack find gcc
+-- linux-debian10-x86_64 / gcc@8.3.0 ----------------------------
+gcc@10.2.0  gcc@12.2.0
+==> 2 installed packages
+milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0/.spack load gcc@12.2.0
+milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0/.gfortran --version
+GNU Fortran (Spack GCC) 12.2.0
+
+
 
 
 NWChem clone and variables setting

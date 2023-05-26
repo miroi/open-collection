@@ -85,6 +85,5 @@ Configuration
 --------------
 milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2/.siteconfig_lapw
 
-gfortran
-gcc
+LI
 

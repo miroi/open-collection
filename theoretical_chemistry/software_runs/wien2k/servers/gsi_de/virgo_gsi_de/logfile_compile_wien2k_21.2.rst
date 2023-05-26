@@ -31,3 +31,6 @@ I could not find your MKL_TARGET_ARCH. You will have to specify it later.
      M    show more, not updated older options (not recommended)     
   Selection: LS
 
+ifort
+icc
+

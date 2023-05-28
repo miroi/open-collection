@@ -4,6 +4,9 @@ Check the presence of ELPA library
 
 ELPA
 -----
+
+https://elpa.mpcdf.mpg.de/index.html
+
 https://launchpad.net/ubuntu/+source/elpa
 
 ilias@194.160.44.72:~/work/projects/open-collection/theoretical_chemistry/software_runs/elpa_library/.sudo apt-cache search libelpa
@@ -26,4 +29,7 @@ libfftw3-double3 set to manually installed.
 The following NEW packages will be installed:
   libfftw3-doc
 
+Intel-MKL
+---------
+milias@194.160.44.72:~/work/projects/open-collection/theoretical_chemistry/software_runs/elpa_library/.sudo apt-get install intel-mkl-doc intel-mkl-full
 

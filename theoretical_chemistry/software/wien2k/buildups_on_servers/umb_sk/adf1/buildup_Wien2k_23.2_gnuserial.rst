@@ -39,6 +39,13 @@ and must select one of them in the R_LIBS:
 SRC_wplot/compile.msg:gfortran: error: /usr/lib64/libopenblas_openmp.so.0: No such file or directory
 SRC_wplot/compile.msg:make: *** [Makefile:125: wplot] Error 1
 
-yum install openblas-openmp.x86_64 
+yum install openblas-openmp.x86_64 ... 
+
+there is no ibopenblas_openmp.so.0 ... !
+
+ replace with :
+ R   R_LIBS (LAPACK+BLAS):    /usr/lib64/libopenblas.so.0 -lpthread
+
+
 
 

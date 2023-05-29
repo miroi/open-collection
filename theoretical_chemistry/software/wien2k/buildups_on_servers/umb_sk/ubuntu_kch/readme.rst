@@ -33,3 +33,5 @@ Intel-MKL
 ---------
 milias@194.160.44.72:~/work/projects/open-collection/theoretical_chemistry/software_runs/elpa_library/.sudo apt-get install intel-mkl-doc intel-mkl-full
 
+
+tcsh segfault !!!!! can not proceed !!!

@@ -20,6 +20,7 @@ milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2/.spac
 milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2/.spack load openmpi%gcc target=x86_64
 milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2/.spack load elpa@2021.11.001 target=x86_64
 milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2/.spack load amdscalapack target=x86_64
+milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2/.spack load amdfftw target=x86_64
 
 Check packages
 ~~~~~~~~~~~~~~

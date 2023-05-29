@@ -196,3 +196,10 @@ bin/  easybuild/  include/  lib/  lib64@  share/
    N  ELPA_LIBNAME:      elpa_openmp
 
 
+RC_wplot/compile.msg:make: *** [wplot] Error 1
+SRC_wplot/compile.msg:ifort: error #10236: File not found:  'KLROOT/lib/intel64/libmkl_blas95_lp64.a'
+SRC_wplot/compile.msg:ifort: error #10236: File not found:  'KLROOT/lib/intel64/libmkl_lapack95_lp64.a'
+
+for all error messages see ilias@login1.kelinux.saske.sk:~/work/qch/software/wien2k/WIEN2k_23.2_intelmklserial/.grep 'KLROOT' SRC*/compile.msg
+
+

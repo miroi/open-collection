@@ -47,5 +47,13 @@ there is no ibopenblas_openmp.so.0 ... !
  R   R_LIBS (LAPACK+BLAS):    /usr/lib64/libopenblas.so.0 -lpthread
 
 
+another problem:
+
+Compile time errors (if any) were:
+SRC_3ddens/compile.msg:fft_modules.F:174: Error: Can't open included file 'fftw3.f03'
+SRC_3ddens/compile.msg:make: *** [Makefile:84: fft_modules.o] Error 1
+SRC_hf/compile.msg:modules_tmp_.F:108: Error: Can't open included file 'fftw3.f03'
+SRC_hf/compile.msg:make[1]: *** [Makefile:281: modules.o] Error 1
+
 
 

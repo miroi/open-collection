@@ -28,35 +28,38 @@ export SCRATCH=$PWD/scratch.$randstr
 mkdir $SCRATCH
 
 # first link Wien2k executables into the directory
- ln -sf $WIEN2k/dstart             $PWD/.
- ln -sf $WIEN2k/init_lapw          $PWD/.
- ln -sf $WIEN2k/instgen_lapw       $PWD/.
- ln -sf $WIEN2k/kgen               $PWD/.
- ln -sf $WIEN2k/lapw0              $PWD/.
- ln -sf $WIEN2k/lapw1              $PWD/.
- ln -sf $WIEN2k/lapw2              $PWD/.
- ln -sf $WIEN2k/lapw3              $PWD/.
- ln -sf $WIEN2k/lapw5              $PWD/.
- ln -sf $WIEN2k/lapw7              $PWD/.
- ln -sf $WIEN2k/lapwso             $PWD/.
- ln -sf $WIEN2k/lapwso_mpi         $PWD/.
- ln -sf $WIEN2k/lcore              $PWD/.
- ln -sf $WIEN2k/lorentz            $PWD/.
- ln -sf $WIEN2k/lstart             $PWD/.
- ln -sf $WIEN2k/mixer              $PWD/.
- ln -sf $WIEN2k/nn                 $PWD/.
- ln -sf $WIEN2k/run_lapw           $PWD/.
- ln -sf $WIEN2k/runsp_lapw         $PWD/.
- ln -sf $WIEN2k/setrmt_lapw        $PWD/.
- ln -sf $WIEN2k/sgroup             $PWD/.
- ln -sf $WIEN2k/symmetry           $PWD/.
- ln -sf $WIEN2k/testconv           $PWD/.
- ln -sf $WIEN2k/testconv_lapw      $PWD/.
- ln -sf $WIEN2k/x                  $PWD/.
- ln -sf $WIEN2k/x_lapw             $PWD/.
+ ln -sf $WIEN2k/dstart             $SCRATCH/.
+ ln -sf $WIEN2k/init_lapw          $SCRATCH/.
+ ln -sf $WIEN2k/instgen_lapw       $SCRATCH/.
+ ln -sf $WIEN2k/kgen               $SCRATCH/.
+ ln -sf $WIEN2k/lapw0              $SCRATCH/.
+ ln -sf $WIEN2k/lapw1              $SCRATCH/.
+ ln -sf $WIEN2k/lapw2              $SCRATCH/.
+ ln -sf $WIEN2k/lapw3              $SCRATCH/.
+ ln -sf $WIEN2k/lapw5              $SCRATCH/.
+ ln -sf $WIEN2k/lapw7              $SCRATCH/.
+ ln -sf $WIEN2k/lapwso             $SCRATCH/.
+ ln -sf $WIEN2k/lapwso_mpi         $SCRATCH/.
+ ln -sf $WIEN2k/lcore              $SCRATCH/.
+ ln -sf $WIEN2k/lorentz            $SCRATCH/.
+ ln -sf $WIEN2k/lstart             $SCRATCH/.
+ ln -sf $WIEN2k/mixer              $SCRATCH/.
+ ln -sf $WIEN2k/nn                 $SCRATCH/.
+ ln -sf $WIEN2k/run_lapw           $SCRATCH/.
+ ln -sf $WIEN2k/runsp_lapw         $SCRATCH/.
+ ln -sf $WIEN2k/setrmt_lapw        $SCRATCH/.
+ ln -sf $WIEN2k/sgroup             $SCRATCH/.
+ ln -sf $WIEN2k/symmetry           $SCRATCH/.
+ ln -sf $WIEN2k/testconv           $SCRATCH/.
+ ln -sf $WIEN2k/testconv_lapw      $SCRATCH/.
+ ln -sf $WIEN2k/x                  $SCRATCH/.
+ ln -sf $WIEN2k/x_lapw             $SCRATCH/.
 
  case=TiC
  inp=$case.struct
+
+ cp $inp $SCRATCH
+ cd $SCRATCH
 
  instgen_lapw < $inp
 

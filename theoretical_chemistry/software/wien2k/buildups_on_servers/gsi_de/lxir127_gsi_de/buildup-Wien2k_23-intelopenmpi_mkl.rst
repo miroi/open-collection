@@ -96,7 +96,7 @@ Recommended options for system linuxifc are:
   O   Compiler options:        -O -FR -mp1 -w -prec_div -pc80 -pad -ip -DINTEL_VML -traceback -assume buffered_io -I$(MKLROOT)/include
   L   Linker Flags:            $(FOPT) -L$(MKLROOT)/lib/$(MKL_TARGET_ARCH) -lpthread -lm -ldl -liomp5
   P   Preprocessor flags       '-DParallel'
-  R   R_LIBS (LAPACK+BLAS):    $MKLROOT/lib/intel64/libmkl_blas95_lp64.a $MKLROOT/lib/intel64/libmkl_lapack95_lp64.a -L$MKLROOT/lib/intel64 -lmkl_scalapack_lp64 -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_lp64 -liomp5 -lpthread -lm -ldl
+  R   R_LIBS (LAPACK+BLAS):    $(MKLROOT)/lib/intel64/libmkl_blas95_lp64.a $(MKLROOT)/lib/intel64/libmkl_lapack95_lp64.a -L$(MKLROOT)/lib/intel64 -lmkl_scalapack_lp64 -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_lp64 -liomp5 -lpthread -lm -ldl
   F   FFTW options:            -DFFTW3 -DFFTW_OMP -I/usr/lib/x86_64-linux-gnu/include
       FFTW-LIBS:               -L/usr/lib/x86_64-linux-gnu/ -lfftw3 -lfftw3_omp
   X   LIBX options:

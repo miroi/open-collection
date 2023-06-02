@@ -49,20 +49,20 @@ echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
 
 echo -e "Modules loading:"
 module use /lustre/home/utils/easybuild_old/modules/all/
-
-module load ELPA/2021.11.001-foss-2022a
-module load FFTW/3.3.9-intel-2021a
+module unload all
 
 module load imkl/2021.2.0-iimpi-2021a
-module load ELPA/2021.11.001-foss-2022a
+module load FFTW/3.3.9-intel-2021a
+#module load ELPA/2021.11.001-foss-2022a
 
 module unload OpenMPI/4.1.4-GCC-11.3.0
 module unload openmpi3/3.1.0
 #
-echo -e "\n\n loaded modules:"
+echo -e "\n\n All loaded modules:"
 module list
 
 echo -e "\n Check of compilers and libraries:"
+which tcsh; tcsh --version
 which mpiifort; mpiifort --version
 which mpirun; mpirun --version
 echo "Intel MKL library, MKLROOT=$MKLROOT"
@@ -90,10 +90,11 @@ export MKL_DYNAMIC="FALSE"
 export OMP_DYNAMIC="FALSE"
 
 #
+       case=TiC
 #
 export WIEN2k=/lustre/home/ilias/work/qch/software/wien2k/WIEN2k_23.2_intelmpi_mkl
 SCR=Wien2k_23.2_job.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID
-export SCRATCH=/lustre/home/ilias/scratch/$SCR
+export SCRATCH=/lustre/home/ilias/scratch/$SCR/$case
 echo -e "Creating scratch directory, $SCRATCH"
 mkdir $SCRATCH
 
@@ -126,7 +127,6 @@ cd $SCRATCH
  ln -sf $WIEN2k/x                  $PWD/.
  ln -sf $WIEN2k/x_lapw             $PWD/.
 
- case=TiC
  inp=$case.struct
  instgen_lapw < $inp
 
@@ -161,7 +161,6 @@ cd $SCRATCH
  echo -e "\n Finished; check for ':ENE' in outputs."
 
  echo -e "List of files in $SCRATCH :"; ls -lt $SCRATCH/*
-
 
 
 exit

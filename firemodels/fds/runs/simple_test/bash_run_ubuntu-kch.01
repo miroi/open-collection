@@ -1,0 +1,13 @@
+#!/bin/bash
+
+export FDS=/home/milias/work/software/fds/fds-FDS6.7.9/Build/ompi_gnu_linux/fds_ompi_gnu_linux
+
+echo -e "\n Executable FDS=$FDS"; ldd $FDS
+
+inp=simple_test.fds
+echo -e "\n running $FDS $inp  "
+
+$FDS $inp
+
+exit 0
+

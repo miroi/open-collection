@@ -171,6 +171,12 @@ echo -e "Im in SCRATCH :"; pwd
  cp $case.inq_st  $case.inq
  run_lapw -ec 0.0001 -NI
 
+ # now SO step
+ echo -e "\n Now SO step:"
+ init_so_lapw
+ run_lapw -so 0.0001 -NI
+ 
+
  echo -e "\n Finished; check for ':ENE' in outputs."
 
  echo -e "List of files in $SCRATCH :"; ls -lt $SCRATCH/*

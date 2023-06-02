@@ -91,14 +91,17 @@ export OMP_DYNAMIC="FALSE"
 
 #
        case=TiC
+       inp=$case.struct
 #
 export WIEN2k=/lustre/home/ilias/work/qch/software/wien2k/WIEN2k_23.2_intelmpi_mkl
 SCR=Wien2k_23.2_job.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID
 export SCRATCH=/lustre/home/ilias/scratch/$SCR/$case
-echo -e "Creating scratch directory, $SCRATCH"
-mkdir $SCRATCH
+echo -e "Creating scratch directory, SCRATCH=$SCRATCH"
+mkdir -p $SCRATCH
 
 cd $SCRATCH
+echo -e "Im in SCRATCH :"; pwd
+
 # first link Wien2k executables into the directory
  ln -sf $WIEN2k/dstart             $PWD/.
  ln -sf $WIEN2k/init_lapw          $PWD/.
@@ -127,7 +130,7 @@ cd $SCRATCH
  ln -sf $WIEN2k/x                  $PWD/.
  ln -sf $WIEN2k/x_lapw             $PWD/.
 
- inp=$case.struct
+
  instgen_lapw < $inp
 
  echo 2|x nn

@@ -105,6 +105,7 @@ echo -e "Im in SCRATCH :"; pwd
 
 # first link Wien2k executables into the directory
  ln -sf $WIEN2k/dstart             $PWD/.
+ ln -sf $WIEN2k/init_so_lapw       $PWD/.
  ln -sf $WIEN2k/init_lapw          $PWD/.
  ln -sf $WIEN2k/instgen_lapw       $PWD/.
  ln -sf $WIEN2k/kgen               $PWD/.
@@ -174,7 +175,7 @@ echo -e "Im in SCRATCH :"; pwd
  # now SO step
  echo -e "\n Now SO step:"
  init_so_lapw
- run_lapw -so 0.0001 -NI
+ run_lapw -so
  
 
  echo -e "\n Finished; check for ':ENE' in outputs."

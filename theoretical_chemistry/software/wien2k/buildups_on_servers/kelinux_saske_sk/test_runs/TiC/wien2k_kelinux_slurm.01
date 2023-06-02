@@ -130,6 +130,10 @@ echo -e "Im in SCRATCH :"; pwd
  ln -sf $WIEN2k/x                  $PWD/.
  ln -sf $WIEN2k/x_lapw             $PWD/.
 
+# link input file into scratch dir
+ ln -sf $SLURM_SUBMIT_DIR/$inp     $PWD/.
+ ls -lt $PWD/$inp
+
 
  instgen_lapw < $inp
 

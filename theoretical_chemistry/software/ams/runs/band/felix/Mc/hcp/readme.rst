@@ -1,6 +1,7 @@
-Nh hcp
-======
+Mc2 hcp
+=========
 
-194
+symmetry no 194
 
 
+job interrupted due to oscilations, is sufficiently converged

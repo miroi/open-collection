@@ -97,11 +97,13 @@ mpicc
   O   Compiler options:        -O
   L   Linker Flags:            -L../SRC_lib
   P   Preprocessor flags       '-DParallel'
-  R   R_LIBS (LAPACK+BLAS):    -llapack_lapw -lblas_lapw
+  R   R_LIBS (LAPACK+BLAS):    -L/usr/lib64 -lopenblas
   F   FFTW options:            -DFFTW3 -DFFTW_OMP -I/usr/include
       FFTW-LIBS:               -L/usr/lib64 -lfftw3 -lfftw3_omp
+      FFTW-PLIBS:              NOT FOUND!
   X   LIBX options:
       LIBXC-LIBS:
 
   S   Save and Quit
+
 

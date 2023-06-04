@@ -14,21 +14,73 @@ Currently Loaded Modulefiles:
   1) mpi/openmpi3-x86_64
 
 
+FFTW3 from CP2K
+~~~~~~~~~~~~~~~~
+ The OMP parallel version of your FFTW library will be used.
+
+  Your FFTW_OPT are:   -DFFTW3 -DFFTW_OMP -I/home/milias/work/software/cp2k/cp2k-8.2.0/tools/toolchain/install/fftw-3.3.8/include 
+  Your FFTW_LIBS are:  -L/home/milias/work/software/cp2k/cp2k-8.2.0/tools/toolchain/install/fftw-3.3.8/lib -lfftw3 -lfftw3_omp
+  Your FFTW_PLIBS are: -lfftw3_mpi
+
+  These options derive from your chosen settings:
+   
+  FFTWROOT:            /home/milias/work/software/cp2k/cp2k-8.2.0/tools/toolchain/install/fftw-3.3.8/
+  FFTW_VERSION:        FFTW3
+  FFTW_LIB:            lib
+  FFTW_LIBNAME:        fftw3
+  Is this correct? (Y,n): Y
+
+
 Elpa
 ~~~~~
+[root@adf2 ~]# yum install elpa-common.noarch elpa-devel.noarch elpa-openmpi-devel.x86_64  elpa-openmpi.x86_64
+
 milias@adf2:~/work/software/wien2k/wien2k_23.2_openmpi/.rpm -ql elpa-openmpi.x86_64
 /usr/lib64/openmpi/bin/elpa2_print_kernels
 /usr/lib64/openmpi/lib/libelpa.so.4
 /usr/lib64/openmpi/lib/libelpa.so.4.0.0
 
-scalapack
-~~~~~~~~~
+milias@adf2:~/work/software/wien2k/.ls /usr/include/elpa-2015.11.001/elpa/
+elpa.h  elpa_generated.h  elpa_kernel_constants.h
+
+  Your ELPA_OPT are:   -DELPA -I/usr/include/elpa-2015.11.001/elpa 
+                           -I/usr/include/elpa-2015.11.001/modules 
+  Your ELPA_LIBS are:  -lelpa -L/usr/lib64/openmpi -Wl,rpath=/usr/lib64/openmpi
+
+  These options derive from your chosen Settings:
+   
+  ELPAROOT:            /usr/
+  ELPA_VERSION:        2015.11.001
+  ELPA_LIB:            lib64/openmpi
+  ELPA_LIBNAME:        elpa
+  Is this correct?  (Y,n): Y
+
+
+scalapack & blacs
+~~~~~~~~~~~~~~~~~
 milias@adf2:~/work/software/wien2k/wien2k_23.2_openmpi/.rpm -ql scalapack-openmpi.x86_64
 /usr/lib64/openmpi/lib/libscalapack.so.2
 /usr/lib64/openmpi/lib/libscalapack.so.2.0.0
 milias@adf2:~/work/software/wien2k/wien2k_23.2_openmpi/.rpm -ql scalapack-openmpi3.x86_64
 /usr/lib64/openmpi3/lib/libscalapack.so.2
 /usr/lib64/openmpi3/lib/libscalapack.so.2.0.0
+
+ls /usr/lib64/openmpi/lib/libmpiblacs.so.2
+/usr/lib64/openmpi/lib/libmpiblacs.so.2*
+ls /usr/lib64/openmpi/lib/libscalapack.*  
+/usr/lib64/openmpi/lib/libscalapack.a  /usr/lib64/openmpi/lib/libscalapack.so@  /usr/lib64/openmpi/lib/libscalapack.so.2@  /usr/lib64/openmpi/lib/libscalapack.so.2.0.0*
+
+
+  Your SCALAPACK_LIBS are:    -L/usr/lib64/openmpi/lib/ -lscalapack -L/usr/lib64/openmpi/lib/ -lmpiblacs
+
+  These options derive from your chosen settings:
+   
+  SCALAPACKROOT:       /usr/lib64/openmpi/lib/
+  SCALAPACK_LIBNAME:   scalapack
+  BLACSROOT:           /usr/lib64/openmpi/lib/
+  BLACS_LIBNAME:       mpiblacs
+
+
 
 
 Openblas
@@ -51,6 +103,30 @@ ilias@adf2:~/work/software/wien2k/wien2k_23.2_openmpi/.rpm -ql openblas-devel.x8
 /usr/lib64/libopenblasp.so
 /usr/lib64/libopenblasp64.so
 /usr/lib64/libopenblasp64_.so
+
+
+  *                     Summary of parallel settings                    *
+   ***********************************************************************
+
+   Current settings:
+
+         Parallel compiler      : mpif90
+         SCALAPACK_LIBS         : -L/usr/lib64/openmpi/lib/ -lscalapack -L/usr/lib64/openmpi/lib/ -lmpiblacs
+         FFTW_PLIBS             : -lfftw3_mpi
+         ELPA_OPT               : -DELPA -I/usr/include/elpa-2015.11.001/elpa 
+                    -I/usr/include/elpa-2015.11.001/modules
+         ELPA_LIBS              : -lelpa -L/usr/lib64/openmpi -Wl,-rpath=/usr/lib64/openmpi
+         FPOPT(par.comp.options): -O
+         OMP_SWITCH             : 
+         MPIRUN command         : mpirun -np _NP_ -machinefile _HOSTS_ _EXEC_
+       
+   parallel execution:
+
+         RP_LIBS                : -L/usr/local/SCALAPACK -L/usr/local/BLACS/LIB -lpblas -lredist -ltools -lscalapack -lfblacs -lblacs -lmpi
+
+     S   Accept, Save, and Quit
+     R   Restart Configuration
+
 
 
 Buildup

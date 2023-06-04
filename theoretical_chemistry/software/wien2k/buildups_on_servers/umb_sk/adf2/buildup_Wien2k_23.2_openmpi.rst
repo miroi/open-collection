@@ -135,7 +135,7 @@ milias@adf2:~/work/software/wien2k/wien2k_23.2_openmpi/.expand_lapw
 
 ./siteconfig_lapw
 
-G generic
+LG linuxgfortran
 mpif90
 mpicc
 
@@ -161,12 +161,16 @@ mpicc
   FFTW_LIBNAME:        fftw3
   Is this correct? (Y,n): 
 
- Recommended options for system generic are:
-      OpenMP switch:           
-      Compiler options:        -O
-      Linker Flags:            -L../SRC_lib
+*                     Compiler and linker options                     *
+ ***********************************************************************
+
+
+ Recommended options for system linuxgfortran are:
+      OpenMP switch:           -fopenmp
+      Compiler options:        -ffree-form -O2 -ftree-vectorize -march=native -ffree-line-length-none -ffpe-summary=none
+      Linker Flags:            $(FOPT) -L../SRC_lib
       Preprocessor flags:      '-DParallel'
-      R_LIB (LAPACK+BLAS):     -llapack_lapw -lblas_lapw
+      R_LIB (LAPACK+BLAS):     /usr/lib64/libopenblas_openmp.so.0 -lpthread
 
  Current settings:
   M   OpenMP switch:           
@@ -174,12 +178,38 @@ mpicc
   L   Linker Flags:            -L../SRC_lib
   P   Preprocessor flags       '-DParallel'
   R   R_LIBS (LAPACK+BLAS):    -L/usr/lib64 -lopenblas
-  F   FFTW options:            -DFFTW3 -DFFTW_OMP -I/usr/include
-      FFTW-LIBS:               -L/usr/lib64 -lfftw3 -lfftw3_omp
-      FFTW-PLIBS:              NOT FOUND!
+  F   FFTW options:            -DFFTW3 -I/usr/lib64/include
+      FFTW-LIBS:               -L/usr/lib64/lib64 -lfftw3
   X   LIBX options:
       LIBXC-LIBS:
 
-  S   Save and Quit
+  PO  Parallel options
 
+  S   Save and Quit
+  Q   Quit and abandon changes
+
+
+
+Specify parallel options and library settings           *
+
+   Your current parallel settings (options and libraries) are:
+     C   Parallel Compiler:          mpif90
+     FP  Parallel Compiler Options:  -O
+     MP  MPIRUN command:             mpirun -np _NP_ -machinefile _HOSTS_ _EXEC_
+     O   Parallel OpenMP switch:     
+
+   Additional setting for SLURM batch systems (is set to 1 otherwise):
+ 
+     CN  Number of Cores:            1
+
+   Libraries:
+ 
+     Sp  SCALAPACK:                   -L/usr/lib64/openmpi/lib/ 
+                                                     -lscalapack 
+                                                     -L/usr/lib64/openmpi/lib/ -lmpiblacs
+     E   ELPA options:                -DELPA -I/usr/include/elpa-2015.11.001/elpa 
+                                                     -I/usr/include/elpa-2015.11.001/modules
+         ELPA-LIBS:                   -lelpa -L/usr/lib64/openmpi -Wl,-rpath=/usr/lib64/openmpi
+
+     RP  Parallel-Libs:      -L/usr/local/SCALAPACK -L/usr/local/BLACS/LIB -lpblas -lredist -ltools -lscalapack -lfblacs -lblacs -lmpi
 

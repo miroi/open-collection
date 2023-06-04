@@ -21,3 +21,7 @@ fftw3.f  fftw3.f03  fftw3.h  fftw3l.f03  fftw3q.f03
 ../lib/:
 cmake/  libfftw3.a  libfftw3.la*  libfftw3_omp.a  libfftw3_omp.la*  pkgconfig/
 
+OpenMPI
+=======
+milias@adf2:~/work/software/openmpi/openmpi-4.1.5/../configure  --prefix=/home/milias/work/software/openmpi
+

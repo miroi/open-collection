@@ -99,6 +99,26 @@ mpicc
   X   LIBX options:
       LIBXC-LIBS:
 
+FFTW
+~~~~
+   Your current FFTW options are:
+   
+   FFTW_OPT:             -DFFTW3 -DFFTW_OMP -I/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/include
+   FFTW_LIBS:            -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/lib -lfftw3 -lfftw3_omp
+   FFTW-PLIBS:           -lfftw3_mpi
+   
+   which are derived from following settings:
+   
+   R  FFTWROOT:          /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/
+   V  FFTW_VERSION:      FFTW3
+   L  FFTW_LIB:          lib
+   N  FFTW_LIBNAME:      fftw3
+   
+   RS Reset complete FFTW setup
+   X  Delete all settings
+   
+   B  Back to parallel options
+
 
 Scalapack
 ~~~~~~~~~

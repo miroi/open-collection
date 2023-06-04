@@ -14,24 +14,11 @@ Currently Loaded Modulefiles:
   1) mpi/openmpi3-x86_64
 
 
-FFTW3 from CP2K
-~~~~~~~~~~~~~~~~
- The OMP parallel version of your FFTW library will be used.
-
-  Your FFTW_OPT are:   -DFFTW3 -DFFTW_OMP -I/home/milias/work/software/cp2k/cp2k-8.2.0/tools/toolchain/install/fftw-3.3.8/include 
-  Your FFTW_LIBS are:  -L/home/milias/work/software/cp2k/cp2k-8.2.0/tools/toolchain/install/fftw-3.3.8/lib -lfftw3 -lfftw3_omp
-  Your FFTW_PLIBS are: -lfftw3_mpi
-
-  These options derive from your chosen settings:
-   
-  FFTWROOT:            /home/milias/work/software/cp2k/cp2k-8.2.0/tools/toolchain/install/fftw-3.3.8/
-  FFTW_VERSION:        FFTW3
-  FFTW_LIB:            lib
-  FFTW_LIBNAME:        fftw3
-  Is this correct? (Y,n): Y
+FFTW3 
+~~~~~
 
 
-Elpa
+ELPA
 ~~~~~
 [root@adf2 ~]# yum install elpa-common.noarch elpa-devel.noarch elpa-openmpi-devel.x86_64  elpa-openmpi.x86_64
 
@@ -105,8 +92,8 @@ ilias@adf2:~/work/software/wien2k/wien2k_23.2_openmpi/.rpm -ql openblas-devel.x8
 /usr/lib64/libopenblasp64_.so
 
 
-  *                     Summary of parallel settings                    *
-   ***********************************************************************
+Summary of parallel settings
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
    Current settings:
 
@@ -124,8 +111,6 @@ ilias@adf2:~/work/software/wien2k/wien2k_23.2_openmpi/.rpm -ql openblas-devel.x8
 
          RP_LIBS                : -L/usr/local/SCALAPACK -L/usr/local/BLACS/LIB -lpblas -lredist -ltools -lscalapack -lfblacs -lblacs -lmpi
 
-     S   Accept, Save, and Quit
-     R   Restart Configuration
 
 
 

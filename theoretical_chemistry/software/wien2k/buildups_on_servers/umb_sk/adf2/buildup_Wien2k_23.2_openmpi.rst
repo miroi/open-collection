@@ -8,6 +8,50 @@ yum install elpa fftw...
 
 [root@adf2 ~]# yum install elpa-openmpi-devel.x86_64 elpa-openmpi.x86_64 
 
+module load mpi/openmpi3-x86_64
+milias@adf2:~/work/software/wien2k/wien2k_23.2_openmpi/.module list
+Currently Loaded Modulefiles:
+  1) mpi/openmpi3-x86_64
+
+
+Elpa
+~~~~~
+milias@adf2:~/work/software/wien2k/wien2k_23.2_openmpi/.rpm -ql elpa-openmpi.x86_64
+/usr/lib64/openmpi/bin/elpa2_print_kernels
+/usr/lib64/openmpi/lib/libelpa.so.4
+/usr/lib64/openmpi/lib/libelpa.so.4.0.0
+
+scalapack
+~~~~~~~~~
+milias@adf2:~/work/software/wien2k/wien2k_23.2_openmpi/.rpm -ql scalapack-openmpi.x86_64
+/usr/lib64/openmpi/lib/libscalapack.so.2
+/usr/lib64/openmpi/lib/libscalapack.so.2.0.0
+milias@adf2:~/work/software/wien2k/wien2k_23.2_openmpi/.rpm -ql scalapack-openmpi3.x86_64
+/usr/lib64/openmpi3/lib/libscalapack.so.2
+/usr/lib64/openmpi3/lib/libscalapack.so.2.0.0
+
+
+Openblas
+~~~~~~~~~
+ilias@adf2:~/work/software/wien2k/wien2k_23.2_openmpi/.rpm -ql openblas-devel.x86_64
+/usr/include/openblas
+/usr/include/openblas/cblas.h
+/usr/include/openblas/f77blas.h
+/usr/include/openblas/lapacke.h
+/usr/include/openblas/lapacke_config.h
+/usr/include/openblas/lapacke_mangling.h
+/usr/include/openblas/lapacke_utils.h
+/usr/include/openblas/openblas_config.h
+/usr/lib64/libopenblas.so
+/usr/lib64/libopenblas64.so
+/usr/lib64/libopenblas64_.so
+/usr/lib64/libopenblaso.so
+/usr/lib64/libopenblaso64.so
+/usr/lib64/libopenblaso64_.so
+/usr/lib64/libopenblasp.so
+/usr/lib64/libopenblasp64.so
+/usr/lib64/libopenblasp64_.so
+
 
 Buildup
 -------

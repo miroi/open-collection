@@ -92,8 +92,32 @@ milias@lxbk1135.gsi.de:/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2_gnu_o
 
 
 LG
-gfortran
-gcc
+mpif90
+mpicc
+
+Compiler and linker options
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ Recommended options for system linuxgfortran are:
+      OpenMP switch:           -fopenmp
+      Compiler options:        -ffree-form -O2 -ftree-vectorize -march=native -ffree-line-length-none -ffpe-summary=none
+      Linker Flags:            $(FOPT) -L../SRC_lib
+      Preprocessor flags:      '-DParallel'
+      R_LIB (LAPACK+BLAS):     /usr/lib64/libopenblas_openmp.so.0 -lpthread
+
+ Current settings:
+  M   OpenMP switch:           -fopenmp
+  O   Compiler options:        -ffree-form -O2 -ftree-vectorize -march=native -ffree-line-length-none -ffpe-summary=none
+  L   Linker Flags:            $(FOPT) -L../SRC_lib
+  P   Preprocessor flags       '-DParallel'
+  R   R_LIBS (LAPACK+BLAS):    /usr/lib64/libopenblas_openmp.so.0 -lpthread
+  F   FFTW options:            -DFFTW3 -DFFTW_OMP -I/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/include
+      FFTW-LIBS:               -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/lib -lfftw3 -lfftw3_omp
+      FFTW-PLIBS:              -lfftw3_mpi
+  X   LIBX options:
+      LIBXC-LIBS:
+
+  PO  Parallel options
+
 
 
 
@@ -144,27 +168,104 @@ ELPA
 
 Parallel
 ~~~~~~~~~
-  Current settings:
+  Your current parallel settings (options and libraries) are:
+   
+     C   Parallel Compiler:          mpif90
+     FP  Parallel Compiler Options:  -ffree-form -O2 -ftree-vectorize -march=native -ffree-line-length-none -ffpe-summary=none -fallow-argument-mismatch
+     MP  MPIRUN command:             mpirun -np _NP_ -machinefile _HOSTS_ _EXEC_
+     O   Parallel OpenMP switch:     -fopenmp
 
-         Parallel compiler      : mpif90
-         SCALAPACK_LIBS         : -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdscalapack-3.2-zmrsnzmnifwusgdparcdnpdksnehsbcm/lib/ -lscalapack -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdscalapack-3.2-zmrsnzmnifwusgdparcdnpdksnehsbcm/lib/ -lscalapack
-         FFTW_PLIBS             : -lfftw3_mpi
-         ELPA_OPT               : -DELPA -I/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms//include/elpa-2021.11.001/elpa 
-                    -I/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms//include/elpa-2021.11.001/modules
-         ELPA_LIBS              : -lelpa -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms//lib -Wl,-rpath=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms//lib
-         FPOPT(par.comp.options): -ffree-form -O2 -ftree-vectorize -march=native -ffree-line-length-none -ffpe-summary=none -fallow-argument-mismatch
-         OMP_SWITCH             : -fopenmp
-         MPIRUN command         : mpirun -np _NP_ -machinefile _HOSTS_ _EXEC_
-       
-   parallel execution:
+   Additional setting for SLURM batch systems (is set to 1 otherwise):
+ 
+     CN  Number of Cores:            1
 
-         RP_LIBS                : /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib
+   Libraries:
+ 
+     Sp  SCALAPACK:                   -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdscalapack-3.2-zmrsnzmnifwusgdparcdnpdksnehsbcm/lib/ 
+                                                     -lscalapack 
+                                                     -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdscalapack-3.2-zmrsnzmnifwusgdparcdnpdksnehsbcm/lib/ -lscalapack
+     E   ELPA options:                -DELPA -I/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms/include/elpa-2021.11.001/elpa 
+                                                     -I/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms/include/elpa-2021.11.001/modules
+         ELPA-LIBS:                   -lelpa -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms/lib -Wl,-rpath=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms/lib
 
-     S   Accept, Save, and Quit
-     R   Restart Configuration
+     RP  Parallel-Libs:      /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib
 
-   Please accept and save these settings or restart the configuration.
-   If you want to change anything later on you can redo this whole configuration
-   process or you can change single items in "Compiling Options".
+
+     B   Back to compiler/linker options   
+
+*                     Compiler and linker options                     *
+ ***********************************************************************
+
+
+ Recommended options for system linuxgfortran are:
+      OpenMP switch:           -fopenmp
+      Compiler options:        -ffree-form -O2 -ftree-vectorize -march=native -ffree-line-length-none -ffpe-summary=none
+      Linker Flags:            $(FOPT) -L../SRC_lib
+      Preprocessor flags:      '-DParallel'
+      R_LIB (LAPACK+BLAS):     /usr/lib64/libopenblas_openmp.so.0 -lpthread
+
+ Current settings:
+  M   OpenMP switch:           -fopenmp
+  O   Compiler options:        -ffree-form -O2 -ftree-vectorize -march=native -ffree-line-length-none -ffpe-summary=none
+  L   Linker Flags:            $(FOPT) -L../SRC_lib
+  P   Preprocessor flags       '-DParallel'
+  R   R_LIBS (LAPACK+BLAS):    /usr/lib64/libopenblas_openmp.so.0 -lpthread
+  F   FFTW options:            -DFFTW3 -DFFTW_OMP -I/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/include
+      FFTW-LIBS:               -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/lib -lfftw3 -lfftw3_omp
+      FFTW-PLIBS:              -lfftw3_mpi
+  X   LIBX options:
+      LIBXC-LIBS:
+
+Dimensions
+~~~~~~~~~~
+WIEN2k uses dynamical allocation of most arrays according to the requirements of 
+your example. However, to avoid that the programs grow larger than the memory of 
+your computer, there are two limiting parameters, NMATMAX (the maximum matrix
+size) and NUME (number of eigenvalues), which should be set corresponding to your 
+hardware. 
+
+A matrix of 20000x20000 requires 4 (8) Gb of memory for a single lapw1 (using 10 
+(20) bytes for real (complex) numbers to account for overheads). 
+
+Thus set NMATMAX to  sqrt(MEMORY/10)  (MEMORY in Bytes)!
+
+NMATMAX=20000 ==>   4GB (real) (==> cells with about 50-150 atoms/unitcell)
+    ==> for lapw1c:    NMATMAX will be reduced internally to NMATMAX/sqrt2
+    ==> for lapw1_mpi: NMATMAX will be increased internally to NMATMAX*sqrt(NP)
+
+NUME determines the number of states to output. As a rule of thumb one can estimate 
+100 basis functions per atom in the cell and 10 occupied states per atom, so set    
+
+NUME=NMATMAX/10!
+
+The present values are:
+      PARAMETER          (NMATMAX=   60000)
+      PARAMETER          (NUME=   6000)
+
+    Change parameters in:
+
+    1   lapw1/2  (e.g. NMATMAX, NUME, RESTRICT_OUTPUT)
+    A   all programs (usually not necessary)
+
+    Q   to quit
+
+     Selection: A
+
+      PARAMETER          (NMATMAX=   60000)
+      PARAMETER          (NUME=   6000)
+      PARAMETER          (RESTRICT_OUTPUT= 9999) ! 1 for mpi with less output-files
+
+Which parameter to change? (q to quit): 
+
+
+  PO  Parallel options
+
+  S   Save and Quit
+  Q   Quit and abandon changes
+
+      To change an item select option.
+
+Selection: S
+
 
 

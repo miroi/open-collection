@@ -13,6 +13,21 @@ spack load elpa%gcc target=x86_64
 spack load openblas%gcc target=x86_64
 spack load amdscalapack%gcc target=x86_64
 
+All loaded packages
+~~~~~~~~~~~~~~~~~~~
+milias@lxbk1135.gsi.de:/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2_gnu_openmpi_openblas/.spack find --loaded
+-- linux-debian10-x86_64 / gcc@10.2.0 ---------------------------
+amdfftw@3.0                         cmake@3.24.3      glib@2.74.1           libffi@3.4.2       libxml2@2.10.1  numactl@2.0.14   pkgconf@1.8.0         slurm@21-08-8-2         zlib@1.2.13
+amdscalapack@3.2                    curl@7.85.0       gmp@6.2.1             libgcrypt@1.10.1   lz4@1.9.4       openblas@0.3.21  pmix@3.2.2            sqlite@3.39.4           zstd@1.5.2
+autoconf@2.69                       diffutils@3.8     hwloc@2.8.0           libgpg-error@1.46  m4@1.4.19       openmpi@4.1.5    py-pip@22.2.2         tar@1.34
+autoconf-archive@2022.02.11         elpa@2021.11.001  json-c@0.16           libiconv@1.16      meson@0.63.3    openssh@9.1p1    py-setuptools@59.4.0  texinfo@6.5
+automake@1.16.5                     expat@2.4.8       krb5@1.19.3           libmd@1.0.4        mpfr@4.1.0      openssl@1.1.1s   py-wheel@0.37.1       ucx@1.9.0
+bison@3.8.2                         gawk@5.1.1        libbsd@0.11.5         libpciaccess@0.16  munge@0.5.13    pcre2@10.39      python@3.10.8         util-linux-uuid@2.38.1
+bzip2@1.0.8                         gdbm@1.23         libedit@3.1-20210216  libsigsegv@2.13    ncurses@6.1     perl@5.16.3      rdma-core@22.4        util-macros@1.19.3
+ca-certificates-mozilla@2022-10-11  gettext@0.21.1    libevent@2.1.12       libtool@2.4.7      ninja@1.11.1    pigz@2.7         readline@8.1.2        xz@5.2.7
+==> 66 loaded packages
+
+
 OpenMPI & GNU compilers
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 milias@lxbk1135.gsi.de:/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2_gnu_openmpi_openblas/.which mpif90
@@ -67,23 +82,6 @@ amdscalapack@3.2  /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/g
 milias@lxbk1135.gsi.de:/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2_gnu_openmpi_openblas/.ls /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdscalapack-3.2-zmrsnzmnifwusgdparcdnpdksnehsbcm/lib/
 cmake/  libscalapack.so  pkgconfig/
 
-All loaded packages
-~~~~~~~~~~~~~~~~~~~
-milias@lxbk1135.gsi.de:/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2_gnu_openmpi_openblas/.spack find --loaded
--- linux-debian10-x86_64 / gcc@10.2.0 ---------------------------
-amdfftw@3.0                         elpa@2021.11.001  libedit@3.1-20210216  lz4@1.9.4        openssl@1.1.1s        readline@8.1.2
-amdscalapack@3.2                    expat@2.4.8       libevent@2.1.12       m4@1.4.19        pcre2@10.39           slurm@21-08-8-2
-autoconf@2.69                       gawk@5.1.1        libffi@3.4.2          meson@0.63.3     perl@5.16.3           sqlite@3.39.4
-autoconf-archive@2022.02.11         gdbm@1.23         libgcrypt@1.10.1      mpfr@4.1.0       pigz@2.7              tar@1.34
-automake@1.16.5                     gettext@0.21.1    libgpg-error@1.46     munge@0.5.13     pkgconf@1.8.0         texinfo@6.5
-bison@3.8.2                         glib@2.74.1       libiconv@1.16         ncurses@6.1      pmix@3.2.2            ucx@1.9.0
-bzip2@1.0.8                         gmp@6.2.1         libmd@1.0.4           ninja@1.11.1     py-pip@22.2.2         util-linux-uuid@2.38.1
-ca-certificates-mozilla@2022-10-11  hwloc@2.8.0       libpciaccess@0.16     numactl@2.0.14   py-setuptools@59.4.0  util-macros@1.19.3
-cmake@3.24.3                        json-c@0.16       libsigsegv@2.13       openblas@0.3.21  py-wheel@0.37.1       xz@5.2.7
-curl@7.85.0                         krb5@1.19.3       libtool@2.4.7         openmpi@4.1.5    python@3.10.8         zlib@1.2.13
-diffutils@3.8                       libbsd@0.11.5     libxml2@2.10.1        openssh@9.1p1    rdma-core@22.4        zstd@1.5.2
-==> 66 loaded packages
-
 Wien2k Compilation
 -------------------
 milias@lxbk1135.gsi.de:/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2_gnu_openmpi_openblas/.gunzip *
@@ -107,16 +105,14 @@ Compiler and linker options
  Current settings:
   M   OpenMP switch:           -fopenmp
   O   Compiler options:        -ffree-form -O2 -ftree-vectorize -march=native -ffree-line-length-none -ffpe-summary=none
-  L   Linker Flags:            $(FOPT) -L../SRC_lib
+  L   Linker Flags:            $(FOPT) -L../SRC_lib -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/lib -lfftw3 -lfftw3_omp
   P   Preprocessor flags       '-DParallel'
-  R   R_LIBS (LAPACK+BLAS):    /usr/lib64/libopenblas_openmp.so.0 -lpthread
+  R   R_LIBS (LAPACK+BLAS):    -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openblas-0.3.21-q7nhojttkz52xuf4zkxk7vvgllqnxh34/lib -lopenblas
   F   FFTW options:            -DFFTW3 -DFFTW_OMP -I/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/include
       FFTW-LIBS:               -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/lib -lfftw3 -lfftw3_omp
       FFTW-PLIBS:              -lfftw3_mpi
   X   LIBX options:
       LIBXC-LIBS:
-
-  PO  Parallel options
 
 
 
@@ -153,22 +149,28 @@ Your SCALAPACK_LIBS are:    -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debia
 
 ELPA
 ~~~~
-  Your ELPA_OPT are:   -DELPA -I/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms//include/elpa_openmp-2021.11.001/elpa 
-                           -I/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms//include/elpa_openmp-2021.11.001/modules 
-  Your ELPA_LIBS are:  -lelpa_openmp -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms//lib -Wl,rpath=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms//lib
-
-  These options derive from your chosen Settings:
+   Your current ELPA options are:
    
-  ELPAROOT:            /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms//
-  ELPA_VERSION:        2021.11.001
-  ELPA_LIB:            lib
-  ELPA_LIBNAME:        elpa_openmp
-  Is this correct?  (Y,n): Y
+   ELPA_OPT:             -DELPA -I/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms/include/elpa_openmp-2021.11.001/elpa 
+                  -I/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms/include/elpa_openmp-2021.11.001/modules
+   ELPA_LIBS:            -lelpa_openmp -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms/lib -Wl,-rpath=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms/lib
+   
+   which are derived from following settings:
+   
+   R  ELPAROOT:          /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms/
+   V  ELPA_VERSION:      2021.11.001
+   L  ELPA_LIB:          lib
+   N  ELPA_LIBNAME:      elpa_openmp
+   
+   RS Reset complete ELPA setup
+   X  Delete all settings
+   
+   B  Back to parallel options
 
 
 Parallel
 ~~~~~~~~~
-  Your current parallel settings (options and libraries) are:
+   Your current parallel settings (options and libraries) are:
    
      C   Parallel Compiler:          mpif90
      FP  Parallel Compiler Options:  -ffree-form -O2 -ftree-vectorize -march=native -ffree-line-length-none -ffpe-summary=none -fallow-argument-mismatch
@@ -188,33 +190,10 @@ Parallel
                                                      -I/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms/include/elpa-2021.11.001/modules
          ELPA-LIBS:                   -lelpa -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms/lib -Wl,-rpath=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms/lib
 
-     RP  Parallel-Libs:      /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib
-
+     RP  Parallel-Libs:      -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openblas-0.3.21-q7nhojttkz52xuf4zkxk7vvgllqnxh34/lib -lopenblas -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib -lmpi
 
      B   Back to compiler/linker options   
 
-*                     Compiler and linker options                     *
- ***********************************************************************
-
-
- Recommended options for system linuxgfortran are:
-      OpenMP switch:           -fopenmp
-      Compiler options:        -ffree-form -O2 -ftree-vectorize -march=native -ffree-line-length-none -ffpe-summary=none
-      Linker Flags:            $(FOPT) -L../SRC_lib
-      Preprocessor flags:      '-DParallel'
-      R_LIB (LAPACK+BLAS):     /usr/lib64/libopenblas_openmp.so.0 -lpthread
-
- Current settings:
-  M   OpenMP switch:           -fopenmp
-  O   Compiler options:        -ffree-form -O2 -ftree-vectorize -march=native -ffree-line-length-none -ffpe-summary=none
-  L   Linker Flags:            $(FOPT) -L../SRC_lib
-  P   Preprocessor flags       '-DParallel'
-  R   R_LIBS (LAPACK+BLAS):    /usr/lib64/libopenblas_openmp.so.0 -lpthread
-  F   FFTW options:            -DFFTW3 -DFFTW_OMP -I/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/include
-      FFTW-LIBS:               -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/lib -lfftw3 -lfftw3_omp
-      FFTW-PLIBS:              -lfftw3_mpi
-  X   LIBX options:
-      LIBXC-LIBS:
 
 Dimensions
 ~~~~~~~~~~
@@ -262,10 +241,3 @@ Which parameter to change? (q to quit):
 
   S   Save and Quit
   Q   Quit and abandon changes
-
-      To change an item select option.
-
-Selection: S
-
-
-

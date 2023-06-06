@@ -13,6 +13,50 @@ milias@adf2:~/work/software/wien2k/wien2k_23.2_openmpi/.module list
 Currently Loaded Modulefiles:
   1) mpi/openmpi3-x86_64
 
+
+
+Own FFTW3
+---------
+milias@adf2:~/work/software/fftw3/fftw-3.3.10/../configure --prefix=/home/milias/work/software/fftw3 --enable-openmp --enable-mpi
+
+milias@adf2:~/work/software/fftw3/fftw-3.3.10/.ls ../lib/ ../include/        
+../include/:
+fftw3-mpi.f03  fftw3-mpi.h  fftw3.f  fftw3.f03  fftw3.h  fftw3l-mpi.f03  fftw3l.f03  fftw3q.f03
+
+../lib/:
+cmake/  libfftw3.a  libfftw3.la*  libfftw3_mpi.a  libfftw3_mpi.la*  libfftw3_omp.a  libfftw3_omp.la*  pkgconfig/
+
+   *           FFTW Settings            *
+   **************************************
+
+   Your current FFTW options are:
+   
+   FFTW_OPT:             -DFFTW3 -DFFTW_OMP -I/home/milias/work/software/fftw3/include
+   FFTW_LIBS:            -L/home/milias/work/software/fftw3/lib -lfftw3 -lfftw3_omp
+   FFTW-PLIBS:           -lfftw3_mpi
+   
+   which are derived from following settings:
+   
+   R  FFTWROOT:          /home/milias/work/software/fftw3/
+   V  FFTW_VERSION:      FFTW3
+   L  FFTW_LIB:          lib
+   N  FFTW_LIBNAME:      fftw3
+   
+   RS Reset complete FFTW setup
+   X  Delete all settings
+   
+   B  Back to parallel options
+   
+Selection:B
+
+
+
+Own ELPA
+---------
+
+
+
+
 Check packages
 ~~~~~~~~~~~~~~
 milias@adf2:~/work/projects/open-collection/theoretical_chemistry/software/wien2k/buildups_on_servers/umb_sk/adf2/.ls /usr/lib64/libpthread*  /usr/lib64/libopenblas*
@@ -47,32 +91,6 @@ LG
 mpif90
 mpicc
 
- *                     Compiler and linker options                     *
- ***********************************************************************
-
-
- Recommended options for system linuxgfortran are:
-      OpenMP switch:           -fopenmp
-      Compiler options:        -ffree-form -O2 -ftree-vectorize -march=native -ffree-line-length-none -ffpe-summary=none
-      Linker Flags:            $(FOPT) -L../SRC_lib
-      Preprocessor flags:      '-DParallel'
-      R_LIB (LAPACK+BLAS):     /usr/lib64/libopenblas_openmp.so.0 -lpthread
-
- Current settings:
-  M   OpenMP switch:           -fopenmp
-  O   Compiler options:        -ffree-form -O2 -ftree-vectorize -march=native -ffree-line-length-none -ffpe-summary=none
-  L   Linker Flags:            -L../SRC_lib
-  P   Preprocessor flags       '-DParallel'
-  R   R_LIBS (LAPACK+BLAS):    -L/usr/lib64 -lopenblas -lpthread
-  F   FFTW options:            -DFFTW3 -I/usr/lib64/include
-      FFTW-LIBS:               -L/usr/lib64/lib64 -lfftw3
-  X   LIBX options:
-      LIBXC-LIBS:
-
-  PO  Parallel options
-
-  S   Save and Quit
-  Q   Quit and abandon changes
 
 FFTW3 
 ~~~~~
@@ -224,42 +242,14 @@ mpicc
   FFTW_LIBNAME:        fftw3
   Is this correct? (Y,n): 
 
-*                     Compiler and linker options                     *
- ***********************************************************************
-
-
- Recommended options for system linuxgfortran are:
-      OpenMP switch:           -fopenmp
-      Compiler options:        -ffree-form -O2 -ftree-vectorize -march=native -ffree-line-length-none -ffpe-summary=none
-      Linker Flags:            $(FOPT) -L../SRC_lib
-      Preprocessor flags:      '-DParallel'
-      R_LIB (LAPACK+BLAS):     /usr/lib64/libopenblas_openmp.so.0 -lpthread
-
- Current settings:
-  M   OpenMP switch:           
-  O   Compiler options:        -O
-  L   Linker Flags:            -L../SRC_lib
-  P   Preprocessor flags       '-DParallel'
-  R   R_LIBS (LAPACK+BLAS):    -L/usr/lib64 -lopenblas
-  F   FFTW options:            -DFFTW3 -I/usr/lib64/include
-      FFTW-LIBS:               -L/usr/lib64/lib64 -lfftw3
-  X   LIBX options:
-      LIBXC-LIBS:
-
-  PO  Parallel options
-
-  S   Save and Quit
-  Q   Quit and abandon changes
-
-
-
-Specify parallel options and library settings           *
-
+Parallel
+--------
    Your current parallel settings (options and libraries) are:
+   
      C   Parallel Compiler:          mpif90
-     FP  Parallel Compiler Options:  -O
+     FP  Parallel Compiler Options:  -ffree-form -O2 -ftree-vectorize -march=native -ffree-line-length-none -ffpe-summary=none
      MP  MPIRUN command:             mpirun -np _NP_ -machinefile _HOSTS_ _EXEC_
-     O   Parallel OpenMP switch:     
+     O   Parallel OpenMP switch:     -fopenmp
 
    Additional setting for SLURM batch systems (is set to 1 otherwise):
  
@@ -274,5 +264,35 @@ Specify parallel options and library settings           *
                                                      -I/usr/include/elpa-2015.11.001/modules
          ELPA-LIBS:                   -lelpa -L/usr/lib64/openmpi -Wl,-rpath=/usr/lib64/openmpi
 
-     RP  Parallel-Libs:      -L/usr/local/SCALAPACK -L/usr/local/BLACS/LIB -lpblas -lredist -ltools -lscalapack -lfblacs -lblacs -lmpi
+     RP  Parallel-Libs:      -L/usr/lib64/openmpi/lib -lmpi
+
+Compiler and linker options
+----------------------------
+
+
+ Recommended options for system linuxgfortran are:
+      OpenMP switch:           -fopenmp
+      Compiler options:        -ffree-form -O2 -ftree-vectorize -march=native -ffree-line-length-none -ffpe-summary=none
+      Linker Flags:            $(FOPT) -L../SRC_lib
+      Preprocessor flags:      '-DParallel'
+      R_LIB (LAPACK+BLAS):     /usr/lib64/libopenblas_openmp.so.0 -lpthread
+
+ Current settings:
+  M   OpenMP switch:           -fopenmp
+  O   Compiler options:        -ffree-form -O2 -ftree-vectorize -march=native -ffree-line-length-none -ffpe-summary=none
+  L   Linker Flags:            -L../SRC_lib
+  P   Preprocessor flags       '-DParallel'
+  R   R_LIBS (LAPACK+BLAS):    -L/usr/lib64 -lopenblas -lpthread
+  F   FFTW options:            -DFFTW3 -DFFTW_OMP -I/home/milias/work/software/fftw3/include
+      FFTW-LIBS:               -L/home/milias/work/software/fftw3/lib -lfftw3 -lfftw3_omp
+      FFTW-PLIBS:              -lfftw3_mpi
+  X   LIBX options:
+      LIBXC-LIBS:
+
+  PO  Parallel options
+
+  S   Save and Quit
+  Q   Quit and abandon changes
+
+
 

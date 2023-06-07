@@ -1,0 +1,51 @@
+#!/bin/bash
+
+#export WIEN2k=/data.local1/milias/software/wien2k/WIEN2k_19.2
+export WIEN2k=/home/milias/Work/software/wien2k_23.2/wien2k_23.2_gnu_serial
+
+#echo -e "\n running Abinit=$ABINIT on \"`hostname`\"  "
+
+#mpirun -np 2 $ABINIT_HOME/bin/abinit < tpaw1_1.files > log 2> err &
+ #$ABINIT_HOME/bin/abinit < tpaw1_1.files > log 2> err &
+#$WIEN2k/init_lapw  bi.struct
+
+# first link executables into directory
+ echo -e "Creating symbolic links of executables from $WIEN2k"
+
+ ln -sf $WIEN2k/dstart             $PWD/.
+ ln -sf $WIEN2k/init_lapw          $PWD/.
+ ln -sf $WIEN2k/instgen_lapw       $PWD/.
+ ln -sf $WIEN2k/kgen               $PWD/.
+ ln -sf $WIEN2k/lapw0              $PWD/.
+ ln -sf $WIEN2k/lapw1              $PWD/.
+ ln -sf $WIEN2k/lapw2              $PWD/.
+ ln -sf $WIEN2k/lapw3              $PWD/.
+ ln -sf $WIEN2k/lapw5              $PWD/.
+ ln -sf $WIEN2k/lapw7              $PWD/.
+ ln -sf $WIEN2k/lapwso             $PWD/.
+ ln -sf $WIEN2k/lapwso_mpi         $PWD/.
+ ln -sf $WIEN2k/lcore              $PWD/.
+ ln -sf $WIEN2k/lorentz            $PWD/.
+ ln -sf $WIEN2k/lstart             $PWD/.
+ ln -sf $WIEN2k/mixer              $PWD/.
+ ln -sf $WIEN2k/nn                 $PWD/.
+ ln -sf $WIEN2k/run_lapw           $PWD/.
+ ln -sf $WIEN2k/runsp_lapw         $PWD/.
+ ln -sf $WIEN2k/setrmt_lapw        $PWD/.
+ ln -sf $WIEN2k/sgroup             $PWD/.
+ ln -sf $WIEN2k/symmetry           $PWD/.
+ ln -sf $WIEN2k/testconv           $PWD/.
+ ln -sf $WIEN2k/testconv_lapw      $PWD/.
+ ln -sf $WIEN2k/write_in1          $PWD/.
+ ln -sf $WIEN2k/write_insp         $PWD/.
+ ln -sf $WIEN2k/x                  $PWD/.
+ ln -sf $WIEN2k/x_lapw             $PWD/.
+
+ inp=TiC.struct
+
+ # instgen_lapw < $inp
+ # init_lapw -b
+ # dstart  dstart.def 
+ # lapw0   # generate potential from density
+
+exit 0

@@ -2,6 +2,13 @@
 Wien2k on adf2
 ==============
 
+
+failed compilation...
+
+conflicting libraries
+
+
+
 Yum packages
 ------------
 yum install elpa fftw...

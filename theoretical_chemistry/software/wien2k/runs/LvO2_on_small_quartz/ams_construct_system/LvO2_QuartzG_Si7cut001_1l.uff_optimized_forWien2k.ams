@@ -372,16 +372,16 @@ Solvent method
 0 Allinger
 
 Lattice data
-0,1,1 4.892827910017989
+0,1,1 4.89282791
 0,1,2 0.0
 0,1,3 0.0
-0,2,1 -2.445922948974873
-0,2,2 4.238829827950918
+0,2,1 -2.44592295
+0,2,2 4.23882983
 0,2,3 0.0
 0,3,1 0.0
 0,3,2 0.0
-0,3,3 3.0
-0,n 2
+0,3,3 18.0
+0,n 3
 
 UserLattice
 0 1
@@ -958,7 +958,7 @@ ams.system.supercell {}
 ams.system.supercelltrafo {}
 ams.system.symmetrize 0
 ams.system.symmetry AUTO
-ams.task {Geometry Optimization}
+ams.task {Single Point}
 ams.thermo.lowfrequencycorrector.alpha 4.0
 ams.thermo.lowfrequencycorrector.frequency 100.0
 ams.thermo.lowfrequencycorrector.momentofinertia 1e-44
@@ -1413,7 +1413,8 @@ constraints,atoms {}
 constraints,atomsx {}
 constraints,atomsy {}
 constraints,atomsz {}
-constraints,blocks 2
+constraints,blocks {}
+constraints,bytask,GeometryOptimization {constraints,freezestrain {} constraints,latticescan,v,scale 1 constraints,latticescan,v,n 0 constraints,seldistance,n 0 constraints,blocks {} constraints,atoms {} constraints,latticescan,a,n 0 constraints,distance,n 0 constraints,latticescan,lt 1 constraints,latticescan,b,n 0 constraints,latticescan,c,n 0 constraints,angle,n 0 constraints,atomsx {} constraints,atomsy {} constraints,atomsz {} constraints,regions {} constraints,bytask,SinglePoint {constraints,freezestrain {} constraints,latticescan,v,scale 1 constraints,latticescan,v,n 0 constraints,seldistance,n 0 constraints,blocks {} constraints,atoms {} constraints,latticescan,a,n 0 constraints,distance,n 0 constraints,latticescan,b,n 0 constraints,latticescan,c,n 0 constraints,angle,n 0 constraints,atomsx {} constraints,atomsy {} constraints,atomsz {} constraints,regions {} constraints,bytask,init {constraints,freezestrain {} constraints,latticescan,v,scale 1 constraints,latticescan,v,n 0 constraints,seldistance,n 0 constraints,blocks {} constraints,atoms {} constraints,latticescan,a,n 0 constraints,distance,n 0 constraints,latticescan,b,n 0 constraints,latticescan,c,n 0 constraints,angle,n 0 constraints,atomsx {} constraints,atomsy {} constraints,atomsz {} constraints,regions {} constraints,equalstrain {} constraints,sumdifdist,+,n 0 constraints,all,n 0 constraints,dihedral,n 0 constraints,sumdifdist,-,n 0} constraints,equalstrain {} constraints,sumdifdist,+,n 0 constraints,all,n 0 constraints,dihedral,n 0 constraints,sumdifdist,-,n 0} constraints,bytask,init {constraints,freezestrain {} constraints,latticescan,v,scale 1 constraints,latticescan,v,n 0 constraints,seldistance,n 0 constraints,blocks {} constraints,atoms {} constraints,latticescan,a,n 0 constraints,distance,n 0 constraints,latticescan,b,n 0 constraints,latticescan,c,n 0 constraints,angle,n 0 constraints,atomsx {} constraints,atomsy {} constraints,atomsz {} constraints,regions {} constraints,equalstrain {} constraints,sumdifdist,+,n 0 constraints,all,n 0 constraints,dihedral,n 0 constraints,sumdifdist,-,n 0} constraints,equalstrain {} constraints,sumdifdist,+,n 0 constraints,all,n 0 constraints,dihedral,n 0 constraints,sumdifdist,-,n 0}
 constraints,bytask,SinglePoint {constraints,freezestrain {} constraints,latticescan,v,scale 1 constraints,latticescan,v,n 0 constraints,seldistance,n 0 constraints,blocks {} constraints,atoms {} constraints,latticescan,a,n 0 constraints,distance,n 0 constraints,latticescan,b,n 0 constraints,latticescan,c,n 0 constraints,angle,n 0 constraints,atomsx {} constraints,atomsy {} constraints,atomsz {} constraints,regions {} constraints,bytask,init {constraints,freezestrain {} constraints,latticescan,v,scale 1 constraints,latticescan,v,n 0 constraints,seldistance,n 0 constraints,blocks {} constraints,atoms {} constraints,latticescan,a,n 0 constraints,distance,n 0 constraints,latticescan,b,n 0 constraints,latticescan,c,n 0 constraints,angle,n 0 constraints,atomsx {} constraints,atomsy {} constraints,atomsz {} constraints,regions {} constraints,equalstrain {} constraints,sumdifdist,+,n 0 constraints,all,n 0 constraints,dihedral,n 0 constraints,sumdifdist,-,n 0} constraints,equalstrain {} constraints,sumdifdist,+,n 0 constraints,all,n 0 constraints,dihedral,n 0 constraints,sumdifdist,-,n 0}
 constraints,bytask,init {constraints,freezestrain {} constraints,latticescan,v,scale 1 constraints,latticescan,v,n 0 constraints,seldistance,n 0 constraints,blocks {} constraints,atoms {} constraints,latticescan,a,n 0 constraints,distance,n 0 constraints,latticescan,b,n 0 constraints,latticescan,c,n 0 constraints,angle,n 0 constraints,atomsx {} constraints,atomsy {} constraints,atomsz {} constraints,regions {} constraints,equalstrain {} constraints,sumdifdist,+,n 0 constraints,all,n 0 constraints,dihedral,n 0 constraints,sumdifdist,-,n 0}
 constraints,dihedral,n 0
@@ -1426,12 +1427,12 @@ constraints,latticescan,c,n 0
 constraints,latticescan,lt 1
 constraints,latticescan,v,n 0
 constraints,latticescan,v,scale 1
-constraints,regions 3
+constraints,regions {}
 constraints,seldistance,n 0
 constraints,sumdifdist,+,n 0
 constraints,sumdifdist,-,n 0
 coords.natural 0
-coords.periodicity Slab
+coords.periodicity Bulk
 cosmors.boilingpoint 0
 cosmors.logp.benzene.water 0
 cosmors.logp.dichloromethane.water 0
@@ -1628,7 +1629,7 @@ forcefield.loadcharges.section AMSResults
 forcefield.loadcharges.variable Charges
 forcefield.neighborlistskin 2.5
 forcefield.nonbondedcutoff 15.0
-forcefield.runtype {Geometry Optimization}
+forcefield.runtype {Single Point}
 forcefield.taperpairinteractions 1
 forcefield.type UFF
 forcefield.uff.atomtypesfile mmatomtypes_db
@@ -1712,7 +1713,7 @@ magnetic.lifetime {}
 magnetic.niter {}
 magnetic.old 0
 magnetic.xc ALDA
-main.0_template {ForceField_Geometry Optimization_default}
+main.0_template {ForceField_Single Point_default}
 mcd.ab 0
 mcd.b1 {}
 mcd.b2 {}
@@ -2051,6 +2052,7 @@ response.vanderwaals 10
 restart.fullpathrestart 0
 restart.selectfile { }
 restraints,angle,n 0
+restraints,bytask,GeometryOptimization {restraints,sumdifdist,+,n 0 restraints,wall,halfwidth 1.0 restraints,sumdifdist,-,n 0 restraints.yes 0 restraints,angle,n 0 restraints,dihedral,n 0 restraintstask GeometryOptimization restraints,wall,height 100.0 restraints,wall 0 restraints,wall,show 1 restraints,wall,coord 0.0 restraints,bytask,SinglePoint {restraints,sumdifdist,+,n 0 restraints,wall,halfwidth 1.0 restraints,sumdifdist,-,n 0 restraints.yes 0 restraints,angle,n 0 restraints,dihedral,n 0 restraintstask SinglePoint restraints,wall,height 100.0 restraints,wall 0 restraints,wall,show 1 restraints,wall,coord 0.0 restraints,seldistance,n 0 restraints,wall,axisindex 3 restraints,distance,n 0 restraints,bytask,init {restraints,sumdifdist,+,n 0 restraints,wall,halfwidth 1.0 restraints,sumdifdist,-,n 0 restraints.yes 0 restraints,angle,n 0 restraints,dihedral,n 0 restraints,wall,height 100.0 restraints,wall 0 restraints,wall,show 1 restraints,wall,coord 0.0 restraints,seldistance,n 0 restraints,wall,axisindex 3 restraints,distance,n 0}} restraints,seldistance,n 0 restraints,wall,axisindex 3 restraints,distance,n 0 restraints,bytask,init {restraints,sumdifdist,+,n 0 restraints,wall,halfwidth 1.0 restraints,sumdifdist,-,n 0 restraints.yes 0 restraints,angle,n 0 restraints,dihedral,n 0 restraints,wall,height 100.0 restraints,wall 0 restraints,wall,show 1 restraints,wall,coord 0.0 restraints,seldistance,n 0 restraints,wall,axisindex 3 restraints,distance,n 0}}
 restraints,bytask,SinglePoint {restraints,sumdifdist,+,n 0 restraints,wall,halfwidth 1.0 restraints,sumdifdist,-,n 0 restraints.yes 0 restraints,angle,n 0 restraints,dihedral,n 0 restraintstask SinglePoint restraints,wall,height 100.0 restraints,wall 0 restraints,wall,show 1 restraints,wall,coord 0.0 restraints,seldistance,n 0 restraints,wall,axisindex 3 restraints,distance,n 0 restraints,bytask,init {restraints,sumdifdist,+,n 0 restraints,wall,halfwidth 1.0 restraints,sumdifdist,-,n 0 restraints.yes 0 restraints,angle,n 0 restraints,dihedral,n 0 restraints,wall,height 100.0 restraints,wall 0 restraints,wall,show 1 restraints,wall,coord 0.0 restraints,seldistance,n 0 restraints,wall,axisindex 3 restraints,distance,n 0}}
 restraints,bytask,init {restraints,sumdifdist,+,n 0 restraints,wall,halfwidth 1.0 restraints,sumdifdist,-,n 0 restraints.yes 0 restraints,angle,n 0 restraints,dihedral,n 0 restraints,wall,height 100.0 restraints,wall 0 restraints,wall,show 1 restraints,wall,coord 0.0 restraints,seldistance,n 0 restraints,wall,axisindex 3 restraints,distance,n 0}
 restraints,dihedral,n 0
@@ -2065,7 +2067,7 @@ restraints,wall,halfwidth 1.0
 restraints,wall,height 100.0
 restraints,wall,show 1
 restraints.yes 0
-restraintstask GeometryOptimization
+restraintstask SinglePoint
 runscript {}
 runscript.unlocked 1
 save.0_tape41 1

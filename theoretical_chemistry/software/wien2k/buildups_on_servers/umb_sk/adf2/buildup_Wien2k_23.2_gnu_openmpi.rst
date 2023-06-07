@@ -316,7 +316,6 @@ Your current parallel settings (options and libraries) are:
      B   Back to compiler/linker options   
 
 
-
 Compilation problem
 --------------------
 need ELPA with modules !!!!

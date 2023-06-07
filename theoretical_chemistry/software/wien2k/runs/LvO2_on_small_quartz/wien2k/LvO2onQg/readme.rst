@@ -14,5 +14,6 @@ milias    5323  5296  0 21:05 ?        00:00:00 /bin/tcsh -f ./x nlvdw
 milias    5337  5323 99 21:05 ?        00:01:09 ./nlvdw nlvdw.def
 
 
+./run_lapw -nlvdw -ec 0.0001 -NI
 
 

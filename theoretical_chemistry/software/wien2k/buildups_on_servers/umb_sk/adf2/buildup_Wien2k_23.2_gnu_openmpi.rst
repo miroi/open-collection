@@ -113,9 +113,6 @@ FFTW3
    
    B  Back to parallel options
 
-
-
-
 ELPA
 ~~~~~
 [root@adf2 ~]# yum install elpa-common.noarch elpa-devel.noarch elpa-openmpi-devel.x86_64  elpa-openmpi.x86_64

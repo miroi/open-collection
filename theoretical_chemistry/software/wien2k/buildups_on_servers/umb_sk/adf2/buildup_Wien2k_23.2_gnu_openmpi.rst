@@ -3,11 +3,6 @@ Wien2k on adf2
 ==============
 
 
-failed compilation...
-
-conflicting libraries
-
-
 
 Yum packages
 ------------
@@ -275,8 +270,6 @@ Parallel
 
 Compiler and linker options
 ----------------------------
-
-
  Recommended options for system linuxgfortran are:
       OpenMP switch:           -fopenmp
       Compiler options:        -ffree-form -O2 -ftree-vectorize -march=native -ffree-line-length-none -ffpe-summary=none
@@ -287,19 +280,52 @@ Compiler and linker options
  Current settings:
   M   OpenMP switch:           -fopenmp
   O   Compiler options:        -ffree-form -O2 -ftree-vectorize -march=native -ffree-line-length-none -ffpe-summary=none
-  L   Linker Flags:            -L../SRC_lib
+  L   Linker Flags:            $(FOPT) -L../SRC_lib -L/home/milias/work/software/fftw3/lib
   P   Preprocessor flags       '-DParallel'
-  R   R_LIBS (LAPACK+BLAS):    -L/usr/lib64 -lopenblas -lpthread
+  R   R_LIBS (LAPACK+BLAS):    -L/usr/lib64 -lopenblas -lopenblasp -lblas -llapack -lpthread -lgomp
   F   FFTW options:            -DFFTW3 -DFFTW_OMP -I/home/milias/work/software/fftw3/include
       FFTW-LIBS:               -L/home/milias/work/software/fftw3/lib -lfftw3 -lfftw3_omp
       FFTW-PLIBS:              -lfftw3_mpi
   X   LIBX options:
       LIBXC-LIBS:
 
-  PO  Parallel options
 
-  S   Save and Quit
-  Q   Quit and abandon changes
+Your current parallel settings (options and libraries) are:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   
+     C   Parallel Compiler:          mpif90
+     FP  Parallel Compiler Options:  -ffree-form -O2 -ftree-vectorize -march=native -ffree-line-length-none -ffpe-summary=none
+     MP  MPIRUN command:             mpirun -np _NP_ -machinefile _HOSTS_ _EXEC_
+     O   Parallel OpenMP switch:     -fopenmp
+
+   Additional setting for SLURM batch systems (is set to 1 otherwise):
+ 
+     CN  Number of Cores:            1
+
+   Libraries:
+ 
+     Sp  SCALAPACK:                   -L/usr/lib64/openmpi3/lib/ 
+                                                     -lscalapack 
+                                                     -L/usr/lib64/openmpi3/lib/ -lmpiblacs
+     E   ELPA options:                -DELPA -I/usr/include/elpa-2015.11.001/elpa 
+                                                     -I/usr/include/elpa-2015.11.001/modules
+         ELPA-LIBS:                   -lelpa -L/usr/lib64/openmpi -Wl,-rpath=/usr/lib64/openmpi
+
+     RP  Parallel-Libs:      -lfftw3 -lfftw3_omp -L/usr/lib64 -lopenblas -lopenblasp -lgomp -lblas -llapack -lpthread -L/usr/lib64/openmpi3/lib -lmpi
+
+     B   Back to compiler/linker options   
 
 
+
+Compilation problem
+--------------------
+need ELPA with modules !!!!
+
+Compile time errors (if any) were:
+SRC_lapw1/compile.msg:Fatal Error: Cannot open module file 'elpa.mod' for reading at (1): No such file or directory
+SRC_lapw1/compile.msg:make[1]: *** [seclr4.o] Error 1
+SRC_lapw1/compile.msg:make: *** [rp] Error 2
+SRC_lapw1/compile.msg:Fatal Error: Cannot open module file 'elpa.mod' for reading at (1): No such file or directory
+SRC_lapw1/compile.msg:make[1]: *** [seclr4.o] Error 1
+SRC_lapw1/compile.msg:make: *** [cp] Error 2
 

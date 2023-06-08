@@ -103,14 +103,15 @@ echo -e "I am in \$SCRATCH directrory :"; pwd
 
 # first link Wien2k executables into the directory
  ln -sf $WIEN2k/dstart             $PWD/.
- ln -sf $WIEN2k/dstart_para        $PWD/.
+ ln -sf $WIEN2k/dstartpara         $PWD/.
+ ln -sf $WIEN2k/dstart_mpi         $PWD/.
  ln -sf $WIEN2k/init_so_lapw       $PWD/.
  ln -sf $WIEN2k/init_lapw          $PWD/.
  ln -sf $WIEN2k/instgen_lapw       $PWD/.
  ln -sf $WIEN2k/kgen               $PWD/.
  ln -sf $WIEN2k/lapw0              $PWD/.
  ln -sf $WIEN2k/lapw0_mpi          $PWD/.
- ln -sf $WIEN2k/lapw0_para         $PWD/.
+ ln -sf $WIEN2k/lapw0_para          $PWD/.
  ln -sf $WIEN2k/lapw0_lapw         $PWD/.
  ln -sf $WIEN2k/lapw1              $PWD/.
  ln -sf $WIEN2k/lapw1cpara         $PWD/.
@@ -162,8 +163,8 @@ echo -e "I am in \$SCRATCH directrory :"; pwd
  cp $case.in0_st  $case.in0
  cp $case.in1_st  $case.in1
  cat $case.in2_ls  $case.in2_sy > $case.in2_st; cp $case.in2_st $case.in2a; cp $case.in2_st $case.in2
- echo -e "\n running x dstart_para :"
- x dstart_para
+ echo -e "\n running x dstartpara :"
+ x dstartpara
 
  # run own SCF, but prepare input files first
  cp $case.inc_st  $case.inc

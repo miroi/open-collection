@@ -159,37 +159,12 @@ echo -e "I am in \$SCRATCH directrory :"; pwd
  echo -e "\n Linked input file from home directory:"
  ls -lt $PWD/$inp
 
- echo -e "\n instgen_lapw < $inp:"
- instgen_lapw < $inp
-
- echo -e "\n x nn:"
- echo 2|x nn
-
- echo -e "\n x sgroup:"
- x sgroup
-
- echo -e "\n x symmetry:"
- x symmetry
-
- echo -e "\n instgen_lapw -s -up :"
- instgen_lapw -s -up
-
- # provide PBE and -6.0Ry
- echo -e "\n x lstart :"
- echo -e 13 '\n'-6.0 | x lstart
-
- # provide k space
- echo -e "\n x kgen :"
- echo 30 | x kgen
-
  #prepare files for dstart, based on Table 4.1 in https://euler.phys.cmu.edu/cluster/WIEN2k/4Files_Program.html
- cp $case.in0_st  $case.in0
- cp $case.in1_st  $case.in1
- cat $case.in2_ls  $case.in2_sy > $case.in2_st; cp $case.in2_st $case.in2a; cp $case.in2_st $case.in2
+
  echo -e "\n running x dstart :"
  x dstart
 
- # run own SCF, but prepare input files first
+ # run own SCF, but prepare input files first, from dstart
  echo -e "\n running 'run_lapw -ec 0.0001 -NI'"
  cp $case.inc_st  $case.inc
  cp $case.inm_st  $case.inm

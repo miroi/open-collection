@@ -23,13 +23,8 @@ Formatted files for dstart
 'LvO2onQg.in1c',   'old',    'formatted',0
 'LvO2onQg.struct',      'old',    'formatted',0
 'LvO2onQg.rsp',    'old',    'formatted',0
-
-
-'LvO2onQg.in0',     'old',    'formatted',0
 'LvO2onQg.clmsum',  'old',    'formatted',0
-'LvO2onQg.struct',  'old',    'formatted',0         
 'LvO2onQg.innlvdw',   'old','formatted',0
-
 
 
 ./run_lapw -nlvdw -ec 0.0001 -NI

@@ -147,9 +147,11 @@ echo -e "I am in \$SCRATCH directrory :"; pwd
  ln -sf $WIEN2k/WIEN2k_VERSION     $PWD/.
 
 #check linking stuff
- echo -e "\n ldd $WIEN2k/<someprograms> :"
+ echo -e "\n ldd $WIEN2k/dstartpara :"
  ldd $WIEN2k/dstartpara  
+ echo -e "\n ldd $WIEN2k/dstart :"
  ldd $WIEN2k/dstart
+ echo -e "\n ldd $WIEN2k/kgen :"
  ldd $WIEN2k/kgen
 
 # link input file into scratch dir
@@ -157,19 +159,29 @@ echo -e "I am in \$SCRATCH directrory :"; pwd
  echo -e "\n Linked input file from home directory:"
  ls -lt $PWD/$inp
 
+ echo -e "\n instgen_lapw < $inp:"
  instgen_lapw < $inp
 
+ echo -e "\n x nn:"
  echo 2|x nn
 
+ echo -e "\n x sgroup:"
  x sgroup
 
+ echo -e "\n x symmetry:"
  x symmetry
 
+ echo -e "\n instgen_lapw -s -up :"
  instgen_lapw -s -up
+
  # provide PBE and -6.0Ry
+ echo -e "\n x lstart :"
  echo -e 13 '\n'-6.0 | x lstart
+
  # provide k space
+ echo -e "\n x kgen :"
  echo 30 | x kgen
+
  #prepare files for dstart, based on Table 4.1 in https://euler.phys.cmu.edu/cluster/WIEN2k/4Files_Program.html
  cp $case.in0_st  $case.in0
  cp $case.in1_st  $case.in1

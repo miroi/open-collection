@@ -143,17 +143,22 @@ echo -e "I am in \$SCRATCH directrory :"; pwd
  ln -sf $WIEN2k/WIEN2k_VERSION     $PWD/.
 
 #check linking stuff
- echo -e "\n ldd $WIEN2k/dstart_para :"
- ldd $WIEN2k/dstart_para  
+ echo -e "\n ldd $WIEN2k/<someprograms> :"
+ ldd $WIEN2k/dstartpara  
+ ldd $WIEN2k/dstartp
 
 # link input file into scratch dir
  ln -sf $SLURM_SUBMIT_DIR/$case.struct_SAVED   $PWD/$inp
  ls -lt $PWD/$inp
 
  instgen_lapw < $inp
+
  echo 2|x nn
+
  x sgroup
+
  x symmetry
+
  instgen_lapw -s -up
  # provide PBE and -6.0Ry
  echo -e 13 '\n'-6.0 | x lstart

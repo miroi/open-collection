@@ -145,10 +145,12 @@ echo -e "I am in \$SCRATCH directrory :"; pwd
 #check linking stuff
  echo -e "\n ldd $WIEN2k/<someprograms> :"
  ldd $WIEN2k/dstartpara  
- ldd $WIEN2k/dstartp
+ ldd $WIEN2k/dstart
+ ldd $WIEN2k/kgen
 
 # link input file into scratch dir
  ln -sf $SLURM_SUBMIT_DIR/$case.struct_SAVED   $PWD/$inp
+ echo -e "\n Linked input file from home directory:"
  ls -lt $PWD/$inp
 
  instgen_lapw < $inp
@@ -168,10 +170,11 @@ echo -e "I am in \$SCRATCH directrory :"; pwd
  cp $case.in0_st  $case.in0
  cp $case.in1_st  $case.in1
  cat $case.in2_ls  $case.in2_sy > $case.in2_st; cp $case.in2_st $case.in2a; cp $case.in2_st $case.in2
- echo -e "\n running x dstartpara :"
- x dstartpara
+ echo -e "\n running x dstart :"
+ x dstart
 
  # run own SCF, but prepare input files first
+ echo -e "\n running 'run_lapw -ec 0.0001 -NI'"
  cp $case.inc_st  $case.inc
  cp $case.inm_st  $case.inm
  cp $case.inq_st  $case.inq
@@ -184,10 +187,9 @@ echo -e "I am in \$SCRATCH directrory :"; pwd
 
  echo -e "\n Finished; check for ':ENE' in outputs."
 
- echo -e "List of files in $SCRATCH :"; ls -lt $SCRATCH/*
+ echo -e "\n List of files in $SCRATCH :"; ls -lt $SCRATCH/*
 
  echo -e "\n Copying output* files to home directory:"
  cp $PWD/$case.output*  $SLURM_SUBMIT_DIR/.
-
 
 exit

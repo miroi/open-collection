@@ -57,6 +57,10 @@ spack load amdscalapack%gcc target=x86_64
 #
 echo -e "\n All loaded modules, spack find --loaded:"; spack find --loaded
 
+# LD_PRELOAD, because of openblas
+# ls -lt /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openblas-0.3.21-q7nhojttkz52xuf4zkxk7vvgllqnxh34/lib/
+export LD_PRELOAD="/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openblas-0.3.21-q7nhojttkz52xuf4zkxk7vvgllqnxh34/lib/libopenblas.so.0"
+
 echo -e "\n Check of compilers and libraries:"
 which tcsh; tcsh --version
 which mpif90; mpif90 --version

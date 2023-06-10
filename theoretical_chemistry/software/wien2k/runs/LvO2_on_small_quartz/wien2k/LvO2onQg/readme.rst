@@ -35,10 +35,13 @@ cat  lapw1.def  | grep old
 'LvO2onQg.vsp',       'old',    'formatted',-1
 'LvO2onQg.struct',         'old',    'formatted',-1
 
-
-
-
-
 ./run_lapw -nlvdw -ec 0.0001 -NI
+
+
+LvO2onQg.outputst :
+WARNING:   0.047 Si   CORE electrons leak out of MT-sphere !!!!
+ touch .lcore and run scf-cycle with core density superposition
+ Or: rerun lstart with lower E-core separation energy (or increase sphere size)
+
 
 

@@ -161,15 +161,15 @@ echo -e "I am in \$SCRATCH directrory :"; pwd
 
  #prepare files for dstart, based on Table 4.1 in https://euler.phys.cmu.edu/cluster/WIEN2k/4Files_Program.html
  ln -sf $SLURM_SUBMIT_DIR/$case.in0_SAVED       $PWD/$case.in0
- ln -sf $SLURM_SUBMIT_DIR/$case.in2c_SAVED      $PWD/$case.in2c
  ln -sf $SLURM_SUBMIT_DIR/$case.in1c_SAVED      $PWD/$case.in1c
+ ln -sf $SLURM_SUBMIT_DIR/$case.in2c_SAVED      $PWD/$case.in2c
  ln -sf $SLURM_SUBMIT_DIR/$case.inm_SAVED       $PWD/$case.inm
  ln -sf $SLURM_SUBMIT_DIR/$case.rsp_SAVED       $PWD/$case.rsp
  ln -sf $SLURM_SUBMIT_DIR/$case.clmsum_SAVED    $PWD/$case.clmsum
  ln -sf $SLURM_SUBMIT_DIR/$case.vsp_SAVED       $PWD/$case.vsp
 
  echo -e "\n running x dstart :"
- x dstart
+ x dstartpara
 
  # run own SCF, but prepare input files first, from dstart
 

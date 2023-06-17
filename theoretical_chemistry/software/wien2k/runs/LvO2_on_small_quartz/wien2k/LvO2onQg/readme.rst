@@ -44,4 +44,18 @@ WARNING:   0.047 Si   CORE electrons leak out of MT-sphere !!!!
  Or: rerun lstart with lower E-core separation energy (or increase sphere size)
 
 
+Help:
+https://www.mail-archive.com/wien@zeus.theochem.tuwien.ac.at/msg22540.html
+
+dstart.def: LvO2onQg.in0  LvO2onQg.in2c  LvO2onQg.in1c LvO2onQg.struct LvO2onQg.rsp
+
+STOP  LAPW0 END  LvO2onQg.in0  LvO2onQg.clmsum  LvO2onQg.struct
+STOP  LAPW1 END  LvO2onQg.in1c  LvO2onQg.vsp 
+STOP  LAPW2 END  LvO2onQg.in2c
+STOP  CORE  END
+STOP  MIXER END  LvO2onQg.inm LvO2onQg.clmsum_old 
+
+
+
+
 

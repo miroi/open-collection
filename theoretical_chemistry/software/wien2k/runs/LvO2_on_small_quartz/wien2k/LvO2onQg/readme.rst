@@ -55,7 +55,8 @@ STOP  LAPW2 END  LvO2onQg.in2c
 STOP  CORE  END
 STOP  MIXER END  LvO2onQg.inm LvO2onQg.clmsum_old 
 
-
-
-
+error:
+'INILPW' - Invalid k-point file on unit   4 
+ 'LAPW1' - INILPW aborted unsuccessfully.
+4,'LvO2onQg.klist',          'unknown','formatted',-1
 

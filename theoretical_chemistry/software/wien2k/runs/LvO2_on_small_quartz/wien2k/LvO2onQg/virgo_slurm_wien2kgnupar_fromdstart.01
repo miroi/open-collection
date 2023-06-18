@@ -160,16 +160,16 @@ echo -e "I am in \$SCRATCH directrory :"; pwd
  ls -lt $PWD/$inp
 
  #prepare files for dstart, based on Table 4.1 in https://euler.phys.cmu.edu/cluster/WIEN2k/4Files_Program.html
- ln -sf $SLURM_SUBMIT_DIR/$case.in0_SAVED       $PWD/$case.in0
- ln -sf $SLURM_SUBMIT_DIR/$case.in1c_SAVED      $PWD/$case.in1c
- ln -sf $SLURM_SUBMIT_DIR/$case.in2c_SAVED      $PWD/$case.in2c
- ln -sf $SLURM_SUBMIT_DIR/$case.inm_SAVED       $PWD/$case.inm
- ln -sf $SLURM_SUBMIT_DIR/$case.rsp_SAVED       $PWD/$case.rsp
- ln -sf $SLURM_SUBMIT_DIR/$case.clmsum_SAVED    $PWD/$case.clmsum
- ln -sf $SLURM_SUBMIT_DIR/$case.vsp_SAVED       $PWD/$case.vsp
+ cp  $SLURM_SUBMIT_DIR/$case.in0_SAVED       $PWD/$case.in0
+ cp  $SLURM_SUBMIT_DIR/$case.in1c_SAVED      $PWD/$case.in1c
+ cp  $SLURM_SUBMIT_DIR/$case.in2c_SAVED      $PWD/$case.in2c
+ cp  $SLURM_SUBMIT_DIR/$case.inm_SAVED       $PWD/$case.inm
+ cp  $SLURM_SUBMIT_DIR/$case.rsp_SAVED       $PWD/$case.rsp
+ cp  $SLURM_SUBMIT_DIR/$case.clmsum_SAVED    $PWD/$case.clmsum
+ cp  $SLURM_SUBMIT_DIR/$case.vsp_SAVED       $PWD/$case.vsp
 
  echo -e "\n running x dstart :"
- x dstartpara
+ x -p dstart
 
  # run own SCF, but prepare input files first, from dstart
 
@@ -177,7 +177,7 @@ echo -e "I am in \$SCRATCH directrory :"; pwd
  #cp $case.inm_st  $case.inm
  #cp $case.inq_st  $case.inq
  echo -e "\n running 'run_lapw -ec 0.0001 -NI'"
- run_lapw -ec 0.0001 -NI
+ run_lapw -p -ec 0.0001 -NI
 
  # now SO step
  #echo -e "\n Now SO step:"

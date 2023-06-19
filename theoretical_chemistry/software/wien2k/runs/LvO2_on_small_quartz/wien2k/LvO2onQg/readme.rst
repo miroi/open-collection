@@ -1,5 +1,16 @@
+=========================
 LvO2@smalQ-G with wien2k
 =========================
+
+RMT
+---
+O  1.05
+Si 1.49 ---> 1.80 due to charge leak
+H  0.57
+Lv 2.20
+
+RKMax=3.0 because of H
+GMAX = 20
 
 setrmt_lapw@
 file    LvO2onQg.struct_setrmt   generated

@@ -49,12 +49,6 @@ cat  lapw1.def  | grep old
 ./run_lapw -nlvdw -ec 0.0001 -NI
 
 
-LvO2onQg.outputst :
-WARNING:   0.047 Si   CORE electrons leak out of MT-sphere !!!!
- touch .lcore and run scf-cycle with core density superposition
- Or: rerun lstart with lower E-core separation energy (or increase sphere size)
-
-
 Help:
 https://www.mail-archive.com/wien@zeus.theochem.tuwien.ac.at/msg22540.html
 
@@ -67,7 +61,4 @@ STOP  CORE  END
 STOP  MIXER END  LvO2onQg.inm LvO2onQg.clmsum_old 
 
 error:
-'INILPW' - Invalid k-point file on unit   4 
- 'LAPW1' - INILPW aborted unsuccessfully.
-4,'LvO2onQg.klist',          'unknown','formatted',-1
 

@@ -105,7 +105,10 @@ mkdir -p $SCRATCH
 cd $SCRATCH
 echo -e "I am in \$SCRATCH directrory :"; pwd
 
-# first link Wien2k executables into the directory
+# first link Wien2k executables and other files into the scratch directory
+ 
+ ln -sf $WIEN2k/bashtime2csh.pl         $PWD/.
+ ln -sf $WIEN2k/bashtime2csh.pl_lapw    $PWD/.
  ln -sf $WIEN2k/dstart             $PWD/.
  ln -sf $WIEN2k/dstartpara         $PWD/.
  ln -sf $WIEN2k/dstart_mpi         $PWD/.

@@ -173,15 +173,20 @@ echo -e "I am in \$SCRATCH directrory :"; pwd
  #cp  $SLURM_SUBMIT_DIR/$case.clmsum_SAVED    $PWD/$case.clmsum
  cp  $SLURM_SUBMIT_DIR/$case.vsp_SAVED       $PWD/$case.vsp
  cp  $SLURM_SUBMIT_DIR/$case.klist_SAVED     $PWD/$case.klist
+ cp  $SLURM_SUBMIT_DIR/$case.kgen_SAVED      $PWD/$case.kgen
 
 # prepare .machines file
 
-echo  $SLURM_JOB_NODELIST > $PWD/.machines
-echo  $SLURM_JOB_NODELIST >> $PWD/.machines
-echo  $SLURM_JOB_NODELIST >> $PWD/.machines
-echo  $SLURM_JOB_NODELIST >> $PWD/.machines
+echo  "1:"$SLURM_JOB_NODELIST > $PWD/.machines
+echo  "1:"$SLURM_JOB_NODELIST >> $PWD/.machines
+echo  "1:"$SLURM_JOB_NODELIST >> $PWD/.machines
+echo  "1:"$SLURM_JOB_NODELIST >> $PWD/.machines
+echo  "1:"$SLURM_JOB_NODELIST >> $PWD/.machines
+echo  "1:"$SLURM_JOB_NODELIST >> $PWD/.machines
+echo  "1:"$SLURM_JOB_NODELIST >> $PWD/.machines
+echo  "1:"$SLURM_JOB_NODELIST >> $PWD/.machines
 
- echo -e "\n content of $PWD/.machines:"; cat $PWD/.machines
+ echo -e "\n content of file $PWD/.machines:"; cat $PWD/.machines
 
 
  echo -e "\n running x dstart :"

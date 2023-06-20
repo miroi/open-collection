@@ -1,0 +1,172 @@
+#!/bin/bash
+
+#SBATCH -J LvO2@Qg_p
+
+##  partition (queue)
+#SBATCH -p main
+
+## max. execution time
+#SBATCH -t 0-8:00:00
+
+# number of nodes
+#SBATCH -N 1
+
+##SBATCH --exclusive
+
+#SBATCH --mem=32GB
+##SBATCH --mem=24GB
+
+# do not restart in the case of nodefail!
+#SBATCH --no-requeue
+#SBATCH --no-kill
+
+## CPU count  - max. 40 per node ?
+#SBATCH -n 4
+
+## memory NO !!!
+##SBATCH --mem-per-cpu=28G
+
+## stdout/stderr output file
+#SBATCH -o log_slurm_job.%j.%N.std_out_err
+
+## mail
+#SBATCH --mail-user=M.Ilias@gsi.de
+#SBATCH --mail-type=ALL
+
+ 
+echo Job user is $SLURM_JOB_USER and his job $SLURM_JOB_NAME has assigned ID $SLURM_JOBID
+echo This job was submitted from the computer $SLURM_SUBMIT_HOST
+echo and from the home directory:
+echo $SLURM_SUBMIT_DIR
+echo
+echo It is running on the cluster compute node:
+echo $SLURM_CLUSTER_NAME
+echo and is employing $SLURM_JOB_NUM_NODES node/nodes:
+echo $SLURM_JOB_NODELIST
+echo
+echo -e "Job partition is $SLURM_JOB_PARTITION \n"
+echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
+
+echo -e "\nSparc modules loading:"
+spack unload --all
+spack load openmpi%gcc target=x86_64
+spack load amdfftw%gcc target=x86_64
+spack load elpa%gcc target=x86_64
+spack load openblas%gcc target=x86_64
+spack load amdscalapack%gcc target=x86_64
+#
+echo -e "\n All loaded modules, spack find --loaded:"; spack find --loaded
+
+# LD_PRELOAD, because of openblas
+# ls -lt /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openblas-0.3.21-q7nhojttkz52xuf4zkxk7vvgllqnxh34/lib/
+export LD_PRELOAD="/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openblas-0.3.21-q7nhojttkz52xuf4zkxk7vvgllqnxh34/lib/libopenblas.so.0"
+
+echo -e "\n Check of compilers and libraries:"
+which tcsh; tcsh --version
+which mpif90; mpif90 --version
+which mpirun; mpirun --version
+echo -e "OpenBLAS library:";spack find --paths openblas%gcc  target=x86_64
+ls /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openblas-0.3.21-q7nhojttkz52xuf4zkxk7vvgllqnxh34/lib/
+
+
+echo -e "\nRunning on host `hostname`"
+echo -e "Time is `date` \n"
+
+# CPU model, total numer of CPUs, number of allocated CPUs
+echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
+NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
+echo "This node has total $NPROCS CPUs available for EXCLUSIVE job."
+echo "This node has $SLURM_CPUS_ON_NODE CPUs allocated for SLURM calculations."
+
+echo -e "\n The total memory at the node (in GB)"
+free -t -g
+echo -e "\n"
+
+## set internal OpenMP parallelization for MKL - Slurm CPU count
+#export MKL_NUM_THREADS=$SLURM_CPUS_ON_NODE
+#export MKL_NUM_THREADS=24
+#export MKL_NUM_THREADS=$NPROCS
+#echo -e  "\nInternal MKL parallelization MKL_NUM_THREADS=$MKL_NUM_THREADS\n"
+export OMP_NUM_THREADS=1
+export MKL_DYNAMIC="FALSE"
+export OMP_DYNAMIC="FALSE"
+
+#
+       case=LvO2onQg
+       inp=$case.struct
+#
+export WIEN2k=/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2_gnu_openmpi_openblas
+export WIENROOT=$WIEN2k; echo -e "WIENROOT=$WIENROOT"
+export PATH=$WIENROOT:$PATH
+SCR=Wien2k_23.2_job.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID
+export SCRATCH=/lustre/ukt/milias/scratch/$SCR/$case
+echo -e "\nCreating scratch directory, SCRATCH=$SCRATCH"
+mkdir -p $SCRATCH
+
+cd $SCRATCH
+echo -e "I am in \$SCRATCH directrory :"; pwd
+
+#check linking stuff
+# echo -e "\n ldd $WIEN2k/dstartpara :"
+# ldd $WIEN2k/dstartpara  
+# echo -e "\n ldd $WIEN2k/dstart :"
+# ldd $WIEN2k/dstart
+# echo -e "\n ldd $WIEN2k/kgen :"
+# ldd $WIEN2k/kgen
+
+# link input file into scratch dir
+ ln -sf $SLURM_SUBMIT_DIR/$case.struct_SAVED   $PWD/$inp
+ echo -e "\n Linked input file from home directory:"
+ ls -lt $PWD/$inp
+
+ #prepare files for dstart, based on Table 4.1 in https://euler.phys.cmu.edu/cluster/WIEN2k/4Files_Program.html
+ cp  $SLURM_SUBMIT_DIR/$case.in0_SAVED       $PWD/$case.in0
+ cp  $SLURM_SUBMIT_DIR/$case.inc_SAVED       $PWD/$case.inc
+ cp  $SLURM_SUBMIT_DIR/$case.in1c_SAVED      $PWD/$case.in1c
+ cp  $SLURM_SUBMIT_DIR/$case.in2c_SAVED      $PWD/$case.in2c
+ cp  $SLURM_SUBMIT_DIR/$case.inm_SAVED       $PWD/$case.inm
+ cp  $SLURM_SUBMIT_DIR/$case.rsp_SAVED       $PWD/$case.rsp
+ #cp  $SLURM_SUBMIT_DIR/$case.clmsum_SAVED    $PWD/$case.clmsum
+ cp  $SLURM_SUBMIT_DIR/$case.vsp_SAVED       $PWD/$case.vsp
+ cp  $SLURM_SUBMIT_DIR/$case.klist_SAVED     $PWD/$case.klist
+ cp  $SLURM_SUBMIT_DIR/$case.kgen_SAVED      $PWD/$case.kgen
+
+# prepare .machines file
+
+echo  "1:"$SLURM_JOB_NODELIST > $PWD/.machines
+echo  "1:"$SLURM_JOB_NODELIST >> $PWD/.machines
+echo  "1:"$SLURM_JOB_NODELIST >> $PWD/.machines
+echo  "1:"$SLURM_JOB_NODELIST >> $PWD/.machines
+echo  "1:"$SLURM_JOB_NODELIST >> $PWD/.machines
+echo  "1:"$SLURM_JOB_NODELIST >> $PWD/.machines
+echo  "1:"$SLURM_JOB_NODELIST >> $PWD/.machines
+echo  "1:"$SLURM_JOB_NODELIST >> $PWD/.machines
+
+ echo -e "\n content of file $PWD/.machines:"; cat $PWD/.machines
+
+
+ echo -e "\n running x dstart :"
+ x -p dstart
+
+ # run own SCF, but prepare input files first, from dstart
+
+ #cp $case.inc_st  $case.inc
+ #cp $case.inm_st  $case.inm
+ #cp $case.inq_st  $case.inq
+ echo -e "\n running 'run_lapw -p -ec 0.0001 -NI'"
+ #run_lapw  -ec 0.0001 -NI
+ run_lapw -p -ec 0.0001 -NI
+
+ # now SO step
+ #echo -e "\n Now SO step:"
+ #init_so_lapw
+ #run_lapw -so
+
+ echo -e "\n Finished; check for ':ENE' in outputs."
+
+ echo -e "\n List of files in $SCRATCH :"; ls -lt $SCRATCH/*
+
+ #echo -e "\n Copying output* files to home directory:"
+ #cp $PWD/$case.output*  $SLURM_SUBMIT_DIR/.
+
+exit

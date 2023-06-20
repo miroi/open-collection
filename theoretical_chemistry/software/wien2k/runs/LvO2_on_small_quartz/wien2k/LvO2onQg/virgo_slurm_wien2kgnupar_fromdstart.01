@@ -3,10 +3,11 @@
 #SBATCH -J LvO2onQg
 
 ##  partition (queue)
-#SBATCH -p main
+#SBATCH -p long
 
 ## max. execution time
-#SBATCH -t 0-8:00:00
+##SBATCH -t 0-08:00:00
+#SBATCH -t 3-00:00:00
 
 # number of nodes
 #SBATCH -N 1
@@ -97,9 +98,9 @@ export OMP_DYNAMIC="FALSE"
 #
 export WIEN2k=/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2_gnu_openmpi_openblas
 export WIENROOT=$WIEN2k; echo -e "WIENROOT=$WIENROOT"
-
+#
 export PATH=$WIENROOT:$PATH
-
+#
 SCR=Wien2k_23.2_job.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID
 export SCRATCH=/lustre/ukt/milias/scratch/$SCR/$case
 echo -e "\nCreating scratch directory, SCRATCH=$SCRATCH"

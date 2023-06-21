@@ -13,7 +13,7 @@ RKMax=3.0 because of H
 GMAX = 20
 
 setrmt_lapw@
-file    LvO2onQg.struct_setrmt   generated
+file   LvO2onQg.struct_setrmt   generated
 
 LvO2onQg.struct_SAVED
 
@@ -51,6 +51,9 @@ cat  lapw1.def  | grep old
 
 Help:
 https://www.mail-archive.com/wien@zeus.theochem.tuwien.ac.at/msg22540.html
+
+https://www.mail-archive.com/wien@zeus.theochem.tuwien.ac.at/msg22588.html
+In $WIENROOT/WIEN2k_parallel_options : if ( ! $?USE_REMOTE ) setenv USE_REMOTE 0 
 
 dstart.def: LvO2onQg.in0  LvO2onQg.in2c  LvO2onQg.in1c LvO2onQg.struct LvO2onQg.rsp
 

@@ -28,8 +28,10 @@ export PATH=$WIENROOT:$PATH
        inp=$case.struct
 
 #random=echo $RANDOM | md5sum | head -c 5
-export WORKDIR=/data.local1/milias/scratch/wien2k.$case.$BASHPID
+export WORKDIR=/data.local1/milias/scratch/wien2k.$BASHPID/$case
 mkdir $WORKDIR
+
+echo -e "WORKDIR=$WORKDIR, copying files there"
 
  cp  $case.in0_SAVED       $WORKDIR/$case.in0
  cp  $case.inc_SAVED       $WORKDIR/$case.inc

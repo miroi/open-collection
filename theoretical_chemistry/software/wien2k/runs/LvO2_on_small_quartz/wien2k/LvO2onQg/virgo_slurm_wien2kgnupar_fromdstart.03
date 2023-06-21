@@ -132,11 +132,11 @@ echo -e "I am in \$SCRATCH directrory :"; pwd
 
 # prepare .machines file
 
-echo '#' > .machines
+echo '# nodes for parallel job ' > .machines
 counter=1
 while [ $counter -le $SLURM_CPUS_ON_NODE ] 
 do
-  echo  "1:localhost" >>  machines
+  echo  "1:localhost" >>  .machines
   ((counter++))
 done
 echo -e "\n content of file $PWD/.machines:"; cat $PWD/.machines

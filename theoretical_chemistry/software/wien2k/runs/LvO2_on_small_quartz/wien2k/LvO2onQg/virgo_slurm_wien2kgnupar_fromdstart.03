@@ -44,7 +44,7 @@ echo $SLURM_CLUSTER_NAME
 echo -e "and is employing $SLURM_JOB_NUM_NODES node/nodes:"
 echo $SLURM_JOB_NODELIST
 echo -e "\nJob partition is $SLURM_JOB_PARTITION \n"
-echo -e "The job requests $SLURM_CPUS_ON_NODE CPU(s) per task."
+echo -e "The job requests SLURM_NTASKS=$SLURM_NTASKS."
 
 echo -e "\nSparc modules loading:"
 spack unload --all
@@ -75,7 +75,12 @@ echo -e "Time is `date` \n"
 echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
 NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
 echo "This node has total $NPROCS CPUs available for an EXCLUSIVE job."
-echo "This node has $SLURM_CPUS_ON_NODE CPUs allocated for SLURM calculations."
+echo "SLURM_CPUS_ON_NODE=$SLURM_CPUS_ON_NODE"
+echo "SLURM_NTASKS_PER_SOCKET=$SLURM_NTASKS_PER_SOCKET"
+echo "SLURM_NTASKS_PER_NODE=$SLURM_NTASKS_PER_NODE"
+echo "SLURM_NTASKS_PER_CORE=$SLURM_NTASKS_PER_CORE"
+echo "SLURM_PARTITION=$SLURM_PARTITION"
+echo "SLURM_MEM_PER_NODE=$SLURM_MEM_PER_NODE"
 
 echo -e "\n The total memory at the node (in GB)"
 free -t -g
@@ -89,14 +94,14 @@ echo -e "\n"
 export OMP_NUM_THREADS=1
 export MKL_DYNAMIC="FALSE"
 export OMP_DYNAMIC="FALSE"
-
-#
-       case=LvO2onQg
-       inp=$case.struct
 #
 export WIEN2k=/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2_gnu_openmpi_openblas
 export WIENROOT=$WIEN2k; echo -e "WIENROOT=$WIENROOT"
 export PATH=$WIENROOT:$PATH
+#
+       case=LvO2onQg
+       inp=$case.struct
+#
 SCR=Wien2k_23.2_job.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID
 export SCRATCH=/lustre/ukt/milias/scratch/$SCR/$case
 echo -e "\nCreating scratch directory, SCRATCH=$SCRATCH"
@@ -125,7 +130,6 @@ echo -e "I am in \$SCRATCH directrory :"; pwd
  cp  $SLURM_SUBMIT_DIR/$case.in2c_SAVED      $PWD/$case.in2c
  cp  $SLURM_SUBMIT_DIR/$case.inm_SAVED       $PWD/$case.inm
  cp  $SLURM_SUBMIT_DIR/$case.rsp_SAVED       $PWD/$case.rsp
- #cp  $SLURM_SUBMIT_DIR/$case.clmsum_SAVED    $PWD/$case.clmsum
  cp  $SLURM_SUBMIT_DIR/$case.vsp_SAVED       $PWD/$case.vsp
  cp  $SLURM_SUBMIT_DIR/$case.klist_SAVED     $PWD/$case.klist
  cp  $SLURM_SUBMIT_DIR/$case.kgen_SAVED      $PWD/$case.kgen
@@ -134,26 +138,21 @@ echo -e "I am in \$SCRATCH directrory :"; pwd
 
 echo '# nodes for parallel job ' > .machines
 counter=1
-while [ $counter -le $SLURM_CPUS_ON_NODE ] 
+while [ $counter -le $SLURM_NTASKS ] 
 do
   echo  "1:localhost" >>  .machines
 #  echo  "localhost" >>  .machines
   ((counter++))
 done
+echo -e "\n number of hosts in .machines, SLURM_NTASKS=$SLURM_NTASKS"
 echo -e "\n content of file $PWD/.machines:"; cat $PWD/.machines
 
 
 echo -e "\n running 'x -p dstart' :"
 x -p dstart
 
- # run own SCF, but prepare input files first, from dstart
-
- #cp $case.inc_st  $case.inc
- #cp $case.inm_st  $case.inm
- #cp $case.inq_st  $case.inq
-
-echo -e "\n Test: run_lapw -p"
-run_lapw -p
+#echo -e "\n Test: run_lapw -p"
+#run_lapw -p
 
 echo -e "\n running 'run_lapw -p -ec 0.0001 -NI'"
  #run_lapw  -ec 0.0001 -NI

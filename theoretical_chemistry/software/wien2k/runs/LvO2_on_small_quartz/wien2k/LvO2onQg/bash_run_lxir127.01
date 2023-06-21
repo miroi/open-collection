@@ -1,0 +1,72 @@
+#!/bin/bash
+
+export WIEN2k=/data.local1/milias/software/wien2k/WIEN2k_23.2/intel-openmpi_mkl
+export WIENROOT=$WIEN2k
+
+export SCRATCH=/tmp
+
+# load spack modules 
+spack load intel-mkl@2020.4.304
+spack load intel-parallel-studio@professional.2020.1
+spack load amdfftw@3.0 arch=broadwell
+spack unload openmpi@3.1.6
+export PATH=/u/milias/bin/openmpi/bin:$PATH
+export LD_LIBRARY_PATH=/u/milias/bin/openmpi/lib:$LD_LIBRARY_PATH
+
+which mpif90; mpif90 --version
+which mpirun; mpirun --version
+echo -e "\n MKLROOT=$MKLROOT"
+which tcsh; tcsh --version
+
+echo -e "\n loaded modules:"; spack find --loaded
+
+echo -e "\n Wien2k in PATH=$PATH"
+
+export PATH=$WIENROOT:$PATH
+
+       case=LvO2onQg
+       inp=$case.struct
+
+#random=echo $RANDOM | md5sum | head -c 5
+export WORKDIR=/data.local1/milias/scratch/wien2k.$case.$BASHPID
+mkdir $WORKDIR
+
+ cp  $case.in0_SAVED       $WORKDIR/$case.in0
+ cp  $case.inc_SAVED       $WORKDIR/$case.inc
+ cp  $case.in1c_SAVED      $WORKDIR/$case.in1c
+ cp  $case.in2c_SAVED      $WORKDIR/$case.in2c
+ cp  $case.inm_SAVED       $WORKDIR/$case.inm
+ cp  $case.rsp_SAVED       $WORKDIR/$case.rsp
+ cp  $case.vsp_SAVED       $WORKDIR/$case.vsp
+ cp  $case.klist_SAVED     $WORKDIR/$case.klist
+ cp  $case.kgen_SAVED      $WORKDIR/$case.kgen
+
+export NPROC=8
+# prepare .machines file
+
+echo '# nodes for parallel job ' > $WORKDIR/.machines
+counter=1
+while [ $counter -le $NPROC ] 
+do
+  echo  "1:localhost" >>  $WORKDIR/.machines
+#  echo  "localhost" >>  .machines
+  ((counter++))
+done
+echo -e "\n number of hosts in .machines, NPROC=$NPROC"
+echo -e "\n content of file $WORKDIR/.machines:"; cat $WORKDIR/.machines
+
+cd $WORKDIR
+echo -e "\n I am in $WORKDIR"; pwd
+
+echo -e "\n running 'x -p dstart' :"
+x -p dstart
+echo -e "\n running 'run_lapw -p -ec 0.0001 -NI'"
+run_lapw -p -ec 0.0001 -NI
+cat ":log"
+
+ echo -e "\n Finished; check for ':ENE' in outputs. \n"
+
+ echo -e "\n List of files in $WORKDIR :"; ls -lt $WORKDIR/*
+
+
+exit 0

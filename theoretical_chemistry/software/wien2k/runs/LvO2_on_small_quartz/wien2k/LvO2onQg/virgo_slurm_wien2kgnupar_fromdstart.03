@@ -136,13 +136,14 @@ echo '# nodes for parallel job ' > .machines
 counter=1
 while [ $counter -le $SLURM_CPUS_ON_NODE ] 
 do
-  echo  "1:localhost" >>  .machines
+#  echo  "1:localhost" >>  .machines
+  echo  "localhost" >>  .machines
   ((counter++))
 done
 echo -e "\n content of file $PWD/.machines:"; cat $PWD/.machines
 
 
-echo -e "\n running x dstart :"
+echo -e "\n running 'x -p dstart' :"
 x -p dstart
 
  # run own SCF, but prepare input files first, from dstart
@@ -159,9 +160,8 @@ run_lapw -p -ec 0.0001 -NI
  #init_so_lapw
  #run_lapw -so
 
- echo -e "\n Finished; check for ':ENE' in outputs. \n"
-
  cat ":log"
+ echo -e "\n Finished; check for ':ENE' in outputs. \n"
 
  echo -e "\n List of files in $SCRATCH :"; ls -lt $SCRATCH/*
 

@@ -13,3 +13,8 @@ Lv 2.20
 
 RKMax=3.0 because of H
 GMAX = 20
+
+Number of k-points: 100
+Shift k-mesh (if applicable) No
+
+

@@ -60,6 +60,25 @@ P:
 
 Compiler options:
 -----------------
+ Recommended options for system linuxgfortran are:
+      OpenMP switch:           -fopenmp
+      Compiler options:        -ffree-form -O2 -ftree-vectorize -march=native -ffree-line-length-none -ffpe-summary=none
+      Linker Flags:            $(FOPT) -L../SRC_lib
+      Preprocessor flags:      '-DParallel'
+      R_LIB (LAPACK+BLAS):     /usr/lib64/libopenblas_openmp.so.0 -lpthread
+
+ Current settings:
+  M   OpenMP switch:           -fopenmp
+  O   Compiler options:        -ffree-form -O2 -ftree-vectorize -march=native -ffree-line-length-none -ffpe-summary=none
+  L   Linker Flags:            $(FOPT) -L../SRC_lib
+  P   Preprocessor flags       '-DParallel'
+  R   R_LIBS (LAPACK+BLAS):    /lustre/home/utils/easybuild_old/software/OpenBLAS/0.3.20-GCC-11.3.0/lib/libopenblas.so -lpthread
+  F   FFTW options:            -DFFTW3 -I/lustre/home/utils/easybuild_old/software/FFTW.MPI/3.3.10-gompi-2022a/include
+      FFTW-LIBS:               -L/lustre/home/utils/easybuild_old/software/FFTW.MPI/3.3.10-gompi-2022a/lib -lfftw3
+      FFTW-PLIBS:              -lfftw3_mpi
+  X   LIBX options:
+      LIBXC-LIBS:
+
 
 FFTW
 ~~~~
@@ -100,3 +119,6 @@ Parallel
 Dimensions
 ~~~~~~~~~~
  set value for NMATMAX=60000
+
+
+

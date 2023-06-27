@@ -108,15 +108,17 @@ ScaLAPACK
 
 Parallel
 ~~~~~~~~~
-         Parallel compiler      : mpif90
-         SCALAPACK_LIBS         : -L/lustre/home/utils/easybuild_old/software/ScaLAPACK/2.2.0-gompi-2022a-fb/lib/ -llibscalapack.so
-         FFTW_PLIBS             : -lfftw3_mpi
-         ELPA_OPT               : -DELPA -I/lustre/home/utils/easybuild_old/software/ELPA/2021.11.001-foss-2022a/include/elpa-2021.11.001/elpa 
-                    -I/lustre/home/utils/easybuild_old/software/ELPA/2021.11.001-foss-2022a/include/elpa-2021.11.001/modules
-         ELPA_LIBS              : -lelpa -L/lustre/home/utils/easybuild_old/software/ELPA/2021.11.001-foss-2022a/lib -Wl,-rpath=/lustre/home/utils/easybuild_old/software/ELPA/2021.11.001-foss-2022a/lib
-         FPOPT(par.comp.options): -ffree-form -O2 -ftree-vectorize -march=native -ffree-line-length-none -ffpe-summary=none -fallow-argument-mismatch
-         OMP_SWITCH             : -fopenmp
-         MPIRUN command         : mpirun -np _NP_ -machinefile _HOSTS_ _EXEC_
+     C   Parallel Compiler:          mpif90
+     FP  Parallel Compiler Options:  -ffree-form -O2 -ftree-vectorize -march=native -ffree-line-length-none -ffpe-summary=none -fallow-argument-mismatch
+     MP  MPIRUN command:             mpirun -np _NP_ -machinefile _HOSTS_ _EXEC_
+     O   Parallel OpenMP switch:     -fopenmp
+     Sp  SCALAPACK:                   -L/lustre/home/utils/easybuild_old/software/ScaLAPACK/2.2.0-gompi-2022a-fb/lib/ 
+                                                     -lscalapack
+     E   ELPA options:                -DELPA -I/lustre/home/utils/easybuild_old/software/ELPA/2021.11.001-foss-2022a/include/elpa-2021.11.001/elpa 
+                                                     -I/lustre/home/utils/easybuild_old/software/ELPA/2021.11.001-foss-2022a/include/elpa-2021.11.001/modules
+         ELPA-LIBS:                   -lelpa -L/lustre/home/utils/easybuild_old/software/ELPA/2021.11.001-foss-2022a/lib -Wl,-rpath=/lustre/home/utils/easybuild_old/software/ELPA/2021.11.001-foss-2022a/lib
+
+     RP  Parallel-Libs:      -L/lustre/home/utils/easybuild_old/software/ELPA/2021.11.001-foss-2022a/lib -lelpa -lelpa_openmp -L/lustre/home/utils/easybuild_old/software/OpenBLAS/0.3.20-GCC-11.3.0/lib -lopenblas -lpthread  # I had to extend it to get mpi-based executables compiled
 
 
 Dimensions

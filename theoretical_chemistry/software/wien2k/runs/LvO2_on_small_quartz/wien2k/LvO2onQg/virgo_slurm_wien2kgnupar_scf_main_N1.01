@@ -86,14 +86,6 @@ echo -e "\n The total memory at the node (in GB)"
 free -t -g
 echo -e "\n"
 
-## set internal OpenMP parallelization for MKL - Slurm CPU count
-#export MKL_NUM_THREADS=$SLURM_CPUS_ON_NODE
-#export MKL_NUM_THREADS=24
-#export MKL_NUM_THREADS=$NPROCS
-#echo -e  "\nInternal MKL parallelization MKL_NUM_THREADS=$MKL_NUM_THREADS\n"
-export OMP_NUM_THREADS=1
-export MKL_DYNAMIC="FALSE"
-export OMP_DYNAMIC="FALSE"
 #
 export WIEN2k=/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2_gnu_openmpi_openblas
 export WIENROOT=$WIEN2k; echo -e "WIENROOT=$WIENROOT"
@@ -133,14 +125,9 @@ echo -e "I am in \$SCRATCH directrory :"; pwd
 
 echo '# nodes for parallel job ' > $PWD/.machines
 echo 'omp_global:4 ' >> $PWD/.machines
-counter=1
-while [ $counter -le $SLURM_NTASKS ] 
-do
-  echo  "1:localhost" >>  .machines
-#  echo  "localhost" >>  .machines
-  ((counter++))
-done
-echo -e "\n number of hosts in .machines, SLURM_NTASKS=$SLURM_NTASKS, counter=$counter"
+echo "1:localhost:$SLURM_NTASKS" >>  $PWD/.machines
+
+echo -e "\n number of hosts in .machines, SLURM_NTASKS=$SLURM_NTASKS"
 echo -e "\n content of file $PWD/.machines:"; cat $PWD/.machines
 
 echo -e "\n running 'x -p dstart' :"

@@ -102,14 +102,16 @@ cd $SCRATCH
 echo -e "I am in \$SCRATCH directrory :"; pwd
 
 #check linking stuff
-# echo -e "\n ldd $WIEN2k/dstartpara :"
-# ldd $WIEN2k/dstartpara  
-# echo -e "\n ldd $WIEN2k/dstart :"
-# ldd $WIEN2k/dstart
-# echo -e "\n ldd $WIEN2k/kgen :"
-# ldd $WIEN2k/kgen
+echo -e "\n ldd $WIEN2k/dstart_mpi :"
+ldd $WIEN2k/dstart_mpi
+echo -e "\n ldd $WIEN2k/lapw0_mpi :"
+ldd $WIEN2k/lapw0_mpi
+echo -e "\n ldd $WIEN2k/lapw1c :"
+ldd $WIEN2k/lapw1c
+echo -e "\n ldd $WIEN2k/lapw2c_mpi :"
+ldd $WIEN2k/lapw2c_mpi
 
- #prepare files for dstart, based on Table 4.1 in https://euler.phys.cmu.edu/cluster/WIEN2k/4Files_Program.html
+#prepare files for dstart, based on Table 4.1 in https://euler.phys.cmu.edu/cluster/WIEN2k/4Files_Program.html
  cp  $SLURM_SUBMIT_DIR/$case.struct_SAVED    $PWD/$case.struct
  cp  $SLURM_SUBMIT_DIR/$case.in0_SAVED       $PWD/$case.in0
  cp  $SLURM_SUBMIT_DIR/$case.inc_SAVED       $PWD/$case.inc
@@ -122,7 +124,6 @@ echo -e "I am in \$SCRATCH directrory :"; pwd
  cp  $SLURM_SUBMIT_DIR/$case.kgen_SAVED      $PWD/$case.kgen
 
 # prepare .machines file
-
 echo '# nodes for parallel job ' > $PWD/.machines
 echo 'omp_global:4 ' >> $PWD/.machines
 echo "1:localhost:$SLURM_NTASKS" >>  $PWD/.machines

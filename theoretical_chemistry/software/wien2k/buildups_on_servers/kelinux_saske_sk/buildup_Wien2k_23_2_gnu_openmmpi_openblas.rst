@@ -82,6 +82,9 @@ Compiler options:
 
 FFTW
 ~~~~
+ F   FFTW options:            -DFFTW3 -I/lustre/home/utils/easybuild_old/software/FFTW.MPI/3.3.10-gompi-2022a/include
+      FFTW-LIBS:               -L/lustre/home/utils/easybuild_old/software/FFTW.MPI/3.3.10-gompi-2022a/lib -lfftw3
+      FFTW-PLIBS:              -lfftw3_mpi
 
 ELPA
 ~~~~
@@ -99,9 +102,9 @@ ELPA
 
 ScaLAPACK
 ~~~~~~~~~
-Your SCALAPACK_LIBS are:    -L/lustre/home/utils/easybuild_old/software/ScaLAPACK/2.2.0-gompi-2022a-fb/lib/ -llibscalapack.so
-  SCALAPACKROOT:       /lustre/home/utils/easybuild_old/software/ScaLAPACK/2.2.0-gompi-2022a-fb/lib/
-  SCALAPACK_LIBNAME:   libscalapack.so
+    Sp  SCALAPACK:                   -L/lustre/home/utils/easybuild_old/software/ScaLAPACK/2.2.0-gompi-2022a-fb/lib/ 
+                                                     -lscalapack
+
 
 Parallel
 ~~~~~~~~~
@@ -119,6 +122,4 @@ Parallel
 Dimensions
 ~~~~~~~~~~
  set value for NMATMAX=60000
-
-
 

@@ -260,7 +260,6 @@ Which parameter to change? (q to quit):
 
 Check
 -----
-milias@lxbk1135.gsi.de:/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2_gnu_openmpi_openblas/.less SRC*/compile.msg | grep error
-..none !
+.../Wien2k_23.2_gnu_openmpi_openblas/.less SRC*/compile.msg | grep error
 
 

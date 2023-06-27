@@ -118,7 +118,8 @@ Parallel
                                                      -I/lustre/home/utils/easybuild_old/software/ELPA/2021.11.001-foss-2022a/include/elpa-2021.11.001/modules
          ELPA-LIBS:                   -lelpa -L/lustre/home/utils/easybuild_old/software/ELPA/2021.11.001-foss-2022a/lib -Wl,-rpath=/lustre/home/utils/easybuild_old/software/ELPA/2021.11.001-foss-2022a/lib
 
-     RP  Parallel-Libs:      -L/lustre/home/utils/easybuild_old/software/ELPA/2021.11.001-foss-2022a/lib -lelpa -lelpa_openmp -L/lustre/home/utils/easybuild_old/software/OpenBLAS/0.3.20-GCC-11.3.0/lib -lopenblas -lpthread  # I had to extend it to get mpi-based executables compiled
+### I had to extend it manually for missing libs to get mpi-based executables compiled!!!
+     RP  Parallel-Libs:  -L/lustre/home/utils/easybuild_old/software/FFTW.MPI/3.3.10-gompi-2022a/lib -lfftw3 -lfftw3_mpi -L/lustre/home/utils/easybuild_old/software/ELPA/2021.11.001-foss-2022a/lib -lelpa -lelpa_openmp -L/lustre/home/utils/easybuild_old/software/OpenBLAS/0.3.20-GCC-11.3.0/lib -lopenblas -lpthread
 
 
 Dimensions

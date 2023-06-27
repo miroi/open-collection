@@ -72,7 +72,7 @@ Compiler options:
   O   Compiler options:        -ffree-form -O2 -ftree-vectorize -march=native -ffree-line-length-none -ffpe-summary=none
   L   Linker Flags:            $(FOPT) -L../SRC_lib
   P   Preprocessor flags       '-DParallel'
-  R   R_LIBS (LAPACK+BLAS):    /lustre/home/utils/easybuild_old/software/OpenBLAS/0.3.20-GCC-11.3.0/lib/libopenblas.so -lpthread
+  R   R_LIBS (LAPACK+BLAS):    -L/lustre/home/utils/easybuild_old/software/OpenBLAS/0.3.20-GCC-11.3.0/lib -lopenblas -lpthread
   F   FFTW options:            -DFFTW3 -I/lustre/home/utils/easybuild_old/software/FFTW.MPI/3.3.10-gompi-2022a/include
       FFTW-LIBS:               -L/lustre/home/utils/easybuild_old/software/FFTW.MPI/3.3.10-gompi-2022a/lib -lfftw3
       FFTW-PLIBS:              -lfftw3_mpi
@@ -122,4 +122,5 @@ Parallel
 Dimensions
 ~~~~~~~~~~
  set value for NMATMAX=60000
+
 

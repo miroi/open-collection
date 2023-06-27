@@ -123,4 +123,9 @@ Dimensions
 ~~~~~~~~~~
  set value for NMATMAX=60000
 
+Check of compilation
+--------------------
+ilias@login1.kelinux.saske.sk:~/work/qch/software/wien2k/WIEN2k_23.2_gnu_openmpi_openblas/.cat SRC*/compile.msg | grep error
+
+cat SRC*/compile.msg | less | grep 
 

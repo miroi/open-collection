@@ -119,16 +119,22 @@ Parallel
          ELPA-LIBS:                   -lelpa -L/lustre/home/utils/easybuild_old/software/ELPA/2021.11.001-foss-2022a/lib -Wl,-rpath=/lustre/home/utils/easybuild_old/software/ELPA/2021.11.001-foss-2022a/lib
 
 ### I had to extend it manually for missing libs to get mpi-based executables compiled!!!
+
      RP  Parallel-Libs:  -L/lustre/home/utils/easybuild_old/software/FFTW.MPI/3.3.10-gompi-2022a/lib -lfftw3 -lfftw3_mpi -L/lustre/home/utils/easybuild_old/software/ELPA/2021.11.001-foss-2022a/lib -lelpa -lelpa_openmp -L/lustre/home/utils/easybuild_old/software/OpenBLAS/0.3.20-GCC-11.3.0/lib -lopenblas -lpthread
 
 
 Dimensions
 ~~~~~~~~~~
- set value for NMATMAX=60000
+set value for NMATMAX=60000
+
 
 Check of compilation
 --------------------
 ilias@login1.kelinux.saske.sk:~/work/qch/software/wien2k/WIEN2k_23.2_gnu_openmpi_openblas/.cat SRC*/compile.msg | grep error
 
 cat SRC*/compile.msg | less | grep 
+
+ilias@login1.kelinux.saske.sk:~/work/qch/software/wien2k/WIEN2k_23.2_gnu_openmpi_openblas/.ls *mpi
+dstart_mpi*  hfc_mpi*  hf_mpi*  lapw0_mpi*  lapw1c_mpi*  lapw1_mpi*  lapw2c_mpi*  lapw2_mpi*  lapwso_mpi*  nlvdw_mpi*  nmrc_mpi*  nmr_mpi*
+
 

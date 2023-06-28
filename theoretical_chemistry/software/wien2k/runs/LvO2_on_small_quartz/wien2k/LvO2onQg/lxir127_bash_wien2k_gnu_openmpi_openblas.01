@@ -1,6 +1,7 @@
 #!/bin/bash
 
-export WIEN2k=/data.local1/milias/software/wien2k/WIEN2k_23.2/intel-openmpi_mkl
+#export WIEN2k=/data.local1/milias/software/wien2k/WIEN2k_23.2/intel-openmpi_mkl
+export WIEN2k=/data.local1/milias/software/wien2k/WIEN2k_23.2/gnu_openmpi_openblas
 export WIENROOT=$WIEN2k
 
 export SCRATCH=/tmp
@@ -36,7 +37,7 @@ which tcsh; tcsh --version
 echo -e "\n loaded modules:"; spack find --loaded
 
 export PATH=$WIENROOT:$PATH
-echo -e "\n Wien2k in PATH=$PATH"
+echo -e "\n Wien2k in PATH"
 
        case=LvO2onQg
        inp=$case.struct
@@ -56,6 +57,20 @@ echo -e "\n Created WORKDIR=$WORKDIR, copying Wien2k input files there..."
  cp  $case.vsp_SAVED       $WORKDIR/$case.vsp
  cp  $case.klist_SAVED     $WORKDIR/$case.klist
  cp  $case.kgen_SAVED      $WORKDIR/$case.kgen
+
+#
+# checked linking of selected Wien2k executables
+#
+#check linking stuff
+echo -e "\n ldd $WIEN2k/dstart_mpi :"
+ldd $WIEN2k/dstart_mpi
+echo -e "\n ldd $WIEN2k/lapw0_mpi :"
+ldd $WIEN2k/lapw0_mpi
+echo -e "\n ldd $WIEN2k/lapw1c_mpi :"
+ldd $WIEN2k/lapw1c_mpi
+echo -e "\n ldd $WIEN2k/lapw2c_mpi :"
+ldd $WIEN2k/lapw2c_mpi
+
 
 export NPROC=8
 # prepare .machines file

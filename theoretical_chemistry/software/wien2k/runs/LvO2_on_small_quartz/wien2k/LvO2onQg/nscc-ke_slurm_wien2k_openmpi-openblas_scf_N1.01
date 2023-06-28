@@ -69,6 +69,8 @@ echo -e "\n FFTW3 library:";ls /lustre/home/utils/easybuild_old/software/FFTW.MP
 #
 echo -e "\n SCALAPACK library:"; ls /lustre/home/utils/easybuild_old/software/ScaLAPACK/2.2.0-gompi-2022a-fb/lib
 
+echo -e "\n ELPA library:"; ls /lustre/home/utils/easybuild_old/software/ELPA/2021.11.001-foss-2022a/lib
+
 echo -e "\n Running on host `hostname`"
 echo -e "Time is `date` \n"
 
@@ -92,7 +94,7 @@ echo -e "\n"
 export WIEN2k=/lustre/home/ilias/work/qch/software/wien2k/WIEN2k_23.2_gnu_openmpi_openblas
 export WIENROOT=$WIEN2k
 export PATH=$WIENROOT:$PATH
-echo -e "\n WIENROOT=$WIENROOT, PATH variable extended"
+echo -e "\n WIENROOT=$WIENROOT added to the PATH variable, PATH=$PATH"
 #
        case=LvO2onQg
 #
@@ -105,7 +107,7 @@ mkdir -p $SCRATCH
 cd $SCRATCH
 echo -e "\n I am in  the \$SCRATCH directrory, pwd="; pwd
 
-#check linking stuff
+# check the linking stuff
 echo -e "\n ldd $WIEN2k/dstart_mpi :"
 ldd $WIEN2k/dstart_mpi
 echo -e "\n ldd $WIEN2k/lapw0_mpi :"

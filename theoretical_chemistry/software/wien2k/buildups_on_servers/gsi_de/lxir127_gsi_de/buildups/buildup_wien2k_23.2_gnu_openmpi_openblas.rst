@@ -256,9 +256,6 @@ Which parameter to change? (q to quit):
 
 Check
 -----
+
+SRC_lapw0/Makefile.orig modified a little , but on Virgo no need to modify, just mixed links
 .../Wien2k_23.2_gnu_openmpi_openblas/.less SRC*/compile.msg | grep error
-
-SRC_hf:
-pif90  -o ./hfc_mpi modules.o W2kinit.o charge.o abc.o add_hvxhfvc.o add_hvxsl_int.o add_hvxsl_sph.o add_vklioldcc.o add_vklioldvv_int.o add_vklioldvv_sph.o atpar.o c3fft.o calc_abc_hf.o calc_abc_sl.o calc_cnk.o calc_exhf.o calc_exhfcc.o calc_exhfvc.o calc_exhfvv.o calc_gaunt.o calc_gaunt_vklioldcc.o calc_gaunt_vxsl.o calc_h_1.o calc_h_2.o calc_ifflim.o calc_indices.o calc_klicc.o calc_klicv.o calc_klivv.o calc_overlap_sph.o calc_rhovalvxsl.o calc_slatercc.o calc_slatervc.o calc_slatervv.o calc_tdde.o calc_tddh.o calc_theta.o calc_ucuchucuc.o calc_ucuchucuckli.o calc_ucuchucucsla.o calc_ucvkliolducg.o calc_uu.o calc_uuchucu.o calc_uuchucuh.o calc_uuchucukli.o calc_uuchucusla.o calc_uuguu.o calc_uuguuh.o calc_uuguukli.o calc_uuguusla.o calc_uui.o calc_uuih.o calc_uuisla.o calc_uukli.o calc_uvklioldug.o calc_uvxslug.o calc_vcvcint.o calc_vklioldtheta.o calc_vxsltheta.o cbcomb.o cputim.o create_stars.o dergl.o diracout.o dvbes1.o errclr.o errflg.o fftw_seq.o gaunt.o getfft.o gtfnam.o hf.o ifflim.o inouh.o inth.o latgen.o lomain.o make_alms.o msbi.o msbj.o msbk.o notri.o opnfs.o outerr.o outwin.o ph.o read_cnk.o read_input.o read_rhoval.o read_struct.o read_uc.o read_vkliold.o read_vxsl.o read_weight.o rint13.o rotate.o rotdef.o setfft.o sphbes.o sphi.o sphk.o stern.o t3j.o t3j0.o vklioldshift.o W2kutils.o write_slater.o ylm.o -ffree-form -O2 -ftree-vectorize -march=native -ffree-line-length-none -ffpe-summary=none -DFFTW3 -DFFTW_OMP -I/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/include -fopenmp -L../SRC_lib -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/lib -lfftw3 -lfftw3_omp -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/lib -lfftw3 -lfftw3_omp  -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdscalapack-3.2-zmrsnzmnifwusgdparcdnpdksnehsbcm/lib/ -lscalapack -L -l  
-/usr/bin/ld: calc_exhfvv.o: undefined reference to symbol 'dgemm_'
-

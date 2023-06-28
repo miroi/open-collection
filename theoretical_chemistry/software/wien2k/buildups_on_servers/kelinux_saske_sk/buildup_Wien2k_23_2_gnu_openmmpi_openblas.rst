@@ -137,4 +137,9 @@ cat SRC*/compile.msg | less | grep
 ilias@login1.kelinux.saske.sk:~/work/qch/software/wien2k/WIEN2k_23.2_gnu_openmpi_openblas/.ls *mpi
 dstart_mpi*  hfc_mpi*  hf_mpi*  lapw0_mpi*  lapw1c_mpi*  lapw1_mpi*  lapw2c_mpi*  lapw2_mpi*  lapwso_mpi*  nlvdw_mpi*  nmrc_mpi*  nmr_mpi*
 
+ilias@login1.kelinux.saske.sk:~/work/qch/software/wien2k/WIEN2k_23.2_gnu_openmpi_openblas/.ls dstart lapw* mixer 
+dstart*     lapw0para_lapw*  lapw1cpara@      lapw2*       lapw2_mpi*       lapw3c*  lapw7c*       lapwdmpara@       lapwso_mpi*
+lapw0*      lapw1*           lapw1_mpi*       lapw2c*      lapw2para@       lapw5*   lapwdm*       lapwdmpara_lapw*  lapwsopara@
+lapw0_mpi*  lapw1c*          lapw1para@       lapw2c_mpi*  lapw2para_lapw*  lapw5c*  lapwdmc*      lapwso*           lapwsopara_lapw*
+lapw0para@  lapw1c_mpi*      lapw1para_lapw*  lapw2cpara@  lapw3*           lapw7*   lapwdmcpara@  lapwsocpara@      mixer*
 

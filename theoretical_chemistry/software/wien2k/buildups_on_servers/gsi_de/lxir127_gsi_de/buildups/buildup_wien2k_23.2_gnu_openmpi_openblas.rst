@@ -7,15 +7,13 @@ milias@lxir127.gsi.de:/data.local1/milias/software/wien2k/WIEN2k_23.2/gnu_openmp
 Packages
 --------
 spack unload --all
-spack load openmpi%gcc target=x86_64
-spack load amdfftw%gcc target=x86_64
-spack load elpa%gcc target=x86_64
-spack load openblas%gcc target=x86_64
-spack load amdscalapack%gcc target=x86_64
+spack load openmpi%gcc target=x86_64; spack load amdfftw%gcc target=x86_64; spack load elpa%gcc target=x86_64
+spack load openblas%gcc target=x86_64; spack load amdscalapack%gcc target=x86_64
 
 All loaded packages
 ~~~~~~~~~~~~~~~~~~~
 spack find --loaded
+
 -- linux-debian10-x86_64 / gcc@10.2.0 ---------------------------
 amdfftw@3.0                         curl@7.85.0       hwloc@2.8.0           libiconv@1.16      mpfr@4.1.0       pcre2@10.39           rdma-core@22.4          xz@5.2.7
 amdscalapack@3.2                    diffutils@3.8     json-c@0.16           libmd@1.0.4        munge@0.5.13     perl@5.16.3           readline@8.1.2          zlib@1.2.13
@@ -27,8 +25,6 @@ bzip2@1.0.8                         gettext@0.21.1    libffi@3.4.2          lz4@
 ca-certificates-mozilla@2022-10-11  glib@2.74.1       libgcrypt@1.10.1      m4@1.4.19          openssh@9.1p1    py-wheel@0.37.1       util-linux-uuid@2.38.1
 cmake@3.24.3                        gmp@6.2.1         libgpg-error@1.46     meson@0.63.3       openssl@1.1.1s   python@3.10.8         util-macros@1.19.3
 ==> 66 loaded packages
-
-
 
 OpenMPI & GNU compilers
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -108,7 +104,7 @@ Compiler and linker options
   O   Compiler options:        -ffree-form -O2 -ftree-vectorize -march=native -ffree-line-length-none -ffpe-summary=none
   L   Linker Flags:            $(FOPT) -L../SRC_lib -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/lib -lfftw3 -lfftw3_omp
   P   Preprocessor flags       '-DParallel'
-  R   R_LIBS (LAPACK+BLAS):    -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openblas-0.3.21-q7nhojttkz52xuf4zkxk7vvgllqnxh34/lib -lopenblas
+  R   R_LIBS (LAPACK+BLAS):    -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openblas-0.3.21-q7nhojttkz52xuf4zkxk7vvgllqnxh34/lib -lopenblas -lpthread
   F   FFTW options:            -DFFTW3 -DFFTW_OMP -I/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/include
       FFTW-LIBS:               -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/lib -lfftw3 -lfftw3_omp
       FFTW-PLIBS:              -lfftw3_mpi
@@ -262,4 +258,7 @@ Check
 -----
 .../Wien2k_23.2_gnu_openmpi_openblas/.less SRC*/compile.msg | grep error
 
+SRC_hf:
+pif90  -o ./hfc_mpi modules.o W2kinit.o charge.o abc.o add_hvxhfvc.o add_hvxsl_int.o add_hvxsl_sph.o add_vklioldcc.o add_vklioldvv_int.o add_vklioldvv_sph.o atpar.o c3fft.o calc_abc_hf.o calc_abc_sl.o calc_cnk.o calc_exhf.o calc_exhfcc.o calc_exhfvc.o calc_exhfvv.o calc_gaunt.o calc_gaunt_vklioldcc.o calc_gaunt_vxsl.o calc_h_1.o calc_h_2.o calc_ifflim.o calc_indices.o calc_klicc.o calc_klicv.o calc_klivv.o calc_overlap_sph.o calc_rhovalvxsl.o calc_slatercc.o calc_slatervc.o calc_slatervv.o calc_tdde.o calc_tddh.o calc_theta.o calc_ucuchucuc.o calc_ucuchucuckli.o calc_ucuchucucsla.o calc_ucvkliolducg.o calc_uu.o calc_uuchucu.o calc_uuchucuh.o calc_uuchucukli.o calc_uuchucusla.o calc_uuguu.o calc_uuguuh.o calc_uuguukli.o calc_uuguusla.o calc_uui.o calc_uuih.o calc_uuisla.o calc_uukli.o calc_uvklioldug.o calc_uvxslug.o calc_vcvcint.o calc_vklioldtheta.o calc_vxsltheta.o cbcomb.o cputim.o create_stars.o dergl.o diracout.o dvbes1.o errclr.o errflg.o fftw_seq.o gaunt.o getfft.o gtfnam.o hf.o ifflim.o inouh.o inth.o latgen.o lomain.o make_alms.o msbi.o msbj.o msbk.o notri.o opnfs.o outerr.o outwin.o ph.o read_cnk.o read_input.o read_rhoval.o read_struct.o read_uc.o read_vkliold.o read_vxsl.o read_weight.o rint13.o rotate.o rotdef.o setfft.o sphbes.o sphi.o sphk.o stern.o t3j.o t3j0.o vklioldshift.o W2kutils.o write_slater.o ylm.o -ffree-form -O2 -ftree-vectorize -march=native -ffree-line-length-none -ffpe-summary=none -DFFTW3 -DFFTW_OMP -I/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/include -fopenmp -L../SRC_lib -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/lib -lfftw3 -lfftw3_omp -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/lib -lfftw3 -lfftw3_omp  -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdscalapack-3.2-zmrsnzmnifwusgdparcdnpdksnehsbcm/lib/ -lscalapack -L -l  
+/usr/bin/ld: calc_exhfvv.o: undefined reference to symbol 'dgemm_'
 

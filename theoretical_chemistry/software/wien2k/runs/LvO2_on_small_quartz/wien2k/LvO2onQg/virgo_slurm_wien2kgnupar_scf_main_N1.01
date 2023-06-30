@@ -21,7 +21,7 @@
 #SBATCH --no-kill
 
 ## CPU count  - max. 40 per node ?
-#SBATCH -n 8
+#SBATCH -n 4
 
 ## memory NO !!!
 ##SBATCH --mem-per-cpu=28G
@@ -144,8 +144,10 @@ ldd $WIEN2k/lapw2c_mpi
 
 # prepare .machines file
 echo '# nodes for parallel job ' > $PWD/.machines
-echo 'omp_global:4 ' >> $PWD/.machines
-echo "1:localhost:$SLURM_NTASKS" >>  $PWD/.machines
+#echo 'omp_global:4 ' >> $PWD/.machines
+echo 'omp_global:1 ' >> $PWD/.machines
+#echo "1:localhost:$SLURM_NTASKS" >>  $PWD/.machines
+echo "1:localhost:$SLURM_CPUS_ON_NODE" >>  $PWD/.machines
 
 echo -e "\n number of hosts in .machines, SLURM_NTASKS=$SLURM_NTASKS"
 echo -e "\n content of file $PWD/.machines:"; cat $PWD/.machines
@@ -166,7 +168,9 @@ run_lapw -p -ec 0.00001 -i 100 -NI
  #run_lapw -so
 
  cat ":log"
- echo -e "\n Finished; check for ':ENE' in outputs. \n"
+ ls -lt *.error
+
+ echo -e "\n Finished; check for ':ENE' in outputs. \n"; grep ':ENE ' *.output*
 
  echo -e "\n List of files in $SCRATCH :"; ls -lt $SCRATCH/*
 

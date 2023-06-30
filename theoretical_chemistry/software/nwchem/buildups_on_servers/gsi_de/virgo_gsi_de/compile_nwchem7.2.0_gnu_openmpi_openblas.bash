@@ -29,13 +29,18 @@ echo -e "\n all spack loaded modules:"
 spack find --loaded
 
 
-echo -e "\n***   NWChem environmental variables for login.grid.umb.sk:   ***"
+echo -e "\n***   NWChem environmental variables for Virgo cluster at GSI.de   ***"
+
+#   https://nwchemgit.github.io/Compiling-NWChem.html#setting-up-the-proper-environment-variables
 
   export NWCHEM_TOP=/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0_gnu_openmpi_openblas
   echo -e "NWCHEM_TOP=$NWCHEM_TOP"
 
   export NWCHEM_TARGET="LINUX64"
   echo -e "NWCHEM_TARGET=$NWCHEM_TARGET"
+
+  export ARMCI_NETWORK=MPI-PR
+  echo -e "ARMCI_NETWORK=$ARMCI_NETWORK"
 
   # server's Intel compiler
   export FC=gfortran
@@ -51,7 +56,7 @@ echo -e "\n***   NWChem environmental variables for login.grid.umb.sk:   ***"
   export LAPACK_LIB=$BLASOPT
   echo -e "LAPACK_LIB=$LAPACK_LIB"
 
-  export USE_64TO32="n" # see http://www.nwchem-sw.org/index.php/Special:AWCforum/sp/id7260
+  export USE_64TO32="y" #
   echo -e "USE_64TO32=$USE_64TO32"
 
   export BLAS_SIZE=4
@@ -60,8 +65,10 @@ echo -e "\n***   NWChem environmental variables for login.grid.umb.sk:   ***"
   export LAPACK_SIZE=4
   echo -e "LAPACK_SIZE=$LAPACK_SIZE"
 
+# NWChem can also take advantage of the ScaLAPACK library if it is installed on your system
+  export USE_SCALAPACK=y
   export SCALAPACK_SIZE=4
-  export USE_64TO32=y
+  export USE_64TO32="y"
   export SCALAPACK="-L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdscalapack-3.2-zmrsnzmnifwusgdparcdnpdksnehsbcm/lib -lscalapack"
   export SCALAPACK_LIB=$SCALAPACK
   echo -e "SCALAPACK_LIB=$SCALAPACK_LIB"
@@ -69,15 +76,18 @@ echo -e "\n***   NWChem environmental variables for login.grid.umb.sk:   ***"
   export ELPA="-I/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms/include/elpa_openmp-2021.11.001/modules/ -L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms/lib -lelpa_openmp"
   echo -e "ELPA=$ELPA"
  
-
-  export USE_MPI=y
+  export USE_MPI="y"
   echo -e "USE_MPI=$USE_MPI"
 
   export LARGE_FILES=1
   echo -e "LARGE_FILES=$LARGE_FILES"
 
-  export USE_NOFSCHECK=1
+# USE_NOFSCHECK can be set to avoid NWChem creating files for each process when testing the size of the scratch directory (a.k.a. creation of junk files)
+  export USE_NOFSCHECK=TRUE
   echo -e "USE_NOFSCHECK=$USE_NOFSCHECK"
+
+  export MRCC_METHODS=TRUE
+  export CCSDTQ=TRUE
 
   export NWCHEM_LONG_PATHS=1
   echo -e "NWCHEM_LONG_PATHS=$NWCHEM_LONG_PATHS"
@@ -98,7 +108,8 @@ echo -e "\n***   NWChem environmental variables for login.grid.umb.sk:   ***"
   echo -e "\n I am in :\c";pwd;ls -lt
   # clean out !!!
   echo -e "make clean:"; make clean
-  echo -e " make nwchem_config: ";make nwchem_config 
+  echo -e " make V=1 nwchem_config: ";make V=1 nwchem_config 
+  echo -e "make V=1 64_to_32 :";make V=1 64_to_32
   echo -e "\n  launching make -j4 :"; make -j16
 
   # build the version info
@@ -114,6 +125,5 @@ echo -e "\n***   NWChem environmental variables for login.grid.umb.sk:   ***"
    ls -l $NWCHEM_TOP/bin/LINUX64       
    echo -e "   ls -l $NWCHEM_TOP/lib/LINUX64:"
    ls -l $NWCHEM_TOP/lib/LINUX64   
-  
   
   exit 0

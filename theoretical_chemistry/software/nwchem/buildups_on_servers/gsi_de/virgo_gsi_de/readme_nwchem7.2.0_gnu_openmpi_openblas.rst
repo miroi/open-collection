@@ -12,11 +12,20 @@ mpif90 --version
 GNU Fortran (Spack GCC) 10.2.0
 mpirun --version
 mpirun (Open MPI) 4.1.5
+ls /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib
 
 spack load amdfftw%gcc target=x86_64
+ls /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/lib
+
 spack load elpa%gcc target=x86_64
+ls /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms/lib
+
 spack load amdscalapack%gcc target=x86_64
+ls /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdscalapack-3.2-zmrsnzmnifwusgdparcdnpdksnehsbcm/lib
+
 spack load openblas%gcc target=x86_64
+ls /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openblas-0.3.21-q7nhojttkz52xuf4zkxk7vvgllqnxh34/lib
+
 
 spack find --loaded
 -- linux-debian10-x86_64 / gcc@10.2.0 ---------------------------
@@ -52,9 +61,17 @@ setting variables
 export NWCHEM_TOP=/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0
 export LARGE_FILES=TRUE
 export NWCHEM_TARGET=LINUX64
+export MPI_F90=mpif90
+export MPI_CC=mpicc
+export MPI_CXX=mpicxx
+export FC=gfortran
+export CC=gcc
 export ARMCI_NETWORK=MPI-PR
 export USE_MPI=y
-export NWCHEM_MODULES="all python"
+export LIBMPI="-lmpi_usempif08 -lmpi_usempi_ignore_tkr -lmpi_mpifh -lmpi"
+export MPI_LIB=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib
+export MPI_INCLUDE=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/include
+export NWCHEM_MODULES="all"
 export USE_NOFSCHECK=TRUE
 export USE_SCALAPACK=y
 export BLAS_SIZE=4
@@ -73,9 +90,13 @@ compiling
 see also https://groups.google.com/g/nwchem-forum/c/Ec4xe3f9IoI/m/MiECLJinCAAJ
 
 milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0/src/make nwchem_config
-milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0/src/make 64_to_32
-milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0/src/make -j16 2>&1 | tee make.log
+milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0/src/make V=1 64_to_32 
+make V=1 -j16 2>&1 | tee make.log
 .
 .
+***warning LIBMPI ignored since FORCE_MPI_ENV not set***
+***warning MPI_LIB ignored since FORCE_MPI_ENV not set***
+***warning MPI_INCLUDE ignored since FORCE_MPI_ENV not set***
+
 
 

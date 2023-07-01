@@ -28,3 +28,7 @@ collect2: error: ld returned 1 exit status
 
 related bug: https://access.redhat.com/solutions/6156392
 
+
+milias@lxbk1135.gsi.de:/lustre/ukt/milias/work/projects/open-collection/theoretical_chemistry/software/nwchem/buildups_on_servers/gsi_de/virgo_gsi_de/test_elpa/.gfortran --version
+GNU Fortran (Debian 8.3.0-6) 8.3.0
+

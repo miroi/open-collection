@@ -210,10 +210,11 @@ The present values are:
       PARAMETER          (NMATMAX=   100000)
       PARAMETER          (NUME=   10000)
 
-
 Check
 -----
 milias@lxbk1135.gsi.de:/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2_gnu_openmpi_openblas/.less SRC*/compile.msg | grep error
 ..none !
 
+milias@lxbk1135.gsi.de:/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2_gnu_openmpi_openblas/.ls *mpi
+dstart_mpi*  hfc_mpi*  hf_mpi*  lapw0_mpi*  lapw1c_mpi*  lapw1_mpi*  lapw2c_mpi*  lapw2_mpi*  lapwso_mpi*  nlvdw_mpi*  nmrc_mpi*  nmr_mpi*
 

@@ -2,34 +2,50 @@
 Wien2k_23.2 buildup
 ===================
 
-/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2_gnu_openmpi_openblas
+in /lustre/ukt/milias/work/software/wien2k/Wien2k_23.2_gnu_openmpi_openblas
 
 Packages
 --------
 spack unload --all
-spack load openmpi%gcc target=x86_64
-spack load amdfftw%gcc target=x86_64
-spack load elpa%gcc target=x86_64
-spack load openblas%gcc target=x86_64
-spack load amdscalapack%gcc target=x86_64
+spack load gcc@10.2.0 target=x86_64; spack load openmpi%gcc target=x86_64; spack load amdfftw%gcc target=x86_64; spack load elpa%gcc target=x86_64; spack load openblas%gcc target=x86_64; spack load amdscalapack%gcc target=x86_64
+
 
 All loaded packages
 ~~~~~~~~~~~~~~~~~~~
+spack find --loaded
 milias@lxbk1135.gsi.de:/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2_gnu_openmpi_openblas/.spack find --loaded
+-- linux-debian10-x86_64 / gcc@8.3.0 ----------------------------
+autoconf@2.69                diffutils@3.8  gmp@6.2.1        libtool@2.4.7  mpfr@4.1.0   readline@8.1.2  zstd@1.5.2
+autoconf-archive@2022.02.11  gawk@5.1.1     libiconv@1.16    m4@1.4.19      ncurses@6.1  texinfo@6.5
+automake@1.16.5              gcc@10.2.0     libsigsegv@2.13  mpc@1.2.1      perl@5.16.3  zlib@1.2.13
+
 -- linux-debian10-x86_64 / gcc@10.2.0 ---------------------------
-amdfftw@3.0                         cmake@3.24.3      glib@2.74.1           libffi@3.4.2       libxml2@2.10.1  numactl@2.0.14   pkgconf@1.8.0         slurm@21-08-8-2         zlib@1.2.13
-amdscalapack@3.2                    curl@7.85.0       gmp@6.2.1             libgcrypt@1.10.1   lz4@1.9.4       openblas@0.3.21  pmix@3.2.2            sqlite@3.39.4           zstd@1.5.2
-autoconf@2.69                       diffutils@3.8     hwloc@2.8.0           libgpg-error@1.46  m4@1.4.19       openmpi@4.1.5    py-pip@22.2.2         tar@1.34
-autoconf-archive@2022.02.11         elpa@2021.11.001  json-c@0.16           libiconv@1.16      meson@0.63.3    openssh@9.1p1    py-setuptools@59.4.0  texinfo@6.5
-automake@1.16.5                     expat@2.4.8       krb5@1.19.3           libmd@1.0.4        mpfr@4.1.0      openssl@1.1.1s   py-wheel@0.37.1       ucx@1.9.0
-bison@3.8.2                         gawk@5.1.1        libbsd@0.11.5         libpciaccess@0.16  munge@0.5.13    pcre2@10.39      python@3.10.8         util-linux-uuid@2.38.1
-bzip2@1.0.8                         gdbm@1.23         libedit@3.1-20210216  libsigsegv@2.13    ncurses@6.1     perl@5.16.3      rdma-core@22.4        util-macros@1.19.3
-ca-certificates-mozilla@2022-10-11  gettext@0.21.1    libevent@2.1.12       libtool@2.4.7      ninja@1.11.1    pigz@2.7         readline@8.1.2        xz@5.2.7
-==> 66 loaded packages
+amdfftw@3.0                         gdbm@1.23             libmd@1.0.4        openmpi@4.1.5         slurm@21-08-8-2
+amdscalapack@3.2                    gettext@0.21.1        libpciaccess@0.16  openssh@9.1p1         sqlite@3.39.4
+autoconf@2.69                       glib@2.74.1           libsigsegv@2.13    openssl@1.1.1s        tar@1.34
+autoconf-archive@2022.02.11         gmp@6.2.1             libtool@2.4.7      pcre2@10.39           texinfo@6.5
+automake@1.16.5                     hwloc@2.8.0           libxml2@2.10.1     perl@5.16.3           ucx@1.9.0
+bison@3.8.2                         json-c@0.16           lz4@1.9.4          pigz@2.7              util-linux-uuid@2.38.1
+bzip2@1.0.8                         krb5@1.19.3           m4@1.4.19          pkgconf@1.8.0         util-macros@1.19.3
+ca-certificates-mozilla@2022-10-11  libbsd@0.11.5         meson@0.63.3       pmix@3.2.2            xz@5.2.7
+cmake@3.24.3                        libedit@3.1-20210216  mpfr@4.1.0         py-pip@22.2.2         zlib@1.2.13
+curl@7.85.0                         libevent@2.1.12       munge@0.5.13       py-setuptools@59.4.0  zstd@1.5.2
+diffutils@3.8                       libffi@3.4.2          ncurses@6.1        py-wheel@0.37.1
+elpa@2021.11.001                    libgcrypt@1.10.1      ninja@1.11.1       python@3.10.8
+expat@2.4.8                         libgpg-error@1.46     numactl@2.0.14     rdma-core@22.4
+gawk@5.1.1                          libiconv@1.16         openblas@0.3.21    readline@8.1.2
+==> 85 loaded packages
+
 
 
 OpenMPI & GNU compilers
 ~~~~~~~~~~~~~~~~~~~~~~~~~
+milias@lxbk1135.gsi.de:/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2_gnu_openmpi_openblas/.which gfortran
+/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/bin/gfortran
+
+milias@lxbk1135.gsi.de:/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2_gnu_openmpi_openblas/.gfortran --version
+GNU Fortran (Spack GCC) 10.2.0
+
 milias@lxbk1135.gsi.de:/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2_gnu_openmpi_openblas/.which mpif90
 /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/bin/mpif90
 milias@lxbk1135.gsi.de:/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2_gnu_openmpi_openblas/.mpif90 --version
@@ -190,50 +206,10 @@ ELPA
 
 Dimensions
 ~~~~~~~~~~
-WIEN2k uses dynamical allocation of most arrays according to the requirements of 
-your example. However, to avoid that the programs grow larger than the memory of 
-your computer, there are two limiting parameters, NMATMAX (the maximum matrix
-size) and NUME (number of eigenvalues), which should be set corresponding to your 
-hardware. 
-
-A matrix of 20000x20000 requires 4 (8) Gb of memory for a single lapw1 (using 10 
-(20) bytes for real (complex) numbers to account for overheads). 
-
-Thus set NMATMAX to  sqrt(MEMORY/10)  (MEMORY in Bytes)!
-
-NMATMAX=20000 ==>   4GB (real) (==> cells with about 50-150 atoms/unitcell)
-    ==> for lapw1c:    NMATMAX will be reduced internally to NMATMAX/sqrt2
-    ==> for lapw1_mpi: NMATMAX will be increased internally to NMATMAX*sqrt(NP)
-
-NUME determines the number of states to output. As a rule of thumb one can estimate 
-100 basis functions per atom in the cell and 10 occupied states per atom, so set    
-
-NUME=NMATMAX/10!
-
 The present values are:
-      PARAMETER          (NMATMAX=   60000)
-      PARAMETER          (NUME=   6000)
+      PARAMETER          (NMATMAX=   100000)
+      PARAMETER          (NUME=   10000)
 
-    Change parameters in:
-
-    1   lapw1/2  (e.g. NMATMAX, NUME, RESTRICT_OUTPUT)
-    A   all programs (usually not necessary)
-
-    Q   to quit
-
-     Selection: A
-
-      PARAMETER          (NMATMAX=   60000)
-      PARAMETER          (NUME=   6000)
-      PARAMETER          (RESTRICT_OUTPUT= 9999) ! 1 for mpi with less output-files
-
-Which parameter to change? (q to quit): 
-
-
-  PO  Parallel options
-
-  S   Save and Quit
-  Q   Quit and abandon changes
 
 Check
 -----

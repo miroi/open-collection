@@ -107,9 +107,9 @@ cd $SLURM_SUBMIT_DIR
 #echo -e "number of MPI threads npr=$npr"
 
 project=uo2_ecp
-echo -e "\n Launching NWChem run with project=$project"
+echo -e "\n Launching NWChem run with project=${project}"
 SCR=NWChem_SLURMjob.${SLURM_JOB_PARTITION}.N${SLURM_JOB_NUM_NODES}.n${SLURM_NTASKS}.jid${SLURM_JOBID}
-mpirun -np  ${SLURM_NTASKS} ${NWCHEM_EXECUTABLE}  ${SLURM_SUBMIT_DIR}/$project.nw  > ${SLURM_SUBMIT_DIR}/$project.${SLURM_JOB_PARTITION}.N${SLURM_JOB_NUM_NODES}.n${SLURM_NTASKS}.jid${SLURM_JOBID}.out
+mpirun -np  ${SLURM_NTASKS} ${NWCHEM_EXECUTABLE}  ${SLURM_SUBMIT_DIR}/$project.nw  > ${SLURM_SUBMIT_DIR}/$project.${SLURM_JOB_PARTITION}_N${SLURM_JOB_NUM_NODES}_n${SLURM_NTASKS}_jid${SLURM_JOBID}.out
 
 # save conveged geometry to homedir 
 #cp $TMPDIR/HD_geom*   ${SLURM_SUBMIT_DIR}/.

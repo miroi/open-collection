@@ -93,10 +93,11 @@ echo -e "\n ldd NWCHEM_EXECUTABLE=$NWCHEM_EXECUTABLE"; ldd $NWCHEM_EXECUTABLE
 
 # set working scratch directory for the run
 SCR=NWChem_SLURMjob.${SLURM_JOB_PARTITION}.N${SLURM_JOB_NUM_NODES}.n${SLURM_NTASKS}.jid${SLURM_JOBID}
-export TMPDIR=/lustre/ukt/milias/$SCR
+export TMPDIR=/lustre/ukt/milias/scratch/$SCR
 mkdir $TMPDIR
 cd $TMPDIR
-echo -e "\n I am in  NWChem working directory, TMPDIR=$TMPDIR , pwd=";pwd
+echo -e "\n I am in NWChem working directory, TMPDIR=$TMPDIR"
+echo -e "for control, pwd=";pwd
 echo -e "Size of this work directory, df -h \$TMPDIR...:";df -h $TMPDIR
 echo -e "\n The local home directory with NWChem input file, SLURM_SUBMIT_DIR=${SLURM_SUBMIT_DIR}"
 

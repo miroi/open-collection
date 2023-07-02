@@ -3,6 +3,8 @@ ELPA buildup
 
 https://elpa.mpcdf.mpg.de/software/tarball-archive/Releases/2023.05.001/elpa-2023.05.001.tar.gz
 
+see  https://gitlab.mpcdf.mpg.de/elpa/elpa/-/blob/master/documentation/INSTALL.md
+
 Spack packages
 ~~~~~~~~~~~~~~~
 spack unload --all
@@ -36,8 +38,7 @@ export LD_LIBRARY_PATH=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86
 
 elpa buildup
 ~~~~~~~~~~~~
-milias@lxbk1135.gsi.de:/lustre/ukt/milias/work/software/wien2k/elpa/elpa-2023.05.001/../configure --prefix=/lustre/ukt/milias/work/software/wien2k/elpa/ --with-mpi=yes --enable-openmp 
-
+milias@lxbk1135.gsi.de:/lustre/ukt/milias/work/software/wien2k/elpa/elpa-2023.05.001/../configure --prefix=$PWD --with-mpi=yes --enable-openmp
 .
 .
 .
@@ -45,5 +46,4 @@ checking for function MPI_Init... no
 checking for function MPI_Init in -lmpi... no
 checking for function MPI_Init in -lmpich... no
 configure: error: Could not compile an MPI C program
-
 

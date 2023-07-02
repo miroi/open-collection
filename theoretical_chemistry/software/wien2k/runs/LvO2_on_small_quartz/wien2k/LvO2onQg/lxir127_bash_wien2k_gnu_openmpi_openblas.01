@@ -71,15 +71,16 @@ echo -e "\n ldd $WIEN2k/dstart_mpi :"
 ldd $WIEN2k/dstart_mpi
 echo -e "\n ldd $WIEN2k/lapw0_mpi :"
 ldd $WIEN2k/lapw0_mpi
-echo -e "\n ldd $WIEN2k/lapw1c_mpi :"
-ldd $WIEN2k/lapw1c_mpi
-echo -e "\n ldd $WIEN2k/lapw2c_mpi :"
-ldd $WIEN2k/lapw2c_mpi
+echo -e "\n ldd $WIEN2k/lapw1_mpi :"
+ldd $WIEN2k/lapw1_mpi
+echo -e "\n ldd $WIEN2k/lapw2_mpi :"
+ldd $WIEN2k/lapw2_mpi
+echo -e "\n ldd $WIEN2k/lapwso_mpi :"
+ldd $WIEN2k/lapwso_mpi
 
+export NPROC=12
 
-export NPROC=8
 # prepare .machines file
-
 echo '# nodes for parallel job ' > $WORKDIR/.machines
 echo "1:localhost:$NPROC" >>  $WORKDIR/.machines
 echo -e "\n number of hosts in .machines, NPROC=$NPROC"

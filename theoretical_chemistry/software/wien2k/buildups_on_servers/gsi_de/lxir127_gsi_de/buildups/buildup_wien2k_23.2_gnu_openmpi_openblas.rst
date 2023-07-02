@@ -269,4 +269,30 @@ Check
 -----
 SRC_lapw0/Makefile.orig modified a little , but on Virgo no need to modify, just mixed links
 
-.../Wien2k_23.2_gnu_openmpi_openblas/.less SRC*/compile.msg | grep error
+milias@lxir127.gsi.de:/data.local1/milias/software/wien2k/WIEN2k_23.2/gnu_openmpi_openblas/.cat SRC*/compile.msg | grep error
+milias@lxir127.gsi.de:/data.local1/milias/software/wien2k/WIEN2k_23.2/gnu_openmpi_openblas/.cat SRC*/compile.msg | grep 'No rule'
+make: *** No rule to make target 'complex'.  Stop.
+make: *** No rule to make target 'complex'.  Stop.
+make: *** No rule to make target 'clean'.  Stop.
+make: *** No rule to make target 'complex'.  Stop.
+make: *** No rule to make target 'complex'.  Stop.
+make: *** No rule to make target 'clean'.  Stop.
+make: *** No rule to make target 'complex'.  Stop.
+make: *** No rule to make target 'complex'.  Stop.
+make: *** No rule to make target 'complex'.  Stop.
+make: *** No rule to make target 'complex'.  Stop.
+make: *** No rule to make target 'clean'.  Stop.
+make: *** No rule to make target 'complex'.  Stop.
+make: *** No rule to make target 'complex'.  Stop.
+make: *** No rule to make target 'complex'.  Stop.
+make: *** No rule to make target 'complex'.  Stop.
+make: *** No rule to make target 'clean'.  Stop.
+make: *** No rule to make target 'clean'.  Stop.
+make: *** No rule to make target 'clean'.  Stop.
+
+
+Check presense of mpi executables
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+milias@lxir127.gsi.de:/data.local1/milias/software/wien2k/WIEN2k_23.2/gnu_openmpi_openblas/.ls *mpi
+dstart_mpi*  hfc_mpi*  hf_mpi*  lapw0_mpi*  lapw1c_mpi*  lapw1_mpi*  lapw2c_mpi*  lapw2_mpi*  lapwso_mpi*  nlvdw_mpi*  nmrc_mpi*  nmr_mpi*
+

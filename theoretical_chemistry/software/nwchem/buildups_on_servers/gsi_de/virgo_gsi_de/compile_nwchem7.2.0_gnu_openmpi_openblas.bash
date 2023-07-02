@@ -5,6 +5,10 @@
 #  NWChem on Virgo
 
 # load and present spack modules
+
+echo -e "\n gcc@10.2.0 target=x86_64:"
+spack load gcc@10.2.0 target=x86_64;
+
 echo -e "\n openmpi%gcc target=x86_64 :"
 spack load openmpi%gcc target=x86_64
 ls /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib
@@ -47,10 +51,11 @@ echo -e "\n***   NWChem environmental variables for Virgo cluster at GSI.de   **
   echo -e "FC=$FC"
   export MPI_F90=mpif90
   echo -e "MPI_F90=$MPI_F90"
+  which gfortran; gfortran -version
   which mpif90; mpif90 --version
   which mpirun; mpirun --version
 
-  export BLASOPT="-L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openblas-0.3.21-q7nhojttkz52xuf4zkxk7vvgllqnxh34/lib -lopenblas -lgfortran"
+  export BLASOPT="-L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openblas-0.3.21-q7nhojttkz52xuf4zkxk7vvgllqnxh34/lib -lopenblas"
   echo -e "BLASOPT=$BLASOPT"
   
   export LAPACK_LIB=$BLASOPT
@@ -69,7 +74,7 @@ echo -e "\n***   NWChem environmental variables for Virgo cluster at GSI.de   **
   export USE_SCALAPACK=y
   export SCALAPACK_SIZE=4
   export USE_64TO32="y"
-  export SCALAPACK="-L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdscalapack-3.2-zmrsnzmnifwusgdparcdnpdksnehsbcm/lib -lscalapack -lgfortran"
+  export SCALAPACK="-L/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdscalapack-3.2-zmrsnzmnifwusgdparcdnpdksnehsbcm/lib -lscalapack "
   export SCALAPACK_LIB=$SCALAPACK
   echo -e "SCALAPACK_LIB=$SCALAPACK_LIB"
 
@@ -106,7 +111,7 @@ echo -e "\n***   NWChem environmental variables for Virgo cluster at GSI.de   **
 
   cd $NWCHEM_TOP/src
   echo -e "\n I am in :\c";pwd;ls -lt
- # echo -e "make clean:"; make clean
+  echo -e "make clean:"; make clean
   echo -e " make V=1 nwchem_config: ";make V=1 nwchem_config 
   echo -e "make V=1 64_to_32 :";make V=1 64_to_32
   echo -e "\n  launching make -j4 :"; make -j16

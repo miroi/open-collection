@@ -54,7 +54,8 @@ echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
 NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
 echo "This node has total $NPROCS CPUs available for an EXCLUSIVE job."
 #
-echo "This node has $SLURM_CPUS_ON_NODE CPUs allocated for SLURM calculations."
+echo "SLURM_CPUS_ON_NODE=${SLURM_CPUS_ON_NODE} CPUs allocated for SLURM calculations."
+echo "SLURM_NTASKS=${SLURM_NTASKS}"
 
 echo -e "\n the memory at the node (in GB)"
 free -t -g
@@ -108,7 +109,7 @@ cd $SLURM_SUBMIT_DIR
 project=uo2_ecp
 echo -e "\n Launching NWChem run with project=$project"
 SCR=NWChem_SLURMjob.${SLURM_JOB_PARTITION}.N${SLURM_JOB_NUM_NODES}.n${SLURM_NTASKS}.jid${SLURM_JOBID}
-mpirun -np  ${SLURM_CPUS_ON_NODE} ${NWCHEM_EXECUTABLE}  ${SLURM_SUBMIT_DIR}/$project.nw  > ${SLURM_SUBMIT_DIR}/$project.${SLURM_JOB_PARTITION}.N${SLURM_JOB_NUM_NODES}.n${SLURM_NTASKS}.jid${SLURM_JOBID}.out
+mpirun -np  ${SLURM_NTASKS} ${NWCHEM_EXECUTABLE}  ${SLURM_SUBMIT_DIR}/$project.nw  > ${SLURM_SUBMIT_DIR}/$project.${SLURM_JOB_PARTITION}.N${SLURM_JOB_NUM_NODES}.n${SLURM_NTASKS}.jid${SLURM_JOBID}.out
 
 # save conveged geometry to homedir 
 #cp $TMPDIR/HD_geom*   ${SLURM_SUBMIT_DIR}/.

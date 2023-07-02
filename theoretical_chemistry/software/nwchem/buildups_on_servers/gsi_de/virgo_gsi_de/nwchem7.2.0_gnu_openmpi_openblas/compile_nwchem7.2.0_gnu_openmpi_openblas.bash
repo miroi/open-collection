@@ -6,8 +6,16 @@
 
 # load and present spack modules
 
+echo -e "\n spack unload --all"
+spack unload --all
+
 echo -e "\n gcc@10.2.0 target=x86_64:"
 spack load gcc@10.2.0 target=x86_64;
+ls /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib/gcc/x86_64-pc-linux-gnu/10.2.0/
+
+echo -e "\n hwloc@2.8.0  target=x86_64:"
+spack load hwloc@2.8.0 target=x86_64
+ls /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/hwloc-2.8.0-rpajza4w5yeshrr7qnbtwiz7cgsc5y4l/lib/
 
 echo -e "\n openmpi%gcc target=x86_64 :"
 spack load openmpi%gcc target=x86_64

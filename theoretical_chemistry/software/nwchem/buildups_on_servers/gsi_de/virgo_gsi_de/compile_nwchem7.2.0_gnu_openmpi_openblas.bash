@@ -129,5 +129,8 @@ echo -e "\n***   NWChem environmental variables for Virgo cluster at GSI.de   **
    ls -l $NWCHEM_TOP/bin/LINUX64       
    echo -e "   ls -l $NWCHEM_TOP/lib/LINUX64:"
    ls -l $NWCHEM_TOP/lib/LINUX64   
+
+# milias@lxbk1135.gsi.de:/lustre/ukt/milias/work/projects/open-collection/theoretical_chemistry/software/nwchem/buildups_on_servers/gsi_de/virgo_gsi_de/.cp /lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0_gnu_openmpi_openblas/src/tools/build/config.log compile_nwchem7.2.0_gnu_openmpi_openblas-src-tools-build_config.log
+
   
   exit 0

@@ -33,21 +33,20 @@
 #SBATCH --mail-user=M.Ilias@gsi.de 
 #SBATCH --mail-type=ALL
 
-echo Job user is $SLURM_JOB_USER and his job $SLURM_JOB_NAME has assigned ID $SLURM_JOBID
-echo This job was submitted from the computer $SLURM_SUBMIT_HOST
-echo and from the home directory:
+echo -e "\nRunning on host `hostname`"
+echo -e "Time is `date` \n"
+
+echo -e "\n\n Job user is $SLURM_JOB_USER and his job $SLURM_JOB_NAME has assigned ID $SLURM_JOBID"
+echo -e "This job was submitted from the computer $SLURM_SUBMIT_HOST"
+echo -e "and from the home directory:"
 echo $SLURM_SUBMIT_DIR
 echo
-echo It is running on the cluster compute node:
-echo $SLURM_CLUSTER_NAME
+echo It is running on the cluster compute node: $SLURM_CLUSTER_NAME
 echo and is employing $SLURM_JOB_NUM_NODES node/nodes:
 echo $SLURM_JOB_NODELIST
 echo
 echo -e "Job partition is: $SLURM_JOB_PARTITION \n"
-echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
-
-echo -e "\nRunning on host `hostname`"
-echo -e "Time is `date` \n"
+echo -e "The job requests $SLURM_CPUS_ON_NODE CPU per task."
 
 # CPU model, total numer of CPUs, number of allocated CPUs
 echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
@@ -55,7 +54,7 @@ NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
 echo "This node has total $NPROCS CPUs available for an EXCLUSIVE job."
 #
 echo "SLURM_CPUS_ON_NODE=${SLURM_CPUS_ON_NODE} CPUs allocated for SLURM calculations."
-echo "SLURM_NTASKS=${SLURM_NTASKS}"
+echo "-n=SLURM_NTASKS=${SLURM_NTASKS}"
 
 echo -e "\n the memory at the node (in GB)"
 free -t -g
@@ -85,8 +84,7 @@ export LD_LIBRARY_PATH=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86
 echo -e "\n all spack loaded modules:"
 spack find --loaded
 
-#echo -e "\nMy PATH=$PATH\n"
-echo -e "Python -v :\c"; python -V
+echo -e "\n Python -v :\c"; python -V
 
 #
 
@@ -96,38 +94,34 @@ echo -e "\n ldd NWCHEM_EXECUTABLE=$NWCHEM_EXECUTABLE"; ldd $NWCHEM_EXECUTABLE
 # set working scratch directory for the run
 SCR=NWChem_SLURMjob.${SLURM_JOB_PARTITION}.N${SLURM_JOB_NUM_NODES}.n${SLURM_NTASKS}.jid${SLURM_JOBID}
 export TMPDIR=/lustre/ukt/milias/$SCR
-echo -e "\n NWChem working directory, TMPDIR=$TMPDIR";
-echo -e "Size of this work directory, df -h \$TMPDIR...:";df -h $TMPDIR
-
 mkdir $TMPDIR
 cd $TMPDIR
-
-echo -e "\nI am in working dir, TMPDIR=$TMPDIR"
-echo -e "For control pwd=\c";pwd
-echo -e "The local home directory with NWChem input file, SLURM_SUBMIT_DIR=${SLURM_SUBMIT_DIR}"
+echo -e "\n I am in  NWChem working directory, TMPDIR=$TMPDIR , pwd=";pwd
+echo -e "Size of this work directory, df -h \$TMPDIR...:";df -h $TMPDIR
+echo -e "\n The local home directory with NWChem input file, SLURM_SUBMIT_DIR=${SLURM_SUBMIT_DIR}"
 
 # for running jobs from your homedir
-cd $SLURM_SUBMIT_DIR
+#cd $SLURM_SUBMIT_DIR
 
 #npr=$((SLURM_CPUS_ON_NODE/2))
 #echo -e "number of MPI threads npr=$npr"
 
 project=uo2_ecp
 echo -e "\n Launching NWChem run with project=${project}"
-SCR=NWChem_SLURMjob.${SLURM_JOB_PARTITION}.N${SLURM_JOB_NUM_NODES}.n${SLURM_NTASKS}.jid${SLURM_JOBID}
 mpirun -np  ${SLURM_NTASKS} ${NWCHEM_EXECUTABLE}  ${SLURM_SUBMIT_DIR}/$project.nw  > ${SLURM_SUBMIT_DIR}/$project.${SLURM_JOB_PARTITION}_N${SLURM_JOB_NUM_NODES}_n${SLURM_NTASKS}_jid${SLURM_JOBID}.out
 
 # save conveged geometry to homedir 
 #cp $TMPDIR/HD_geom*   ${SLURM_SUBMIT_DIR}/.
 
-echo -e "\n Working files remained in scratch dir $TMPDIR:"
-ls -lt $TMPDIR 
+echo -e "\n Working files remained in scratch dir \$TMPDIR:"
+ls -lt $TMPDIR/* 
 du -h -s $TMPDIR
 cd .. ; echo -e "just for control -  pwd=\c";pwd
 #echo -e "\nDeleting scratch directory $TMPDIR: "; /bin/rm -r $TMPDIR
 #echo -e "\n Afterwards, content of ls -lt /mnt/local/$USER :"; ls -lt /mnt/local/$USER
 
 echo -e "\n Time of finishing job is `date` \n"
+
 echo -e "\n returning to ${SLURM_SUBMIT_DIR}, list of files:"
 cd ${SLURM_SUBMIT_DIR}
 ls -lt

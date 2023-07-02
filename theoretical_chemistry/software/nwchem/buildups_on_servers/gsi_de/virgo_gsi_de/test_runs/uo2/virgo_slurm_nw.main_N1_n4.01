@@ -65,6 +65,12 @@ echo -e "\n"
 #  Load Spack modules
 #
 spack load gcc@10.2.0 target=x86_64;
+export LD_LIBRARY_PATH=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib/gcc/x86_64-pc-linux-gnu/10.2.0:$LD_LIBRARY_PATH
+#
+spack load hwloc@2.8.0 target=x86_64
+export LD_LIBRARY_PATH=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/hwloc-2.8.0-rpajza4w5yeshrr7qnbtwiz7cgsc5y4l/lib/:$LD_LIBRARY_PATH
+#
+spack load openmpi%gcc target=x86_64
 export LD_LIBRARY_PATH=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib:$LD_LIBRARY_PATH
 #
 spack load elpa%gcc target=x86_64

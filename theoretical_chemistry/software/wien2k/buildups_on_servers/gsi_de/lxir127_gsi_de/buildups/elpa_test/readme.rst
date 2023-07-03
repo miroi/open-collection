@@ -10,4 +10,9 @@ milias@lxir127.gsi.de:/data.local1/milias/projects/open-collection/theoretical_c
 
 spack load gcc@10.2.0 target=x86_64; spack load openmpi%gcc target=x86_64
 
+spack info openmpi@4.1.5
+ thread_multiple [off]       [@1.5.4:2]                     on, off                 Enable MPI_THREAD_MULTIPLE support
+
+
+
 

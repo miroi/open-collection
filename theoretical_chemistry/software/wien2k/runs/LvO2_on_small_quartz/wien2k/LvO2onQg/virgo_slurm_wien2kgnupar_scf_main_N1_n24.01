@@ -167,12 +167,13 @@ echo -e "\n running run_lapw ..."
 
  cat ":log"
  ls -lt *.error
+
  grep 'MPI run on' *
  grep 'MPI-parallel calculation using' *
 
  echo -e "\n Finished; check for ':ENE' in outputs. \n"; grep ':ENE ' *.output*
 
- echo -e "\n List of files in $SCRATCH :"; ls -lt $SCRATCH/*
+ echo -e "\n List of files in SCRATCH=$SCRATCH :"; ls -lt $SCRATCH/*
 
  #echo -e "\n Copying output* files to home directory:"
  #cp $PWD/$case.output*  $SLURM_SUBMIT_DIR/.

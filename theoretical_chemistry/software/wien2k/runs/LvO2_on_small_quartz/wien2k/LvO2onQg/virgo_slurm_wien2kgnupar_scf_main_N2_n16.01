@@ -144,8 +144,14 @@ ldd $WIEN2k/lapw2_mpi
 # prepare .machines file
 echo '# nodes for parallel job ' > $PWD/.machines
 #echo 'omp_global:4 ' >> $PWD/.machines
-echo 'omp_global:1 ' >> $PWD/.machines
-echo "1:localhost:$SLURM_NTASKS" >>  $PWD/.machines
+counter=0
+while [ $counter -le $SLURM_NTASKS ] 
+do
+#  echo  "1:localhost" >>  .machines
+#  echo  "localhost" >>  .machines
+   echo $SLURM_JOB_NODELIST >>  .machines
+  ((counter++))
+done
 
 echo -e "\n number of hosts in .machines, SLURM_NTASKS=$SLURM_NTASKS"
 echo -e "\n content of file $PWD/.machines:"; cat $PWD/.machines

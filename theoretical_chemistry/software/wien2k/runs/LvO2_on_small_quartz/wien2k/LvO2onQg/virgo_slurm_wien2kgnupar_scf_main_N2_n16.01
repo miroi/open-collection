@@ -1,20 +1,19 @@
 #!/bin/bash
 
-#SBATCH -J LvO2@Qgp
+#SBATCH -J LvO2@Qg
 
 ##  partition (queue)
-##SBATCH -p main
-#SBATCH -p long
+#SBATCH -p main
 
 ## max. execution time
-#SBATCH -t 3-8:00:00
+#SBATCH -t 0-8:00:00
 
 # number of nodes
-#SBATCH -N 1
+#SBATCH -N 2
 
 ##SBATCH --exclusive
 
-#SBATCH --mem=128GB
+#SBATCH --mem=180GB
 ##SBATCH --mem=24GB
 
 # do not restart in the case of nodefail!
@@ -34,38 +33,54 @@
 #SBATCH --mail-user=M.Ilias@gsi.de
 #SBATCH --mail-type=ALL
 
+echo -e "\n\n Running on host `hostname`"
+echo -e "Time is `date` \n"
  
-echo -e "Job user is $SLURM_JOB_USER and his job $SLURM_JOB_NAME has assigned ID $SLURM_JOBID"
+echo -e "\n\n Job user is $SLURM_JOB_USER and his job $SLURM_JOB_NAME has assigned ID $SLURM_JOBID"
 echo -e "This job was submitted from the computer $SLURM_SUBMIT_HOST"
 echo -e "and from the home directory:"
-echo $SLURM_SUBMIT_DIR
-echo
-echo -e "It is running on the cluster compute node:"
-echo $SLURM_CLUSTER_NAME
-echo -e "and is employing $SLURM_JOB_NUM_NODES node/nodes:"
+echo -e "SLURM_SUBMIT_DIR=$SLURM_SUBMIT_DIR"
+echo -e "\n It is running on the cluster SLURM_CLUSTER_NAME=$SLURM_CLUSTER_NAME: "
+echo -e "and is employing SLURM_JOB_NUM_NODES=$SLURM_JOB_NUM_NODES node/nodes, variable SLURM_JOB_NODELIST:"
 echo $SLURM_JOB_NODELIST
-echo -e "\nJob partition is $SLURM_JOB_PARTITION \n"
+echo -e "\nJob partition is SLURM_JOB_PARTITION=$SLURM_JOB_PARTITION \n"
 echo -e "The job requests SLURM_NTASKS=$SLURM_NTASKS."
+# CPU model, total numer of CPUs, number of allocated CPUs
+echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
+NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
+echo "This node has total NPROCS=$NPROCS CPUs available for an EXCLUSIVE job."
+echo "SLURM_CPUS_ON_NODE=$SLURM_CPUS_ON_NODE"
+echo "SLURM_NTASKS_PER_SOCKET=$SLURM_NTASKS_PER_SOCKET"
+echo "SLURM_NTASKS_PER_NODE=$SLURM_NTASKS_PER_NODE"
+echo "SLURM_NTASKS_PER_CORE=$SLURM_NTASKS_PER_CORE"
+echo "SLURM_PARTITION=$SLURM_PARTITION"
+echo "SLURM_MEM_PER_NODE=$SLURM_MEM_PER_NODE"
+echo -e "\nThe total memory at the node (in GB), free -t -g:";free -t -g
+#
 
 echo -e "\nSparc modules loading:"
 spack unload --all
+spack load gcc@10.2.0 target=x86_64
 spack load openmpi%gcc target=x86_64
 spack load amdfftw%gcc target=x86_64
 spack load elpa%gcc target=x86_64
 spack load openblas%gcc target=x86_64
 spack load amdscalapack%gcc target=x86_64
-#
 echo -e "\n All loaded modules, spack find --loaded:"; spack find --loaded
 
-echo -e "\n Check of compilers and libraries:"
+echo -e "\n check of tcsh :"
 which tcsh; tcsh --version
-which mpif90; mpif90 --version
-which mpirun; mpirun --version
 
-
+echo -e "\n gcc compilers, libs:";spack find --paths  gcc@10.2.0 target=x86_64
+export LD_LIBRARY_PATH=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib/gcc/x86_64-pc-linux-gnu/10.2.0:$LD_LIBRARY_PATH
+which gfortran; gfortran --version
+#
 echo -e "\n OpenMPI compilers, libs:";spack find --paths  openmpi%gcc target=x86_64
 ls -lt /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/
 export LD_LIBRARY_PATH=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/:$LD_LIBRARY_PATH
+ompi_info | grep -i THREAD
+which mpif90; mpif90 --version
+which mpirun; mpirun --version
 #
 echo -e "\n OpenBLAS library:";spack find --paths openblas%gcc  target=x86_64
 ls -lt /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openblas-0.3.21-q7nhojttkz52xuf4zkxk7vvgllqnxh34/lib/
@@ -86,25 +101,7 @@ spack find --paths elpa%gcc target=x86_64
 ls -lt /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms/lib/
 export LD_LIBRARY_PATH=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms/lib/:$LD_LIBRARY_PATH
 
-echo -e "\n updated LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
-
-echo -e "\n\n Running on host `hostname`"
-echo -e "Time is `date` \n"
-
-# CPU model, total numer of CPUs, number of allocated CPUs
-echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
-NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
-echo "This node has total $NPROCS CPUs available for an EXCLUSIVE job."
-echo "SLURM_CPUS_ON_NODE=$SLURM_CPUS_ON_NODE"
-echo "SLURM_NTASKS_PER_SOCKET=$SLURM_NTASKS_PER_SOCKET"
-echo "SLURM_NTASKS_PER_NODE=$SLURM_NTASKS_PER_NODE"
-echo "SLURM_NTASKS_PER_CORE=$SLURM_NTASKS_PER_CORE"
-echo "SLURM_PARTITION=$SLURM_PARTITION"
-echo "SLURM_MEM_PER_NODE=$SLURM_MEM_PER_NODE"
-
-echo -e "\n The total memory at the node (in GB)"
-free -t -g
-echo -e "\n"
+echo -e "\n Sparc modules updated LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
 
 #
 export WIEN2k=/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2_gnu_openmpi_openblas
@@ -112,6 +109,7 @@ export WIENROOT=$WIEN2k; echo -e "WIENROOT=$WIENROOT"
 export PATH=$WIENROOT:$PATH
 #
        case=LvO2onQg
+       #case=TsOOQg
 #
 SCR=Wien2k_23.2_job.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID
 export SCRATCH=/lustre/ukt/milias/scratch/$SCR/$case
@@ -126,10 +124,10 @@ echo -e "\n ldd $WIEN2k/dstart_mpi :"
 ldd $WIEN2k/dstart_mpi
 echo -e "\n ldd $WIEN2k/lapw0_mpi :"
 ldd $WIEN2k/lapw0_mpi
-echo -e "\n ldd $WIEN2k/lapw1c_mpi :"
-ldd $WIEN2k/lapw1c_mpi
-echo -e "\n ldd $WIEN2k/lapw2c_mpi :"
-ldd $WIEN2k/lapw2c_mpi
+echo -e "\n ldd $WIEN2k/lapw1_mpi :"
+ldd $WIEN2k/lapw1_mpi
+echo -e "\n ldd $WIEN2k/lapw2_mpi :"
+ldd $WIEN2k/lapw2_mpi
 
 #prepare files for dstart, based on Table 4.1 in https://euler.phys.cmu.edu/cluster/WIEN2k/4Files_Program.html
  cp  $SLURM_SUBMIT_DIR/$case.struct_SAVED    $PWD/$case.struct
@@ -139,15 +137,21 @@ ldd $WIEN2k/lapw2c_mpi
  cp  $SLURM_SUBMIT_DIR/$case.in2c_SAVED      $PWD/$case.in2c
  cp  $SLURM_SUBMIT_DIR/$case.inm_SAVED       $PWD/$case.inm
  cp  $SLURM_SUBMIT_DIR/$case.rsp_SAVED       $PWD/$case.rsp
- cp  $SLURM_SUBMIT_DIR/$case.vsp_SAVED       $PWD/$case.vsp
+# cp  $SLURM_SUBMIT_DIR/$case.vsp_SAVED       $PWD/$case.vsp
  cp  $SLURM_SUBMIT_DIR/$case.klist_SAVED     $PWD/$case.klist
  cp  $SLURM_SUBMIT_DIR/$case.kgen_SAVED      $PWD/$case.kgen
 
 # prepare .machines file
 echo '# nodes for parallel job ' > $PWD/.machines
 #echo 'omp_global:4 ' >> $PWD/.machines
-echo 'omp_global:1 ' >> $PWD/.machines
-echo "1:localhost:$SLURM_NTASKS" >>  $PWD/.machines
+counter=0
+while [ $counter -le $SLURM_NTASKS ] 
+do
+#  echo  "1:localhost" >>  .machines
+#  echo  "localhost" >>  .machines
+   echo $SLURM_JOB_NODELIST >>  .machines
+  ((counter++))
+done
 
 echo -e "\n number of hosts in .machines, SLURM_NTASKS=$SLURM_NTASKS"
 echo -e "\n content of file $PWD/.machines:"; cat $PWD/.machines
@@ -158,18 +162,14 @@ x -p dstart
 #echo -e "\n Test: run_lapw -p"
 #run_lapw -p
 
-echo -e "\n running 'run_lapw -p -ec 0.00001 -i 1000 -NI'"
- #run_lapw  -ec 0.0001 -NI
-run_lapw -p -ec 0.0001 -i 50 -NI
-
-run_lapw -p -ec 0.0001 -i 50 -min -NI
+echo -e "\n running run_lapw ..."
+ run_lapw -p  -ec 0.0001 -NI
+#run_lapw -p -ec 0.00001 -i 100 -NI
 
  # now SO step
  #echo -e "\n Now SO step:"
  #init_so_lapw
  #run_lapw -so
-
-
 
  cat ":log"
  ls -lt *.error

@@ -143,8 +143,9 @@ ldd $WIEN2k/lapw2_mpi
 
 # prepare .machines file
 echo '# nodes for parallel job ' > $PWD/.machines
+echo 'omp_global:1 ' >> $PWD/.machines
 #echo 'omp_global:4 ' >> $PWD/.machines
-counter=0
+counter=1
 while [ $counter -le $SLURM_NTASKS ] 
 do
 #  echo  "1:localhost" >>  .machines

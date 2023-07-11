@@ -16,6 +16,9 @@ export ProjectNumber="chp109"
 # set number of mpi processes (2*nnodes)
 export nmpi=800
 
+# print out LSB envirovariables
+echo -e "\n LSB_JOBNAME=${LSB_JOBNAME}"
+
 ######
 # setup of dirac version, modules used in compilation etc
 # please do no modify those without checking with the development team
@@ -48,7 +51,7 @@ echo -e "DIRAC_SCRATCHDIR=$DIRAC_SCRATCHDIR"
 
 #${DIRAC_PATH}/pam --scratchfull=${DIRAC_SCRATCHDIR} --mpi=$nmpi --mol=$MOL_FILE --inp=$INP_FILE  --suffix=$LSB_JOBID.out --get "CCDENS=CCDENS.Mt-Hax-CO_4.cv3z.C1_occm40-vir5000" --put="DFPCMO.Mt-Hax-CO_4.cv3z.C1=DFPCMO"
 
-${DIRAC_PATH}/pam --scratchfull=${DIRAC_SCRATCHDIR} --mpi=$nmpi --mol=$MOL_FILE --inp=$INP_FILE  --suffix=$LSB_JOBID.out --get "CCDENS=CCDENS.Mt-Hax-CO_4.cv3z.C1_occm40-virt1000" --get="DFPCMO=DFPCMO.Mt-Hax-CO_4.cv3z.C1.$LSB_JOBID"
+${DIRAC_PATH}/pam --scratchfull=${DIRAC_SCRATCHDIR} --mpi=$nmpi --mol=$MOL_FILE --inp=$INP_FILE  --suffix=$LSB_JOBID.out --get "CCDENS=CCDENS.Mt-Hax-CO_4.cv3z.C1_occm40-virt1000" --get="DFPCMO=DFPCMO.Mt-Hax-CO_4.cv3z.C1.${LSB_JOBID}"
 
 #${DIRAC_PATH}/pam --scratchfull=${DIRAC_SCRATCHDIR} --mpi=$nmpi --mol=$MOL_FILE --inp=$INP_FILE  --suffix=$LSB_JOBID.out --get "CCDENS=CCDENS.Mt-Hax-CO_4.cv3z.C1_occm40-vir5000" --put="DFPCMO.Mt-Hax-CO_4.cv3z.C1=DFPCMO"
 

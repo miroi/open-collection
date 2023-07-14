@@ -31,4 +31,4 @@ Therefore decrease the number of MPI processes or .EXA_BLOCKSIZE
 
  Slave node   1 :  --- SEVERE ERROR, PROGRAM WILL BE ABORTED ---      
 
-
+see  https://diracprogram.org/doc/master/manual/wave_function/exacorr.html#exa-blocksize   default=75, try lower value

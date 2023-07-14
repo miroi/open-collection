@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#BSUB -nnodes 400
+#BSUB -nnodes 200
 #BSUB -W 6:00
 #BSUB -P CHP109
 #BSUB -J MtHCO4
@@ -14,7 +14,7 @@
 export ProjectNumber="chp109"
 
 # set number of mpi processes (2*nnodes)
-export nmpi=800
+export nmpi=400
 
 # print out LSB envirovariables
 echo -e "\n LSB_JOBNAME=${LSB_JOBNAME}"
@@ -50,7 +50,7 @@ export FILE_NAME=${INP_FILE}"_"${MOL_FILE}.$LSB_JOBID
 export DIRAC_SCRATCHDIR=${MEMBERWORK}/${ProjectNumber}/${FILE_NAME}
 echo -e "DIRAC_SCRATCHDIR=$DIRAC_SCRATCHDIR"
 
-${DIRAC_PATH}/pam --scratchfull=${DIRAC_SCRATCHDIR} --gb=0.20 --ag=0.366 --mpi=$nmpi --mol=$MOL_FILE --inp=$INP_FILE  --suffix=$LSB_JOBID.out --get "CCDENS=CCDENS.Mt-Hax-CO_4.cv3z.C1_occm40-vir5000" --put="DFPCMO.Mt-Hax-CO_4.cv3z.C1=DFPCMO"
+${DIRAC_PATH}/pam --scratchfull=${DIRAC_SCRATCHDIR} --gb=0.20 --ag=0.366 --mpi=$nmpi --mol=$MOL_FILE --inp=$INP_FILE  --suffix=$LSB_JOBID.out --get "CCDENS=CCDENS.Mt-Hax-CO_4.cv3z.C1_occm18-vir100" --put="DFPCMO.Mt-Hax-CO_4.cv3z.C1=DFPCMO"
 
 #${DIRAC_PATH}/pam --scratchfull=${DIRAC_SCRATCHDIR} --mpi=$nmpi --mol=$MOL_FILE --inp=$INP_FILE  --suffix=$LSB_JOBID.out --get "CCDENS=CCDENS.Mt-Hax-CO_4.cv3z.C1_occm40-virt1000" --get="DFPCMO=DFPCMO.Mt-Hax-CO_4.cv3z.C1.${LSB_JOBID}"
 

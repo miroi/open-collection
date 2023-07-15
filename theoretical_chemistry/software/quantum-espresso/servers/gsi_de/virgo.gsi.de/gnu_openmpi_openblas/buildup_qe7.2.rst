@@ -28,11 +28,58 @@ buildup with CMake
 mkdir build_gnu_openmpi_openblas
 cd build_gnu_openmpi_openblas
 
-cmake -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_ELPA=ON -DBLA_VENDOR=OpenBLAS -DCMAKE_C_COMPILER=mpicc -DCMAKE_Fortran_COMPILER=mpif90 -DELPA_LIBRARIES=/cvmfs/vae.gsi.de/wjue22nh7br4jthmt3lfugpeivfms/lib -DELPA_INCLUDE_DIRS=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms/include -DELPA_Fortran_MODS_DIR=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms/include/elpa_openmp-2021.11.001/modules -DVendorFFTW_LIBRARIES=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb -DVendorFFTW_INCLUDE_DIRS=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/include -DVendorFFTW_ID=amd  ..
 
+milias@lxbk1135.gsi.de:/lustre/ukt/milias/work/software/quantum-espresso/qe-7.2/build_gnu_openmpi_openblas/.cmake -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_ELPA=ON -DBLA_VENDOR=OpenBLAS -DCMAKE_C_COMPILER=mpicc -DCMAKE_Fortran_COMPILER=mpif90 -DELPA_LIBRARIES=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms/lib/libelpa_openmp.a  -DELPA_INCLUDE_DIRS=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms/include -DELPA_Fortran_MODS_DIR=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms/include/elpa_openmp-2021.11.001/modules -DVendorFFTW_LIBRARIES=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/lib -DVendorFFTW_INCLUDE_DIRS=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/include  ..
+-- Enable sanitizer QE_ENABLE_SANITIZER=none
+-- C preprocessor used by qe_preprocess_source in qeHelpers.cmake: /usr/bin/cpp
+-- MPI settings used by CTest
+     MPIEXEC_EXECUTABLE : /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/bin/mpiexec
+     MPIEXEC_NUMPROC_FLAG : -n
+     MPIEXEC_PREFLAGS : 
+   Tests run as : /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/bin/mpiexec -n <NUM_PROCS>  <EXECUTABLE>
+-- Source files are not cloned from a git repository.
+-- Found LAPACK: /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openblas-0.3.21-q7nhojttkz52xuf4zkxk7vvgllqnxh34/lib/libopenblas.so;/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openblas-0.3.21-q7nhojttkz52xuf4zkxk7vvgllqnxh34/lib/libopenblas.so;/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openblas-0.3.21-q7nhojttkz52xuf4zkxk7vvgllqnxh34/lib/libopenblas.so;/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libgomp.so
+-- Looking for Fortran pdgemm
+-- Looking for Fortran pdgemm - found
+-- Found SCALAPACK: /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdscalapack-3.2-zmrsnzmnifwusgdparcdnpdksnehsbcm/lib/libscalapack.so;/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openblas-0.3.21-q7nhojttkz52xuf4zkxk7vvgllqnxh34/lib/libopenblas.so;/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openblas-0.3.21-q7nhojttkz52xuf4zkxk7vvgllqnxh34/lib/libopenblas.so;/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openblas-0.3.21-q7nhojttkz52xuf4zkxk7vvgllqnxh34/lib/libopenblas.so;
+-- ELPA version string extracted from ELPA_INCLUDE_DIRS : 2021.11.001
+-- Found ELPA: /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms/lib/libelpa_openmp.a (found version "2021.11.001") 
+-- Add ELPA flag : __ELPA
+-- Installing Wannier90 via submodule
+-- Previous clone found at /lustre/ukt/milias/work/software/quantum-espresso/qe-7.2/external/wannier90.
+-- Installing MBD via submodule
+-- Installing DeviceXlib via submodule
+-- Could NOT find VendorFFTW (missing: VendorFFTW_ID) 
+-- Enabling tests in test-suite
 
-make -j24
+Only pw and cp results from ctest are reliable, we are working on making the rest tests work reliably with ctest. To run non-pw/cp tests, make a softlink of the bin directory to the root of QE source tree and run tests in the test-suite directory under that root.
 
-https://gitlab.com/QEF/q-e/-/issues/608
+-- generating tests in pw category
+-- generating tests in cp category
+-- generating tests in ph category
+-- generating tests in epw category
+-- generating tests in tddfpt category
+-- generating tests in hp category
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /lustre/ukt/milias/work/software/quantum-espresso/qe-7.2/build_gnu_openmpi_openblas
+milias@lxbk1135.gsi.de:/lustre/ukt/milias/work/software/quantum-espresso/qe-7.2/build_gnu_openmpi_openblas/.
+
+milias@lxbk1135.gsi.de:/lustre/ukt/milias/work/software/quantum-espresso/qe-7.2/build_gnu_openmpi_openblas/.ls bin/
+abcoeff_to_eps.x*  dos.x*           fermi_int_1.x*     kcwpp_interp.x*     path_interpolation.x*  pprism.x*        q2qstar.x*             upfconv.x*
+all_currents.x*    dvscf_q2r.x*     fermi_proj.x*      kcwpp_sh.x*         pawplot.x*             pp_spctrlfn.x*   q2r.x*                 ups.x*
+alpha2f.x*         dynmat.x*        fermi_velocity.x*  kcw.x*              phcg.x*                pp.x*            scan_ibrav.x*          virtual_v2.x*
+average.x*         ef.x*            fqha.x*            kpoints.x*          ph.x*                  projwfc.x*       simple_bse.x*          w90chk2chk.x*
+bands_unfold.x*    epa.x*           fs.x*              lambda.x*           plan_avg.x*            pw2bgw.x*        simple_ip.x*           wannier90.x*
+bands.x*           epsilon_Gaus.x*  graph.x*           ld1.x*              plotband.x*            pw2critic.x*     simple.x*              wannier_ham.x*
+bse_main.x*        epsilon.x*       gww_fit.x*         manycp.x*           plotproj.x*            pw2gt.x*         spectra_correction.x*  wannier_plot.x*
+casino2upf.x*      epw.x*           gww.x*             matdyn.x*           plotrho.x*             pw2gw.x*         sumpdos.x*             wfck2r.x*
+cell2ibrav.x*      ev.x*            head.x*            memory_pw4gww.x*    pmw.x*                 pw2wannier90.x*  turbo_davidson.x*      wfdd.x*
+cppp.x*            fd_ef.x*         hgh2qe.x*          molecularnexafs.x*  postahc.x*             pw4gww.x*        turbo_eels.x*          xspectra.x*
+cp.x*              fd_ifc.x*        hp.x*              molecularpdos.x*    postw90.x*             pwcond.x*        turbo_lanczos.x*       ZG.x*
+disca.x*           fd.x*            ibrav2cell.x*      neb.x*              ppacf.x*               pwi2xsf.x*       turbo_magnon.x*
+dos_sp.x*          fermi_int_0.x*   initial_state.x*   open_grid.x*        pp_disca.x*            pw.x*            turbo_spectrum.x*
+milias@lxbk1135.gsi.de:/lustre/ukt/milias/work/software/quantum-espresso/qe-7.2/build_gnu_openmpi_openblas/.
+
 
 

@@ -29,6 +29,11 @@ see https://gitlab.com/QEF/q-e/-/wikis/Developers/CMake-build-system
 mkdir build_gnu_openmpi_openblas
 cd build_gnu_openmpi_openblas
 
-cmake -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_ELPA=ON -DBLA_VENDOR=OpenBLAS -DCMAKE_C_COMPILER=mpicc -DCMAKE_Fortran_COMPILER=mpif90  ..
+cmake -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_ELPA=ON -DBLA_VENDOR=OpenBLAS -DCMAKE_C_COMPILER=mpicc -DCMAKE_Fortran_COMPILER=mpif90 -DELPA_LIBRARIES=/cvmfs/vae.gsi.de/wjue22nh7br4jthmt3lfugpeivfms/lib -DELPA_INCLUDE_DIRS=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms/include -DELPA_Fortran_MODS_DIR=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms/include/elpa_openmp-2021.11.001/modules -DVendorFFTW_LIBRARIES=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb -DVendorFFTW_INCLUDE_DIRS=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/include -DVendorFFTW_ID=amd  ..
+
+
+make -j24
+
+
 
 

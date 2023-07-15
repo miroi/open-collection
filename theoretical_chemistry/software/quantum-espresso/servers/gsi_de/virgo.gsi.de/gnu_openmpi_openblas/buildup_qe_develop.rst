@@ -34,6 +34,6 @@ cmake -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_ELPA=ON -DBLA_V
 
 make -j24
 
-
+https://gitlab.com/QEF/q-e/-/issues/608
 
 

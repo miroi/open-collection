@@ -39,7 +39,8 @@ export MOL_FILE=Mt-Hax-CO_4.cv3z.C1.mol
 #export INP_FILE=MtHCO4.x2c_a4p.scf1fs_exacct_occm40-vir5000.inp
 #export INP_FILE=MtHCO4.x2c_a4p.scf1fs_exacct_occm40-vir1000.inp
 #export INP_FILE=MtHCO4.x2c_a4p.scf1fs_exacct_occm18-vir100.inp
-export INP_FILE=MtHCO4.x2c_a4p.scf1fs_exacct_occm18-vir53.inp
+#export INP_FILE=MtHCO4.x2c_a4p.scf1fs_exacct_occm18-vir53.inp
+export INP_FILE=MtHCO4.x2c_a4p.scf1fs_exacct_occm18-vir15.inp
 
 #export FILE_NAME=${INP_NAME}"_"${MOL_NAME}
 export FILE_NAME=${INP_FILE}"_"${MOL_FILE}.$LSB_JOBID
@@ -53,7 +54,7 @@ echo -e "DIRAC_SCRATCHDIR=$DIRAC_SCRATCHDIR"
 
 #${DIRAC_PATH}/pam --scratchfull=${DIRAC_SCRATCHDIR} --gb=0.20 --ag=0.366 --mpi=$nmpi --mol=$MOL_FILE --inp=$INP_FILE  --suffix=$LSB_JOBID.out --get "CCDENS=CCDENS.Mt-Hax-CO_4.cv3z.C1_occm18-vir53" --put="DFPCMO.Mt-Hax-CO_4.cv3z.C1=DFPCMO"
 
-${DIRAC_PATH}/pam --scratchfull=${DIRAC_SCRATCHDIR} --mpi=$nmpi --mol=$MOL_FILE --inp=$INP_FILE  --suffix=$LSB_JOBID.out --get "CCDENS=CCDENS.Mt-Hax-CO_4.cv3z.C1_occm18-vir53" --put="DFPCMO.Mt-Hax-CO_4.cv3z.C1=DFPCMO"
+${DIRAC_PATH}/pam --scratchfull=${DIRAC_SCRATCHDIR} --mpi=$nmpi --mol=$MOL_FILE --inp=$INP_FILE  --suffix=$LSB_JOBID.out --get "CCDENS=CCDENS.Mt-Hax-CO_4.cv3z.C1_oca_cmXX-virXX" --put="DFPCMO.Mt-Hax-CO_4.cv3z.C1=DFPCMO"
 
 #${DIRAC_PATH}/pam --scratchfull=${DIRAC_SCRATCHDIR} --mpi=$nmpi --mol=$MOL_FILE --inp=$INP_FILE  --suffix=$LSB_JOBID.out --get "CCDENS=CCDENS.Mt-Hax-CO_4.cv3z.C1_occm40-virt1000" --get="DFPCMO=DFPCMO.Mt-Hax-CO_4.cv3z.C1.${LSB_JOBID}"
 

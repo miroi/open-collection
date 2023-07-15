@@ -56,4 +56,35 @@ MtHCO4.x2c_a4p.scf1fs_exacct_occm18-vir100_Mt-Hax-CO_4.cv3z.C1.3058357.out_SAVED
 stopped here      71-152 occup, 153-994 occup
 
 
+MtHCO4.x2c_a4p.scf1fs_exacct_occm18-vir53_Mt-Hax-CO_4.cv3z.C1.3059584.out_SAVEDfail:
+-------------------------------------------------------------------------------------
+ - Number of atomic orbitals :        877
+ - Number of occupied spinors :        82
+ - Number of virtual spinors :        756
+ 
+ Using the multi-node ExaTensor library (MPI) 
+ - ExaTensor block size :              75
+!! ATTENTION !! Properties require TALSH, density matrix must be smaller than: 
+ - TALSH buffer size:                 50 GB
+ 
+ - Print Level :                        4
+ 
+ - Estimating memory requirements
+ -- nao  ( scheme 1-3  ) :     28385 GB
+ -- nvir ( scheme 4/42 ) :     15649 GB
+-----------------------------------------------
+ 
+  15 Jul 23 11:51:36 MO occupation data to EXACC file
+  15 Jul 23 11:52:24 -Start- Integral Transformation
+  15 Jul 23 11:52:31 choosing moint_scheme 4
+  15 Jul 23 11:55:09 finished transforming subspace     1 of    12
+  15 Jul 23 11:57:04 finished transforming subspace     2 of    12
+  15 Jul 23 11:59:38 finished transforming subspace     3 of    12
+  15 Jul 23 12:01:53 finished transforming subspace     4 of    12
+  15 Jul 23 12:04:12 finished transforming subspace     5 of    12
+  15 Jul 23 12:06:16 finished transforming subspace     6 of    12
+DIRAC pam run in /autofs/nccs-svm1_home1/milias/work/projects/open-collection/theoretical_chemistry/software_runs/dirac/servers/ornl/summit/Mt-H-CO_4
+
+ ====  below this line is the stderr stream  ====
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
 

@@ -66,4 +66,24 @@ Only pw and cp results from ctest are reliable, we are working on making the res
 -- Generating done
 -- Build files have been written to: /lustre/ukt/milias/work/software/quantum-espresso/q-e_develop/build_gnu_openmpi_openblas
 milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/quantum-espresso/q-e_develop/build_gnu_openmpi_openblas/.
+.
+.
+milias@lxbk1134.gsi.de:/lustre/ukt/milias/work/software/quantum-espresso/q-e_develop/build_gnu_openmpi_openblas/.ls bin/
+abcoeff_to_eps.x*  dynmat.x*          fs.x*             manycp.x*              pmw.x*           pwcond.x*              turbo_spectrum.x*
+all_currents.x*    ef.x*              graph.x*          matdyn.x*              postahc.x*       pwi2xsf.x*             upfconv.x*
+alpha2f.x*         epa.x*             gww_fit.x*        memory_pw4gww.x*       postw90.x*       pw.x*                  ups.x*
+average.x*         epsilon_Gaus.x*    gww.x*            molecularnexafs.x*     ppacf.x*         q2qstar.x*             virtual_v2.x*
+bands_unfold.x*    epsilon.x*         head.x*           molecularpdos.x*       pp_disca.x*      q2r.x*                 w90chk2chk.x*
+bands.x*           epw.x*             hgh2qe.x*         neb.x*                 pprism.x*        scan_ibrav.x*          wannier90.x*
+bse_main.x*        ev.x*              hp.x*             open_grid.x*           pp_spctrlfn.x*   simple_bse.x*          wannier_ham.x*
+casino2upf.x*      fd_ef.x*           ibrav2cell.x*     path_interpolation.x*  pp.x*            simple_ip.x*           wannier_plot.x*
+cell2ibrav.x*      fd_ifc.x*          initial_state.x*  pawplot.x*             projwfc.x*       simple.x*              wfck2r.x*
+cppp.x*            fd.x*              kcwpp_interp.x*   phcg.x*                pw2bgw.x*        spectra_correction.x*  wfdd.x*
+cp.x*              fermi_int_0.x*     kcwpp_sh.x*       ph.x*                  pw2critic.x*     sumpdos.x*             xspectra.x*
+disca.x*           fermi_int_1.x*     kcw.x*            plan_avg.x*            pw2gt.x*         turbo_davidson.x*      ZG.x*
+dos_sp.x*          fermi_proj.x*      kpoints.x*        plotband.x*            pw2gw.x*         turbo_eels.x*
+dos.x*             fermi_velocity.x*  lambda.x*         plotproj.x*            pw2wannier90.x*  turbo_lanczos.x*
+dvscf_q2r.x*       fqha.x*            ld1.x*            plotrho.x*             pw4gww.x*        turbo_magnon.x*
+
+
 

@@ -32,3 +32,28 @@ Therefore decrease the number of MPI processes or .EXA_BLOCKSIZE
  Slave node   1 :  --- SEVERE ERROR, PROGRAM WILL BE ABORTED ---      
 
 see  https://diracprogram.org/doc/master/manual/wave_function/exacorr.html#exa-blocksize   default=75, try lower value
+
+
+MtHCO4.x2c_a4p.scf1fs_exacct_occm18-vir100_Mt-Hax-CO_4.cv3z.C1.3058357.out_SAVEDunfinished:
+-------------------------------------------------------------------------------------------
+.
+ - ExaTensor block size :              75
+!! ATTENTION !! Properties require TALSH, density matrix must be smaller than: 
+ - TALSH buffer size:                 50 GB
+ 
+ - Print Level :                        4
+ 
+ - Estimating memory requirements
+ -- nao  ( scheme 1-3  ) :     28385 GB
+ -- nvir ( scheme 4/42 ) :     24060 GB
+-----------------------------------------------
+ 
+  14 Jul 23 22:42:54 MO occupation data to EXACC file
+  14 Jul 23 22:43:26 -Start- Integral Transformation
+  14 Jul 23 22:43:50 choosing moint_scheme 4
+  14 Jul 23 22:46:33 finished transforming subspace     1 of    12
+  14 Jul 23 22:49:00 finished transforming subspace     2 of    12
+stopped here      71-152 occup, 153-994 occup
+
+
+

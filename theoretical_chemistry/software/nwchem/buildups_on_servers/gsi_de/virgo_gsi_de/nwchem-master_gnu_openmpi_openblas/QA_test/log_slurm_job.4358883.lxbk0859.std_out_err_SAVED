@@ -1,0 +1,1329 @@
+Start Singularity container /cvmfs/vae.gsi.de/vae23/containers/vae23-user_container_20230617T0229.sif
+INFO:    Environment variable SINGULARITYENV_PATH is set, but APPTAINERENV_PATH is preferred
+INFO:    Environment variable SINGULARITYENV_LD_LIBRARY_PATH is set, but APPTAINERENV_LD_LIBRARY_PATH is preferred
+WARNING: While bind mounting '/etc/slurm:/etc/slurm': destination is already in the mount point list
+WARNING: While bind mounting '/var/run/munge:/var/run/munge': destination is already in the mount point list
+WARNING: While bind mounting '/var/spool/slurm:/var/spool/slurm': destination is already in the mount point list
+WARNING: While bind mounting '/var/lib/sss/pipes/nss:/var/lib/sss/pipes/nss': destination is already in the mount point list
+WARNING: While bind mounting '/cvmfs:/cvmfs': destination is already in the mount point list
+
+Running on host lxbk0859
+Time is Sat 15 Jul 2023 11:04:53 PM CEST 
+
+
+
+ Job user is milias and his job nwQA has assigned ID 4358883
+This job was submitted from the computer lxbk1135
+and from the home directory:
+/lustre/ukt/milias/work/projects/open-collection/theoretical_chemistry/software/nwchem/buildups_on_servers/gsi_de/virgo_gsi_de/nwchem-master_gnu_openmpi_openblas/QA_test
+
+It is running on the cluster compute node: virgo
+and is employing 1 node/nodes:
+lxbk0859
+
+Job partition is: main 
+
+The job requests 12 CPU per task.
+The node's CPU model name	: Intel(R) Xeon(R) Gold 6248R CPU @ 3.00GHz
+This node has total 96 CPUs available for an EXCLUSIVE job.
+SLURM_CPUS_ON_NODE=12 CPUs allocated for SLURM calculations.
+-n=SLURM_NTASKS=4
+
+ the memory at the node (in GB)
+              total        used        free      shared  buff/cache   available
+Mem:            187          27          89           0          70         158
+Swap:             9           0           9
+Total:          196          27          99
+
+
+
+ all spack loaded modules:
+-- linux-debian10-x86_64 / gcc@8.3.0 ----------------------------
+autoconf@2.69
+autoconf-archive@2022.02.11
+automake@1.16.5
+diffutils@3.8
+gawk@5.1.1
+gcc@10.2.0
+gmp@6.2.1
+libiconv@1.16
+libsigsegv@2.13
+libtool@2.4.7
+m4@1.4.19
+mpc@1.2.1
+mpfr@4.1.0
+ncurses@6.1
+perl@5.16.3
+readline@8.1.2
+texinfo@6.5
+zlib@1.2.13
+zstd@1.5.2
+
+-- linux-debian10-x86_64 / gcc@10.2.0 ---------------------------
+amdscalapack@3.2
+autoconf@2.69
+autoconf-archive@2022.02.11
+automake@1.16.5
+bison@3.8.2
+bzip2@1.0.8
+ca-certificates-mozilla@2022-10-11
+cmake@3.24.3
+curl@7.85.0
+diffutils@3.8
+elpa@2021.11.001
+expat@2.4.8
+gawk@5.1.1
+gdbm@1.23
+gettext@0.21.1
+glib@2.74.1
+gmp@6.2.1
+hwloc@2.8.0
+json-c@0.16
+krb5@1.19.3
+libbsd@0.11.5
+libedit@3.1-20210216
+libevent@2.1.12
+libffi@3.4.2
+libgcrypt@1.10.1
+libgpg-error@1.46
+libiconv@1.16
+libmd@1.0.4
+libpciaccess@0.16
+libsigsegv@2.13
+libtool@2.4.7
+libxml2@2.10.1
+lz4@1.9.4
+m4@1.4.19
+meson@0.63.3
+mpfr@4.1.0
+munge@0.5.13
+ncurses@6.1
+ninja@1.11.1
+numactl@2.0.14
+openblas@0.3.21
+openmpi@4.1.5
+openssh@9.1p1
+openssl@1.1.1s
+pcre2@10.39
+perl@5.16.3
+pigz@2.7
+pkgconf@1.8.0
+pmix@3.2.2
+py-pip@22.2.2
+py-setuptools@59.4.0
+py-wheel@0.37.1
+python@3.10.8
+rdma-core@22.4
+readline@8.1.2
+slurm@21-08-8-2
+sqlite@3.39.4
+tar@1.34
+texinfo@6.5
+ucx@1.9.0
+util-linux-uuid@2.38.1
+util-macros@1.19.3
+xz@5.2.7
+zlib@1.2.13
+zstd@1.5.2
+
+ Python -v :Python 3.10.8
+
+ ldd NWCHEM_EXECUTABLE=/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem
+	linux-vdso.so.1 (0x00007fff179e8000)
+	libelpa_openmp.so.17 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms/lib/libelpa_openmp.so.17 (0x0000145e88c77000)
+	libscalapack.so => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdscalapack-3.2-zmrsnzmnifwusgdparcdnpdksnehsbcm/lib/libscalapack.so (0x0000145e886d0000)
+	libopenblas.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openblas-0.3.21-q7nhojttkz52xuf4zkxk7vvgllqnxh34/lib/libopenblas.so.0 (0x0000145e86156000)
+	libmpi_usempif08.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libmpi_usempif08.so.40 (0x0000145e86111000)
+	libmpi_usempi_ignore_tkr.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libmpi_usempi_ignore_tkr.so.40 (0x0000145e86100000)
+	libmpi_mpifh.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libmpi_mpifh.so.40 (0x0000145e8608f000)
+	libmpi.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libmpi.so.40 (0x0000145e85d6d000)
+	libhwloc.so.15 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/hwloc-2.8.0-rpajza4w5yeshrr7qnbtwiz7cgsc5y4l/lib/libhwloc.so.15 (0x0000145e85d0f000)
+	librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x0000145e85cf5000)
+	libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x0000145e85cd4000)
+	libgfortran.so.5 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libgfortran.so.5 (0x0000145e85a1a000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x0000145e85897000)
+	libmvec.so.1 => /lib/x86_64-linux-gnu/libmvec.so.1 (0x0000145e8586b000)
+	libgomp.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libgomp.so.1 (0x0000145e8582a000)
+	libgcc_s.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libgcc_s.so.1 (0x0000145e8580d000)
+	libquadmath.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libquadmath.so.0 (0x0000145e857c4000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x0000145e85604000)
+	libopen-rte.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libopen-rte.so.40 (0x0000145e854d6000)
+	libopen-pal.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libopen-pal.so.40 (0x0000145e853cf000)
+	libucp.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/ucx-1.9.0-6kcy2huctfmqanv3onro64z4fgcbbkdo/lib/libucp.so.0 (0x0000145e85366000)
+	libuct.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/ucx-1.9.0-6kcy2huctfmqanv3onro64z4fgcbbkdo/lib/libuct.so.0 (0x0000145e85334000)
+	libucm.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/ucx-1.9.0-6kcy2huctfmqanv3onro64z4fgcbbkdo/lib/libucm.so.0 (0x0000145e8531a000)
+	libucs.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/ucx-1.9.0-6kcy2huctfmqanv3onro64z4fgcbbkdo/lib/libucs.so.0 (0x0000145e852d0000)
+	libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x0000145e852cb000)
+	libpmix.so.2 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/pmix-3.2.2-xxu3bzsuuainkfraekzzagcl34owihxs/lib/libpmix.so.2 (0x0000145e85172000)
+	libnl-3.so.200 => /lib/x86_64-linux-gnu/libnl-3.so.200 (0x0000145e84f51000)
+	libnl-route-3.so.200 => /usr/lib/x86_64-linux-gnu/libnl-route-3.so.200 (0x0000145e84cd8000)
+	libutil.so.1 => /lib/x86_64-linux-gnu/libutil.so.1 (0x0000145e84cd3000)
+	libz.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/zlib-1.2.13-xz6lqyiknxh5ofvyybzre2lrusx2u4o2/lib/libz.so.1 (0x0000145e84cb7000)
+	libevent_core-2.1.so.7 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libevent-2.1.12-yu6nwyorgmfg6msofxuhqqkijsdqakzp/lib/libevent_core-2.1.so.7 (0x0000145e84c7f000)
+	libevent_pthreads-2.1.so.7 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libevent-2.1.12-yu6nwyorgmfg6msofxuhqqkijsdqakzp/lib/libevent_pthreads-2.1.so.7 (0x0000145e84c7a000)
+	libpciaccess.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libpciaccess-0.16-dcbydon6ydygdx25zfodcnxet7xjbvov/lib/libpciaccess.so.0 (0x0000145e84c6c000)
+	libxml2.so.2 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libxml2-2.10.1-uemmoahqov5jnjgtbzgjwh4gin47zj4o/lib/libxml2.so.2 (0x0000145e84b06000)
+	/lib64/ld-linux-x86-64.so.2 (0x0000145e88e32000)
+	libnuma.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/numactl-2.0.14-p4a7bukg5ydtffxqfb657wtifvblnefy/lib/libnuma.so.1 (0x0000145e84af8000)
+	libmunge.so.2 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/munge-0.5.13-siy6ee26a2hmclhy5a5vapfps4mb7jzm/lib/libmunge.so.2 (0x0000145e84aea000)
+	liblzma.so.5 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/xz-5.2.7-kfrl4tvfvwufmsoyu2hvml5i6n5z2br4/lib/liblzma.so.5 (0x0000145e84ac0000)
+	libiconv.so.2 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libiconv-1.16-r6z5bvhxgq7syjhkok6uiulvpxut5fab/lib/libiconv.so.2 (0x0000145e849bf000)
+	libatomic.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libatomic.so.1 (0x0000145e849b4000)
+
+ I am in pwd=/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/QA
+nproc=4
+Sat 15 Jul 2023 11:05:01 PM CEST
+Now ./doqmtests.mpi 4 fast ...
+
+ =====================================
+ QM: Running only a set of quick tests
+ =====================================
+
+
+ 
+ Running tests/h2o_opt/h2o_opt 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/c2h4/c2h4 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/auh2o/auh2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/autosym/autosym 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/dft_he2+/dft_he2+ 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/h2mp2/h2mp2 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/h2o/h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/hess_h2o/hess_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/prop_h2o/prop_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/pyqa3/pyqa3 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     NWChem execution failed
+           ---------------------
+
+  0 permanent = /lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/QA/scratchdir
+  0 scratch   = /lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/QA/scratchdir
+
+
+
+
+                                NWChem Input Module
+                                -------------------
+
+
+  library name resolved from: environment
+  library file name is: </lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/QA/../src/basis/libraries/>
+  
+                      Basis "ao basis" -> "" (cartesian)
+                      -----
+  h (Hydrogen)
+  ------------
+            Exponent  Coefficients 
+       -------------- ---------------------------------------------------------
+  1 S  5.44717800E+00  0.156285
+  1 S  8.24547000E-01  0.904691
+
+  2 S  1.83192000E-01  1.000000
+
+
+
+ Summary of "ao basis" -> "" (cartesian)
+ ------------------------------------------------------------------------------
+       Tag                 Description            Shells   Functions and Types
+ ---------------- ------------------------------  ------  ---------------------
+ h                           3-21g                   2        2   2s
+
+
+ ------------------------------------------------------------------------
+ python_input is not in this build of NWChem                   0
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+  current input line : 
+    14: python
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+ A feature requested has not yet been implemented
+
+ ------------------------------------------------------------------------
+ For more information see the NWChem manual at https://nwchemgit.github.io
+
+
+ For further details see manual section:                                                                                                                                                                                                                                                                
+ 
+Failed
+
+ 
+ Running tests/geom_zmatrix/geom_zmatrix 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/rimp2_ne/rimp2_ne 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/rimp2_he/rimp2_he 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/scf_feco5/scf_feco5 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/small_intchk/small_intchk 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/tagcheck/tagcheck 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/testtab/testtab 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o_dk/h2o_dk 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/u_sodft/u_sodft 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/cosmo_h2o/cosmo_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/ch5n_nbo/ch5n_nbo 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... failed
+@@@     Comparison of Output Files
+@@ -1,3 +1,3 @@
+ Effective nuclear repulsion energy (a.u.) 42.05
+-Total SCF energy = -94.67944
+-Total SCF energy = -94.67944
++Total SCF energy = -94.67945
++Total SCF energy = -94.67945
+ 
+ Running tests/h2s_finite/h2s_finite 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/startag/startag 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+Failed
+
+ 
+ Running tests/cosmo_na/cosmo_na 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/cosmo_cl/cosmo_cl 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/cosmo_nacl/cosmo_nacl 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/cosmo_h2o_dft/cosmo_h2o_dft 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/cosmo_h2o_bq/cosmo_h2o_bq 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/be/be 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/dft_s12gh/dft_s12gh 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/cosmo_trichloroethene/cosmo_trichloroethene 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/esp/esp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     NWChem execution failed
+
+ Constraint charge    0.000000 on atoms   -2    3
+ Constraint charge    0.000000 on atoms   -2    4
+ Constraint charge    0.000000 on atoms   -6    7
+
+
+ Restraint parameters
+
+ Hyperbolic restraint to zero charge
+    with scaling                 0.001000
+         tightness               0.100000
+         maximum iterations     25
+         tolerance               0.000100
+
+
+ Atomic radii
+
+    1    0.145000
+    6    0.213150
+   16    0.252300
+ FASTESP  F
+  using M.O. file = /lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/QA/scratchdir/esp.movecs
+ Stage 2 constraint charge     0.000000 on atoms   -2H     3H 
+ Stage 2 constraint charge     0.000000 on atoms   -2H     4H 
+ Stage 2 constraint charge     0.000000 on atoms   -6H     7H 
+
+ Possible fit problem: singular constraint matrix
+
+
+ Possible fit problem: singular constraint matrix
+
+
+ Possible fit problem: singular constraint matrix
+
+  util_file_name: stub = esp
+  util_file_name: ltmp, ldir, lname                    7                   88                   80
+ ------------------------------------------------------------------------
+ util_file_name: name too small                  96
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+  current input line : 
+    42: task esp
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+ There is an error in the input file
+ ------------------------------------------------------------------------
+ For more information see the NWChem manual at https://nwchemgit.github.io
+
+
+ For further details see manual section:                                                                                                                                                                                                                                                                
+ 
+ Running tests/esp_uhf/esp_uhf 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     NWChem execution failed
+
+ Constraint charge    0.000000 on atoms   -2    3
+ Constraint charge    0.000000 on atoms   -2    4
+ Constraint charge    0.000000 on atoms   -6    7
+
+
+ Restraint parameters
+
+ Hyperbolic restraint to zero charge
+    with scaling                 0.001000
+         tightness               0.100000
+         maximum iterations     25
+         tolerance               0.000100
+
+
+ Atomic radii
+
+    1    0.100000
+    6    0.147000
+   16    0.174000
+ FASTESP  F
+  using M.O. file = /lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/QA/scratchdir/esp_uhf.movecs
+ Stage 2 constraint charge     0.000000 on atoms   -2H     3H 
+ Stage 2 constraint charge     0.000000 on atoms   -2H     4H 
+ Stage 2 constraint charge     0.000000 on atoms   -6H     7H 
+
+ Possible fit problem: singular constraint matrix
+
+
+ Possible fit problem: singular constraint matrix
+
+
+ Possible fit problem: singular constraint matrix
+
+  util_file_name: stub = esp
+  util_file_name: ltmp, ldir, lname                   11                   88                   80
+ ------------------------------------------------------------------------
+ util_file_name: name too small                 100
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+  current input line : 
+    41: task esp
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+ There is an error in the input file
+ ------------------------------------------------------------------------
+ For more information see the NWChem manual at https://nwchemgit.github.io
+
+
+ For further details see manual section:                                                                                                                                                                                                                                                                
+ 
+Failed
+
+ 
+ Running tests/dft_bsse/dft_bsse 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/dft_bsse_d3/dft_bsse_d3 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/dft_bsse_d3_opt/dft_bsse_d3_opt 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/bsse_dft_trimer/bsse_dft_trimer 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/bsse_tce_mult/bsse_tce_mult 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_hess_start/dft_hess_start 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/dft_hess_rest/dft_hess_rest 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/c4h4_wfn/c4h4_wfn 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/disp_dimer_ch4/disp_dimer_ch4 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/disp_dimer_ch4_cgmin/disp_dimer_ch4_cgmin 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/h2o-b3lyp-disp/h2o-b3lyp-disp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/cosmo_h2cco2/cosmo_h2cco2 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/cosmo_h2cco2mg/cosmo_h2cco2mg 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... failed
+@@@     Comparison of Output Files
+@@ -1,4 +1,4 @@
+ Effective nuclear repulsion energy (a.u.) 189.80
+-Total SCF energy = -426.32845
++Total SCF energy = -426.32846
+    Atoms             Coordinates:
+          mg      0.000      0.000     -2.967
+ 
+ Running tests/cosmo_h2cco2mg_ecp/cosmo_h2cco2mg_ecp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+Failed
+
+ 
+ Running tests/cosmo_h3co/cosmo_h3co 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/cosmo_h3co_ecp/cosmo_h3co_ecp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/cosmo_h2cco2na/cosmo_h2cco2na 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/cosmo_h3co_gp/cosmo_h3co_gp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dplot/dplot 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_meta/dft_meta 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/dft_mpwb1khf/dft_mpwb1khf 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/dft_m05nh2ch3/dft_m05nh2ch3 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/prop_uhf_h2o/prop_uhf_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/et_zn_dimer/et_zn_dimer 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/vectors_rotate/vectors_rotate 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     NWChem execution failed
+
+         Rotation matrix
+         ---------------
+    0.913545    0.406737    0.000000
+    0.406737   -0.913545    0.000000
+    0.000000    0.000000   -1.000000
+
+   -0.548127   -0.244042    0.000000
+    0.548127    0.244042    0.000000
+ det(rot)    1.0000000000000007     
+ util_file_name_resolve: filename too small                  97
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+  current input line : 
+     0: 
+ util_file_name_resolve: filename too small                  97
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+  current input line : 
+     0: 
+ ------------------------------------------------------------------------
+ util_file_name_resolve: filename too small                  97
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+  current input line : 
+    33: task dft
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+ There is an error in the input file
+ ------------------------------------------------------------------------
+ For more information see the NWChem manual at https://nwchemgit.github.io
+
+
+ For further details see manual section:                                                                                                                                                                                                                                                                
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+ There is an error in the input file
+ ------------------------------------------------------------------------
+ For more information see the NWChem manual at https://nwchemgit.github.io
+
+
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+ There is an error in the input file
+ ------------------------------------------------------------------------
+ For more information see the NWChem manual at https://nwchemgit.github.io
+
+
+ For further details see manual section:                                                                                                                                                                                                                                                                
+ For further details see manual section:                                                                                                                                                                                                                                                                
+ 
+ Running tests/sad_ch3hf/sad_ch3hf 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+Failed
+
+ 
+ Running tests/h2o_diag_to_cg/h2o_diag_to_cg 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/h2o_cg_to_diag/h2o_cg_to_diag 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o_diag_opt/h2o_diag_opt 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/h2o_cg_opt/h2o_cg_opt 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/h2o_diag_opt_ub3lyp/h2o_diag_opt_ub3lyp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/h2o_cg_opt_ub3lyp/h2o_cg_opt_ub3lyp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/h2o_cg_opt_rob3lyp/h2o_cg_opt_rob3lyp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o_diag_to_cg_ub3lyp/h2o_diag_to_cg_ub3lyp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/h2o_cg_to_diag_ub3lyp/h2o_cg_to_diag_ub3lyp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o_cg_opt_cosmo/h2o_cg_opt_cosmo 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+ 
+The oh2 test is testing the perl parsing script and SHOULD fail
+
+ 
+ Running tests/oh2/oh2 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... failed
+@@@     Comparison of Output Files
+@@ -1,4 +1,4 @@
+ Effective nuclear repulsion energy (a.u.) 9.20
+-Total SCF energy = -67.01054
++Total SCF energy = -76.01054
+    Atoms             Coordinates:
+           O      0.000      0.000      0.221
+ 
+Failed
+
+ 
+ Running tests/PhoWat_SMD_HF/PhoWat_SMD_HF 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/CH3OH2pWat_SMD_M062X/CH3OH2pWat_SMD_M062X 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/CH3OH2pWat_SMD_M062X_opt/CH3OH2pWat_SMD_M062X_opt 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_feco5/dft_feco5 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_siosi3/dft_siosi3 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/adft_siosi3/adft_siosi3 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_cr2/dft_cr2 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_x/dft_x 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_mpw1k/dft_mpw1k 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/dft_li2freq/dft_li2freq 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/grad_ozone/grad_ozone 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_ozone/dft_ozone 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/hess_c6h6/hess_c6h6 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/hess_nh3_ub3lyp/hess_nh3_ub3lyp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/intchk/intchk 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+The intermediate values for this test may cause some differences.
+Please check the final values for the last optimized structure.
+
+ 
+ Running tests/sadsmall/sadsmall 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... failed
+@@@     Comparison of Output Files
+@@ -47,5 +47,5 @@
+           c     -0.057      1.304      0.000
+           o      0.068     -1.488      0.000
+-          h      2.358      0.147      0.000
++          h      2.359      0.147      0.000
+           h     -0.881      2.071     -1.693
+           h     -0.881      2.071      1.693
+ 
+Failed
+
+ 
+ Running tests/br2_dk/br2_dk 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/uo2_sodft/uo2_sodft 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/uo2_sodft_grad/uo2_sodft_grad 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/si2cl6_gc/si2cl6_gc 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pspw/pspw 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pspw_SiC/pspw_SiC 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pspw_blyp_h2o/pspw_blyp_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pspw_revpbe_h2o/pspw_revpbe_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pspw_pbesol_h2o/pspw_pbesol_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pspw_tpss03_h2o/pspw_tpss03_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pspw_acm_h2o/pspw_acm_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem)  with 4 processors 
+ 
+slurmstepd: error: *** JOB 4358883 ON lxbk0859 CANCELLED AT 2023-07-16T07:04:38 DUE TO TIME LIMIT ***

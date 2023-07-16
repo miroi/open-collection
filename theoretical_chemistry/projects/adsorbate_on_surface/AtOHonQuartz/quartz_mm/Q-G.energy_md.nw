@@ -1,0 +1,16 @@
+echo
+
+start molecule
+
+title "Q-G mm"
+charge 0
+
+geometry units angstroms print xyz autosym
+  load format xyz Q-G.xyz
+end
+
+prepare
+  amber
+end
+
+task md energy

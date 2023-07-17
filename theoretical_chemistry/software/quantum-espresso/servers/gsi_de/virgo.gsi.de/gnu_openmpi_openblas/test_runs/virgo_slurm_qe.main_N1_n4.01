@@ -93,10 +93,9 @@ export QE=/lustre/ukt/milias/work/software/quantum-espresso/qe-7.2
 export QEbin=$QE/build_gnu_openmpi_openblas
 echo -e "\n ldd ${QEbin}/bin/pw.x"; ldd ${QEbin}/bin/pw.x
 
-echo -e "\n I am in pwd=\c"; pwd
-
 cd ${QEbin}
-ctest -j4 -L short
+echo -e "\n I am in pwd=\c"; pwd
+ctest -j4 
 
 
 exit

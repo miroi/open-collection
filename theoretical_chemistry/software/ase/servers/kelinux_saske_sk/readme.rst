@@ -35,3 +35,12 @@ Successfully installed pip-21.3.1
 
 python3 -m  pip install --upgrade --user ase asap3
 
+  Building wheel for asap3 (setup.py) ... done
+  Created wheel for asap3: filename=asap3-3.12.12-cp36-cp36m-linux_x86_64.whl size=4259527 sha256=4494ad218cf2056235fcc90e696ed0833c4c381458b963b981e6c60f15ded2fa
+  Stored in directory: /lustre/home/ilias/.cache/pip/wheels/9b/27/06/d9769d3868586ec8664d4f451a74e67c4ae55991cafa2d5e20
+Successfully built asap3
+Installing collected packages: asap3
+Successfully installed asap3-3.12.12
+ilias@login1.kelinux.saske.sk:~/work/qch/projects/open-collection/theoretical_chemistry/software/ase/runs/simple_md_asap3/.
+
+

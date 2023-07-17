@@ -33,5 +33,5 @@ Installing collected packages: pip
 Successfully installed pip-21.3.1
 
 
-
+python3 -m  pip install --upgrade --user ase asap3
 

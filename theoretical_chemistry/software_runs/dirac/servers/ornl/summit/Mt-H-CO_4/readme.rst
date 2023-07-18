@@ -120,4 +120,11 @@ Warning, specify multiple instances of the same option to jsrun, take the last o
 
 Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
 
+MtHCO4.x2c_a4p.scf1fs_exacct_occm18-vir5.inp
+--------------------------------------------
+  18 Jul 23 10:19:23  Starting CC calculation with exatensor
+In the current implementation there is a scaling limit.
+Using your configuration there would be nodes doing no work.
+Therefore decrease the number of MPI processes or .EXA_BLOCKSIZE
+
 

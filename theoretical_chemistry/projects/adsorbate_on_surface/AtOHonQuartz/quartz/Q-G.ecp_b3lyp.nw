@@ -1,0 +1,36 @@
+echo
+
+start molecule
+
+title "Q-G ecp"
+charge 0
+
+geometry units angstroms print xyz autosym
+  load format xyz Quartz-G_001.molecular_slab_smaller.xyz
+end
+
+#relativistic
+#   DOUGLAS-KROLL DKH
+#end
+
+#
+basis spherical
+ Si library  LANL2DZ_ECP
+ O  library  LANL2DZ_ECP
+ H  library  LANL2DZ_ECP
+end
+
+ecp spherical
+  Si library LANL2DZ_ECP
+   O library LANL2DZ_ECP
+   H library LANL2DZ_ECP
+end
+
+
+dft
+  xc b3lyp
+  mult 1
+  maxiter 100
+end
+
+task dft energy

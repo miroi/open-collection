@@ -112,6 +112,7 @@ echo -e "\n The local home directory with NWChem input file, SLURM_SUBMIT_DIR=${
 #project=AtOHonQ-G.dkh_b3lyp
 #project=Q-G.dkh_b3lyp
 project=Q-G.ecp_b3lyp
+#project=uo2_ecp
 cp ${SLURM_SUBMIT_DIR}/Quartz-G_001.molecular_slab_smaller.xyz  $PWD/.
 echo -e "\n Launching NWChem run with project=${project}"
 mpirun -np  ${SLURM_NTASKS} ${NWCHEM_EXECUTABLE}  ${SLURM_SUBMIT_DIR}/$project.nw  > ${SLURM_SUBMIT_DIR}/$project.${SLURM_JOB_PARTITION}_N${SLURM_JOB_NUM_NODES}_n${SLURM_NTASKS}_jid${SLURM_JOBID}.out

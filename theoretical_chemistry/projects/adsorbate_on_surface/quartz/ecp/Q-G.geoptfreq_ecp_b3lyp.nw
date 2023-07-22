@@ -12,15 +12,11 @@ geometry units angstroms print xyz autosym
 end
 
 basis
- Si library lanl2dz_ecp
-  O library lanl2dz_ecp
-  H library lanl2dz_ecp
+ * library lanl2dz_ecp
 end
 
 ecp 
   Si library lanl2dz_ecp
-   O library lanl2dz_ecp
-   H library lanl2dz_ecp
 end
 
 dft
@@ -29,4 +25,12 @@ dft
   maxiter 100
 end
 
-task dft energy
+driver
+  maxiter 999
+  xyz QG_geom
+end
+
+
+task dft optimize
+task dft frequencies
+

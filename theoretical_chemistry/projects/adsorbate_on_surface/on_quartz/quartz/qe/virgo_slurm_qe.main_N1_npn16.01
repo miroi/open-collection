@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH -J qetest
+#SBATCH -J sQg
 
 ## max. execution time
 ##SBATCH -t 7-00:00:00
@@ -11,14 +11,15 @@
 #SBATCH -N 1
 ##SBATCH --exclusive
 ##SBATCH --mem=120GB
-#SBATCH --mem=24GB
+#SBATCH --mem=64GB
 
 # do not restart in the case of nodefail!
 #SBATCH --no-requeue
 #SBATCH --no-kill
 
 ## CPU count  - max. 40 per node ?
-#SBATCH -n 4
+##SBATCH -n 4
+#SBATCH --ntasks-per-node=16
 
 ##  partition (queue)
 ##SBATCH -p long
@@ -49,13 +50,28 @@ echo
 echo -e "Job partition is: $SLURM_JOB_PARTITION \n"
 echo -e "The job requests $SLURM_CPUS_ON_NODE CPU per task."
 
+MACHINEFILE="nodes.$SLURM_JOB_PARTITION.$SLURM_JOB_ID"
+# Generate Machinefile for mpi such that hosts are in the same
+# order as if run via srun
+srun -l /bin/hostname | sort -n | awk '{print $2}' | grep lxb* > $MACHINEFILE
+echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; cat $MACHINEFILE
+
+
 # CPU model, total numer of CPUs, number of allocated CPUs
 echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
 NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
 echo "This node has total $NPROCS CPUs available for an EXCLUSIVE job."
-#
 echo "SLURM_CPUS_ON_NODE=${SLURM_CPUS_ON_NODE} CPUs allocated for SLURM calculations."
-echo "-n=SLURM_NTASKS=${SLURM_NTASKS}"
+echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
+
+RATIO=$(( $SLURM_CPUS_ON_NODE / $SLURM_NTASKS ))
+echo -e "Ratio SLURM_CPUS_ON_NODE/SLURM_NTASKS=$SLURM_CPUS_ON_NODE/$SLURM_NTASKS=\c";echo $(( $SLURM_CPUS_ON_NODE / $SLURM_NTASKS ))
+echo -e $RATIO
+# set OpenMP threads accordingly
+#export USE_OPENMP=1
+export OPENBLAS_NUM_THREADS=$RATIO
+echo -e "\nFor openblas internal parallelization, OPENBLAS_NUM_THREADS=$OPENBLAS_NUM_THREADS"
+
 
 echo -e "\n the memory at the node (in GB)"
 free -t -g
@@ -93,9 +109,29 @@ export QE=/lustre/ukt/milias/work/software/quantum-espresso/qe-7.2
 export QEbin=$QE/build_gnu_openmpi_openblas
 echo -e "\n ldd ${QEbin}/bin/pw.x"; ldd ${QEbin}/bin/pw.x
 
-cd ${QEbin}
-echo -e "\n I am in pwd=\c"; pwd
-ctest -j4 
+export SCRATCH=/lustre/ukt/milias/scratch
+export ESPRESSO_TMPDIR=$SCRATCH/QEjob.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID
+mkdir $ESPRESSO_TMPDIR
+echo -e "\nQE work directory, df -h ESPRESSO_TMPDIR=$ESPRESSO_TMPDIR and its free space:"
+df -h $ESPRESSO_TMPDIR
+echo -e "For comparison, /tmp local disk;  df -h /tmp/."; df -h /tmp
+echo -e "\n"
+
+## for running jobs from your homedir
+cd $SLURM_SUBMIT_DIR
+
+# echo "SLURM_CPUS_ON_NODE/SLURM_NTASKS=$SLURM_CPUS_ON_NODE/$SLURM_NTASKS";
+
+ #proj=Cs-Au64.scf_k22x22x1_ewft44_z10
+ #proj=IOO_on_Quartz-G_001_Si7cut_4x4.qe_scf
+ proj=sQ-G.scf_z15_k10x10x10
+
+ echo -e "\nRunning QE job with mpirun $SLURM_NTASKS threads, memory of $SLURM_MEM_PER_NODE MB, input=$proj.in "
+ mpirun -machinefile $MACHINEFILE -np $SLURM_NTASKS $QE/pw.x < $proj.in > $proj.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.omp$OPENBLAS_NUM_THREADS.id$SLURM_JOBID.out
+
+echo -e "\n Working disk space and its content, ESPRESSO_TMPDIR=$ESPRESSO_TMPDIR :"
+df -h $ESPRESSO_TMPDIR
+ls -lt  $ESPRESSO_TMPDIR
 
 
 exit

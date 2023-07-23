@@ -105,6 +105,7 @@ spack find --loaded
 
 echo -e "\n Python -v :\c"; python -V
 #
+# export QE=/lustre/ukt/milias/work/software/quantum-espresso/qe-7.1/build_openmpi_cpu/bin
 export QE=/lustre/ukt/milias/work/software/quantum-espresso/qe-7.2
 export QEbin=$QE/build_gnu_openmpi_openblas
 echo -e "\n ldd ${QEbin}/bin/pw.x"; ldd ${QEbin}/bin/pw.x
@@ -127,7 +128,7 @@ cd $SLURM_SUBMIT_DIR
  proj=sQ-G.scf_z15_k10x10x10
 
  echo -e "\nRunning QE job with mpirun $SLURM_NTASKS threads, memory of $SLURM_MEM_PER_NODE MB, input=$proj.in "
- mpirun -machinefile $MACHINEFILE -np $SLURM_NTASKS $QE/pw.x < $proj.in > $proj.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.omp$OPENBLAS_NUM_THREADS.id$SLURM_JOBID.out
+ mpirun -machinefile $MACHINEFILE -np $SLURM_NTASKS $QEbin/bin/pw.x < $proj.in > $proj.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.omp$OPENBLAS_NUM_THREADS.id$SLURM_JOBID.out
 
 echo -e "\n Working disk space and its content, ESPRESSO_TMPDIR=$ESPRESSO_TMPDIR :"
 df -h $ESPRESSO_TMPDIR

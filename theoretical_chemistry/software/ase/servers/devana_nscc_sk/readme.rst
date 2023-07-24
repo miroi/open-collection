@@ -28,4 +28,17 @@ ase*        ase-db*   ase-info*  f2py*   f2py3.6*  fonttools*  pip3*     pip3.9*
 ase-build*  ase-gui*  ase-run*   f2py3*  f2py3.9*  pip*        pip3.11*  pyftmerge*  ttx*
 
 
+milias@login01.devana.local:~/work/projects/open-collection/theoretical_chemistry/software/ase/servers/devana_nscc_sk/.module load Python/3.9.5-GCCcore-10.3.0
+milias@login01.devana.local:~/work/projects/open-collection/theoretical_chemistry/software/ase/servers/devana_nscc_sk/.ase-info    Please use "ase info" instead of "ase-info"
+platform                 Linux-3.10.0-1160.71.1.el7.x86_64-x86_64-with-glibc2.17
+python-3.9.5             /storage-apps/easybuild/software/Python/3.9.5-GCCcore-10.3.0/bin/python3
+ase-3.22.1               /home/milias/.local/lib/python3.9/site-packages/ase
+numpy-1.25.1             /home/milias/.local/lib/python3.9/site-packages/numpy
+scipy-1.11.1             /home/milias/.local/lib/python3.9/site-packages/scipy
+matplotlib-3.7.2         /home/milias/.local/lib/python3.9/site-packages/matplotlib
+spglib                   not installed
+ase_ext                  not installed
+flask                    not installed
+psycopg2                 not installed
+pyamg                    not installed
 

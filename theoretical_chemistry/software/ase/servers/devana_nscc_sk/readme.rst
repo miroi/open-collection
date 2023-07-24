@@ -1,0 +1,25 @@
+ASE
+===
+
+see https://asap3.readthedocs.io/en/latest/installation/Installation.html#simple-installation
+
+milias@login02.devana.local:~/work/projects/open-collection/theoretical_chemistry/software/ase/servers/devana_nscc_sk/.module load Python/3.9.5-GCCcore-10.3.0
+
+
+python3 -m pip install --upgrade --user ase
+.
+.
+.
+  WARNING: The scripts f2py, f2py3 and f2py3.9 are installed in '/home/milias/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The scripts fonttools, pyftmerge, pyftsubset and ttx are installed in '/home/milias/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The scripts ase, ase-build, ase-db, ase-gui, ase-info and ase-run are installed in '/home/milias/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+Successfully installed ase-3.22.1 contourpy-1.1.0 cycler-0.11.0 fonttools-4.41.1 importlib-resources-6.0.0 kiwisolver-1.4.4 matplotlib-3.7.2 numpy-1.25.1 pillow-10.0.0 scipy-1.11.1
+WARNING: You are using pip version 21.1.1; however, version 23.2.1 is available.
+You should consider upgrading via the '/storage-apps/easybuild/software/Python/3.9.5-GCCcore-10.3.0/bin/python3 -m pip install --upgrade pip' command.
+
+
+
+

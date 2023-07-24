@@ -1,0 +1,2063 @@
+Start Singularity container /cvmfs/vae.gsi.de/vae23/containers/vae23-user_container_20230617T0229.sif
+INFO:    Environment variable SINGULARITYENV_PATH is set, but APPTAINERENV_PATH is preferred
+INFO:    Environment variable SINGULARITYENV_LD_LIBRARY_PATH is set, but APPTAINERENV_LD_LIBRARY_PATH is preferred
+WARNING: While bind mounting '/etc/slurm:/etc/slurm': destination is already in the mount point list
+WARNING: While bind mounting '/var/run/munge:/var/run/munge': destination is already in the mount point list
+WARNING: While bind mounting '/var/spool/slurm:/var/spool/slurm': destination is already in the mount point list
+WARNING: While bind mounting '/var/lib/sss/pipes/nss:/var/lib/sss/pipes/nss': destination is already in the mount point list
+WARNING: While bind mounting '/cvmfs:/cvmfs': destination is already in the mount point list
+
+Running on host lxbk0888
+Time is Mon 17 Jul 2023 08:44:26 PM CEST 
+
+
+
+ Job user is milias and his job qetest has assigned ID 4495198
+This job was submitted from the computer lxbk1134
+and from the home directory:
+/lustre/ukt/milias/work/projects/open-collection/theoretical_chemistry/software/quantum-espresso/servers/gsi_de/virgo.gsi.de/gnu_openmpi_openblas/test_runs
+
+It is running on the cluster compute node: virgo
+and is employing 1 node/nodes:
+lxbk0888
+
+Job partition is: main 
+
+The job requests 12 CPU per task.
+The node's CPU model name	: Intel(R) Xeon(R) Gold 6248R CPU @ 3.00GHz
+This node has total 96 CPUs available for an EXCLUSIVE job.
+SLURM_CPUS_ON_NODE=12 CPUs allocated for SLURM calculations.
+-n=SLURM_NTASKS=4
+
+ the memory at the node (in GB)
+              total        used        free      shared  buff/cache   available
+Mem:            187          16         164           0           6         169
+Swap:             9           0           9
+Total:          196          16         174
+
+
+
+ all spack loaded modules:
+-- linux-debian10-x86_64 / gcc@8.3.0 ----------------------------
+autoconf@2.69
+autoconf-archive@2022.02.11
+automake@1.16.5
+diffutils@3.8
+gawk@5.1.1
+gcc@10.2.0
+gmp@6.2.1
+libiconv@1.16
+libsigsegv@2.13
+libtool@2.4.7
+m4@1.4.19
+mpc@1.2.1
+mpfr@4.1.0
+ncurses@6.1
+perl@5.16.3
+readline@8.1.2
+texinfo@6.5
+zlib@1.2.13
+zstd@1.5.2
+
+-- linux-debian10-x86_64 / gcc@10.2.0 ---------------------------
+amdfftw@3.0
+amdscalapack@3.2
+autoconf@2.69
+autoconf-archive@2022.02.11
+automake@1.16.5
+bison@3.8.2
+bzip2@1.0.8
+ca-certificates-mozilla@2022-10-11
+cmake@3.24.3
+curl@7.85.0
+diffutils@3.8
+elpa@2021.11.001
+expat@2.4.8
+gawk@5.1.1
+gdbm@1.23
+gettext@0.21.1
+glib@2.74.1
+gmp@6.2.1
+hwloc@2.8.0
+json-c@0.16
+krb5@1.19.3
+libbsd@0.11.5
+libedit@3.1-20210216
+libevent@2.1.12
+libffi@3.4.2
+libgcrypt@1.10.1
+libgpg-error@1.46
+libiconv@1.16
+libmd@1.0.4
+libpciaccess@0.16
+libsigsegv@2.13
+libtool@2.4.7
+libxml2@2.10.1
+lz4@1.9.4
+m4@1.4.19
+meson@0.63.3
+mpfr@4.1.0
+munge@0.5.13
+ncurses@6.1
+ninja@1.11.1
+numactl@2.0.14
+openblas@0.3.21
+openmpi@4.1.5
+openssh@9.1p1
+openssl@1.1.1s
+pcre2@10.39
+perl@5.16.3
+pigz@2.7
+pkgconf@1.8.0
+pmix@3.2.2
+py-pip@22.2.2
+py-setuptools@59.4.0
+py-wheel@0.37.1
+python@3.10.8
+rdma-core@22.4
+readline@8.1.2
+slurm@21-08-8-2
+sqlite@3.39.4
+tar@1.34
+texinfo@6.5
+ucx@1.9.0
+util-linux-uuid@2.38.1
+util-macros@1.19.3
+xz@5.2.7
+zlib@1.2.13
+zstd@1.5.2
+
+ Python -v :Python 3.10.8
+
+ ldd /lustre/ukt/milias/work/software/quantum-espresso/qe-7.2/build_gnu_openmpi_openblas/bin/pw.x
+	linux-vdso.so.1 (0x00007fff32fbf000)
+	libscalapack.so => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdscalapack-3.2-zmrsnzmnifwusgdparcdnpdksnehsbcm/lib/libscalapack.so (0x0000145e594de000)
+	libfftw3.so.3 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-zen/gcc-10.2.0/amdfftw-3.0-oehivet3nneevlfpyzp5ovxfiz32ik46/lib/libfftw3.so.3 (0x0000145e58f92000)
+	libfftw3_omp.so.3 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-zen/gcc-10.2.0/amdfftw-3.0-oehivet3nneevlfpyzp5ovxfiz32ik46/lib/libfftw3_omp.so.3 (0x0000145e58f88000)
+	libgomp.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libgomp.so.1 (0x0000145e58f47000)
+	libopenblas.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openblas-0.3.21-q7nhojttkz52xuf4zkxk7vvgllqnxh34/lib/libopenblas.so.0 (0x0000145e569cd000)
+	libmpi_usempif08.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libmpi_usempif08.so.40 (0x0000145e5698a000)
+	libmpi_usempi_ignore_tkr.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libmpi_usempi_ignore_tkr.so.40 (0x0000145e56977000)
+	libmpi_mpifh.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libmpi_mpifh.so.40 (0x0000145e56906000)
+	libmpi.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libmpi.so.40 (0x0000145e565e4000)
+	libgfortran.so.5 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libgfortran.so.5 (0x0000145e5632a000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x0000145e56199000)
+	libgcc_s.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libgcc_s.so.1 (0x0000145e5617c000)
+	libquadmath.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libquadmath.so.0 (0x0000145e56133000)
+	libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x0000145e56112000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x0000145e55f52000)
+	libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x0000145e55f4b000)
+	libopen-rte.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libopen-rte.so.40 (0x0000145e55e1f000)
+	libopen-pal.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libopen-pal.so.40 (0x0000145e55d18000)
+	libucp.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/ucx-1.9.0-6kcy2huctfmqanv3onro64z4fgcbbkdo/lib/libucp.so.0 (0x0000145e55caf000)
+	libuct.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/ucx-1.9.0-6kcy2huctfmqanv3onro64z4fgcbbkdo/lib/libuct.so.0 (0x0000145e55c7d000)
+	libucm.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/ucx-1.9.0-6kcy2huctfmqanv3onro64z4fgcbbkdo/lib/libucm.so.0 (0x0000145e55c61000)
+	libucs.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/ucx-1.9.0-6kcy2huctfmqanv3onro64z4fgcbbkdo/lib/libucs.so.0 (0x0000145e55c19000)
+	libpmix.so.2 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/pmix-3.2.2-xxu3bzsuuainkfraekzzagcl34owihxs/lib/libpmix.so.2 (0x0000145e55ac0000)
+	libnl-3.so.200 => /lib/x86_64-linux-gnu/libnl-3.so.200 (0x0000145e5589f000)
+	libnl-route-3.so.200 => /usr/lib/x86_64-linux-gnu/libnl-route-3.so.200 (0x0000145e55626000)
+	librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x0000145e5561a000)
+	libutil.so.1 => /lib/x86_64-linux-gnu/libutil.so.1 (0x0000145e55615000)
+	libz.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/zlib-1.2.13-xz6lqyiknxh5ofvyybzre2lrusx2u4o2/lib/libz.so.1 (0x0000145e555fb000)
+	libhwloc.so.15 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/hwloc-2.8.0-rpajza4w5yeshrr7qnbtwiz7cgsc5y4l/lib/libhwloc.so.15 (0x0000145e5559d000)
+	libevent_core-2.1.so.7 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libevent-2.1.12-yu6nwyorgmfg6msofxuhqqkijsdqakzp/lib/libevent_core-2.1.so.7 (0x0000145e55565000)
+	libevent_pthreads-2.1.so.7 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libevent-2.1.12-yu6nwyorgmfg6msofxuhqqkijsdqakzp/lib/libevent_pthreads-2.1.so.7 (0x0000145e55560000)
+	/lib64/ld-linux-x86-64.so.2 (0x0000145e59a87000)
+	libnuma.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/numactl-2.0.14-p4a7bukg5ydtffxqfb657wtifvblnefy/lib/libnuma.so.1 (0x0000145e55550000)
+	libmunge.so.2 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/munge-0.5.13-siy6ee26a2hmclhy5a5vapfps4mb7jzm/lib/libmunge.so.2 (0x0000145e55542000)
+	libpciaccess.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libpciaccess-0.16-dcbydon6ydygdx25zfodcnxet7xjbvov/lib/libpciaccess.so.0 (0x0000145e55536000)
+	libxml2.so.2 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libxml2-2.10.1-uemmoahqov5jnjgtbzgjwh4gin47zj4o/lib/libxml2.so.2 (0x0000145e553d0000)
+	libatomic.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libatomic.so.1 (0x0000145e553c3000)
+	liblzma.so.5 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/xz-5.2.7-kfrl4tvfvwufmsoyu2hvml5i6n5z2br4/lib/liblzma.so.5 (0x0000145e55399000)
+	libiconv.so.2 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libiconv-1.16-r6z5bvhxgq7syjhkok6uiulvpxut5fab/lib/libiconv.so.2 (0x0000145e5529a000)
+
+ I am in pwd=/lustre/ukt/milias/work/software/quantum-espresso/qe-7.2/build_gnu_openmpi_openblas
+Test project /lustre/ukt/milias/work/software/quantum-espresso/qe-7.2/build_gnu_openmpi_openblas
+        Start 320: system--cp-pseudo
+        Start 593: system--pw_md--md_restart_verlet-init
+        Start  37: test_qe_xclib_gen_test
+        Start   1: test_qe_fftx-r1-t1
+  1/593 Test #593: system--pw_md--md_restart_verlet-init .............................   Passed    0.15 sec
+        Start 591: system--pw_md--preparation
+  2/593 Test #591: system--pw_md--preparation ........................................   Passed    0.02 sec
+        Start   5: test_qe_fftx_fft_scalar_gpu-r1-t1
+  3/593 Test   #5: test_qe_fftx_fft_scalar_gpu-r1-t1 .................................   Passed    0.14 sec
+        Start   9: test_qe_fftx_fft_scatter_mod_gpu-r1-t1
+  4/593 Test   #9: test_qe_fftx_fft_scatter_mod_gpu-r1-t1 ............................   Passed    0.18 sec
+        Start  13: test_qe_fftx_fwinv_gpu-r1-t1
+  5/593 Test  #13: test_qe_fftx_fwinv_gpu-r1-t1 ......................................   Passed    1.31 sec
+        Start  17: test_qe_utilx_mp_count_nodes
+  6/593 Test   #1: test_qe_fftx-r1-t1 ................................................   Passed    2.05 sec
+        Start  18: test_qe_utilx_mp_bcast_i1
+  7/593 Test  #17: test_qe_utilx_mp_count_nodes ......................................   Passed    0.39 sec
+        Start  19: test_qe_utilx_mp_bcast_iv
+  8/593 Test  #18: test_qe_utilx_mp_bcast_i1 .........................................   Passed    0.40 sec
+        Start  20: test_qe_utilx_mp_bcast_im
+  9/593 Test  #19: test_qe_utilx_mp_bcast_iv .........................................   Passed    0.34 sec
+        Start  21: test_qe_utilx_mp_bcast_it
+ 10/593 Test  #20: test_qe_utilx_mp_bcast_im .........................................   Passed    0.43 sec
+        Start  22: test_qe_utilx_mp_bcast_iv_buffer
+ 11/593 Test  #21: test_qe_utilx_mp_bcast_it .........................................   Passed    0.40 sec
+        Start  23: test_qe_utilx_mp_bcast_lv_buffer
+ 12/593 Test #320: system--cp-pseudo .................................................   Passed    3.20 sec
+        Start  40: system--pw-pseudo
+ 13/593 Test  #23: test_qe_utilx_mp_bcast_lv_buffer ..................................   Passed    0.37 sec
+        Start  24: test_qe_utilx_mp_bcast_rv_buffer
+ 14/593 Test  #22: test_qe_utilx_mp_bcast_iv_buffer ..................................   Passed    0.39 sec
+        Start  25: test_qe_utilx_mp_max_iv_buffer
+ 15/593 Test  #25: test_qe_utilx_mp_max_iv_buffer ....................................   Passed    0.40 sec
+        Start  26: test_qe_utilx_mp_max_rv_buffer
+ 16/593 Test  #24: test_qe_utilx_mp_bcast_rv_buffer ..................................   Passed    0.42 sec
+        Start  27: test_qe_utilx_mp_min_iv_buffer
+ 17/593 Test  #26: test_qe_utilx_mp_max_rv_buffer ....................................   Passed    0.38 sec
+        Start  28: test_qe_utilx_mp_min_rv_buffer
+ 18/593 Test  #27: test_qe_utilx_mp_min_iv_buffer ....................................   Passed    0.38 sec
+        Start  29: test_qe_utilx_mp_sum_iv_buffer
+ 19/593 Test  #29: test_qe_utilx_mp_sum_iv_buffer ....................................   Passed    0.40 sec
+        Start  30: test_qe_utilx_mp_sum_rv_buffer
+ 20/593 Test  #28: test_qe_utilx_mp_min_rv_buffer ....................................   Passed    0.41 sec
+        Start  31: test_qe_lax-r1-t1
+ 21/593 Test  #30: test_qe_utilx_mp_sum_rv_buffer ....................................   Passed    0.37 sec
+        Start  35: test_qe_lapack_zdotc
+ 22/593 Test  #35: test_qe_lapack_zdotc ..............................................   Passed    0.16 sec
+        Start  38: test_qe_xclib_test_all_terms
+ 23/593 Test  #31: test_qe_lax-r1-t1 .................................................   Passed    1.11 sec
+        Start  39: test_qe_xclib_test_all_shorts
+ 24/593 Test  #37: test_qe_xclib_gen_test ............................................   Passed   10.39 sec
+        Start  36: test_qe_xclib_exe_test
+ 25/593 Test  #38: test_qe_xclib_test_all_terms ......................................   Passed   10.54 sec
+        Start 592: system--pw_md--md_restart_verlet-cleanup
+ 26/593 Test #592: system--pw_md--md_restart_verlet-cleanup ..........................   Passed    0.02 sec
+ 27/593 Test  #39: test_qe_xclib_test_all_shorts .....................................   Passed   11.02 sec
+ 28/593 Test  #36: test_qe_xclib_exe_test ............................................   Passed    8.55 sec
+        Start   2: test_qe_fftx-r1-t3
+ 29/593 Test   #2: test_qe_fftx-r1-t3 ................................................   Passed    2.27 sec
+        Start   3: test_qe_fftx-r3-t1
+ 30/593 Test   #3: test_qe_fftx-r3-t1 ................................................   Passed    0.98 sec
+        Start   6: test_qe_fftx_fft_scalar_gpu-r1-t3
+ 31/593 Test   #6: test_qe_fftx_fft_scalar_gpu-r1-t3 .................................   Passed    0.07 sec
+        Start   7: test_qe_fftx_fft_scalar_gpu-r3-t1
+ 32/593 Test   #7: test_qe_fftx_fft_scalar_gpu-r3-t1 .................................   Passed    0.09 sec
+        Start  10: test_qe_fftx_fft_scatter_mod_gpu-r1-t3
+ 33/593 Test  #10: test_qe_fftx_fft_scatter_mod_gpu-r1-t3 ............................   Passed    0.07 sec
+        Start  11: test_qe_fftx_fft_scatter_mod_gpu-r3-t1
+ 34/593 Test  #11: test_qe_fftx_fft_scatter_mod_gpu-r3-t1 ............................   Passed    0.07 sec
+        Start  14: test_qe_fftx_fwinv_gpu-r1-t3
+ 35/593 Test  #14: test_qe_fftx_fwinv_gpu-r1-t3 ......................................   Passed    0.92 sec
+        Start  15: test_qe_fftx_fwinv_gpu-r3-t1
+ 36/593 Test  #15: test_qe_fftx_fwinv_gpu-r3-t1 ......................................   Passed    0.35 sec
+        Start  32: test_qe_lax-r1-t3
+ 37/593 Test  #32: test_qe_lax-r1-t3 .................................................   Passed    0.57 sec
+ 38/593 Test  #40: system--pw-pseudo .................................................   Passed   27.39 sec
+        Start 325: system--cp_h2o--h2o-mt-blyp-1
+ 39/593 Test #325: system--cp_h2o--h2o-mt-blyp-1 .....................................   Passed   13.17 sec
+        Start 342: system--cp_o2--o2-us-para-pbe-1
+ 40/593 Test #342: system--cp_o2--o2-us-para-pbe-1 ...................................   Passed   10.50 sec
+        Start 326: system--cp_h2o--h2o-mt-blyp-2
+ 41/593 Test #326: system--cp_h2o--h2o-mt-blyp-2 .....................................   Passed    2.97 sec
+        Start 343: system--cp_o2--o2-us-para-pbe-2
+ 42/593 Test #343: system--cp_o2--o2-us-para-pbe-2 ...................................   Passed   17.92 sec
+        Start 327: system--cp_h2o--h2o-mt-blyp-3
+ 43/593 Test #327: system--cp_h2o--h2o-mt-blyp-3 .....................................   Passed   14.36 sec
+        Start 344: system--cp_o2--o2-us-para-pbe-3
+ 44/593 Test #344: system--cp_o2--o2-us-para-pbe-3 ...................................   Passed    4.49 sec
+        Start 353: system--cp_sio2--sio2-us-lda-1
+ 45/593 Test #353: system--cp_sio2--sio2-us-lda-1 ....................................   Passed    3.04 sec
+        Start  56: system--pw_berry--berry
+ 46/593 Test  #56: system--pw_berry--berry ...........................................   Passed    1.85 sec
+        Start  81: system--pw_electric--electric
+ 47/593 Test  #81: system--pw_electric--electric .....................................   Passed   17.88 sec
+        Start 169: system--pw_metaGGA--metaGGA
+ 48/593 Test #169: system--pw_metaGGA--metaGGA .......................................   Passed    1.31 sec
+        Start 176: system--pw_metal--metal-tetrahedra
+ 49/593 Test #176: system--pw_metal--metal-tetrahedra ................................   Passed    0.91 sec
+        Start 188: system--pw_noncolin--noncolin
+ 50/593 Test #188: system--pw_noncolin--noncolin .....................................   Passed    2.35 sec
+        Start 227: system--pw_scf--scf-disk_io
+ 51/593 Test #227: system--pw_scf--scf-disk_io .......................................   Passed    0.46 sec
+        Start 247: system--pw_scf--scf
+ 52/593 Test #247: system--pw_scf--scf ...............................................   Passed    0.45 sec
+        Start 328: system--cp_h2o--h2o-mt-blyp-4
+ 53/593 Test #328: system--cp_h2o--h2o-mt-blyp-4 .....................................   Passed   14.16 sec
+        Start 345: system--cp_o2--o2-us-para-pbe-4
+ 54/593 Test #345: system--cp_o2--o2-us-para-pbe-4 ...................................   Passed   10.18 sec
+        Start 349: system--cp_si--si-vbc-lda-1
+ 55/593 Test #349: system--cp_si--si-vbc-lda-1 .......................................   Passed    2.10 sec
+        Start 354: system--cp_sio2--sio2-us-lda-2
+ 56/593 Test #354: system--cp_sio2--sio2-us-lda-2 ....................................   Passed    4.90 sec
+        Start  54: system--pw_berry--berry-1
+ 57/593 Test  #54: system--pw_berry--berry-1 .........................................   Passed    3.12 sec
+        Start  79: system--pw_electric--electric-1
+ 58/593 Test  #79: system--pw_electric--electric-1 ...................................   Passed    2.38 sec
+        Start  84: system--pw_eval--eval_infix
+ 59/593 Test  #84: system--pw_eval--eval_infix .......................................   Passed    0.44 sec
+        Start 157: system--pw_lsda--lsda
+ 60/593 Test #157: system--pw_lsda--lsda .............................................   Passed    1.45 sec
+        Start 166: system--pw_metaGGA--metaGGA-1
+ 61/593 Test #166: system--pw_metaGGA--metaGGA-1 .....................................   Passed    1.20 sec
+        Start 174: system--pw_metal--metal-tetrahedra-1
+ 62/593 Test #174: system--pw_metal--metal-tetrahedra-1 ..............................   Passed    0.60 sec
+        Start 177: system--pw_metal--metal
+ 63/593 Test #177: system--pw_metal--metal ...........................................   Passed    0.48 sec
+        Start 179: system--pw_noncolin--noncolin-1
+ 64/593 Test #179: system--pw_noncolin--noncolin-1 ...................................   Passed    1.87 sec
+        Start 221: system--pw_scf--scf-1
+ 65/593 Test #221: system--pw_scf--scf-1 .............................................   Passed    0.69 sec
+        Start 225: system--pw_scf--scf-disk_io-1
+ 66/593 Test #225: system--pw_scf--scf-disk_io-1 .....................................   Passed    0.54 sec
+        Start 253: system--pw_spinorbit--spinorbit
+ 67/593 Test #253: system--pw_spinorbit--spinorbit ...................................   Passed    1.62 sec
+        Start 272: system--pw_uspp--uspp
+ 68/593 Test #272: system--pw_uspp--uspp .............................................   Passed    0.78 sec
+        Start 298: system--pw_workflow_exx_nscf--ncpp-gamma-restart-1
+ 69/593 Test #298: system--pw_workflow_exx_nscf--ncpp-gamma-restart-1 ................   Passed    3.38 sec
+        Start 300: system--pw_workflow_exx_nscf--ncpp-k-1
+ 70/593 Test #300: system--pw_workflow_exx_nscf--ncpp-k-1 ............................   Passed    1.83 sec
+        Start 302: system--pw_workflow_exx_nscf--uspp-gamma-1
+ 71/593 Test #302: system--pw_workflow_exx_nscf--uspp-gamma-1 ........................   Passed    1.27 sec
+        Start 304: system--pw_workflow_exx_nscf--uspp-k-restart-1
+ 72/593 Test #304: system--pw_workflow_exx_nscf--uspp-k-restart-1 ....................   Passed   31.72 sec
+        Start 306: system--pw_workflow_exx_nscf--uspp-k-smearing-1
+ 73/593 Test #306: system--pw_workflow_exx_nscf--uspp-k-smearing-1 ...................   Passed    4.28 sec
+        Start 309: system--pw_workflow_relax_relax--relax-1
+ 74/593 Test #309: system--pw_workflow_relax_relax--relax-1 ..........................   Passed   14.53 sec
+        Start 312: system--pw_workflow_scf_dos--scf-dos-1
+ 75/593 Test #312: system--pw_workflow_scf_dos--scf-dos-1 ............................   Passed    0.63 sec
+        Start 315: system--pw_workflow_vc-relax_dos--vc-relax-dos-1
+ 76/593 Test #315: system--pw_workflow_vc-relax_dos--vc-relax-dos-1 ..................   Passed    3.11 sec
+        Start 318: system--pw_workflow_vc-relax_scf--vc-relax-scf-1
+ 77/593 Test #318: system--pw_workflow_vc-relax_scf--vc-relax-scf-1 ..................   Passed    3.42 sec
+        Start 329: system--cp_h2o--h2o-mt-blyp-5
+ 78/593 Test #329: system--cp_h2o--h2o-mt-blyp-5 .....................................   Passed    3.38 sec
+        Start 346: system--cp_o2--o2-us-para-pbe-5
+ 79/593 Test #346: system--cp_o2--o2-us-para-pbe-5 ...................................   Passed   17.93 sec
+        Start 350: system--cp_si--si-vbc-lda-2
+ 80/593 Test #350: system--cp_si--si-vbc-lda-2 .......................................   Passed    0.89 sec
+        Start 355: system--cp_sio2--sio2-us-lda-3
+ 81/593 Test #355: system--cp_sio2--sio2-us-lda-3 ....................................   Passed   19.75 sec
+        Start 358: system--cp_sio2--sio2-us-pbe-1
+ 82/593 Test #358: system--cp_sio2--sio2-us-pbe-1 ....................................   Passed    4.59 sec
+        Start 361: system--ph-pseudo
+ 83/593 Test #361: system--ph-pseudo .................................................   Passed    3.89 sec
+        Start 434: system--epw-pseudo
+ 84/593 Test #434: system--epw-pseudo ................................................   Passed    4.81 sec
+        Start 551: system--tddfpt-pseudo
+ 85/593 Test #551: system--tddfpt-pseudo .............................................   Passed    0.43 sec
+        Start 564: system--hp-pseudo
+ 86/593 Test #564: system--hp-pseudo .................................................   Passed    3.40 sec
+        Start  42: system--pw_atom--atom-lsda
+ 87/593 Test  #42: system--pw_atom--atom-lsda ........................................   Passed    0.97 sec
+        Start  43: system--pw_atom--atom-occ1
+ 88/593 Test  #43: system--pw_atom--atom-occ1 ........................................   Passed    5.91 sec
+        Start  44: system--pw_atom--atom-occ2
+ 89/593 Test  #44: system--pw_atom--atom-occ2 ........................................   Passed    4.30 sec
+        Start  45: system--pw_atom--atom-pbe
+ 90/593 Test  #45: system--pw_atom--atom-pbe .........................................   Passed    0.87 sec
+        Start  46: system--pw_atom--atom-sigmapbe
+ 91/593 Test  #46: system--pw_atom--atom-sigmapbe ....................................   Passed    1.56 sec
+        Start  47: system--pw_atom--atom
+ 92/593 Test  #47: system--pw_atom--atom .............................................   Passed    0.77 sec
+        Start  49: system--pw_b3lyp--b3lyp-O
+ 93/593 Test  #49: system--pw_b3lyp--b3lyp-O .........................................   Passed    4.82 sec
+        Start  50: system--pw_b3lyp--b3lyp-h2o
+ 94/593 Test  #50: system--pw_b3lyp--b3lyp-h2o .......................................   Passed    6.31 sec
+        Start  51: system--pw_b3lyp--x3lyp-O
+ 95/593 Test  #51: system--pw_b3lyp--x3lyp-O .........................................   Passed    4.97 sec
+        Start  52: system--pw_b3lyp--x3lyp-h2o
+ 96/593 Test  #52: system--pw_b3lyp--x3lyp-h2o .......................................   Passed    6.66 sec
+        Start  55: system--pw_berry--berry-2
+ 97/593 Test  #55: system--pw_berry--berry-2 .........................................   Passed    3.11 sec
+        Start  58: system--pw_cluster--cluster1
+ 98/593 Test  #58: system--pw_cluster--cluster1 ......................................   Passed    1.28 sec
+        Start  59: system--pw_cluster--cluster2
+ 99/593 Test  #59: system--pw_cluster--cluster2 ......................................   Passed    3.45 sec
+        Start  60: system--pw_cluster--cluster3
+100/593 Test  #60: system--pw_cluster--cluster3 ......................................   Passed    5.26 sec
+        Start  61: system--pw_cluster--cluster4
+101/593 Test  #61: system--pw_cluster--cluster4 ......................................   Passed    1.35 sec
+        Start  62: system--pw_cluster--cluster5
+102/593 Test  #62: system--pw_cluster--cluster5 ......................................   Passed    1.31 sec
+        Start  64: system--pw_dft--dft1
+103/593 Test  #64: system--pw_dft--dft1 ..............................................   Passed    0.63 sec
+        Start  65: system--pw_dft--dft10
+104/593 Test  #65: system--pw_dft--dft10 .............................................   Passed    0.43 sec
+        Start  66: system--pw_dft--dft11
+105/593 Test  #66: system--pw_dft--dft11 .............................................   Passed    0.45 sec
+        Start  67: system--pw_dft--dft2
+106/593 Test  #67: system--pw_dft--dft2 ..............................................   Passed    0.43 sec
+        Start  68: system--pw_dft--dft3
+107/593 Test  #68: system--pw_dft--dft3 ..............................................   Passed    0.41 sec
+        Start  69: system--pw_dft--dft4
+108/593 Test  #69: system--pw_dft--dft4 ..............................................   Passed    0.44 sec
+        Start  70: system--pw_dft--dft5
+109/593 Test  #70: system--pw_dft--dft5 ..............................................   Passed    0.45 sec
+        Start  71: system--pw_dft--dft6
+110/593 Test  #71: system--pw_dft--dft6 ..............................................   Passed    0.42 sec
+        Start  72: system--pw_dft--dft7
+111/593 Test  #72: system--pw_dft--dft7 ..............................................   Passed    0.69 sec
+        Start  73: system--pw_dft--dft8
+112/593 Test  #73: system--pw_dft--dft8 ..............................................   Passed    0.44 sec
+        Start  74: system--pw_dft--dft9
+113/593 Test  #74: system--pw_dft--dft9 ..............................................   Passed    9.02 sec
+        Start  76: system--pw_dipole--2dcutoff
+114/593 Test  #76: system--pw_dipole--2dcutoff .......................................   Passed    4.12 sec
+        Start  77: system--pw_dipole--dipole
+115/593 Test  #77: system--pw_dipole--dipole .........................................   Passed    1.96 sec
+        Start  80: system--pw_electric--electric-2
+116/593 Test  #80: system--pw_electric--electric-2 ...................................   Passed   13.75 sec
+        Start  83: system--pw_eval--eval_infix-2
+117/593 Test  #83: system--pw_eval--eval_infix-2 .....................................   Passed    0.80 sec
+        Start  86: system--pw_gau-pbe--gau-pbe-si111
+118/593 Test  #86: system--pw_gau-pbe--gau-pbe-si111 .................................   Passed    0.82 sec
+        Start  87: system--pw_gau-pbe--gau-pbe-si222
+119/593 Test  #87: system--pw_gau-pbe--gau-pbe-si222 .................................   Passed    2.02 sec
+        Start  88: system--pw_gau-pbe--gau-pbe-si444
+120/593 Test  #88: system--pw_gau-pbe--gau-pbe-si444 .................................   Passed    6.04 sec
+        Start  90: system--pw_hse--hse-si111
+121/593 Test  #90: system--pw_hse--hse-si111 .........................................   Passed    0.80 sec
+        Start  91: system--pw_hse--hse-si222
+122/593 Test  #91: system--pw_hse--hse-si222 .........................................   Passed    1.40 sec
+        Start  92: system--pw_hse--hse-si444
+123/593 Test  #92: system--pw_hse--hse-si444 .........................................   Passed    6.08 sec
+        Start  94: system--pw_lattice-ibrav--lattice-ibrav-12-kauto
+124/593 Test  #94: system--pw_lattice-ibrav--lattice-ibrav-12-kauto ..................   Passed    1.01 sec
+        Start  95: system--pw_lattice-ibrav--lattice-ibrav-12
+125/593 Test  #95: system--pw_lattice-ibrav--lattice-ibrav-12 ........................   Passed    0.75 sec
+        Start  96: system--pw_lattice-ibrav--lattice-ibrav-3-kauto
+126/593 Test  #96: system--pw_lattice-ibrav--lattice-ibrav-3-kauto ...................   Passed    0.50 sec
+        Start  97: system--pw_lattice-ibrav--lattice-ibrav-3
+127/593 Test  #97: system--pw_lattice-ibrav--lattice-ibrav-3 .........................   Passed    3.20 sec
+        Start  98: system--pw_lattice-ibrav--lattice-ibrav-5-kauto
+128/593 Test  #98: system--pw_lattice-ibrav--lattice-ibrav-5-kauto ...................   Passed    0.63 sec
+        Start  99: system--pw_lattice-ibrav--lattice-ibrav-5
+129/593 Test  #99: system--pw_lattice-ibrav--lattice-ibrav-5 .........................   Passed    0.73 sec
+        Start 100: system--pw_lattice-ibrav--lattice-ibrav0-cell_parameters+a
+130/593 Test #100: system--pw_lattice-ibrav--lattice-ibrav0-cell_parameters+a ........   Passed    0.74 sec
+        Start 101: system--pw_lattice-ibrav--lattice-ibrav0-cell_parameters+celldm
+131/593 Test #101: system--pw_lattice-ibrav--lattice-ibrav0-cell_parameters+celldm ...   Passed    0.79 sec
+        Start 102: system--pw_lattice-ibrav--lattice-ibrav0-cell_parameters-ang
+132/593 Test #102: system--pw_lattice-ibrav--lattice-ibrav0-cell_parameters-ang ......   Passed    0.76 sec
+        Start 103: system--pw_lattice-ibrav--lattice-ibrav0-cell_parameters
+133/593 Test #103: system--pw_lattice-ibrav--lattice-ibrav0-cell_parameters ..........   Passed    0.69 sec
+        Start 104: system--pw_lattice-ibrav--lattice-ibrav1-kauto
+134/593 Test #104: system--pw_lattice-ibrav--lattice-ibrav1-kauto ....................   Passed    0.59 sec
+        Start 105: system--pw_lattice-ibrav--lattice-ibrav1
+135/593 Test #105: system--pw_lattice-ibrav--lattice-ibrav1 ..........................   Passed    0.51 sec
+        Start 106: system--pw_lattice-ibrav--lattice-ibrav10-kauto
+136/593 Test #106: system--pw_lattice-ibrav--lattice-ibrav10-kauto ...................   Passed    0.76 sec
+        Start 107: system--pw_lattice-ibrav--lattice-ibrav10
+137/593 Test #107: system--pw_lattice-ibrav--lattice-ibrav10 .........................   Passed    0.62 sec
+        Start 108: system--pw_lattice-ibrav--lattice-ibrav11-kauto
+138/593 Test #108: system--pw_lattice-ibrav--lattice-ibrav11-kauto ...................   Passed    0.79 sec
+        Start 109: system--pw_lattice-ibrav--lattice-ibrav11
+139/593 Test #109: system--pw_lattice-ibrav--lattice-ibrav11 .........................   Passed    0.54 sec
+        Start 110: system--pw_lattice-ibrav--lattice-ibrav12-kauto
+140/593 Test #110: system--pw_lattice-ibrav--lattice-ibrav12-kauto ...................   Passed    0.93 sec
+        Start 111: system--pw_lattice-ibrav--lattice-ibrav12
+141/593 Test #111: system--pw_lattice-ibrav--lattice-ibrav12 .........................   Passed    0.71 sec
+        Start 112: system--pw_lattice-ibrav--lattice-ibrav13-kauto
+142/593 Test #112: system--pw_lattice-ibrav--lattice-ibrav13-kauto ...................   Passed    0.85 sec
+        Start 113: system--pw_lattice-ibrav--lattice-ibrav13
+143/593 Test #113: system--pw_lattice-ibrav--lattice-ibrav13 .........................   Passed    0.66 sec
+        Start 114: system--pw_lattice-ibrav--lattice-ibrav14-kauto
+144/593 Test #114: system--pw_lattice-ibrav--lattice-ibrav14-kauto ...................   Passed    1.01 sec
+        Start 115: system--pw_lattice-ibrav--lattice-ibrav14
+145/593 Test #115: system--pw_lattice-ibrav--lattice-ibrav14 .........................   Passed    0.70 sec
+        Start 116: system--pw_lattice-ibrav--lattice-ibrav2-kauto
+146/593 Test #116: system--pw_lattice-ibrav--lattice-ibrav2-kauto ....................   Passed    0.89 sec
+        Start 117: system--pw_lattice-ibrav--lattice-ibrav2
+147/593 Test #117: system--pw_lattice-ibrav--lattice-ibrav2 ..........................   Passed    0.53 sec
+        Start 118: system--pw_lattice-ibrav--lattice-ibrav3-kauto
+148/593 Test #118: system--pw_lattice-ibrav--lattice-ibrav3-kauto ....................   Passed    0.57 sec
+        Start 119: system--pw_lattice-ibrav--lattice-ibrav3
+149/593 Test #119: system--pw_lattice-ibrav--lattice-ibrav3 ..........................   Passed    0.48 sec
+        Start 120: system--pw_lattice-ibrav--lattice-ibrav4-kauto
+150/593 Test #120: system--pw_lattice-ibrav--lattice-ibrav4-kauto ....................   Passed    0.70 sec
+        Start 121: system--pw_lattice-ibrav--lattice-ibrav4
+151/593 Test #121: system--pw_lattice-ibrav--lattice-ibrav4 ..........................   Passed    0.63 sec
+        Start 122: system--pw_lattice-ibrav--lattice-ibrav5-kauto
+152/593 Test #122: system--pw_lattice-ibrav--lattice-ibrav5-kauto ....................   Passed    0.56 sec
+        Start 123: system--pw_lattice-ibrav--lattice-ibrav5
+153/593 Test #123: system--pw_lattice-ibrav--lattice-ibrav5 ..........................   Passed    0.56 sec
+        Start 124: system--pw_lattice-ibrav--lattice-ibrav6-kauto
+154/593 Test #124: system--pw_lattice-ibrav--lattice-ibrav6-kauto ....................   Passed    0.67 sec
+        Start 125: system--pw_lattice-ibrav--lattice-ibrav6
+155/593 Test #125: system--pw_lattice-ibrav--lattice-ibrav6 ..........................   Passed    0.61 sec
+        Start 126: system--pw_lattice-ibrav--lattice-ibrav7-kauto
+156/593 Test #126: system--pw_lattice-ibrav--lattice-ibrav7-kauto ....................   Passed    0.77 sec
+        Start 127: system--pw_lattice-ibrav--lattice-ibrav7
+157/593 Test #127: system--pw_lattice-ibrav--lattice-ibrav7 ..........................   Passed    0.67 sec
+        Start 128: system--pw_lattice-ibrav--lattice-ibrav8-kauto
+158/593 Test #128: system--pw_lattice-ibrav--lattice-ibrav8-kauto ....................   Passed    0.85 sec
+        Start 129: system--pw_lattice-ibrav--lattice-ibrav8
+159/593 Test #129: system--pw_lattice-ibrav--lattice-ibrav8 ..........................   Passed    0.70 sec
+        Start 130: system--pw_lattice-ibrav--lattice-ibrav9-kauto
+160/593 Test #130: system--pw_lattice-ibrav--lattice-ibrav9-kauto ....................   Passed    0.72 sec
+        Start 131: system--pw_lattice-ibrav--lattice-ibrav9
+161/593 Test #131: system--pw_lattice-ibrav--lattice-ibrav9 ..........................   Passed    0.61 sec
+        Start 132: system--pw_lattice-ibrav--lattice-wyckoff-sio2
+162/593 Test #132: system--pw_lattice-ibrav--lattice-wyckoff-sio2 ....................   Passed    2.29 sec
+        Start 134: system--pw_lda+U--lda+U+J0
+163/593 Test #134: system--pw_lda+U--lda+U+J0 ........................................   Passed   17.17 sec
+        Start 135: system--pw_lda+U--lda+U+V-user_ns
+164/593 Test #135: system--pw_lda+U--lda+U+V-user_ns .................................   Passed    4.48 sec
+        Start 136: system--pw_lda+U--lda+U+V_background
+165/593 Test #136: system--pw_lda+U--lda+U+V_background ..............................   Passed    2.57 sec
+        Start 137: system--pw_lda+U--lda+U+V_force_stress_ortho
+166/593 Test #137: system--pw_lda+U--lda+U+V_force_stress_ortho ......................   Passed    6.87 sec
+        Start 138: system--pw_lda+U--lda+U-noU
+167/593 Test #138: system--pw_lda+U--lda+U-noU .......................................   Passed    3.13 sec
+        Start 139: system--pw_lda+U--lda+U-user_ns
+168/593 Test #139: system--pw_lda+U--lda+U-user_ns ...................................   Passed    3.66 sec
+        Start 140: system--pw_lda+U--lda+U
+169/593 Test #140: system--pw_lda+U--lda+U ...........................................   Passed    4.11 sec
+        Start 141: system--pw_lda+U--lda+U_background_one_channel
+170/593 Test #141: system--pw_lda+U--lda+U_background_one_channel ....................   Passed   18.92 sec
+        Start 142: system--pw_lda+U--lda+U_background_two_channels
+171/593 Test #142: system--pw_lda+U--lda+U_background_two_channels ...................   Passed   19.12 sec
+        Start 143: system--pw_lda+U--lda+U_force
+172/593 Test #143: system--pw_lda+U--lda+U_force .....................................   Passed    5.06 sec
+        Start 144: system--pw_lda+U--lda+U_force_stress_ortho
+173/593 Test #144: system--pw_lda+U--lda+U_force_stress_ortho ........................   Passed    5.08 sec
+        Start 145: system--pw_lda+U--lda+U_gamma
+174/593 Test #145: system--pw_lda+U--lda+U_gamma .....................................   Passed    2.41 sec
+        Start 146: system--pw_lda+U--lda+U_kind1_collin
+175/593 Test #146: system--pw_lda+U--lda+U_kind1_collin ..............................   Passed    5.82 sec
+        Start 147: system--pw_lda+U--lda+U_kind1_noncollin
+176/593 Test #147: system--pw_lda+U--lda+U_kind1_noncollin ...........................   Passed    9.44 sec
+        Start 148: system--pw_lda+U--lda+U_pseudo
+177/593 Test #148: system--pw_lda+U--lda+U_pseudo ....................................   Passed    2.94 sec
+        Start 150: system--pw_lsda--lsda-2
+178/593 Test #150: system--pw_lsda--lsda-2 ...........................................   Passed    1.84 sec
+        Start 151: system--pw_lsda--lsda-cg
+179/593 Test #151: system--pw_lsda--lsda-cg ..........................................   Passed    1.19 sec
+        Start 152: system--pw_lsda--lsda-mixing_TF
+180/593 Test #152: system--pw_lsda--lsda-mixing_TF ...................................   Passed    0.95 sec
+        Start 153: system--pw_lsda--lsda-mixing_localTF
+181/593 Test #153: system--pw_lsda--lsda-mixing_localTF ..............................   Passed    1.00 sec
+        Start 154: system--pw_lsda--lsda-mixing_ndim
+182/593 Test #154: system--pw_lsda--lsda-mixing_ndim .................................   Passed    0.98 sec
+        Start 155: system--pw_lsda--lsda-nelup+neldw
+183/593 Test #155: system--pw_lsda--lsda-nelup+neldw .................................   Passed    0.97 sec
+        Start 156: system--pw_lsda--lsda-tot_magnetization
+184/593 Test #156: system--pw_lsda--lsda-tot_magnetization ...........................   Passed    0.86 sec
+        Start 159: system--pw_md--md-pot_extrap1
+185/593 Test #159: system--pw_md--md-pot_extrap1 .....................................   Passed    1.74 sec
+        Start 160: system--pw_md--md-pot_extrap2
+186/593 Test #160: system--pw_md--md-pot_extrap2 .....................................   Passed    1.81 sec
+        Start 161: system--pw_md--md-wfc_extrap1
+187/593 Test #161: system--pw_md--md-wfc_extrap1 .....................................   Passed    1.83 sec
+        Start 162: system--pw_md--md-wfc_extrap2
+188/593 Test #162: system--pw_md--md-wfc_extrap2 .....................................   Passed    1.73 sec
+        Start 163: system--pw_md--md
+189/593 Test #163: system--pw_md--md .................................................   Passed    1.71 sec
+        Start 164: system--pw_md--md_restart_verlet
+190/593 Test #164: system--pw_md--md_restart_verlet ..................................   Passed    3.40 sec
+        Start 167: system--pw_metaGGA--metaGGA-2
+191/593 Test #167: system--pw_metaGGA--metaGGA-2 .....................................   Passed    1.17 sec
+        Start 168: system--pw_metaGGA--metaGGA-spin
+192/593 Test #168: system--pw_metaGGA--metaGGA-spin ..................................   Passed    0.33 sec
+        Start 171: system--pw_metal--metal-2
+193/593 Test #171: system--pw_metal--metal-2 .........................................   Passed    0.57 sec
+        Start 172: system--pw_metal--metal-fermi_dirac
+194/593 Test #172: system--pw_metal--metal-fermi_dirac ...............................   Passed    0.50 sec
+        Start 173: system--pw_metal--metal-gaussian
+195/593 Test #173: system--pw_metal--metal-gaussian ..................................   Passed    0.46 sec
+        Start 175: system--pw_metal--metal-tetrahedra-2
+196/593 Test #175: system--pw_metal--metal-tetrahedra-2 ..............................   Passed    0.71 sec
+        Start 180: system--pw_noncolin--noncolin-2
+197/593 Test #180: system--pw_noncolin--noncolin-2 ...................................   Passed    2.10 sec
+        Start 181: system--pw_noncolin--noncolin-cg
+198/593 Test #181: system--pw_noncolin--noncolin-cg ..................................   Passed    2.55 sec
+        Start 182: system--pw_noncolin--noncolin-constrain_angle
+199/593 Test #182: system--pw_noncolin--noncolin-constrain_angle .....................   Passed    1.83 sec
+        Start 183: system--pw_noncolin--noncolin-constrain_atomic
+200/593 Test #183: system--pw_noncolin--noncolin-constrain_atomic ....................   Passed    4.71 sec
+        Start 184: system--pw_noncolin--noncolin-constrain_total
+201/593 Test #184: system--pw_noncolin--noncolin-constrain_total .....................   Passed    5.52 sec
+        Start 185: system--pw_noncolin--noncolin-hyb
+202/593 Test #185: system--pw_noncolin--noncolin-hyb .................................   Passed    1.09 sec
+        Start 186: system--pw_noncolin--noncolin-pbe
+203/593 Test #186: system--pw_noncolin--noncolin-pbe .................................   Passed    2.02 sec
+        Start 187: system--pw_noncolin--noncolin-rmm
+204/593 Test #187: system--pw_noncolin--noncolin-rmm .................................   Passed    1.94 sec
+        Start 190: system--pw_pawatom--paw-atom
+205/593 Test #190: system--pw_pawatom--paw-atom ......................................   Passed    1.19 sec
+        Start 191: system--pw_pawatom--paw-atom_l=2
+206/593 Test #191: system--pw_pawatom--paw-atom_l=2 ..................................   Passed    1.90 sec
+        Start 192: system--pw_pawatom--paw-atom_lda
+207/593 Test #192: system--pw_pawatom--paw-atom_lda ..................................   Passed    1.03 sec
+        Start 193: system--pw_pawatom--paw-atom_spin
+208/593 Test #193: system--pw_pawatom--paw-atom_spin .................................   Passed    1.95 sec
+        Start 194: system--pw_pawatom--paw-atom_spin_lda
+209/593 Test #194: system--pw_pawatom--paw-atom_spin_lda .............................   Passed    1.72 sec
+        Start 195: system--pw_pawatom--paw-atom_tqr
+210/593 Test #195: system--pw_pawatom--paw-atom_tqr ..................................   Passed    1.72 sec
+        Start 196: system--pw_pawatom--paw-bfgs
+211/593 Test #196: system--pw_pawatom--paw-bfgs ......................................   Passed    2.78 sec
+        Start 197: system--pw_pawatom--paw-vcbfgs
+212/593 Test #197: system--pw_pawatom--paw-vcbfgs ....................................   Passed    2.47 sec
+        Start 199: system--pw_pbe--pbe0-si111
+213/593 Test #199: system--pw_pbe--pbe0-si111 ........................................   Passed    2.17 sec
+        Start 200: system--pw_pbe--pbe0-si222
+214/593 Test #200: system--pw_pbe--pbe0-si222 ........................................   Passed    1.43 sec
+        Start 201: system--pw_pbe--pbe0-si444
+215/593 Test #201: system--pw_pbe--pbe0-si444 ........................................   Passed    5.99 sec
+        Start 202: system--pw_pbe--pbeq2d
+216/593 Test #202: system--pw_pbe--pbeq2d ............................................   Passed    6.87 sec
+        Start 204: system--pw_plugins--plugin-pw2casino_1
+217/593 Test #204: system--pw_plugins--plugin-pw2casino_1 ............................   Passed    0.46 sec
+        Start 205: system--pw_plugins--plugin-pw2casino_2
+218/593 Test #205: system--pw_plugins--plugin-pw2casino_2 ............................   Passed    0.45 sec
+        Start 207: system--pw_realspace--cluster_gs
+219/593 Test #207: system--pw_realspace--cluster_gs ..................................   Passed    3.70 sec
+        Start 208: system--pw_realspace--cluster_gs50
+220/593 Test #208: system--pw_realspace--cluster_gs50 ................................   Passed    2.10 sec
+        Start 209: system--pw_realspace--cluster_rs
+221/593 Test #209: system--pw_realspace--cluster_rs ..................................   Passed    4.02 sec
+        Start 210: system--pw_realspace--cluster_rs50
+222/593 Test #210: system--pw_realspace--cluster_rs50 ................................   Passed    2.19 sec
+        Start 212: system--pw_relax--relax-damped
+223/593 Test #212: system--pw_relax--relax-damped ....................................   Passed    3.11 sec
+        Start 213: system--pw_relax--relax-el
+224/593 Test #213: system--pw_relax--relax-el ........................................   Passed    4.14 sec
+        Start 214: system--pw_relax--relax-extfor
+225/593 Test #214: system--pw_relax--relax-extfor ....................................   Passed    2.30 sec
+        Start 215: system--pw_relax--relax-fire
+226/593 Test #215: system--pw_relax--relax-fire ......................................   Passed    2.31 sec
+        Start 216: system--pw_relax--relax
+227/593 Test #216: system--pw_relax--relax ...........................................   Passed    2.05 sec
+        Start 217: system--pw_relax--relax2-bfgs_ndim3
+228/593 Test #217: system--pw_relax--relax2-bfgs_ndim3 ...............................   Passed    2.52 sec
+        Start 218: system--pw_relax--relax2
+229/593 Test #218: system--pw_relax--relax2 ..........................................   Passed    3.46 sec
+        Start 220: system--pw_scf--gth
+230/593 Test #220: system--pw_scf--gth ...............................................   Passed    2.72 sec
+        Start 222: system--pw_scf--scf-2
+231/593 Test #222: system--pw_scf--scf-2 .............................................   Passed    0.65 sec
+        Start 223: system--pw_scf--scf-allfrac
+232/593 Test #223: system--pw_scf--scf-allfrac .......................................   Passed    0.41 sec
+        Start 224: system--pw_scf--scf-cg
+233/593 Test #224: system--pw_scf--scf-cg ............................................   Passed    0.44 sec
+        Start 226: system--pw_scf--scf-disk_io-2
+234/593 Test #226: system--pw_scf--scf-disk_io-2 .....................................   Passed    0.46 sec
+        Start 228: system--pw_scf--scf-gamma
+235/593 Test #228: system--pw_scf--scf-gamma .........................................   Passed    0.41 sec
+        Start 229: system--pw_scf--scf-k0
+236/593 Test #229: system--pw_scf--scf-k0 ............................................   Passed    0.42 sec
+        Start 230: system--pw_scf--scf-kauto
+237/593 Test #230: system--pw_scf--scf-kauto .........................................   Passed    0.41 sec
+        Start 231: system--pw_scf--scf-kcrys
+238/593 Test #231: system--pw_scf--scf-kcrys .........................................   Passed    0.42 sec
+        Start 232: system--pw_scf--scf-mixing_TF
+239/593 Test #232: system--pw_scf--scf-mixing_TF .....................................   Passed    0.44 sec
+        Start 233: system--pw_scf--scf-mixing_beta
+240/593 Test #233: system--pw_scf--scf-mixing_beta ...................................   Passed    0.42 sec
+        Start 234: system--pw_scf--scf-mixing_localTF
+241/593 Test #234: system--pw_scf--scf-mixing_localTF ................................   Passed    0.46 sec
+        Start 235: system--pw_scf--scf-mixing_ndim
+242/593 Test #235: system--pw_scf--scf-mixing_ndim ...................................   Passed    0.43 sec
+        Start 236: system--pw_scf--scf-ncpp
+243/593 Test #236: system--pw_scf--scf-ncpp ..........................................   Passed    0.56 sec
+        Start 237: system--pw_scf--scf-nofrac
+244/593 Test #237: system--pw_scf--scf-nofrac ........................................   Passed    0.46 sec
+        Start 238: system--pw_scf--scf-occ
+245/593 Test #238: system--pw_scf--scf-occ ...........................................   Passed    0.42 sec
+        Start 239: system--pw_scf--scf-paro-gamma
+246/593 Test #239: system--pw_scf--scf-paro-gamma ....................................   Passed    1.08 sec
+        Start 240: system--pw_scf--scf-paro-k
+247/593 Test #240: system--pw_scf--scf-paro-k ........................................   Passed    0.89 sec
+        Start 241: system--pw_scf--scf-ppcg-gamma
+248/593 Test #241: system--pw_scf--scf-ppcg-gamma ....................................   Passed    1.17 sec
+        Start 242: system--pw_scf--scf-ppcg-k
+249/593 Test #242: system--pw_scf--scf-ppcg-k ........................................   Passed    0.96 sec
+        Start 243: system--pw_scf--scf-rmm-gamma
+250/593 Test #243: system--pw_scf--scf-rmm-gamma .....................................   Passed    1.08 sec
+        Start 244: system--pw_scf--scf-rmm-k
+251/593 Test #244: system--pw_scf--scf-rmm-k .........................................   Passed    0.86 sec
+        Start 245: system--pw_scf--scf-rmm-paro-gamma
+252/593 Test #245: system--pw_scf--scf-rmm-paro-gamma ................................   Passed    1.03 sec
+        Start 246: system--pw_scf--scf-rmm-paro-k
+253/593 Test #246: system--pw_scf--scf-rmm-paro-k ....................................   Passed    0.86 sec
+        Start 249: system--pw_spinorbit--spinorbit-1
+254/593 Test #249: system--pw_spinorbit--spinorbit-1 .................................   Passed    1.17 sec
+        Start 250: system--pw_spinorbit--spinorbit-3
+255/593 Test #250: system--pw_spinorbit--spinorbit-3 .................................   Passed    1.07 sec
+        Start 251: system--pw_spinorbit--spinorbit-paw
+256/593 Test #251: system--pw_spinorbit--spinorbit-paw ...............................   Passed    3.45 sec
+        Start 252: system--pw_spinorbit--spinorbit-pbe
+257/593 Test #252: system--pw_spinorbit--spinorbit-pbe ...............................   Passed    1.82 sec
+        Start 255: system--pw_twochem--nscf_twochem
+258/593 Test #255: system--pw_twochem--nscf_twochem ..................................   Passed    0.55 sec
+        Start 256: system--pw_twochem--relax_twochem
+259/593 Test #256: system--pw_twochem--relax_twochem .................................   Passed    1.50 sec
+        Start 257: system--pw_twochem--scf_twochem
+260/593 Test #257: system--pw_twochem--scf_twochem ...................................   Passed    0.52 sec
+        Start 258: system--pw_twochem--vc-relax_twochem
+261/593 Test #258: system--pw_twochem--vc-relax_twochem ..............................   Passed    3.17 sec
+        Start 260: system--pw_uspp--uspp-2
+262/593 Test #260: system--pw_uspp--uspp-2 ...........................................   Passed    0.93 sec
+        Start 261: system--pw_uspp--uspp-cg
+263/593 Test #261: system--pw_uspp--uspp-cg ..........................................   Passed    0.79 sec
+        Start 262: system--pw_uspp--uspp-hyb-g
+264/593 Test #262: system--pw_uspp--uspp-hyb-g .......................................   Passed    1.28 sec
+        Start 263: system--pw_uspp--uspp-hyb-k
+265/593 Test #263: system--pw_uspp--uspp-hyb-k .......................................   Passed    2.52 sec
+        Start 264: system--pw_uspp--uspp-mixing_TF
+266/593 Test #264: system--pw_uspp--uspp-mixing_TF ...................................   Passed    0.75 sec
+        Start 265: system--pw_uspp--uspp-mixing_localTF
+267/593 Test #265: system--pw_uspp--uspp-mixing_localTF ..............................   Passed    0.78 sec
+        Start 266: system--pw_uspp--uspp-mixing_ndim
+268/593 Test #266: system--pw_uspp--uspp-mixing_ndim .................................   Passed    0.76 sec
+        Start 267: system--pw_uspp--uspp-paro-gamma
+269/593 Test #267: system--pw_uspp--uspp-paro-gamma ..................................   Passed    0.76 sec
+        Start 268: system--pw_uspp--uspp-paro-k
+270/593 Test #268: system--pw_uspp--uspp-paro-k ......................................   Passed    0.71 sec
+        Start 269: system--pw_uspp--uspp-ppcg-gamma
+271/593 Test #269: system--pw_uspp--uspp-ppcg-gamma ..................................   Passed    0.76 sec
+        Start 270: system--pw_uspp--uspp-ppcg-k
+272/593 Test #270: system--pw_uspp--uspp-ppcg-k ......................................   Passed    0.70 sec
+        Start 271: system--pw_uspp--uspp-singlegrid
+273/593 Test #271: system--pw_uspp--uspp-singlegrid ..................................   Passed    0.56 sec
+        Start 273: system--pw_uspp--uspp1-coulomb
+274/593 Test #273: system--pw_uspp--uspp1-coulomb ....................................   Passed    1.72 sec
+        Start 274: system--pw_uspp--uspp1
+275/593 Test #274: system--pw_uspp--uspp1 ............................................   Passed    1.74 sec
+        Start 275: system--pw_uspp--uspp2
+276/593 Test #275: system--pw_uspp--uspp2 ............................................   Passed    0.83 sec
+        Start 277: system--pw_vc-relax--vc-md1
+277/593 Test #277: system--pw_vc-relax--vc-md1 .......................................   Passed    9.48 sec
+        Start 278: system--pw_vc-relax--vc-md2
+278/593 Test #278: system--pw_vc-relax--vc-md2 .......................................   Passed    8.66 sec
+        Start 279: system--pw_vc-relax--vc-relax1
+279/593 Test #279: system--pw_vc-relax--vc-relax1 ....................................   Passed   13.64 sec
+        Start 280: system--pw_vc-relax--vc-relax2
+280/593 Test #280: system--pw_vc-relax--vc-relax2 ....................................   Passed    5.67 sec
+        Start 281: system--pw_vc-relax--vc-relax3
+281/593 Test #281: system--pw_vc-relax--vc-relax3 ....................................   Passed   10.38 sec
+        Start 282: system--pw_vc-relax--vc-relax4
+282/593 Test #282: system--pw_vc-relax--vc-relax4 ....................................   Passed    3.74 sec
+        Start 283: system--pw_vc-relax--vc-relax5
+283/593 Test #283: system--pw_vc-relax--vc-relax5 ....................................   Passed    6.49 sec
+        Start 284: system--pw_vc-relax--vc-relax6
+284/593 Test #284: system--pw_vc-relax--vc-relax6 ....................................   Passed    3.97 sec
+        Start 286: system--pw_vdw--beef-spin
+285/593 Test #286: system--pw_vdw--beef-spin .........................................   Passed   32.76 sec
+        Start 287: system--pw_vdw--beef
+286/593 Test #287: system--pw_vdw--beef ..............................................   Passed   18.38 sec
+        Start 288: system--pw_vdw--rVV10
+287/593 Test #288: system--pw_vdw--rVV10 .............................................   Passed    4.25 sec
+        Start 289: system--pw_vdw--vdW-DF3-opt1
+288/593 Test #289: system--pw_vdw--vdW-DF3-opt1 ......................................   Passed   25.41 sec
+        Start 290: system--pw_vdw--vdW-DF3-opt2
+289/593 Test #290: system--pw_vdw--vdW-DF3-opt2 ......................................   Passed   18.36 sec
+        Start 291: system--pw_vdw--vdw-d2
+290/593 Test #291: system--pw_vdw--vdw-d2 ............................................   Passed    1.08 sec
+        Start 292: system--pw_vdw--vdw-d3
+291/593 Test #292: system--pw_vdw--vdw-d3 ............................................   Passed    5.37 sec
+        Start 293: system--pw_vdw--vdw-mbd-vc-relax
+292/593 Test #293: system--pw_vdw--vdw-mbd-vc-relax ..................................   Passed    6.07 sec
+        Start 294: system--pw_vdw--vdw-mbd
+293/593 Test #294: system--pw_vdw--vdw-mbd ...........................................   Passed   10.85 sec
+        Start 295: system--pw_vdw--vdw-ts
+294/593 Test #295: system--pw_vdw--vdw-ts ............................................   Passed    0.96 sec
+        Start 296: system--pw_vdw--xdm
+295/593 Test #296: system--pw_vdw--xdm ...............................................   Passed    1.52 sec
+        Start 299: system--pw_workflow_exx_nscf--ncpp-gamma-restart-2
+296/593 Test #299: system--pw_workflow_exx_nscf--ncpp-gamma-restart-2 ................   Passed    2.01 sec
+        Start 301: system--pw_workflow_exx_nscf--ncpp-k-2
+297/593 Test #301: system--pw_workflow_exx_nscf--ncpp-k-2 ............................   Passed    1.49 sec
+        Start 303: system--pw_workflow_exx_nscf--uspp-gamma-2
+298/593 Test #303: system--pw_workflow_exx_nscf--uspp-gamma-2 ........................   Passed    0.99 sec
+        Start 305: system--pw_workflow_exx_nscf--uspp-k-restart-2
+299/593 Test #305: system--pw_workflow_exx_nscf--uspp-k-restart-2 ....................   Passed    9.49 sec
+        Start 307: system--pw_workflow_exx_nscf--uspp-k-smearing-2
+300/593 Test #307: system--pw_workflow_exx_nscf--uspp-k-smearing-2 ...................   Passed    6.07 sec
+        Start 310: system--pw_workflow_relax_relax--relax-2
+301/593 Test #310: system--pw_workflow_relax_relax--relax-2 ..........................   Passed    1.53 sec
+        Start 313: system--pw_workflow_scf_dos--scf-dos-2
+302/593 Test #313: system--pw_workflow_scf_dos--scf-dos-2 ............................   Passed    1.49 sec
+        Start 316: system--pw_workflow_vc-relax_dos--vc-relax-dos-2
+303/593 Test #316: system--pw_workflow_vc-relax_dos--vc-relax-dos-2 ..................   Passed    2.15 sec
+        Start 319: system--pw_workflow_vc-relax_scf--vc-relax-scf-2
+304/593 Test #319: system--pw_workflow_vc-relax_scf--vc-relax-scf-2 ..................   Passed    1.53 sec
+        Start 322: system--cp_al_edft--Al
+305/593 Test #322: system--cp_al_edft--Al ............................................   Passed    2.64 sec
+        Start 323: system--cp_al_edft--Al.uspp
+306/593 Test #323: system--cp_al_edft--Al.uspp .......................................   Passed    4.32 sec
+        Start 330: system--cp_h2o--h2o-mt-blyp-6
+307/593 Test #330: system--cp_h2o--h2o-mt-blyp-6 .....................................   Passed    7.58 sec
+        Start 331: system--cp_h2o--h2o-mt-blyp-cg
+308/593 Test #331: system--cp_h2o--h2o-mt-blyp-cg ....................................   Passed   11.73 sec
+        Start 333: system--cp_h2o_exx--h2o-mt-b3lyp-1
+309/593 Test #333: system--cp_h2o_exx--h2o-mt-b3lyp-1 ................................   Passed   20.91 sec
+        Start 334: system--cp_h2o_exx--h2o-mt-exx_fraction
+310/593 Test #334: system--cp_h2o_exx--h2o-mt-exx_fraction ...........................   Passed   19.40 sec
+        Start 336: system--cp_h2o_scan_libxc--nspin1
+311/593 Test #336: system--cp_h2o_scan_libxc--nspin1 .................................   Passed    0.29 sec
+        Start 337: system--cp_h2o_scan_libxc--nspin2
+312/593 Test #337: system--cp_h2o_scan_libxc--nspin2 .................................   Passed    0.30 sec
+        Start 339: system--cp_h2o_wf--h2o-nspin1
+313/593 Test #339: system--cp_h2o_wf--h2o-nspin1 .....................................   Passed    2.78 sec
+        Start 340: system--cp_h2o_wf--h2o-nspin2
+314/593 Test #340: system--cp_h2o_wf--h2o-nspin2 .....................................   Passed   10.01 sec
+        Start 347: system--cp_o2--o2-us-para-pbe-6
+315/593 Test #347: system--cp_o2--o2-us-para-pbe-6 ...................................   Passed   17.98 sec
+        Start 351: system--cp_si--si-vbc-lda-3
+316/593 Test #351: system--cp_si--si-vbc-lda-3 .......................................   Passed    6.49 sec
+        Start 356: system--cp_sio2--sio2-us-lda-4
+317/593 Test #356: system--cp_sio2--sio2-us-lda-4 ....................................   Passed   19.25 sec
+        Start 357: system--cp_sio2--sio2-us-lda-cg
+318/593 Test #357: system--cp_sio2--sio2-us-lda-cg ...................................   Passed   20.94 sec
+        Start 359: system--cp_sio2--sio2-us-pbe-2
+319/593 Test #359: system--cp_sio2--sio2-us-pbe-2 ....................................   Passed    6.56 sec
+        Start 360: system--cp_sio2--sio2-us-pbe-cg
+320/593 Test #360: system--cp_sio2--sio2-us-pbe-cg ...................................   Passed   29.35 sec
+        Start 363: system--ph_2d--matdyn1
+321/593 Test #363: system--ph_2d--matdyn1 ............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.42 sec
+        Start 364: system--ph_2d--matdyn2
+322/593 Test #364: system--ph_2d--matdyn2 ............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 365: system--ph_2d--ph
+323/593 Test #365: system--ph_2d--ph .................................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.33 sec
+        Start 366: system--ph_2d--q2r1
+324/593 Test #366: system--ph_2d--q2r1 ...............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.25 sec
+        Start 367: system--ph_2d--q2r2
+325/593 Test #367: system--ph_2d--q2r2 ...............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.25 sec
+        Start 368: system--ph_2d--scf
+326/593 Test #368: system--ph_2d--scf ................................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.25 sec
+        Start 370: system--ph_Ni_nc_spinorbit_mag--Ni.ph
+327/593 Test #370: system--ph_Ni_nc_spinorbit_mag--Ni.ph .............................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.26 sec
+        Start 371: system--ph_Ni_nc_spinorbit_mag--Ni.scf
+328/593 Test #371: system--ph_Ni_nc_spinorbit_mag--Ni.scf ............................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 373: system--ph_U_insulator_paw--BN.phG
+329/593 Test #373: system--ph_U_insulator_paw--BN.phG ................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.29 sec
+        Start 374: system--ph_U_insulator_paw--BN.phq
+330/593 Test #374: system--ph_U_insulator_paw--BN.phq ................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.31 sec
+        Start 375: system--ph_U_insulator_paw--BN.scf
+331/593 Test #375: system--ph_U_insulator_paw--BN.scf ................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.25 sec
+        Start 377: system--ph_U_insulator_us--BN.phG
+332/593 Test #377: system--ph_U_insulator_us--BN.phG .................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 378: system--ph_U_insulator_us--BN.phq
+333/593 Test #378: system--ph_U_insulator_us--BN.phq .................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.29 sec
+        Start 379: system--ph_U_insulator_us--BN.scf
+334/593 Test #379: system--ph_U_insulator_us--BN.scf .................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.26 sec
+        Start 381: system--ph_U_metal_paw--Ni.phq
+335/593 Test #381: system--ph_U_metal_paw--Ni.phq ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 382: system--ph_U_metal_paw--Ni.scf
+336/593 Test #382: system--ph_U_metal_paw--Ni.scf ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 384: system--ph_U_metal_us--Fe.ph
+337/593 Test #384: system--ph_U_metal_us--Fe.ph ......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.30 sec
+        Start 385: system--ph_U_metal_us--Fe.scf
+338/593 Test #385: system--ph_U_metal_us--Fe.scf .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.29 sec
+        Start 387: system--ph_ahc_diam--diam.ahc1
+339/593 Test #387: system--ph_ahc_diam--diam.ahc1 ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.31 sec
+        Start 388: system--ph_ahc_diam--diam.ahc2
+340/593 Test #388: system--ph_ahc_diam--diam.ahc2 ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.31 sec
+        Start 389: system--ph_ahc_diam--diam.ahc3
+341/593 Test #389: system--ph_ahc_diam--diam.ahc3 ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 390: system--ph_ahc_diam--diam.dvscfq2r.doneutral
+342/593 Test #390: system--ph_ahc_diam--diam.dvscfq2r.doneutral ......................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 391: system--ph_ahc_diam--diam.dvscfq2r
+343/593 Test #391: system--ph_ahc_diam--diam.dvscfq2r ................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 392: system--ph_ahc_diam--diam.matdyn1
+344/593 Test #392: system--ph_ahc_diam--diam.matdyn1 .................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.30 sec
+        Start 393: system--ph_ahc_diam--diam.matdyn2
+345/593 Test #393: system--ph_ahc_diam--diam.matdyn2 .................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 394: system--ph_ahc_diam--diam.matdyn3
+346/593 Test #394: system--ph_ahc_diam--diam.matdyn3 .................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 395: system--ph_ahc_diam--diam.nscf
+347/593 Test #395: system--ph_ahc_diam--diam.nscf ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 396: system--ph_ahc_diam--diam.nscf.nosym
+348/593 Test #396: system--ph_ahc_diam--diam.nscf.nosym ..............................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.26 sec
+        Start 397: system--ph_ahc_diam--diam.ph
+349/593 Test #397: system--ph_ahc_diam--diam.ph ......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.26 sec
+        Start 398: system--ph_ahc_diam--diam.postahc1
+350/593 Test #398: system--ph_ahc_diam--diam.postahc1 ................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 399: system--ph_ahc_diam--diam.postahc2
+351/593 Test #399: system--ph_ahc_diam--diam.postahc2 ................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.26 sec
+        Start 400: system--ph_ahc_diam--diam.postahc3
+352/593 Test #400: system--ph_ahc_diam--diam.postahc3 ................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 401: system--ph_ahc_diam--diam.q2r
+353/593 Test #401: system--ph_ahc_diam--diam.q2r .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 402: system--ph_ahc_diam--diam.scf
+354/593 Test #402: system--ph_ahc_diam--diam.scf .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 404: system--ph_base--c.phG
+355/593 Test #404: system--ph_base--c.phG ............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.29 sec
+        Start 405: system--ph_base--c.scf
+356/593 Test #405: system--ph_base--c.scf ............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 406: system--ph_base--ni.phX
+357/593 Test #406: system--ph_base--ni.phX ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.29 sec
+        Start 407: system--ph_base--ni.scf
+358/593 Test #407: system--ph_base--ni.scf ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.26 sec
+        Start 408: system--ph_base--nipaw.phX
+359/593 Test #408: system--ph_base--nipaw.phX ........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.29 sec
+        Start 409: system--ph_base--nipaw.scf
+360/593 Test #409: system--ph_base--nipaw.scf ........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.26 sec
+        Start 410: system--ph_base--si.phG
+361/593 Test #410: system--ph_base--si.phG ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.26 sec
+        Start 411: system--ph_base--si.phX
+362/593 Test #411: system--ph_base--si.phX ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.26 sec
+        Start 412: system--ph_base--si.scf
+363/593 Test #412: system--ph_base--si.scf ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 414: system--ph_insulator_paw_magn--O2.phG
+364/593 Test #414: system--ph_insulator_paw_magn--O2.phG .............................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.29 sec
+        Start 415: system--ph_insulator_paw_magn--O2.scf.1
+365/593 Test #415: system--ph_insulator_paw_magn--O2.scf.1 ...........................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.30 sec
+        Start 416: system--ph_insulator_paw_magn--O2.scf.2
+366/593 Test #416: system--ph_insulator_paw_magn--O2.scf.2 ...........................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 418: system--ph_insulator_us_magn--NiO.phG
+367/593 Test #418: system--ph_insulator_us_magn--NiO.phG .............................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 419: system--ph_insulator_us_magn--NiO.scf.1
+368/593 Test #419: system--ph_insulator_us_magn--NiO.scf.1 ...........................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 420: system--ph_insulator_us_magn--NiO.scf.2
+369/593 Test #420: system--ph_insulator_us_magn--NiO.scf.2 ...........................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 422: system--ph_interpol_metal--al.dvscfq2r
+370/593 Test #422: system--ph_interpol_metal--al.dvscfq2r ............................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.26 sec
+        Start 423: system--ph_interpol_metal--al.elph
+371/593 Test #423: system--ph_interpol_metal--al.elph ................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 424: system--ph_interpol_metal--al.elph.interpol
+372/593 Test #424: system--ph_interpol_metal--al.elph.interpol .......................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 425: system--ph_interpol_metal--al.ph
+373/593 Test #425: system--ph_interpol_metal--al.ph ..................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 426: system--ph_interpol_metal--al.scf
+374/593 Test #426: system--ph_interpol_metal--al.scf .................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 428: system--ph_metal--al.elph
+375/593 Test #428: system--ph_metal--al.elph .........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 429: system--ph_metal--al.elph.notrans
+376/593 Test #429: system--ph_metal--al.elph.notrans .................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 430: system--ph_metal--al.scf.fit
+377/593 Test #430: system--ph_metal--al.scf.fit ......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 431: system--ph_metal--al.scf
+378/593 Test #431: system--ph_metal--al.scf ..........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.29 sec
+        Start 432: system--ph_metal--lambda
+379/593 Test #432: system--ph_metal--lambda ..........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 433: system--ph_metal--q2r
+380/593 Test #433: system--ph_metal--q2r .............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 436: system--epw_base--epw1
+381/593 Test #436: system--epw_base--epw1 ............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  1.00 sec
+        Start 437: system--epw_base--epw10
+382/593 Test #437: system--epw_base--epw10 ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.29 sec
+        Start 438: system--epw_base--epw11
+383/593 Test #438: system--epw_base--epw11 ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 439: system--epw_base--epw12
+384/593 Test #439: system--epw_base--epw12 ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 440: system--epw_base--epw13
+385/593 Test #440: system--epw_base--epw13 ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 441: system--epw_base--epw2
+386/593 Test #441: system--epw_base--epw2 ............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 442: system--epw_base--epw3
+387/593 Test #442: system--epw_base--epw3 ............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 443: system--epw_base--epw4
+388/593 Test #443: system--epw_base--epw4 ............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 444: system--epw_base--epw5
+389/593 Test #444: system--epw_base--epw5 ............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 445: system--epw_base--epw6
+390/593 Test #445: system--epw_base--epw6 ............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 446: system--epw_base--epw7
+391/593 Test #446: system--epw_base--epw7 ............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 447: system--epw_base--epw8
+392/593 Test #447: system--epw_base--epw8 ............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 448: system--epw_base--epw9
+393/593 Test #448: system--epw_base--epw9 ............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.29 sec
+        Start 449: system--epw_base--nscf_epw
+394/593 Test #449: system--epw_base--nscf_epw ........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 450: system--epw_base--ph
+395/593 Test #450: system--epw_base--ph ..............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.29 sec
+        Start 451: system--epw_base--scf
+396/593 Test #451: system--epw_base--scf .............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 452: system--epw_base--scf_epw
+397/593 Test #452: system--epw_base--scf_epw .........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 454: system--epw_hall--epw1
+398/593 Test #454: system--epw_hall--epw1 ............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 455: system--epw_hall--epw2
+399/593 Test #455: system--epw_hall--epw2 ............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 456: system--epw_hall--nscf
+400/593 Test #456: system--epw_hall--nscf ............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.29 sec
+        Start 457: system--epw_hall--ph
+401/593 Test #457: system--epw_hall--ph ..............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 458: system--epw_hall--scf
+402/593 Test #458: system--epw_hall--scf .............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 460: system--epw_metal--epw1
+403/593 Test #460: system--epw_metal--epw1 ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.30 sec
+        Start 461: system--epw_metal--epw2
+404/593 Test #461: system--epw_metal--epw2 ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.29 sec
+        Start 462: system--epw_metal--epw3
+405/593 Test #462: system--epw_metal--epw3 ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.30 sec
+        Start 463: system--epw_metal--epw4
+406/593 Test #463: system--epw_metal--epw4 ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 464: system--epw_metal--nscf_epw
+407/593 Test #464: system--epw_metal--nscf_epw .......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.29 sec
+        Start 465: system--epw_metal--scf_epw
+408/593 Test #465: system--epw_metal--scf_epw ........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 467: system--epw_mob--epw1
+409/593 Test #467: system--epw_mob--epw1 .............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 468: system--epw_mob--epw2
+410/593 Test #468: system--epw_mob--epw2 .............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.29 sec
+        Start 469: system--epw_mob--epw3
+411/593 Test #469: system--epw_mob--epw3 .............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 470: system--epw_mob--epw4
+412/593 Test #470: system--epw_mob--epw4 .............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 471: system--epw_mob--epw5
+413/593 Test #471: system--epw_mob--epw5 .............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.29 sec
+        Start 472: system--epw_mob--epw6
+414/593 Test #472: system--epw_mob--epw6 .............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.26 sec
+        Start 473: system--epw_mob--nscf
+415/593 Test #473: system--epw_mob--nscf .............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 474: system--epw_mob--ph
+416/593 Test #474: system--epw_mob--ph ...............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 475: system--epw_mob--q2r
+417/593 Test #475: system--epw_mob--q2r ..............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 476: system--epw_mob--scf
+418/593 Test #476: system--epw_mob--scf ..............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 478: system--epw_mob_ibte--epw1
+419/593 Test #478: system--epw_mob_ibte--epw1 ........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 479: system--epw_mob_ibte--epw2
+420/593 Test #479: system--epw_mob_ibte--epw2 ........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 480: system--epw_mob_ibte--epw3
+421/593 Test #480: system--epw_mob_ibte--epw3 ........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 481: system--epw_mob_ibte--nscf
+422/593 Test #481: system--epw_mob_ibte--nscf ........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 482: system--epw_mob_ibte--ph
+423/593 Test #482: system--epw_mob_ibte--ph ..........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.25 sec
+        Start 483: system--epw_mob_ibte--q2r
+424/593 Test #483: system--epw_mob_ibte--q2r .........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 484: system--epw_mob_ibte--scf
+425/593 Test #484: system--epw_mob_ibte--scf .........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 486: system--epw_mob_ibte_sym--epw1
+426/593 Test #486: system--epw_mob_ibte_sym--epw1 ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.29 sec
+        Start 487: system--epw_mob_ibte_sym--epw2
+427/593 Test #487: system--epw_mob_ibte_sym--epw2 ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 488: system--epw_mob_ibte_sym--epw3
+428/593 Test #488: system--epw_mob_ibte_sym--epw3 ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 489: system--epw_mob_ibte_sym--epw4
+429/593 Test #489: system--epw_mob_ibte_sym--epw4 ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 490: system--epw_mob_ibte_sym--epw5
+430/593 Test #490: system--epw_mob_ibte_sym--epw5 ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.26 sec
+        Start 491: system--epw_mob_ibte_sym--epw6
+431/593 Test #491: system--epw_mob_ibte_sym--epw6 ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.26 sec
+        Start 492: system--epw_mob_ibte_sym--epw7
+432/593 Test #492: system--epw_mob_ibte_sym--epw7 ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 493: system--epw_mob_ibte_sym--epw8
+433/593 Test #493: system--epw_mob_ibte_sym--epw8 ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.25 sec
+        Start 494: system--epw_mob_ibte_sym--epw9
+434/593 Test #494: system--epw_mob_ibte_sym--epw9 ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.29 sec
+        Start 495: system--epw_mob_ibte_sym--nscf
+435/593 Test #495: system--epw_mob_ibte_sym--nscf ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 496: system--epw_mob_ibte_sym--ph
+436/593 Test #496: system--epw_mob_ibte_sym--ph ......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.29 sec
+        Start 497: system--epw_mob_ibte_sym--q2r
+437/593 Test #497: system--epw_mob_ibte_sym--q2r .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.26 sec
+        Start 498: system--epw_mob_ibte_sym--scf
+438/593 Test #498: system--epw_mob_ibte_sym--scf .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 500: system--epw_mob_polar--epw1
+439/593 Test #500: system--epw_mob_polar--epw1 .......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 501: system--epw_mob_polar--epw2
+440/593 Test #501: system--epw_mob_polar--epw2 .......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 502: system--epw_mob_polar--epw3
+441/593 Test #502: system--epw_mob_polar--epw3 .......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 503: system--epw_mob_polar--nscf
+442/593 Test #503: system--epw_mob_polar--nscf .......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 504: system--epw_mob_polar--ph
+443/593 Test #504: system--epw_mob_polar--ph .........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 505: system--epw_mob_polar--scf
+444/593 Test #505: system--epw_mob_polar--scf ........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.30 sec
+        Start 507: system--epw_pl--epw1
+445/593 Test #507: system--epw_pl--epw1 ..............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 508: system--epw_pl--nscf_epw
+446/593 Test #508: system--epw_pl--nscf_epw ..........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.29 sec
+        Start 509: system--epw_pl--ph
+447/593 Test #509: system--epw_pl--ph ................................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.29 sec
+        Start 510: system--epw_pl--scf
+448/593 Test #510: system--epw_pl--scf ...............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.29 sec
+        Start 511: system--epw_pl--scf_epw
+449/593 Test #511: system--epw_pl--scf_epw ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.26 sec
+        Start 513: system--epw_polar--epw1
+450/593 Test #513: system--epw_polar--epw1 ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.30 sec
+        Start 514: system--epw_polar--epw2
+451/593 Test #514: system--epw_polar--epw2 ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 515: system--epw_polar--epw3
+452/593 Test #515: system--epw_polar--epw3 ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 516: system--epw_polar--nscf_epw
+453/593 Test #516: system--epw_polar--nscf_epw .......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 517: system--epw_polar--ph
+454/593 Test #517: system--epw_polar--ph .............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.26 sec
+        Start 518: system--epw_polar--scf
+455/593 Test #518: system--epw_polar--scf ............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.25 sec
+        Start 519: system--epw_polar--scf_epw
+456/593 Test #519: system--epw_polar--scf_epw ........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.25 sec
+        Start 521: system--epw_soc--epw1
+457/593 Test #521: system--epw_soc--epw1 .............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 522: system--epw_soc--epw2
+458/593 Test #522: system--epw_soc--epw2 .............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 523: system--epw_soc--nscf_epw
+459/593 Test #523: system--epw_soc--nscf_epw .........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.26 sec
+        Start 524: system--epw_soc--scf_epw
+460/593 Test #524: system--epw_soc--scf_epw ..........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 526: system--epw_super--epw1
+461/593 Test #526: system--epw_super--epw1 ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.29 sec
+        Start 527: system--epw_super--epw2
+462/593 Test #527: system--epw_super--epw2 ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.29 sec
+        Start 528: system--epw_super--epw3
+463/593 Test #528: system--epw_super--epw3 ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.29 sec
+        Start 529: system--epw_super--epw4
+464/593 Test #529: system--epw_super--epw4 ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.31 sec
+        Start 530: system--epw_super--epw5
+465/593 Test #530: system--epw_super--epw5 ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 531: system--epw_super--nscf_epw
+466/593 Test #531: system--epw_super--nscf_epw .......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.26 sec
+        Start 532: system--epw_super--ph
+467/593 Test #532: system--epw_super--ph .............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.29 sec
+        Start 533: system--epw_super--scf
+468/593 Test #533: system--epw_super--scf ............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.26 sec
+        Start 534: system--epw_super--scf_epw
+469/593 Test #534: system--epw_super--scf_epw ........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 536: system--epw_trev--epw1
+470/593 Test #536: system--epw_trev--epw1 ............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 537: system--epw_trev--nscf_epw
+471/593 Test #537: system--epw_trev--nscf_epw ........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.29 sec
+        Start 538: system--epw_trev--ph
+472/593 Test #538: system--epw_trev--ph ..............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 539: system--epw_trev--scf
+473/593 Test #539: system--epw_trev--scf .............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 540: system--epw_trev--scf_epw
+474/593 Test #540: system--epw_trev--scf_epw .........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 542: system--epw_trev_paw--epw1
+475/593 Test #542: system--epw_trev_paw--epw1 ........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.25 sec
+        Start 543: system--epw_trev_paw--nscf
+476/593 Test #543: system--epw_trev_paw--nscf ........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 544: system--epw_trev_paw--ph
+477/593 Test #544: system--epw_trev_paw--ph ..........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 545: system--epw_trev_paw--scf
+478/593 Test #545: system--epw_trev_paw--scf .........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.29 sec
+        Start 547: system--epw_trev_uspp--epw1
+479/593 Test #547: system--epw_trev_uspp--epw1 .......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.26 sec
+        Start 548: system--epw_trev_uspp--nscf
+480/593 Test #548: system--epw_trev_uspp--nscf .......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 549: system--epw_trev_uspp--ph
+481/593 Test #549: system--epw_trev_uspp--ph .........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.29 sec
+        Start 550: system--epw_trev_uspp--scf
+482/593 Test #550: system--epw_trev_uspp--scf ........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.25 sec
+        Start 553: system--tddfpt_CH4--CH4.pw
+483/593 Test #553: system--tddfpt_CH4--CH4.pw ........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.11 sec
+        Start 554: system--tddfpt_CH4--CH4.tddfpt
+484/593 Test #554: system--tddfpt_CH4--CH4.tddfpt ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.10 sec
+        Start 555: system--tddfpt_CH4--CH4.tddfpt_pp
+485/593 Test #555: system--tddfpt_CH4--CH4.tddfpt_pp .................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.10 sec
+        Start 557: system--tddfpt_eels-si--Si.pw
+486/593 Test #557: system--tddfpt_eels-si--Si.pw .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.09 sec
+        Start 558: system--tddfpt_eels-si--Si.tddfpt-eels
+487/593 Test #558: system--tddfpt_eels-si--Si.tddfpt-eels ............................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.10 sec
+        Start 559: system--tddfpt_eels-si--Si.tddfpt_pp_eels
+488/593 Test #559: system--tddfpt_eels-si--Si.tddfpt_pp_eels .........................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.11 sec
+        Start 561: system--tddfpt_magnons_fe--Fe.pw
+489/593 Test #561: system--tddfpt_magnons_fe--Fe.pw ..................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.11 sec
+        Start 562: system--tddfpt_magnons_fe--Fe.tddfpt-magnons
+490/593 Test #562: system--tddfpt_magnons_fe--Fe.tddfpt-magnons ......................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.10 sec
+        Start 563: system--tddfpt_magnons_fe--Fe.tddfpt_pp_magnons
+491/593 Test #563: system--tddfpt_magnons_fe--Fe.tddfpt_pp_magnons ...................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.10 sec
+        Start 566: system--hp_insulator_paw--BN.hp
+492/593 Test #566: system--hp_insulator_paw--BN.hp ...................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.52 sec
+        Start 567: system--hp_insulator_paw--BN.scf
+493/593 Test #567: system--hp_insulator_paw--BN.scf ..................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.26 sec
+        Start 569: system--hp_insulator_paw_magn--CrI3.hp
+494/593 Test #569: system--hp_insulator_paw_magn--CrI3.hp ............................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.31 sec
+        Start 570: system--hp_insulator_paw_magn--CrI3.scf.1
+495/593 Test #570: system--hp_insulator_paw_magn--CrI3.scf.1 .........................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 571: system--hp_insulator_paw_magn--CrI3.scf.2
+496/593 Test #571: system--hp_insulator_paw_magn--CrI3.scf.2 .........................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 573: system--hp_insulator_us--LiCoO2.hp
+497/593 Test #573: system--hp_insulator_us--LiCoO2.hp ................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 574: system--hp_insulator_us--LiCoO2.scf
+498/593 Test #574: system--hp_insulator_us--LiCoO2.scf ...............................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.26 sec
+        Start 576: system--hp_insulator_us_intersiteV--LiCoO2.hp
+499/593 Test #576: system--hp_insulator_us_intersiteV--LiCoO2.hp .....................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.30 sec
+        Start 577: system--hp_insulator_us_intersiteV--LiCoO2.scf
+500/593 Test #577: system--hp_insulator_us_intersiteV--LiCoO2.scf ....................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.26 sec
+        Start 579: system--hp_insulator_us_magn--NiO.hp
+501/593 Test #579: system--hp_insulator_us_magn--NiO.hp ..............................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 580: system--hp_insulator_us_magn--NiO.scf.1
+502/593 Test #580: system--hp_insulator_us_magn--NiO.scf.1 ...........................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 581: system--hp_insulator_us_magn--NiO.scf.2
+503/593 Test #581: system--hp_insulator_us_magn--NiO.scf.2 ...........................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 583: system--hp_metal_paw_magn--Fe.hp
+504/593 Test #583: system--hp_metal_paw_magn--Fe.hp ..................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 584: system--hp_metal_paw_magn--Fe.scf
+505/593 Test #584: system--hp_metal_paw_magn--Fe.scf .................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 586: system--hp_metal_paw_magn_intersiteV--LiNiO2.hp
+506/593 Test #586: system--hp_metal_paw_magn_intersiteV--LiNiO2.hp ...................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 587: system--hp_metal_paw_magn_intersiteV--LiNiO2.scf
+507/593 Test #587: system--hp_metal_paw_magn_intersiteV--LiNiO2.scf ..................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.27 sec
+        Start 589: system--hp_metal_us_magn--Ni.hp
+508/593 Test #589: system--hp_metal_us_magn--Ni.hp ...................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.28 sec
+        Start 590: system--hp_metal_us_magn--Ni.scf
+509/593 Test #590: system--hp_metal_us_magn--Ni.scf ..................................***Failed  Required regular expression not found. Regex=[JOB DONE
+libxc needed for this functional
+]  0.26 sec
+        Start   4: test_qe_fftx-r3-t2
+510/593 Test   #4: test_qe_fftx-r3-t2 ................................................   Passed    0.96 sec
+        Start   8: test_qe_fftx_fft_scalar_gpu-r3-t2
+511/593 Test   #8: test_qe_fftx_fft_scalar_gpu-r3-t2 .................................   Passed    0.09 sec
+        Start  12: test_qe_fftx_fft_scatter_mod_gpu-r3-t2
+512/593 Test  #12: test_qe_fftx_fft_scatter_mod_gpu-r3-t2 ............................   Passed    0.09 sec
+        Start  16: test_qe_fftx_fwinv_gpu-r3-t2
+513/593 Test  #16: test_qe_fftx_fwinv_gpu-r3-t2 ......................................   Passed    0.37 sec
+        Start  33: test_qe_lax-r4-t1
+514/593 Test  #33: test_qe_lax-r4-t1 .................................................   Passed    0.68 sec
+        Start  34: test_qe_lax-r9-t2
+515/593 Test  #34: test_qe_lax-r9-t2 .................................................***Failed    0.05 sec
+        Start  41: system--pw_atom-correctness
+        Start  48: system--pw_b3lyp-correctness
+        Start  53: system--pw_berry-correctness
+        Start  57: system--pw_cluster-correctness
+516/593 Test  #53: system--pw_berry-correctness ......................................   Passed    1.98 sec
+        Start  63: system--pw_dft-correctness
+517/593 Test  #57: system--pw_cluster-correctness ....................................   Passed    2.24 sec
+        Start  75: system--pw_dipole-correctness
+518/593 Test  #48: system--pw_b3lyp-correctness ......................................   Passed    2.28 sec
+        Start  78: system--pw_electric-correctness
+519/593 Test  #41: system--pw_atom-correctness .......................................   Passed    2.64 sec
+        Start  82: system--pw_eval-correctness
+520/593 Test  #75: system--pw_dipole-correctness .....................................   Passed    1.11 sec
+        Start  85: system--pw_gau-pbe-correctness
+521/593 Test  #78: system--pw_electric-correctness ...................................   Passed    1.34 sec
+        Start  89: system--pw_hse-correctness
+522/593 Test  #82: system--pw_eval-correctness .......................................   Passed    1.08 sec
+        Start  93: system--pw_lattice-ibrav-correctness
+523/593 Test  #85: system--pw_gau-pbe-correctness ....................................   Passed    1.46 sec
+        Start 133: system--pw_lda+U-correctness
+524/593 Test  #89: system--pw_hse-correctness ........................................   Passed    1.46 sec
+        Start 149: system--pw_lsda-correctness
+525/593 Test  #63: system--pw_dft-correctness ........................................   Passed    3.21 sec
+        Start 158: system--pw_md-correctness
+526/593 Test #158: system--pw_md-correctness .........................................   Passed    2.30 sec
+        Start 165: system--pw_metaGGA-correctness
+527/593 Test #149: system--pw_lsda-correctness .......................................   Passed    2.54 sec
+        Start 170: system--pw_metal-correctness
+528/593 Test #165: system--pw_metaGGA-correctness ....................................   Passed    1.44 sec
+        Start 178: system--pw_noncolin-correctness
+529/593 Test #133: system--pw_lda+U-correctness ......................................   Passed    4.15 sec
+        Start 189: system--pw_pawatom-correctness
+530/593 Test #170: system--pw_metal-correctness ......................................   Passed    2.22 sec
+        Start 198: system--pw_pbe-correctness
+531/593 Test #189: system--pw_pawatom-correctness ....................................   Passed    2.46 sec
+        Start 203: system--pw_plugins-correctness
+532/593 Test #198: system--pw_pbe-correctness ........................................   Passed    1.69 sec
+        Start 206: system--pw_realspace-correctness
+533/593 Test #178: system--pw_noncolin-correctness ...................................   Passed    3.02 sec
+        Start 211: system--pw_relax-correctness
+534/593 Test #203: system--pw_plugins-correctness ....................................   Passed    1.29 sec
+        Start 219: system--pw_scf-correctness
+535/593 Test #206: system--pw_realspace-correctness ..................................   Passed    1.58 sec
+        Start 248: system--pw_spinorbit-correctness
+536/593 Test  #93: system--pw_lattice-ibrav-correctness ..............................   Passed   10.37 sec
+        Start 254: system--pw_twochem-correctness
+537/593 Test #211: system--pw_relax-correctness ......................................   Passed    2.22 sec
+        Start 259: system--pw_uspp-correctness
+538/593 Test #248: system--pw_spinorbit-correctness ..................................   Passed    1.79 sec
+        Start 276: system--pw_vc-relax-correctness
+539/593 Test #254: system--pw_twochem-correctness ....................................   Passed    1.71 sec
+        Start 285: system--pw_vdw-correctness
+540/593 Test #276: system--pw_vc-relax-correctness ...................................   Passed    2.66 sec
+        Start 297: system--pw_workflow_exx_nscf-correctness
+541/593 Test #259: system--pw_uspp-correctness .......................................   Passed    4.16 sec
+        Start 308: system--pw_workflow_relax_relax-correctness
+542/593 Test #285: system--pw_vdw-correctness ........................................   Passed    3.13 sec
+        Start 311: system--pw_workflow_scf_dos-correctness
+543/593 Test #219: system--pw_scf-correctness ........................................   Passed    6.58 sec
+        Start 314: system--pw_workflow_vc-relax_dos-correctness
+544/593 Test #308: system--pw_workflow_relax_relax-correctness .......................   Passed    1.16 sec
+        Start 317: system--pw_workflow_vc-relax_scf-correctness
+545/593 Test #311: system--pw_workflow_scf_dos-correctness ...........................   Passed    1.06 sec
+        Start 321: system--cp_al_edft-correctness
+546/593 Test #314: system--pw_workflow_vc-relax_dos-correctness ......................   Passed    1.09 sec
+        Start 324: system--cp_h2o-correctness
+547/593 Test #297: system--pw_workflow_exx_nscf-correctness ..........................   Passed    3.02 sec
+        Start 332: system--cp_h2o_exx-correctness
+548/593 Test #317: system--pw_workflow_vc-relax_scf-correctness ......................   Passed    1.09 sec
+        Start 335: system--cp_h2o_scan_libxc-correctness
+549/593 Test #321: system--cp_al_edft-correctness ....................................   Passed    0.92 sec
+        Start 338: system--cp_h2o_wf-correctness
+550/593 Test #335: system--cp_h2o_scan_libxc-correctness .............................   Passed    0.62 sec
+        Start 341: system--cp_o2-correctness
+551/593 Test #332: system--cp_h2o_exx-correctness ....................................   Passed    1.06 sec
+        Start 348: system--cp_si-correctness
+552/593 Test #338: system--cp_h2o_wf-correctness .....................................   Passed    0.85 sec
+        Start 352: system--cp_sio2-correctness
+553/593 Test #324: system--cp_h2o-correctness ........................................   Passed    1.60 sec
+        Start 362: system--ph_2d-correctness
+554/593 Test #341: system--cp_o2-correctness .........................................   Passed    1.35 sec
+        Start 369: system--ph_Ni_nc_spinorbit_mag-correctness
+555/593 Test #348: system--cp_si-correctness .........................................   Passed    0.96 sec
+        Start 372: system--ph_U_insulator_paw-correctness
+556/593 Test #352: system--cp_sio2-correctness .......................................   Passed    1.58 sec
+        Start 376: system--ph_U_insulator_us-correctness
+557/593 Test #369: system--ph_Ni_nc_spinorbit_mag-correctness ........................***Failed    1.38 sec
+        Start 380: system--ph_U_metal_paw-correctness
+558/593 Test #372: system--ph_U_insulator_paw-correctness ............................***Failed    1.65 sec
+        Start 383: system--ph_U_metal_us-correctness
+559/593 Test #362: system--ph_2d-correctness .........................................***Failed    2.64 sec
+        Start 386: system--ph_ahc_diam-correctness
+560/593 Test #376: system--ph_U_insulator_us-correctness .............................***Failed    1.87 sec
+        Start 403: system--ph_base-correctness
+561/593 Test #380: system--ph_U_metal_paw-correctness ................................***Failed    1.34 sec
+        Start 413: system--ph_insulator_paw_magn-correctness
+562/593 Test #383: system--ph_U_metal_us-correctness .................................***Failed    1.32 sec
+        Start 417: system--ph_insulator_us_magn-correctness
+563/593 Test #413: system--ph_insulator_paw_magn-correctness .........................***Failed    1.62 sec
+        Start 421: system--ph_interpol_metal-correctness
+564/593 Test #417: system--ph_insulator_us_magn-correctness ..........................***Failed    1.62 sec
+        Start 427: system--ph_metal-correctness
+565/593 Test #403: system--ph_base-correctness .......................................***Failed    3.64 sec
+        Start 435: system--epw_base-correctness
+566/593 Test #421: system--ph_interpol_metal-correctness .............................***Failed    2.76 sec
+        Start 453: system--epw_hall-correctness
+567/593 Test #427: system--ph_metal-correctness ......................................***Failed    2.77 sec
+        Start 459: system--epw_metal-correctness
+568/593 Test #386: system--ph_ahc_diam-correctness ...................................***Failed    5.84 sec
+        Start 466: system--epw_mob-correctness
+569/593 Test #453: system--epw_hall-correctness ......................................***Failed    3.33 sec
+        Start 477: system--epw_mob_ibte-correctness
+570/593 Test #459: system--epw_metal-correctness .....................................***Failed    4.59 sec
+        Start 485: system--epw_mob_ibte_sym-correctness
+571/593 Test #466: system--epw_mob-correctness .......................................***Failed    8.06 sec
+        Start 499: system--epw_mob_polar-correctness
+572/593 Test #477: system--epw_mob_ibte-correctness ..................................***Failed    5.96 sec
+        Start 506: system--epw_pl-correctness
+573/593 Test #435: system--epw_base-correctness ......................................***Failed   12.39 sec
+        Start 512: system--epw_polar-correctness
+574/593 Test #506: system--epw_pl-correctness ........................................***Failed    4.09 sec
+        Start 520: system--epw_soc-correctness
+575/593 Test #499: system--epw_mob_polar-correctness .................................***Failed    5.36 sec
+        Start 525: system--epw_super-correctness
+576/593 Test #485: system--epw_mob_ibte_sym-correctness ..............................***Failed   10.05 sec
+        Start 535: system--epw_trev-correctness
+577/593 Test #520: system--epw_soc-correctness .......................................***Failed    3.48 sec
+        Start 541: system--epw_trev_paw-correctness
+578/593 Test #512: system--epw_polar-correctness .....................................***Failed    5.37 sec
+        Start 546: system--epw_trev_uspp-correctness
+579/593 Test #535: system--epw_trev-correctness ......................................***Failed    4.05 sec
+        Start 552: system--tddfpt_CH4-correctness
+580/593 Test #552: system--tddfpt_CH4-correctness ....................................***Failed    1.37 sec
+        Start 556: system--tddfpt_eels-si-correctness
+581/593 Test #541: system--epw_trev_paw-correctness ..................................***Failed    3.97 sec
+        Start 560: system--tddfpt_magnons_fe-correctness
+582/593 Test #546: system--epw_trev_uspp-correctness .................................***Failed    3.93 sec
+        Start 565: system--hp_insulator_paw-correctness
+583/593 Test #525: system--epw_super-correctness .....................................***Failed    6.68 sec
+        Start 568: system--hp_insulator_paw_magn-correctness
+584/593 Test #565: system--hp_insulator_paw-correctness ..............................***Failed    0.99 sec
+        Start 572: system--hp_insulator_us-correctness
+585/593 Test #556: system--tddfpt_eels-si-correctness ................................***Failed    1.47 sec
+        Start 575: system--hp_insulator_us_intersiteV-correctness
+586/593 Test #560: system--tddfpt_magnons_fe-correctness .............................***Failed    1.15 sec
+        Start 578: system--hp_insulator_us_magn-correctness
+587/593 Test #568: system--hp_insulator_paw_magn-correctness .........................***Failed    1.12 sec
+        Start 582: system--hp_metal_paw_magn-correctness
+588/593 Test #575: system--hp_insulator_us_intersiteV-correctness ....................***Failed    1.02 sec
+        Start 585: system--hp_metal_paw_magn_intersiteV-correctness
+589/593 Test #572: system--hp_insulator_us-correctness ...............................***Failed    1.05 sec
+        Start 588: system--hp_metal_us_magn-correctness
+590/593 Test #582: system--hp_metal_paw_magn-correctness .............................***Failed    0.97 sec
+591/593 Test #578: system--hp_insulator_us_magn-correctness ..........................***Failed    1.10 sec
+592/593 Test #588: system--hp_metal_us_magn-correctness ..............................***Failed    0.91 sec
+593/593 Test #585: system--hp_metal_paw_magn_intersiteV-correctness ..................***Failed    0.94 sec
+
+62% tests passed, 227 tests failed out of 593
+
+Label Time Summary:
+cp_al_edft                      =  28.79 sec*proc (3 tests)
+cp_h2o                          = 271.02 sec*proc (8 tests)
+cp_h2o_exx                      = 162.32 sec*proc (3 tests)
+cp_h2o_scan_libxc               =   2.98 sec*proc (3 tests)
+cp_h2o_wf                       =  52.02 sec*proc (3 tests)
+cp_o2                           = 317.34 sec*proc (7 tests)
+cp_si                           =  38.91 sec*proc (4 tests)
+cp_sio2                         = 435.09 sec*proc (9 tests)
+epw_base                        =  34.03 sec*proc (18 tests)
+epw_hall                        =   8.89 sec*proc (6 tests)
+epw_metal                       =  11.50 sec*proc (7 tests)
+epw_mob                         =  19.09 sec*proc (11 tests)
+epw_mob_ibte                    =  13.56 sec*proc (8 tests)
+epw_mob_ibte_sym                =  24.13 sec*proc (14 tests)
+epw_mob_polar                   =  12.01 sec*proc (7 tests)
+epw_pl                          =   9.71 sec*proc (6 tests)
+epw_polar                       =  12.93 sec*proc (8 tests)
+epw_soc                         =   7.81 sec*proc (5 tests)
+epw_super                       =  16.81 sec*proc (10 tests)
+epw_trev                        =   9.59 sec*proc (6 tests)
+epw_trev_paw                    =   8.31 sec*proc (5 tests)
+epw_trev_uspp                   =   8.24 sec*proc (5 tests)
+hp_insulator_paw                =   4.10 sec*proc (3 tests)
+hp_insulator_paw_magn           =   4.54 sec*proc (4 tests)
+hp_insulator_us                 =   3.20 sec*proc (3 tests)
+hp_insulator_us_intersiteV      =   3.29 sec*proc (3 tests)
+hp_insulator_us_magn            =   4.41 sec*proc (4 tests)
+hp_metal_paw_magn               =   3.11 sec*proc (3 tests)
+hp_metal_paw_magn_intersiteV    =   3.14 sec*proc (3 tests)
+hp_metal_us_magn                =   3.08 sec*proc (3 tests)
+ph_2d                           =   9.78 sec*proc (7 tests)
+ph_Ni_nc_spinorbit_mag          =   3.49 sec*proc (3 tests)
+ph_U_insulator_paw              =   5.03 sec*proc (4 tests)
+ph_U_insulator_us               =   5.13 sec*proc (4 tests)
+ph_U_metal_paw                  =   3.49 sec*proc (3 tests)
+ph_U_metal_us                   =   3.67 sec*proc (3 tests)
+ph_ahc_diam                     =  23.66 sec*proc (17 tests)
+ph_base                         =  13.49 sec*proc (10 tests)
+ph_insulator_paw_magn           =   5.03 sec*proc (4 tests)
+ph_insulator_us_magn            =   4.92 sec*proc (4 tests)
+ph_interpol_metal               =   8.14 sec*proc (6 tests)
+ph_metal                        =   9.47 sec*proc (7 tests)
+pseudo                          =  43.13 sec*proc (6 tests)
+pw_atom                         =  60.11 sec*proc (7 tests)
+pw_b3lyp                        =  93.33 sec*proc (5 tests)
+pw_berry                        =  34.30 sec*proc (4 tests)
+pw_cluster                      =  52.85 sec*proc (6 tests)
+pw_dft                          =  58.35 sec*proc (12 tests)
+pw_dipole                       =  25.41 sec*proc (3 tests)
+pw_electric                     = 137.42 sec*proc (4 tests)
+pw_eval                         =   6.02 sec*proc (3 tests)
+pw_gau-pbe                      =  36.98 sec*proc (4 tests)
+pw_hse                          =  34.57 sec*proc (4 tests)
+pw_lattice-ibrav                = 135.40 sec*proc (40 tests)
+pw_lda+U                        = 447.41 sec*proc (16 tests)
+pw_lsda                         =  39.50 sec*proc (9 tests)
+pw_md                           =  51.38 sec*proc (10 tests)
+pw_metaGGA                      =  17.49 sec*proc (5 tests)
+pw_metal                        =  19.11 sec*proc (8 tests)
+pw_noncolin                     = 106.90 sec*proc (11 tests)
+pw_pawatom                      =  61.45 sec*proc (9 tests)
+pw_pbe                          =  67.55 sec*proc (5 tests)
+pw_plugins                      =   4.91 sec*proc (3 tests)
+pw_realspace                    =  49.63 sec*proc (5 tests)
+pw_relax                        =  81.79 sec*proc (8 tests)
+pw_scf                          =  84.94 sec*proc (29 tests)
+pw_spinorbit                    =  38.31 sec*proc (6 tests)
+pw_twochem                      =  24.68 sec*proc (5 tests)
+pw_uspp                         =  69.58 sec*proc (17 tests)
+pw_vc-relax                     = 250.74 sec*proc (9 tests)
+pw_vdw                          = 503.17 sec*proc (12 tests)
+pw_workflow_exx_nscf            = 253.18 sec*proc (11 tests)
+pw_workflow_relax_relax         =  65.39 sec*proc (3 tests)
+pw_workflow_scf_dos             =   9.54 sec*proc (3 tests)
+pw_workflow_vc-relax_dos        =  22.10 sec*proc (3 tests)
+pw_workflow_vc-relax_scf        =  20.90 sec*proc (3 tests)
+system--cp                      = 1311.68 sec*proc (41 tests)
+system--epw                     = 201.42 sec*proc (117 tests)
+system--hp                      =  32.27 sec*proc (27 tests)
+system--ph                      =  99.20 sec*proc (73 tests)
+system--pw                      = 2991.79 sec*proc (283 tests)
+system--tddfpt                  =   8.09 sec*proc (13 tests)
+tddfpt_CH4                      =   2.60 sec*proc (4 tests)
+tddfpt_eels-si                  =   2.68 sec*proc (4 tests)
+tddfpt_magnons_fe               =   2.39 sec*proc (4 tests)
+unit                            =  79.88 sec*proc (39 tests)
+
+Total Test time (real) = 1198.07 sec
+
+The following tests FAILED:
+	 34 - test_qe_lax-r9-t2 (Failed)
+	362 - system--ph_2d-correctness (Failed)
+	363 - system--ph_2d--matdyn1 (Failed)
+	364 - system--ph_2d--matdyn2 (Failed)
+	365 - system--ph_2d--ph (Failed)
+	366 - system--ph_2d--q2r1 (Failed)
+	367 - system--ph_2d--q2r2 (Failed)
+	368 - system--ph_2d--scf (Failed)
+	369 - system--ph_Ni_nc_spinorbit_mag-correctness (Failed)
+	370 - system--ph_Ni_nc_spinorbit_mag--Ni.ph (Failed)
+	371 - system--ph_Ni_nc_spinorbit_mag--Ni.scf (Failed)
+	372 - system--ph_U_insulator_paw-correctness (Failed)
+	373 - system--ph_U_insulator_paw--BN.phG (Failed)
+	374 - system--ph_U_insulator_paw--BN.phq (Failed)
+	375 - system--ph_U_insulator_paw--BN.scf (Failed)
+	376 - system--ph_U_insulator_us-correctness (Failed)
+	377 - system--ph_U_insulator_us--BN.phG (Failed)
+	378 - system--ph_U_insulator_us--BN.phq (Failed)
+	379 - system--ph_U_insulator_us--BN.scf (Failed)
+	380 - system--ph_U_metal_paw-correctness (Failed)
+	381 - system--ph_U_metal_paw--Ni.phq (Failed)
+	382 - system--ph_U_metal_paw--Ni.scf (Failed)
+	383 - system--ph_U_metal_us-correctness (Failed)
+	384 - system--ph_U_metal_us--Fe.ph (Failed)
+	385 - system--ph_U_metal_us--Fe.scf (Failed)
+	386 - system--ph_ahc_diam-correctness (Failed)
+	387 - system--ph_ahc_diam--diam.ahc1 (Failed)
+	388 - system--ph_ahc_diam--diam.ahc2 (Failed)
+	389 - system--ph_ahc_diam--diam.ahc3 (Failed)
+	390 - system--ph_ahc_diam--diam.dvscfq2r.doneutral (Failed)
+	391 - system--ph_ahc_diam--diam.dvscfq2r (Failed)
+	392 - system--ph_ahc_diam--diam.matdyn1 (Failed)
+	393 - system--ph_ahc_diam--diam.matdyn2 (Failed)
+	394 - system--ph_ahc_diam--diam.matdyn3 (Failed)
+	395 - system--ph_ahc_diam--diam.nscf (Failed)
+	396 - system--ph_ahc_diam--diam.nscf.nosym (Failed)
+	397 - system--ph_ahc_diam--diam.ph (Failed)
+	398 - system--ph_ahc_diam--diam.postahc1 (Failed)
+	399 - system--ph_ahc_diam--diam.postahc2 (Failed)
+	400 - system--ph_ahc_diam--diam.postahc3 (Failed)
+	401 - system--ph_ahc_diam--diam.q2r (Failed)
+	402 - system--ph_ahc_diam--diam.scf (Failed)
+	403 - system--ph_base-correctness (Failed)
+	404 - system--ph_base--c.phG (Failed)
+	405 - system--ph_base--c.scf (Failed)
+	406 - system--ph_base--ni.phX (Failed)
+	407 - system--ph_base--ni.scf (Failed)
+	408 - system--ph_base--nipaw.phX (Failed)
+	409 - system--ph_base--nipaw.scf (Failed)
+	410 - system--ph_base--si.phG (Failed)
+	411 - system--ph_base--si.phX (Failed)
+	412 - system--ph_base--si.scf (Failed)
+	413 - system--ph_insulator_paw_magn-correctness (Failed)
+	414 - system--ph_insulator_paw_magn--O2.phG (Failed)
+	415 - system--ph_insulator_paw_magn--O2.scf.1 (Failed)
+	416 - system--ph_insulator_paw_magn--O2.scf.2 (Failed)
+	417 - system--ph_insulator_us_magn-correctness (Failed)
+	418 - system--ph_insulator_us_magn--NiO.phG (Failed)
+	419 - system--ph_insulator_us_magn--NiO.scf.1 (Failed)
+	420 - system--ph_insulator_us_magn--NiO.scf.2 (Failed)
+	421 - system--ph_interpol_metal-correctness (Failed)
+	422 - system--ph_interpol_metal--al.dvscfq2r (Failed)
+	423 - system--ph_interpol_metal--al.elph (Failed)
+	424 - system--ph_interpol_metal--al.elph.interpol (Failed)
+	425 - system--ph_interpol_metal--al.ph (Failed)
+	426 - system--ph_interpol_metal--al.scf (Failed)
+	427 - system--ph_metal-correctness (Failed)
+	428 - system--ph_metal--al.elph (Failed)
+	429 - system--ph_metal--al.elph.notrans (Failed)
+	430 - system--ph_metal--al.scf.fit (Failed)
+	431 - system--ph_metal--al.scf (Failed)
+	432 - system--ph_metal--lambda (Failed)
+	433 - system--ph_metal--q2r (Failed)
+	435 - system--epw_base-correctness (Failed)
+	436 - system--epw_base--epw1 (Failed)
+	437 - system--epw_base--epw10 (Failed)
+	438 - system--epw_base--epw11 (Failed)
+	439 - system--epw_base--epw12 (Failed)
+	440 - system--epw_base--epw13 (Failed)
+	441 - system--epw_base--epw2 (Failed)
+	442 - system--epw_base--epw3 (Failed)
+	443 - system--epw_base--epw4 (Failed)
+	444 - system--epw_base--epw5 (Failed)
+	445 - system--epw_base--epw6 (Failed)
+	446 - system--epw_base--epw7 (Failed)
+	447 - system--epw_base--epw8 (Failed)
+	448 - system--epw_base--epw9 (Failed)
+	449 - system--epw_base--nscf_epw (Failed)
+	450 - system--epw_base--ph (Failed)
+	451 - system--epw_base--scf (Failed)
+	452 - system--epw_base--scf_epw (Failed)
+	453 - system--epw_hall-correctness (Failed)
+	454 - system--epw_hall--epw1 (Failed)
+	455 - system--epw_hall--epw2 (Failed)
+	456 - system--epw_hall--nscf (Failed)
+	457 - system--epw_hall--ph (Failed)
+	458 - system--epw_hall--scf (Failed)
+	459 - system--epw_metal-correctness (Failed)
+	460 - system--epw_metal--epw1 (Failed)
+	461 - system--epw_metal--epw2 (Failed)
+	462 - system--epw_metal--epw3 (Failed)
+	463 - system--epw_metal--epw4 (Failed)
+	464 - system--epw_metal--nscf_epw (Failed)
+	465 - system--epw_metal--scf_epw (Failed)
+	466 - system--epw_mob-correctness (Failed)
+	467 - system--epw_mob--epw1 (Failed)
+	468 - system--epw_mob--epw2 (Failed)
+	469 - system--epw_mob--epw3 (Failed)
+	470 - system--epw_mob--epw4 (Failed)
+	471 - system--epw_mob--epw5 (Failed)
+	472 - system--epw_mob--epw6 (Failed)
+	473 - system--epw_mob--nscf (Failed)
+	474 - system--epw_mob--ph (Failed)
+	475 - system--epw_mob--q2r (Failed)
+	476 - system--epw_mob--scf (Failed)
+	477 - system--epw_mob_ibte-correctness (Failed)
+	478 - system--epw_mob_ibte--epw1 (Failed)
+	479 - system--epw_mob_ibte--epw2 (Failed)
+	480 - system--epw_mob_ibte--epw3 (Failed)
+	481 - system--epw_mob_ibte--nscf (Failed)
+	482 - system--epw_mob_ibte--ph (Failed)
+	483 - system--epw_mob_ibte--q2r (Failed)
+	484 - system--epw_mob_ibte--scf (Failed)
+	485 - system--epw_mob_ibte_sym-correctness (Failed)
+	486 - system--epw_mob_ibte_sym--epw1 (Failed)
+	487 - system--epw_mob_ibte_sym--epw2 (Failed)
+	488 - system--epw_mob_ibte_sym--epw3 (Failed)
+	489 - system--epw_mob_ibte_sym--epw4 (Failed)
+	490 - system--epw_mob_ibte_sym--epw5 (Failed)
+	491 - system--epw_mob_ibte_sym--epw6 (Failed)
+	492 - system--epw_mob_ibte_sym--epw7 (Failed)
+	493 - system--epw_mob_ibte_sym--epw8 (Failed)
+	494 - system--epw_mob_ibte_sym--epw9 (Failed)
+	495 - system--epw_mob_ibte_sym--nscf (Failed)
+	496 - system--epw_mob_ibte_sym--ph (Failed)
+	497 - system--epw_mob_ibte_sym--q2r (Failed)
+	498 - system--epw_mob_ibte_sym--scf (Failed)
+	499 - system--epw_mob_polar-correctness (Failed)
+	500 - system--epw_mob_polar--epw1 (Failed)
+	501 - system--epw_mob_polar--epw2 (Failed)
+	502 - system--epw_mob_polar--epw3 (Failed)
+	503 - system--epw_mob_polar--nscf (Failed)
+	504 - system--epw_mob_polar--ph (Failed)
+	505 - system--epw_mob_polar--scf (Failed)
+	506 - system--epw_pl-correctness (Failed)
+	507 - system--epw_pl--epw1 (Failed)
+	508 - system--epw_pl--nscf_epw (Failed)
+	509 - system--epw_pl--ph (Failed)
+	510 - system--epw_pl--scf (Failed)
+	511 - system--epw_pl--scf_epw (Failed)
+	512 - system--epw_polar-correctness (Failed)
+	513 - system--epw_polar--epw1 (Failed)
+	514 - system--epw_polar--epw2 (Failed)
+	515 - system--epw_polar--epw3 (Failed)
+	516 - system--epw_polar--nscf_epw (Failed)
+	517 - system--epw_polar--ph (Failed)
+	518 - system--epw_polar--scf (Failed)
+	519 - system--epw_polar--scf_epw (Failed)
+	520 - system--epw_soc-correctness (Failed)
+	521 - system--epw_soc--epw1 (Failed)
+	522 - system--epw_soc--epw2 (Failed)
+	523 - system--epw_soc--nscf_epw (Failed)
+	524 - system--epw_soc--scf_epw (Failed)
+	525 - system--epw_super-correctness (Failed)
+	526 - system--epw_super--epw1 (Failed)
+	527 - system--epw_super--epw2 (Failed)
+	528 - system--epw_super--epw3 (Failed)
+	529 - system--epw_super--epw4 (Failed)
+	530 - system--epw_super--epw5 (Failed)
+	531 - system--epw_super--nscf_epw (Failed)
+	532 - system--epw_super--ph (Failed)
+	533 - system--epw_super--scf (Failed)
+	534 - system--epw_super--scf_epw (Failed)
+	535 - system--epw_trev-correctness (Failed)
+	536 - system--epw_trev--epw1 (Failed)
+	537 - system--epw_trev--nscf_epw (Failed)
+	538 - system--epw_trev--ph (Failed)
+	539 - system--epw_trev--scf (Failed)
+	540 - system--epw_trev--scf_epw (Failed)
+	541 - system--epw_trev_paw-correctness (Failed)
+	542 - system--epw_trev_paw--epw1 (Failed)
+	543 - system--epw_trev_paw--nscf (Failed)
+	544 - system--epw_trev_paw--ph (Failed)
+	545 - system--epw_trev_paw--scf (Failed)
+	546 - system--epw_trev_uspp-correctness (Failed)
+	547 - system--epw_trev_uspp--epw1 (Failed)
+	548 - system--epw_trev_uspp--nscf (Failed)
+	549 - system--epw_trev_uspp--ph (Failed)
+	550 - system--epw_trev_uspp--scf (Failed)
+	552 - system--tddfpt_CH4-correctness (Failed)
+	553 - system--tddfpt_CH4--CH4.pw (Failed)
+	554 - system--tddfpt_CH4--CH4.tddfpt (Failed)
+	555 - system--tddfpt_CH4--CH4.tddfpt_pp (Failed)
+	556 - system--tddfpt_eels-si-correctness (Failed)
+	557 - system--tddfpt_eels-si--Si.pw (Failed)
+	558 - system--tddfpt_eels-si--Si.tddfpt-eels (Failed)
+	559 - system--tddfpt_eels-si--Si.tddfpt_pp_eels (Failed)
+	560 - system--tddfpt_magnons_fe-correctness (Failed)
+	561 - system--tddfpt_magnons_fe--Fe.pw (Failed)
+	562 - system--tddfpt_magnons_fe--Fe.tddfpt-magnons (Failed)
+	563 - system--tddfpt_magnons_fe--Fe.tddfpt_pp_magnons (Failed)
+	565 - system--hp_insulator_paw-correctness (Failed)
+	566 - system--hp_insulator_paw--BN.hp (Failed)
+	567 - system--hp_insulator_paw--BN.scf (Failed)
+	568 - system--hp_insulator_paw_magn-correctness (Failed)
+	569 - system--hp_insulator_paw_magn--CrI3.hp (Failed)
+	570 - system--hp_insulator_paw_magn--CrI3.scf.1 (Failed)
+	571 - system--hp_insulator_paw_magn--CrI3.scf.2 (Failed)
+	572 - system--hp_insulator_us-correctness (Failed)
+	573 - system--hp_insulator_us--LiCoO2.hp (Failed)
+	574 - system--hp_insulator_us--LiCoO2.scf (Failed)
+	575 - system--hp_insulator_us_intersiteV-correctness (Failed)
+	576 - system--hp_insulator_us_intersiteV--LiCoO2.hp (Failed)
+	577 - system--hp_insulator_us_intersiteV--LiCoO2.scf (Failed)
+	578 - system--hp_insulator_us_magn-correctness (Failed)
+	579 - system--hp_insulator_us_magn--NiO.hp (Failed)
+	580 - system--hp_insulator_us_magn--NiO.scf.1 (Failed)
+	581 - system--hp_insulator_us_magn--NiO.scf.2 (Failed)
+	582 - system--hp_metal_paw_magn-correctness (Failed)
+	583 - system--hp_metal_paw_magn--Fe.hp (Failed)
+	584 - system--hp_metal_paw_magn--Fe.scf (Failed)
+	585 - system--hp_metal_paw_magn_intersiteV-correctness (Failed)
+	586 - system--hp_metal_paw_magn_intersiteV--LiNiO2.hp (Failed)
+	587 - system--hp_metal_paw_magn_intersiteV--LiNiO2.scf (Failed)
+	588 - system--hp_metal_us_magn-correctness (Failed)
+	589 - system--hp_metal_us_magn--Ni.hp (Failed)
+	590 - system--hp_metal_us_magn--Ni.scf (Failed)
+Errors while running CTest
+Output from these tests are in: /lustre/ukt/milias/work/software/quantum-espresso/qe-7.2/build_gnu_openmpi_openblas/Testing/Temporary/LastTest.log
+Use "--rerun-failed --output-on-failure" to re-run the failed cases verbosely.

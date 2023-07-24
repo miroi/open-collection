@@ -20,6 +20,12 @@ Successfully installed ase-3.22.1 contourpy-1.1.0 cycler-0.11.0 fonttools-4.41.1
 WARNING: You are using pip version 21.1.1; however, version 23.2.1 is available.
 You should consider upgrading via the '/storage-apps/easybuild/software/Python/3.9.5-GCCcore-10.3.0/bin/python3 -m pip install --upgrade pip' command.
 
+milias@login02.devana.local:~/work/projects/open-collection/theoretical_chemistry/software/ase/runs/ace-molecule/.pip3 --versionpip 23.2.1 from /home/milias/.local/lib/python3.9/site-packages/pip (python 3.9)
+
+
+ls /home/milias/.local/bin/
+ase*        ase-db*   ase-info*  f2py*   f2py3.6*  fonttools*  pip3*     pip3.9*     pyftsubset*
+ase-build*  ase-gui*  ase-run*   f2py3*  f2py3.9*  pip*        pip3.11*  pyftmerge*  ttx*
 
 
 

@@ -5,6 +5,9 @@ see https://asap3.readthedocs.io/en/latest/installation/Installation.html#optimi
 
 spack unload --all
 
+milias@lxir127.gsi.de:/data.local1/milias/projects/open-collection/theoretical_chemistry/software/ase/servers/gsi_de/lxir127_gsi_de/.spack load python@3.10.8 target=x86_64
+milias@lxir127.gsi.de:/data.local1/milias/projects/open-collection/theoretical_chemistry/software/ase/servers/gsi_de/lxir127_gsi_de/.spack load py-pip target=x86_64
+
 milias@lxir127.gsi.de:/data.local1/milias/projects/open-collection/theoretical_chemistry/software/ase/servers/gsi_de/lxir127_gsi_de/.python3 -m pip install --upgrade --user ase
 
 

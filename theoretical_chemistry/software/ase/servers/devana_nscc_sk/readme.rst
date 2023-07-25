@@ -77,3 +77,11 @@ Successfully built asap3
 Installing collected packages: asap3
 Successfully installed asap3-3.13.1
 
+tk
+~~
+milias@login01.devana.local:~/work/projects/open-collection/theoretical_chemistry/software/ase/runs/diatomics_on_metalsolid_ase_emt_bfgs/.python3 -m pip install --upgrade --user tk
+Collecting tk
+  Downloading tk-0.1.0-py3-none-any.whl (3.9 kB)
+Installing collected packages: tk
+Successfully installed tk-0.1.0
+

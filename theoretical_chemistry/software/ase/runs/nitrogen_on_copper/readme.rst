@@ -22,5 +22,18 @@ BFGSLineSearch:    1[  2] 09:15:20       11.670814*       0.4090
 BFGSLineSearch:    2[  4] 09:15:20       11.625880*       0.0409
 Adsorption energy: 0.32351942231800734
 
+Extension - oxygen on copper
+----------------------------
+
+
+milias@login01.devana.local:~/work/projects/open-collection/theoretical_chemistry/software/ase/runs/nitrogen_on_copper/.python O2onCu.py
+                Step[ FC]     Time          Energy          fmax
+*Force-consistent energies used in optimization.
+BFGSLineSearch:    0[  0] 10:30:31       12.234783*       1.1606
+BFGSLineSearch:    1[  1] 10:30:31       12.068900*       0.6802
+BFGSLineSearch:    2[  2] 10:30:31       12.025178*       1.3633
+BFGSLineSearch:    3[  4] 10:30:31       11.982437*       0.1485
+BFGSLineSearch:    4[  6] 10:30:32       11.980870*       0.0254
+Adsorption energy: 0.2089710233342359
 
 

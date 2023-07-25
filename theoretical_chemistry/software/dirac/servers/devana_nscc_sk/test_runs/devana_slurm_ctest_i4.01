@@ -1,0 +1,131 @@
+#!/bin/bash
+
+# project of Miro Ilias
+
+#SBATCH --account=p175-23-t
+
+#SBATCH -J Dctest
+
+##  partition (queue)
+#SBATCH -p ncpu
+
+## max. execution time
+#SBATCH -t 0-08:00:00
+
+# number of nodes
+#SBATCH -N 1
+
+##SBATCH --exclusive
+
+#SBATCH --mem=32GB
+##SBATCH --mem=24GB
+
+# do not restart in the case of nodefail!
+#SBATCH --no-requeue
+#SBATCH --no-kill
+
+## CPU count  - max. 40 per node ?
+##SBATCH -n 8
+#SBATCH --ntasks-per-node=8
+
+
+## memory NO !!!
+##SBATCH --mem-per-cpu=28G
+
+## stdout/stderr output file
+#SBATCH -o log_slurm_job.%j.%N.std_out_err
+
+## mail
+#SBATCH --mail-user=Miroslav.Ilias@umb.sk
+#SBATCH --mail-type=ALL
+
+ 
+echo Job user is $SLURM_JOB_USER and his job $SLURM_JOB_NAME has assigned ID $SLURM_JOBID
+echo This job was submitted from the computer $SLURM_SUBMIT_HOST
+echo and from the home directory:
+echo $SLURM_SUBMIT_DIR
+echo
+echo It is running on the cluster compute node:
+echo $SLURM_CLUSTER_NAME
+echo and is employing $SLURM_JOB_NUM_NODES node/nodes:
+echo $SLURM_JOB_NODELIST
+echo
+echo -e "Job partition is $SLURM_JOB_PARTITION \n"
+echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
+
+echo -e "\n loading modules..."
+module purge
+#
+module load OpenMPI/4.1.1-intel-compilers-2021.4.0
+module load mkl/latest
+module load CMake/3.20.1-GCCcore-10.3.0
+module load HDF5/1.12.2-iimpi-2022a
+
+echo -e "\n\n loaded modules:"
+module list
+
+echo -e "\nRunning on host `hostname`"
+echo -e "Time is `date` \n"
+
+# CPU model, total numer of CPUs, number of allocated CPUs
+echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
+NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
+echo "This node has total $NPROCS CPUs available for EXCLUSIVE job."
+echo "This node has $SLURM_CPUS_ON_NODE CPUs allocated for SLURM calculations."
+
+echo -e "\n The total memory at the node (in GB)"
+free -t -g
+echo -e "\n"
+
+## set internal OpenMP parallelization for MKL - Slurm CPU count
+#export MKL_NUM_THREADS=$SLURM_CPUS_ON_NODE
+#export MKL_NUM_THREADS=24
+#export MKL_NUM_THREADS=$NPROCS
+#echo -e  "\nInternal MKL parallelization MKL_NUM_THREADS=$MKL_NUM_THREADS\n"
+export OMP_NUM_THREADS=1
+export MKL_DYNAMIC="FALSE"
+export OMP_DYNAMIC="FALSE"
+
+#
+export DIRAC_ROOTDIR=/home/milias/work/software/dirac/dirac_public
+#export DIRAC_BUILDDIR=$DIRAC_ROOTDIR/build_openmpi_intel_mklpar_i8
+export DIRAC_BUILDDIR=$DIRAC_ROOTDIR/build_openmpi_intel_mklpar_i4
+#
+export PAM=$DIRAC_BUILDDIR/pam
+export BASDIR=$DIRAC_ROOTDIR/basis_dalton:$DIRAC_ROOTDIR/basis:$DIRAC_ROOTDIR/basis_ecp
+
+
+echo -e "\nldd $DIRAC_BUILDDIR/dirac.x:"
+ldd $DIRAC_BUILDDIR/dirac.x
+echo -e "\n ifort -V: \c"; ifort -V
+
+echo -e "\nMy PATH=$PATH\n"
+echo -e "Python -v :\c"; python -V
+echo -e "cmake ? which cmake = \c"; which cmake
+echo -e "ctest ? which ctest = \c"; which ctest
+echo -e "ctest --version \c"; ctest --version
+echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
+echo
+
+export DIRAC_TMPDIR=/scratch/p175-23-t
+
+echo -e "\nDIRAC scratch directory space, $DIRAC_TMPDIR"
+df -h $DIRAC_TMPDIR/.
+echo -e "\n For comparison, /tmp local disk;  df -h /tmp/."; df -h /tmp
+echo -e "\n"
+
+#----------------------------------------------
+# run few tests with ctest in $DIRAC_BUILDDIR
+#----------------------------------------------
+echo -e "\n Running short test suite on the hostname=\c";hostname -f
+cd $DIRAC_BUILDDIR
+export DIRAC_MPI_COMMAND="mpirun -np 2"
+echo -e "DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
+export MKL_NUM_THREADS=1
+time ctest -j4 -VV -L short
+unset DIRAC_MPI_COMMAND
+echo -e "Variable DIRAC_MPI_COMMAND was unset. END"
+
+#
+
+exit

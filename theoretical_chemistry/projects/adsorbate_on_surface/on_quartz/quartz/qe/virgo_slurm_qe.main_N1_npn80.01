@@ -9,9 +9,11 @@
 
 # number of nodes
 #SBATCH -N 1
+
 ##SBATCH --exclusive
+
 ##SBATCH --mem=120GB
-#SBATCH --mem=64GB
+#SBATCH --mem=160GB
 
 # do not restart in the case of nodefail!
 #SBATCH --no-requeue
@@ -19,7 +21,7 @@
 
 ## CPU count  - max. 40 per node ?
 ##SBATCH -n 4
-#SBATCH --ntasks-per-node=16
+#SBATCH --ntasks-per-node=80
 
 ##  partition (queue)
 ##SBATCH -p long
@@ -82,7 +84,7 @@ echo -e "\n"
 #
 spack unload --all
 #
-spack load gcc@10.2.0 target=x86_64;
+spack load gcc@10.2.0 target=x86_64
 export LD_LIBRARY_PATH=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib/gcc/x86_64-pc-linux-gnu/10.2.0:$LD_LIBRARY_PATH
 #
 spack load openmpi%gcc target=x86_64
@@ -125,6 +127,7 @@ cd $SLURM_SUBMIT_DIR
 
  #proj=Cs-Au64.scf_k22x22x1_ewft44_z10
  #proj=IOO_on_Quartz-G_001_Si7cut_4x4.qe_scf
+ #proj=sQ-G.scf_z15_k10x10x10
  proj=sQ-G.scf_z15_k10x10x3
 
  echo -e "\nRunning QE job with mpirun $SLURM_NTASKS threads, memory of $SLURM_MEM_PER_NODE MB, input=$proj.in "

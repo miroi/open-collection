@@ -6,5 +6,6 @@ sQ-G.scf_z15_k10x10x3.main.N1.n80.omp2.id4921512.out
 
 did not even start scf iterations with qe7.2
 
+qe7.1 works !!!
 
 

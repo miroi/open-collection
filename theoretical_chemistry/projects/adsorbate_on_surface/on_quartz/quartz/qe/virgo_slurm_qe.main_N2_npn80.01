@@ -82,7 +82,7 @@ echo -e "\n"
 #
 #  Load Spack modules
 #
-spack unload --all
+spack unload --all; unset LD_LIBRARY_PATH
 #
 spack load gcc@10.2.0 target=x86_64;
 export LD_LIBRARY_PATH=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib/gcc/x86_64-pc-linux-gnu/10.2.0:$LD_LIBRARY_PATH
@@ -108,8 +108,10 @@ spack find --loaded
 echo -e "\n Python -v :\c"; python -V
 #
 # export QE=/lustre/ukt/milias/work/software/quantum-espresso/qe-7.1/build_openmpi_cpu/bin
-export QE=/lustre/ukt/milias/work/software/quantum-espresso/qe-7.2
-export QEbin=$QE/build_gnu_openmpi_openblas
+#export QE=/lustre/ukt/milias/work/software/quantum-espresso/qe-7.2
+export QE=/lustre/ukt/milias/work/software/quantum-espresso/qe-7.1
+#export QEbin=$QE/build_gnu_openmpi_openblas
+export QEbin=$QE/build_openmpi_cpu
 echo -e "\n ldd ${QEbin}/bin/pw.x"; ldd ${QEbin}/bin/pw.x
 
 export SCRATCH=/lustre/ukt/milias/scratch

@@ -1,0 +1,22 @@
+echo
+
+start Qg
+
+print low
+
+title "Q-G mm"
+charge 0
+
+geometry units angstroms print xyz autosym
+  load format xyz QuartzG153at.xyz
+end
+
+task prepare
+
+md
+ system Qg
+ sd 100
+end
+
+task md energy
+

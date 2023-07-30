@@ -25,3 +25,10 @@ Successfully built gpaw
 Installing collected packages: scipy, gpaw
 Successfully installed gpaw-23.6.1 scipy-1.7.3
 
+
+You need to set the GPAW_SETUP_PATH environment variable to point to
+the directories where PAW dataset and basis files are stored.  See
+https://wiki.fysik.dtu.dk/gpaw/install.html#install-paw-datasets
+for details.
+
+

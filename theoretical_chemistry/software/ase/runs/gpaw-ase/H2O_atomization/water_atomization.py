@@ -1,4 +1,5 @@
 from ase.build import molecule
+from ase.parallel import paropen
 from gpaw import GPAW
 
 a = 8.0

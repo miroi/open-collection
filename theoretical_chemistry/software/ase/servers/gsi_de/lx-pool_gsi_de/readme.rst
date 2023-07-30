@@ -11,3 +11,6 @@ milias@lxi100.gsi.de:~/Work/qch/projects/open-collection/.python3 -m pip install
 
 milias@lxi100.gsi.de:~/Work/qch/projects/open-collection/.python3 -m pip install --upgrade --user asap
 
+milias@lxi100.gsi.de:~/Work/qch/projects/open-collection/theoretical_chemistry/software/ase/runs/.python3 -m pip install gulp
+..Successfully installed gulp-0.1.0
+

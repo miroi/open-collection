@@ -20,3 +20,4 @@ BFGSLineSearch:    7[ 10] 15:27:40      -13.719917*       0.0452
 RuntimeError: Broken symmetry!
 milias@lxi085.gsi.de:~/Work/qch/projects/open-collection/theoretical_chemistry/software/ase/runs/gpaw-ase/vibrations_H2O/.
 
+https://gitlab.com/gpaw/gpaw/-/issues/934

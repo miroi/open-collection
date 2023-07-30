@@ -18,3 +18,5 @@ BFGSLineSearch:    2[  4] 13:11:54        1.070800*       0.2142
 BFGSLineSearch:    3[  5] 13:11:54        1.070549*       0.0367
 milias@lxi090.gsi.de:~/Work/qch/projects/open-collection/theoretical_chemistry/software/ase/runs/gpaw-ase/simple_relaxation_H2/.
 
+milias@lxi085.gsi.de:~/Work/qch/projects/open-collection/theoretical_chemistry/software/ase/runs/gpaw-ase/simple_relaxation_H2/.ase gui h2.emt.traj 
+

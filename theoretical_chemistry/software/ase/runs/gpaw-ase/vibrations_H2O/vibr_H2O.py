@@ -21,7 +21,7 @@ calc = GPAW(h=0.2, txt='h2o.txt', mode='lcao', basis='dzp')
 
 H2O.calc = calc
 
-QuasiNewton(H2O).run(fmax=0.01)
+QuasiNewton(H2O).run(fmax=0.05)
 
 
 """Calculate the vibrational modes of a H2O molecule."""

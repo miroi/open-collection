@@ -12,3 +12,6 @@ copying and adjusting scripts/asap-sbatch -> build/scripts-3.7
 changing mode of build/scripts-3.7/asap-qsub from 644 to 755
 changing mode of build/scripts-3.7/asap-sbatch from 644 to 755
 
+
+export PATH=$HOME/asap/XXX:$PATH
+export PYTHONPATH=$HOME/asap/Python:$HOME/asap/XXX:$PYTHONPATH

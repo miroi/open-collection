@@ -44,6 +44,11 @@ Current GPAW setup paths in order of search priority:
 Installation complete.
 
 
+milias@lxi099.gsi.de:~/Work/qch/projects/open-collection/theoretical_chemistry/software/ase/servers/gsi_de/lx-pool_gsi_de/.gpaw test
+Doing a test calculation (cores: 1): ... Done
+
+milias@lxi099.gsi.de:~/Work/qch/projects/open-collection/theoretical_chemistry/software/ase/servers/gsi_de/lx-pool_gsi_de/.gpaw -P 4 test
+
 
 
 

@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -J QgECPgo
+#SBATCH -J QgECPgo4
 
 ##  partition (queue)
 ##SBATCH -p long
@@ -111,14 +111,15 @@ echo -e "\n The local home directory with NWChem input file, SLURM_SUBMIT_DIR=${
 
 #project=AtOHonQ-G.dkh_b3lyp
 #project=Q-G.geoptfreq_ecp_b3lyp
-project=Q-G.geopt_ecp_b3lyp
+project=Q-G.geopt2_ecp_b3lyp
 #project=Q-G.ecp_b3lyp
-cp ${SLURM_SUBMIT_DIR}/QuartzG153at.xyz  $PWD/.
+#cp ${SLURM_SUBMIT_DIR}/QG_geom2-015.xyz    $PWD/.
+cp ${SLURM_SUBMIT_DIR}/QG_geom3-090.xyz    $PWD/.
 echo -e "\n Launching NWChem run with project=${project}"
 mpirun -np  ${SLURM_NTASKS} ${NWCHEM_EXECUTABLE}  ${SLURM_SUBMIT_DIR}/$project.nw  > ${SLURM_SUBMIT_DIR}/$project.${SLURM_JOB_PARTITION}_N${SLURM_JOB_NUM_NODES}_n${SLURM_NTASKS}_jid${SLURM_JOBID}.out
 
 # save conveged geometry to homedir 
-cp $TMPDIR/QG_geom*   ${SLURM_SUBMIT_DIR}/.
+cp $TMPDIR/QG_geom4*   ${SLURM_SUBMIT_DIR}/.
 
 echo -e "\n Working files remained in scratch dir \$TMPDIR:"
 ls -lt $TMPDIR/* 

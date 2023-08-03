@@ -129,7 +129,8 @@ cd $SLURM_SUBMIT_DIR
 
  #proj=Cs-Au64.scf_k22x22x1_ewft44_z10
  #proj=IOO_on_Quartz-G_001_Si7cut_4x4.qe_scf
- proj=sQ-G.scf_z15_k10x10x10
+ #proj=sQ-G.scf_z15_k10x10x10
+ proj=sQ-G.vcrelax_z15_k10x10x10
 
  echo -e "\nRunning QE job with mpirun $SLURM_NTASKS threads, memory of $SLURM_MEM_PER_NODE MB, input=$proj.in "
  mpirun -machinefile $MACHINEFILE -np $SLURM_NTASKS $QEbin/bin/pw.x < $proj.in > $proj.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.omp$OPENBLAS_NUM_THREADS.id$SLURM_JOBID.out

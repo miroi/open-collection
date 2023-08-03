@@ -3,7 +3,9 @@ ASE
 
 see https://asap3.readthedocs.io/en/latest/installation/Installation.html#simple-installation
 
-milias@login02.devana.local:~/work/projects/open-collection/theoretical_chemistry/software/ase/servers/devana_nscc_sk/.module load Python/3.9.5-GCCcore-10.3.0
+Module
+~~~~~~~
+module load Python/3.9.5-GCCcore-10.3.0
 
 
 python3 -m pip install --upgrade --user ase
@@ -76,4 +78,29 @@ Building wheels for collected packages: asap3
 Successfully built asap3
 Installing collected packages: asap3
 Successfully installed asap3-3.13.1
+
+tk
+~~
+milias@login01.devana.local:~/work/projects/open-collection/theoretical_chemistry/software/ase/runs/diatomics_on_metalsolid_ase_emt_bfgs/.python3 -m pip install --upgrade --user tk
+Collecting tk
+  Downloading tk-0.1.0-py3-none-any.whl (3.9 kB)
+Installing collected packages: tk
+Successfully installed tk-0.1.0
+
+gulp
+~~~~
+pip install --upgrade --user ase gulp
+Requirement already satisfied: ase in /home/milias/.local/lib/python3.9/site-packages (3.22.1)
+Collecting gulp
+  Downloading gulp-0.1.0.tar.gz (11 kB)
+Installing collected packages: gulp
+Successfully installed gulp-0.1.0
+
+gpaw
+~~~~
+pip install --upgrade --user ase gpaw
+ERROR: Failed building wheel for gpaw
+ERROR: Could not build wheels for gpaw, which is required to install pyproject.toml-based projects
+
+
 

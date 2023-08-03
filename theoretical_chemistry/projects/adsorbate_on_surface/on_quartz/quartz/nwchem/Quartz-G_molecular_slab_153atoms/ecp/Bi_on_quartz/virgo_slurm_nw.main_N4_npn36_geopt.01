@@ -1,13 +1,13 @@
 #!/bin/bash
-#SBATCH -J QgGO
+#SBATCH -J Bi@Q
 
 ##  partition (queue)
-#SBATCH -p long
-##SBATCH -p main
+##SBATCH -p long
+#SBATCH -p main
 
 ## max. execution time
-#SBATCH -t 3-00:00:00
-##SBATCH -t 0-08:00:00
+##SBATCH -t 7-00:00:00
+#SBATCH -t 0-08:00:00
 
 # number of nodes
 #SBATCH -N 4
@@ -89,8 +89,9 @@ echo -e "\n Python -v :\c"; python -V
 
 #
 
-export NWCHEM_EXECUTABLE=/lustre/ukt/milias/work/software/nwchem/nwchem-master_gnu_openmpi_openblas/bin/LINUX64/nwchem
+export NWCHEM_EXECUTABLE=/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0_gnu_openmpi_openblas/bin/LINUX64/nwchem
 echo -e "\n ldd NWCHEM_EXECUTABLE=$NWCHEM_EXECUTABLE"; ldd $NWCHEM_EXECUTABLE
+#export NWCHEM_BASIS_LIBRARY=/lustre/ukt/milias/work/software/nwchem/nwchem-7.2.0_gnu_openmpi_openblas/src/basis/libraries
 
 # set working scratch directory for the run
 SCR=NWChem_SLURMjob.${SLURM_JOB_PARTITION}.N${SLURM_JOB_NUM_NODES}.n${SLURM_NTASKS}.jid${SLURM_JOBID}
@@ -109,14 +110,16 @@ echo -e "\n The local home directory with NWChem input file, SLURM_SUBMIT_DIR=${
 #echo -e "number of MPI threads npr=$npr"
 
 #project=AtOHonQ-G.dkh_b3lyp
-#project=Q-G.dkh_b3lyp
-project=Q-G.geopt_dkh_b3lyp
-cp ${SLURM_SUBMIT_DIR}/Quartz-G_001.molecular_slab_smaller.xyz  $PWD/.
+#project=Q-G.geoptfreq_ecp_b3lyp
+project=BiQ.geopt_ecp_b3lyp
+#project=Q-G.ecp_b3lyp
+#cp ${SLURM_SUBMIT_DIR}/QG_geom2-015.xyz    $PWD/.
+cp ${SLURM_SUBMIT_DIR}/Bi_Qgeom.xyz    $PWD/.
 echo -e "\n Launching NWChem run with project=${project}"
 mpirun -np  ${SLURM_NTASKS} ${NWCHEM_EXECUTABLE}  ${SLURM_SUBMIT_DIR}/$project.nw  > ${SLURM_SUBMIT_DIR}/$project.${SLURM_JOB_PARTITION}_N${SLURM_JOB_NUM_NODES}_n${SLURM_NTASKS}_jid${SLURM_JOBID}.out
 
 # save conveged geometry to homedir 
-#cp $TMPDIR/HD_geom*   ${SLURM_SUBMIT_DIR}/.
+cp $TMPDIR/BiQgeom*   ${SLURM_SUBMIT_DIR}/.
 
 echo -e "\n Working files remained in scratch dir \$TMPDIR:"
 ls -lt $TMPDIR/* 

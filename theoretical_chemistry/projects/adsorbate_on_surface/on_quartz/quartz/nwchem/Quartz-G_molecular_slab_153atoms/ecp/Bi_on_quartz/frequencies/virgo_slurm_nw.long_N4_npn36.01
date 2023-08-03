@@ -1,18 +1,18 @@
 #!/bin/bash
-#SBATCH -J QgECP
+#SBATCH -J BiQfq
 
 ##  partition (queue)
-##SBATCH -p long
-#SBATCH -p main
+#SBATCH -p long
+##SBATCH -p main
 
 ## max. execution time
-##SBATCH -t 7-00:00:00
-#SBATCH -t 0-08:00:00
+#SBATCH -t 7-00:00:00
+##SBATCH -t 0-08:00:00
 
 # number of nodes
 #SBATCH -N 4
 ##SBATCH --exclusive
-#SBATCH --mem=360GB
+#SBATCH --mem=180GB
 ##SBATCH --mem=8GB
 
 # do not restart in the case of nodefail!
@@ -110,15 +110,18 @@ echo -e "\n The local home directory with NWChem input file, SLURM_SUBMIT_DIR=${
 #echo -e "number of MPI threads npr=$npr"
 
 #project=AtOHonQ-G.dkh_b3lyp
+#project=Q-G.geoptfreq_ecp_b3lyp
+project=BiQ.freq_ecp_b3lyp
 #project=Q-G.ecp_b3lyp
-project=Q-G.geoptfreq_ecp_b3lyp
-#project=uo2_ecp
-cp ${SLURM_SUBMIT_DIR}/Quartz-G_001.molecular_slab_smaller.xyz  $PWD/.
+#cp ${SLURM_SUBMIT_DIR}/QG_geom2-015.xyz    $PWD/.
+#cp ${SLURM_SUBMIT_DIR}/Bi_Qgeom.xyz    $PWD/.
+cp ${SLURM_SUBMIT_DIR}/BiQgeo-080_convereged.xyz    $PWD/.
+
 echo -e "\n Launching NWChem run with project=${project}"
 mpirun -np  ${SLURM_NTASKS} ${NWCHEM_EXECUTABLE}  ${SLURM_SUBMIT_DIR}/$project.nw  > ${SLURM_SUBMIT_DIR}/$project.${SLURM_JOB_PARTITION}_N${SLURM_JOB_NUM_NODES}_n${SLURM_NTASKS}_jid${SLURM_JOBID}.out
 
 # save conveged geometry to homedir 
-cp $TMPDIR/QG_geom*   ${SLURM_SUBMIT_DIR}/.
+#cp $TMPDIR/BiQgeom*   ${SLURM_SUBMIT_DIR}/.
 
 echo -e "\n Working files remained in scratch dir \$TMPDIR:"
 ls -lt $TMPDIR/* 

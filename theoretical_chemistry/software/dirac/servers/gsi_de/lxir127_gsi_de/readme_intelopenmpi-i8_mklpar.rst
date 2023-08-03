@@ -45,6 +45,12 @@ Add CMake:
 ~~~~~~~~~~~
 milias@lxir127.gsi.de:/data.local1/milias/software/dirac/dirac-public/.spack load cmake@3.21.4 target=$(spack arch -t)
 
+milias@lxir127.gsi.de:/data.local1/milias/software/dirac/dirac-public/.spack load cmake arch=x86_64
+milias@lxir127.gsi.de:/data.local1/milias/software/dirac/dirac-public/.which cmake
+/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/cmake-3.24.3-lfuhsd4ed4ghj6iejxba2kxbc2iaqybs/bin/cmake
+milias@lxir127.gsi.de:/data.local1/milias/software/dirac/dirac-public/.cmake --version
+
+
 Own build:
 ~~~~~~~~~~
 milias@lxir127.gsi.de:/data.local1/milias/software/dirac/dirac-public/../setup --int64 --mkl=parallel --mpi build_intelompi_mklpar_i8

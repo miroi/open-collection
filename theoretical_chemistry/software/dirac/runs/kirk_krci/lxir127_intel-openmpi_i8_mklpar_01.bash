@@ -62,14 +62,14 @@ echo -e "\n"
 
 #let "NUMTHR=$NPROCS/$THISMPI"
 #export MKL_NUM_THREADS=$NUMTHR
-export MKL_NUM_THREADS=1
+export MKL_NUM_THREADS=2
 #echo -e "\nThis node has $NPROCS CPUs available for this EXCLUSIVE JOB and dirac.x is running via $THISMPI threads."
 #echo -e "Therefore, for the MKL internal parallelization, number of calculated threads=$MKL_NUM_THREADS \n"
 
 # set MPI launcher
-unset DIRAC_MPI_COMMAND
-export DIRAC_MPI_COMMAND="mpirun -np 2"
-echo -e "\n Set DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
+#unset DIRAC_MPI_COMMAND
+#export DIRAC_MPI_COMMAND="mpirun -np 2"
+#echo -e "\n Set DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
 
 #cd $DIRACBIN
 #ctest -j8 -L short

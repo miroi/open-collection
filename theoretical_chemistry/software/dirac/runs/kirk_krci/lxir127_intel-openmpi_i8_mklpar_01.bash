@@ -77,6 +77,6 @@ echo -e "\n Set DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
 #$PAM --noarch --mpi=4  --gb=1.89 --ag=1.99 --mol=CO.mol  --inp=ccsd.small.inp  --suffix=$SLURM_JOB_PARTITION-$SLURM_JOBID-out 
 #$PAM --help
 
-$PAM --noarch --mpi=4  --gb=1.89 --ag=1.99 --mol=vdz.mol  --inp=krci.inp 
+$PAM --noarch --mpi=4  --gb=1.89 --ag=1.99 --mol=vdz.mol  --inp=krci.inp --get="DFPCMO"
 
 exit

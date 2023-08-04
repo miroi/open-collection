@@ -4,7 +4,6 @@ echo -e "\n DIRAC run "
 echo -e "\nRunning on host `hostname`"
 echo -e "Time is `date` \n"
 
-spack load cmake@3.21.4 target=$(spack arch -t)
 spack load intel-parallel-studio@professional.2020.1
 spack load intel-mkl@2020.4.304
 spack load cmake@3.21.4 target=$(spack arch -t)

@@ -1,0 +1,36 @@
+echo
+
+start molecule
+
+print low
+
+title "At@Quartz ecp"
+charge 0
+
+geometry units angstroms print xyz autosym
+  load format xyz AtOH_Q.xyz
+end
+
+basis
+ * library crenbl_ecp
+end
+
+ecp 
+  Si library crenbl_ecp
+  At library crenbl_ecp
+end
+
+dft
+  xc b3lyp
+  maxiter 100
+end
+
+driver
+  maxiter 999
+  xyz AtOH_Qgeomconv
+end
+
+task dft optimize
+
+#task dft frequencies
+

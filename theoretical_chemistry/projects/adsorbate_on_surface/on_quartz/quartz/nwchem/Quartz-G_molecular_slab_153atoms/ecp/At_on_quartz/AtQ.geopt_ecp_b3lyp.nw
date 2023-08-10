@@ -1,0 +1,38 @@
+echo
+
+start molecule
+
+print low
+
+title "At@Quartz ecp"
+charge 0
+
+geometry units angstroms print xyz autosym
+  load format xyz AtQgeom.xyz
+end
+
+basis
+ * library lanl2dz_ecp
+end
+
+ecp 
+  Si library lanl2dz_ecp
+  At library lanl2dz_ecp
+end
+
+dft
+  rodft
+  mult 2
+  xc b3lyp
+  maxiter 100
+end
+
+driver
+  maxiter 999
+  xyz AtQgeomconv
+end
+
+task dft optimize
+
+#task dft frequencies
+

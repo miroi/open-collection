@@ -1,0 +1,4 @@
+smallQuartz with PWPSP NWChem
+=============================
+
+

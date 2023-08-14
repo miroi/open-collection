@@ -1,0 +1,30 @@
+echo
+
+start molecule
+
+print low
+
+title "Q-G ecp"
+charge 0
+
+geometry units angstroms print xyz autosym
+  load format xyz QG_geom4-174_converged-geom.xyz
+end
+
+basis
+ * library lanl2dz_ecp
+end
+
+ecp 
+  Si library lanl2dz_ecp
+end
+
+dft
+  xc b3lyp
+  mult 1
+  maxiter 100
+end
+
+task dft energy
+task dft frequencies
+

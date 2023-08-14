@@ -1,0 +1,41 @@
+echo
+
+start molecule
+
+memory total 180 gb
+
+print medium
+
+title "At@Quartz ecp"
+charge 0
+
+geometry units angstroms print xyz autosym
+  load format xyz AtQgeom.xyz
+end
+
+basis
+ * library crenbl_ecp
+end
+
+ecp 
+  Si library crenbl_ecp
+  At library crenbl_ecp
+end
+
+dft
+  cgmin
+  rodft
+  mult 2
+  xc revpbe cpbe96
+  maxiter 900
+end
+
+driver
+  maxiter 999
+  xyz AtQ1geomconv
+end
+
+task dft optimize
+
+#task dft frequencies
+

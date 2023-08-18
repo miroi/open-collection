@@ -1,0 +1,35 @@
+echo
+
+start Bi_on_Q
+
+memory total 180 gb
+
+print low
+
+title "Bi@Quartz ecp"
+charge 0
+
+geometry units angstroms print xyz autosym
+  load format xyz BiQgeom.xyz
+end
+
+basis
+ * library crenbl_ecp
+end
+
+ecp 
+  Si library crenbl_ecp
+  Bi library crenbl_ecp
+end
+
+dft
+  rodft
+  mult 4
+  xc revpbe cpbe96
+  disp vdw 4
+  maxiter 100
+end
+
+task dft energy
+task dft frequencies
+

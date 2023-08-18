@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -J Bi@Q
+#SBATCH -J Bi@Qf_r
 
 ##  partition (queue)
 ##SBATCH -p long
@@ -95,8 +95,9 @@ echo -e "\n ldd NWCHEM_EXECUTABLE=$NWCHEM_EXECUTABLE"; ldd $NWCHEM_EXECUTABLE
 
 # set working scratch directory for the run
 SCR=NWChem_SLURMjob.${SLURM_JOB_PARTITION}.N${SLURM_JOB_NUM_NODES}.n${SLURM_NTASKS}.jid${SLURM_JOBID}
-export TMPDIR=/lustre/ukt/milias/scratch/$SCR
-mkdir $TMPDIR
+#export TMPDIR=/lustre/ukt/milias/scratch/$SCR
+export TMPDIR=/lustre/ukt/milias/scratch/Bi_on_Q_crenbl_ecp
+#mkdir $TMPDIR
 cd $TMPDIR
 echo -e "\n I am in NWChem working directory, TMPDIR=$TMPDIR"
 echo -e "for control, pwd=";pwd
@@ -112,15 +113,16 @@ echo -e "\n The local home directory with NWChem input file, SLURM_SUBMIT_DIR=${
 #project=AtOHonQ-G.dkh_b3lyp
 #project=Q-G.geoptfreq_ecp_b3lyp
 #project=BiQ.geopt_ecp_b3lyp
-project=BiQ.geopt_ecp_revpbe-d3bj_rodft
+#project=BiQ.geopt_ecp_revpbe-d3bj_rodft
+project=BiQ.ecp_revpbe-d3bj_rodft_freq_restart
 #project=Q-G.ecp_b3lyp
 #cp ${SLURM_SUBMIT_DIR}/QG_geom2-015.xyz    $PWD/.
-cp ${SLURM_SUBMIT_DIR}/BiQgeom.xyz    $PWD/.
+#cp ${SLURM_SUBMIT_DIR}/BiQgeom.xyz    $PWD/.
 echo -e "\n Launching NWChem run with project=${project}"
 mpirun -np  ${SLURM_NTASKS} ${NWCHEM_EXECUTABLE}  ${SLURM_SUBMIT_DIR}/$project.nw  > ${SLURM_SUBMIT_DIR}/$project.${SLURM_JOB_PARTITION}_N${SLURM_JOB_NUM_NODES}_n${SLURM_NTASKS}_jid${SLURM_JOBID}.out
 
 # save conveged geometry to homedir 
-cp $TMPDIR/BiQgeomconv*   ${SLURM_SUBMIT_DIR}/.
+#cp $TMPDIR/BiQgeomconv*   ${SLURM_SUBMIT_DIR}/.
 
 echo -e "\n Working files remained in scratch dir \$TMPDIR:"
 ls -lt $TMPDIR/* 

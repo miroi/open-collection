@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -J At@Q2
+#SBATCH -J At@Q
 
 ##  partition (queue)
 ##SBATCH -p long
@@ -95,7 +95,8 @@ echo -e "\n ldd NWCHEM_EXECUTABLE=$NWCHEM_EXECUTABLE"; ldd $NWCHEM_EXECUTABLE
 
 # set working scratch directory for the run
 SCR=NWChem_SLURMjob.${SLURM_JOB_PARTITION}.N${SLURM_JOB_NUM_NODES}.n${SLURM_NTASKS}.jid${SLURM_JOBID}
-export TMPDIR=/lustre/ukt/milias/scratch/$SCR
+#export TMPDIR=/lustre/ukt/milias/scratch/$SCR
+export TMPDIR=/lustre/ukt/milias/scratch/At-odft_on_quartz
 mkdir $TMPDIR
 cd $TMPDIR
 echo -e "\n I am in NWChem working directory, TMPDIR=$TMPDIR"
@@ -121,7 +122,7 @@ echo -e "\n Launching NWChem run with project=${project}"
 mpirun -np  ${SLURM_NTASKS} ${NWCHEM_EXECUTABLE}  ${SLURM_SUBMIT_DIR}/$project.nw  > ${SLURM_SUBMIT_DIR}/$project.${SLURM_JOB_PARTITION}_N${SLURM_JOB_NUM_NODES}_n${SLURM_NTASKS}_jid${SLURM_JOBID}.out
 
 # save conveged geometry to homedir 
-cp $TMPDIR/AtQ2geomconv   ${SLURM_SUBMIT_DIR}/.
+#cp $TMPDIR/AtQ2geomconv   ${SLURM_SUBMIT_DIR}/.
 
 echo -e "\n Working files remained in scratch dir \$TMPDIR:"
 ls -lt $TMPDIR/* 

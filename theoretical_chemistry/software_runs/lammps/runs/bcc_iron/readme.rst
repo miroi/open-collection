@@ -1,7 +1,0 @@
-======
-LAMMPS
-======
-
-http://www.u.arizona.edu/~stefanb/Files/HPCTutorials/MD-lammps-Final.pdf
-
-

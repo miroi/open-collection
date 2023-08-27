@@ -1,0 +1,98 @@
+#!/bin/bash
+
+#
+# 'Simplest' bash script driven run of the Wien2k TiC test case.
+#
+#  Thanks to hints and tips from Wien2k community
+#
+#  Written by Miro Ilias, www.GSI.de, Darmstadt, Germany at the end of July 2020.
+#  Free for use.
+#
+
+spack load intel-mkl@2020.4.304
+spack load intel-parallel-studio@professional.2020.1
+spack load amdfftw@3.0 arch=broadwell
+spack unload openmpi@4.1.5 
+#
+spack find --loaded
+export PATH=/u/milias/bin/openmpi/bin:$PATH
+export LD_LIBRARY_PATH=/u/milias/bin/openmpi/lib:$LD_LIBRARY_PATH
+which mpirun; mpirun --version
+which mpif90; mpif90 --version
+
+#export WIEN2k=/data.local1/milias/software/wien2k/WIEN2k_19.2
+export WIEN2k=/data.local1/milias/software/wien2k/WIEN2k_23.2/intel-openmpi_mkl
+export WIENROOT=$WIEN2k
+
+randstr=`tr -cd '[:alnum:]' < /dev/urandom | fold -w4 | head -n1`
+export SCRATCH=$PWD/scratch.$randstr
+mkdir $SCRATCH
+
+# first link Wien2k executables into the directory
+ ln -sf $WIEN2k/dstart             $PWD/.
+ ln -sf $WIEN2k/init_lapw          $PWD/.
+ ln -sf $WIEN2k/instgen_lapw       $PWD/.
+ ln -sf $WIEN2k/kgen               $PWD/.
+ ln -sf $WIEN2k/lapw0              $PWD/.
+ ln -sf $WIEN2k/lapw1              $PWD/.
+ ln -sf $WIEN2k/lapw2              $PWD/.
+ ln -sf $WIEN2k/lapw3              $PWD/.
+ ln -sf $WIEN2k/lapw5              $PWD/.
+ ln -sf $WIEN2k/lapw7              $PWD/.
+ ln -sf $WIEN2k/lapwso             $PWD/.
+ ln -sf $WIEN2k/lapwso_mpi         $PWD/.
+ ln -sf $WIEN2k/lcore              $PWD/.
+ ln -sf $WIEN2k/lorentz            $PWD/.
+ ln -sf $WIEN2k/lstart             $PWD/.
+ ln -sf $WIEN2k/mixer              $PWD/.
+ ln -sf $WIEN2k/nn                 $PWD/.
+ ln -sf $WIEN2k/run_lapw           $PWD/.
+ ln -sf $WIEN2k/runsp_lapw         $PWD/.
+ ln -sf $WIEN2k/setrmt_lapw        $PWD/.
+ ln -sf $WIEN2k/sgroup             $PWD/.
+ ln -sf $WIEN2k/symmetry           $PWD/.
+ ln -sf $WIEN2k/testconv           $PWD/.
+ ln -sf $WIEN2k/testconv_lapw      $PWD/.
+ ln -sf $WIEN2k/x                  $PWD/.
+ ln -sf $WIEN2k/x_lapw             $PWD/.
+
+ case=TiC
+ inp=$case.struct
+
+ echo -e "I am in $PWD"; pwd; ls -lt
+ 
+ instgen_lapw < $inp
+
+ echo 2|x nn
+
+ x sgroup 
+
+ x symmetry
+
+ instgen_lapw -s -up
+
+ # provide PBE and -6.0Ry
+ echo -e 13 '\n'-6.0 | x lstart
+
+ # provide k space
+ echo 30 | x kgen 
+
+ #prepare files for dstart, based on Table 4.1 in https://euler.phys.cmu.edu/cluster/WIEN2k/4Files_Program.html
+ cp $case.in0_st  $case.in0
+ cp $case.in1_st  $case.in1
+ cat $case.in2_ls  $case.in2_sy > $case.in2_st; cp $case.in2_st $case.in2
+ x dstart
+
+ # run own SCF, but prepare input files first
+ cp $case.inc_st  $case.inc
+ cp $case.inm_st  $case.inm
+ cp $case.inq_st  $case.inq
+ run_lapw -ec 0.0001 -NI
+
+ echo
+
+ grep 'ENE' *.out*
+
+ #echo -e "\n Finished; check for ':ENE' in outputs."
+
+exit 0

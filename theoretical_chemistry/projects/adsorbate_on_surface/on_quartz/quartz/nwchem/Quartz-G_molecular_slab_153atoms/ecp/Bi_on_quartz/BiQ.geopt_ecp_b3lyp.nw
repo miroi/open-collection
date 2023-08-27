@@ -1,0 +1,38 @@
+echo
+
+start molecule
+
+print low
+
+title "Bi@Quartz ecp"
+charge 0
+
+geometry units angstroms print xyz autosym
+  load format xyz Bi_Qgeom.xyz
+end
+
+basis
+ * library lanl2dz_ecp
+end
+
+ecp 
+  Si library lanl2dz_ecp
+  Bi library lanl2dz_ecp
+end
+
+dft
+  rodft
+  mult 4
+  xc b3lyp
+  maxiter 100
+end
+
+driver
+  maxiter 999
+  xyz BiQgeo
+end
+
+task dft optimize
+
+#task dft frequencies
+

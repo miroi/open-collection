@@ -1,0 +1,330 @@
+nohup: ignoring input
+
+ DIRAC run 
+
+Running on host lxir127
+Time is Fri 26 May 2023 09:03:33 PM CEST 
+
+
+ loaded modules:
+-- linux-debian10-broadwell / gcc@8.3.0 -------------------------
+cmake@3.21.4
+ncurses@6.1
+openssl@1.1.1l
+zlib@1.2.11
+
+-- linux-debian10-x86_64 / gcc@8.3.0 ----------------------------
+intel-mkl@2020.4.304
+intel-parallel-studio@professional.2020.1
+The node's CPU model name	: Intel(R) Xeon(R) CPU E5-2640 v4 @ 2.40GHz
+This node has total 20 CPUs available for EXCLUSIVE job.
+
+ the memory at the node (in GB)
+              total        used        free      shared  buff/cache   available
+Mem:            251           2         237           0          11         247
+Swap:             1           0           1
+Total:          253           2         239
+
+
+
+ ifort -V: /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-parallel-studio-professional.2020.1-yr5yjb5uiztgkfs4qz6u5dxj5zrz455s/compilers_and_libraries_2020.1.217/linux/bin/intel64/ifort
+ifort (IFORT) 19.1.1.217 20200306
+Copyright (C) 1985-2020 Intel Corporation.  All rights reserved.
+
+/cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-parallel-studio-professional.2020.1-yr5yjb5uiztgkfs4qz6u5dxj5zrz455s/compilers_and_libraries_2020.1.217/linux/bin/intel64/icc
+icc (ICC) 19.1.1.217 20200306
+Copyright (C) 1985-2020 Intel Corporation.  All rights reserved.
+
+Python -v :Python 2.7.16
+cmake ? which cmake = /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-broadwell/gcc-8.3.0/cmake-3.21.4-ir3zrlgttevmqv4n3gg6ldkn4nf67ver/bin/cmake
+ctest ? which ctest = /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-broadwell/gcc-8.3.0/cmake-3.21.4-ir3zrlgttevmqv4n3gg6ldkn4nf67ver/bin/ctest
+ctest --version ctest version 3.21.4
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
+
+ mpirun ? /u/milias/bin/openmpi-i8/bin/mpirun
+mpirun (Open MPI) 3.1.0
+
+Report bugs to http://www.open-mpi.org/community/help/
+/u/milias/bin/openmpi-i8/bin/mpif90
+ifort (IFORT) 19.1.1.217 20200306
+Copyright (C) 1985-2020 Intel Corporation.  All rights reserved.
+
+DIRAC=/data.local1/milias/software/dirac/dirac-public
+DIRACBIN=/data.local1/milias/software/dirac/dirac-public/build_intelompi_mklpar_i8
+
+ldd /data.local1/milias/software/dirac/dirac-public/dirac.x:
+	linux-vdso.so.1 (0x00007ffe58492000)
+	libmkl_intel_ilp64.so => /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-mkl-2020.4.304-wcz55b7qqq66b7lh5vqt6qt7ftlkwa3z/compilers_and_libraries_2020.4.304/linux/mkl/lib/intel64_lin/libmkl_intel_ilp64.so (0x00007f8eefa53000)
+	libmkl_intel_thread.so => /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-mkl-2020.4.304-wcz55b7qqq66b7lh5vqt6qt7ftlkwa3z/compilers_and_libraries_2020.4.304/linux/mkl/lib/intel64_lin/libmkl_intel_thread.so (0x00007f8eec168000)
+	libmkl_core.so => /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-mkl-2020.4.304-wcz55b7qqq66b7lh5vqt6qt7ftlkwa3z/compilers_and_libraries_2020.4.304/linux/mkl/lib/intel64_lin/libmkl_core.so (0x00007f8ee7b27000)
+	libiomp5.so => /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-mkl-2020.4.304-wcz55b7qqq66b7lh5vqt6qt7ftlkwa3z/compilers_and_libraries_2020.4.304/linux/compiler/lib/intel64_lin/libiomp5.so (0x00007f8ee771f000)
+	libmpi.so.40 => /u/milias/bin/openmpi-i8/lib/libmpi.so.40 (0x00007f8ee73f7000)
+	libimf.so => /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-parallel-studio-professional.2020.1-yr5yjb5uiztgkfs4qz6u5dxj5zrz455s/compilers_and_libraries_2020.1.217/linux/compiler/lib/intel64_lin/libimf.so (0x00007f8ee6d74000)
+	libsvml.so => /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-parallel-studio-professional.2020.1-yr5yjb5uiztgkfs4qz6u5dxj5zrz455s/compilers_and_libraries_2020.1.217/linux/compiler/lib/intel64_lin/libsvml.so (0x00007f8ee5248000)
+	libirng.so => /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-parallel-studio-professional.2020.1-yr5yjb5uiztgkfs4qz6u5dxj5zrz455s/compilers_and_libraries_2020.1.217/linux/compiler/lib/intel64_lin/libirng.so (0x00007f8ee4ede000)
+	libstdc++.so.6 => /usr/lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007f8ee4d1a000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f8ee4b97000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f8ee4b7d000)
+	libirc.so => /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-parallel-studio-professional.2020.1-yr5yjb5uiztgkfs4qz6u5dxj5zrz455s/compilers_and_libraries_2020.1.217/linux/compiler/lib/intel64_lin/libirc.so (0x00007f8ee4905000)
+	libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f8ee48e4000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f8ee4724000)
+	libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f8ee471f000)
+	libz.so.1 => /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-broadwell/gcc-8.3.0/zlib-1.2.11-pqdidq3pxucqbvyxnlf552vxypl6zxvs/lib/libz.so.1 (0x00007f8ee4706000)
+	libhdf5_serial.so.103 => /usr/lib/x86_64-linux-gnu/libhdf5_serial.so.103 (0x00007f8ee4381000)
+	libsz.so.2 => /usr/lib/x86_64-linux-gnu/libsz.so.2 (0x00007f8ee417e000)
+	libmpi_usempif08.so.40 => /u/milias/bin/openmpi-i8/lib/libmpi_usempif08.so.40 (0x00007f8ee3f4e000)
+	libmpi_usempi_ignore_tkr.so.40 => /u/milias/bin/openmpi-i8/lib/libmpi_usempi_ignore_tkr.so.40 (0x00007f8ee3d45000)
+	libmpi_mpifh.so.40 => /u/milias/bin/openmpi-i8/lib/libmpi_mpifh.so.40 (0x00007f8ee3ad8000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f8ef06dd000)
+	libopen-rte.so.40 => /u/milias/bin/openmpi-i8/lib/libopen-rte.so.40 (0x00007f8ee3810000)
+	libopen-pal.so.40 => /u/milias/bin/openmpi-i8/lib/libopen-pal.so.40 (0x00007f8ee34dc000)
+	libnuma.so.1 => /usr/lib/x86_64-linux-gnu/libnuma.so.1 (0x00007f8ee34ce000)
+	librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00007f8ee34c4000)
+	libutil.so.1 => /lib/x86_64-linux-gnu/libutil.so.1 (0x00007f8ee34bf000)
+	libintlc.so.5 => /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-parallel-studio-professional.2020.1-yr5yjb5uiztgkfs4qz6u5dxj5zrz455s/compilers_and_libraries_2020.1.217/linux/compiler/lib/intel64_lin/libintlc.so.5 (0x00007f8ee3247000)
+	libaec.so.0 => /usr/lib/x86_64-linux-gnu/libaec.so.0 (0x00007f8ee303f000)
+	libifport.so.5 => /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-parallel-studio-professional.2020.1-yr5yjb5uiztgkfs4qz6u5dxj5zrz455s/compilers_and_libraries_2020.1.217/linux/compiler/lib/intel64_lin/libifport.so.5 (0x00007f8ee2e11000)
+	libifcoremt.so.5 => /cvmfs/vae.gsi.de/debian10/spack-0.17/opt/linux-debian10-x86_64/gcc-8.3.0/intel-parallel-studio-professional.2020.1-yr5yjb5uiztgkfs4qz6u5dxj5zrz455s/compilers_and_libraries_2020.1.217/linux/compiler/lib/intel64_lin/libifcoremt.so.5 (0x00007f8ee2a76000)
+
+DIRAC scratch directory space, /data.local1/milias/scratch/
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda7       881G   58G  823G   7% /data.local1
+
+ For comparison, /tmp local disk;  df -h /tmp/.
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda6        12G  1.1G   11G  10% /tmp
+
+
+
+ Set DIRAC_MPI_COMMAND=mpirun -np 2
+Test project /data.local1/milias/software/dirac/dirac-public/build_intelompi_mklpar_i8
+      Start 116: ecp
+      Start 172: x_amfi
+      Start 125: ffpt_dipmom_polariz_relcc
+      Start 176: pe_cpp
+      Start 105: response_lao_shield
+      Start 106: response_lao_magnetiz
+      Start 167: pcm_energy
+      Start 161: visual_custom_output
+ 1/83 Test #116: ecp ..............................***Failed    1.75 sec
+      Start  90: visual_div_rot
+ 2/83 Test  #90: visual_div_rot ...................   Passed   14.24 sec
+      Start  88: xyz_symmetry_recognition
+ 3/83 Test #161: visual_custom_output .............   Passed   16.57 sec
+      Start  99: dft_pp86
+ 4/83 Test #167: pcm_energy .......................   Passed   16.69 sec
+      Start 142: lucita_q_corrections
+ 5/83 Test #172: x_amfi ...........................***Failed   16.71 sec
+      Start 102: dft_cam
+ 6/83 Test #106: response_lao_magnetiz ............   Passed   18.22 sec
+      Start  89: nmqm_operator
+ 7/83 Test #105: response_lao_shield ..............   Passed   19.91 sec
+      Start 124: mp2_natural_orbitals
+ 8/83 Test #176: pe_cpp ...........................   Passed   20.17 sec
+      Start 101: acmoin
+ 9/83 Test  #88: xyz_symmetry_recognition .........   Passed   13.98 sec
+      Start  92: localization
+10/83 Test #102: dft_cam ..........................   Passed   13.27 sec
+      Start 100: bss_energy
+11/83 Test  #89: nmqm_operator ....................   Passed   11.92 sec
+      Start 103: visual_frac_occupation
+12/83 Test #142: lucita_q_corrections .............   Passed   13.87 sec
+      Start  93: krci_properties_perm_dipmom
+13/83 Test  #99: dft_pp86 .........................   Passed   14.00 sec
+      Start 104: eomee_fc_cvs
+14/83 Test #124: mp2_natural_orbitals .............   Passed   11.78 sec
+      Start  95: cosci_tmom
+15/83 Test #101: acmoin ...........................   Passed   12.09 sec
+      Start  94: huckel_start
+16/83 Test #100: bss_energy .......................   Passed   10.81 sec
+      Start 108: response_hf_polarizability
+17/83 Test #104: eomee_fc_cvs .....................   Passed   10.57 sec
+      Start 111: cosci_methods
+18/83 Test  #92: localization .....................   Passed   11.26 sec
+      Start  98: response_lao_magnetiz_dft
+19/83 Test  #93: krci_properties_perm_dipmom ......   Passed   10.79 sec
+      Start 109: count_cc_memory
+20/83 Test #103: visual_frac_occupation ...........   Passed   11.22 sec
+      Start  97: bed_anisotropic
+21/83 Test  #95: cosci_tmom .......................   Passed   10.48 sec
+      Start 113: eomip_fc_cvs
+22/83 Test  #94: huckel_start .....................   Passed   10.26 sec
+      Start 141: lucita_large
+23/83 Test #125: ffpt_dipmom_polariz_relcc ........   Passed   47.95 sec
+      Start 107: krci_properties_omega_tdm
+24/83 Test #141: lucita_large .....................   Passed    7.71 sec
+      Start 131: stex
+25/83 Test #113: eomip_fc_cvs .....................   Passed    8.92 sec
+      Start  91: bed_isotropic
+26/83 Test  #97: bed_anisotropic ..................   Passed    9.74 sec
+      Start 114: symmetry_recognition
+27/83 Test #109: count_cc_memory ..................   Passed    9.87 sec
+      Start 129: bsse
+28/83 Test #108: response_hf_polarizability .......   Passed   10.65 sec
+      Start 147: molecular_mean_field_restart
+29/83 Test  #98: response_lao_magnetiz_dft ........   Passed   10.62 sec
+      Start 118: basis_input
+30/83 Test #111: cosci_methods ....................   Passed   11.32 sec
+      Start 136: gaunt
+31/83 Test #107: krci_properties_omega_tdm ........   Passed    8.94 sec
+      Start 117: scf_levelshift
+32/83 Test #131: stex .............................   Passed    8.27 sec
+      Start  87: x2c-SCF_to_4c-SCF
+33/83 Test #129: bsse .............................   Passed    7.39 sec
+      Start 123: dft_erf_xcfun
+34/83 Test #114: symmetry_recognition .............   Passed    7.60 sec
+      Start 121: cosci_energy_spinfree
+35/83 Test  #91: bed_isotropic ....................   Passed    7.80 sec
+      Start 126: mp2_srdft_energies
+36/83 Test #147: molecular_mean_field_restart .....   Passed    7.47 sec
+      Start 120: pvc_scf
+37/83 Test #136: gaunt ............................   Passed    6.92 sec
+      Start 127: operators_mo_mtx_elements
+38/83 Test #118: basis_input ......................   Passed    7.57 sec
+      Start 128: response_C6
+39/83 Test #117: scf_levelshift ...................   Passed    7.14 sec
+      Start 160: visual_density_derivs
+40/83 Test #128: response_C6 ......................   Passed    5.72 sec
+      Start 122: density_at_nuclei
+41/83 Test #126: mp2_srdft_energies ...............   Passed    6.34 sec
+      Start 119: visual_gamma5
+42/83 Test  #87: x2c-SCF_to_4c-SCF ................   Passed    7.08 sec
+      Start 144: response_nmr_levy-leblond
+43/83 Test #120: pvc_scf ..........................   Passed    6.69 sec
+      Start 138: dft_betasigma
+44/83 Test #127: operators_mo_mtx_elements ........   Passed    6.24 sec
+      Start 112: response_nonrel
+45/83 Test #123: dft_erf_xcfun ....................   Passed    7.06 sec
+      Start 132: zora
+46/83 Test #121: cosci_energy_spinfree ............   Passed    7.05 sec
+      Start 137: dft_ac
+47/83 Test #160: visual_density_derivs ............   Passed    6.07 sec
+      Start 135: linear_structures
+48/83 Test #122: density_at_nuclei ................   Passed    5.69 sec
+      Start 155: atomic_start
+49/83 Test #119: visual_gamma5 ....................   Passed    5.85 sec
+      Start 140: projection_analysis_overlaps
+50/83 Test #137: dft_ac ...........................   Passed    5.70 sec
+      Start 143: basis_contraction
+51/83 Test #132: zora .............................   Passed    5.82 sec
+      Start 134: cosci_average
+52/83 Test #138: dft_betasigma ....................   Passed    5.91 sec
+      Start 149: laplace
+53/83 Test #112: response_nonrel ..................   Passed    5.90 sec
+      Start 133: dft_grid_export_import
+54/83 Test #144: response_nmr_levy-leblond ........   Passed    6.02 sec
+      Start 152: dirac_mointegral_export
+55/83 Test #152: dirac_mointegral_export ..........   Passed    4.28 sec
+      Start 145: blockd_twocomp
+56/83 Test #143: basis_contraction ................   Passed    4.42 sec
+      Start 153: response_rkbimp_shield
+57/83 Test #140: projection_analysis_overlaps .....   Passed    4.91 sec
+      Start 130: import_mos
+58/83 Test #133: dft_grid_export_import ...........   Passed    4.55 sec
+      Start 150: response_complex
+59/83 Test #135: linear_structures ................   Passed    6.11 sec
+      Start 148: dirrci_property
+60/83 Test #149: laplace ..........................   Passed    4.98 sec
+      Start 162: polprp_ph
+61/83 Test #155: atomic_start .....................   Passed    5.74 sec
+      Start 151: mp2_energy
+62/83 Test #134: cosci_average ....................   Passed    5.37 sec
+      Start 165: nqcc
+63/83 Test #165: nqcc .............................   Passed    2.37 sec
+      Start 154: free-particle_projection
+64/83 Test #151: mp2_energy .......................   Passed    2.99 sec
+      Start 146: dft_cosci
+65/83 Test #162: polprp_ph ........................   Passed    3.12 sec
+      Start  86: reladc_dip
+66/83 Test #150: response_complex .................   Passed    4.11 sec
+      Start  96: reladc_sipeigv
+67/83 Test #145: blockd_twocomp ...................   Passed    4.57 sec
+      Start 158: cosci_energy_blockd
+68/83 Test #148: dirrci_property ..................   Passed    4.30 sec
+      Start 156: checkpoint_from_Dformat
+69/83 Test #130: import_mos .......................   Passed    4.74 sec
+      Start 157: tutorial_checkpoint
+70/83 Test #153: response_rkbimp_shield ...........   Passed    5.21 sec
+      Start 139: lucita_short
+71/83 Test  #86: reladc_dip .......................   Passed    1.75 sec
+      Start 159: visual_elf
+72/83 Test #156: checkpoint_from_Dformat ..........   Passed    1.30 sec
+      Start 163: pam_test
+73/83 Test  #96: reladc_sipeigv ...................   Passed    1.79 sec
+      Start 110: reladc_fano
+74/83 Test #154: free-particle_projection .........   Passed    2.82 sec
+      Start 115: reladc_sip
+75/83 Test #158: cosci_energy_blockd ..............   Passed    1.62 sec
+      Start 164: basis_input_scripted
+76/83 Test #164: basis_input_scripted .............   Passed    0.05 sec
+77/83 Test #157: tutorial_checkpoint ..............   Passed    1.65 sec
+78/83 Test #146: dft_cosci ........................   Passed    2.88 sec
+79/83 Test #139: lucita_short .....................   Passed    1.52 sec
+80/83 Test #110: reladc_fano ......................   Passed    0.76 sec
+81/83 Test #115: reladc_sip .......................   Passed    0.69 sec
+82/83 Test #163: pam_test .........................   Passed    0.97 sec
+83/83 Test #159: visual_elf .......................   Passed    1.47 sec
+
+98% tests passed, 2 tests failed out of 83
+
+Label Time Summary:
+4c                   =   7.08 sec*proc (1 test)
+basis                =  19.43 sec*proc (4 tests)
+bed                  =  17.54 sec*proc (2 tests)
+cc                   =  93.50 sec*proc (6 tests)
+ci                   =  52.40 sec*proc (6 tests)
+complex              =   4.11 sec*proc (1 test)
+cosci                =   9.88 sec*proc (3 tests)
+dft                  =  64.00 sec*proc (8 tests)
+dirrci               =   4.30 sec*proc (1 test)
+ecp                  =   1.75 sec*proc (1 test)
+eomcc                =  19.49 sec*proc (2 tests)
+gaunt                =   6.92 sec*proc (1 test)
+grid                 =   4.55 sec*proc (1 test)
+huckel               =  10.26 sec*proc (1 test)
+import               =   4.74 sec*proc (1 test)
+krci                 =  28.95 sec*proc (4 tests)
+lao                  =  48.76 sec*proc (3 tests)
+laplace              =   4.98 sec*proc (1 test)
+levelshift           =   7.14 sec*proc (1 test)
+localization         =  11.26 sec*proc (1 test)
+magnetizabilities    =  28.85 sec*proc (2 tests)
+mcscf                =   4.74 sec*proc (1 test)
+mp2                  =  33.56 sec*proc (5 tests)
+nmr                  =   6.02 sec*proc (1 test)
+nonel                =   5.90 sec*proc (1 test)
+nqcc                 =   2.37 sec*proc (1 test)
+operators            =   6.24 sec*proc (1 test)
+pam                  =   0.97 sec*proc (1 test)
+pcm                  =  16.69 sec*proc (1 test)
+pelib                =  20.17 sec*proc (1 test)
+polarizabilities     =  10.65 sec*proc (1 test)
+polprp               =   3.12 sec*proc (1 test)
+projection           =   7.73 sec*proc (2 tests)
+property             =  13.24 sec*proc (2 tests)
+pvc                  =   6.69 sec*proc (1 test)
+qcorr                =  13.87 sec*proc (1 test)
+reladc               =   4.99 sec*proc (4 tests)
+response             = 103.90 sec*proc (11 tests)
+scf                  =  42.34 sec*proc (5 tests)
+shield               =   5.21 sec*proc (1 test)
+shielding            =  19.91 sec*proc (1 test)
+short                = 660.65 sec*proc (83 tests)
+srdft                =   6.34 sec*proc (1 test)
+stex                 =   8.27 sec*proc (1 test)
+structures           =   6.11 sec*proc (1 test)
+twocomp              =   4.57 sec*proc (1 test)
+visual               =  55.42 sec*proc (6 tests)
+x2c                  =  14.54 sec*proc (2 tests)
+xamfi                =  16.71 sec*proc (1 test)
+zora                 =   5.82 sec*proc (1 test)
+
+Total Test time (real) =  82.85 sec
+
+The following tests FAILED:
+	116 - ecp (Failed)
+	172 - x_amfi (Failed)
+Errors while running CTest
+Output from these tests are in: /data.local1/milias/software/dirac/dirac-public/build_intelompi_mklpar_i8/Testing/Temporary/LastTest.log
+Use "--rerun-failed --output-on-failure" to re-run the failed cases verbosely.

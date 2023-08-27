@@ -1,3 +1,4 @@
+=============================
 NWChem Singularity containers
 =============================
 
@@ -12,6 +13,13 @@ singularity pull $SINGULARITY_CONTAINERS/nwchem-702.impi313.sif library://edoapr
 INFO:    Downloading library image
 369.0MiB / 369.0MiB [==============================================================================] 100 % 9.0 MiB/s 0s
 ilias@login1.kelinux.saske.sk:~/work/qch/projects/open-collection/computer_science/containers/kelinux_saske_sk/singularity/nwchem/.
+
+
+newer
+~~~~~
+singularity pull --arch amd64 library://edoapra/default/nwchem-dev.ompi401:latest
+
+.... this does not work !!!
 
 Check
 -----

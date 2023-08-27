@@ -1,0 +1,73 @@
+#!/bin/bash
+
+#BSUB -nnodes 350
+#BSUB -W 6:00
+#BSUB -P CHP109
+#BSUB -J MtHCO4
+#BSUB -eo logfile_%J.std_oe
+#BSUB -oo logfile_%J.std_oe
+#BSUB -u Miroslav.Ilias@umb.sk
+#BSUN -N
+
+# set the appropriate project for INCITE (chp109)
+#
+export ProjectNumber="chp109"
+
+# set number of mpi processes (2*nnodes)
+export nmpi=700
+
+# print out LSB envirovariables
+echo -e "\n LSB_JOBNAME=${LSB_JOBNAME}"
+
+######
+# setup of dirac version, modules used in compilation etc
+# please do no modify those without checking with the development team
+#
+#source /gpfs/alpine/proj-shared/chp109/dirac/build-setup/modules
+
+#  debug version Johann Pototschnig
+source /gpfs/alpine/proj-shared/chp109/dirac-jvp/modules
+
+export DIRAC_PATH=/gpfs/alpine/proj-shared/chp109/dirac/dirac-public/build_gcc11_cuda_essl_lapack_release-23
+export PYTHONPATH=$PYTHONPATH:${DIRAC_PATH}
+export BASDIR=${DIRAC_PATH}/basis:${DIRAC_PATH}/basis_dalton:${DIRAC_PATH}/basis_ecp
+
+######
+# setup of the job: inputs etc
+#
+# in this script, we use the input and xyz file names to define the scratch directory name 
+#
+
+export MOL_FILE=Mt-Hax-CO_4.cv3z.C1.mol
+#export INP_FILE=MtHCO4.x2c_a4p.scf1fs_exacct_occm40-vir5000.inp
+#export INP_FILE=MtHCO4.x2c_a4p.scf1fs_exacct_occm40-vir1000.inp
+#export INP_FILE=MtHCO4.x2c_a4p.scf1fs_exacct_occm18-vir1000.inp
+export INP_FILE=MtHCO4.x2c_a4p.scf1fs_exacct_occm18-vir500.inp
+#export INP_FILE=MtHCO4.x2c_a4p.scf1fs_exacct_occm18-vir15.inp
+#export INP_FILE=MtHCO4.x2c_a4p.scf1fs_exacct_occm18-vir5.inp
+
+#export FILE_NAME=${INP_NAME}"_"${MOL_NAME}
+export FILE_NAME=${INP_FILE}"_"${MOL_FILE}.$LSB_JOBID
+
+######
+# run exacorr
+# if you need to keep the same scratch directory, add the flag  --keep_scratch  to the pam invocation line below
+#
+export DIRAC_SCRATCHDIR=${MEMBERWORK}/${ProjectNumber}/${FILE_NAME}
+echo -e "DIRAC_SCRATCHDIR=$DIRAC_SCRATCHDIR"
+
+#${DIRAC_PATH}/pam --scratchfull=${DIRAC_SCRATCHDIR} --gb=0.20 --ag=0.366 --mpi=$nmpi --mol=$MOL_FILE --inp=$INP_FILE  --suffix=$LSB_JOBID.out --get "CCDENS=CCDENS.Mt-Hax-CO_4.cv3z.C1_occm18-vir53" --put="DFPCMO.Mt-Hax-CO_4.cv3z.C1=DFPCMO"
+
+${DIRAC_PATH}/pam  --summit --noarch  --outqforce --scratchfull=${DIRAC_SCRATCHDIR} --mpi=$nmpi --mol=$MOL_FILE --inp=$INP_FILE  --suffix=$LSB_JOBID.out --get "CCDENS=CCDENS.Mt-Hax-CO_4.cv3z.C1_oca_cmXX-virXX" --put="DFPCMO.Mt-Hax-CO_4.cv3z.C1=DFPCMO"
+
+#${DIRAC_PATH}/pam --scratchfull=${DIRAC_SCRATCHDIR} --mpi=$nmpi --mol=$MOL_FILE --inp=$INP_FILE  --suffix=$LSB_JOBID.out --get "CCDENS=CCDENS.Mt-Hax-CO_4.cv3z.C1_occm40-virt1000" --get="DFPCMO=DFPCMO.Mt-Hax-CO_4.cv3z.C1.${LSB_JOBID}"
+
+#${DIRAC_PATH}/pam --scratchfull=${DIRAC_SCRATCHDIR} --mpi=$nmpi --mol=$MOL_FILE --inp=$INP_FILE  --suffix=$LSB_JOBID.out --get "CCDENS=CCDENS.Mt-Hax-CO_4.cv3z.C1_occm40-vir5000" --put="DFPCMO.Mt-Hax-CO_4.cv3z.C1=DFPCMO"
+
+# moving results to 
+#export CCSD_PT_OUTDIR=ccsd_pt_8nodes_x2c_avdz_canonical
+#mkdir -p            ${CCSD_PT_OUTDIR}
+#mv qfdir            ${CCSD_PT_OUTDIR}
+#mv ${FILE_NAME}.out ${CCSD_PT_OUTDIR}
+
+exit

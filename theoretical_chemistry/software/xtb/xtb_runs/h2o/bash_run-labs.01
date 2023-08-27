@@ -1,0 +1,44 @@
+#!/bin/bash
+
+echo -e "\n running xTB "
+
+export MOPAC_LICENSE=/home/milias/work/software/theoretical_chemistry/mopac2016
+export LD_LIBRARY_PATH=/home/milias/work/software/theoretical_chemistry/mopac2016:$LD_LIBRARY_PATH
+
+
+#source /home/milias/work/software/theoretical_chemistry/xtb/xtb-6.3.3/share/xtb/config_env.bash
+#source /home/milias/work/software/theoretical_chemistry/xtb/xtb-6.4.1/share/xtb/config_env.bash
+source /home/milias/work/software/theoretical_chemistry/xtb/xtb-6.6.0/share/xtb/config_env.bash
+
+export home_dir=$PWD
+echo -e "home_dir=$home_dir"
+
+random_string=`head /dev/urandom | tr -dc A-Za-z0-9 | head -c 5 ; echo ''`
+
+export scratch_dir=/tmp/$USER.xTB.$random_string
+echo -e "\n scratch_dir=$scratch_dir"
+
+
+mkdir $scratch_dir
+
+cd $scratch_dir
+echo -e "I am in pwd=$PWD"
+
+xtb --help
+#xtb $home_dir/h2o.coord  > $home_dir/h2o.xtb.out
+#xtb $home_dir/h2o.xyz  > $home_dir/h2o.xtb.out
+
+xtb --input $home_dir/xtb.inp  $home_dir/h2o.xyz  > $home_dir/h2o.xtb.out
+
+
+echo -e "\n Content of $scratch_dir:"
+ls -lt
+du -h -s .
+
+echo -e "\n returning back to $home_dir ..."
+cd $home_dir
+
+echo -e "\n deleting $scratch_dir ..."
+/bin/rm -rf $scratch_dir
+
+exit 0

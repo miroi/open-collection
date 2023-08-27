@@ -1,0 +1,34 @@
+#!/bin/bash
+
+if [[ `hostname` = "labs.fpv.umb.sk" ]];
+then
+    LAMMPS_EXE=/home/milias/work/qch_software/lammps_suite/lammps_stable/build/lmp
+elif [[ `hostname` = "lxir127" ]];
+then
+    LAMMPS_EXE=/data.local1/milias/software/lammps/lammps-stable_23Jun2022/build/lmp
+else
+    LAMMPS_EXE=/usr/bin/lammps
+fi
+
+#
+echo -e "\n Running LAMMPS=$LAMMPS_EXE on the server  `hostname`"
+#
+
+#linp=in.melt
+linp=in.AuO
+#linp=calc_fcc.in
+#linp=bcc_Fe.in
+ 
+echo -e "LAMMPS input=$linp "
+
+np=$1; # echo "argument = $np"
+
+if [[ $np == 2 || $np == 3 || $np == 4 ]]; then
+   echo -e "LAMMPS running parallel, mpirun -np $np $LAMMPS_EXE -in $linp \n"
+   mpirun -np $np $LAMMPS_EXE -in $linp
+else
+   echo -e "LAMMPS running on 1 CPU, mpirun -np 1 $LAMMPS_EXE -in $linp \n"
+   mpirun -np 1 $LAMMPS_EXE -in $linp
+fi
+
+exit 0

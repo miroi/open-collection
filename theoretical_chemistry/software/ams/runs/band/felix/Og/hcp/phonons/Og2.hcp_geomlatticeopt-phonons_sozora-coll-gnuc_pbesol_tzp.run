@@ -1,0 +1,56 @@
+#!/bin/sh
+
+"$AMSBIN/ams" << eor
+
+Task GeometryOptimization
+Properties
+    Phonons Yes
+End
+GeometryOptimization
+    OptimizeLattice Yes
+End
+NumericalPhonons
+    SuperCell
+        2 0 0 
+        0 2 0 
+        0 0 2 
+    End
+End
+System
+    Atoms
+        Og -6.388361895920797e-33 2.802675657473977e-32 1.522254507651907e-52 
+        Og 2.00644547321967 -1.15842183407768 -3.838747788316107 
+    End
+    Lattice
+        4.012890946439341 -0.0 -0.0
+        -2.00644547321967 3.475265502233051 0.0
+        -0.0 0.0 7.677495576632214
+    End
+End
+
+Engine BAND
+    Basis
+        Type TZP
+        Core None
+    End
+    Dependency
+        AllowBasisDependency No
+    End
+    NuclearModel Gaussian
+    Relativity
+        Level Spin-Orbit
+    End
+    SCF
+        Method DIIS
+    End
+    XC
+        SpinOrbitMagnetization CollinearZ
+        GGA PBEsol
+    End
+    RIHartreeFock
+        Quality Normal
+        FitSetQuality Normal
+    End
+EndEngine
+eor
+

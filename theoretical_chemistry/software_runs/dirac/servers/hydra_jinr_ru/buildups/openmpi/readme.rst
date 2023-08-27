@@ -1,2 +1,0 @@
-DIRAC-OpenMPI on hydra
-======================

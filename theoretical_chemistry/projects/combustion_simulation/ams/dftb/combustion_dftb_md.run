@@ -1,0 +1,186 @@
+#!/bin/sh
+
+"$AMSBIN/ams" << eor
+
+Task MolecularDynamics
+MolecularDynamics
+    NSteps 2000
+    TimeStep 0.5
+    Trajectory
+        SamplingFreq 5
+    End
+    InitialVelocities
+        Temperature 3500
+    End
+    Thermostat
+        Type NHC
+        Temperature 3500
+        Tau 100
+    End
+End
+System
+    Atoms
+        C -1.75039 -0.71666 -0.9586 
+        C -1.17454 0.30346 0.04303 
+        C 0.11959 -0.25506 0.6972699999999999 
+        C 1.35878 -0.47826 -0.20974 
+        C 2.08581 -1.77896 0.16774 
+        C -2.20823 0.52904 1.16314 
+        C -0.92478 1.64118 -0.67779 
+        C 2.34139 0.70378 -0.15841 
+        H -1.05165 -0.9211 -1.78386 
+        H -2.68486 -0.33951 -1.40277 
+        H -1.97544 -1.67321 -0.46104 
+        H -0.15392 -1.21515 1.16907 
+        H 0.40683 0.41558 1.5275 
+        H 1.01326 -0.5853 -1.25243 
+        H 2.9724 -1.94122 -0.46393 
+        H 1.42674 -2.65317 0.06031 
+        H 2.42567 -1.74323 1.21563 
+        H -2.41249 -0.40604 1.7072 
+        H -3.16157 0.8950900000000001 0.75143 
+        H -1.84706 1.2713 1.89153 
+        H -1.86651 2.03709 -1.08962 
+        H -0.22012 1.52747 -1.51486 
+        H -0.51686 2.39614 0.01234 
+        H 1.85962 1.65437 -0.42495 
+        H 3.18607 0.54837 -0.84704 
+        H 2.7554 0.81312 0.8575199999999999 
+        O -2.706387 3.523855 -3.653692 region=Auto_Generated
+        O -3.551935 4.076254 -3.195105 region=Auto_Generated
+        O 4.759723 2.783535 -2.07343 region=Auto_Generated
+        O 4.745678 3.744092 -1.518878 region=Auto_Generated
+        O 2.892041 -0.327976 -4.686536 region=Auto_Generated
+        O 2.942873 -1.435779 -4.662369 region=Auto_Generated
+        O 4.767648 -0.704792 -2.712016 region=Auto_Generated
+        O 4.764892 -1.800774 -2.541099 region=Auto_Generated
+        O 2.885179 -4.745721 -1.640907 region=Auto_Generated
+        O 3.884087 -4.363559 -1.935068 region=Auto_Generated
+        O -0.812289 -2.044319 -4.67486 region=Auto_Generated
+        O 0.281029 -2.102957 -4.497057 region=Auto_Generated
+        O 2.067376 -0.380303 3.696977 region=Auto_Generated
+        O 3.032998 0.131355 3.506774 region=Auto_Generated
+        O 4.750865 -3.505089 -4.698106 region=Auto_Generated
+        O 3.908458 -4.226484 -4.679802 region=Auto_Generated
+        O 4.437536 -4.844962 4.604871 region=Auto_Generated
+        O 3.938896 -4.674293 3.628846 region=Auto_Generated
+        O 1.289322 -4.872292 2.927411 region=Auto_Generated
+        O 1.614456 -4.838847 1.867427 region=Auto_Generated
+        O -4.692499 -4.185005 1.325026 region=Auto_Generated
+        O -4.135708 -3.226179 1.357182 region=Auto_Generated
+        O 4.603717 2.279523 4.197822 region=Auto_Generated
+        O 3.797415 2.796469 4.757323 region=Auto_Generated
+        O -3.452228 -1.17554 -4.719817 region=Auto_Generated
+        O -4.455783 -1.6479 -4.707565 region=Auto_Generated
+        O -0.304969 -4.778837 -4.68345 region=Auto_Generated
+        O 0.800275 -4.832088 -4.606012 region=Auto_Generated
+        O 4.790651 -3.097307 1.575718 region=Auto_Generated
+        O 4.310171 -3.92719 1.018196 region=Auto_Generated
+        O 0.108274 1.421813 -4.662342 region=Auto_Generated
+        O -0.395881 2.409757 -4.648613 region=Auto_Generated
+        O -3.474776 -4.516135 -3.469127 region=Auto_Generated
+        O -2.839271 -3.649256 -3.743079 region=Auto_Generated
+        O 0.507865 4.637093 -1.205482 region=Auto_Generated
+        O -0.143482 4.367453 -2.061892 region=Auto_Generated
+        O 1.192225 2.219171 3.841193 region=Auto_Generated
+        O 0.369026 2.956352 3.744732 region=Auto_Generated
+        O -4.657171 3.086855 2.661935 region=Auto_Generated
+        O -4.736386 2.391518 3.522532 region=Auto_Generated
+        O 4.755874 4.493347 -4.620471 region=Auto_Generated
+        O 3.877714 3.818933 -4.686787 region=Auto_Generated
+        O 4.749683 -2.104929 4.164553 region=Auto_Generated
+        O 3.844766 -2.158207 4.803836 region=Auto_Generated
+        O 4.695929 3.477941 1.724548 region=Auto_Generated
+        O 4.748463 4.581917 1.818756 region=Auto_Generated
+        O -4.552929 -0.470301 4.798369 region=Auto_Generated
+        O -4.04926 -0.8312580000000001 3.878356 region=Auto_Generated
+        O -4.80054 0.445092 -2.953661 region=Auto_Generated
+        O -4.48598 1.492784 -3.137483 region=Auto_Generated
+        O -0.66296 -2.655666 4.294253 region=Auto_Generated
+        O 0.050401 -1.930422 4.736446 region=Auto_Generated
+        O 2.054672 4.622985 1.273964 region=Auto_Generated
+        O 1.914755 3.558167 1.551421 region=Auto_Generated
+        O -0.038609 -4.860383 -1.94778 region=Auto_Generated
+        O -0.68025 -4.000426 -1.666413 region=Auto_Generated
+        O -1.125709 -4.85878 1.612062 region=Auto_Generated
+        O -1.976257 -4.867401 0.9001 region=Auto_Generated
+        O 1.972206 2.889276 -2.947885 region=Auto_Generated
+        O 2.337815 1.855056 -3.11255 region=Auto_Generated
+    End
+    Lattice
+        12.0 0.0 0.0
+        0.0 12.0 0.0
+        0.0 0.0 12.0
+    End
+    BondOrders
+         1 2 1.0
+         1 9 1.0
+         1 10 1.0
+         1 11 1.0
+         2 3 1.0
+         2 6 1.0
+         2 7 1.0
+         3 4 1.0
+         3 12 1.0
+         3 13 1.0
+         4 5 1.0
+         4 8 1.0
+         4 14 1.0
+         5 15 1.0
+         5 16 1.0
+         5 17 1.0
+         6 18 1.0
+         6 19 1.0
+         6 20 1.0
+         7 21 1.0
+         7 22 1.0
+         7 23 1.0
+         8 24 1.0
+         8 25 1.0
+         8 26 1.0
+         27 28 2.0
+         29 30 2.0
+         31 32 2.0
+         33 34 2.0
+         35 36 2.0
+         37 38 2.0
+         39 40 2.0
+         41 42 2.0
+         43 44 2.0
+         45 46 2.0
+         47 48 2.0
+         49 50 2.0
+         51 52 2.0
+         53 54 2.0
+         55 56 2.0
+         57 58 2.0
+         59 60 2.0
+         61 62 2.0
+         63 64 2.0
+         65 66 2.0
+         67 68 2.0
+         69 70 2.0
+         71 72 2.0
+         73 74 2.0
+         75 76 2.0
+         77 78 2.0
+         79 80 2.0
+         81 82 2.0
+         83 84 2.0
+         85 86 2.0
+    End
+End
+
+Engine DFTB
+    Model SCC-DFTB
+    ResourcesDir DFTB.org/mio-1-1
+    Occupation
+        Strategy Fermi
+        Temperature 3500
+    End
+    KSpace
+        Quality GammaOnly
+    End
+EndEngine
+eor
+

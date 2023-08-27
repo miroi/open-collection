@@ -1,0 +1,38 @@
+!CAM-B3LYP DEF2-SVP DEF2-SVP/C RIJDX ESD(FLUOR) CPCM(WATER)
+!LARGEPRINT
+!pal8
+%id "cza FLU"
+%scf
+Maxiter  200
+TolE 1.0e-12
+end
+%TDDFT NROOTS 5
+       IROOT  1
+END
+%ESD   GSHESSIAN   "cza-cam-svp-GS.hess"
+       ESHESSIAN   "cza-cam-svp-ES.hess"
+       DOHT        TRUE
+       LINES VOIGT
+       LINEW 75 # FHWM_lorentz =  2*LINEW
+       INLINEW 1700 # FHWM_gauss =  2.355*INLINEW (0.5 eV)
+END
+%maxcore 6000
+* xyz 0 1
+  C     -1.408942   -1.101330    0.000000
+  C      0.004138   -1.214478   -0.000001
+  C      0.806524   -0.043382   -0.000002
+  C      0.080511    1.174164   -0.000001
+  C     -1.339023    1.146123   -0.000000
+  N     -2.100955    0.046023    0.000001
+  H      0.455066   -2.207113   -0.000001
+  H      0.579898    2.142742   -0.000002
+  O     -1.958846    2.311127    0.000000
+  H     -2.921771    2.155378    0.000001
+  O     -2.102367   -2.224315    0.000001
+  H     -3.053358   -2.006696    0.000002
+  C      2.241309   -0.135732   -0.000003
+  O      2.879135   -1.189059    0.000000
+  O      2.859988    1.072944    0.000001
+  H      3.815970    0.904255    0.000003
+*
+

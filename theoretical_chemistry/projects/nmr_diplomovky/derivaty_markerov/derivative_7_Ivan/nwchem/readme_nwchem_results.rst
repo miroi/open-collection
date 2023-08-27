@@ -71,11 +71,13 @@ P shift = 322.5847 - 161.8886  = 160.6961 ppm EXP= 146.19(+-0.09) ppm
 
 Atom    2:  31-P  and Atom   31: Isotropic Spin-Spin Coupling =  11.7660 Hz  EXP = 10.01 (d) Hz
 
-der7.ssb-d.5596.out_SAVED
+der7.ssb-d.6269.out_SAVED
 ~~~~~~~~~~~~~~~~~~~~~~~~~
-todo
-
+Total Shielding Tensor   isotropic = 190.7100 ppm
 h3po4.ssb-d.5819.out_SAVED: Atom:    1  P   isotropic = 342.7295
+P shift = 342.7295 - 190.7100 = 152.0195 ppm  EXP= 146.19(+-0.09) ppm
+
+Atom    2:  31-P  and Atom   31:   1-H    Isotropic Spin-Spin Coupling =      13.2450 Hz   EXP = 10.01 (d) Hz
 
 
 Geometry: der7_pbe0_geom_6-311++g2d_2p-045_converged.xyz (from NWChem)

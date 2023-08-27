@@ -1,0 +1,52 @@
+#!/bin/sh
+
+"$AMSBIN/ams" << eor
+
+Task GeometryOptimization
+GeometryOptimization
+    OptimizeLattice Yes
+End
+System
+    Atoms
+        Fl 1.880015115318656e-15 -2.35001889414832e-15 -3.760030230637312e-15 
+        Fl 1.605000000000002 -0.9266471820493511 -2.775000000000003 
+    End
+    Lattice
+        3.21 0.0 0.0
+        -1.605 2.779941546148048 0.0
+        0.0 0.0 5.55
+    End
+    BondOrders
+         1 1 1.0 -1 -1 0
+         1 1 1.0 -1 0 0
+         1 1 1.0 0 -1 0
+         1 1 1.0 0 1 0
+         1 1 1.0 1 0 0
+         1 1 1.0 1 1 0
+         1 2 1.0
+         1 2 1.0 -1 0 0
+         1 2 1.0 -1 0 1
+         1 2 1.0 0 0 1
+         1 2 1.0 0 1 0
+         1 2 1.0 0 1 1
+         2 2 1.0 -1 -1 0
+         2 2 1.0 -1 0 0
+         2 2 1.0 0 -1 0
+         2 2 1.0 0 1 0
+         2 2 1.0 1 1 0
+         2 2 1.0 1 0 0
+    End
+End
+
+Engine BAND
+    Basis
+        Type TZP
+        Core Small
+    End
+    XC
+        GGA revPBE
+        DISPERSION GRIMME3 BJDAMP
+    End
+EndEngine
+eor
+

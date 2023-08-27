@@ -1,0 +1,25 @@
+echo
+
+start molecule
+
+title "Q-G mm"
+charge 0
+
+geometry units angstroms print xyz autosym
+  load format xyz Q-G.xyz
+end
+
+basis
+ * library sto-3g
+end
+
+
+prepare
+  source rtdb
+  amber
+  vacuo
+end
+
+task prepare
+
+task md energy

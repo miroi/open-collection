@@ -1,0 +1,40 @@
+#!/bin/bash
+# Edit the lines beginning with "#SBATCH" in order to set job environment (they do not need to be uncommented)
+
+# J: Job name:
+#SBATCH -J simion
+
+# o: path to store stdout from job -- EDIT THIS
+##SBATCH -o /lustre/ukt/ywei/+2_3480/job_out_%j.out
+# e: path to store stderr (error output) -- EDIT THIS
+##SBATCH -e /lustre/ukt/ywei/+2_3480/job_err_%j.err
+
+## stdout/stderr output file
+#SBATCH -o log_slurm_job.%j.%N.std_out_err
+
+
+# D: Working directory for job (this is where outputs will be stored, and relative paths in your script will point here) --EDIT THIS
+##SBATCH -D /lustre/ukt/ywei/+2_3480
+
+# p: The "partition" for the job. "debug" for quick tests (limited to 30min), "main" for actual running
+##SBATCH -p high_mem
+#SBATCH -p main
+
+# t: Maximum time limit for the job (hh:mm:ss). If the job lives longer than this, it will be killed
+##SBATCH -t 60:00:00 
+#SBATCH -t 8:00:00 
+
+# N: minimum number of nodes that will be assingned to the job (default 1)
+#SBATCH -N 1
+
+# c: number of CPUs per task (default 1)
+#SBATCH -c 1
+
+# mem: amount of memory to assign to the job
+#SBATCH --mem=200G
+
+cd $SLURM_SUBMIT_DIR
+
+./submit.sh gascatcher.iob 2.txt
+
+exit

@@ -1,0 +1,40 @@
+echo
+
+start AtH@Q
+
+memory total 180 gb
+permanent_dir /lustre/ukt/milias/scratch/AtH_on_quartz
+
+print low
+
+title "AtH@Quartz ecp"
+charge 0
+
+geometry units angstroms print xyz autosym
+  load format xyz AtHonQ.startgeom.xyz
+end
+
+basis
+ * library crenbl_ecp
+end
+
+ecp 
+  Si library crenbl_ecp
+  At library crenbl_ecp
+end
+
+dft
+  xc revpbe cpbe96
+  disp vdw 4
+  maxiter 500
+end
+
+driver
+  maxiter 999
+#  xyz AtH_Qgeomconv
+end
+
+task dft optimize
+
+#task dft frequencies
+

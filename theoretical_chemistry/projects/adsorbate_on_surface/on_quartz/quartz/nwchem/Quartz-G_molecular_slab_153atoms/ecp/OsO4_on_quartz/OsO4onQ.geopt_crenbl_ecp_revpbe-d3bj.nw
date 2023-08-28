@@ -1,0 +1,38 @@
+echo
+
+start molecule
+
+memory total 180 gb
+
+print low
+
+title "OsO4@Quartz ecp"
+charge 0
+
+geometry units angstroms print xyz autosym
+  load format xyz OsO4_Q.geometry.xyz
+end
+
+basis
+ * library crenbl_ecp
+end
+
+ecp 
+  Si library crenbl_ecp
+  Os library crenbl_ecp
+end
+
+dft
+  xc revpbe cpbe96
+  maxiter 500
+end
+
+driver
+  maxiter 999
+  xyz OsO4Qgeomconv
+end
+
+task dft optimize
+
+#task dft frequencies
+

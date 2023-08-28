@@ -1,0 +1,693 @@
+Start Singularity container /cvmfs/vae.gsi.de/vae23/containers/vae23-user_container_20230617T0229.sif
+INFO:    Environment variable SINGULARITYENV_PATH is set, but APPTAINERENV_PATH is preferred
+INFO:    Environment variable SINGULARITYENV_LD_LIBRARY_PATH is set, but APPTAINERENV_LD_LIBRARY_PATH is preferred
+WARNING: While bind mounting '/etc/slurm:/etc/slurm': destination is already in the mount point list
+WARNING: While bind mounting '/var/run/munge:/var/run/munge': destination is already in the mount point list
+WARNING: While bind mounting '/var/spool/slurm:/var/spool/slurm': destination is already in the mount point list
+WARNING: While bind mounting '/var/lib/sss/pipes/nss:/var/lib/sss/pipes/nss': destination is already in the mount point list
+WARNING: While bind mounting '/cvmfs:/cvmfs': destination is already in the mount point list
+
+
+ Running on host lxbk1144
+Time is Wed 05 Jul 2023 08:50:23 PM CEST 
+
+
+Job user is milias and his job TsOH@Qg has assigned ID 3850073
+This job was submitted from the computer lxbk1135
+and from the home directory /lustre/ukt/milias/work/projects/open-collection/theoretical_chemistry/software/wien2k/runs/TsOH_on_quartz_G/TsOHQg:
+It is running on the cluster compute node:
+virgo
+and is employing 1 node/nodes:
+lxbk1144
+
+Job partition is main 
+
+The job requests SLURM_NTASKS=36.
+The node's CPU model name	: AMD EPYC 7713 64-Core Processor
+This node has total 256 CPUs available for an EXCLUSIVE job.
+SLURM_CPUS_ON_NODE=204
+SLURM_NTASKS_PER_SOCKET=
+SLURM_NTASKS_PER_NODE=36
+SLURM_NTASKS_PER_CORE=
+SLURM_PARTITION=
+SLURM_MEM_PER_NODE=417792
+
+ The total memory at the node (in GB)
+              total        used        free      shared  buff/cache   available
+Mem:            503          17         466           1          19         479
+Swap:             9           0           9
+Total:          513          17         476
+
+
+
+Sparc modules loading:
+
+ All loaded modules, spack find --loaded:
+-- linux-debian10-x86_64 / gcc@8.3.0 ----------------------------
+autoconf@2.69
+autoconf-archive@2022.02.11
+automake@1.16.5
+diffutils@3.8
+gawk@5.1.1
+gcc@10.2.0
+gmp@6.2.1
+libiconv@1.16
+libsigsegv@2.13
+libtool@2.4.7
+m4@1.4.19
+mpc@1.2.1
+mpfr@4.1.0
+ncurses@6.1
+perl@5.16.3
+readline@8.1.2
+texinfo@6.5
+zlib@1.2.13
+zstd@1.5.2
+
+-- linux-debian10-x86_64 / gcc@10.2.0 ---------------------------
+amdfftw@3.0
+amdscalapack@3.2
+autoconf@2.69
+autoconf-archive@2022.02.11
+automake@1.16.5
+bison@3.8.2
+bzip2@1.0.8
+ca-certificates-mozilla@2022-10-11
+cmake@3.24.3
+curl@7.85.0
+diffutils@3.8
+elpa@2021.11.001
+expat@2.4.8
+gawk@5.1.1
+gdbm@1.23
+gettext@0.21.1
+glib@2.74.1
+gmp@6.2.1
+hwloc@2.8.0
+json-c@0.16
+krb5@1.19.3
+libbsd@0.11.5
+libedit@3.1-20210216
+libevent@2.1.12
+libffi@3.4.2
+libgcrypt@1.10.1
+libgpg-error@1.46
+libiconv@1.16
+libmd@1.0.4
+libpciaccess@0.16
+libsigsegv@2.13
+libtool@2.4.7
+libxml2@2.10.1
+lz4@1.9.4
+m4@1.4.19
+meson@0.63.3
+mpfr@4.1.0
+munge@0.5.13
+ncurses@6.1
+ninja@1.11.1
+numactl@2.0.14
+openblas@0.3.21
+openmpi@4.1.5
+openssh@9.1p1
+openssl@1.1.1s
+pcre2@10.39
+perl@5.16.3
+pigz@2.7
+pkgconf@1.8.0
+pmix@3.2.2
+py-pip@22.2.2
+py-setuptools@59.4.0
+py-wheel@0.37.1
+python@3.10.8
+rdma-core@22.4
+readline@8.1.2
+slurm@21-08-8-2
+sqlite@3.39.4
+tar@1.34
+texinfo@6.5
+ucx@1.9.0
+util-linux-uuid@2.38.1
+util-macros@1.19.3
+xz@5.2.7
+zlib@1.2.13
+zstd@1.5.2
+
+ check of tcsh :
+/usr/bin/tcsh
+tcsh 6.20.00 (Astron) 2016-11-24 (x86_64-unknown-linux) options wide,nls,dl,al,kan,sm,rh,nd,color,filec
+
+ gcc compilers, libs:
+-- linux-debian10-x86_64 / gcc@8.3.0 ----------------------------
+gcc@10.2.0  /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht
+/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/bin/gfortran
+GNU Fortran (Spack GCC) 10.2.0
+Copyright (C) 2020 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+
+ OpenMPI compilers, libs:
+-- linux-debian10-x86_64 / gcc@10.2.0 ---------------------------
+openmpi@4.1.5  /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7
+total 24812
+drwxr-sr-x. 2 nobody nogroup      74 Mar 29 06:17 openmpi
+-rw-r--r--. 1 nobody nogroup 2444774 Mar 29 06:17 liboshmem.a
+lrwxrwxrwx. 1 nobody nogroup      20 Mar 29 06:17 liboshmem.so -> liboshmem.so.40.30.3
+lrwxrwxrwx. 1 nobody nogroup      20 Mar 29 06:17 liboshmem.so.40 -> liboshmem.so.40.30.3
+-rwxr-xr-x. 1 nobody nogroup 1262792 Mar 29 06:17 liboshmem.so.40.30.3
+drwxr-sr-x. 2 nobody nogroup     136 Mar 29 06:17 pkgconfig
+-rw-r--r--. 1 nobody nogroup 1315806 Mar 29 06:17 libmpi_usempif08.a
+lrwxrwxrwx. 1 nobody nogroup      27 Mar 29 06:17 libmpi_usempif08.so -> libmpi_usempif08.so.40.30.0
+lrwxrwxrwx. 1 nobody nogroup      27 Mar 29 06:17 libmpi_usempif08.so.40 -> libmpi_usempif08.so.40.30.0
+-rwxr-xr-x. 1 nobody nogroup  369912 Mar 29 06:17 libmpi_usempif08.so.40.30.0
+-rw-r--r--. 1 nobody nogroup   47710 Mar 29 06:17 libompitrace.a
+lrwxrwxrwx. 1 nobody nogroup      23 Mar 29 06:17 libompitrace.so -> libompitrace.so.40.30.1
+lrwxrwxrwx. 1 nobody nogroup      23 Mar 29 06:17 libompitrace.so.40 -> libompitrace.so.40.30.1
+-rwxr-xr-x. 1 nobody nogroup   26664 Mar 29 06:17 libompitrace.so.40.30.1
+-rwxr-xr-x. 1 nobody nogroup    9933 Mar 29 06:17 mpi_f08_ext.mod
+-rwxr-xr-x. 1 nobody nogroup  119399 Mar 29 06:17 mpi_f08.mod
+-rwxr-xr-x. 1 nobody nogroup    1623 Mar 29 06:17 mpi_f08_callbacks.mod
+-rwxr-xr-x. 1 nobody nogroup    1995 Mar 29 06:17 mpi_f08_interfaces_callbacks.mod
+-rwxr-xr-x. 1 nobody nogroup   50479 Mar 29 06:17 mpi_f08_interfaces.mod
+-rwxr-xr-x. 1 nobody nogroup   13854 Mar 29 06:17 mpi_f08_types.mod
+-rwxr-xr-x. 1 nobody nogroup   50550 Mar 29 06:17 pmpi_f08_interfaces.mod
+-rw-r--r--. 1 nobody nogroup 1090246 Mar 29 06:17 libmpi_mpifh.a
+-rw-r--r--. 1 nobody nogroup   64326 Mar 29 06:17 libmpi_usempi_ignore_tkr.a
+lrwxrwxrwx. 1 nobody nogroup      35 Mar 29 06:17 libmpi_usempi_ignore_tkr.so -> libmpi_usempi_ignore_tkr.so.40.30.0
+lrwxrwxrwx. 1 nobody nogroup      35 Mar 29 06:17 libmpi_usempi_ignore_tkr.so.40 -> libmpi_usempi_ignore_tkr.so.40.30.0
+-rwxr-xr-x. 1 nobody nogroup   79336 Mar 29 06:17 libmpi_usempi_ignore_tkr.so.40.30.0
+-rwxr-xr-x. 1 nobody nogroup    5922 Mar 29 06:17 mpi_ext.mod
+-rwxr-xr-x. 1 nobody nogroup   97280 Mar 29 06:17 mpi.mod
+lrwxrwxrwx. 1 nobody nogroup      23 Mar 29 06:17 libmpi_mpifh.so -> libmpi_mpifh.so.40.30.0
+lrwxrwxrwx. 1 nobody nogroup      23 Mar 29 06:17 libmpi_mpifh.so.40 -> libmpi_mpifh.so.40.30.0
+-rwxr-xr-x. 1 nobody nogroup  691112 Mar 29 06:17 libmpi_mpifh.so.40.30.0
+-rw-r--r--. 1 nobody nogroup 6827004 Mar 29 06:17 libmpi.a
+lrwxrwxrwx. 1 nobody nogroup      17 Mar 29 06:17 libmpi.so -> libmpi.so.40.30.5
+lrwxrwxrwx. 1 nobody nogroup      17 Mar 29 06:17 libmpi.so.40 -> libmpi.so.40.30.5
+-rwxr-xr-x. 1 nobody nogroup 3602416 Mar 29 06:17 libmpi.so.40.30.5
+-rw-r--r--. 1 nobody nogroup 2646508 Mar 29 06:17 libopen-rte.a
+lrwxrwxrwx. 1 nobody nogroup      22 Mar 29 06:17 libopen-rte.so -> libopen-rte.so.40.30.3
+lrwxrwxrwx. 1 nobody nogroup      22 Mar 29 06:17 libopen-rte.so.40 -> libopen-rte.so.40.30.3
+-rwxr-xr-x. 1 nobody nogroup 1322664 Mar 29 06:17 libopen-rte.so.40.30.3
+-rw-r--r--. 1 nobody nogroup 2066808 Mar 29 06:17 libopen-pal.a
+lrwxrwxrwx. 1 nobody nogroup      22 Mar 29 06:17 libopen-pal.so -> libopen-pal.so.40.30.3
+lrwxrwxrwx. 1 nobody nogroup      22 Mar 29 06:17 libopen-pal.so.40 -> libopen-pal.so.40.30.3
+-rwxr-xr-x. 1 nobody nogroup 1183400 Mar 29 06:17 libopen-pal.so.40.30.3
+          Thread support: posix (MPI_THREAD_MULTIPLE: yes, OPAL support: yes, OMPI progress: no, ORTE progress: yes, Event lib: yes)
+   FT Checkpoint support: no (checkpoint thread: no)
+/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/bin/mpif90
+GNU Fortran (Spack GCC) 10.2.0
+Copyright (C) 2020 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/bin/mpirun
+mpirun (Open MPI) 4.1.5
+
+Report bugs to http://www.open-mpi.org/community/help/
+
+ OpenBLAS library:
+-- linux-debian10-x86_64 / gcc@10.2.0 ---------------------------
+openblas@0.3.21  /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openblas-0.3.21-q7nhojttkz52xuf4zkxk7vvgllqnxh34
+total 106479
+-rwxr-xr-x. 1 nobody nogroup 40502104 Mar 29 04:01 libopenblas-r0.3.21.so
+lrwxrwxrwx. 1 nobody nogroup       22 Mar 29 04:01 libopenblas.so -> libopenblas-r0.3.21.so
+lrwxrwxrwx. 1 nobody nogroup       22 Mar 29 04:01 libopenblas.so.0 -> libopenblas-r0.3.21.so
+drwxr-sr-x. 2 nobody nogroup       22 Mar 29 04:01 pkgconfig
+drwxr-sr-x. 3 nobody nogroup       16 Mar 29 04:01 cmake
+lrwxrwxrwx. 1 nobody nogroup       21 Mar 29 04:01 libopenblas.a -> libopenblas-r0.3.21.a
+-rw-r--r--. 1 nobody nogroup 68528736 Mar 29 04:01 libopenblas-r0.3.21.a
+
+ FFTW3 library:
+-- linux-debian10-x86_64 / gcc@10.2.0 ---------------------------
+amdfftw@3.0  /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb
+total 2568
+lrwxrwxrwx. 1 nobody nogroup      22 Mar 29 06:32 libfftw3f_mpi.so -> libfftw3f_mpi.so.3.5.8
+lrwxrwxrwx. 1 nobody nogroup      22 Mar 29 06:32 libfftw3f_mpi.so.3 -> libfftw3f_mpi.so.3.5.8
+-rwxr-xr-x. 1 nobody nogroup  118040 Mar 29 06:32 libfftw3f_mpi.so.3.5.8
+lrwxrwxrwx. 1 nobody nogroup      22 Mar 29 06:32 libfftw3f_omp.so -> libfftw3f_omp.so.3.5.8
+lrwxrwxrwx. 1 nobody nogroup      22 Mar 29 06:32 libfftw3f_omp.so.3 -> libfftw3f_omp.so.3.5.8
+-rwxr-xr-x. 1 nobody nogroup   41168 Mar 29 06:32 libfftw3f_omp.so.3.5.8
+lrwxrwxrwx. 1 nobody nogroup      18 Mar 29 06:32 libfftw3f.so -> libfftw3f.so.3.5.8
+lrwxrwxrwx. 1 nobody nogroup      18 Mar 29 06:32 libfftw3f.so.3 -> libfftw3f.so.3.5.8
+-rwxr-xr-x. 1 nobody nogroup 1151088 Mar 29 06:32 libfftw3f.so.3.5.8
+drwxr-sr-x. 2 nobody nogroup      34 Mar 29 06:32 pkgconfig
+lrwxrwxrwx. 1 nobody nogroup      21 Mar 29 06:32 libfftw3_mpi.so -> libfftw3_mpi.so.3.5.8
+lrwxrwxrwx. 1 nobody nogroup      21 Mar 29 06:32 libfftw3_mpi.so.3 -> libfftw3_mpi.so.3.5.8
+-rwxr-xr-x. 1 nobody nogroup  121920 Mar 29 06:32 libfftw3_mpi.so.3.5.8
+lrwxrwxrwx. 1 nobody nogroup      21 Mar 29 06:32 libfftw3_omp.so -> libfftw3_omp.so.3.5.8
+lrwxrwxrwx. 1 nobody nogroup      21 Mar 29 06:32 libfftw3_omp.so.3 -> libfftw3_omp.so.3.5.8
+-rwxr-xr-x. 1 nobody nogroup   41112 Mar 29 06:32 libfftw3_omp.so.3.5.8
+drwxr-sr-x. 3 nobody nogroup      10 Mar 29 06:32 cmake
+lrwxrwxrwx. 1 nobody nogroup      17 Mar 29 06:32 libfftw3.so -> libfftw3.so.3.5.8
+lrwxrwxrwx. 1 nobody nogroup      17 Mar 29 06:32 libfftw3.so.3 -> libfftw3.so.3.5.8
+-rwxr-xr-x. 1 nobody nogroup 1146408 Mar 29 06:32 libfftw3.so.3.5.8
+
+ SCALAPACK library:
+-- linux-debian10-x86_64 / gcc@10.2.0 ---------------------------
+amdscalapack@3.2  /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdscalapack-3.2-zmrsnzmnifwusgdparcdnpdksnehsbcm
+total 5768
+drwxr-sr-x. 3 nobody nogroup      30 Mar 29 06:39 cmake
+drwxr-sr-x. 2 nobody nogroup      24 Mar 29 06:39 pkgconfig
+-rw-r--r--. 1 nobody nogroup 5904632 Mar 29 06:38 libscalapack.so
+
+ ELPA library:
+-- linux-debian10-x86_64 / gcc@10.2.0 ---------------------------
+elpa@2021.11.001  /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms
+total 4363
+drwxr-sr-x. 2 nobody nogroup      28 Apr  4 09:10 pkgconfig
+-rw-r--r--. 1 nobody nogroup 2599766 Apr  4 09:10 libelpa_openmp.a
+lrwxrwxrwx. 1 nobody nogroup      24 Apr  4 09:10 libelpa_openmp.so -> libelpa_openmp.so.17.0.0
+lrwxrwxrwx. 1 nobody nogroup      24 Apr  4 09:10 libelpa_openmp.so.17 -> libelpa_openmp.so.17.0.0
+-rwxr-xr-x. 1 nobody nogroup 1866208 Apr  4 09:10 libelpa_openmp.so.17.0.0
+
+ updated LD_LIBRARY_PATH=/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms/lib/:/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdscalapack-3.2-zmrsnzmnifwusgdparcdnpdksnehsbcm/lib/:/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/lib:/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openblas-0.3.21-q7nhojttkz52xuf4zkxk7vvgllqnxh34/lib/:/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/:/cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib/gcc/x86_64-pc-linux-gnu/10.2.0:/.singularity.d/libs:/.singularity.d/libs
+WIENROOT=/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2_gnu_openmpi_openblas
+
+Creating scratch directory, SCRATCH=/lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg
+I am in $SCRATCH directrory :
+/lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg
+
+ ldd /lustre/ukt/milias/work/software/wien2k/Wien2k_23.2_gnu_openmpi_openblas/dstart_mpi :
+	linux-vdso.so.1 (0x000014a93b561000)
+	libfftw3.so.3 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/lib/libfftw3.so.3 (0x000014a93b454000)
+	libfftw3_omp.so.3 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/lib/libfftw3_omp.so.3 (0x000014a93b44a000)
+	libopenblas.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openblas-0.3.21-q7nhojttkz52xuf4zkxk7vvgllqnxh34/lib/libopenblas.so.0 (0x000014a938ece000)
+	libmpi.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libmpi.so.40 (0x000014a938bac000)
+	libmpi_usempif08.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libmpi_usempif08.so.40 (0x000014a938b69000)
+	libmpi_usempi_ignore_tkr.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libmpi_usempi_ignore_tkr.so.40 (0x000014a938b58000)
+	libmpi_mpifh.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libmpi_mpifh.so.40 (0x000014a938ae7000)
+	libgfortran.so.5 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libgfortran.so.5 (0x000014a93882b000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x000014a93869a000)
+	libgomp.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libgomp.so.1 (0x000014a938659000)
+	libgcc_s.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libgcc_s.so.1 (0x000014a93863e000)
+	libquadmath.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libquadmath.so.0 (0x000014a9385f5000)
+	libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x000014a9385d2000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x000014a938412000)
+	libopen-rte.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libopen-rte.so.40 (0x000014a9382e6000)
+	libopen-pal.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libopen-pal.so.40 (0x000014a9381df000)
+	libucp.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/ucx-1.9.0-6kcy2huctfmqanv3onro64z4fgcbbkdo/lib/libucp.so.0 (0x000014a938176000)
+	libuct.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/ucx-1.9.0-6kcy2huctfmqanv3onro64z4fgcbbkdo/lib/libuct.so.0 (0x000014a938144000)
+	libucm.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/ucx-1.9.0-6kcy2huctfmqanv3onro64z4fgcbbkdo/lib/libucm.so.0 (0x000014a938128000)
+	libucs.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/ucx-1.9.0-6kcy2huctfmqanv3onro64z4fgcbbkdo/lib/libucs.so.0 (0x000014a9380e0000)
+	libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x000014a9380db000)
+	libpmix.so.2 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/pmix-3.2.2-xxu3bzsuuainkfraekzzagcl34owihxs/lib/libpmix.so.2 (0x000014a937f82000)
+	libnl-3.so.200 => /lib/x86_64-linux-gnu/libnl-3.so.200 (0x000014a937d61000)
+	libnl-route-3.so.200 => /usr/lib/x86_64-linux-gnu/libnl-route-3.so.200 (0x000014a937ae8000)
+	librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x000014a937adc000)
+	libutil.so.1 => /lib/x86_64-linux-gnu/libutil.so.1 (0x000014a937ad7000)
+	libz.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/zlib-1.2.13-xz6lqyiknxh5ofvyybzre2lrusx2u4o2/lib/libz.so.1 (0x000014a937abd000)
+	libhwloc.so.15 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/hwloc-2.8.0-rpajza4w5yeshrr7qnbtwiz7cgsc5y4l/lib/libhwloc.so.15 (0x000014a937a5f000)
+	libevent_core-2.1.so.7 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libevent-2.1.12-yu6nwyorgmfg6msofxuhqqkijsdqakzp/lib/libevent_core-2.1.so.7 (0x000014a937a27000)
+	libevent_pthreads-2.1.so.7 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libevent-2.1.12-yu6nwyorgmfg6msofxuhqqkijsdqakzp/lib/libevent_pthreads-2.1.so.7 (0x000014a937a20000)
+	/lib64/ld-linux-x86-64.so.2 (0x000014a93b563000)
+	libnuma.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/numactl-2.0.14-p4a7bukg5ydtffxqfb657wtifvblnefy/lib/libnuma.so.1 (0x000014a937a12000)
+	libmunge.so.2 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/munge-0.5.13-siy6ee26a2hmclhy5a5vapfps4mb7jzm/lib/libmunge.so.2 (0x000014a937a04000)
+	libpciaccess.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libpciaccess-0.16-dcbydon6ydygdx25zfodcnxet7xjbvov/lib/libpciaccess.so.0 (0x000014a9379f8000)
+	libxml2.so.2 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libxml2-2.10.1-uemmoahqov5jnjgtbzgjwh4gin47zj4o/lib/libxml2.so.2 (0x000014a937890000)
+	libatomic.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libatomic.so.1 (0x000014a937885000)
+	liblzma.so.5 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/xz-5.2.7-kfrl4tvfvwufmsoyu2hvml5i6n5z2br4/lib/liblzma.so.5 (0x000014a93785b000)
+	libiconv.so.2 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libiconv-1.16-r6z5bvhxgq7syjhkok6uiulvpxut5fab/lib/libiconv.so.2 (0x000014a93775a000)
+
+ ldd /lustre/ukt/milias/work/software/wien2k/Wien2k_23.2_gnu_openmpi_openblas/lapw0_mpi :
+	linux-vdso.so.1 (0x000014d69add3000)
+	libfftw3_mpi.so.3 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/lib/libfftw3_mpi.so.3 (0x000014d69adb2000)
+	libfftw3.so.3 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/lib/libfftw3.so.3 (0x000014d69acab000)
+	libfftw3_omp.so.3 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/lib/libfftw3_omp.so.3 (0x000014d69ac9f000)
+	libopenblas.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openblas-0.3.21-q7nhojttkz52xuf4zkxk7vvgllqnxh34/lib/libopenblas.so.0 (0x000014d698725000)
+	libmpi.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libmpi.so.40 (0x000014d698403000)
+	libmpi_usempif08.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libmpi_usempif08.so.40 (0x000014d6983c0000)
+	libmpi_usempi_ignore_tkr.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libmpi_usempi_ignore_tkr.so.40 (0x000014d6983af000)
+	libmpi_mpifh.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libmpi_mpifh.so.40 (0x000014d69833c000)
+	libgfortran.so.5 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libgfortran.so.5 (0x000014d698082000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x000014d697ef1000)
+	libgomp.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libgomp.so.1 (0x000014d697eb0000)
+	libgcc_s.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libgcc_s.so.1 (0x000014d697e95000)
+	libquadmath.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libquadmath.so.0 (0x000014d697e4a000)
+	libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x000014d697e29000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x000014d697c69000)
+	libopen-rte.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libopen-rte.so.40 (0x000014d697b3d000)
+	libopen-pal.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libopen-pal.so.40 (0x000014d697a36000)
+	libucp.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/ucx-1.9.0-6kcy2huctfmqanv3onro64z4fgcbbkdo/lib/libucp.so.0 (0x000014d6979cd000)
+	libuct.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/ucx-1.9.0-6kcy2huctfmqanv3onro64z4fgcbbkdo/lib/libuct.so.0 (0x000014d69799b000)
+	libucm.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/ucx-1.9.0-6kcy2huctfmqanv3onro64z4fgcbbkdo/lib/libucm.so.0 (0x000014d69797f000)
+	libucs.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/ucx-1.9.0-6kcy2huctfmqanv3onro64z4fgcbbkdo/lib/libucs.so.0 (0x000014d697937000)
+	libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x000014d697932000)
+	libpmix.so.2 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/pmix-3.2.2-xxu3bzsuuainkfraekzzagcl34owihxs/lib/libpmix.so.2 (0x000014d6977d9000)
+	libnl-3.so.200 => /lib/x86_64-linux-gnu/libnl-3.so.200 (0x000014d6975b8000)
+	libnl-route-3.so.200 => /usr/lib/x86_64-linux-gnu/libnl-route-3.so.200 (0x000014d69733d000)
+	librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x000014d697333000)
+	libutil.so.1 => /lib/x86_64-linux-gnu/libutil.so.1 (0x000014d69732e000)
+	libz.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/zlib-1.2.13-xz6lqyiknxh5ofvyybzre2lrusx2u4o2/lib/libz.so.1 (0x000014d697314000)
+	libhwloc.so.15 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/hwloc-2.8.0-rpajza4w5yeshrr7qnbtwiz7cgsc5y4l/lib/libhwloc.so.15 (0x000014d6972b6000)
+	libevent_core-2.1.so.7 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libevent-2.1.12-yu6nwyorgmfg6msofxuhqqkijsdqakzp/lib/libevent_core-2.1.so.7 (0x000014d69727c000)
+	libevent_pthreads-2.1.so.7 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libevent-2.1.12-yu6nwyorgmfg6msofxuhqqkijsdqakzp/lib/libevent_pthreads-2.1.so.7 (0x000014d697277000)
+	/lib64/ld-linux-x86-64.so.2 (0x000014d69add5000)
+	libnuma.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/numactl-2.0.14-p4a7bukg5ydtffxqfb657wtifvblnefy/lib/libnuma.so.1 (0x000014d697269000)
+	libmunge.so.2 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/munge-0.5.13-siy6ee26a2hmclhy5a5vapfps4mb7jzm/lib/libmunge.so.2 (0x000014d69725b000)
+	libpciaccess.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libpciaccess-0.16-dcbydon6ydygdx25zfodcnxet7xjbvov/lib/libpciaccess.so.0 (0x000014d69724f000)
+	libxml2.so.2 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libxml2-2.10.1-uemmoahqov5jnjgtbzgjwh4gin47zj4o/lib/libxml2.so.2 (0x000014d6970e7000)
+	libatomic.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libatomic.so.1 (0x000014d6970dc000)
+	liblzma.so.5 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/xz-5.2.7-kfrl4tvfvwufmsoyu2hvml5i6n5z2br4/lib/liblzma.so.5 (0x000014d6970b2000)
+	libiconv.so.2 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libiconv-1.16-r6z5bvhxgq7syjhkok6uiulvpxut5fab/lib/libiconv.so.2 (0x000014d696fb1000)
+
+ ldd /lustre/ukt/milias/work/software/wien2k/Wien2k_23.2_gnu_openmpi_openblas/lapw1_mpi :
+	linux-vdso.so.1 (0x00007fffd6667000)
+	libscalapack.so => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdscalapack-3.2-zmrsnzmnifwusgdparcdnpdksnehsbcm/lib/libscalapack.so (0x000014e67e0eb000)
+	libelpa_openmp.so.17 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/elpa-2021.11.001-uorwjue22nh7br4jthmt3lfugpeivfms/lib/libelpa_openmp.so.17 (0x000014e67df32000)
+	libfftw3.so.3 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/lib/libfftw3.so.3 (0x000014e67de29000)
+	libfftw3_omp.so.3 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/lib/libfftw3_omp.so.3 (0x000014e67de1f000)
+	libopenblas.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openblas-0.3.21-q7nhojttkz52xuf4zkxk7vvgllqnxh34/lib/libopenblas.so.0 (0x000014e67b8a5000)
+	libmpi.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libmpi.so.40 (0x000014e67b583000)
+	libmpi_usempif08.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libmpi_usempif08.so.40 (0x000014e67b540000)
+	libmpi_usempi_ignore_tkr.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libmpi_usempi_ignore_tkr.so.40 (0x000014e67b52d000)
+	libmpi_mpifh.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libmpi_mpifh.so.40 (0x000014e67b4bc000)
+	libgfortran.so.5 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libgfortran.so.5 (0x000014e67b202000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x000014e67b071000)
+	libgomp.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libgomp.so.1 (0x000014e67b030000)
+	libgcc_s.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libgcc_s.so.1 (0x000014e67b013000)
+	libquadmath.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libquadmath.so.0 (0x000014e67afca000)
+	libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x000014e67afa9000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x000014e67ade9000)
+	libopen-rte.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libopen-rte.so.40 (0x000014e67acbd000)
+	libopen-pal.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libopen-pal.so.40 (0x000014e67abb4000)
+	libucp.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/ucx-1.9.0-6kcy2huctfmqanv3onro64z4fgcbbkdo/lib/libucp.so.0 (0x000014e67ab4b000)
+	libuct.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/ucx-1.9.0-6kcy2huctfmqanv3onro64z4fgcbbkdo/lib/libuct.so.0 (0x000014e67ab19000)
+	libucm.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/ucx-1.9.0-6kcy2huctfmqanv3onro64z4fgcbbkdo/lib/libucm.so.0 (0x000014e67aaff000)
+	libucs.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/ucx-1.9.0-6kcy2huctfmqanv3onro64z4fgcbbkdo/lib/libucs.so.0 (0x000014e67aab7000)
+	libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x000014e67aab0000)
+	libpmix.so.2 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/pmix-3.2.2-xxu3bzsuuainkfraekzzagcl34owihxs/lib/libpmix.so.2 (0x000014e67a957000)
+	libnl-3.so.200 => /lib/x86_64-linux-gnu/libnl-3.so.200 (0x000014e67a736000)
+	libnl-route-3.so.200 => /usr/lib/x86_64-linux-gnu/libnl-route-3.so.200 (0x000014e67a4bd000)
+	librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x000014e67a4b3000)
+	libutil.so.1 => /lib/x86_64-linux-gnu/libutil.so.1 (0x000014e67a4ae000)
+	libz.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/zlib-1.2.13-xz6lqyiknxh5ofvyybzre2lrusx2u4o2/lib/libz.so.1 (0x000014e67a492000)
+	libhwloc.so.15 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/hwloc-2.8.0-rpajza4w5yeshrr7qnbtwiz7cgsc5y4l/lib/libhwloc.so.15 (0x000014e67a434000)
+	libevent_core-2.1.so.7 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libevent-2.1.12-yu6nwyorgmfg6msofxuhqqkijsdqakzp/lib/libevent_core-2.1.so.7 (0x000014e67a3fc000)
+	libevent_pthreads-2.1.so.7 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libevent-2.1.12-yu6nwyorgmfg6msofxuhqqkijsdqakzp/lib/libevent_pthreads-2.1.so.7 (0x000014e67a3f7000)
+	/lib64/ld-linux-x86-64.so.2 (0x000014e67e694000)
+	libnuma.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/numactl-2.0.14-p4a7bukg5ydtffxqfb657wtifvblnefy/lib/libnuma.so.1 (0x000014e67a3e7000)
+	libmunge.so.2 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/munge-0.5.13-siy6ee26a2hmclhy5a5vapfps4mb7jzm/lib/libmunge.so.2 (0x000014e67a3db000)
+	libpciaccess.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libpciaccess-0.16-dcbydon6ydygdx25zfodcnxet7xjbvov/lib/libpciaccess.so.0 (0x000014e67a3cd000)
+	libxml2.so.2 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libxml2-2.10.1-uemmoahqov5jnjgtbzgjwh4gin47zj4o/lib/libxml2.so.2 (0x000014e67a267000)
+	libatomic.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libatomic.so.1 (0x000014e67a25c000)
+	liblzma.so.5 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/xz-5.2.7-kfrl4tvfvwufmsoyu2hvml5i6n5z2br4/lib/liblzma.so.5 (0x000014e67a230000)
+	libiconv.so.2 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libiconv-1.16-r6z5bvhxgq7syjhkok6uiulvpxut5fab/lib/libiconv.so.2 (0x000014e67a131000)
+
+ ldd /lustre/ukt/milias/work/software/wien2k/Wien2k_23.2_gnu_openmpi_openblas/lapw2_mpi :
+	linux-vdso.so.1 (0x0000149b28c7a000)
+	libfftw3_mpi.so.3 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/lib/libfftw3_mpi.so.3 (0x0000149b28c59000)
+	libfftw3.so.3 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/lib/libfftw3.so.3 (0x0000149b28b52000)
+	libfftw3_omp.so.3 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdfftw-3.0-a5urjhpjd7jrmbg6ygxyvci2d4kv2fbb/lib/libfftw3_omp.so.3 (0x0000149b28b46000)
+	libopenblas.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openblas-0.3.21-q7nhojttkz52xuf4zkxk7vvgllqnxh34/lib/libopenblas.so.0 (0x0000149b265cc000)
+	libmpi.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libmpi.so.40 (0x0000149b262aa000)
+	libscalapack.so => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/amdscalapack-3.2-zmrsnzmnifwusgdparcdnpdksnehsbcm/lib/libscalapack.so (0x0000149b25d03000)
+	libmpi_usempif08.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libmpi_usempif08.so.40 (0x0000149b25cc0000)
+	libmpi_usempi_ignore_tkr.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libmpi_usempi_ignore_tkr.so.40 (0x0000149b25cad000)
+	libmpi_mpifh.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libmpi_mpifh.so.40 (0x0000149b25c3c000)
+	libgfortran.so.5 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libgfortran.so.5 (0x0000149b25982000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x0000149b257f1000)
+	libgomp.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libgomp.so.1 (0x0000149b257b0000)
+	libgcc_s.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libgcc_s.so.1 (0x0000149b25793000)
+	libquadmath.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libquadmath.so.0 (0x0000149b2574a000)
+	libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x0000149b25729000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x0000149b25569000)
+	libopen-rte.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libopen-rte.so.40 (0x0000149b2543d000)
+	libopen-pal.so.40 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/openmpi-4.1.5-phbdvrf3few3givo575jlifx6dhnfgk7/lib/libopen-pal.so.40 (0x0000149b25334000)
+	libucp.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/ucx-1.9.0-6kcy2huctfmqanv3onro64z4fgcbbkdo/lib/libucp.so.0 (0x0000149b252cb000)
+	libuct.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/ucx-1.9.0-6kcy2huctfmqanv3onro64z4fgcbbkdo/lib/libuct.so.0 (0x0000149b25299000)
+	libucm.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/ucx-1.9.0-6kcy2huctfmqanv3onro64z4fgcbbkdo/lib/libucm.so.0 (0x0000149b2527f000)
+	libucs.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/ucx-1.9.0-6kcy2huctfmqanv3onro64z4fgcbbkdo/lib/libucs.so.0 (0x0000149b25237000)
+	libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x0000149b25230000)
+	libpmix.so.2 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/pmix-3.2.2-xxu3bzsuuainkfraekzzagcl34owihxs/lib/libpmix.so.2 (0x0000149b250d7000)
+	libnl-3.so.200 => /lib/x86_64-linux-gnu/libnl-3.so.200 (0x0000149b24eb6000)
+	libnl-route-3.so.200 => /usr/lib/x86_64-linux-gnu/libnl-route-3.so.200 (0x0000149b24c3d000)
+	librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x0000149b24c33000)
+	libutil.so.1 => /lib/x86_64-linux-gnu/libutil.so.1 (0x0000149b24c2e000)
+	libz.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/zlib-1.2.13-xz6lqyiknxh5ofvyybzre2lrusx2u4o2/lib/libz.so.1 (0x0000149b24c12000)
+	libhwloc.so.15 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/hwloc-2.8.0-rpajza4w5yeshrr7qnbtwiz7cgsc5y4l/lib/libhwloc.so.15 (0x0000149b24bb4000)
+	libevent_core-2.1.so.7 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libevent-2.1.12-yu6nwyorgmfg6msofxuhqqkijsdqakzp/lib/libevent_core-2.1.so.7 (0x0000149b24b7c000)
+	libevent_pthreads-2.1.so.7 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libevent-2.1.12-yu6nwyorgmfg6msofxuhqqkijsdqakzp/lib/libevent_pthreads-2.1.so.7 (0x0000149b24b77000)
+	/lib64/ld-linux-x86-64.so.2 (0x0000149b28c7c000)
+	libnuma.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/numactl-2.0.14-p4a7bukg5ydtffxqfb657wtifvblnefy/lib/libnuma.so.1 (0x0000149b24b67000)
+	libmunge.so.2 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/munge-0.5.13-siy6ee26a2hmclhy5a5vapfps4mb7jzm/lib/libmunge.so.2 (0x0000149b24b5b000)
+	libpciaccess.so.0 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libpciaccess-0.16-dcbydon6ydygdx25zfodcnxet7xjbvov/lib/libpciaccess.so.0 (0x0000149b24b4d000)
+	libxml2.so.2 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libxml2-2.10.1-uemmoahqov5jnjgtbzgjwh4gin47zj4o/lib/libxml2.so.2 (0x0000149b249e7000)
+	libatomic.so.1 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-8.3.0/gcc-10.2.0-agxjp3zexhitnb3g6czo5p4im3hi74ht/lib64/libatomic.so.1 (0x0000149b249dc000)
+	liblzma.so.5 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/xz-5.2.7-kfrl4tvfvwufmsoyu2hvml5i6n5z2br4/lib/liblzma.so.5 (0x0000149b249b0000)
+	libiconv.so.2 => /cvmfs/vae.gsi.de/vae23/spack-0.19/opt/linux-debian10-x86_64/gcc-10.2.0/libiconv-1.16-r6z5bvhxgq7syjhkok6uiulvpxut5fab/lib/libiconv.so.2 (0x0000149b248b1000)
+
+ number of hosts in .machines, SLURM_NTASKS=36
+
+ content of file /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/.machines:
+# nodes for parallel job 
+omp_global:1 
+1:localhost:36
+
+ running 'x -p dstart' :
+starting parallel dstart at Wed 05 Jul 2023 08:50:36 PM CEST
+-------- .machine0 : processors
+running dstart in single mode
+STOP DSTART ENDS
+142.118u 2.059s 2:25.76 98.9%	0+0k 31520+1855416io 87pf+0w
+
+USAGE:	/lustre/ukt/milias/work/software/wien2k/Wien2k_23.2_gnu_openmpi_openblas/x PROGRAMNAME [flags] 
+
+PURPOSE:runs WIEN executables: afminput,afmsim,aim,animxsf,arrows,broadening,
+  cif2struct,clmaddsub,clmcopy,clminter,convham,conv2prim,dftd3,dftd4,dipan,
+  dmftproj,dstart,eosfit,eosfit6,filtvec,findbands,fleur2wien,hex2rhomb,hf,
+  initxspec,irrep,joint,joinvec,kgen,kram,lapw0,lapw1,lapw2,lapw3,lapw5,
+  lapw7,lapwdm,lapwso,lcore,lorentz,lstart,mini,mixer,mstar,nlvdw,nn,
+  optimize,orb,pairhess,pes,plane,read_vorb_files,rendos,rhomb_in5,sgroup,
+  shifteig,spaghetti,struct2cif,struct2poscar,struct_afm_check,sumpara,
+  supercell,symmetry,symmetso,telnes3,tetra,txspec,wannier90,w2w,w2waddsp,
+  wplot,xyz2struct,xspec,3ddens,create_rho
+FLAGS:
+-f FILEHEAD ->	FILEHEAD for name of struct & input-files
+-t/-T ->	suppress output of running time
+-h/-H ->	help
+-d    ->	create only the def-file 
+-up   ->	runs up-spin
+-dn   ->	runs dn-spin
+-ud   ->	runs up/dn-crossterm
+-sc   ->	runs semicore calculation
+-p    ->        run lapw0/1/2/hf/so/dm/optic/dstart/nlvdw/3ddens in parallel 
+                (needs .machines or .processes file)
+-scratch dir/ ->defines (and makes) /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg variable
+-half ->        run lstart/dstart/lapw0 for DFT-half
+-hdlo ->        run lstart and create p,d,f HDLOs in TsOHQg.in1_st
+-grr  ->        lapw0 for mBJ, lmBJ or hf (using TsOHQg.in0_grr)
+-eece ->        for hybrid-functionals (lapw0,lapw2,mixer,orb,sumpara)
+-band ->        for lapw1/2/hf/joinvec bandstructures: uses *klist_band
+-orb  ->	runs lapw1 with LDA+U/OP or B-ext correction, mixer with dmat
+-it   ->	runs lapw1 with iterative diagonalization
+-noHinv   ->	runs lapw1 with iterative diag. without  Hinv
+-noHinv0  ->	runs lapw1 with iterative diag. writing new Hinv
+-nohns ->	runs lapw1 without HNS
+-nmat_only->	runs lapw1 and yields only the matrixsize
+-nmr  ->	runs lapw1 in NMR mode
+-in1orig  ->	runs lapw2 but does not modify case.in1 
+-emin X ->	runs lapw2 with EMIN=X (in TsOHQg.in2)
+-all X Y ->	runs lapw2 with ALL and E-window X-Y (in TsOHQg.in2)
+-qtl  ->        runs lapw2 and calculates QTL 
+-alm  ->        runs lapw2 and calculates ALM,BLM 
+-almd  ->       runs lapw2 and calculates ALM,BLM in lapw2 for DMFT (Aichhorn)
+-qdmft ->       runs lapw2 and calculates charges including DMFT (Aichhorn)
+-help_files ->  runs lapw2 and creates case.helpXX files 
+-vresp->        for lapw2,lcore and mixer, creates case.vrespval/sum (meta-GGA, not recommended)
+-tau-->         for lstart,dstart,lapw2,lcore and mixer, creates case.tauval/sum (meta-GGA)
+-fermi->        runs lapw2 with FERMI switch
+-efg  ->        runs lapw2 with EFG switch
+-so   ->	runs lapw2/dm/optic/spaghetti with def-file for spin-orbit calc.
+-hf  ->         runs lapw2 with Hartree-Fock/hybrid vectors
+-diaghf  ->     calculates only the diagonal elements of HF Hamiltonian
+-mode1/2/3 ->   modes 2 and 3 calculate hf with a better MPI scaling for memory
+-nonself  ->    calculates hf with Ex only (no eigenvalues/vectors)
+-newklist ->    HF/hybrid-DFT calculation starting from a different k-mesh
+-redklist ->    HF/hybrid-DFT calculation with reduced k-mesh for the potential
+-slater->       calculation of the Slater potential by the HF module
+-kli  ->        calculation of the KLI potential by the HF module
+-gllb ->        calculation of the GLLB-SC potential
+-gw   ->        write in case.gw the diagonal matrix elements of the HF/hybrid Hamiltonian for GW
+-fbz  ->	runs kgen and generates a full mesh in the BZ
+-fft  ->        runs dstart only up to case.in0_std creation
+-super->        runs dstart and creates new_super.clmsum (and not TsOHQg.clmsum)
+-lcore->        runs dstart with TsOHQg.rsplcore (produces TsOHQg.clmsc)
+-val  ->        runs lapw5/3ddens with normalization factor for files case.clmval,vtotal,vcoul,r2v
+-tot  ->        runs lapw5/3ddens with normalization factor for files case.clmsum
+-pot  ->        runs lapw5/3ddens with vtotal-files as input
+-coulomb ->     runs lapw5/3ddens with vcoul-file as input
+-exchange ->    runs lapw5/3ddens with r2v-files as input
+-exchange2 ->    runs lapw5/3ddens with r2v2-files as input
+-halfr2v ->     runs lapw5/3ddens with r2v_half-files as input
+-sub  ->        replaces "add" by "sub" in case.in3d/in5 for spin-density plots
+-add  ->        replaces "sub" by "add" in case.in3d/in5 for density plots
+-none ->        replaces "add" by "non" in case.in3d/in5 for up-density plots
+-sel  ->        use reduced vector file in lapw7
+-settol 0.000x -> run sgroup, mstar or xyz2struct with different tolerance
+-sigma->        run lstart with case.inst_sigma (autogenerated) for diff.dens.
+-dftd3 ->       run mixer with dftd3 forces
+-dftd4 ->       run mixer with dftd4 forces
+-nlvdw ->       run lapw0 with -nlvdw flag (adding the vdW-potential)
+-lmbj ->        run nlvdw with -lmbj flag (creates local g for lmBJ potential)
+-rxes->         run tetra using case.rxes weight file for RXES-spectroscopy.
+-rxesw E1 E2->  run tetra and create case.rxes file for RXES for energies E1-E2
+-enefile    ->  spaghetti+tetra with case.energy instead case.qtl (only tot-DOS)
+                joinvec: only join case.energy_* files
+-delta->        run arrows program with difference between two structures
+-copy ->        runs pairhess and copies .minpair to .minrestart and .minhess
+-telnes  ->     run qtl after generating case.inq based on case.innes
+-xspec   ->     run broadening with case.xspec instead of case.elnes
+-pes     ->     run broadening with case.pes1 instead of case.elnes
+-txt  ->        runs cif2struct using case.txt (see UG)
+-pp   ->        run wannier90 in "preprocessing mode"
+-wf N ->        run wplot for Wannier function N
+-efermi EF  ->  run findbands (unit:Ryd) / shifteig (unit:eV) with Fermi energy EF
+-emax Y ->      for findbands
+USE: x -h PROGRAMNAME   for valid flags for a specific program
+
+ x_lapw -nmat_only
+STOP LAPW1 - Error
+0.008u 0.016s 0:00.66 1.5%	0+0k 24736+16io 66pf+0w
+cat: TsOHQg.nmat_only: No such file or directory
+
+ running run_lapw ...
+STOP  LAPW0 END
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun noticed that process rank 7 with PID 407096 on node lxbk1144 exited on signal 9 (Killed).
+--------------------------------------------------------------------------
+[1]  + Done                          ( cd $PWD; $t $ttt; rm -f .lock_$lockfile[$p] ) >> .time1_$loop
+grep: lapw2*.error: No such file or directory
+grep: lapw2*.error: No such file or directory
+grep: lapw2*.error: No such file or directory
+grep: lapw2*.error: No such file or directory
+grep: lapw2*.error: No such file or directory
+grep: lapw2*.error: No such file or directory
+
+>   stop error
+Wed 05 Jul 2023 08:50:35 PM CEST> (x) -p dstart
+Wed 05 Jul 2023 08:53:02 PM CEST> (x) lapw1 -nmat_only
+>   (run_lapw) options: -p -ec 0.0001 -NI
+Wed 05 Jul 2023 08:53:03 PM CEST> (x) lapw0 -p
+Wed 05 Jul 2023 11:23:47 PM CEST> (x) lapw1 -p -c
+-rw-r--r--. 1 milias ukt 153 Jul  6 01:02 lapw1.error
+-rw-r--r--. 1 milias ukt  48 Jul  6 01:02 lapw1_1.error
+-rw-r--r--. 1 milias ukt   0 Jul  5 23:23 lapw0.error
+-rw-r--r--. 1 milias ukt   0 Jul  5 20:53 dstart.error
+
+ Finished; check for ':ENE' in outputs. 
+
+
+ List of files in /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg :
+-rw-r--r--. 1 milias ukt      1610 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.dayfile
+-rw-r--r--. 1 milias ukt       153 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/lapw1.error
+-rw-r--r--. 1 milias ukt       707 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/:parallel
+-rw-r--r--. 1 milias ukt     98758 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.scf1
+-rw-r--r--. 1 milias ukt        48 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/fort.99
+-rw-r--r--. 1 milias ukt        48 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/lapw1_1.error
+-rw-r--r--. 1 milias ukt    607019 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_1
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_10
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_12
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_13
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_14
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_15
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_16
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_17
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_18
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_19
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_2
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_20
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_21
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_22
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_24
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_25
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_26
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_27
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_28
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_29
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_3
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_30
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_31
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_32
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_33
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_34
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_35
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_4
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_6
+-rw-r--r--. 1 milias ukt     19917 Jul  6 01:02 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_8
+-rw-r--r--. 1 milias ukt     74340 Jul  5 23:24 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.energy_1
+-rw-r--r--. 1 milias ukt     65560 Jul  5 23:24 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.vector_1
+-rw-r--r--. 1 milias ukt 304540412 Jul  5 23:24 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.nsh
+-rw-r--r--. 1 milias ukt     16521 Jul  5 23:24 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_11
+-rw-r--r--. 1 milias ukt     16521 Jul  5 23:24 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_23
+-rw-r--r--. 1 milias ukt     16521 Jul  5 23:24 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_5
+-rw-r--r--. 1 milias ukt     16521 Jul  5 23:24 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_7
+-rw-r--r--. 1 milias ukt     16521 Jul  5 23:24 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_1_proc_9
+-rw-r--r--. 1 milias ukt     98758 Jul  5 23:24 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.scf1_1
+-rw-r--r--. 1 milias ukt         0 Jul  5 23:23 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.vec
+-rw-r--r--. 1 milias ukt       846 Jul  5 23:23 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/lapw1_1.def
+-rw-r--r--. 1 milias ukt       100 Jul  5 23:23 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.klist_1
+-rw-r--r--. 1 milias ukt       834 Jul  5 23:23 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/lapw1.def
+-rw-r--r--. 1 milias ukt       242 Jul  5 23:23 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/:log
+-rw-r--r--. 1 milias ukt         0 Jul  5 23:23 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/lapw0.error
+-rw-r--r--. 1 milias ukt   7868647 Jul  5 23:23 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output0
+-rw-r--r--. 1 milias ukt    436354 Jul  5 23:23 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.scf0
+-rw-r--r--. 1 milias ukt 587564035 Jul  5 23:23 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.vns
+-rw-r--r--. 1 milias ukt   5069888 Jul  5 23:23 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.vsp
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.clmcor
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.clmcordn
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.eecedn
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.eeceup
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.grr
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.in0abp
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.r2v_nonloc
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.taucor
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.taucordn
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.taudn
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.tausum
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.tauup
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.vlapldn
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.vrespdn
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.vrespsum
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.vrespup
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.vtaudn
+-rw-r--r--. 1 milias ukt      1841 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/lapw0.def
+-rw-r--r--. 1 milias ukt        60 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/:parallel_lapw0
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.clmdn
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.clmup
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.mbjmix
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.r2v
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.r2v2
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.rhopw
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.vcoul
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.vnsdn
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.vorbup
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.vspdn
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.vtotal
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.energy_nmat_only
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.output1_nmat_only
+-rw-r--r--. 1 milias ukt       335 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.scf
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.vector_nmat_only
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/dstart.error
+-rw-r--r--. 1 milias ukt 592619734 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.clmsum
+-rw-r--r--. 1 milias ukt 357150281 Jul  5 20:53 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.outputd
+-rw-r--r--. 1 milias ukt       200 Jul  5 20:51 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.in0_std
+-rw-r--r--. 1 milias ukt       454 Jul  5 20:50 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/dstart.def
+-rw-r--r--. 1 milias ukt        61 Jul  5 20:50 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/:parallel_dstart
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:50 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.indstart
+-rw-r--r--. 1 milias ukt         0 Jul  5 20:50 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.test
+-rw-r--r--. 1 milias ukt       200 Jul  5 20:50 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.in0
+-rw-r--r--. 1 milias ukt     49180 Jul  5 20:50 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.in1c
+-rw-r--r--. 1 milias ukt     79702 Jul  5 20:50 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.in2c
+-rw-r--r--. 1 milias ukt     44520 Jul  5 20:50 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.inc
+-rw-r--r--. 1 milias ukt       257 Jul  5 20:50 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.inm
+-rw-r--r--. 1 milias ukt      5196 Jul  5 20:50 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.kgen
+-rw-r--r--. 1 milias ukt       101 Jul  5 20:50 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.klist
+-rw-r--r--. 1 milias ukt   6276919 Jul  5 20:50 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.rsp
+-rw-r--r--. 1 milias ukt    103441 Jul  5 20:50 /lustre/ukt/milias/scratch/Wien2k_23.2_job.main.N1.n36.jid3850073/TsOHQg/TsOHQg.struct
+slurmstepd: error: Detected 5 oom-kill event(s) in StepId=3850073.batch. Some of your processes may have been killed by the cgroup out-of-memory handler.

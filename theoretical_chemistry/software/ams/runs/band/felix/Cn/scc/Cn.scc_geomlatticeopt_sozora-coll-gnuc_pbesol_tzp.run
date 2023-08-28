@@ -1,0 +1,43 @@
+#!/bin/sh
+
+"$AMSBIN/ams" << eor
+
+Task GeometryOptimization
+GeometryOptimization
+    OptimizeLattice Yes
+End
+System
+    Atoms
+        Cn 0.0 0.0 0.0 
+    End
+    Lattice
+        3.350000000000001 0.0 0.0
+        0.0 3.350000000000001 0.0
+        0.0 0.0 3.350000000000001
+    End
+    BondOrders
+         1 1 1.0 -1 0 0
+         1 1 1.0 0 -1 0
+         1 1 1.0 0 0 -1
+         1 1 1.0 0 0 1
+         1 1 1.0 0 1 0
+         1 1 1.0 1 0 0
+    End
+End
+
+Engine BAND
+    Basis
+        Type TZP
+        Core None
+    End
+    NuclearModel Gaussian
+    Relativity
+        Level Spin-Orbit
+    End
+    XC
+        SpinOrbitMagnetization CollinearZ
+        GGA PBEsol
+    End
+EndEngine
+eor
+

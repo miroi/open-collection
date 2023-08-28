@@ -1,0 +1,19 @@
+&HEAD CHID='rad_spread_flat', TITLE='rad_spread_flat' /
+
+&MESH XB=0, 10, 0, 10, 0, 3, IJK= 50, 50, 10 /
+&TIME T_END=400. /
+
+&VENT XB= 0, 10, 0, 10, 3, 3, SURF_ID='OPEN' /
+
+&REAC FUEL = 'PROPANE'
+
+&VENT XB= 1, 9, 1, 9, 0, 0, SURF_ID='fire', XYZ= 4, 4, 0, SPREAD_RATE=0.1  /
+&SURF ID='fire', HRRPUA=500, RAMP_Q='fireramp' /
+&RAMP ID='fireramp', T= 0, F=0 /
+&RAMP ID='fireramp', T= 1, F=1 /
+&RAMP ID='fireramp', T=200, F=1 /
+&RAMP ID='fireramp', T=201, F=0 /
+
+&TAIL / 
+
+fdstutorial.com

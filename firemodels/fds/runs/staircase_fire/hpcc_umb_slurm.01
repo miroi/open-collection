@@ -1,0 +1,120 @@
+#!/bin/bash
+
+## job name
+#SBATCH -J fds
+
+##   number of nodes
+#SBATCH -N 1
+
+##SBATCH --nodelist=comp06
+
+##   number of CPUs, max 12 on old nodes
+#SBATCH -n 12
+
+## partition
+#SBATCH -p compute
+
+## max. execution time
+##SBATCH -t 6-10:00:00
+#SBATCH -t 1-10:00:00
+
+# allocated total memory per this job
+#SBATCH --mem=42GB
+
+# do not restart in the case of nodefail!
+#SBATCH --no-requeue
+#SBATCH --no-kill
+
+## logfile
+#SBATCH -o log_slurm_job.%j.%N.std_out_err
+
+## mail
+#SBATCH --mail-user=Miroslav.Ilias@umb.sk
+#SBATCH --mail-type=ALL
+
+#echo -e "\nWorking host is: \c"; hostname -f
+echo -e "\nRunning on host `hostname -f`"
+echo -e "Time is `date` \n"
+
+echo -e "\n scl stuff:"
+scl -l
+scl enable devtoolset-11 rh-git227 rh-python35 bash;
+echo -e "\n gfortran stuff:"
+gfortran --version
+gcc --version
+
+# provide OpenMPI-GNU local installation 
+export PATH=/home/milias/bin/openmpi/openmpi-4.1.4_gnu11.2.1/bin:$PATH
+export LD_LIBRARY_PATH=/home/milias/bin/openmpi/openmpi-4.1.4_gnu11.2.1/lib:$LD_LIBRARY_PATH
+echo -e "\n PATH, LD_LIBRARY_PATH adapted for /home/milias/bin/openmpi/openmpi-4.1.4_gnu11.2.1/bin"
+
+unset MKLROOT
+
+echo -e "\npython -V \c"; python -V
+echo -e "mpif90 ? \c"; which mpif90; mpif90 --version
+echo -e "mpicc ? \c"; which mpicc; mpicc --version
+echo -e "mpirun ? \c"; which mpirun; mpirun --version
+
+echo Job user is $SLURM_JOB_USER and his job $SLURM_JOB_NAME has assigned ID $SLURM_JOBID
+echo This job was submitted from the computer $SLURM_SUBMIT_HOST
+echo and from the home directory:
+echo $SLURM_SUBMIT_DIR
+echo
+echo It is running on the cluster compute node:
+echo $SLURM_CLUSTER_NAME
+echo and is employing $SLURM_JOB_NUM_NODES node/nodes:
+echo $SLURM_JOB_NODELIST
+echo -e "  Job partition is $SLURM_JOB_PARTITION \n"
+
+# CPU model, total numer of CPUs, number of allocated CPUs
+echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
+NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
+echo "This node has total $NPROCS CPUs available for an EXCLUSIVE job on this node."
+echo "This node has $SLURM_CPUS_ON_NODE CPUs allocated for this SLURM job."
+echo -e "\n The job requests SLURM_MEM_PER_NODE=$SLURM_MEM_PER_NODE memory."
+
+echo -e "\n The total memory at the node (in GB)"
+free -t -g
+echo -e "\n"
+
+echo -e "\nMy PATH=$PATH"
+echo -e "My LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
+
+export FDS_EXECUTABLE=/home/milias/Work/software/firemodels/fds_cloned/Build/ompi_gnu_linux/fds_ompi_gnu_linux
+echo -e "\n FDS executable linked libraries, ldd $FDS_EXECUTABLE"
+ldd $FDS_EXECUTABLE
+
+### set local scratch directory for run
+#export TMPDIR=/mnt/local/$USER/SLURMjob-${SLURM_JOBID}
+export TMPDIR=${SLURM_SUBMIT_DIR}/FDS_SLURMjob-${SLURM_JOBID}
+echo -e "\n Node's local home directory, TMPDIR=$TMPDIR";
+echo -e "Size of this local scratch dir, df \$TMPDIR :";df -h $TMPDIR
+
+mkdir $TMPDIR
+cd $TMPDIR
+echo -e "\nI am in working dir, TMPDIR=$TMPDIR"
+echo -e "For control pwd=\c";pwd
+echo -e "The local home directory with original FDS input file, SLURM_SUBMIT_DIR=${SLURM_SUBMIT_DIR}"
+
+#inp=simple_test.fds
+inp=staircase_fire_ox_VF.fds
+# copy input file to the workdir
+cp ${SLURM_SUBMIT_DIR}/$inp  $TMPDIR/.
+
+echo -e "\n Launching FDS run with input=$inp"
+#mpirun -np  $SLURM_CPUS_ON_NODE $NWCHEM_EXECUTABLE  ${SLURM_SUBMIT_DIR}/$project.nw  > ${SLURM_SUBMIT_DIR}/$project.${SLURM_JOBID}.out
+$FDS_EXECUTABLE $inp
+
+echo -e "\n Working files remained in scratch dir $TMPDIR:"
+ls -lt $TMPDIR 
+du -h -s $TMPDIR
+cd .. ; echo -e "just for control -  pwd=\c";pwd
+#echo -e "\nDeleting scratch directory $TMPDIR: "; /bin/rm -r $TMPDIR
+#echo -e "\n Afterwards, content of ls -lt /mnt/local/$USER :"; ls -lt /mnt/local/$USER
+
+echo -e "\n Time of finishing job is `date` \n"
+echo -e "\n returning to ${SLURM_SUBMIT_DIR}"
+cd ${SLURM_SUBMIT_DIR}
+ls -lt
+
+exit 0

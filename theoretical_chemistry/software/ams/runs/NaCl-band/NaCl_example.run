@@ -1,0 +1,36 @@
+#!/bin/sh
+
+"$AMSBIN/ams" << eor
+
+Task SinglePoint
+PESPointCharacter
+    Tolerance 0.02
+End
+System
+    Atoms
+        Na 1.64468989 2.15684229 3.72331953 
+        Cl 1.17531011 0.66315771 -0.90331953 
+    End
+    Lattice
+        0.0 2.82 2.82
+        2.82 0.0 2.82
+        2.82 2.82 0.0
+    End
+End
+
+Engine BAND
+    BandStructure
+        Enabled Yes
+    End
+    DOS
+        Enabled Yes
+    End
+    Relativity
+        Level None
+    End
+    XC
+        GGA PBE
+    End
+EndEngine
+eor
+

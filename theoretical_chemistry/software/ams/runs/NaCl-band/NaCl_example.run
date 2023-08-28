@@ -1,20 +1,20 @@
 #!/bin/sh
 
-"$ADFBIN/ams" <<eor
+"$AMSBIN/ams" << eor
 
 Task SinglePoint
+PESPointCharacter
+    Tolerance 0.02
+End
 System
     Atoms
-        Na 1.644689888084661 2.156842285144355 3.72331953209045
-        Cl 1.175310111915339 0.6631577148556445 -0.9033195320904519
+        Na 1.64468989 2.15684229 3.72331953 
+        Cl 1.17531011 0.66315771 -0.90331953 
     End
     Lattice
         0.0 2.82 2.82
         2.82 0.0 2.82
         2.82 2.82 0.0
-    End
-    BondOrders
-         1 2 0.5
     End
 End
 
@@ -24,6 +24,9 @@ Engine BAND
     End
     DOS
         Enabled Yes
+    End
+    Relativity
+        Level None
     End
     XC
         GGA PBE

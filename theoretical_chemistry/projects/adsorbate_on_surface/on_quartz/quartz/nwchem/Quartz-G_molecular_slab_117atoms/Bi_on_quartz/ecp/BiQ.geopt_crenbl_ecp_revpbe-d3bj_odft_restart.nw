@@ -1,0 +1,32 @@
+echo
+
+restart BionQ
+
+permanent_dir /lustre/ukt/milias/scratch/Bi-odft_on_quartz
+
+ecp 
+  Si library lanl2dz_ecp
+  Bi library lanl2dz_ecp
+end
+
+dft
+  odft
+  mult 4
+  xc b3lyp
+  maxiter 100
+end
+
+driver
+  maxiter 999
+  xyz BiQgeo
+end
+
+
+driver
+  maxiter 999
+  xyz BiQgeom
+end
+
+task dft optimize
+
+#task dft frequencies

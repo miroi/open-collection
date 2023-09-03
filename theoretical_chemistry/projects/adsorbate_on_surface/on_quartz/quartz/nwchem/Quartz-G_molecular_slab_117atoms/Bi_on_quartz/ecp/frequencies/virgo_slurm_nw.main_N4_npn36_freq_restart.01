@@ -120,6 +120,7 @@ project=BiQ.freq_crenbl_ecp_revpbe-d3bj_odft_restart
 #project=Q-G.ecp_b3lyp
 #cp ${SLURM_SUBMIT_DIR}/QG_geom2-015.xyz    $PWD/.
 #cp ${SLURM_SUBMIT_DIR}/BiQgeom.xyz    $PWD/.
+/bin/cp ${SLURM_SUBMIT_DIR}/BiQgeo-008_converged.xyz   $PWD/.
 echo -e "\n Launching NWChem run with project=${project}"
 mpirun -np  ${SLURM_NTASKS} ${NWCHEM_EXECUTABLE}  ${SLURM_SUBMIT_DIR}/$project.nw  > ${SLURM_SUBMIT_DIR}/$project.${SLURM_JOB_PARTITION}_N${SLURM_JOB_NUM_NODES}_n${SLURM_NTASKS}_jid${SLURM_JOBID}.out
 

@@ -1,7 +1,7 @@
 title "small Quartz"  
 echo  
 
-start diamond  
+start diamond 
 
 memory 64 gb  
 
@@ -41,6 +41,16 @@ nwpw
   ewald_ncut 8  #The default value of 1 needs to be increased for small cells  
   xc revPBE-Grimme4
 end  
+
+constraints
+  spring bond lat_c
+end
+
+driver
+  maxiter 999
+  xyz Qgeomconv
+end
+
 
 
 #task pspw energy

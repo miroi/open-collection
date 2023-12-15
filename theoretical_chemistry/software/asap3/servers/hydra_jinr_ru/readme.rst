@@ -24,6 +24,11 @@ Installing collected packages: asap3
 Successfully installed asap3-3.12.12
 milias@hydra.jinr.ru:~/work/projects/open-collection/theoretical_chemistry/software/asap3/servers/hydra_jinr_ru/.
 
+milias@hydra.jinr.ru:~/work/projects/open-collection/theoretical_chemistry/software/asap3/servers/hydra_jinr_ru/simpleMD/.pip install ase
+.
+.
+Installing collected packages: ase
+Successfully installed ase-3.22.1
 
 
 

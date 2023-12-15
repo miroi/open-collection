@@ -1,0 +1,42 @@
+echo
+
+start BionQ
+
+memory total 360 gb
+permanent_dir /lustre/ukt/milias/scratch/Bi-odft_on_quartz_freq
+
+#print low
+
+title "Bi@Quartz ecp"
+charge 0
+
+geometry units angstroms print xyz autosym
+  load format xyz BiQgeo-008_converged.xyz
+end
+
+basis
+ * library crenbl_ecp
+end
+
+ecp 
+  Si library crenbl_ecp
+  Bi library crenbl_ecp
+end
+
+dft
+  odft
+  mult 4
+  xc revpbe cpbe96
+  disp vdw 4
+  maxiter 500
+end
+
+freq
+  animate
+end
+
+
+#task dft optimize
+
+task dft frequencies
+

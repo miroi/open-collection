@@ -1,0 +1,41 @@
+echo
+
+start BionQ
+
+memory total 180 gb
+permanent_dir /lustre/ukt/milias/scratch/Bi-odft_on_quartz
+
+print low
+
+title "Bi@Quartz ecp"
+charge 0
+
+geometry units angstroms print xyz autosym
+  load format xyz BionQ.xyz
+end
+
+basis
+ * library crenbl_ecp
+end
+
+ecp 
+  Si library crenbl_ecp
+  Bi library crenbl_ecp
+end
+
+dft
+  odft
+  mult 4
+  xc revpbe cpbe96
+  disp vdw 4
+  maxiter 500
+end
+
+driver
+  maxiter 999
+end
+
+task dft optimize
+
+#task dft frequencies
+

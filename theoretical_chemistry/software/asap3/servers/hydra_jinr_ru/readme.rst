@@ -31,4 +31,15 @@ Installing collected packages: ase
 Successfully installed ase-3.22.1
 
 
+Compilation
+-----------
+milias@hydra.jinr.ru:~/work/software/asap/asap-ASAP_VERSION_3_13_2/.make depend
+milias@hydra.jinr.ru:~/work/software/asap/asap-ASAP_VERSION_3_13_2/.make all
+.
+.
+milias@hydra.jinr.ru:~/work/software/asap/asap-ASAP_VERSION_3_13_2/x86_64/.ls
+asap-qsub@  asap-sbatch@  _asap.so*
+
+
+
 

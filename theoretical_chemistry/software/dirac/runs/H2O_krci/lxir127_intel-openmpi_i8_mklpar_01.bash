@@ -6,7 +6,7 @@ echo -e "Time is `date` \n"
 
 spack load intel-parallel-studio@professional.2020.1
 spack load intel-mkl@2020.4.304
-spack load cmake@3.21.4 target=$(spack arch -t)
+#spack load cmake@3.21.4 target=$(spack arch -t)
  
 echo -e "\n loaded modules:"; spack find --loaded
 

@@ -1,0 +1,23 @@
+#!/bin/sh
+
+"$AMSBIN/ams" << eor
+
+Task SinglePoint
+System
+    Atoms
+        Og 0.0 0.0 0.0 
+    End
+    Lattice
+        -1.58 1.58 1.58
+        1.58 -1.58 1.58
+        1.58 1.58 -1.58
+    End
+End
+
+Engine BAND
+    XC
+        LDA SCF VWN
+    End
+EndEngine
+eor
+

@@ -91,6 +91,10 @@ Building wheels for collected packages: asap3
   Stored in directory: /lustre/home/user/m/milias/.cache/pip/wheels/b3/ed/d6/84236570928d1e712d01e2b9d6e88afac78c21dc126a547bec
 Successfully built asap3
 Installing collected packages: scipy, python-dateutil, pyparsing, pillow, packaging, kiwisolver, fonttools, cycler, contourpy, matplotlib, ase, asap3
-.
-.
+
+Successfully installed asap3-3.13.4 ase-3.22.1 contourpy-1.2.0 cycler-0.12.1 fonttools-4.50.0 kiwisolver-1.4.5 matplotlib-3.8.3 packaging-24.0 pillow-10.3.0 pyparsing-3.1.2 python-dateutil-2.9.0.post0 scipy-1.12.0
+milias@hydra.jinr.ru:~/work/projects/open-collection/theoretical_chemistry/software/asap3/servers/hydra_jinr_ru/.
+
+
+
 

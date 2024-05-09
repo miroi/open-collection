@@ -3,7 +3,11 @@ xtb example
 
 https://xtb-docs.readthedocs.io/en/latest/geometry.html#xyz-input
 
-How to run on Windows:
+How to run on Windows (my laptop):
 
-C:\Users\miroi\OneDrive\Desktop\Work\projekty\open-collection\theoretical_chemistry\software\xtb\xtb_runs\caffeine>xtb --input  xtb.inp caffeine.xyz
+xtb -P 1 --input  xtb.inp caffeine.xyz
 
+ P  wall-time/s
+ 1   1.200
+ 2   0.688
+ 4   0.450

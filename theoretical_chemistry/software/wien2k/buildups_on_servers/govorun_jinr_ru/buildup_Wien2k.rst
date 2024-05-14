@@ -59,7 +59,7 @@ lib64
 
   FFTWROOT:            /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/fftw/v3.3.7-5/
   FFTW_VERSION:        FFTW3
-  FFTW_LIB:            lib64
+  FFTW_LIB:            lib
   FFTW_LIBNAME:        fftw3
   Is this correct? (Y,n):
 

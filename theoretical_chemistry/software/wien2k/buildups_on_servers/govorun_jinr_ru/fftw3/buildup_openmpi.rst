@@ -24,4 +24,6 @@ Currently Loaded Modulefiles:
 milias@hydra.jinr.ru:~/work/software/fftw3/fftw-3.3.10/../configure --help
 milias@hydra.jinr.ru:~/work/software/fftw3/fftw-3.3.10/../configure --enable-mpi --enable-openmp --prefix=$PWD
 
+make all install
+
 

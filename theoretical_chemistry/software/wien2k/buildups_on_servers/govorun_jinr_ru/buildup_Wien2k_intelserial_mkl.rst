@@ -28,3 +28,18 @@ Compilation of lapw0:
 ~~~~~~~~~~~~~~~~~~~~
 
 
+done.
+
+Compile time errors (if any) were:
+
+
+Check file   compile.msg   in the corresponding SRC_* directory for the
+compilation log and more info on any compilation problem.
+
+milias@hydra.jinr.ru:~/work/software/wien2k/wien2k_23.2_intelserial_mkl/.ldd lapw*
+
+MPI execs not properly compiled !!!
+
+
+
+

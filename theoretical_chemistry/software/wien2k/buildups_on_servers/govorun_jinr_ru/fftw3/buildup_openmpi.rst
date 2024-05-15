@@ -11,8 +11,8 @@ milias@hydra.jinr.ru:~/work/software/fftw3/.wget http://fftw.org/fftw-3.3.10.tar
 milias@hydra.jinr.ru:~/work/software/fftw3/.nohup tar xvzf fftw-3.3.10.tar.gz  &
 [1] 63599
 
-installation
-~~~~~~~~~~~~~
+configuration and installation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 milias@hydra.jinr.ru:~/work/software/fftw3/fftw-3.3.10/.less INSTALL
 
 milias@hydra.jinr.ru:~/work/software/fftw3/fftw-3.3.10/.module load openmpi
@@ -22,8 +22,11 @@ Currently Loaded Modulefiles:
   2) BASE/1.0                 4) gcc/v11.2.0
 
 milias@hydra.jinr.ru:~/work/software/fftw3/fftw-3.3.10/../configure --help
-milias@hydra.jinr.ru:~/work/software/fftw3/fftw-3.3.10/../configure --enable-mpi --enable-openmp --prefix=$PWD
+milias@hydra.jinr.ru:~/work/software/fftw3/fftw-3.3.10/../configure --enable-mpi --enable-openmp --prefix=/lustre/home/user/m/milias/work/software/fftw3
 
-make all install
+make install
+
+milias@hydra.jinr.ru:~/work/software/fftw3/.ls
+bin/  fftw-3.3.10/  fftw-3.3.10.tar.gz  include/  lib/  nohup.out  share/
 
 

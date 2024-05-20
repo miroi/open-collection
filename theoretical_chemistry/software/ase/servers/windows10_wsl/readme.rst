@@ -20,4 +20,6 @@ flask                    not installed
 psycopg2                 not installed
 pyamg                    not installed
 
+milias@Miro:/mnt/c/Users/miroi/OneDrive/Desktop/Work/projekty/open-collection/theoretical_chemistry/software/ase/servers/windows10_wsl$ sudo apt-get install python3-tk
+
 

@@ -49,3 +49,26 @@ Installing collected packages: zipp, numpy, python-dateutil, pyparsing, packagin
   Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
 Successfully installed ase-3.22.1 contourpy-1.2.1 cycler-0.12.1 fonttools-4.51.0 importlib-resources-6.4.0 kiwisolver-1.4.5 matplotlib-3.9.0 numpy-1.26.4 packaging-24.0 pyparsing-3.1.2 python-dateutil-2.9.0.post0 zipp-3.18.2
 
+
+milias@theor.jinr.ru:~/work/projects/open-collection/theoretical_chemistry/software/ase/servers/jinr_ru/theor_jinr_ru/.pip3 install pytest
+Collecting pytest
+  Downloading pytest-8.2.1-py3-none-any.whl (339 kB)
+     |████████████████████████████████| 339 kB 1.3 MB/s
+Collecting tomli>=1
+  Downloading tomli-2.0.1-py3-none-any.whl (12 kB)
+Collecting pluggy<2.0,>=1.5
+  Downloading pluggy-1.5.0-py3-none-any.whl (20 kB)
+Collecting iniconfig
+  Downloading iniconfig-2.0.0-py3-none-any.whl (5.9 kB)
+Requirement already satisfied: packaging in /home/ltph/milias/.local/lib/python3.9/site-packages (from pytest) (24.0)
+Collecting exceptiongroup>=1.0.0rc8
+  Downloading exceptiongroup-1.2.1-py3-none-any.whl (16 kB)
+Installing collected packages: tomli, pluggy, iniconfig, exceptiongroup, pytest
+Successfully installed exceptiongroup-1.2.1 iniconfig-2.0.0 pluggy-1.5.0 pytest-8.2.1 tomli-2.0.1
+
+milias@theor.jinr.ru:~/work/projects/open-collection/theoretical_chemistry/software/ase/servers/jinr_ru/theor_jinr_ru/.pip3 install tk
+Collecting tk
+  Downloading tk-0.1.0-py3-none-any.whl (3.9 kB)
+Installing collected packages: tk
+Successfully installed tk-0.1.0
+

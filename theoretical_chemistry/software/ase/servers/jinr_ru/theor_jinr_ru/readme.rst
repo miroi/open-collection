@@ -16,3 +16,5 @@ flask                    not installed
 psycopg2                 not installed
 pyamg                    not installed
 
+
+ASE GUI does NOT WORK, MISSING LIBS O SERVER

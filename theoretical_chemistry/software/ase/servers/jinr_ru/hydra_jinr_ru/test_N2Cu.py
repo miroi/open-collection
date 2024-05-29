@@ -26,6 +26,8 @@ e_N2 = molecule.get_potential_energy()
 ## First add the adsorbate to the Cu slab, here in the on-top position
 add_adsorbate(slab, molecule, h, 'ontop')
 
+## to speed up the relaxation, let us keep the Cu atoms fixed in the slab by using FixAtoms from the constraints module
+## only the N2 molecule is then allowed to relax to the equilibrium structure:
 constraint = FixAtoms(mask=[a.symbol != 'N' for a in slab])
 slab.set_constraint(constraint)
 dyn = QuasiNewton(slab, trajectory='N2Cu.traj')

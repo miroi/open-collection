@@ -9,6 +9,15 @@ Successfully installed asap3-3.13.4 ase-3.22.1 contourpy-1.2.1 cycler-0.12.1 fon
 milias@theor.jinr.ru:~/work/projects/open-collection/theoretical_chemistry/software/asap3/buildup_on_servers/jinr_ru/theor_jinr_ru/.python3 test_SimpleMD.py  > test_SimpleMD.log 2>&1
 
 
+ase
+~~~
+
+.ase gui
+usage: ase [-h] [--version] [-T]
+           {help,info,test,gui,db,run,band-structure,build,dimensionality,eos,ulm,find,nebplot,nomad-upload,nomad-get,convert,reciprocal,completion,diff,exec}
+           ...
+ase: error: ModuleNotFoundError: No module named 'tkinter'
+
 
 
 

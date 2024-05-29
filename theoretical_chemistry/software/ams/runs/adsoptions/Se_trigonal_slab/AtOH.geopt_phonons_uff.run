@@ -1,0 +1,27 @@
+#!/bin/sh
+
+"$AMSBIN/ams" << eor
+
+Task GeometryOptimization
+Properties
+    NormalModes Yes
+End
+Thermo
+    Temperatures 298.15 323.15 373.15 473.15
+End
+System
+    Atoms
+        At -1.59798563 -0.25116486 0.0 ForceField.Type=At ForceField.Charge=0.0
+        O 0.54783054 -0.28731425 0.0 ForceField.Type=O_2 ForceField.Charge=0.0
+        H 1.05015509 0.53847911 0.0 ForceField.Type=H_ ForceField.Charge=0.0
+    End
+    BondOrders
+         1 2 1.0
+         2 3 1.0
+    End
+End
+
+Engine ForceField
+EndEngine
+eor
+

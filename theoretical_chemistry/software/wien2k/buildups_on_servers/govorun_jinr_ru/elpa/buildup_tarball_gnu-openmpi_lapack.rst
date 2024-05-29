@@ -11,9 +11,7 @@ milias@hydra.jinr.ru:~/work/software/elpa/elpa-2024.03.001/../configure --help
 
 /lustre/home/user/m/milias/work/software/elpa/elpa-2024.03.001_gnu_openmpi
 
-module load LAPACK OPENMPI
-
-milias@hydra.jinr.ru:~/work/software/elpa/elpa-2024.03.001/.module list
+module load LAPACK openmpi 
 
 milias@hydra.jinr.ru:~/work/software/elpa/elpa-2024.03.001/.module list
 Currently Loaded Modulefiles:
@@ -25,5 +23,9 @@ configure and compile
 ~~~~~~~~~~~~~~~~~~~~~
 
 milias@hydra.jinr.ru:~/work/software/elpa/elpa-2024.03.001/../configure --prefix=/lustre/home/user/m/milias/work/software/elpa/elpa-2024.03.001_gnu_openmpi  --enable-openmp
+.
+.
+.
+configure: error: No usable BLACS found. If installed in a non-standard place, please specify suitable LDFLAGS and FCFLAGS as arguments to configure
 
 

@@ -8,6 +8,8 @@ milias@hydra.jinr.ru:~/work/projects/open-collection/theoretical_chemistry/softw
 milias@hydra.jinr.ru:~/work/projects/open-collection/theoretical_chemistry/software/ase/servers/jinr_ru/hydra_jinr_ru/. ase --version
 ase-3.22.1
 
+ase gui ... works by launched Xming 
+
 milias@hydra.jinr.ru:~/work/projects/open-collection/theoretical_chemistry/software/ase/servers/jinr_ru/hydra_jinr_ru/.ase info
 platform                 Linux-3.10.0-1160.el7.x86_64-x86_64-with-glibc2.17
 python-3.10.2            /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/Python/v3.10.2/bin/python3.10

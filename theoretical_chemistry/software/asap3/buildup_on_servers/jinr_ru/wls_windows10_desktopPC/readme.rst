@@ -21,7 +21,16 @@ asap3
 ~~~~~
 milias@pc7321b:~/work/projects/open-collection/theoretical_chemistry/software/asap3/buildup_on_servers/jinr_ru/wls_windows10_desktopPC$ sudo apt-get install libopenmpi-dev
 
-milias@pc7321b:~/work/projects/open-collection/theoretical_chemistry/software/asap3/buildup_on_servers/jinr_ru/wls_windows10_desktopPC$ sudo apt-get install libopenmpi-dev
+milias@pc7321b:~/work/projects/open-collection/theoretical_chemistry/software/asap3/buildup_on_servers/jinr_ru/wls_windows10_desktopPC$ pip install asap3
+.
+.
+  Building wheel for asap3 (setup.py) ... done
+  Created wheel for asap3: filename=asap3-3.13.4-cp310-cp310-linux_x86_64.whl size=5290728 sha256=433b4de97eaf87462856304c5b10df19553c4f48ca521d4a4df4b36dff700fd1
+  Stored in directory: /home/milias/.cache/pip/wheels/b3/ed/d6/84236570928d1e712d01e2b9d6e88afac78c21dc126a547bec
+Successfully built asap3
+Installing collected packages: asap3
+Successfully installed asap3-3.13.4
+
 
 
 

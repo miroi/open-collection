@@ -32,5 +32,10 @@ Installing collected packages: asap3
 Successfully installed asap3-3.13.4
 
 
+test asap3
+~~~~~~~~~~
+milias@pc7321b:~/work/projects/open-collection/theoretical_chemistry/software/asap3/buildup_on_servers/jinr_ru/wls_windows10_desktopPC$ python3 test_SimpleMD.py  > test_SimpleMD.log
+Using Asap-optimized Verlet algorithm
+
 
 

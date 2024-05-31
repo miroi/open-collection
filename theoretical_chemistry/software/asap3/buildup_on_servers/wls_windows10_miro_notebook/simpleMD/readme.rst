@@ -4,42 +4,5 @@ SimpleMD
 
 https://asap3.readthedocs.io/en/latest/examples/Simple_molecular_dynamics_simulation.html#simple-molecular-dynamics-simulation
 
-milias@Miro:/mnt/c/Users/miroi/OneDrive/Desktop/Work/projekty/open-collection/theoretical_chemistry/software/asap3/servers/windows10_wsl/simpleMD$ python3 SimpleMD.py
-Kinetic energies of all atoms:
-[1.00470525 0.         0.         0.         0.         0.
- 0.         0.         0.         0.         0.         0.
- 0.         0.         0.         0.         0.         0.
- 0.         0.         0.         0.         0.         0.
- 0.         0.         0.         0.         0.         0.
- 0.         0.         0.         0.         0.         0.
- 0.         0.         0.         0.         0.         0.
- 0.         0.         0.         0.         0.         0.
- 0.         0.         0.         0.         0.         0.
- 0.         0.         0.         0.         0.         0.
- 0.         0.         0.         0.         0.         0.
- 0.         0.         0.         0.         0.         0.
- 0.         0.         0.         0.         0.         0.
- 0.         0.         0.         0.         0.         0.
- 0.         0.         0.         0.         0.         0.
- 0.         0.         0.         0.         0.         0.
- 0.         0.         0.         0.         0.         0.
- 0.         0.         0.         0.         0.         0.        ]
+milias@Miro:/mnt/c/Users/miroi/OneDrive/Desktop/Work/projekty/open-collection/theoretical_chemistry/software/asap3/buildup_on_servers/wls_windows10_miro_notebook/simpleMD$ python3 SimpleMD.py > SimpleMD.log_SAVED
 Using Asap-optimized Verlet algorithm
-
-Energy per atom:
-      Pot. energy     Kin. energy    Total energy
-        0.43773         0.01484         0.45257
-        0.43692         0.01564         0.45256
-        0.44213         0.01046         0.45258
-        0.44425         0.00833         0.45258
-        0.44057         0.01199         0.45256
-        0.44106         0.01153         0.45259
-        0.44388         0.00872         0.45260
-        0.44329         0.00930         0.45259
-        0.44109         0.01150         0.45260
-        0.43743         0.01517         0.45260
-        0.44426         0.00836         0.45262
-        0.44540         0.00720         0.45260
-        0.43983         0.01275         0.45258
-        0.43946         0.01312         0.45258
-        0.44389         0.00869         0.45259

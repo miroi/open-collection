@@ -11,6 +11,8 @@ milias@pc7321b:~/work/projects/open-collection/theoretical_chemistry/software/qu
 quick test
 ~~~~~~~~~~
 
+ examples
+/usr/share/doc/quantum-espresso/examples
 
 
 

@@ -14,11 +14,15 @@ modules
 ~~~~~~~
 
 milias@hydra.jinr.ru:~/work/software/quantum-espresso/.module add intel/v2021.1
-milias@hydra.jinr.ru:~/work/software/quantum-espresso/.module list
-Currently Loaded Modulefiles:
-  1) GVR/v1.0-1        2) BASE/1.0          3) Python/v3.10.13   4) intel/v2021.1  
 
-milias@hydra.jinr.ru:~/work/software/quantum-espresso/qe-7.3.1/.module add ELPA/v2020.05.001_intel2018_python365
+milias@hydra.jinr.ru:~/work/software/quantum-espresso/qe-7.3.1/.module list
+milias@hydra.jinr.ru:~/work/software/quantum-espresso/qe-7.3.1/.module list
+Currently Loaded Modulefiles:
+  1) GVR/v1.0-1        2) BASE/1.0          3) Python/v3.10.13   4) intel/v2021.1
+milias@hydra.jinr.ru:~/work/software/quantum-espresso/qe-7.3.1/.emkl
+Intel MKL library ? MKLROOT=/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2021.1/mkl/latest
+
+
 
 milias@hydra.jinr.ru:~/work/software/quantum-espresso/.which mpirun
 /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2021.1/intelpython/latest/bin/mpirun
@@ -37,6 +41,9 @@ milias@hydra.jinr.ru:~/work/software/quantum-espresso/.which mpiicc
 installation
 ~~~~~~~~~~~~
 milias@hydra.jinr.ru:~/work/software/quantum-espresso/qe-7.3.1/.
-./configure --enable-parallel --enable-openmp --prefix=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-7.3.1/bin
+./configure --enable-parallel --enable-openmp --with-scalapack --prefix=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-7.3.1/bin
+
+
+
 
 

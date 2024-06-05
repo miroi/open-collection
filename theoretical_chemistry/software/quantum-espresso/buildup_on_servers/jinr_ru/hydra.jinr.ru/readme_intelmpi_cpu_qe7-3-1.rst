@@ -42,7 +42,18 @@ installation
 ~~~~~~~~~~~~
 milias@hydra.jinr.ru:~/work/software/quantum-espresso/qe-7.3.1/.
 ./configure --enable-parallel --enable-openmp --with-scalapack --prefix=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-7.3.1/bin
+.
+.
+configure: success
 
+milias@hydra.jinr.ru:~/work/software/quantum-espresso/qe-7.3.1/.less install/config.log
+
+
+milias@hydra.jinr.ru:~/work/software/quantum-espresso/qe-7.3.1/.FC=ifort CC=icc ./configure --enable-parallel --enable-openmp --with-scalapack --prefix=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-7.3.1/bin
+
+configure: success
+
+m -j4 all
 
 
 

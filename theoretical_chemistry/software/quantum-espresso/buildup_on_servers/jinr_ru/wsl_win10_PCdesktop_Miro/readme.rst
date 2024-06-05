@@ -8,6 +8,10 @@ milias@pc7321b:~/work/projects/open-collection/theoretical_chemistry/software/qu
 
 milias@pc7321b:~/work/projects/open-collection/theoretical_chemistry/software/quantum-espresso/buildup_on_servers/jinr_ru/wsl_win10_PCdesktop_Miro/.ldd /usr/bin/pw.x
 
+see
+https://packages.ubuntu.com/jammy/all/quantum-espresso-data/filelist
+https://packages.ubuntu.com/en/jammy/armhf/science/quantum-espresso
+
 quick test
 ~~~~~~~~~~
 

@@ -39,21 +39,25 @@ milias@hydra.jinr.ru:~/work/software/quantum-espresso/.which mpiicc
 /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2021.1/mpi/2021.1.1/bin/mpiicc
 
 installation
-~~~~~~~~~~~~
+------------
 milias@hydra.jinr.ru:~/work/software/quantum-espresso/qe-7.3.1/.
 ./configure --enable-parallel --enable-openmp --with-scalapack --prefix=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-7.3.1/bin
 .
 .
-configure: success
+configure: success .. this takes gfortran 
 
 milias@hydra.jinr.ru:~/work/software/quantum-espresso/qe-7.3.1/.less install/config.log
 
-
+with intel compilers
+~~~~~~~~~~~~~~~~~~~~
 milias@hydra.jinr.ru:~/work/software/quantum-espresso/qe-7.3.1/.FC=ifort CC=icc ./configure --enable-parallel --enable-openmp --with-scalapack --prefix=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-7.3.1/bin
 
 configure: success
 
-m -j4 all
+milias@hydra.jinr.ru:~/work/software/quantum-espresso/qe-7.3.1/.m -j4 all
+milias@hydra.jinr.ru:~/work/software/quantum-espresso/qe-7.3.1/.ls -l bin/
+
+
 
 
 

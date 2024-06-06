@@ -23,7 +23,10 @@ Vesta exported xyz,pdb  do not contain lattice params !!!
 OpenBabelGUI: convert Vesta vasp --> pdb file, this contains lattice params 
 
 
+cif2cell
+~~~~~~~~
 
+cif2cell -f Ru_supercell_with_vacuum.cif  -p quantum-espresso
 
 
 

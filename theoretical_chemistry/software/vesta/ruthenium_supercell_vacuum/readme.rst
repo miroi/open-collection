@@ -16,9 +16,11 @@ https://next-gen.materialsproject.org/materials/mp-8639 ... download Ru.cif
 notes
 ~~~~~
 
-only cif, vesta files contain lattice parameters !!! export as cif
+only cif, vesta  and vasp files contain lattice parameters !!! export as cif
 
-xyz does not contain lattice params
+exported xyz,pdb   does not contain lattice params !!!
+
+OpenBabelGUI: convert vasp --> pdb file, this contains lattice params 
 
 
 

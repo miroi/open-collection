@@ -9,6 +9,8 @@ milias@pc7321b:~/work/projects/open-collection/theoretical_chemistry/software/xc
 XCrySDen version: 1.6.2
 milias@pc7321b:~/work/projects/open-collection/theoretical_chemistry/software/xcrysden/jinr_ru/wsl_win10_DesktopPC/.xcrysden -h
 
+pdb is from vasp2pdf OpenBabelGUI conversion
+
 xcrysden examples
 ~~~~~~~~~~~~~~~~~
 

@@ -18,9 +18,9 @@ notes
 
 only cif, vesta  and vasp files contain lattice parameters !!! export as cif
 
-exported xyz,pdb   does not contain lattice params !!!
+Vesta exported xyz,pdb  do not contain lattice params !!!
 
-OpenBabelGUI: convert vasp --> pdb file, this contains lattice params 
+OpenBabelGUI: convert Vesta vasp --> pdb file, this contains lattice params 
 
 
 

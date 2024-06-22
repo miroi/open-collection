@@ -1,0 +1,34 @@
+#!/bin/sh
+
+"$AMSBIN/ams" << eor
+
+Task SinglePoint
+System
+    Atoms
+        Og -2.224913666814628e-16 1.284554497762364e-16 4.264751688426009e-16 
+        Og 2.004024076080796 -1.157023839787737 -3.841346822964613 
+    End
+    Lattice
+        4.008048152161591 0.0 -0.0
+        -2.004024076080796 3.471071519363216 0.0
+        -0.0 0.0 7.682693645929231
+    End
+End
+
+Engine BAND
+    Basis
+        Type TZP
+        Core Small
+    End
+    NuclearModel Gaussian
+    Relativity
+        Level Spin-Orbit
+    End
+    XC
+        SpinOrbitMagnetization CollinearZ
+        GGA revPBE
+        DISPERSION GRIMME4
+    End
+EndEngine
+eor
+

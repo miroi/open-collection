@@ -32,6 +32,10 @@ iter:   9 14:02:37    -4.122152c -9.18c -4.17c
 Converged after 9 iterations.
 
 
-
-
+lxir127
+-------
+milias@lxir127.gsi.de:/data.local1/milias/projects/open-collection/theoretical_chemistry/software/ase/runs/gpaw-ase/Al_lattice_contant/.python3 Al_lattice.py 
+milias@lxir127.gsi.de:/data.local1/milias/projects/open-collection/theoretical_chemistry/software/ase/runs/gpaw-ase/Al_lattice_contant/.ls
+Al-200.txt  Al-300.txt	Al-400.txt  Al-500.txt	      Al_lattice.py	   readme.rst
+Al-250.txt  Al-350.txt	Al-450.txt  Al-fcc.txt_SAVED  bulk_Al_fcc_test.py
 

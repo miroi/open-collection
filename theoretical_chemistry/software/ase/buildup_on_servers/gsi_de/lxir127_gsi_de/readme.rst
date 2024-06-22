@@ -19,5 +19,4 @@ GPAW with ASE
 -------------
 python3 -m pip install gpaw
 
-
-
+Successfully installed gpaw-24.6.0 numpy-1.26.4

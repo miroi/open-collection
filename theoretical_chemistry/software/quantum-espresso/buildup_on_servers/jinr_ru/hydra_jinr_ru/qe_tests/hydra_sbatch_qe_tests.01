@@ -94,7 +94,12 @@ echo
 cd /lustre/home/user/m/milias/work/software/quantum-espresso/qe-7.3.1/test-suite
 echo -e "\n pwd=\c";pwd
 make
-echo -e "\n running tests..."
-make run-custom-test testdir=pw_b3lyp NPROCS=$SLURM_CPUS_ON_NODE
+echo -e "\n running tests...run-tests-pw"
+#make run-custom-test testdir=pw_b3lyp NPROCS=$SLURM_CPUS_ON_NODE
+make run-tests-pw NPROCS=$SLURM_CPUS_ON_NODE
+echo -e "\n running tests...run-tests-cp"
+make run-tests-cp NPROCS=$SLURM_CPUS_ON_NODE
+echo -e "\n running tests...run-tests-ph"
+make run-tests-ph NPROCS=$SLURM_CPUS_ON_NODE
 
 exit

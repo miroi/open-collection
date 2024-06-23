@@ -56,13 +56,13 @@ echo
 echo -e "Job partition is $SLURM_JOB_PARTITION \n"
 echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
 
-echo "modules at disposal:"
-module avail
-echo
+#echo "modules at disposal:"
+#module avail
+#echo
 
-#
-#module purge
-module load openmpi/v4.1.1_gcc1120
+module purge
+#module load openmpi/v4.1.1_gcc1120
+module load module add intel/v2021.1 Python/v3.10.13
 
 echo -e "\n\n loaded modules:"
 module list
@@ -92,6 +92,9 @@ echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
 echo
 
 cd /lustre/home/user/m/milias/work/software/quantum-espresso/qe-7.3.1/test-suite
-make run-custom-test testdir=pw_b3lyp NPROCS=4
+echo -e " pwd=\c";pwd
+make
+echo "running tests..."
+make run-custom-test testdir=pw_b3lyp NPROCS=$SLURM_CPUS_ON_NODE
 
 exit

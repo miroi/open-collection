@@ -62,7 +62,7 @@ echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
 
 module purge
 #module load openmpi/v4.1.1_gcc1120
-module load module add intel/v2021.1 Python/v3.10.13
+module load GVR/v1.0-1 intel/v2021.1 Python/v3.10.13
 
 echo -e "\n\n loaded modules:"
 module list
@@ -81,8 +81,8 @@ echo -e "\n The total memory at the node (in GB)"
 free -t -g
 echo -e "\n"
 
-echo -e "\nldd $AMSHOME/bin/ams.exe:"
-#ldd  $AMSHOME/bin/ams.exe
+#echo -e "\nldd $AMSHOME/bin/ams.exe:"
+ldd  /lustre/home/user/m/milias/work/software/quantum-espresso/qe-7.3.1/bin/pw.x
 
 #echo -e "\n ifort -V: \c"; ifort -V
 
@@ -92,9 +92,9 @@ echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
 echo
 
 cd /lustre/home/user/m/milias/work/software/quantum-espresso/qe-7.3.1/test-suite
-echo -e " pwd=\c";pwd
+echo -e "\n pwd=\c";pwd
 make
-echo "running tests..."
+echo -e "\n running tests..."
 make run-custom-test testdir=pw_b3lyp NPROCS=$SLURM_CPUS_ON_NODE
 
 exit

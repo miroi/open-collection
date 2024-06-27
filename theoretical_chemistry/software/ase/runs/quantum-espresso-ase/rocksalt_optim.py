@@ -5,11 +5,13 @@ from ase.optimize import LBFGS
 rocksalt = bulk('NaCl', crystalstructure='rocksalt', a=6.0)
 
 # Pseudopotentials from SSSP Efficiency v1.3.0
+#pseudopotentials = {'Na': 'na_pbe_v1.5.uspp.F.UPF', 'Cl': 'cl_pbe_v1.4.uspp.F.UPF'}
 pseudopotentials = {'Na': 'na_pbe_v1.5.uspp.F.UPF', 'Cl': 'cl_pbe_v1.4.uspp.F.UPF'}
 
 # Optionally create profile to override paths in ASE configuration:
 profile = EspressoProfile(
-    command='/usr/bin/pw.x', pseudo_dir='/usr/share/espresso/pseudo'
+    command='/usr/bin/pw.x', 
+    pseudo_dir='./'
 )
 
 

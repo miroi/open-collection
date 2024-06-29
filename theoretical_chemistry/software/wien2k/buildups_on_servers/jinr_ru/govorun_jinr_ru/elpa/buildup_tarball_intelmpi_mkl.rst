@@ -63,6 +63,9 @@ Currently Loaded Modulefiles:
 
 configure: error: could not link with blas: specify path
 
-milias@vm01.hydra.local:~/work/software/elpa/elpa-2024.03.001_intelmpi_mkl/.LDFLAGS=/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2021.1/mkl/latest/lib/intel64 CC=mpicc FC=mpiifort ./configure --prefix=$PWD  --enable-openmp
+Currently Loaded Modulefiles:
+  1) BASE/1.0          2) Python/v3.10.13   3) GVR/v1.0-1        4) intel/v2021.1     5) gcc/v12.3.0
+milias@vm01.hydra.local:~/work/software/elpa/elpa-2024.03.001_intelmpi_mkl/.LDFLAGS=/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2021.1/mkl/latest/lib/intel64  FC=mpiifort ./configure --prefix=$PWD  --enable-openmp
+
 
 

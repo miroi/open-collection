@@ -9,20 +9,9 @@
 #  Free for use.
 #
 
-spack load intel-mkl@2020.4.304
-spack load intel-parallel-studio@professional.2020.1
-spack load amdfftw@3.0 arch=broadwell
-spack unload openmpi@4.1.5 
-#
-spack find --loaded
-export PATH=/u/milias/bin/openmpi/bin:$PATH
-export LD_LIBRARY_PATH=/u/milias/bin/openmpi/lib:$LD_LIBRARY_PATH
-which mpirun; mpirun --version
-which mpif90; mpif90 --version
+module load intel fftw ELPA GVR/v1.0-1
 
-#export WIEN2k=/data.local1/milias/software/wien2k/WIEN2k_19.2
-export WIEN2k=/data.local1/milias/software/wien2k/WIEN2k_23.2/intel-openmpi_mkl
-export WIENROOT=$WIEN2k
+export WIENROOT=/lustre/home/user/m/milias/work/software/wien2k/wien2k_23.2_intelserial_mkl
 
 randstr=`tr -cd '[:alnum:]' < /dev/urandom | fold -w4 | head -n1`
 export SCRATCH=$PWD/scratch.$randstr

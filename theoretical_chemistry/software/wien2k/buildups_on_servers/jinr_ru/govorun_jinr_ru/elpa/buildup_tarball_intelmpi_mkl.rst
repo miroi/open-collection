@@ -41,3 +41,10 @@ milias@vm01.hydra.local:~/work/software/elpa/.cp -R elpa-2024.03.001_untouched  
 
 milias@vm01.hydra.local:~/work/software/elpa/elpa-2024.03.001_intelmpi_mkl/.CXX=mpicpc CC=mpicc FC=mpiifort ./configure --prefix=$PWD  --enable-openmp
 
+configure: error: C++ compiler cannot create executables
+See 'config.log' for more details
+
+...leave out mpicpc !
+milias@vm01.hydra.local:~/work/software/elpa/elpa-2024.03.001_intelmpi_mkl/. CC=mpicc FC=mpiifort ./configure --prefix=$PWD  --enable-openmp
+
+

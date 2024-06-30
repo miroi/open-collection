@@ -1,0 +1,33 @@
+#!/bin/sh
+
+"$AMSBIN/ams" << eor
+
+Task GeometryOptimization
+Properties
+    Phonons Yes
+End
+NumericalPhonons
+    SuperCell
+        2 0 0 
+        0 2 0 
+        0 0 2 
+    End
+End
+System
+    Atoms
+        Og 0.0 0.0 0.0 
+    End
+    Lattice
+        -0.0 3.34000726770019 3.34000726770019
+        3.34000726770019 -0.0 3.34000726770019
+        3.34000726770019 3.34000726770019 0.0
+    End
+End
+
+Engine BAND
+    XC
+        LDA SCF VWN
+    End
+EndEngine
+eor
+

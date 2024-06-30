@@ -21,7 +21,7 @@ Requirement already satisfied: python-dateutil>=2.7 in ./.local/lib/python3.10/s
 Requirement already satisfied: six>=1.5 in ./.local/lib/python3.10/site-packages (from python-dateutil>=2.7->matplotlib>=3.3.4->ase>=3.22.1->asap3) (1.16.0)
 WARNING: Ignoring invalid distribution -ip (/lustre/home/user/m/milias/.local/lib/python3.10/site-packages)
 
-ilias@vm02.hydra.local:~/work/projects/open-collection/theoretical_chemistry/software/asap3-ase/buildup_on_servers/jinr_ru/vmXY_hydra_local/.pip list
+milias@vm02.hydra.local:~/work/projects/open-collection/theoretical_chemistry/software/asap3-ase/buildup_on_servers/jinr_ru/vmXY_hydra_local/.pip list
 WARNING: Ignoring invalid distribution -ip (/lustre/home/user/m/milias/.local/lib/python3.10/site-packages)
 Package         Version
 --------------- -----------
@@ -54,5 +54,29 @@ setuptools      65.5.0
 six             1.16.0
 tomli           2.0.1
 virtualenv      20.26.2
+
+milias@vm02.hydra.local:~/work/projects/open-collection/theoretical_chemistry/software/asap3-ase/buildup_on_servers/jinr_ru/vmXY_hydra_local/test_simpleMD/.pip show asap3 ase
+WARNING: Ignoring invalid distribution -ip (/lustre/home/user/m/milias/.local/lib/python3.10/site-packages)
+Name: asap3
+Version: 3.13.4
+Summary: ASAP - classical potentials for MD with ASE.
+Home-page: https://wiki.fysik.dtu.dk/asap
+Author: 
+Author-email: 
+License: LGPLv3
+Location: /lustre/home/user/m/milias/.local/lib/python3.10/site-packages
+Requires: ase
+Required-by: 
+---
+Name: ase
+Version: 3.23.0
+Summary: Atomic Simulation Environment
+Home-page: https://wiki.fysik.dtu.dk/ase/
+Author: 
+Author-email: 
+License: LGPLv2.1+
+Location: /lustre/home/user/m/milias/.local/lib/python3.10/site-packages
+Requires: matplotlib, numpy, scipy
+Required-by: asap3
 
 

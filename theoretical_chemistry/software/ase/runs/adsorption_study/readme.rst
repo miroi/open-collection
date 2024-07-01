@@ -37,4 +37,8 @@ milias@pc7321b:/mnt/c/Users/milias/Documents/git-projects/open-collection/theore
 milias@pc7321b:/mnt/c/Users/milias/Documents/git-projects/open-collection/theoretical_chemistry/software/ase/runs/adsorption_study/.ase db ads.db -n
 126 rows
 
+Reference energies of surfaces and atoms
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+milias@pc7321b:/mnt/c/Users/milias/Documents/git-projects/open-collection/theoretical_chemistry/software/ase/runs/adsorption_study/.python3 refs.py
+
 

@@ -28,10 +28,6 @@ Installing collected packages: kimpy
 Successfully installed kimpy-2.1.1
 
 
-kim-api-collections
-~~~~~~~~~~~~~~~~~~~
-kim-api-collections-management  list > kim-api-collections-management_list.log
-
 kim-querry
 ~~~~~~~~~~
 https://pypi.org/project/kim-query/
@@ -41,5 +37,14 @@ pip install kim-query
 .
 Installing collected packages: urllib3, idna, charset-normalizer, certifi, requests, kim-query
 Successfully installed certifi-2024.7.4 charset-normalizer-3.3.2 idna-3.7 kim-query-3.0.0 requests-2.32.3 urllib3-2.2.2
+
+
+kim-api-collections
+~~~~~~~~~~~~~~~~~~~
+kim-api-collections-management  list > kim-api-collections-management_list.log
+
+
+milias@pc7321b:/mnt/c/Users/milias/Documents/git-projects/open-collection/theoretical_chemistry/software/openkim/buildup_on_servers/jinr_ru/wsl_win10_pc7321b/.ls /lib/x86_64-linux-gnu/kim-api/
+mod/  model-drivers/  portable-models/  simulator-models/
 
 

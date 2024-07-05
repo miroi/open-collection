@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
+#
 #  Cohesive energy calculation for fcc aluminum with query to openkim.org for lattice constant
+#
 """
 Compute the cohesive energy and pressure of an FCC Al crystal using the
 Ercolessi-Adams EAM potential implemented as a Portable Model (PM) in
 OpenKIM for the equilibrium lattice constant obtained by querying openkim.org.
 """
+
 from ase.calculators.kim import KIM
 from ase.lattice.cubic import FaceCenteredCubic
 from ase.units import GPa

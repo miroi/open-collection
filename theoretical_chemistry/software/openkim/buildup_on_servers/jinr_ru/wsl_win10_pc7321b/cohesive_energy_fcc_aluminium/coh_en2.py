@@ -13,7 +13,9 @@ from kim_query import get_lattice_constant_cubic
 model = "EAM_Dynamo_ErcolessiAdams_1994_Al__MO_123629422045_005"
 
 # Perform query to get lattice constant for this model
+print("doing query to get lattice constant for this model=",model)
 a0 = get_lattice_constant_cubic([model], ["fcc"], ["Al"], ["angstrom"])[0]
+print("obtained a0=",a0)
 
 # Set up crystal and calculator
 atoms = FaceCenteredCubic("Al", latticeconstant=a0)

@@ -8,4 +8,8 @@ configure
 https://wiki.fysik.dtu.dk/ase/ase/calculators/calculators.html#calculator-configuration
 
 
+ ase info --calculators > ase_calculators.log
+
+ vim ~/.config/ase/config.ini
+
 

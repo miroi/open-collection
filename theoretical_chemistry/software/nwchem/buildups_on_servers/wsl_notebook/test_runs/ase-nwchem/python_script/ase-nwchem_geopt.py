@@ -19,7 +19,7 @@ print('\n running geometry optimization of the N2 molecule with the initial dist
 opt.run(fmax=0.02)
 
 # print out optimal internuclear distance
-print('NWChem optimized d(N-N)=',molecule.get_distance(0,1))
+print('NWChem optimized d(N-N)=',moleculeN2.get_distance(0,1))
 
 e_moleculeN2 = moleculeN2.get_total_energy()
 

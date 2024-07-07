@@ -14,9 +14,7 @@ https://packages.ubuntu.com/en/jammy/armhf/science/quantum-espresso
 
 quick test
 ~~~~~~~~~~
-
- examples
-/usr/share/doc/quantum-espresso/examples
+examples  /usr/share/doc/quantum-espresso/examples
 
 
 

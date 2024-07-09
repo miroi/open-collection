@@ -3,6 +3,10 @@ import numpy as np
 from ase import Atoms
 from ase.calculators.gulp import GULP, Conditions
 
+import os
+os.environ["GULP_LIB"] = "/home/milias/work/software/gulp/gulp-6.2/Libraries"
+os.environ["ASE_GULP_COMMAND"] = "/home/milias/work/software/gulp/gulp-6.2/Src/gulp < PREFIX.gin > PREFIX.got"
+
 cluster = Atoms(symbols='O4SiOSiO2SiO2SiO2SiOSiO2SiO3SiO3H8',
                 pbc=np.array([False, False, False], dtype=bool),
                 cell=np.array(

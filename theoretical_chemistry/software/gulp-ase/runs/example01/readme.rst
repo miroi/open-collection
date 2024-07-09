@@ -12,3 +12,8 @@ RuntimeError: Be sure to have set correctly $GULP_LIB or to have the force field
 $GULP_LIB or to have the force field library
 
 
+WSL-Win11 VictusNB
+~~~~~~~~~~~~~~~~~~~
+milias@Miro:/mnt/c/Users/miroi/OneDrive/Desktop/Work/projekty/open-collection/theoretical_chemistry/software/gulp-ase/runs/example01/.python3 get_potential_energy.py
+-592.47367673
+-602.9217614

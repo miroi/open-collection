@@ -22,3 +22,6 @@ Traceback (most recent call last):
     dosax.fill_between(dos.weights[0], dos.energy, y2=0, color='grey',
 AttributeError: 'GridDOSData' object has no attribute 'weights'
 
+wsl_win11_VictusNB
+------------------
+https://gitlab.com/ase/ase/-/issues/1508#note_1990119218

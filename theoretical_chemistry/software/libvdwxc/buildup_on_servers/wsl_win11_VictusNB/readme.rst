@@ -56,4 +56,10 @@ Tests
 milias@Miro:~/work/software/libvdwxc/libvdwxc_cloned/bin/.ls
 libvdwxc_fdtest*  libvdwxc_info*  libvdwxc_maintest*  libvdwxc_q0test*  libvdwxc_q0test2*
 
+pkg-config
+~~~~~~~~~~
+milias@Miro:/mnt/c/Users/miroi/OneDrive/Desktop/Work/projekty/open-collection/theoretical_chemistry/software/libvdwxc/buildup_on_servers/wsl_win11_VictusNB/.export PKG_CONFIG_PATH=/home/milias/work/software/libvdwxc/libvdwxc_cloned/lib/pkgconfig
+
+pkg-config --libs libvdwxc
+-L/home/milias/work/software/libvdwxc/libvdwxc_cloned/lib -lvdwxc -lfftw3
 

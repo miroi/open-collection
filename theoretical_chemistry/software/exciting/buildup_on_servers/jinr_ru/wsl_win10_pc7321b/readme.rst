@@ -55,8 +55,26 @@ milias@pc7321b:~/work/software/exciting/exciting_neon_21/.ldd bin/exciting
         libz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x00007f32d14ea000)
         libudev.so.1 => /lib/x86_64-linux-gnu/libudev.so.1 (0x00007f32d14be000)
 
+testing
+~~~~~~~
+
+milias@pc7321b:~/work/software/exciting/exciting_neon_21/.python3 -m pip install --upgrade pip
+milias@pc7321b:~/work/software/exciting/exciting_neon_21/.pip3 install -e tools/exciting_tools
+.
+Successfully built excitingtools
+Installing collected packages: excitingtools
+Successfully installed excitingtools-1.5.1
+
+milias@pc7321b:~/work/software/exciting/exciting_neon_21/test/.python3 runtest.py
+Run test suite:
+Binary:  /home/milias/work/software/exciting/exciting_neon_21/bin/exciting_smp
+Run tests with exciting_smp with 2 openMP threads.
+Run test LDA_PW-lapack-BN
+.
+.
 
 
+ python3 runtest.py -np 2 -omp 2
 
 
 

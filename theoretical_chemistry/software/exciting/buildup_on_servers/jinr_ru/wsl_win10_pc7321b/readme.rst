@@ -72,9 +72,8 @@ Run tests with exciting_smp with 2 openMP threads.
 Run test LDA_PW-lapack-BN
 .
 .
+milias@pc7321b:~/work/software/exciting/exciting_neon_21/test/.python3  runtest.py  -omp 16 > /mnt/c/Users/milias/Documents/git-projects/open-colle
+ction/theoretical_chemistry/software/exciting/buildup_on_servers/jinr_ru/wsl_win10_pc7321b/tests.log
 
-
- python3 runtest.py -np 2 -omp 2
-
-
+milias@pc7321b:~/work/software/exciting/exciting_neon_21/test/.python3 runtest.py -e exciting_mpismp -np 4 -omp 4
 

@@ -22,3 +22,12 @@ Traceback (most recent call last):
     dosax.fill_between(dos.weights[0], dos.energy, y2=0, color='grey',
 AttributeError: 'GridDOSData' object has no attribute 'weights'
 
+wsl_win11_VictusNB
+------------------
+https://gitlab.com/ase/ase/-/issues/1508#note_1990119218
+
+fixed
+
+ilias@Miro:/mnt/c/Users/miroi/OneDrive/Desktop/Work/projekty/open-collection/theoretical_chemistry/software/ase/runs/phonons/.python3 phonon_Al_bulk.py
+WARNING, 1 imaginary frequencies at q = ( 0.00,  0.00,  0.00) ; (omega_q = 8.404e-09*i)
+WARNING, 1 imaginary frequencies at q = ( 0.00,  0.00,  0.00) ; (omega_q = 8.404e-09*i)

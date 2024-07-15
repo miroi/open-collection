@@ -1,5 +1,10 @@
 # flake8: noqa
 import numpy as np
+
+import os
+os.environ["GULP_LIB"] = "/home/milias/work/software/gulp/gulp-6.2/Libraries"
+os.environ["ASE_GULP_COMMAND"] = "/home/milias/work/software/gulp/gulp-6.2/Src/gulp < PREFIX.gin > PREFIX.got"
+
 from ase import Atoms
 from ase.calculators.gulp import GULP, Conditions
 

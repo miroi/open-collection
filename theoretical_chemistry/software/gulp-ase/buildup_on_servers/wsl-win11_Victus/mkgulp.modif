@@ -1,0 +1,437 @@
+#! /bin/sh
+#
+# This shell script adapts the Makefile in dependence
+# of the machine and the operating system you use.
+# It is called from 'make' before the compiler
+# is invoked.
+#
+# NB: Some values may need to be changed for your specific machine.
+#     To find the bits where user modification may be required 
+#     search for the tag "USER". Lines between "USER--Start" and
+#     "USER--End" may be commented or uncommented (or changed if
+#     necessary) to suit your machine. Other parts of this file 
+#     should not need to be modified.
+#
+# On Raijin at NCI, there are modifications to be made where NCI is
+# mentioned. The GULP module on this system was built with:
+#
+# - Intel compilers and MKL version 17.0.1.132
+# - fftw3-mkl/17.0.1.132
+# - openmpi/2.1.1
+# - plumed/2.3.5
+# - elpa-2020.05.001
+#
+#  1/18 Major modification to simplify
+#  2/18 Handling of Lapack and Blas modified
+#  2/18 Support for parallel make added
+#  8/19 Cray compiler added
+#  7/20 ELPA added
+# 12/23 lib-nomaths added
+#
+#  Initial version written by J-R. Hill
+#  Re-written by JDG
+#
+#  Initialise arguments
+#
+compiler="gfortran"
+debug=
+elpa=
+fftw3=
+kim=
+parallel=
+plumed=
+task="gulp"
+pmake=
+#
+#  Parse arguments to mkgulp
+#
+while getopts dmpkfehelpc:t:j: option; do
+  case "$option" in
+    d)
+       debug="_Debug"
+       ;;
+    m)
+       parallel="_MPI"
+       ;;
+    p)
+       plumed="_Plumed"
+       ;;
+    f)
+       fftw3="_FFTW3"
+       ;;
+    k)
+       kim="_Kim"
+       ;;
+    e)
+       elpa="_Elpa"
+       ;;
+    c)
+       compiler=$OPTARG
+       ;;
+    t)
+       task=$OPTARG
+       ;;
+    j)
+       pmake=$OPTARG
+       ;;
+    h)
+       echo ' '
+       echo ' Make GULP available options :'
+       echo ' '
+       echo ' -c ARG => specifies compiler to be used '
+       echo '           ARG = gfortran (default)'
+       echo '               = intel'
+       echo '               = cray'
+       echo ' -d => make debug version '
+       echo ' -e => compile and link to ELPA maths library '
+       echo ' -f => compile and link to FFTW3 '
+       echo ' -j ARG => specifies the number of processors to be used for make '
+       echo ' -k => compile and link to OpenKIM '
+       echo ' -m => make parallel MPI version '
+       echo ' -p => compile and link to Plumed plug-in '
+       echo ' -t ARG => specifies task to be performed (ARG=gfortran or Intel)'
+       echo '           ARG = gulp (default) - build exe'
+       echo '               = clean - remove files from compilation of gulp'
+       echo '               = fox-clean - remove files from compilation of FoX'
+       echo '               = lib - build gulp as a library'
+       echo '               = lib-nomaths - build gulp as a library without maths libraries'
+       echo '               = tar - create a tar file'
+       echo ' '
+       exit
+       ;;
+    *)
+       echo "Invalid option supplied to mkgulp"
+       exit
+       ;;
+  esac
+done
+#
+#  Set up makedir function
+#
+makedir()
+{
+  if [ ! -d "$dir" ]
+  then
+    mkdir "$dir"
+  fi
+  cd $dir
+}
+#
+#  Get operating system name
+#
+os=`uname -s`
+#
+#  For FoX clean up we don't need to go into code directory 
+#
+if [ "$task" = "fox-clean" ] 
+then
+  cd FoX-4.1.2
+  touch arch.make
+  make distclean
+  exit
+elif [ "$task" = "tar" ] 
+then
+  make tar
+  exit
+fi
+#
+#  Make directory for compilation
+#
+dir="${os}${parallel}${fftw3}${kim}${plumed}${elpa}${debug}"
+makedir
+#
+#  Initialise makefile
+#
+echo '# GULP makefile : ' > makefile
+#
+#  UDEFS:
+#
+#  -DNOFOX   => do not compile FoX related subroutines
+#  -DCTRLC   => compile with calls to csignal to trap Control C escape sequence
+#  -DOLDCS   => compile for old version of ChemShell (pre-2017)
+#
+#  Set options for UDEFS (user definitions) here
+#
+#--USER--Start
+echo 'UDEFS=-DFLUSH -DNOFOX ' >> makefile
+#--USER--End
+
+#
+#  Open KIM - to set -DKIM in UDEFS
+#
+if [ "$kim" = "" ]
+then
+  echo 'KDEFS=' >> makefile
+  echo "KFLAGS=" >> makefile
+  echo 'KLIBS=' >> makefile
+else
+#
+# For current version of OpenKIM use the following
+#
+#--USER--Start
+  echo 'KDEFS=-DKIM' >> makefile
+  #echo "KFLAGS=-I/usr/local/lib/kim-api/mod/" >> makefile
+  echo "KFLAGS=-I/lib/x86_64-linux-gnu/kim-api/mod/" >> makefile
+  #echo "KLIBS=-L/usr/local/lib/ -lkim-api " >> makefile
+  echo "KLIBS=-L/usr/lib/x86_64-linux-gnu -lkim-api " >> makefile
+#--USER--End
+fi
+#
+#  ELPA - to set -DELPA in UDEFS
+#
+if [ "$elpa" = "" ]
+then
+  echo 'EDEFS=' >> makefile
+  echo "EFLAGS=" >> makefile
+  echo 'ELIBS=' >> makefile
+else
+#
+# For current version of ELPA use the following
+# NB: If version is NOT elpa-2020.05.001 then change directory name for modules!
+#
+#--USER--Start
+  echo 'EDEFS=-DELPA' >> makefile
+#  echo "EFLAGS=-I/usr/local/include/elpa-2020.05.001/modules/" >> makefile
+  echo "EFLAGS=-I/usr/include/elpa/modules/" >> makefile
+  #echo "ELIBS=-L/usr/local/lib/ -lelpa " >> makefile
+  echo "ELIBS=-L/usr/lib/x86_64-linux-gnu/ -lelpa " >> makefile
+#--USER--End
+fi
+
+#
+#  Include file directories
+#
+#--USER--Start
+#echo 'INC=-I.. ' >> makefile
+echo 'INC=-I.. -I/usr/include/ ' >> makefile
+#--USER--End
+#  If using Macports then use the following instead
+#--USER--Start
+#echo 'INC=-I.. -I/opt/local/include/ -I/usr/local/include/' >> makefile
+#--USER--End
+
+#
+#  Compiler specific options
+#
+case $compiler in
+  gfortran)
+           if [ "$debug" = "" ]
+           then
+               echo 'OPT=-O3 -ffpe-summary=invalid,zero,overflow ' >> makefile
+               echo 'OPT2=-O2 -ffpe-summary=invalid,zero,overflow ' >> makefile
+               echo 'OPT1=-O1 -ffpe-summary=invalid,zero,overflow ' >> makefile
+           else
+               echo 'OPT=' >> makefile
+               echo 'OPT1=' >> makefile
+               echo 'OPT2=-ffloat-store' >> makefile
+               echo 'BAGGER=-g -Wall -Wunused-parameter -fbounds-check -Wuninitialized -fbacktrace' >> makefile
+           fi
+           if [ "$parallel" = "" ]
+           then
+             if [ "$os" = "Darwin" ]
+             then
+#  gfortran with accelerate framework on Mac
+#               echo 'RUNF90=gfortran -framework accelerate -fallow-argument-mismatch ' >> makefile
+               echo 'RUNF90=gfortran -fallow-argument-mismatch ' >> makefile
+#  If using the accelerate framework then only use zdotc since this gives a seg fault with accelerate:
+#               echo 'MLIBS=zdotc.o' >> makefile
+               echo 'MLIBS=lapack.o blas.o zdotc.o ' >> makefile
+             else
+               echo 'RUNF90=gfortran -fallow-argument-mismatch ' >> makefile
+#  Provide the location and name of Lapack and Blas libraries:
+#--USER--Start
+#  On the Mac the following is sufficient when using Macports:
+#               echo 'MLIBS=-L/opt/local/lib/lapack/ -llapack -lblas ' >> makefile
+#--USER--End
+#  Or if optimised maths libraries are not available then:
+               echo 'MLIBS=lapack.o blas.o zdotc.o ' >> makefile
+             fi
+             echo 'RUNCC=gfortran ' >> makefile
+               echo 'SLIBS= ' >> makefile
+           else
+# NB: For gfortran v10 then use these lines 
+               echo 'RUNF90=mpif90 -fallow-argument-mismatch ' >> makefile
+               echo 'RUNCC=mpif90 ' >> makefile
+#               echo 'RUNF90=mpif90 ' >> makefile
+#               echo 'RUNCC=mpif90 ' >> makefile
+#
+#  Provide the location and name of Lapack and Blas libraries:
+#--USER--Start
+#  On the Mac the following is sufficient when using Macports:
+#               echo 'MLIBS=-L/opt/local/lib/lapack/ -llapack -lblas ' >> makefile
+#  If using the accelerate framework then only use zdotc since this gives a seg fault with accelerate:
+               echo 'MLIBS=zdotc.o' >> makefile
+#  Or if optimised maths libraries are not available then:
+#               echo 'MLIBS=lapack.o blas.o zdotc.o' >> makefile
+#--USER--End
+#  Provide the location and name of Scalapack, Blacs, and Pblas libraries if running in parallel:
+#--USER--Start
+#  For homebrew installation of Scalapack:
+               #echo 'SLIBS=-L/opt/homebrew/lib -lscalapack ' >> makefile
+               echo 'SLIBS=-L/usr/lib/x86_64-linux-gnu/ -lscalapack-openmpi -llapack -lblas' >> makefile
+#               echo 'SLIBS=-L/opt/local/lib -lscalapack ' >> makefile
+#--USER--End
+           fi
+           ;;
+  intel)
+           if [ "$debug" = "" ]
+           then
+               echo 'OPT=-O3 ' >> makefile
+               echo 'OPT2=-O2' >> makefile
+               echo 'OPT1=-O1' >> makefile
+           else
+               echo 'OPT=' >> makefile
+               echo 'OPT1=' >> makefile
+               echo 'OPT2=-ffloat-store' >> makefile
+               echo 'BAGGER=-g -traceback -O0 -debug all -ftrapuv' >> makefile
+           fi
+           if [ "$parallel" = "" ]
+           then
+               echo 'RUNF90=ifort ' >> makefile
+               echo 'RUNCC=icc ' >> makefile
+               echo 'SLIBS= ' >> makefile
+#  If there are optimised maths libraries available replace the routines below
+#--USER--Start
+               echo 'MLIBS=lapack.o blas.o zdotc.o' >> makefile
+#--USER--End
+           else
+# If using Intel MPI
+#               echo 'RUNF90=mpiifort ' >> makefile
+#               echo 'RUNCC=mpiicc ' >> makefile
+# If using a non-Intel MPI
+               echo 'RUNF90=mpif90 ' >> makefile
+               echo 'RUNCC=mpicc ' >> makefile
+#  Use maths libraries from MKL with the Intel compiler:
+#--USER--Start
+#  The following link line has been test for Intel 2018.1.163 on NCI.
+               echo 'SLIBS=-L${MKLROOT}/lib/intel64 -lmkl_scalapack_lp64 -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lmkl_blacs_intelmpi_lp64 -lpthread -lm -ldl ' >> makefile
+#  The following is used on NCI for the gulp module:
+#                echo 'SLIBS= -L${MKLROOT}/lib/intel64/libmkl_blas95_lp64.a ${MKLROOT}/lib/intel64/libmkl_lapack95_lp64.a -L${MKLROOT}/lib/intel64 -lmkl_scalapack_lp64 -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_openmpi_lp64 -liomp5 -lpthread -lm -ldl ' >> makefile
+               echo 'MLIBS= ' >> makefile
+#--USER--End
+           fi
+           ;;
+  cray)
+           if [ "$debug" = "" ]
+           then
+               echo 'OPT=-O3 ' >> makefile
+               echo 'OPT2=-O2' >> makefile
+               echo 'OPT1=-O1' >> makefile
+           else
+               echo 'OPT=' >> makefile
+               echo 'OPT1=' >> makefile
+               echo 'OPT2=' >> makefile
+               echo 'BAGGER=-g -O0 -h bounds -Ktrap=divz' >> makefile
+           fi
+#
+#  No different below for Cray since the norm is to use parallel and maths libraries are provided
+#
+           if [ "$parallel" = "" ]
+           then
+               echo 'RUNF90=ftn ' >> makefile
+               echo 'RUNCC=cc ' >> makefile
+               echo 'SLIBS= ' >> makefile
+           else
+               echo 'RUNF90=ftn ' >> makefile
+               echo 'RUNCC=cc ' >> makefile
+               echo 'SLIBS= ' >> makefile
+           fi
+           ;;
+#
+# This is an unknown compiler
+#
+  *)       echo "Sorry, the compiler '$compiler' is not configured."
+           echo "Edit 'mkgulp' to include the required options."
+           exit 1
+           ;;
+esac
+
+#
+#  Parallel compilation options
+#
+if [ "$parallel" = "" ]
+then
+  echo 'MDEFS= ' >> makefile
+else
+  echo 'MDEFS=-DMPI ' >> makefile
+fi
+
+#
+#  Plumed compilation options
+#
+if [ "$plumed" = "" ]
+then
+  echo 'PDEFS=' >> makefile
+  echo 'PLIBS=' >> makefile
+  echo 'PLUMEDDEFS= ' >> makefile
+else
+  echo 'PDEFS=-DPLUMED ' >> makefile
+  echo 'PLIBS=-lplumed ' >> makefile
+  echo 'PLUMEDDEFS=-DDL_POLY' >> makefile
+fi
+
+#
+#  FFTW3 compilation options
+#
+if [ "$fftw3" = "" ]
+then
+  echo 'FDEFS=' >> makefile
+  echo 'FLIBS=' >> makefile
+else
+  echo 'FDEFS=-DFFTW3 ' >> makefile
+  if [ "$parallel" = "" ]
+#--USER--Start
+    #echo 'FLIBS=-L/usr/local/lib/ -lfftw3.a' >> makefile
+    echo 'FLIBS=-L/usr/lib/x86_64-linux-gnu/ -lfftw3.a' >> makefile
+#--USER--End
+  then
+#--USER--Start
+    #echo 'FLIBS=-L/usr/local/lib/ -lfftw3 -lfftw3_mpi' >> makefile
+    echo 'FLIBS=-L/usr/lib/x86_64-linux-gnu/ -lfftw3 -lfftw3_mpi' >> makefile
+#  The following is for NCI
+#    echo 'FLIBS=-mkl -lfftw3x_cdft_openmpi_lp64'
+#--USER--End
+  fi
+fi
+
+#
+#  Set general commands that should rarely need to be modified
+#
+echo 'ARCHIVE = ar rcv' >> makefile
+echo 'RANLIB = ar ts' >> makefile
+echo 'GULPENV=' >> makefile
+echo 'CDABS=cdabs.o' >> makefile
+echo 'LDFLAGS=' >> makefile
+echo 'FOPT=' >> makefile
+echo 'COPT=' >> makefile
+
+cat ../Makefile >> makefile
+#
+#  Perform make 
+#
+if [ "$pmake" = "" ]
+then
+  make $task
+else
+#
+#  Check whether argument to -j is an integer
+#
+  if [[ $pmake != [0-9]* ]]; then
+    echo 'Error: argument to -j option is not an integer'
+    exit
+  else
+    make -j $pmake $task
+  fi
+fi
+#
+#  Clean up by remove temporary makefile
+#
+rm -f makefile
+
+if [ "$task" = "gulp" ]
+then
+#
+# Move executable back to level at which make command was issued
+#
+mv gulp ../gulp
+fi

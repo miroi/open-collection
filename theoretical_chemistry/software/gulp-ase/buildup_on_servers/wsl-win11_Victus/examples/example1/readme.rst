@@ -1,0 +1,14 @@
+=============
+GULP EXAMPLE1
+=============
+
+https://gulp.curtin.edu.au/help/examples.html
+
+whet https://gulp.curtin.edu.au/help/example1.gin
+wget https://gulp.curtin.edu.au/help/example1.got
+
+/home/milias/work/software/gulp/gulp-6.2/Src/gulp < example1.gin  > example1.gout
+
+diff  example1.got* example1.gout*
+
+

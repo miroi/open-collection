@@ -1,6 +1,7 @@
 #
 # https://fhi-aims-club.gitlab.io/tutorials/slab-calculations-and-surface-simulations-with-fhi-aims/P1-Creating_Structures/
 #
+
 from ase.build import diamond100
 
 # Create the diamond 100 surface of Si directly using an utility function

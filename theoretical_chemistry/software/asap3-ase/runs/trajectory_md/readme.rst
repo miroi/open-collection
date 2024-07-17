@@ -13,4 +13,7 @@ The output is in the ASE Trajectory file TrajectoryMD-output.traj
 
 milias@Miro:/mnt/c/Users/miroi/OneDrive/Desktop/Work/projekty/open-collection/theoretical_chemistry/software/asap3/runs/trajectory_md$ ase gui TrajectoryMD-output.traj
 
+WSL(Win2) milias@pc7321b
+~~~~~~~~~~~~~~~~~~~~~~~~
 
+the same

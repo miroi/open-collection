@@ -1,3 +1,4 @@
+==========================
 GPAW on WSL-Win11-VictusNB
 ==========================
 
@@ -5,6 +6,10 @@ GPAW on WSL-Win11-VictusNB
 https://wiki.fysik.dtu.dk/gpaw/install.html
 
 sudo apt install gpaw
+
+rather 
+
+pip install gpaw
 
 milias@Miro:/mnt/c/Users/miroi/OneDrive/Desktop/Work/projekty/open-collection/theoretical_chemistry/software/gpaw-ase/range_separated_functionals/.gpaw -P 4 test
  ----------------------------------------------------------------------------------------

@@ -1,3 +1,4 @@
+====================
 Al lattice with GPAW
 ====================
 
@@ -41,5 +42,16 @@ Al-250.txt  Al-350.txt	Al-450.txt  Al-fcc.txt_SAVED  bulk_Al_fcc_test.py
 
 WSL-Win11 Victus
 ~~~~~~~~~~~~~~~~
-milias@Miro:/mnt/c/Users/miroi/OneDrive/Desktop/Work/projekty/open-collection/theoretical_chemistry/software/ase/runs/.gpaw --version
-gpaw-22.1.0
+gpaw --version
+gpaw-24.6.0
+
+https://wiki.fysik.dtu.dk/gpaw/tutorialsexercises/structureoptimization/lattice_constants/lattice_constants.html
+
+python3 Al_lattice.py
+
+ls
+Al-200.txt*  Al-300.txt*  Al-400.txt*  Al-500.txt*        Al_lattice.py*        readme.rst*
+Al-250.txt*  Al-350.txt*  Al-450.txt*  Al-fcc.txt_SAVED*  bulk_Al_fcc_test.py*
+
+
+

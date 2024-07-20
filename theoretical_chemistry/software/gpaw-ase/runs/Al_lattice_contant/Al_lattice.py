@@ -1,5 +1,5 @@
 #
-# https://wiki.fysik.dtu.dk/gpaw/tutorials/lattice_constants/lattice_constants.html#fcc-aluminium
+# https://wiki.fysik.dtu.dk/gpaw/tutorialsexercises/structureoptimization/lattice_constants/lattice_constants.html#fcc-aluminium
 #
 import numpy as np
 from ase.build import bulk

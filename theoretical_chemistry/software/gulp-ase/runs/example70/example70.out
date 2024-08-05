@@ -1,0 +1,496 @@
+********************************************************************************
+*                       GENERAL UTILITY LATTICE PROGRAM                        *
+*                                 Julian Gale                                  *
+*                       Curtin Institute for Computation                       *
+*                    School of Molecular and Life Sciences                     *
+*                    Curtin University, Western Australia                      *
+********************************************************************************
+* Version = 6.2.0 * Last modified =  19th December 2023                        *
+********************************************************************************
+*  optimise     - perform optimisation run                                     *
+*  conp         - constant pressure calculation                                *
+*  property     - calculate properties for final geometry                      *
+*  phonon       - calculate phonons for final geometry                         *
+*  molecule     - molecule option activated, Coulomb subtract within molecule  *
+*  noexclude    - do not freeze out atoms with no derivatives                  *
+********************************************************************************
+
+  Job Started  at 00:19.42  9th July       2024                               
+
+  Number of CPUs =     4
+
+
+  Total number of configurations input =      1
+
+********************************************************************************
+*  Input for Configuration =   1                                               *
+********************************************************************************
+
+  Formula = C4O8                                                        
+
+  Number of irreducible atoms/shells =       2
+
+
+  Total number atoms/shells =      12
+
+  Dimensionality = 3               :  Bulk   
+
+
+  Symmetry :
+
+  Crystal family                   :  Cubic       
+  Crystal class  (Groth - 1921)    :  Cubic Dyakisdodecahedral             
+
+  Space group (centrosymmetric)    :  P A 3           
+
+  Patterson group                  :  P m -3   
+
+  Cartesian lattice vectors (Angstroms) :
+
+        5.000000    0.000000    0.000000
+        0.000000    5.000000    0.000000
+        0.000000    0.000000    5.000000
+
+  Cell parameters (Angstroms/Degrees):
+
+  a =       5.0000    alpha =  90.0000
+  b =       5.0000    beta  =  90.0000
+  c =       5.0000    gamma =  90.0000
+
+  Initial cell volume =         125.000000 Angs**3
+
+  Temperature of configuration =   0.00     K 
+
+  Pressure of configuration =         0.000 GPa 
+
+  Fractional coordinates of asymmetric unit :
+
+--------------------------------------------------------------------------------
+   No.  Atomic       x           y          z         Charge      Occupancy
+        Label      (Frac)      (Frac)     (Frac)        (e)         (Frac)  
+--------------------------------------------------------------------------------
+      1 C     c    0.000000    0.000000    0.000000     0.65120    1.000000    
+      2 O     c    0.139000 *  0.139000    0.139000    -0.32560    1.000000    
+--------------------------------------------------------------------------------
+
+
+
+  Molecule list generated from bond lengths :
+
+  Total number of molecules =     4
+
+--------------------------------------------------------------------------------
+Molecule No./:  Atoms
+Periodicity  :  
+--------------------------------------------------------------------------------
+     1  0    : C    c     1 O    c     5 O    c     9
+     2  0    : C    c     2 O    c     6 O    c    10
+     3  0    : C    c     3 O    c     7 O    c    11
+     4  0    : C    c     4 O    c     8 O    c    12
+--------------------------------------------------------------------------------
+
+  Constraints : 
+
+--------------------------------------------------------------------------------
+  Constraint no.      Unconstrained     Constrained    Coefficient    Offset
+                         Variable         Variable
+--------------------------------------------------------------------------------
+           1              Strain 1        Strain 2       1.00000      0.0000
+           2              Strain 1        Strain 3       1.00000      0.0000
+           3                 2 x             2 y         1.00000      0.0000
+           4                 2 x             2 z         1.00000      0.0000
+--------------------------------------------------------------------------------
+
+  Brillouin zone sampling points :
+
+--------------------------------------------------------------------------------
+  Point number          x          y          z            Weight
+--------------------------------------------------------------------------------
+        1           0.000000   0.000000   0.000000     1.00000000
+--------------------------------------------------------------------------------
+
+
+********************************************************************************
+*  General input information                                                   *
+********************************************************************************
+
+  Species output for all configurations : 
+
+--------------------------------------------------------------------------------
+  Species    Type    Atomic    Atomic    Charge       Radii (Angs)     Library
+                     Number     Mass       (e)     Cova   Ionic  VDW   Symbol
+--------------------------------------------------------------------------------
+    C        Core        6      12.01   0.651200   0.770  0.000  1.530          
+    O        Core        8      16.00  -0.325600   0.730  0.000  1.360          
+--------------------------------------------------------------------------------
+
+
+  Lattice summation method               =    Ewald          (3-D)
+                                         =    Parry          (2-D)
+                                         =    Saunders et al (1-D)
+  Accuracy factor for lattice sums       =   12.000
+
+
+  Analytic derivatives to be used
+
+  Time limit = Infinity
+
+  Polarisability species : 
+
+--------------------------------------------------------------------------------
+  Species    Type    Dipolar polarisability                                     
+                           (Angs**3)                                            
+--------------------------------------------------------------------------------
+    C        core             0.100000
+    O        core             0.450000
+--------------------------------------------------------------------------------
+
+
+
+  Maximum range for interatomic potentials =         9.000000 Angstroms
+
+  Taper potentials to zero over   3.0000 Angstroms using M-D-F
+
+  Intramolecular potentials :
+
+--------------------------------------------------------------------------------
+Atom  Types   Potential      Parameter       Value         Units   Cutoffs(Ang)
+  1     2                                                            Min /  Max 
+--------------------------------------------------------------------------------
+C    c O    c Harmonic      Harmonic k2      96.579500    eV*Ang^-2 0.000 1 Bond
+                            Harmonic r0      1.1500000    Ang       
+                            Harmonic k3      0.0000000    eV*Ang^-3 
+                            Harmonic k4      0.0000000    eV*Ang^-4 
+--------------------------------------------------------------------------------
+
+  Intermolecular potentials :
+
+--------------------------------------------------------------------------------
+Atom  Types   Potential      Parameter       Value         Units   Cutoffs(Ang)
+  1     2                                                            Min /  Max 
+--------------------------------------------------------------------------------
+C    c O    c Lennard       Lennard-Jones A  12908.908    eV*Ang^m  0.000  9.000
+                            Lennard-Jones B 0.61479148    eV*Ang^n  
+                            Exponent m        12          None
+                            Exponent n         6          None
+--------------------------------------------------------------------------------
+O    c O    c Lennard       Lennard-Jones A  8085.6289    eV*Ang^m  0.000  9.000
+                            Lennard-Jones B  15.217497    eV*Ang^n  
+                            Exponent m        12          None
+                            Exponent n         6          None
+--------------------------------------------------------------------------------
+C    c C    c Lennard       Lennard-Jones A  37697.416    eV*Ang^m  0.000  9.000
+                            Lennard-Jones B  64.600313    eV*Ang^n  
+                            Exponent m        12          None
+                            Exponent n         6          None
+--------------------------------------------------------------------------------
+
+  Intramolecular Three-body potentials :
+
+--------------------------------------------------------------------------------
+  Atoms       Potential      Parameter       Value         Units   Cutoffs(Ang)
+  1 / 2 / 3                                                          Min /  Max 
+--------------------------------------------------------------------------------
+C     core    Linear 3-body Three-body cnst  4.7289700    eV        0.000 1 Bond
+O     core                  Three-body sign  1.0000000    None      0.000 1 Bond
+O     core                                                          0.000
+--------------------------------------------------------------------------------
+C     core    Bcross        Three-body cnst  7.9702000    eV*Ang^-2 0.000 1 Bond
+O     core                                                          0.000
+O     core                  Three-body r0/1  1.1500000    Ang       0.000 1 Bond
+                            Three-body r0/2  1.1500000    Unknown   
+--------------------------------------------------------------------------------
+
+********************************************************************************
+*  Output for configuration   1                                                *
+********************************************************************************
+
+
+  Components of energy : 
+
+--------------------------------------------------------------------------------
+  Interatomic potentials     =           2.96220163 eV    
+  Three-body potentials      =           0.09219239 eV    
+  Monopole - monopole (real) =           8.24558947 eV    
+  Monopole - monopole (recip)=          -9.00300204 eV    
+  Monopole - monopole (total)=          -0.75741257 eV    
+  Polarisation energy        =          -0.08731773 eV    
+--------------------------------------------------------------------------------
+  Total lattice energy       =           2.20966372 eV    
+--------------------------------------------------------------------------------
+  Total lattice energy       =             213.1988 kJ/(mole unit cells)
+--------------------------------------------------------------------------------
+
+
+  Number of variables =        2
+
+  Maximum number of calculations  =          1000
+  Maximum Hessian update interval =            10
+  Maximum step size               =   1.000000000
+  Maximum parameter tolerance     =   0.000010000
+  Maximum function  tolerance     =   0.000010000
+  Maximum gradient  tolerance     =   0.001000000
+  Maximum gradient  component     =   0.010000000
+
+  Symmetry constrained optimisation
+
+  Symmetry used only for first derivatives
+
+  Cell parameters to be optimised using strains
+
+  Newton-Raphson optimiser to be used
+
+  BFGS hessian update to be used
+
+  General 2-D hessian to be used
+
+  Dumpfile to be written after every cycle
+
+  Start of bulk optimisation :
+
+  Cycle:      0 Energy:         2.209664  Gnorm:    222.333961  CPU:    0.033
+  ** Hessian calculated **
+  Cycle:      1 Energy:        -0.457479  Gnorm:     37.292411  CPU:    0.040
+  Cycle:      2 Energy:        -0.807835  Gnorm:     17.749730  CPU:    0.049
+  Cycle:      3 Energy:        -0.829295  Gnorm:      7.602157  CPU:    0.062
+  Cycle:      4 Energy:        -0.834975  Gnorm:      8.241679  CPU:    0.076
+  Cycle:      5 Energy:        -0.836476  Gnorm:      1.219426  CPU:    0.091
+  Cycle:      6 Energy:        -0.836632  Gnorm:      0.725929  CPU:    0.106
+  Cycle:      7 Energy:        -0.836653  Gnorm:      0.622358  CPU:    0.122
+  Cycle:      8 Energy:        -0.836661  Gnorm:      0.044897  CPU:    0.134
+  Cycle:      9 Energy:        -0.836662  Gnorm:      0.091978  CPU:    0.146
+  Cycle:     10 Energy:        -0.836663  Gnorm:      0.044275  CPU:    0.158
+  ** Hessian calculated **
+
+
+  **** Optimisation achieved ****
+
+
+  Final energy =      -0.83666277 eV      
+  Final Gnorm  =       0.00000333
+
+  Components of energy : 
+
+--------------------------------------------------------------------------------
+  Interatomic potentials     =          -0.44856592 eV    
+  Three-body potentials      =           0.00000804 eV    
+  Monopole - monopole (real) =           7.57687988 eV    
+  Monopole - monopole (recip)=          -7.94081983 eV    
+  Monopole - monopole (total)=          -0.36393995 eV    
+  Polarisation energy        =          -0.02416494 eV    
+--------------------------------------------------------------------------------
+  Total lattice energy       =          -0.83666277 eV    
+--------------------------------------------------------------------------------
+  Total lattice energy       =             -80.7252 kJ/(mole unit cells)
+--------------------------------------------------------------------------------
+
+  Final asymmetric unit coordinates :
+
+--------------------------------------------------------------------------------
+   No.  Atomic        x           y           z         Radius
+        Label       (Frac)      (Frac)      (Frac)       (Angs) 
+--------------------------------------------------------------------------------
+     1  C     c     0.000000    0.000000    0.000000    0.000000
+     2  O     c     0.117126    0.117126    0.117126    0.000000
+--------------------------------------------------------------------------------
+
+  Final Cartesian lattice vectors (Angstroms) :
+
+        5.671187    0.000000    0.000000
+        0.000000    5.671187    0.000000
+        0.000000    0.000000    5.671187
+
+
+  Final cell parameters and derivatives :
+
+--------------------------------------------------------------------------------
+       a            5.671187 Angstrom     dE/de1(xx)    -0.000001 eV/strain
+       b            5.671187 Angstrom     dE/de2(yy)     0.000000 eV/strain
+       c            5.671187 Angstrom     dE/de3(zz)     0.000000 eV/strain
+       alpha       90.000000 Degrees      dE/de4(yz)     0.000000 eV/strain
+       beta        90.000000 Degrees      dE/de5(xz)     0.000000 eV/strain
+       gamma       90.000000 Degrees      dE/de6(xy)     0.000000 eV/strain
+--------------------------------------------------------------------------------
+
+  Primitive cell volume =           182.398805 Angs**3
+
+  Density of cell =      1.602675 g/cm**3
+
+  Non-primitive cell volume =           182.398805 Angs**3
+
+
+  Final internal derivatives :
+
+--------------------------------------------------------------------------------
+   No.  Atomic          a             b             c           Radius
+        Label          (eV)          (eV)          (eV)        (eV/Angs)
+--------------------------------------------------------------------------------
+      1 C     c       0.000000      0.000000      0.000000      0.000000
+      2 O     c      -0.000007      0.000000      0.000000      0.000000
+--------------------------------------------------------------------------------
+  Maximum abs         0.000007      0.000000      0.000000      0.000000
+--------------------------------------------------------------------------------
+
+
+  Born effective charge tensors : 
+
+-------------------------------------------------------------------------------
+  Atom             x           y             z
+-------------------------------------------------------------------------------
+    1 C     x       0.6512      0.0000      0.0000
+            y       0.0000      0.6512      0.0000
+            z       0.0000      0.0000      0.6512
+-------------------------------------------------------------------------------
+    2 O     x      -0.3256      0.0000      0.0000
+            y       0.0000     -0.3256      0.0000
+            z       0.0000      0.0000     -0.3256
+-------------------------------------------------------------------------------
+
+
+
+
+  Elastic Constant Matrix: (Units=GPa)
+
+-------------------------------------------------------------------------------
+  Indices      1         2         3         4         5         6    
+-------------------------------------------------------------------------------
+       1      9.4895    6.0846    6.0846   -0.0000   -0.0000    0.0000
+       2      6.0846    9.4895    6.0846    0.0000   -0.0000   -0.0000
+       3      6.0846    6.0846    9.4895   -0.0000   -0.0000   -0.0000
+       4      0.0000    0.0000    0.0000    4.0255   -0.0000    0.0000
+       5      0.0000    0.0000    0.0000    0.0000    4.0255    0.0000
+       6      0.0000    0.0000    0.0000   -0.0000   -0.0000    4.0255
+-------------------------------------------------------------------------------
+
+
+  Elastic Compliance Matrix: (Units=1/GPa)
+
+-------------------------------------------------------------------------------
+  Indices      1         2         3         4         5         6    
+-------------------------------------------------------------------------------
+       1    0.211189 -0.082509 -0.082509  0.000000  0.000000 -0.000000
+       2   -0.082509  0.211189 -0.082509 -0.000000 -0.000000  0.000000
+       3   -0.082509 -0.082509  0.211189  0.000000 -0.000000  0.000000
+       4   -0.000000 -0.000000 -0.000000  0.248416  0.000000 -0.000000
+       5   -0.000000 -0.000000 -0.000000 -0.000000  0.248416 -0.000000
+       6   -0.000000 -0.000000 -0.000000  0.000000  0.000000  0.248416
+-------------------------------------------------------------------------------
+
+  Mechanical properties :
+
+-------------------------------------------------------------------------------
+  Convention :                    Reuss         Voigt         Hill
+-------------------------------------------------------------------------------
+  Bulk  Modulus (GPa)     =       7.21960       7.21960       7.21960
+  Shear Modulus (GPa)     =       2.60411       3.09627       2.85019
+-------------------------------------------------------------------------------
+  Velocity S-wave (km/s)  =       1.27470       1.38994       1.33357
+  Velocity P-wave (km/s)  =       2.58286       2.66095       2.62220
+-------------------------------------------------------------------------------
+  Compressibility (1/GPa) =    0.13851184
+-------------------------------------------------------------------------------
+  Stress axis :                     x             y             z
+-------------------------------------------------------------------------------
+  Youngs Moduli (GPa)     =       4.73509       4.73509       4.73509
+-------------------------------------------------------------------------------
+  Poissons Ratio (x)      =                     0.39069       0.39069
+  Poissons Ratio (y)      =       0.39069                     0.39069
+  Poissons Ratio (z)      =       0.39069       0.39069
+-------------------------------------------------------------------------------
+
+
+  Piezoelectric Strain Matrix: (Units=C/m**2)
+
+-------------------------------------------------------------------------------
+  Indices      1         2         3         4         5         6    
+-------------------------------------------------------------------------------
+       x    -0.00000   0.00000   0.00000  -0.00000   0.00000   0.00000
+       y    -0.00000  -0.00000  -0.00000  -0.00000  -0.00000   0.00000
+       z    -0.00000  -0.00000   0.00000  -0.00000   0.00000  -0.00000
+-------------------------------------------------------------------------------
+
+
+  Piezoelectric Stress Matrix: (Units=10**-11 C/N)
+
+-------------------------------------------------------------------------------
+  Indices      1         2         3         4         5         6    
+-------------------------------------------------------------------------------
+       x    -0.00000   0.00000   0.00000  -0.00000   0.00000   0.00000
+       y     0.00000  -0.00000   0.00000  -0.00000  -0.00000   0.00000
+       z     0.00000  -0.00000   0.00000  -0.00000   0.00000  -0.00000
+-------------------------------------------------------------------------------
+
+
+  Static dielectric constant tensor : 
+
+-------------------------------------------------------------------------------
+              x         y         z
+-------------------------------------------------------------------------------
+       x     1.08196   0.00000  -0.00000
+       y    -0.00000   1.08196   0.00000
+       z    -0.00000  -0.00000   1.08196
+--------------------------------------------------------------------------------
+
+  Static refractive indices : 
+
+-------------------------------------------------------------------------------
+    1 =    1.04017      2 =    1.04017      3 =    1.04017
+-------------------------------------------------------------------------------
+
+
+  Phonon Calculation : 
+
+  Number of k points for this configuration =        1
+
+--------------------------------------------------------------------------------
+  K point      1 =   0.000000  0.000000  0.000000  Weight =    1.000
+--------------------------------------------------------------------------------
+
+  Frequencies (cm-1) [NB: Negative implies an imaginary mode]:
+
+   -0.00   -0.00    0.00   49.62   49.62   64.11   64.11   64.11   66.25
+   66.25   66.25   74.43   86.69   86.69   96.62   96.62   96.62  105.65
+  105.65  105.65  665.67  665.67  665.67  668.51  668.51  676.70  676.70
+  676.70 1332.88 1335.24 1335.24 1335.24 2348.51 2349.56 2349.56 2349.56
+
+
+--------------------------------------------------------------------------------
+  Phonon properties (per mole of unit cells): Temperature =      0.000 K
+--------------------------------------------------------------------------------
+  Zero point energy             =        1.329421 eV
+--------------------------------------------------------------------------------
+
+  Time to end of optimisation =       0.2295 seconds
+
+
+  Peak dynamic memory used =       1.88 MB 
+
+
+  Timing analysis for GULP :
+
+--------------------------------------------------------------------------------
+  Task / Subroutine                                          Time (Seconds)
+--------------------------------------------------------------------------------
+  Calculation of reciprocal space energy and derivatives          0.0010
+  Calculation of reciprocal space energy using symmetry           0.0011
+  Calculation of real space energy and derivatives                0.0022
+  Calculation of real space energy using symmetry                 0.0023
+  Calculation of three-body energy and derivatives                0.0017
+  Calculation of polarisation energy and derivatives              0.0537
+  Calculation of molecules and connectivity                       0.0024
+  Calculation of phonons                                          0.0097
+  Calculation and manipulation of Hessian matrix                  0.0025
+  Calculation of matrix diagonalisation                           0.0061
+  Calculation of matrix inversion                                 0.0035
+  Symmetry generation of equivalent positions                     0.0004
+  Global summation overhead                                       0.0032
+--------------------------------------------------------------------------------
+  Total CPU time                                                  0.2297
+--------------------------------------------------------------------------------
+
+
+  Dump file written as example70.res
+
+
+  Job Finished at 00:19.42  9th July       2024                               
+

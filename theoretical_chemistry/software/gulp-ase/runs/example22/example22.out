@@ -1,0 +1,889 @@
+********************************************************************************
+*                       GENERAL UTILITY LATTICE PROGRAM                        *
+*                                 Julian Gale                                  *
+*                       Curtin Institute for Computation                       *
+*                    School of Molecular and Life Sciences                     *
+*                    Curtin University, Western Australia                      *
+********************************************************************************
+* Version = 6.2.0 * Last modified =  19th December 2023                        *
+********************************************************************************
+*  fit          - perform fitting run                                          *
+*  noflags      - no flags to be read in, assumed to all be zero               *
+*  c6           - use real and reciprocal space sum for C6 terms               *
+*  molecule     - molecule option activated, Coulomb subtract within molecule  *
+********************************************************************************
+* example of a molecular crystal - urea                                        *
+* energy surface fit, rather than empirical structure fit                      *
+* fit bonded potentials to C to surface from distorting                        *
+* C along z axis - energies are not real ones!                                 *
+********************************************************************************
+
+
+  Job Started  at 00:33.38  9th July       2024                               
+
+  Number of CPUs =     4
+
+
+  Total number of configurations input =      4
+
+********************************************************************************
+*  Input for Configuration =   1                                               *
+********************************************************************************
+
+  Formula = C2O2N4H8                                                    
+
+  Number of irreducible atoms/shells =       5
+
+
+  Total number atoms/shells =      16
+
+  Dimensionality = 3               :  Bulk   
+
+
+  Symmetry :
+
+  Crystal family                   :  Tetragonal  
+  Crystal class  (Groth - 1921)    :  Tetragonal Scalenohedral             
+
+  Space group (noncentrosymmetric) :  P -4 21 M       
+
+  Patterson group                  :  P 4/m m m
+
+  Cartesian lattice vectors (Angstroms) :
+
+        5.565000    0.000000    0.000000
+        0.000000    5.565000    0.000000
+        0.000000    0.000000    4.684000
+
+  Cell parameters (Angstroms/Degrees):
+
+  a =       5.5650    alpha =  90.0000
+  b =       5.5650    beta  =  90.0000
+  c =       4.6840    gamma =  90.0000
+
+  Initial cell volume =         145.059850 Angs**3
+
+  Temperature of configuration =   0.00     K 
+
+  Pressure of configuration =         0.000 GPa 
+
+  Fractional coordinates of asymmetric unit :
+
+--------------------------------------------------------------------------------
+   No.  Atomic       x           y          z         Charge      Occupancy
+        Label      (Frac)      (Frac)     (Frac)        (e)         (Frac)  
+--------------------------------------------------------------------------------
+      1 C     c    0.000000    0.500000    0.326000     0.38000    1.000000    
+      2 O     c    0.000000    0.500000    0.585300    -0.38000    1.000000    
+      3 N     c    0.145900    0.645900    0.176600    -0.83000    1.000000    
+      4 H     c    0.257500    0.757500    0.282700     0.41500    1.000000    
+      5 H     c    0.144100    0.644100    0.962000     0.41500    1.000000    
+--------------------------------------------------------------------------------
+
+
+
+  Molecule list generated from bond lengths :
+
+  Total number of molecules =     2
+
+--------------------------------------------------------------------------------
+Molecule No./:  Atoms
+Periodicity  :  
+--------------------------------------------------------------------------------
+     1  0    : C    c     1 O    c     3 N    c     5 N    c     6 H    c     9
+             : H    c    10 H    c    13 H    c    14
+     2  0    : C    c     2 O    c     4 N    c     7 N    c     8 H    c    11
+             : H    c    12 H    c    15 H    c    16
+--------------------------------------------------------------------------------
+
+  Constraints : 
+
+--------------------------------------------------------------------------------
+  Constraint no.      Unconstrained     Constrained    Coefficient    Offset
+                         Variable         Variable
+--------------------------------------------------------------------------------
+           1              Strain 1        Strain 2       1.00000      0.0000
+           2                 3 x             3 y         1.00000      0.5000
+           3                 4 x             4 y         1.00000      0.5000
+           4                 5 x             5 y         1.00000      0.5000
+--------------------------------------------------------------------------------
+
+
+********************************************************************************
+*  Input for Configuration =   2                                               *
+********************************************************************************
+
+  Formula = C2O2N4H8                                                    
+
+  Number of irreducible atoms/shells =       5
+
+
+  Total number atoms/shells =      16
+
+  Dimensionality = 3               :  Bulk   
+
+
+  Symmetry :
+
+  Crystal family                   :  Tetragonal  
+  Crystal class  (Groth - 1921)    :  Tetragonal Scalenohedral             
+
+  Space group (noncentrosymmetric) :  P -4 21 M       
+
+  Patterson group                  :  P 4/m m m
+
+  Cartesian lattice vectors (Angstroms) :
+
+        5.565000    0.000000    0.000000
+        0.000000    5.565000    0.000000
+        0.000000    0.000000    4.684000
+
+  Cell parameters (Angstroms/Degrees):
+
+  a =       5.5650    alpha =  90.0000
+  b =       5.5650    beta  =  90.0000
+  c =       4.6840    gamma =  90.0000
+
+  Initial cell volume =         145.059850 Angs**3
+
+  Temperature of configuration =   0.00     K 
+
+  Pressure of configuration =         0.000 GPa 
+
+  Fractional coordinates of asymmetric unit :
+
+--------------------------------------------------------------------------------
+   No.  Atomic       x           y          z         Charge      Occupancy
+        Label      (Frac)      (Frac)     (Frac)        (e)         (Frac)  
+--------------------------------------------------------------------------------
+      1 C     c    0.000000    0.500000    0.327000     0.38000    1.000000    
+      2 O     c    0.000000    0.500000    0.585300    -0.38000    1.000000    
+      3 N     c    0.145900    0.645900    0.176600    -0.83000    1.000000    
+      4 H     c    0.257500    0.757500    0.282700     0.41500    1.000000    
+      5 H     c    0.144100    0.644100    0.962000     0.41500    1.000000    
+--------------------------------------------------------------------------------
+
+
+
+  Molecule list generated from bond lengths :
+
+  Total number of molecules =     2
+
+--------------------------------------------------------------------------------
+Molecule No./:  Atoms
+Periodicity  :  
+--------------------------------------------------------------------------------
+     1  0    : C    c     1 O    c     3 N    c     5 N    c     6 H    c     9
+             : H    c    10 H    c    13 H    c    14
+     2  0    : C    c     2 O    c     4 N    c     7 N    c     8 H    c    11
+             : H    c    12 H    c    15 H    c    16
+--------------------------------------------------------------------------------
+
+  Constraints : 
+
+--------------------------------------------------------------------------------
+  Constraint no.      Unconstrained     Constrained    Coefficient    Offset
+                         Variable         Variable
+--------------------------------------------------------------------------------
+           1              Strain 1        Strain 2       1.00000      0.0000
+           2                 3 x             3 y         1.00000      0.5000
+           3                 4 x             4 y         1.00000      0.5000
+           4                 5 x             5 y         1.00000      0.5000
+--------------------------------------------------------------------------------
+
+
+********************************************************************************
+*  Input for Configuration =   3                                               *
+********************************************************************************
+
+  Formula = C2O2N4H8                                                    
+
+  Number of irreducible atoms/shells =       5
+
+
+  Total number atoms/shells =      16
+
+  Dimensionality = 3               :  Bulk   
+
+
+  Symmetry :
+
+  Crystal family                   :  Tetragonal  
+  Crystal class  (Groth - 1921)    :  Tetragonal Scalenohedral             
+
+  Space group (noncentrosymmetric) :  P -4 21 M       
+
+  Patterson group                  :  P 4/m m m
+
+  Cartesian lattice vectors (Angstroms) :
+
+        5.565000    0.000000    0.000000
+        0.000000    5.565000    0.000000
+        0.000000    0.000000    4.684000
+
+  Cell parameters (Angstroms/Degrees):
+
+  a =       5.5650    alpha =  90.0000
+  b =       5.5650    beta  =  90.0000
+  c =       4.6840    gamma =  90.0000
+
+  Initial cell volume =         145.059850 Angs**3
+
+  Temperature of configuration =   0.00     K 
+
+  Pressure of configuration =         0.000 GPa 
+
+  Fractional coordinates of asymmetric unit :
+
+--------------------------------------------------------------------------------
+   No.  Atomic       x           y          z         Charge      Occupancy
+        Label      (Frac)      (Frac)     (Frac)        (e)         (Frac)  
+--------------------------------------------------------------------------------
+      1 C     c    0.000000    0.500000    0.325000     0.38000    1.000000    
+      2 O     c    0.000000    0.500000    0.585300    -0.38000    1.000000    
+      3 N     c    0.145900    0.645900    0.176600    -0.83000    1.000000    
+      4 H     c    0.257500    0.757500    0.282700     0.41500    1.000000    
+      5 H     c    0.144100    0.644100    0.962000     0.41500    1.000000    
+--------------------------------------------------------------------------------
+
+
+
+  Molecule list generated from bond lengths :
+
+  Total number of molecules =     2
+
+--------------------------------------------------------------------------------
+Molecule No./:  Atoms
+Periodicity  :  
+--------------------------------------------------------------------------------
+     1  0    : C    c     1 O    c     3 N    c     5 N    c     6 H    c     9
+             : H    c    10 H    c    13 H    c    14
+     2  0    : C    c     2 O    c     4 N    c     7 N    c     8 H    c    11
+             : H    c    12 H    c    15 H    c    16
+--------------------------------------------------------------------------------
+
+  Constraints : 
+
+--------------------------------------------------------------------------------
+  Constraint no.      Unconstrained     Constrained    Coefficient    Offset
+                         Variable         Variable
+--------------------------------------------------------------------------------
+           1              Strain 1        Strain 2       1.00000      0.0000
+           2                 3 x             3 y         1.00000      0.5000
+           3                 4 x             4 y         1.00000      0.5000
+           4                 5 x             5 y         1.00000      0.5000
+--------------------------------------------------------------------------------
+
+
+********************************************************************************
+*  Input for Configuration =   4                                               *
+********************************************************************************
+
+  Formula = C2O2N4H8                                                    
+
+  Number of irreducible atoms/shells =       5
+
+
+  Total number atoms/shells =      16
+
+  Dimensionality = 3               :  Bulk   
+
+
+  Symmetry :
+
+  Crystal family                   :  Tetragonal  
+  Crystal class  (Groth - 1921)    :  Tetragonal Scalenohedral             
+
+  Space group (noncentrosymmetric) :  P -4 21 M       
+
+  Patterson group                  :  P 4/m m m
+
+  Cartesian lattice vectors (Angstroms) :
+
+        5.565000    0.000000    0.000000
+        0.000000    5.565000    0.000000
+        0.000000    0.000000    4.684000
+
+  Cell parameters (Angstroms/Degrees):
+
+  a =       5.5650    alpha =  90.0000
+  b =       5.5650    beta  =  90.0000
+  c =       4.6840    gamma =  90.0000
+
+  Initial cell volume =         145.059850 Angs**3
+
+  Temperature of configuration =   0.00     K 
+
+  Pressure of configuration =         0.000 GPa 
+
+  Fractional coordinates of asymmetric unit :
+
+--------------------------------------------------------------------------------
+   No.  Atomic       x           y          z         Charge      Occupancy
+        Label      (Frac)      (Frac)     (Frac)        (e)         (Frac)  
+--------------------------------------------------------------------------------
+      1 C     c    0.000000    0.500000    0.328000     0.38000    1.000000    
+      2 O     c    0.000000    0.500000    0.585300    -0.38000    1.000000    
+      3 N     c    0.145900    0.645900    0.176600    -0.83000    1.000000    
+      4 H     c    0.257500    0.757500    0.282700     0.41500    1.000000    
+      5 H     c    0.144100    0.644100    0.962000     0.41500    1.000000    
+--------------------------------------------------------------------------------
+
+
+
+  Molecule list generated from bond lengths :
+
+  Total number of molecules =     2
+
+--------------------------------------------------------------------------------
+Molecule No./:  Atoms
+Periodicity  :  
+--------------------------------------------------------------------------------
+     1  0    : C    c     1 O    c     3 N    c     5 N    c     6 H    c     9
+             : H    c    10 H    c    13 H    c    14
+     2  0    : C    c     2 O    c     4 N    c     7 N    c     8 H    c    11
+             : H    c    12 H    c    15 H    c    16
+--------------------------------------------------------------------------------
+
+  Constraints : 
+
+--------------------------------------------------------------------------------
+  Constraint no.      Unconstrained     Constrained    Coefficient    Offset
+                         Variable         Variable
+--------------------------------------------------------------------------------
+           1              Strain 1        Strain 2       1.00000      0.0000
+           2                 3 x             3 y         1.00000      0.5000
+           3                 4 x             4 y         1.00000      0.5000
+           4                 5 x             5 y         1.00000      0.5000
+--------------------------------------------------------------------------------
+
+
+********************************************************************************
+*  General input information                                                   *
+********************************************************************************
+
+  Species output for all configurations : 
+
+--------------------------------------------------------------------------------
+  Species    Type    Atomic    Atomic    Charge       Radii (Angs)     Library
+                     Number     Mass       (e)     Cova   Ionic  VDW   Symbol
+--------------------------------------------------------------------------------
+    C        Core        6      12.01   0.380000   0.770  0.000  1.530          
+    O        Core        8      16.00  -0.380000   0.730  0.000  1.360          
+    N        Core        7      14.01  -0.830000   0.750  0.000  1.480          
+    H        Core        1       1.01   0.415000   0.370  0.000  1.080          
+--------------------------------------------------------------------------------
+
+
+  Lattice summation method               =    Ewald          (3-D)
+                                         =    Parry          (2-D)
+                                         =    Saunders et al (1-D)
+  Accuracy factor for lattice sums       =   12.000
+
+
+  Analytic derivatives to be used
+
+  Time limit = Infinity
+
+  Maximum range for interatomic potentials =    100000.000000 Angstroms
+
+  C6 terms to be calculated in real and reciprocal space 
+
+  Intramolecular potentials :
+
+--------------------------------------------------------------------------------
+Atom  Types   Potential      Parameter       Value         Units   Cutoffs(Ang)
+  1     2                                                            Min /  Max 
+--------------------------------------------------------------------------------
+C    c O    c Morse         Morse  De        6.2880000    eV        0.000  1.600
+                            Morse  a0        2.0600000    Ang^-1    
+                            Morse  r0        1.2300000    Ang       
+--------------------------------------------------------------------------------
+C    c N    c Morse         Morse  De        4.2060000    eV        0.000  1.600
+                            Morse  a0        2.0000000    Ang^-1    
+                            Morse  r0        1.3200000    Ang       
+--------------------------------------------------------------------------------
+H    c N    c Morse         Morse  De        3.8160000    eV        0.000  1.600
+                            Morse  a0        2.2800000    Ang^-1    
+                            Morse  r0        1.0260000    Ang       
+--------------------------------------------------------------------------------
+
+  Intermolecular potentials :
+
+--------------------------------------------------------------------------------
+Atom  Types   Potential      Parameter       Value         Units   Cutoffs(Ang)
+  1     2                                                            Min /  Max 
+--------------------------------------------------------------------------------
+C    c O    c Lennard       Lennard-Jones A  39031.570    eV*Ang^m  0.000 40.000
+                            Lennard-Jones B  35.266000    eV*Ang^n  
+                            Exponent m        12          None
+                            Exponent n         6          None
+--------------------------------------------------------------------------------
+C    c N    c Lennard       Lennard-Jones A  112494.67    eV*Ang^m  0.000 40.000
+                            Lennard-Jones B  55.387000    eV*Ang^n  
+                            Exponent m        12          None
+                            Exponent n         6          None
+--------------------------------------------------------------------------------
+O    c O    c Lennard       Lennard-Jones A  11833.864    eV*Ang^m  0.000 40.000
+                            Lennard-Jones B  21.633000    eV*Ang^n  
+                            Exponent m        12          None
+                            Exponent n         6          None
+--------------------------------------------------------------------------------
+N    c O    c Lennard       Lennard-Jones A  34106.919    eV*Ang^m  0.000 40.000
+                            Lennard-Jones B  33.977000    eV*Ang^n  
+                            Exponent m        12          None
+                            Exponent n         6          None
+--------------------------------------------------------------------------------
+N    c N    c Lennard       Lennard-Jones A  98301.108    eV*Ang^m  0.000 40.000
+                            Lennard-Jones B  53.362000    eV*Ang^n  
+                            Exponent m        12          None
+                            Exponent n         6          None
+--------------------------------------------------------------------------------
+C    c C    c Lennard       Lennard-Jones A  128737.61    eV*Ang^m  0.000 40.000
+                            Lennard-Jones B  57.488000    eV*Ang^n  
+                            Exponent m        12          None
+                            Exponent n         6          None
+--------------------------------------------------------------------------------
+
+  Energy shifts for configurations :
+
+--------------------------------------------------------------------------------
+      Configuration           Energy (eV)        Scale Factor
+--------------------------------------------------------------------------------
+             1                1.00000                 1.000
+             2                1.00000                 1.000
+             3                1.00000                 1.000
+             4                1.00000                 1.000
+--------------------------------------------------------------------------------
+
+
+  General Three-body potentials :
+
+--------------------------------------------------------------------------------
+  Atoms       Potential      Parameter       Value         Units   Cutoffs(Ang)
+  1 / 2 / 3                                                          Min /  Max 
+--------------------------------------------------------------------------------
+C     core    Harmonic      Three-body cnst  5.8970000    eV*rad^-2 0.000  1.600
+N     core                  Three-body angl  121.00000    degrees   0.000  1.600
+O     core                  Three-body k4    0.0000000    eV*rad^-4 0.000  3.000
+                            Three-body k3    0.0000000    eV*rad^-3 
+--------------------------------------------------------------------------------
+N     core    Harmonic      Three-body cnst  3.2520000    eV*rad^-2 0.000  1.400
+H     core                  Three-body angl  120.00000    degrees   0.000  1.600
+C     core                  Three-body k4    0.0000000    eV*rad^-4 0.000  2.600
+                            Three-body k3    0.0000000    eV*rad^-3 
+--------------------------------------------------------------------------------
+N     core    Harmonic      Three-body cnst  2.8620000    eV*rad^-2 0.000  1.400
+H     core                  Three-body angl  120.00000    degrees   0.000  1.400
+H     core                  Three-body k4    0.0000000    eV*rad^-4 0.000  2.300
+                            Three-body k3    0.0000000    eV*rad^-3 
+--------------------------------------------------------------------------------
+C     core    Harmonic      Three-body cnst  8.8460000    eV*rad^-2 0.000  1.600
+N     core                  Three-body angl  118.00000    degrees   0.000  1.600
+N     core                  Three-body k4    0.0000000    eV*rad^-4 0.000  2.800
+                            Three-body k3    0.0000000    eV*rad^-3 
+--------------------------------------------------------------------------------
+
+  General Four-body potentials :
+
+--------------------------------------------------------------------------------
+  Atoms       Potential      Parameter       Value         Units   Cutoffs(Ang)
+  1 - 4                                                             Min /  Max 
+--------------------------------------------------------------------------------
+O     core    Standard      Torsional const 0.26020000    eV        0.000  1.400
+C     core Phase = -  2                                             0.000  1.400
+N     core                                                          0.000  1.300
+H     core                                                          0.000  0.000
+--------------------------------------------------------------------------------
+N     core    Standard      Torsional const 0.21700000E-02eV        0.000  1.600
+C     core Phase = -  2                                             0.000  1.600
+N     core                                                          0.000  1.300
+H     core                                                          0.000  0.000
+--------------------------------------------------------------------------------
+O     core    Standard      Torsional const 0.43400000    eV        0.000  1.600
+C     core Phase = -  2                                             0.000  1.600
+N     core                                                          0.000  3.000
+N     core                                                          0.000  0.000
+--------------------------------------------------------------------------------
+
+
+  Number of variables   =        2
+  Number of observables =        4
+
+--------------------------------------------------------------------------------
+   Observable no.  Type           Observable    Weight       Reference  Confign 
+--------------------------------------------------------------------------------
+          1        Energy           -3.357918      100.0000                1
+          2        Energy           -3.085802      100.0000                2
+          3        Energy           -3.113013      100.0000                3
+          4        Energy           -2.541568      100.0000                4
+--------------------------------------------------------------------------------
+
+  Variables :
+
+--------------------------------------------------------------------------------
+     Parameter No.       Parameter Value          Parameter Type  Species
+--------------------------------------------------------------------------------
+             1                  1.000000          Energy shift        0
+             2                  1.230000          Morse  r0      
+--------------------------------------------------------------------------------
+
+  Symmetry constraints used for fitting
+  First derivatives of residuals to be used in fitting
+
+  Maximum no. of cycles   =       5000
+  Maximum step size       =  1000.0000
+  Tolerance on parameters =  0.0000100
+  Tolerance on function   =  0.0000100
+  Tolerance on gradient   =  0.0001000
+  Differencing interval   =  0.0001000
+
+  Dumpfile to be written after every cycle
+
+  Start of fitting :
+
+  Cycle:      0  Sum sqs: 1333599.933571  Gnorm: 123564.333687  CPU:    0.029
+  ** Hessian calculated **
+  Cycle:      1  Sum sqs:  152463.689512  Gnorm:4747904.341199  CPU:    0.068
+  Cycle:      2  Sum sqs:     495.750738  Gnorm:   7489.129723  CPU:    0.097
+  Cycle:      3  Sum sqs:     416.050276  Gnorm:  60621.156458  CPU:    0.124
+  Cycle:      4  Sum sqs:     357.409736  Gnorm:  72468.333162  CPU:    0.154
+  Cycle:      5  Sum sqs:     291.123053  Gnorm:  10492.110421  CPU:    0.188
+  Cycle:      6  Sum sqs:     266.355826  Gnorm:   1167.226415  CPU:    0.240
+  Cycle:      7  Sum sqs:     236.771207  Gnorm:  31215.534342  CPU:    0.275
+  Cycle:      8  Sum sqs:     223.894987  Gnorm:  44132.881498  CPU:    0.303
+  Cycle:      9  Sum sqs:     119.917068  Gnorm:  17907.671165  CPU:    0.336
+  Cycle:     10  Sum sqs:     115.870876  Gnorm:   4400.110007  CPU:    0.361
+  Cycle:     11  Sum sqs:      95.884131  Gnorm:  14062.285275  CPU:    0.404
+  Cycle:     12  Sum sqs:      87.851585  Gnorm:  21443.036039  CPU:    0.426
+  Cycle:     13  Sum sqs:      68.383783  Gnorm:   3455.673436  CPU:    0.455
+  Cycle:     14  Sum sqs:      58.824075  Gnorm:   4142.046343  CPU:    0.493
+  Cycle:     15  Sum sqs:      55.807721  Gnorm:  11712.034153  CPU:    0.522
+  Cycle:     16  Sum sqs:      49.463440  Gnorm:    294.023803  CPU:    0.558
+  Cycle:     17  Sum sqs:      47.212607  Gnorm:    267.229415  CPU:    0.587
+  Cycle:     18  Sum sqs:      41.430619  Gnorm:   3721.936749  CPU:    0.622
+  Cycle:     19  Sum sqs:      39.360788  Gnorm:   8742.978165  CPU:    0.647
+  Cycle:     20  Sum sqs:      35.204244  Gnorm:    442.409344  CPU:    0.681
+  ** Hessian calculated **
+  Cycle:     21  Sum sqs:      35.159175  Gnorm:    418.542569  CPU:    0.720
+  Cycle:     22  Sum sqs:      32.855223  Gnorm:     74.944634  CPU:    0.752
+  Cycle:     23  Sum sqs:      29.627121  Gnorm:   2167.845890  CPU:    0.779
+  Cycle:     24  Sum sqs:      28.351363  Gnorm:   6261.072138  CPU:    0.810
+  Cycle:     25  Sum sqs:      26.332306  Gnorm:   1408.088945  CPU:    0.838
+  Cycle:     26  Sum sqs:      22.867237  Gnorm:   2429.036751  CPU:    0.873
+  Cycle:     27  Sum sqs:      21.639093  Gnorm:   4167.496895  CPU:    0.897
+  Cycle:     28  Sum sqs:      19.213590  Gnorm:    505.402638  CPU:    0.926
+  Cycle:     29  Sum sqs:      18.283202  Gnorm:    359.805226  CPU:    0.956
+  Cycle:     30  Sum sqs:      17.647245  Gnorm:   1591.979118  CPU:    0.986
+  Cycle:     31  Sum sqs:      17.058076  Gnorm:   2043.283696  CPU:    1.012
+  Cycle:     32  Sum sqs:      16.139933  Gnorm:    368.011679  CPU:    1.035
+  Cycle:     33  Sum sqs:      15.761840  Gnorm:    295.446515  CPU:    1.062
+  Cycle:     34  Sum sqs:      15.639777  Gnorm:    946.104670  CPU:    1.083
+  Cycle:     35  Sum sqs:      15.460424  Gnorm:      6.983749  CPU:    1.115
+  Cycle:     36  Sum sqs:      15.302013  Gnorm:    242.015494  CPU:    1.142
+  Cycle:     37  Sum sqs:      15.251430  Gnorm:    454.536315  CPU:    1.166
+  Cycle:     38  Sum sqs:      15.195014  Gnorm:     33.341621  CPU:    1.199
+  Cycle:     39  Sum sqs:      15.177882  Gnorm:     87.444088  CPU:    1.233
+  Cycle:     40  Sum sqs:      15.174729  Gnorm:      6.858582  CPU:    1.258
+  ** Hessian calculated **
+  Cycle:     41  Sum sqs:      15.174716  Gnorm:      0.309500  CPU:    1.290
+
+
+  **** Fit completed successfully ****
+
+
+  Final sum of squares =            15.174716
+
+  Final gradient norm  =             0.309500
+
+  Final values of parameters :
+
+--------------------------------------------------------------------------------
+ Parameter No.    Parameter        Parameter      Parameter Type  Species
+                  Original         Final                                 
+--------------------------------------------------------------------------------
+         1              1.000000        55.498357 Energy shift        0
+         2              1.230000         1.411907 Morse  r0      
+--------------------------------------------------------------------------------
+
+
+  Final values of numerical parameter gradients :
+
+--------------------------------------------------------------------------------
+     Parameter No.       Parameter Gradient      Parameter Type  Species
+--------------------------------------------------------------------------------
+             1                 -0.004047          Energy shift        0
+             2                  0.309474          Morse  r0      
+--------------------------------------------------------------------------------
+
+
+  Final values of residuals :
+
+--------------------------------------------------------------------------------
+   Observable no.  Type            Observable   Calculated    Residual  Error(%)
+--------------------------------------------------------------------------------
+          1        Energy            -3.35792     -3.12938      5.22304    6.806
+          2        Energy            -3.08580     -2.92871      2.46792    5.091
+          3        Energy            -3.11301     -3.32121      4.33449   -6.688
+          4        Energy            -2.54157     -2.71903      3.14926   -6.982
+--------------------------------------------------------------------------------
+
+  Comparison of initial and final observables :
+
+--------------------------------------------------------------------------------
+   Observable no.  Type            Observable   Initial       Final             
+--------------------------------------------------------------------------------
+          1        Energy            -3.35792    -60.77898     -3.12938
+          2        Energy            -3.08580    -60.75533     -2.92871
+          3        Energy            -3.11301    -60.79826     -3.32121
+          4        Energy            -2.54157    -60.72724     -2.71903
+--------------------------------------------------------------------------------
+
+  Maximum range for interatomic potentials =    100000.000000 Angstroms
+
+  C6 terms to be calculated in real and reciprocal space 
+
+  Intramolecular potentials :
+
+--------------------------------------------------------------------------------
+Atom  Types   Potential      Parameter       Value         Units   Cutoffs(Ang)
+  1     2                                                            Min /  Max 
+--------------------------------------------------------------------------------
+C    c O    c Morse         Morse  De        6.2880000    eV        0.000  1.600
+                            Morse  a0        2.0600000    Ang^-1    
+                            Morse  r0        1.4119068    Ang       
+--------------------------------------------------------------------------------
+C    c N    c Morse         Morse  De        4.2060000    eV        0.000  1.600
+                            Morse  a0        2.0000000    Ang^-1    
+                            Morse  r0        1.3200000    Ang       
+--------------------------------------------------------------------------------
+H    c N    c Morse         Morse  De        3.8160000    eV        0.000  1.600
+                            Morse  a0        2.2800000    Ang^-1    
+                            Morse  r0        1.0260000    Ang       
+--------------------------------------------------------------------------------
+
+  Intermolecular potentials :
+
+--------------------------------------------------------------------------------
+Atom  Types   Potential      Parameter       Value         Units   Cutoffs(Ang)
+  1     2                                                            Min /  Max 
+--------------------------------------------------------------------------------
+C    c O    c Lennard       Lennard-Jones A  39031.570    eV*Ang^m  0.000 40.000
+                            Lennard-Jones B  35.266000    eV*Ang^n  
+                            Exponent m        12          None
+                            Exponent n         6          None
+--------------------------------------------------------------------------------
+C    c N    c Lennard       Lennard-Jones A  112494.67    eV*Ang^m  0.000 40.000
+                            Lennard-Jones B  55.387000    eV*Ang^n  
+                            Exponent m        12          None
+                            Exponent n         6          None
+--------------------------------------------------------------------------------
+O    c O    c Lennard       Lennard-Jones A  11833.864    eV*Ang^m  0.000 40.000
+                            Lennard-Jones B  21.633000    eV*Ang^n  
+                            Exponent m        12          None
+                            Exponent n         6          None
+--------------------------------------------------------------------------------
+N    c O    c Lennard       Lennard-Jones A  34106.919    eV*Ang^m  0.000 40.000
+                            Lennard-Jones B  33.977000    eV*Ang^n  
+                            Exponent m        12          None
+                            Exponent n         6          None
+--------------------------------------------------------------------------------
+N    c N    c Lennard       Lennard-Jones A  98301.108    eV*Ang^m  0.000 40.000
+                            Lennard-Jones B  53.362000    eV*Ang^n  
+                            Exponent m        12          None
+                            Exponent n         6          None
+--------------------------------------------------------------------------------
+C    c C    c Lennard       Lennard-Jones A  128737.61    eV*Ang^m  0.000 40.000
+                            Lennard-Jones B  57.488000    eV*Ang^n  
+                            Exponent m        12          None
+                            Exponent n         6          None
+--------------------------------------------------------------------------------
+
+  Energy shifts for configurations :
+
+--------------------------------------------------------------------------------
+      Configuration           Energy (eV)        Scale Factor
+--------------------------------------------------------------------------------
+             1                55.4984                 1.000
+             2                55.4984                 1.000
+             3                55.4984                 1.000
+             4                55.4984                 1.000
+--------------------------------------------------------------------------------
+
+
+  General Three-body potentials :
+
+--------------------------------------------------------------------------------
+  Atoms       Potential      Parameter       Value         Units   Cutoffs(Ang)
+  1 / 2 / 3                                                          Min /  Max 
+--------------------------------------------------------------------------------
+C     core    Harmonic      Three-body cnst  5.8970000    eV*rad^-2 0.000  1.600
+N     core                  Three-body angl  121.00000    degrees   0.000  1.600
+O     core                  Three-body k4    0.0000000    eV*rad^-4 0.000  3.000
+                            Three-body k3    0.0000000    eV*rad^-3 
+--------------------------------------------------------------------------------
+N     core    Harmonic      Three-body cnst  3.2520000    eV*rad^-2 0.000  1.400
+H     core                  Three-body angl  120.00000    degrees   0.000  1.600
+C     core                  Three-body k4    0.0000000    eV*rad^-4 0.000  2.600
+                            Three-body k3    0.0000000    eV*rad^-3 
+--------------------------------------------------------------------------------
+N     core    Harmonic      Three-body cnst  2.8620000    eV*rad^-2 0.000  1.400
+H     core                  Three-body angl  120.00000    degrees   0.000  1.400
+H     core                  Three-body k4    0.0000000    eV*rad^-4 0.000  2.300
+                            Three-body k3    0.0000000    eV*rad^-3 
+--------------------------------------------------------------------------------
+C     core    Harmonic      Three-body cnst  8.8460000    eV*rad^-2 0.000  1.600
+N     core                  Three-body angl  118.00000    degrees   0.000  1.600
+N     core                  Three-body k4    0.0000000    eV*rad^-4 0.000  2.800
+                            Three-body k3    0.0000000    eV*rad^-3 
+--------------------------------------------------------------------------------
+
+  General Four-body potentials :
+
+--------------------------------------------------------------------------------
+  Atoms       Potential      Parameter       Value         Units   Cutoffs(Ang)
+  1 - 4                                                             Min /  Max 
+--------------------------------------------------------------------------------
+O     core    Standard      Torsional const 0.26020000    eV        0.000  1.400
+C     core Phase = -  2                                             0.000  1.400
+N     core                                                          0.000  1.300
+H     core                                                          0.000  0.000
+--------------------------------------------------------------------------------
+N     core    Standard      Torsional const 0.21700000E-02eV        0.000  1.600
+C     core Phase = -  2                                             0.000  1.600
+N     core                                                          0.000  1.300
+H     core                                                          0.000  0.000
+--------------------------------------------------------------------------------
+O     core    Standard      Torsional const 0.43400000    eV        0.000  1.600
+C     core Phase = -  2                                             0.000  1.600
+N     core                                                          0.000  3.000
+N     core                                                          0.000  0.000
+--------------------------------------------------------------------------------
+
+
+
+  Total time to end of fitting =       1.2968 seconds
+
+********************************************************************************
+*  Output for configuration   1                                                *
+********************************************************************************
+
+
+  Components of energy : 
+
+--------------------------------------------------------------------------------
+  Interatomic potentials     =         -55.53692229 eV    
+  Three-body potentials      =           0.00410704 eV    
+  Four-body potentials       =           0.00000000 eV    
+  Improper torsions          =           0.00000000 eV    
+  Out of plane potentials    =           0.00000000 eV    
+  Monopole - monopole (real) =          14.81938481 eV    
+  Monopole - monopole (recip)=         -16.22773784 eV    
+  Monopole - monopole (total)=          -1.40835304 eV    
+  Dispersion (real+recip)    =          -1.68656695 eV    
+  Energy shift               =          55.49835695 eV    
+--------------------------------------------------------------------------------
+  Total lattice energy       =          -3.12937829 eV    
+--------------------------------------------------------------------------------
+  Total lattice energy       =            -301.9372 kJ/(mole unit cells)
+--------------------------------------------------------------------------------
+
+********************************************************************************
+*  Output for configuration   2                                                *
+********************************************************************************
+
+
+  Components of energy : 
+
+--------------------------------------------------------------------------------
+  Interatomic potentials     =         -55.34268988 eV    
+  Three-body potentials      =           0.00735094 eV    
+  Four-body potentials       =           0.00000000 eV    
+  Improper torsions          =           0.00000000 eV    
+  Out of plane potentials    =           0.00000000 eV    
+  Monopole - monopole (real) =          14.82259804 eV    
+  Monopole - monopole (recip)=         -16.22768625 eV    
+  Monopole - monopole (total)=          -1.40508821 eV    
+  Dispersion (real+recip)    =          -1.68663536 eV    
+  Energy shift               =          55.49835695 eV    
+--------------------------------------------------------------------------------
+  Total lattice energy       =          -2.92870556 eV    
+--------------------------------------------------------------------------------
+  Total lattice energy       =            -282.5753 kJ/(mole unit cells)
+--------------------------------------------------------------------------------
+
+********************************************************************************
+*  Output for configuration   3                                                *
+********************************************************************************
+
+
+  Components of energy : 
+
+--------------------------------------------------------------------------------
+  Interatomic potentials     =         -55.72335803 eV    
+  Three-body potentials      =           0.00191828 eV    
+  Four-body potentials       =           0.00000000 eV    
+  Improper torsions          =           0.00000000 eV    
+  Out of plane potentials    =           0.00000000 eV    
+  Monopole - monopole (real) =          14.81617008 eV    
+  Monopole - monopole (recip)=         -16.22778555 eV    
+  Monopole - monopole (total)=          -1.41161547 eV    
+  Dispersion (real+recip)    =          -1.68650942 eV    
+  Energy shift               =          55.49835695 eV    
+--------------------------------------------------------------------------------
+  Total lattice energy       =          -3.32120769 eV    
+--------------------------------------------------------------------------------
+  Total lattice energy       =            -320.4458 kJ/(mole unit cells)
+--------------------------------------------------------------------------------
+
+********************************************************************************
+*  Output for configuration   4                                                *
+********************************************************************************
+
+
+  Components of energy : 
+
+--------------------------------------------------------------------------------
+  Interatomic potentials     =         -55.14048986 eV    
+  Three-body potentials      =           0.01163844 eV    
+  Four-body potentials       =           0.00000000 eV    
+  Improper torsions          =           0.00000000 eV    
+  Out of plane potentials    =           0.00000000 eV    
+  Monopole - monopole (real) =          14.82580980 eV    
+  Monopole - monopole (recip)=         -16.22763078 eV    
+  Monopole - monopole (total)=          -1.40182098 eV    
+  Dispersion (real+recip)    =          -1.68671462 eV    
+  Energy shift               =          55.49835695 eV    
+--------------------------------------------------------------------------------
+  Total lattice energy       =          -2.71903007 eV    
+--------------------------------------------------------------------------------
+  Total lattice energy       =            -262.3448 kJ/(mole unit cells)
+--------------------------------------------------------------------------------
+
+  Peak dynamic memory used =       1.92 MB 
+
+
+  Timing analysis for GULP :
+
+--------------------------------------------------------------------------------
+  Task / Subroutine                                          Time (Seconds)
+--------------------------------------------------------------------------------
+  Calculation of reciprocal space energy and derivatives          0.0022
+  Calculation of reciprocal space energy using symmetry           0.1117
+  Calculation of real space energy using symmetry                 0.5719
+  Calculation of three-body energy and derivatives                0.0350
+  Calculation of four-body energy and derivatives                 0.0828
+  Calculation of molecules and connectivity                       0.1066
+  Sum of squares for fitting                                      0.1589
+  Symmetry generation of equivalent positions                     0.0501
+  Global summation overhead                                       0.1356
+--------------------------------------------------------------------------------
+  Total CPU time                                                  1.3004
+--------------------------------------------------------------------------------
+
+
+  Dump file written as example22.grs
+
+
+  Job Finished at 00:33.40  9th July       2024                               
+

@@ -11,7 +11,7 @@ from asap3 import Atoms, EMT, units, Trajectory
 from ase.lattice.cubic import FaceCenteredCubic
 from asap3.md.verlet import VelocityVerlet
 
-# Create the atoms
+# Create the atoms as FCC
 atoms = FaceCenteredCubic(size=(3,3,3), symbol="Cu", pbc=False)
 
 # Give the first atom a non-zero momentum

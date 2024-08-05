@@ -7,10 +7,11 @@ from ase.optimize import BFGS
 db1 = connect('bulk.db')
 db2 = connect('ads.db')
 
-
+# function
 def run(symb, a, n, ads):
     atoms = fcc111(symb, (1, 1, n), a=a)
     add_adsorbate(atoms, ads, height=1.0, position='fcc')
+#   print(symb," fcc111 lattice constant,  a=",a)
 
     # Constrain all atoms except the adsorbate:
     fixed = list(range(len(atoms) - 1))

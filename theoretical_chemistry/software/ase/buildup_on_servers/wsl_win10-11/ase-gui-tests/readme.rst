@@ -36,3 +36,14 @@ Successfully installed tk-0.1.0
 
 
 
+python3 tkinter_test.py ... this works...
+
+solution
+~~~~~~~~
+
+clean all the pip packages, use sudo replacements for missing
+
+pip install ase_ext
+pip install asap3
+
+

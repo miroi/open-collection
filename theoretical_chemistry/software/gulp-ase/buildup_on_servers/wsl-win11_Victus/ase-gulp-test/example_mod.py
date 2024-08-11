@@ -1,8 +1,3 @@
-#
-# https://wiki.fysik.dtu.dk/ase/ase/calculators/gulp.html#example
-#
-#
-
 # flake8: noqa
 import numpy as np
 
@@ -13,8 +8,7 @@ os.environ["ASE_GULP_COMMAND"] = "/home/milias/work/software/gulp/gulp-6.2/Src/g
 from ase import Atoms
 from ase.calculators.gulp import GULP, Conditions
 
-cluster_formula = 'O4SiOSiO2SiO2SiO2SiOSiO2SiO3SiO3H8'
-cluster = Atoms(symbols=cluster_formula,
+cluster = Atoms(symbols='O4SiOSiO2SiO2SiO2SiOSiO2SiO3SiO3H8',
                 pbc=np.array([False, False, False], dtype=bool),
                 cell=np.array(
                     [[0., 0., 0.],
@@ -59,8 +53,6 @@ cluster = Atoms(symbols=cluster_formula,
                         [0.400993, 3.469148, 1.733289]]))
 
 
-print("Cluster formula for GULP calculation: ", cluster_formula)
-
 c = Conditions(cluster)
 c.min_distance_rule('O', 'H', ifcloselabel1='O2',
                     ifcloselabel2='H', elselabel1='O1')
@@ -68,10 +60,10 @@ calc = GULP(keywords='conp', shel=['O1', 'O2'], conditions=c)
 
 # Single point calculation
 cluster.calc = calc
-print("Unoptimzied cluster potential energy: ",cluster.get_potential_energy())
+print(cluster.get_potential_energy())
 
 # Optimization using the internal optimizer of GULP
 calc.set(keywords='conp opti')
 opt = calc.get_optimizer(cluster)
 opt.run(fmax=0.05)
-print("OPTIMIZED cluster potential energy: ",cluster.get_potential_energy())
+print(cluster.get_potential_energy())

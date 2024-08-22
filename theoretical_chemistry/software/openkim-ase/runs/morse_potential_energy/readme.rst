@@ -11,3 +11,11 @@ milias@Miro:/mnt/c/Users/miroi/OneDrive/Desktop/Work/projekty/open-collection/th
   warnings.warn(f"A NumPy version >={np_minversion} and <{np_maxversion}"
 Potential energy of FCC Ar: -0.37120682093323026 eV
 
+
+milias@Miro:/mnt/c/Users/miroi/OneDrive/Desktop/Work/projekty/open-collection/theoretical_chemistry/software/openkim-ase/runs/morse_potential_energy/.pip install lammps
+Defaulting to user installation because normal site-packages is not writeable
+Collecting lammps
+  Downloading lammps-2023.8.2.3.1-py2.py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (81.9 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 81.9/81.9 MB 33.5 MB/s eta 0:00:00
+Installing collected packages: lammps
+Successfully installed lammps-2023.8.2.3.1

@@ -58,6 +58,9 @@ psycopg2                 not installed
 pyamg                    not installed
 
 
+mirilias@login21.mogon:~/work/projects/open-collection/theoretical_chemistry/software/ase/buildup_on_servers/mogon_uni-mainz_de/.module add  lang/Python/3.10.8-GCCcore-12.2.0
+mirilias@login21.mogon:~/work/projects/open-collection/theoretical_chemistry/software/ase/buildup_on_servers/mogon_uni-mainz_de/.ase --version       ase-3.23.0
+
 
 
 

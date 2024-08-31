@@ -3,13 +3,13 @@
 #SBATCH -J Alfcc
 
 ##  partition (queue)
-#SBATCH -p cascade
-##SBATCH -p knl
+##SBATCH -p cascade
+#SBATCH -p knl
 ##SBATCH -p long
 ##SBATCH -p flnr-ice
 
 ## max. execution time
-#SBATCH -t 1-00:00:00
+#SBATCH -t 0-08:00:00
 
 ##SBATCH --exclusive
 
@@ -92,6 +92,8 @@ export NSCM=$SLURM_CPUS_ON_NODE
 #$ADFBIN/ams.exe $AMSHOME/examples/band/NaCl/NaCl.run
 
 export OMPI_MCA_oob=^usock
+export MKL_NUM_THREADS=1
+export MKL_DYNAMIC=FALSE
 
 echo -e "\n Running in SLURM_SUBMIT_DIR=$SLURM_SUBMIT_DIR : "
 echo "mpirun -np $SLURM_CPUS_ON_NODE $FHIAIMS < /dev/null | tee H2O_test.own "

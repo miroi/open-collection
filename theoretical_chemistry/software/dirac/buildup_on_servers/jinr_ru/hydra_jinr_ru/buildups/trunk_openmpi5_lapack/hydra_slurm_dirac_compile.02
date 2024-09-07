@@ -51,11 +51,13 @@ echo
 echo -e "Job partition is $SLURM_JOB_PARTITION \n"
 echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
 
-MACHINEFILE="nodes.$SLURM_JOB_PARTITION.$SLURM_JOB_ID"
+#MACHINEFILE="nodes.$SLURM_JOB_PARTITION.$SLURM_JOB_ID"
 # Generate Machinefile for mpi such that hosts are in the same
 # order as if run via srun
-srun -l /bin/hostname | sort -n | awk '{print $2}' > $MACHINEFILE
-echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; echo "containing:"; cat $MACHINEFILE
+#srun -l /bin/hostname | sort -n | awk '{print $2}' > $MACHINEFILE
+echo -e "\n Allocated working nodes:"
+srun -l /bin/hostname | sort -n | awk '{print $2}' 
+#echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; echo "containing:"; cat $MACHINEFILE
 
 module purge
 module add GVR/v1.0-1
@@ -104,6 +106,8 @@ pwd
 #./setup --mpi --fc=mpif90 --cc=mpicc --cxx=mpicxx --blas=off --lapack=off  --explicit-libs="-L/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/LAPACK/v3.12.0_gcc1230/lib64 -llapack -lblas" build_openmpi5_lapack_blas_lp64
 
 cd build_openmpi5_lapack_blas_lp64
+echo -e "\n I am in "; pwd
+echo -e "Going to compile...  make -j $SLURM_CPUS_ON_NODE :"
 make -j $SLURM_CPUS_ON_NODE
 
 exit

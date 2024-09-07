@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH -J DIR2
+#SBATCH -J DIR1
 
 ##  partition (queue)
 ##SBATCH -p cascade
@@ -37,6 +37,13 @@
 ##SBATCH --mail-user=siuraksh@jinr.ru
 #SBATCH --mail-type=ALL
 
+echo -e "\nRunning on host `hostname`"
+echo -e "Time is `date` \n"
+ulimit -s unlimited
+
+echo -e "\n The total memory at the node (in GB)"
+free -t -g
+echo -e "\n"
  
 echo Job user is $SLURM_JOB_USER and his job $SLURM_JOB_NAME has assigned ID $SLURM_JOBID
 echo This job was submitted from the computer $SLURM_SUBMIT_HOST
@@ -51,32 +58,6 @@ echo
 echo -e "Job partition is $SLURM_JOB_PARTITION \n"
 echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
 
-#MACHINEFILE="nodes.$SLURM_JOB_PARTITION.$SLURM_JOB_ID"
-# Generate Machinefile for mpi such that hosts are in the same
-# order as if run via srun
-#srun -l /bin/hostname | sort -n | awk '{print $2}' > $MACHINEFILE
-echo -e "\n Allocated working nodes:"
-srun -l /bin/hostname | sort -n | awk '{print $2}' 
-#echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; echo "containing:"; cat $MACHINEFILE
-
-module purge
-module add GVR/v1.0-1
-module add Python/v3.10.2
-module add CMake/v3.29.2
-module add openmpi/v5.0.3_gcc1230
-module add LAPACK/v3.12.0_gcc1230
-
-echo -e "\n\n loaded modules:"
-module list
-
- # echo -e "Disk space: df -h $SCM_TMPDIR "
- # df -h $SCM_TMPDIR
-
-ulimit -s unlimited
-
-echo -e "\nRunning on host `hostname`"
-echo -e "Time is `date` \n"
-
 # CPU model, total numer of CPUs, number of allocated CPUs
 echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
 NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
@@ -85,27 +66,45 @@ echo "Based on reserved memory, this node got SLURM_CPUS_ON_NODE=$SLURM_CPUS_ON_
 echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
 
 
-echo -e "\n The total memory at the node (in GB)"
-free -t -g
-echo -e "\n"
+#MACHINEFILE="nodes.$SLURM_JOB_PARTITION.$SLURM_JOB_ID"
+# Generate Machinefile for mpi such that hosts are in the same
+# order as if run via srun
+#srun -l /bin/hostname | sort -n | awk '{print $2}' > $MACHINEFILE
+echo -e "\n Allocated working nodes:"
+srun -l /bin/hostname | sort -n | awk '{print $2}' 
+#echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; echo "containing:"; cat $MACHINEFILE
+
+echo -e "\n\n loaded modules:"
+module purge
+module add GVR/v1.0-1
+module add Python/v3.10.2
+module add CMake/v3.29.2
+module add openmpi/v5.0.3_gcc1230
+module add LAPACK/v3.12.0_gcc1230
+#
+module list
+
+echo -e "\n python ? :\c"; which python; python -V
+echo -e " cmake ? :\c";  which cmake; cmake --version
+echo -e " mpif90 ? :\c"; which mpif90; mpif90 --version
+echo -e " mpicc ? :\c"; which mpicc; mpicc --version
+echo -e " mpicxx ? :\c"; which mpicxx; mpicxx  --version
+echo -e " mpirun ? :\c"; which mpirun; mpirun  --version
+echo -e "\n LAPACK and  BLAS libs ?"; ls -lt /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/LAPACK/v3.12.0_gcc1230/lib64
+
+echo -e "\n The environmental variable PATH=$PATH "
 
 DIRAC=/lustre/home/user/m/milias/work/software/dirac/trunk
-
-echo -e "\nMy PATH=$PATH\n"
-echo -e "Python -v :\c"; python -V
-#echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
-echo
-
-
 cd $DIRAC
 pwd
 
-# Found LAPACK: SYSTEM_NATIVE (/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/LAPACK/v3.12.0_gcc1230/lib64/liblapack.so)
-# /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/LAPACK/v3.12.0_gcc1230/lib64/libblas.so
+BUILD=build_openmpi5_lapack_blas_i4
+echo -e "\n DIRAC build directory, BUILD=$BUILD"
 
-#./setup --mpi --fc=mpif90 --cc=mpicc --cxx=mpicxx --blas=off --lapack=off  --explicit-libs="-L/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/LAPACK/v3.12.0_gcc1230/lib64 -llapack -lblas" build_openmpi5_lapack_blas_lp64
+#./setup --mpi --exatensor=OFF --fc=mpiifort --cc=mpiicc --cxx=mpiicpc --mkl --int64  $BUILD
+./setup --mpi --exatensor=OFF  --fc=mpif90 --cc=mpicc --cxx=mpicxx --blas=off --lapack=off  --explicit-libs="-L/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/LAPACK/v3.12.0_gcc1230/lib64 -llapack -lblas"  $BUILD
 
-cd build_openmpi5_lapack_blas_lp64
+cd $BUILD
 echo -e "\n I am in : \c "; pwd
 cmake ..
 echo -e "Going to compile...  make -j $SLURM_CPUS_ON_NODE :"

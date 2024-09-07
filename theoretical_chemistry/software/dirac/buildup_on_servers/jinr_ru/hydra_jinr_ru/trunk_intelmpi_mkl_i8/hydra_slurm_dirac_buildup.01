@@ -99,6 +99,12 @@ pwd
 
 BUILD=build_intelmpi_mkl_i8
 echo -e "\n DIRAC build directory, BUILD=$BUILD"
+if [ -d $BUILD ]; then
+  echo "Directory BUILD exists. Going to delete it !"
+  /bin/rm -rf $BUILD
+  echo "Directory BUILD deleted. It will be created again."
+fi
+
 
 ./setup --mpi --exatensor=OFF --pcmsolver=OFF  --fc=mpiifort --cc=mpiicc --cxx=mpiicpc --mkl --int64  $BUILD
 

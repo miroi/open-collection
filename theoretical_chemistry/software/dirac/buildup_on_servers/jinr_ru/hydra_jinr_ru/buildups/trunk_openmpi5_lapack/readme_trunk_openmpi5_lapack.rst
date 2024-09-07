@@ -1,6 +1,9 @@
-DIRAC compilation 
-=================
+=============
+DIRAC buildup
+=============
 
+configure
+~~~~~~~~~
 module add Python/v3.10.2
 module add CMake/v3.29.2
 module add openmpi/v5.0.3_gcc1230
@@ -20,11 +23,12 @@ Copyright (C) 2022 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-buildup
-~~~~~~~
-milias@hydra.jinr.ru:~/work/software/dirac/trunk/../setup --mpi --fc=mpif90 --cc=mpicc --cxx=mpicxx build_openmpi5_lapack...
+milias@hydra.jinr.ru:~/work/software/dirac/trunk/../setup --mpi --fc=mpif90 --cc=mpicc --cxx=mpicxx build_openmpi5_lapack
 
-
+compilation
+~~~~~~~~~~~
+milias@hydra.jinr.ru:~/work/software/dirac/trunk/build_openmpi5_lapack/cmake ..
+milias@hydra.jinr.ru:~/work/software/dirac/trunk/build_openmpi5_lapack/make -j4 
 
 
 

@@ -106,7 +106,8 @@ pwd
 #./setup --mpi --fc=mpif90 --cc=mpicc --cxx=mpicxx --blas=off --lapack=off  --explicit-libs="-L/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/LAPACK/v3.12.0_gcc1230/lib64 -llapack -lblas" build_openmpi5_lapack_blas_lp64
 
 cd build_openmpi5_lapack_blas_lp64
-echo -e "\n I am in "; pwd
+echo -e "\n I am in : \c "; pwd
+cmake ..
 echo -e "Going to compile...  make -j $SLURM_CPUS_ON_NODE :"
 make -j $SLURM_CPUS_ON_NODE
 

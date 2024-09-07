@@ -100,10 +100,11 @@ echo -e " Intel  mpirun ? :\c";  which mpirun; mpirun  -V
 export DIRAC_MPI_COMMAND="mpirun -np 2"
 echo -e "\n DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
 
+cd $DIRAC/$BUILD
+
 echo -e "\n checking executable, ldd dirac.x:"
 ldd dirac.x
 
-cd $DIRAC/$BUILD
 echo -e "\n\n I am in : \c "; pwd
 echo -e "\n\n Going to perform ctest -j 4 :"
 ctest -j 4

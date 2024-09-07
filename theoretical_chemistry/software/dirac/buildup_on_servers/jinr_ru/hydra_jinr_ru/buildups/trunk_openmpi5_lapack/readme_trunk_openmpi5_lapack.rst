@@ -21,7 +21,7 @@ Copyright (C) 2022 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-milias@hydra.jinr.ru:~/work/software/dirac/trunk/../setup --mpi --exatensor=OFF  --fc=mpif90 --cc=mpicc --cxx=mpicxx build_openmpi5_lapack_i4
+milias@hydra.jinr.ru:~/work/software/dirac/trunk/. ./setup --mpi --exatensor=OFF  --fc=mpif90 --cc=mpicc --cxx=mpicxx --blas=off --lapack=off  --explicit-libs="-L/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/LAPACK/v3.12.0_gcc1230/lib64 -llapack -lblas"  $BUILD
 
 milias@hydra.jinr.ru:~/work/software/dirac/trunk/build_openmpi5_lapack_i4/cmake ..
 milias@hydra.jinr.ru:~/work/software/dirac/trunk/build_openmpi5_lapack_i4/make -j4 

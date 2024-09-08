@@ -108,7 +108,14 @@ echo -e "\n DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
 out_suffix=out.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out
 
 echo -e "\n\n I am in the directory: \c "; pwd
-echo "running test run from DIRAC test directory :"
-$DIRAC/$BUILD/pam --noarch --inp=$DIRAC/test/benchmark_cc/cc.inp --mol=$DIRAC/test/benchmark_cc/C2H4Cl2_ec1_c2.mol --suffix=$out_suffix
+
+# DIRAC test directory, input and mol files
+testdir=cc_essential
+inpf=ccsd.small.inp
+molf=H2O.mol
+echo -e "\nrunning test run from DIRAC test directory: $DIRAC/test/$testdir"
+echo -e "\ninput file=$inpf  mol file=$molf"
+#$DIRAC/$BUILD/pam --noarch --inp=$DIRAC/test/benchmark_cc/cc.inp --mol=$DIRAC/test/benchmark_cc/C2H4Cl2_ec1_c2.mol --suffix=$out_suffix
+$DIRAC/$BUILD/pam --noarch --mw=64 --aw=130 --inp=$DIRAC/test/$testdir/$inpf --mol=$DIRAC/test/$testdir/$molf --suffix=$out_suffix
 
 exit

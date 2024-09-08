@@ -67,8 +67,9 @@ MACHINEFILE="nodes.$SLURM_JOB_PARTITION.$SLURM_JOB_ID"
 srun -l /bin/hostname | sort -n | awk '{print $2}' > $MACHINEFILE
 echo -e "\n\n Generated machinefile for MPI, MACHINEFILE=$MACHINEFILE"
 ls -lt $PWD/$MACHINEFILE
-echo "MACHINEFILE contains: \c"
+echo -e "MACHINEFILE contains these nodes:"
 #cat $MACHINEFILE
+# print nicely in the line !
 paste -s $MACHINEFILE
 
 echo -e "\n\n Loaded modules:"
@@ -82,7 +83,7 @@ module add  intel/v2021.1
 module list
 
 echo -e "\n\nPython ? :\c"; which python; python -V
-echo -e "  cmake ? :\c";  which cmake; cmake --version
+#echo -e "  cmake ? :\c";  which cmake; cmake --version
 echo -e "  mpiifort ? :\c"; which mpiifort; mpiifort -V
 echo -e "  mpiicc ? :\c"; which mpiicc; mpiicc -V
 echo -e "  mpiicc ? :\c"; which mpiicpc; mpiicpc  -V
@@ -116,8 +117,8 @@ testdir=cc_essential
 inpf=ccsd.small.inp
 molf=H2O.mol
 echo -e "\n\nRunning job from DIRAC test directory: $DIRAC/test/$testdir"
-echo -e "\nDIRAC input file=$inpf ;  mol file=$molf"
-echo -e "\n suffix for the DIRAC output file = $out_suffix"
+echo -e "DIRAC input file=$inpf ;  mol file=$molf"
+echo -e "suffix for the DIRAC output file = $out_suffix\n\n"
 #$DIRAC/$BUILD/pam --noarch --inp=$DIRAC/test/benchmark_cc/cc.inp --mol=$DIRAC/test/benchmark_cc/C2H4Cl2_ec1_c2.mol --suffix=$out_suffix
 $DIRAC/$BUILD/pam --noarch --mw=64 --aw=130 --inp=$DIRAC/test/$testdir/$inpf --mol=$DIRAC/test/$testdir/$molf --suffix=$out_suffix
 

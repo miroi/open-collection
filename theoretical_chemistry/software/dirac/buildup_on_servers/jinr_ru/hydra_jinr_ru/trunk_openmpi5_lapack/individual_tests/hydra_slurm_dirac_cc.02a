@@ -111,7 +111,7 @@ $DIRAC/$BUILD/pam --help
 #export MKL_DYNAMIC=FALSE
 # ... OpenMPI
 #export DIRAC_MPI_COMMAND="mpirun  --machinefile  $SLURM_SUBMIT_DIR/$MACHINEFILE -np $SLURM_NTASKS"
-export DIRAC_MPI_COMMAND="mpirun -x DIRWRK --bind-to :overload-allowed  --machinefile  $SLURM_SUBMIT_DIR/$MACHINEFILE -np $SLURM_NTASKS"
+export DIRAC_MPI_COMMAND="mpirun --bind-to :overload-allowed  --machinefile  $SLURM_SUBMIT_DIR/$MACHINEFILE -np $SLURM_NTASKS"
 echo -e "\n DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
 out_suffix=out.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out
 
@@ -126,6 +126,6 @@ molf=C2H4Cl2_sta_c1.mol
 echo -e "\n\nRunning job from DIRAC test directory: $DIRAC/test/$testdir"
 echo -e "DIRAC input file=$inpf ;  mol file=$molf"
 echo -e "suffix for the DIRAC output file = $out_suffix\n\n"
-$DIRAC/$BUILD/pam --noarch --gb=56.0 --ag=60.0 --inp=$DIRAC/test/$testdir/$inpf --mol=$DIRAC/test/$testdir/$molf --suffix=$out_suffix
+$DIRAC/$BUILD/pam --noarch --gb=16 --ag=18 --inp=$DIRAC/test/$testdir/$inpf --mol=$DIRAC/test/$testdir/$molf --suffix=$out_suffix
 
 exit

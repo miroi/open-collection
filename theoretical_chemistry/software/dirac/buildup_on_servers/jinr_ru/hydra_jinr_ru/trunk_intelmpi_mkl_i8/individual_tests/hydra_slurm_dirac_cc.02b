@@ -1,0 +1,126 @@
+#!/bin/bash
+
+#SBATCH -J cc2
+
+##  partition (queue)
+#SBATCH -p cascade
+##SBATCH -p knl
+##SBATCH -p long
+##SBATCH -p flnr-ice
+
+## max. execution time
+#SBATCH -t 0-05:00:00
+
+##SBATCH --exclusive
+
+##SBATCH --mem=128GB
+##SBATCH --mem=264GB
+#SBATCH --mem=64GB
+
+# do not restart in the case of nodefail!
+#SBATCH --no-requeue
+#SBATCH --no-kill
+
+##SBATCH -N 4 -n 8
+#SBATCH -N 1
+
+#SBATCH --ntasks-per-node=16
+##SBATCH  --sockets-per-node=1
+
+## memory NO !!!
+##SBATCH --mem-per-cpu=28G
+
+## stdout/stderr output file
+##SBATCH -o log_slurm_job.%j.%N.std_out_err
+#SBATCH -o log_slurm_job.%j.%N.std_out
+
+## Email
+#SBATCH --mail-user=miro.ilias@gmail.com
+#SBATCH --mail-type=ALL
+
+echo -e "\nRunning on host `hostname`"
+echo -e "Time is `date` \n"
+ulimit -s unlimited
+
+echo -e "\n The total memory at the node (in GB)"
+free -t -g
+ 
+echo -e "\n\n Job user is $SLURM_JOB_USER and his job $SLURM_JOB_NAME has assigned ID $SLURM_JOBID"
+echo -e "This job was submitted from the computer SLURM_SUBMIT_HOST=$SLURM_SUBMIT_HOST"
+echo -e "\nThis job was submitted from the home directory:"
+echo -e "SLURM_SUBMIT_DIR=$SLURM_SUBMIT_DIR"
+echo -e "\nThis job is running on the cluster compute node:"
+echo -e "SLURM_CLUSTER_NAME=$SLURM_CLUSTER_NAME"
+echo -e "\nThis job is employing SLURM_JOB_NUM_NODES=$SLURM_JOB_NUM_NODES node/nodes:"
+echo -e "SLURM_JOB_NODELIST = $SLURM_JOB_NODELIST"
+echo -e "\nJob's partition is  SLURM_JOB_PARTITION=$SLURM_JOB_PARTITION"
+
+echo -e "\nThis job reserved SLURM_CPUS_ON_NODE=$SLURM_CPUS_ON_NODE threads per node."
+echo -e "This job wants, in total, SLURM_NTASKS=$SLURM_NTASKS threads . "
+#
+# CPU model
+echo -e "\n\nThe master's node CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
+NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
+echo "This node has total NPROCS=$NPROCS CPUs available for an master EXCLUSIVE job."
+
+MACHINEFILE="nodes.$SLURM_JOB_PARTITION.$SLURM_JOB_ID"
+# Generate Machinefile for mpi such that hosts are in the same
+# order as if run via srun
+srun -l /bin/hostname | sort -n | awk '{print $2}' > $MACHINEFILE
+echo -e "\n\n Generated machinefile for MPI, MACHINEFILE=$MACHINEFILE"
+ls -lt $PWD/$MACHINEFILE
+echo -e "MACHINEFILE contains these nodes:"
+#cat $MACHINEFILE
+# print nicely in the line !
+paste -s $MACHINEFILE
+
+echo -e "\n\n Loaded modules:"
+module purge
+module add GVR/v1.0-1
+module add Python/v3.10.2
+module add CMake/v3.29.2
+module add  intel/v2021.1
+#module add openmpi/v5.0.3_gcc1230
+#module add LAPACK/v3.12.0_gcc1230
+module list
+
+echo -e "\n\nPython ? :\c"; which python; python -V
+#echo -e "  cmake ? :\c";  which cmake; cmake --version
+echo -e "  mpiifort ? :\c"; which mpiifort; mpiifort -V
+echo -e "  mpiicc ? :\c"; which mpiicc; mpiicc -V
+echo -e "  mpiicc ? :\c"; which mpiicpc; mpiicpc  -V
+echo -e "  Intel  mpirun ? :\c";  which mpirun; mpirun  -V
+echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"; ls -lt  $MKLROOT/lib/intel64
+
+echo -e "\n\n The variable PATH=$PATH\n"
+echo -e "\n\n The variable LD_LIBRARY_PATH=$LD_LIBRARY_PATH\n"
+
+DIRAC=/lustre/home/user/m/milias/work/software/dirac/trunk
+BUILD=build_intelmpi_mkl_i8
+echo -e "\n\n checking the workhorse executable, ldd $DIRAC/$BUILD/dirac.x:"
+ldd $DIRAC/$BUILD/dirac.x
+echo -e "\n checking pam script, $DIRAC/$BUILD/pam --help  :"
+$DIRAC/$BUILD/pam --help
+
+export OMPI_MCA_oob=^usock
+export MKL_NUM_THREADS=1
+export MKL_DYNAMIC=FALSE
+
+export DIRAC_MPI_COMMAND="mpirun -f $SLURM_SUBMIT_DIR/$MACHINEFILE -np $SLURM_NTASKS"
+echo -e "\n DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
+out_suffix=out.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out
+
+echo -e "\n\n I am in the directory: \c "; pwd
+
+#
+# DIRAC test directory, input, mol files and some pam parameters
+#
+testdir=benchmark_cc
+inpf=cc.inp
+molf=C2H4Cl2_sta_c1.mol
+echo -e "\n\nRunning job from DIRAC test directory: $DIRAC/test/$testdir"
+echo -e "DIRAC input file=$inpf ;  mol file=$molf"
+echo -e "suffix for the DIRAC output file = $out_suffix\n\n"
+$DIRAC/$BUILD/pam --noarch --gb=4.0 --ag=8.5 --inp=$DIRAC/test/$testdir/$inpf --mol=$DIRAC/test/$testdir/$molf --suffix=$out_suffix
+
+exit

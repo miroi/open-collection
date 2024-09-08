@@ -9,6 +9,7 @@ quick run
 ~~~~~~~~~
 hydra_slurm_dirac_cc.01; ccsd.small_H2O.out.gvr.flnr-ice.N2.n4.jid2777836.out_SAVED
 
-benchmark run
-~~~~~~~~~~~~~
+benchmark runs
+~~~~~~~~~~~~~~
 hydra_slurm_dirac_cc.02 ; 
+hydra_slurm_dirac_cc.02a ; 

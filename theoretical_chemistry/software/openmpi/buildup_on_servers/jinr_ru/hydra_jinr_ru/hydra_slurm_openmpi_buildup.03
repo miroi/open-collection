@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH -J ompi
+#SBATCH -J ompi3
 
 ##  partition (queue)
 ##SBATCH -p cascade
@@ -78,7 +78,7 @@ echo -e "\n\n loaded modules:"
 module purge
 module add GVR/v1.0-1
 module add Python/v3.10.2
-module add CMake/v3.29.2
+#module add CMake/v3.29.2
 module add  intel/v2021.1
 #module add openmpi/v5.0.3_gcc1230
 #module add LAPACK/v3.12.0_gcc1230
@@ -96,25 +96,23 @@ echo -e "\n The variable PATH=$PATH\n"
 OMPI=/lustre/home/user/m/milias/work/software/openmpi/openmpi-5.0.5-intel_v2021.1-i8/openmpi-5.0.5
 cd $OMPI
 echo -e "\n I am  in :\c"; pwd
-echo -e "\n Checking configure --help :"
-configure --help
+
+#echo -e "\n Checking configure --help :"
+#configure --help
 
 
-echo -e "\n\n Going to do the own configure :"
+#echo -e "\n\n Going to do the own configure :"
 #./configure --prefix=$PWD F77=ifort FC=ifort FFLAGS=-i8 FCFLAGS=-i8 CXX=icpc CC=icc
-./configure --prefix=$PWD F77=ifort FC=ifort FFLAGS=-i8 FCFLAGS=-i8 CXX=icpc CC=icc \
-CFLAGS=-m64  CXXFLAGS=-m64 \
---enable-mpi-fortran=usempi  --enable-mpi1-compatibility
 
  
-echo -e "\n\n Going to do make -j $SLURM_CPUS_ON_NODE :"
-make -j $SLURM_CPUS_ON_NODE 
-echo -e "\n\n Going to do make all install :"
-make all install
+#echo -e "\n\n Going to do make -j $SLURM_CPUS_ON_NODE :"
+#make -j $SLURM_CPUS_ON_NODE 
 
-echo -e "\n after the compilation, check OpenMPI binaries and libs:"
-ls 
-ls -lt $PWD/bin/*
-ls -lt $PWD/lib/*
+echo -e "\n\n Going to do make  :"
+make 
+
+#echo -e "\n after the compilation, check OpenMPI binaries:"
+#ls -lt bin/*
+#ls -lt lib/*
 
 exit

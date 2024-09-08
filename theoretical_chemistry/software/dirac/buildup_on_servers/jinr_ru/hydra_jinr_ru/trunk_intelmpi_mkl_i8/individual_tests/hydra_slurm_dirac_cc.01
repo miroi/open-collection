@@ -23,7 +23,6 @@
 
 #SBATCH -N 2 -n 4
 ##SBATCH --ntasks-per-node=12
-
 ##SBATCH  --sockets-per-node=1
 
 ## memory NO !!!
@@ -33,8 +32,8 @@
 ##SBATCH -o log_slurm_job.%j.%N.std_out_err
 #SBATCH -o log_slurm_job.%j.%N.std_out
 
-## mail
-##SBATCH --mail-user=siuraksh@jinr.ru
+## Email
+#SBATCH --mail-user=miro.ilias@gmail.com
 #SBATCH --mail-type=ALL
 
 echo -e "\nRunning on host `hostname`"
@@ -54,8 +53,8 @@ echo -e "\nThis job is employing SLURM_JOB_NUM_NODES=$SLURM_JOB_NUM_NODES node/n
 echo -e "SLURM_JOB_NODELIST = $SLURM_JOB_NODELIST"
 echo -e "\nJob's partition is  SLURM_JOB_PARTITION=$SLURM_JOB_PARTITION"
 
-echo -e "\nThis job reserved in total SLURM_CPUS_ON_NODE=$SLURM_CPUS_ON_NODE threads."
-echo -e "This job wants, per one node, SLURM_NTASKS=$SLURM_NTASKS threads . "
+echo -e "\nThis job reserved SLURM_CPUS_ON_NODE=$SLURM_CPUS_ON_NODE threads per node."
+echo -e "This job wants, in total, SLURM_NTASKS=$SLURM_NTASKS threads . "
 #
 # CPU model
 echo -e "\n\nThe master's node CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
@@ -68,7 +67,8 @@ MACHINEFILE="nodes.$SLURM_JOB_PARTITION.$SLURM_JOB_ID"
 srun -l /bin/hostname | sort -n | awk '{print $2}' > $MACHINEFILE
 echo -e "\n\n Generated machinefile for MPI, MACHINEFILE=$MACHINEFILE"
 ls -lt $PWD/$MACHINEFILE
-echo "MACHINEFILE contains: \c"; cat $MACHINEFILE
+echo "MACHINEFILE contains: \c"
+#cat $MACHINEFILE
 paste -s $MACHINEFILE
 
 echo -e "\n\n Loaded modules:"
@@ -103,18 +103,21 @@ export OMPI_MCA_oob=^usock
 export MKL_NUM_THREADS=1
 export MKL_DYNAMIC=FALSE
 
-export DIRAC_MPI_COMMAND="mpirun -f $MACHINEFILE -np $SLURM_CPUS_ON_NODE"
+export DIRAC_MPI_COMMAND="mpirun -f $MACHINEFILE -np $SLURM_NTASKS"
 echo -e "\n DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
 out_suffix=out.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out
 
 echo -e "\n\n I am in the directory: \c "; pwd
 
+#
 # DIRAC test directory, input and mol files
+#
 testdir=cc_essential
 inpf=ccsd.small.inp
 molf=H2O.mol
-echo -e "\nrunning test run from DIRAC test directory: $DIRAC/test/$testdir"
-echo -e "\ninput file=$inpf  mol file=$molf"
+echo -e "\n\nRunning job from DIRAC test directory: $DIRAC/test/$testdir"
+echo -e "\nDIRAC input file=$inpf ;  mol file=$molf"
+echo -e "\n suffix for the DIRAC output file = $out_suffix"
 #$DIRAC/$BUILD/pam --noarch --inp=$DIRAC/test/benchmark_cc/cc.inp --mol=$DIRAC/test/benchmark_cc/C2H4Cl2_ec1_c2.mol --suffix=$out_suffix
 $DIRAC/$BUILD/pam --noarch --mw=64 --aw=130 --inp=$DIRAC/test/$testdir/$inpf --mol=$DIRAC/test/$testdir/$molf --suffix=$out_suffix
 

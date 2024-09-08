@@ -79,34 +79,38 @@ module purge
 module add GVR/v1.0-1
 module add Python/v3.10.2
 module add CMake/v3.29.2
-module add  intel/v2021.1
-#module add openmpi/v5.0.3_gcc1230
-#module add LAPACK/v3.12.0_gcc1230
+#module add  intel/v2021.1
+module add openmpi/v5.0.3_gcc1230
+module add LAPACK/v3.12.0_gcc1230
 module list
 
-echo -e "\n\nPython ? :\c"; which python; python -V
-#echo -e "  cmake ? :\c";  which cmake; cmake --version
-echo -e "  mpiifort ? :\c"; which mpiifort; mpiifort -V
-echo -e "  mpiicc ? :\c"; which mpiicc; mpiicc -V
-echo -e "  mpiicc ? :\c"; which mpiicpc; mpiicpc  -V
-echo -e "  Intel  mpirun ? :\c";  which mpirun; mpirun  -V
-echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"; ls -lt  $MKLROOT/lib/intel64
+echo -e "\n python ? :\c"; which python; python -V
+echo -e " cmake ? :\c";  which cmake; cmake --version
+echo -e " mpif90 ? :\c"; which mpif90; mpif90 --version
+echo -e " mpicc ? :\c"; which mpicc; mpicc --version
+echo -e " mpicxx ? :\c"; which mpicxx; mpicxx  --version
+echo -e " mpirun ? :\c"; which mpirun; mpirun  --version
+echo -e "\n LAPACK and  BLAS libs in /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/LAPACK/v3.12.0_gcc1230/lib64 ?";
+ls -lt /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/LAPACK/v3.12.0_gcc1230/lib64
 
 echo -e "\n\n The variable PATH=$PATH\n"
 echo -e "\n\n The variable LD_LIBRARY_PATH=$LD_LIBRARY_PATH\n"
 
 DIRAC=/lustre/home/user/m/milias/work/software/dirac/trunk
-BUILD=build_intelmpi_mkl_i8
+#BUILD=build_intelmpi_mkl_i8
+BUILD=build_openmpi5_lapack_blas_i4
 echo -e "\n\n checking the workhorse executable, ldd $DIRAC/$BUILD/dirac.x:"
 ldd $DIRAC/$BUILD/dirac.x
 echo -e "\n checking pam script, $DIRAC/$BUILD/pam --help  :"
 $DIRAC/$BUILD/pam --help
 
-export OMPI_MCA_oob=^usock
-export MKL_NUM_THREADS=1
-export MKL_DYNAMIC=FALSE
+#export OMPI_MCA_oob=^usock
 
-export DIRAC_MPI_COMMAND="mpirun -f $SLURM_SUBMIT_DIR/$MACHINEFILE -np $SLURM_NTASKS"
+# ... IntelMPI
+#export DIRAC_MPI_COMMAND="mpirun -f $SLURM_SUBMIT_DIR/$MACHINEFILE -np $SLURM_NTASKS"
+#export MKL_DYNAMIC=FALSE
+# ... OpenMPI
+export DIRAC_MPI_COMMAND="mpirun  --machinefile  $SLURM_SUBMIT_DIR/$MACHINEFILE -np $SLURM_NTASKS"
 echo -e "\n DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
 out_suffix=out.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out
 

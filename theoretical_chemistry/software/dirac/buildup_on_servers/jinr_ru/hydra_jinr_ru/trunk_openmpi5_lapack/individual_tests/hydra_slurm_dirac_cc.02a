@@ -111,7 +111,7 @@ $DIRAC/$BUILD/pam --help
 #export MKL_DYNAMIC=FALSE
 # ... OpenMPI
 #export DIRAC_MPI_COMMAND="mpirun  --machinefile  $SLURM_SUBMIT_DIR/$MACHINEFILE -np $SLURM_NTASKS"
-export DIRAC_MPI_COMMAND="mpirun --bind-to :overload-allowed  --machinefile  $SLURM_SUBMIT_DIR/$MACHINEFILE -np $SLURM_NTASKS"
+export DIRAC_MPI_COMMAND="mpirun -x DIRWRK --bind-to :overload-allowed  --machinefile  $SLURM_SUBMIT_DIR/$MACHINEFILE -np $SLURM_NTASKS"
 echo -e "\n DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
 out_suffix=out.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out
 

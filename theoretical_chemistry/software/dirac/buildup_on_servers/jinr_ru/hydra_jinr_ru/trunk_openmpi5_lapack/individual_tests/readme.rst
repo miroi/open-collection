@@ -12,4 +12,5 @@ another problem - exceeding 32bit integers
 
 reduced memory allocations "--gb=16 --ag=18" to satisfy 32bit integers
 
+Total WALL time used in DIRAC: 3h26min4s !!! takes too long !!!
 

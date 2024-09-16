@@ -4,6 +4,17 @@ ASE on Window10-WSL
 
 ase gui problem : https://gitlab.com/ase/ase/-/issues/1511
 
+conda installation
+~~~~~~~~~~~~~~~~~~
+https://stackoverflow.com/a/75314060/3101910
+
+curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -o Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh
+export PATH=$PATH:/miniconda3/bin
+
+ase installation
+~~~~~~~~~~~~~~~~~
+
 conda install --channel conda-forge ase==3.22.1
 
 milias@pc7321b:~/.ase info

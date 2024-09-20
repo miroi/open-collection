@@ -1,3 +1,10 @@
+
+H2 with ase-nwchem
+==================
+
+WSL-Win11-VictusNB
+~~~~~~~~~~~~~~~~~~
+
 milias@Miro:/mnt/c/Users/miroi/OneDrive/Desktop/Work/projekty/open-collection/theoretical_chemistry/software/ase/servers/windows10_wsl/ase_nwchem_h2_run$ python3 ase_nwchem_h2_bfgs.py
 [0] ARMCI Warning: Freed 1 leaked allocations
       Step     Time          Energy         fmax
@@ -8,3 +15,7 @@ BFGS:    1 11:52:15      -31.490762        0.3740
 BFGS:    2 11:52:16      -31.492780        0.0630
 [0] ARMCI Warning: Freed 1 leaked allocations
 BFGS:    3 11:52:17      -31.492837        0.0023
+
+milias@Miro:~/work/projects/open-collection/theoretical_chemistry/software/nwchem-ase/runs/ase_nwchem_h2_run/.ase gui h2.traj
+
+

@@ -21,3 +21,12 @@ flask                    not installed
 psycopg2                 not installed
 pyamg                    not installed
 
+milias@vm01.hydra.local:~/work/projects/open-collection/theoretical_chemistry/software/ase/buildup_on_servers/jinr_ru/vmXY_hydra/.pip list
+WARNING: Ignoring invalid distribution -ip (/lustre/home/user/m/milias/.local/lib/python3.10/site-packages)
+Package         Version
+--------------- -----------
+asap3           3.13.4
+ase             3.23.0
+.
+.
+

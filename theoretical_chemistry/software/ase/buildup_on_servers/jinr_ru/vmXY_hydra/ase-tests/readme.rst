@@ -13,3 +13,10 @@ BFGSLineSearch:    1[  2] 13:42:49       11.670814       0.4090
 BFGSLineSearch:    2[  4] 13:42:49       11.625880       0.0409
 Adsorption energy: 0.32351942231763786
 
+
+tests
+~~~~~
+
+pip uninstall asap3
+
+ase test 

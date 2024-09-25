@@ -5,8 +5,10 @@ from asap3 import *
 from asap3.analysis import CNA
 from ase.lattice.cubic import FaceCenteredCubic
 from asap3.setup.dislocation import Dislocation
-from ase.visualize.primiplotter import *
-from ase.io import write
+#from ase.visualize.primiplotter import *
+from asap3.visualize.primiplotter import *
+#from ase.io import write
+from asap3.testtools import ReportTest
 
 print_version(1)
 

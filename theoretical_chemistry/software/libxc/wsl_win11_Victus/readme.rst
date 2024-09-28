@@ -1,4 +1,5 @@
-LibXC libraty
+=============
+LibXC library
 =============
 
 
@@ -20,6 +21,7 @@ doi: 10.1016/j.softx.2017.11.002
 
 Functional '-h' not found.
 
+sudo apt install gfortran
 
 milias@Miro:/mnt/c/Users/miroi/OneDrive/Desktop/Work/projekty/open-collection/theoretical_chemistry/software/libxc/wsl_win11_Victus/.gfortran -o libxctest  libxctest.F90 -I/usr/include/  -lxc -lxcf03 -lxcf90
 
@@ -30,4 +32,5 @@ Libxc version: 5.1.7
 0.300000 -0.494416
 0.400000 -0.544175
 0.500000 -0.586194
+
 

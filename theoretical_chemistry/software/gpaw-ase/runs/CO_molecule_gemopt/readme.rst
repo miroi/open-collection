@@ -21,3 +21,9 @@ miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/gpaw-a
 /home/miroi/.local/lib/python3.10/site-packages/gpaw/calculator.py:730: DeprecatedParameterWarning: Finite-difference mode implicitly chosen; it will be an error to not specify a mode in the future
   warnings.warn(
 
+display
+~~~~~~~
+ase gui CO.cif
+ase gui CO.traj
+
+

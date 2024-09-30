@@ -11,5 +11,7 @@ root@DESKTOP-7OTLCGO:~/work/git-projects/open-collection/computer_science/tensor
 .
 .
 
-
+examples
+~~~~~~~~
+https://github.com/aymericdamien/TensorFlow-Examples
 

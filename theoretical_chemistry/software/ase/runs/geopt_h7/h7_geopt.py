@@ -1,3 +1,7 @@
+#
+#
+#
+
 from ase import Atoms
 from ase.constraints import FixAtoms
 from ase.io import Trajectory

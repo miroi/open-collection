@@ -53,5 +53,9 @@ ls
 Al-200.txt*  Al-300.txt*  Al-400.txt*  Al-500.txt*        Al_lattice.py*        readme.rst*
 Al-250.txt*  Al-350.txt*  Al-450.txt*  Al-fcc.txt_SAVED*  bulk_Al_fcc_test.py*
 
-
-
+new
+~~~
+miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/gpaw-ase/runs/Al_lattice_contant/.export GPAW_SETUP_PATH=/home/miroi/work/projects/open-collection/theoretical_chemistry/software/gpaw-ase/gpaw-setups-24.1.0
+miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/gpaw-ase/runs/Al_lattice_contant/.python3 Al_lattice.py
+miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/gpaw-ase/runs/Al_lattice_contant/.ls
+Al-200.txt  Al-250.txt  Al-300.txt  Al-350.txt  Al-400.txt  Al-450.txt  Al-500.txt  Al-fcc.txt_SAVED  Al_lattice.py  bulk_Al_fcc_test.py  readme.rst

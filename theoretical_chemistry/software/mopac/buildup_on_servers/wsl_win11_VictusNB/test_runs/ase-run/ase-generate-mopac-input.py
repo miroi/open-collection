@@ -8,7 +8,8 @@ from ase.calculators.mopac import MOPAC
 atoms = molecule('O2')
 atoms.calc = MOPAC(label='O2')
 
-#atoms.get_potential_energy() 
+atoms.get_potential_energy() 
+
 #eigs = atoms.calc.get_eigenvalues()
 #somos = atoms.calc.get_somo_levels()
 #homo, lumo = atoms.calc.get_homo_lumo_levels()

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+export PATH=/opt/mopac/bin:$PATH
+export LD_LIBRARY_PATH=/opt/mopac/bin:$LD_LIBRARY_PATH
+
+echo -e "\n running MOPAC 22.1.1 on server \"`hostname`\"  "
+
+which mopac; ldd `which mopac`
+echo
+
+#mopac CO2_pm6.mop
+mopac O2.mop
+
+exit 0

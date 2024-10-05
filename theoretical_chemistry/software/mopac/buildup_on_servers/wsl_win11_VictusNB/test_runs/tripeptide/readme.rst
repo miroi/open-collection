@@ -1,6 +1,7 @@
+======================
 tripeptide with MOPAC
 ======================
 
-avogadro generates tripeptide
+avogadro (Windows version) generates the tripeptide
 
-
+we save the mop file

@@ -1,8 +1,8 @@
 MOPAC on WSL-Win11
 ==================
 
-install
-~~~~~~~
+install for Linux
+~~~~~~~~~~~~~~~~~~
 miroi@MIRO:~/work/software/mopac/.wget http://openmopac.net/mopac-22.1.1-linux.run
 
 sudo apt-get install libxcb-glx0 libxcb-glx0-dev
@@ -18,7 +18,6 @@ miroi@MIRO:~/work/software/mopac/. sudo ./mopac-22.1.1-linux.run
 
 /opt/mopac  added to PATH
 
-
 miroi@MIRO:~/work/software/mopac/.ldd /opt/mopac/bin/mopac
         linux-vdso.so.1 (0x00007ffe5b3e2000)
         libmopac.so.1 => /opt/mopac/bin/../lib/libmopac.so.1 (0x00007ff87818b000)
@@ -30,5 +29,9 @@ miroi@MIRO:~/work/software/mopac/.ldd /opt/mopac/bin/mopac
         libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007ff878071000)
         /lib64/ld-linux-x86-64.so.2 (0x00007ff87d8ea000)
         librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00007ff87806c000)
+
+install debichem packages
+-------------------------
+miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/mopac/buildup_on_servers/wsl_win11_VictusNB/.sudo apt-get install debichem-semiempirical debichem-molecular-abinitio  debichem-molecular-dynamics  debichem-periodic-abinitio debichem-crystallography
 
 

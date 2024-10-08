@@ -6,8 +6,8 @@ from ase.calculators.nwchem import NWChem
 from ase.optimize import BFGS
 
 calcNW = NWChem(label='calc',
-            dft=dict(maxiter=200,mult=3,odft=None,grid=fine, xc='PBE'),
-            basis='6-31+G*')
+        dft=dict(maxiter=200,mult=3,odft=None,xc='pbe0',grid='fine'),
+        basis='6-31+G*')
 
 d = 1.5
 moleculeO2 = Atoms('2O', [(0., 0., 0.), (0., 0., d)], calculator=calcNW )

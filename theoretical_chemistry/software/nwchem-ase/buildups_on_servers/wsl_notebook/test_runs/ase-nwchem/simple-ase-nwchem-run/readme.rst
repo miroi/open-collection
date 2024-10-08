@@ -8,4 +8,6 @@ milias@Miro:/mnt/c/Users/miroi/OneDrive/Desktop/Work/projekty/open-collection/th
 ls
 readme.rst*  stdin/  stdin.log*  stdin.nwi*  stdin.nwo*  stdin.traj*
 
+ls stdin/
+stdin.db  stdin.movecs
 

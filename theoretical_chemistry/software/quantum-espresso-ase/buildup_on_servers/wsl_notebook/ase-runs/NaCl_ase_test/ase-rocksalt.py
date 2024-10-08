@@ -8,11 +8,12 @@ rocksalt = bulk('NaCl', crystalstructure='rocksalt', a=6.0)
 pseudopotentials = {'Na': 'na_pbe_v1.5.uspp.F.UPF', 'Cl': 'cl_pbe_v1.4.uspp.F.UPF'}
 
 # Optionally create profile to override paths in ASE configuration:
-profile = EspressoProfile(
-    command='/path/to/pw.x', pseudo_dir='/path/to/pseudopotentials'
-)
+#profile = EspressoProfile(
+#    command='/path/to/pw.x', pseudo_dir='/path/to/pseudopotentials'
+#)
 
-calc = Espresso(profile=profile, pseudopotentials=pseudopotentials)
+#calc = Espresso(profile=profile, pseudopotentials=pseudopotentials)
+calc = Espresso(pseudopotentials=pseudopotentials)
 
 rocksalt.calc = calc
 

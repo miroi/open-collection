@@ -18,4 +18,7 @@ N4 n32    1.762GB     crash
 
 hydra_slurm_dirac_cc.02b ... use only N=1 !!!
 
+see https://gitlab.com/dirac/dirac/-/issues/107
+
+
 

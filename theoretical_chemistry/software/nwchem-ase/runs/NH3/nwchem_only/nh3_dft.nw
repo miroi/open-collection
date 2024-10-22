@@ -1,27 +1,36 @@
+python
+
+input_parse('''
 start nh3
- title "Ammonia in 6-31g basis set"
-
- bs = ('6-31g', 'cc-pvdz', '3-21g', 'sto-3g') #basis sets
- exc_corr = ('B3LYP', 'PBE') #exchange correlation 
-
+ title "Ammonia in given basis set, xc functional"
  geometry units au noautoz
    N      0.00000000    0.00000000    0.00000000
    H      0.00000000    2.43042809    2.10715266
    H      0.00000000   -1.43042809    5.10715266
    H      0.00000000    3.43042809   -2.10715266
  end
+''')
+
+ bs = ('6-31g', 'cc-pvdz', '3-21g', 'sto-3g') #basis sets
+ exc_corr = ('B3LYP', 'PBE') #exchange correlation 
 
  for i in bs:
      for j in exc_corr:
 	curr_basis = bs[i]
  	basis
-  	 N library curr_basis
-  	 H library curr_basis
+  	  N library curr_basis
+  	  H library curr_basis
 	end
 
 	curr_corr = exc_corr[j]
 	 dft
- 	 xc  exc_corr[j]
-  	iterations 100
+ 	   xc  exc_corr[j]
+       	   iterations 100
 	 end
+
+ print none
  task dft
+
+end
+
+task python

@@ -1,13 +1,14 @@
 # https://nwchemgit.github.io/Python.html#scaning-a-basis-exponent-yet-again-plotting-and-handling-child-processes
 
- geometry units au  
+geometry units au  
    O 0 0 0; H 0 1.430 -1.107; H 0 -1.430 -1.107  
- end  
+end  
 
- print none  
+print none  
 
- python  
-   import Gnuplot, time, signal  
+python  
+   import time, signal  
+   from pygnuplot import gnuplot
 
    def energy_at_exponent(exponent):  
       input_parse('''  
@@ -17,21 +18,22 @@
       ''' % (exponent))  
       return task_energy('scf')  
 
-   data = []  
+   #datax = []  # original in the code
+   datax = list(range(10,21))
    exponent = 0.5  
    while exponent <= 0.6:  
       energy = energy_at_exponent(exponent)  
-      print ' exponent = ', exponent, ' energy = ', energy  
-      data = data + [exponent,energy](exponent,energy.md)  
+      print(' exponent = ', exponent, ' energy = ', energy)
+      datax = datax + [exponent,energy](exponent,energy.md)  
       exponent = exponent + 0.02  
 
    if (ga_nodeid() == 0):  
       signal.signal(signal.SIGCHLD, signal.SIG_DFL)  
       g = Gnuplot.Gnuplot()  
       g('set data style linespoints')  
-      g.plot(data)  
+      g.plot(datax)  
       time.sleep(30)  # 30s to look at the plot  
 
- end  
+end  
 
- task python
+task python

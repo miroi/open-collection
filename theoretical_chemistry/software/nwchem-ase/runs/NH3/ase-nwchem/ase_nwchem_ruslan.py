@@ -5,7 +5,8 @@ import ase.io
 from ase.visualize import view
 from ase.io import write
 
-nh3coor = ase.io.read(filename='./avogadro/nh3_uff.xyz', format='xyz',index=":")
+#nh3coor = ase.io.read(filename='./avogadro/nh3_uff.xyz', format='xyz',index=":")
+nh3coor = ase.io.read('nh3_uff.xyz', format='xyz',index=":")
 #view(nh3coor)
 print(nh3coor)
 print(nh3coor[0])

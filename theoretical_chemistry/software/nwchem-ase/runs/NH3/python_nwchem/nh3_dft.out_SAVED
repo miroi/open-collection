@@ -38,7 +38,7 @@
 
     hostname        = MIRO
     program         = nwchem
-    date            = Thu Oct 24 00:58:46 2024
+    date            = Thu Oct 24 01:05:22 2024
 
     compiled        = Sat_Apr_09_17:12:10_2022
     source          = /build/nwchem-f1f4gx/nwchem-7.0.2/build-openmpi
@@ -58,8 +58,8 @@
            Memory information
            ------------------
 
-    heap     =   13107194 doubles =    100.0 Mbytes
-    stack    =   13107199 doubles =    100.0 Mbytes
+    heap     =   13107198 doubles =    100.0 Mbytes
+    stack    =   13107195 doubles =    100.0 Mbytes
     global   =   26214400 doubles =    200.0 Mbytes (distinct from heap & stack)
     total    =   52428793 doubles =    400.0 Mbytes
     verify   = yes
@@ -148,7 +148,8 @@ for curr_basis in bs:
       Hbasis='             H library '+curr_basis
       input_parse('basis; '+Nbasis+'; '+Hbasis+'; end')
       input_parse('dft; xc '+curr_corr+'; iterations 100; end')
-      task_energy('dft')
+      e=task_energy('dft');print(e)
+      print('DFT with xc=',curr_corr,' and with basis=',curr_basis,' gives energy=',e)
 
 
 
@@ -343,8 +344,8 @@ for curr_basis in bs:
 
 
            Memory utilization after 1st SCF pass: 
-           Heap Space remaining (MW):       12.61            12606058
-          Stack Space remaining (MW):       13.11            13106956
+           Heap Space remaining (MW):       12.61            12606062
+          Stack Space remaining (MW):       13.11            13106948
 
    convergence    iter        energy       DeltaE   RMS-Dens  Diis-err    time
  ---------------- ----- ----------------- --------- --------- ---------  ------
@@ -352,32 +353,32 @@ for curr_basis in bs:
  d= 0,ls=0.0,diis     2    -54.1590640737  1.66D+00  1.16D-01  4.72D+00     0.2
  d= 0,ls=0.0,diis     3    -55.7224676840 -1.56D+00  1.26D-01  4.81D-01     0.2
  d= 0,ls=0.0,diis     4    -55.7340269301 -1.16D-02  2.56D-03  1.04D+00     0.2
- d= 0,ls=0.0,diis     5    -55.7213580005  1.27D-02  2.31D-03  1.07D+00     0.3
+ d= 0,ls=0.0,diis     5    -55.7213580005  1.27D-02  2.31D-03  1.07D+00     0.2
   Resetting Diis
- d= 0,ls=0.0,diis     6    -55.7264097797 -5.05D-03  1.27D-01  1.01D+00     0.3
+ d= 0,ls=0.0,diis     6    -55.7264097797 -5.05D-03  1.27D-01  1.01D+00     0.2
  d= 0,ls=0.0,diis     7    -55.6496910758  7.67D-02  1.63D-01  8.65D-01     0.3
  d= 0,ls=0.0,diis     8    -53.6359030524  2.01D+00  9.11D-02  1.35D+01     0.3
  d= 0,ls=0.0,diis     9    -55.5343436476 -1.90D+00  3.18D-02  1.87D+00     0.3
  d= 0,ls=0.0,diis    10    -55.6074453857 -7.31D-02  5.45D-03  1.68D+00     0.3
- d= 0,ls=0.0,diis    11    -55.6455381666 -3.81D-02  1.26D-01  1.43D+00     0.4
+ d= 0,ls=0.0,diis    11    -55.6455381666 -3.81D-02  1.26D-01  1.43D+00     0.3
  d= 0,ls=0.5,diis    12    -55.6964393725 -5.09D-02  3.07D-03  7.28D-01     0.4
  d= 0,ls=0.5,diis    13    -55.7127030837 -1.63D-02  9.49D-03  6.52D-01     0.4
  d= 0,ls=0.5,diis    14    -55.7609685142 -4.83D-02  1.12D-02  4.53D-01     0.4
  d= 0,ls=0.5,diis    15    -55.8037215820 -4.28D-02  1.56D-02  3.58D-01     0.4
  d= 0,ls=0.5,diis    16    -55.8590293817 -5.53D-02  1.36D-02  2.66D-01     0.4
- d= 0,ls=0.5,diis    17    -55.9083141769 -4.93D-02  7.89D-03  1.41D-01     0.5
+ d= 0,ls=0.5,diis    17    -55.9083141769 -4.93D-02  7.89D-03  1.41D-01     0.4
  d= 0,ls=0.5,diis    18    -55.9256771002 -1.74D-02  4.65D-03  1.14D-01     0.5
  d= 0,ls=0.5,diis    19    -55.9305907052 -4.91D-03  3.57D-03  1.18D-01     0.5
  d= 0,ls=0.5,diis    20    -55.9372105861 -6.62D-03  3.42D-03  1.04D-01     0.5
  d= 0,ls=0.5,diis    21    -55.9450662547 -7.86D-03  3.95D-03  8.40D-02     0.5
  d= 0,ls=0.5,diis    22    -55.9537436005 -8.68D-03  3.23D-03  6.09D-02     0.5
- d= 0,ls=0.5,diis    23    -55.9597629026 -6.02D-03  2.90D-03  4.52D-02     0.6
+ d= 0,ls=0.5,diis    23    -55.9597629026 -6.02D-03  2.90D-03  4.52D-02     0.5
  d= 0,ls=0.5,diis    24    -55.9643758701 -4.61D-03  2.15D-03  3.34D-02     0.6
  d= 0,ls=0.5,diis    25    -55.9672383903 -2.86D-03  1.48D-03  2.60D-02     0.6
  d= 0,ls=0.5,diis    26    -55.9688326918 -1.59D-03  1.26D-03  2.23D-02     0.6
  d= 0,ls=0.5,diis    27    -55.9702057722 -1.37D-03  1.13D-03  1.88D-02     0.6
  d= 0,ls=0.5,diis    28    -55.9713822198 -1.18D-03  1.35D-03  1.57D-02     0.6
- d= 0,ls=0.5,diis    29    -55.9727655379 -1.38D-03  1.08D-03  1.18D-02     0.7
+ d= 0,ls=0.5,diis    29    -55.9727655379 -1.38D-03  1.08D-03  1.18D-02     0.6
  d= 0,ls=0.5,diis    30    -55.9737044320 -9.39D-04  9.21D-04  9.38D-03     0.7
  d= 0,ls=0.5,diis    31    -55.9744229548 -7.19D-04  7.28D-04  7.50D-03     0.7
  d= 0,ls=0.5,diis    32    -55.9749272234 -5.04D-04  6.34D-04  6.17D-03     0.7
@@ -388,19 +389,19 @@ for curr_basis in bs:
  d= 0,ls=0.5,diis    37    -55.9763058330 -1.92D-04  3.98D-04  2.49D-03     0.8
  d= 0,ls=0.5,diis    38    -55.9764668563 -1.61D-04  3.57D-04  2.06D-03     0.8
  d= 0,ls=0.5,diis    39    -55.9765994118 -1.33D-04  3.18D-04  1.69D-03     0.8
- d= 0,ls=0.5,diis    40    -55.9767039615 -1.05D-04  2.54D-04  1.42D-03     0.9
+ d= 0,ls=0.5,diis    40    -55.9767039615 -1.05D-04  2.54D-04  1.42D-03     0.8
  d= 0,ls=0.5,diis    41    -55.9767804359 -7.65D-05  2.34D-04  1.22D-03     0.9
  d= 0,ls=0.5,diis    42    -55.9768461023 -6.57D-05  2.16D-04  1.04D-03     0.9
  d= 0,ls=0.5,diis    43    -55.9769024552 -5.64D-05  2.12D-04  8.90D-04     0.9
  d= 0,ls=0.5,diis    44    -55.9769544871 -5.20D-05  1.90D-04  7.46D-04     0.9
  d= 0,ls=0.5,diis    45    -55.9769974023 -4.29D-05  1.86D-04  6.28D-04     0.9
- d= 0,ls=0.5,diis    46    -55.9770368541 -3.95D-05  1.67D-04  5.19D-04     1.0
+ d= 0,ls=0.5,diis    46    -55.9770368541 -3.95D-05  1.67D-04  5.19D-04     0.9
  d= 0,ls=0.5,diis    47    -55.9770688660 -3.20D-05  1.54D-04  4.32D-04     1.0
  d= 0,ls=0.5,diis    48    -55.9770958466 -2.70D-05  1.39D-04  3.59D-04     1.0
  d= 0,ls=0.5,diis    49    -55.9771179636 -2.21D-05  1.26D-04  2.98D-04     1.0
  d= 0,ls=0.5,diis    50    -55.9771362719 -1.83D-05  1.18D-04  2.49D-04     1.0
  d= 0,ls=0.5,diis    51    -55.9771519810 -1.57D-05  1.10D-04  2.06D-04     1.0
- d= 0,ls=0.5,diis    52    -55.9771652125 -1.32D-05  9.99D-05  1.70D-04     1.1
+ d= 0,ls=0.5,diis    52    -55.9771652125 -1.32D-05  9.99D-05  1.70D-04     1.0
  d= 0,ls=0.5,diis    53    -55.9771761519 -1.09D-05  9.18D-05  1.41D-04     1.1
  d= 0,ls=0.5,diis    54    -55.9771853133 -9.16D-06  8.41D-05  1.16D-04     1.1
  d= 0,ls=0.5,diis    55    -55.9771929019 -7.59D-06  7.60D-05  9.53D-05     1.1
@@ -423,7 +424,7 @@ for curr_basis in bs:
  d= 0,ls=0.5,diis    72    -55.9772270422 -3.05D-07  1.53D-05  3.90D-06     1.4
  d= 0,ls=0.5,diis    73    -55.9772272948 -2.53D-07  1.39D-05  3.23D-06     1.4
  d= 0,ls=0.5,diis    74    -55.9772275037 -2.09D-07  1.27D-05  2.67D-06     1.4
- d= 0,ls=0.5,diis    75    -55.9772276765 -1.73D-07  1.15D-05  2.21D-06     1.4
+ d= 0,ls=0.5,diis    75    -55.9772276765 -1.73D-07  1.15D-05  2.21D-06     1.5
  d= 0,ls=0.5,diis    76    -55.9772278199 -1.43D-07  1.05D-05  1.83D-06     1.5
  d= 0,ls=0.5,diis    77    -55.9772279385 -1.19D-07  9.52D-06  1.52D-06     1.5
 
@@ -803,8 +804,8 @@ Ammonia in given basis set, xc functional
 
 
            Memory utilization after 1st SCF pass: 
-           Heap Space remaining (MW):       12.61            12606058
-          Stack Space remaining (MW):       13.11            13106956
+           Heap Space remaining (MW):       12.61            12606062
+          Stack Space remaining (MW):       13.11            13106948
 
    convergence    iter        energy       DeltaE   RMS-Dens  Diis-err    time
  ---------------- ----- ----------------- --------- --------- ---------  ------
@@ -813,7 +814,7 @@ Ammonia in given basis set, xc functional
  d= 0,ls=0.5,diis     3    -55.8827743357 -3.54D-05  3.02D-04  6.52D-05     1.6
  d= 0,ls=0.5,diis     4    -55.8827833837 -9.05D-06  1.23D-04  8.76D-06     1.6
  d= 0,ls=0.5,diis     5    -55.8827850011 -1.62D-06  7.38D-05  1.26D-06     1.6
- d= 0,ls=0.5,diis     6    -55.8827854633 -4.62D-07  6.60D-05  6.16D-07     1.6
+ d= 0,ls=0.5,diis     6    -55.8827854633 -4.62D-07  6.60D-05  6.16D-07     1.7
  d= 0,ls=0.5,diis     7    -55.8827857999 -3.37D-07  5.88D-05  3.49D-07     1.7
  d= 0,ls=0.5,diis     8    -55.8827860269 -2.27D-07  5.14D-05  2.40D-07     1.7
  d= 0,ls=0.5,diis     9    -55.8827861968 -1.70D-07  4.87D-05  1.58D-07     1.7
@@ -824,7 +825,7 @@ Ammonia in given basis set, xc functional
  d= 0,ls=0.5,diis    14    -55.8827865215 -2.40D-08  1.75D-05  5.36D-08     1.8
  d= 0,ls=0.5,diis    15    -55.8827865390 -1.76D-08  1.44D-05  4.57D-08     1.8
  d= 0,ls=0.5,diis    16    -55.8827865516 -1.26D-08  1.19D-05  3.90D-08     1.8
- d= 0,ls=0.5,diis    17    -55.8827865614 -9.72D-09  9.86D-06  3.12D-08     1.8
+ d= 0,ls=0.5,diis    17    -55.8827865614 -9.72D-09  9.86D-06  3.12D-08     1.9
 
 
          Total DFT energy =      -55.882786568130
@@ -1020,6 +1021,10 @@ Ammonia in given basis set, xc functional
 
  Parallel integral file used       1 records with       0 large values
 
+-55.97722803610284
+DFT with xc= b3lyp  and with basis= 6-31g  gives energy= -55.97722803610284
+-55.882786568129596
+DFT with xc= pbe0  and with basis= 6-31g  gives energy= -55.882786568129596
 
  Task  times  cpu:        1.6s     wall:        1.8s
  Summary of allocated global arrays
@@ -1047,7 +1052,7 @@ MA usage statistics:
 	current number of blocks	         0	         0
 	maximum number of blocks	        22	        57
 	current total bytes		         0	         0
-	maximum total bytes		   4008960	  22510616
+	maximum total bytes		   4008928	  22510648
 	maximum total K-bytes		      4009	     22511
 	maximum total M-bytes		         5	        23
 

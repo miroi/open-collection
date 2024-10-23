@@ -13,13 +13,14 @@ python
  bs = ['6-31g'] #basis sets
  exc_corr = ['b3lyp','pbe0'] #exchange correlation 
  #exc_corr = ['b3lyp'] #exchange correlation 
-
+ 
  for curr_basis in bs:
     for  curr_corr in exc_corr:
        Nbasis='             N library '+curr_basis
        Hbasis='             H library '+curr_basis
        input_parse('basis; '+Nbasis+'; '+Hbasis+'; end')
        input_parse('dft; xc '+curr_corr+'; iterations 100; end')
-       task_energy('dft')
+       e=task_energy('dft');print(e)
+       print('DFT with xc=',curr_corr,' and with basis=',curr_basis,' gives energy=',e)
 end
 task python

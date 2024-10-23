@@ -15,3 +15,5 @@ https://pypi.org/project/py-gnuplot/
 pip install py-gnuplot
 
 
+
+error in h2o_scbe_gnuplot.nw

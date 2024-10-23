@@ -19,7 +19,8 @@ print("initial NH3 positions : \n ", nh3coor[0].positions)
 #nh3 = Atoms('NH3',positions=[[0, 0, 0],[0, 2.4, 2.1],[0, -1.4, 5.1],[0, 3.4, -2.1]])
 nh3 = Atoms('NH3',positions=nh3coor[0].positions)
 
-exc_corr = ['B3LYP', 'PBE'] # exchange correlation functionals
+#exc_corr = ['B3LYP', 'PBE'] # exchange correlation functionals
+exc_corr = ['b3lyp'] # exchange correlation functionals
 
 for i in range(len(exc_corr)):
 	nh3.calc = NWChem(dft=dict(iterations=500,xc=exc_corr[i]))

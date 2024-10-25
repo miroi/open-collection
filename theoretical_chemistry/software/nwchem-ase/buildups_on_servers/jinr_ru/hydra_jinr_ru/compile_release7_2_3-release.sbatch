@@ -63,6 +63,7 @@ module add GVR/v1.0-1
 #module add intel/v2021.1
 module add ELPA/v2020.05.001_intel2018_python365
 module add Python/v3.10.2
+module add gcc/v10.2.0
 module unload openmpi/v1.8.8-1
 echo -e "\n\n loaded modules:"
 module list
@@ -92,15 +93,16 @@ module list
   # server's Intel compiler
   export FC=ifort
   echo -e "FC=$FC"
-  export CC=icc # avoid !
-  echo -e "CC=$CC"
+  #export CC=icc # avoid !
+  #echo -e "CC=$CC"
 
   #export MPI_F90=mpif90
   export MPI_F90=mpiifort
   echo -e "\nMPI_F90=$MPI_F90"
   echo -e "mpiifort ?"; which mpiifort; mpiifort -V
   echo -e "mpirun ?";  which mpirun; mpirun --version
-  echo -e "icc ?"; which icc; icc --version
+  #echo -e "icc ?"; which icc; icc --version
+  echo -e "gcc ? "; which gcc; gcc --version
 
  # export MPI_CC=mpicc
  # export MPI_CXX=mpicxx

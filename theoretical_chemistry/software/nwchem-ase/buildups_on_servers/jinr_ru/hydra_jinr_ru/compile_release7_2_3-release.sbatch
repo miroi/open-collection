@@ -62,6 +62,7 @@ echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
 module add GVR/v1.0-1
 #module add intel/v2021.1
 module add ELPA/v2020.05.001_intel2018_python365
+module add Python/v3.10.2
 module unload openmpi/v1.8.8-1
 echo -e "\n\n loaded modules:"
 module list
@@ -77,13 +78,16 @@ module list
   #export NWCHEM_TOP=/home/milias/Work/qch/software/nwchem_suite/nwchem_master
   #export NWCHEM_TOP=/home/milias/Work/qch/software/nwchem_suite/nwchem-7.0.2
   export NWCHEM_TOP=/lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release
-  echo -e "NWCHEM_TOP=$NWCHEM_TOP"
+  echo -e "\n NWCHEM_TOP=$NWCHEM_TOP"
 
   export NWCHEM_TARGET="LINUX64"
-  echo -e "NWCHEM_TARGET=$NWCHEM_TARGET"
+  echo -e "\n NWCHEM_TARGET=$NWCHEM_TARGET"
+
+  export PYTHONVERSION=3.10
+  echo -e "\n Python v 3.10"; which python; python -V
 
   export USE_MPI=y
-  echo -e "USE_MPI=$USE_MPI"
+  echo -e "\n USE_MPI=$USE_MPI"
 
   # server's Intel compiler
   export FC=ifort
@@ -181,8 +185,8 @@ module list
   FC=ifort ../contrib/getmem.nwchem
 
 
-  echo -e " make nwchem_config: ";make nwchem_config 
-  echo -e "\n  launching make -j$SLURM_CPUS_ON_NODE :"; make -j$SLURM_CPUS_ON_NODE
+  echo -e "\n  make nwchem_config: ";make nwchem_config 
+  echo -e "\  launching make -j$SLURM_CPUS_ON_NODE :"; make -j$SLURM_CPUS_ON_NODE
 
   # build the version info
    echo -e "\n build the version info :"

@@ -2,6 +2,8 @@
 NWChem buildup on Govorun
 =========================
 
+download
+~~~~~~~~
 milias@hydra.jinr.ru:~/work/software/nwchem/.wget https://github.com/nwchemgit/nwchem/archive/refs/tags/v7.2.3-release.zip
 
 
@@ -12,4 +14,4 @@ milias@hydra.jinr.ru:~/work/software/nwchem/nwchem-7.2.3-release/src/.rm input/d
 
 compile
 ~~~~~~~
-sbatch compile_release7_2_3-release_slurm.01
+sbatch compile_nwchem-7_2_3-slurm.01

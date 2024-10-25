@@ -62,6 +62,7 @@ echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
 module add GVR/v1.0-1
 #module add intel/v2021.1
 module add ELPA/v2020.05.001_intel2018_python365
+module unload openmpi/v1.8.8-1
 echo -e "\n\n loaded modules:"
 module list
 
@@ -92,7 +93,7 @@ module list
 
   #export MPI_F90=mpif90
   export MPI_F90=mpiifort
-  echo -e "MPI_F90=$MPI_F90"
+  echo -e "\nMPI_F90=$MPI_F90"
   echo -e "mpiifort ?"; which mpiifort; mpiifort -V
   echo -e "mpirun ?";  which mpirun; mpirun --version
 
@@ -124,6 +125,8 @@ module list
   echo -e "\n LAPACK_LIB=$LAPACK_LIB"
 
   export USE_SCALAPACK=y
+  export SCALAPACK_SIZE=8
+  echo -e "\n SCALAPACK_SIZE=$LAPACK_SIZE"
   #export SCALAPACK="-L$MKLROOT/lib/intel64 -lmkl_scalapack_ilp64 -lmkl_intel_ilp64 -lmkl_core -lmkl_sequential \  
   export SCALAPACK="-mkl -openmp -lmkl_scalapack_ilp64 -lmkl_blacs_intelmpi_ilp64 -lpthread -lm"
   #export SCALAPACK="-mkl -openmp -lmkl_scalapack_ilp64 -lmkl_blacs_intelmpi_ilp64"
@@ -174,7 +177,7 @@ module list
   echo -e "\n I am in :\c";pwd;ls -lt
 
   # https://nwchemgit.github.io/Compiling-NWChem.html#setting-the-default-memory-values
-  echo -e "launchin FC=ifort ../contrib/getmem.nwchem"
+  echo -e "\n launching : FC=ifort ../contrib/getmem.nwchem"
   FC=ifort ../contrib/getmem.nwchem
 
 

@@ -1,0 +1,32 @@
+start uo2_dft
+echo
+
+Memory 32 mw
+
+charge 2 
+
+geometry noautoz noautosym units angstrom
+ U     0.00000      0.00000     0.00000
+ O     0.00000      0.00000     1.68000 
+ O     0.00000      0.00000    -1.68000 
+end
+
+basis spherical
+ O library cc-pvdz
+ U library lanl2dz_ecp
+end
+
+ecp
+ U library lanl2dz_ecp
+end 
+
+dft  
+  mult 1
+  xc b3lyp
+  odft   
+  iterations 100  
+  mulliken
+end
+task dft optimize
+
+

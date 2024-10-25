@@ -8,4 +8,4 @@ miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/nwchem
 
 miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/nwchem-ase/runs/uo2_ecp/.mpirun -np 4 /usr/bin/nwchem  uo2_ecpso_dft_geomopt.nw  >  uo2_ecpso_dft_geomopt.out
 
-
+miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/nwchem-ase/runs/uo2_ecp/.mpirun -np 4 /usr/bin/nwchem  uo2_ecp_dft_geomopt.nw  > uo2_ecp_dft_geomopt.out

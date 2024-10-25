@@ -1,9 +1,75 @@
 #!/bin/bash
 
-#        NWChem on hydra.jinr.ru
+#SBATCH -J NWbuild
+
+##  partition (queue)
+#SBATCH -p cascade
+##SBATCH -p knl
+##SBATCH -p long
+##SBATCH -p flnr-ice
+
+## max. execution time
+##SBATCH -t 7-00:00:00
+#SBATCH -t 4-00:00:00
+
+##SBATCH --exclusive
+
+##SBATCH --mem=32GB
+#SBATCH --mem=64GB
+##SBATCH --mem=164GB
+##SBATCH --mem=16GB
+
+# do not restart in the case of nodefail!
+#SBATCH --no-requeue
+#SBATCH --no-kill
+
+#SBATCH -N 1 -n 8
+#SBATCH  --sockets-per-node=1
+
+
+## memory NO !!!
+##SBATCH --mem-per-cpu=28G
+
+## stdout/stderr output file
+##SBATCH -o log_slurm_job.%j.%N.std_out_err
+#SBATCH -o log_slurm_job.%j.%N.std_out
+
+## mail
+#SBATCH --mail-user=siuraksh@jinr.ru
+#SBATCH --mail-type=ALL
+
+
+echo Job user is $SLURM_JOB_USER and his job $SLURM_JOB_NAME has assigned ID $SLURM_JOBID
+echo This job was submitted from the computer $SLURM_SUBMIT_HOST
+echo and from the home directory:
+echo $SLURM_SUBMIT_DIR
+echo
+echo It is running on the cluster compute node:
+echo $SLURM_CLUSTER_NAME
+echo and is employing $SLURM_JOB_NUM_NODES node/nodes:
+echo $SLURM_JOB_NODELIST
+echo
+echo -e "Job partition is $SLURM_JOB_PARTITION \n"
+echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
+
+#echo "modules at disposal:"
+#module avail
+#echo
+
+#
+#module purge
+#module load openmpi/v2.1.2-2
+module add GVR/v1.0-1
+#module add intel/v2021.1
+module add ELPA/v2020.05.001_intel2018_python365
+echo -e "\n\n loaded modules:"
+module list
+
+
+#           NWChem on hydra.jinr.ru
 # /lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release
 
-#  nohup compile_release7_0_2.bash &> compile_release7_0_2.log &
+# 
 
   echo -e "\n***   NWChem environmental variables for hydra.jinr.ru:   ***"
 
@@ -15,16 +81,20 @@
   export NWCHEM_TARGET="LINUX64"
   echo -e "NWCHEM_TARGET=$NWCHEM_TARGET"
 
+  export USE_MPI=y
+  echo -e "USE_MPI=$USE_MPI"
+
   # server's Intel compiler
   export FC=ifort
   echo -e "FC=$FC"
+  #export CC=icc # avoid !
+  #echo -e "CC=$CC"
 
-
-  #export CC=icc
-  export MPI_F90=mpif90
+  #export MPI_F90=mpif90
+  export MPI_F90=mpiifort
   echo -e "MPI_F90=$MPI_F90"
-  which mpif90
-  which mpirun
+  echo -e "mpiifort ?"; which mpiifort; mpiifort -V
+  echo -e "mpirun ?";  which mpirun; mpirun --version
 
  # export MPI_CC=mpicc
  # export MPI_CXX=mpicxx
@@ -33,36 +103,50 @@
  # export MPI_LIB="/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib -Wl,-rpath  /home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib -Wl,--enable-new-dtags -L/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib"
  # export MPI_INCLUDE="/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/include /home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib -Wl,-rpath -Wl"
 
-  echo -e "MKL library, MKLROOT=${MKLROOT}"
+  echo -e "\n We have the MKL library, MKLROOT=${MKLROOT}"
+
+  export BLAS_SIZE=8
+  echo -e "\n BLAS_SIZE=$BLAS_SIZE"
 
   #export BLASOPT="-L/usr/lib -lblas"
   #export BLASOPT="${MKLROOT}/lib/mic/libmkl_blas95_ilp64.a -L${MKLROOT}/lib/mic -lmkl_scalapack_ilp64 -lmkl_cdft_core -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread -lm -ldl"
-  export BLASOPT="-mkl -i8"
+  #export BLASOPT="-mkl -i8"
+  #export BLASOPT="-L$MKLROOT/lib/intel64 -lmkl_intel_ilp64 -lmkl_core -lmkl_sequential -lmkl_core -liomp5 -lpthread -ldmapp -lm"
+  export BLASOPT="-mkl -openmp -lpthread -lm"
   echo -e "BLASOPT=$BLASOPT"
-
-  export LAPACK_LIB="-mkl -i8"
-  #export LAPACK_LIB="-L/usr/lib -llapack"
-  #export LAPACK_LIB="${MKLROOT}/lib/mic/libmkl_lapack95_ilp64.a -L${MKLROOT}/lib/mic -lmkl_scalapack_ilp64 -lmkl_cdft_core -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread -lm -ldl"
-  echo -e "LAPACK_LIB=$LAPACK_LIB"
-
-  export USE_64TO32="n" # see http://www.nwchem-sw.org/index.php/Special:AWCforum/sp/id7260
-  echo -e "USE_64TO32=$USE_64TO32"
-
-  export BLAS_SIZE=8
-  echo -e "BLAS_SIZE=$BLAS_SIZE"
 
   export LAPACK_SIZE=8
   echo -e "LAPACK_SIZE=$LAPACK_SIZE"
 
-  export USE_MPI=y
-  echo -e "USE_MPI=$USE_MPI"
+  #export LAPACK_LIB="-L/usr/lib -llapack"
+  #export LAPACK_LIB="${MKLROOT}/lib/mic/libmkl_lapack95_ilp64.a -L${MKLROOT}/lib/mic -lmkl_scalapack_ilp64 -lmkl_cdft_core -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread -lm -ldl"
+  export LAPACK_LIB=$BLASOPT
+  echo -e "\n LAPACK_LIB=$LAPACK_LIB"
+
+  export USE_SCALAPACK=y
+  #export SCALAPACK="-L$MKLROOT/lib/intel64 -lmkl_scalapack_ilp64 -lmkl_intel_ilp64 -lmkl_core -lmkl_sequential \  
+  export SCALAPACK="-mkl -openmp -lmkl_scalapack_ilp64 -lmkl_blacs_intelmpi_ilp64 -lpthread -lm"
+  #export SCALAPACK="-mkl -openmp -lmkl_scalapack_ilp64 -lmkl_blacs_intelmpi_ilp64"
+  echo -e "using SCALAPACK=$SCALAPACK"
+
+# https://nwchemgit.github.io/Compiling-NWChem.html#how-to-intel-xeon-phi
+  export USE_KNL=1 
+  export USE_OPENMP=1  
+  export USE_F90_ALLOCATABLE=T  
+  export USE_FASTMEM=T
+
+  export USE_64TO32="n" # see http://www.nwchem-sw.org/index.php/Special:AWCforum/sp/id7260
+  echo -e "USE_64TO32=$USE_64TO32"
 
   export LARGE_FILES=1
   echo -e "LARGE_FILES=$LARGE_FILES"
 
   #export PYTHONVERSION=2.6
-  export USE_NOFSCHECK=1
+  export USE_NOFSCHECK=TRUE
   echo -e "USE_NOFSCHECK=$USE_NOFSCHECK"
+
+  export USE_NOIO=TRUE
+  echo -e "USE_NOIO=$USE_NOIO"
 
   export NWCHEM_LONG_PATHS=1
   echo -e "NWCHEM_LONG_PATHS=$NWCHEM_LONG_PATHS"
@@ -71,7 +155,7 @@
   #export PYTHONHOME=/opt/rh/devtoolset-6/root/usr/lib64/python2.6/site-packages
   #export NWCHEM_MODULES="all python"
 
-  export NWCHEM_MODULES="all" # remove python
+  export NWCHEM_MODULES="all python" # remove python
   echo -e "NWCHEM_MODULES=$NWCHEM_MODULES"
 
   export NWCHEM_EXECUTABLE=$NWCHEM_TOP/bin/LINUX64/nwchem
@@ -80,16 +164,22 @@
   export NWCHEM_BASIS_LIBRARY=$NWCHEM_TOP/src/basis/libraries.bse
   echo -e "NWCHEM_BASIS_LIBRARY=$NWCHEM_BASIS_LIBRARY"
 
-  echo -e "\nNWChem environmental variables were defined for login.grid.umb.sk - GOING TO COMPILE:"
+  echo -e "\nNWChem environmental variables were defined for hydra.jinr.ru - GOING TO COMPILE:"
 
   cd $NWCHEM_TOP
   echo "\n I am in :\c";pwd
-  echo "Launching 'git clean -f -d -x' :"; git clean -f -d -x
+  #echo "Launching 'git clean -f -d -x' :"; git clean -f -d -x
 
   cd $NWCHEM_TOP/src
   echo -e "\n I am in :\c";pwd;ls -lt
+
+  # https://nwchemgit.github.io/Compiling-NWChem.html#setting-the-default-memory-values
+  echo -e "launchin FC=ifort ../contrib/getmem.nwchem"
+  FC=ifort ../contrib/getmem.nwchem
+
+
   echo -e " make nwchem_config: ";make nwchem_config 
-  echo -e "\n  launching make -j4 :"; make -j4
+  echo -e "\n  launching make -j$SLURM_CPUS_ON_NODE :"; make -j$SLURM_CPUS_ON_NODE
 
   # build the version info
    echo -e "\n build the version info :"

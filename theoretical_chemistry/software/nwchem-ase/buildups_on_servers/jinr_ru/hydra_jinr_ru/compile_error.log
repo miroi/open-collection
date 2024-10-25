@@ -1,4 +1,5 @@
-Job user is milias and his job NWbuild has assigned ID 6085968
+
+ Job user is milias and his job NWbuild has assigned ID 6085978
 This job was submitted from the computer space01.hydra.local
 and from the home directory:
 /lustre/home/user/m/milias/work/projects/open-collection/theoretical_chemistry/software/nwchem-ase/buildups_on_servers/jinr_ru/hydra_jinr_ru
@@ -13,27 +14,36 @@ Job partition is cascade
 The job requests 8 CPU per task.
 
 
- loaded modules:
+ loaded modules for NWChem compulation :
 Currently Loaded Modulefiles:
   1) GVR/v1.0-1
   2) intel/v2018.1.163-9
   3) Python/v3.6.5
   4) ELPA/v2020.05.001_intel2018_python365
-  5) Python/v3.10.2
-  6) gcc/v10.2.0
 
-***   NWChem environmental variables for hydra.jinr.ru:   ***
+*** hydra.jinr.ru setting for NWChem compilation:   ***
 
  NWCHEM_TOP=/lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release
 
  NWCHEM_TARGET=LINUX64
 
- Python v 3.10
-/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/Python/v3.10.2/bin/python
-Python 3.10.2
+ Python v3.10 : /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/Python/v3.6.5/bin/python
+Python 3.6.5
 
  USE_MPI=y
+
 FC=ifort
+ifort ?
+/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2018.1.163-9/compilers_and_libraries_2018.1.163/linux/bin/intel64/ifort
+ifort (IFORT) 18.0.1 20171018
+Copyright (C) 1985-2017 Intel Corporation.  All rights reserved.
+
+CC=icc
+icc ?
+/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2018.1.163-9/compilers_and_libraries_2018.1.163/linux/bin/intel64/icc
+icc (ICC) 18.0.1 20171018
+Copyright (C) 1985-2017 Intel Corporation.  All rights reserved.
+
 
 MPI_F90=mpiifort
 mpiifort ?
@@ -45,15 +55,8 @@ mpirun ?
 /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2018.1.163-9/compilers_and_libraries_2018.1.163/linux/mpi/intel64/bin/mpirun
 Intel(R) MPI Library for Linux* OS, Version 2018 Update 1 Build 20171011 (id: 17941)
 Copyright (C) 2003-2017, Intel Corporation. All rights reserved.
-gcc ? 
-/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/gcc/v10.2.0/bin/gcc
-gcc (GCC) 10.2.0
-Copyright (C) 2020 Free Software Foundation, Inc.
-This is free software; see the source for copying conditions.  There is NO
-warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-
- We have the MKL library, MKLROOT=/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2018.1.163-9/compilers_and_libraries_2018.1.163/linux/mkl
+ ===  We have the MKL library, MKLROOT=/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2018.1.163-9/compilers_and_libraries_2018.1.163/linux/mkl
 
  BLAS_SIZE=8
 BLASOPT=-mkl -openmp -lpthread -lm
@@ -77,61 +80,85 @@ NWChem environmental variables were defined for hydra.jinr.ru - GOING TO COMPILE
 /lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release
 
  I am in :/lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/src
-total 3376
-drwxr-xr-x  2 milias hybrilit  41472 Oct 25 19:30 tools
--rw-r--r--  1 milias hybrilit  16133 Oct 25 19:30 stubs.F
-drwxr-xr-x  2 milias hybrilit  33280 Oct 25 19:30 input
-drwxr-xr-x  3 milias hybrilit  41472 Oct 25 19:30 config
-drwxr-xr-x  3 milias hybrilit  57856 Oct 25 19:12 util
--rw-r--r--  1 milias hybrilit    257 Oct 25 19:12 mpi_include.txt
+total 3363
+drwxr-xr-x  3 milias hybrilit  41472 Oct 25 20:31 config
+drwxr-xr-x  2 milias hybrilit  41472 Oct 25 20:31 gwmol
+drwxr-xr-x  2 milias hybrilit  33280 Oct 25 20:31 fcidump
+drwxr-xr-x  2 milias hybrilit  41472 Oct 25 20:31 dimqm
+drwxr-xr-x  2 milias hybrilit  33280 Oct 25 20:31 ccca
+drwxr-xr-x  2 milias hybrilit  33280 Oct 25 20:31 dangchang
+drwxr-xr-x  2 milias hybrilit  33280 Oct 25 20:31 dntmc
+drwxr-xr-x  2 milias hybrilit  33280 Oct 25 20:31 perfm
+drwxr-xr-x  2 milias hybrilit  33280 Oct 25 20:31 cons
+drwxr-xr-x  3 milias hybrilit  33280 Oct 25 20:30 mm
+drwxr-xr-x  2 milias hybrilit  33280 Oct 25 20:30 bq
+drwxr-xr-x 54 milias hybrilit  57856 Oct 25 20:30 tce
+drwxr-xr-x  2 milias hybrilit  33280 Oct 25 20:30 etrans
+drwxr-xr-x  2 milias hybrilit  41472 Oct 25 20:30 qmd
+drwxr-xr-x  2 milias hybrilit  41472 Oct 25 20:30 qmmm
+drwxr-xr-x  2 milias hybrilit  33280 Oct 25 20:30 vscf
+drwxr-xr-x  2 milias hybrilit  41472 Oct 25 20:30 drdy
+drwxr-xr-x  2 milias hybrilit  33280 Oct 25 20:30 space
+drwxr-xr-x  2 milias hybrilit  41472 Oct 25 20:30 cafe
+drwxr-xr-x  2 milias hybrilit  33280 Oct 25 20:30 nwmd
+drwxr-xr-x  2 milias hybrilit  41472 Oct 25 20:30 analyz
+drwxr-xr-x  3 milias hybrilit  33280 Oct 25 20:30 python
+drwxr-xr-x  5 milias hybrilit  33280 Oct 25 20:30 fft
+drwxr-xr-x  9 milias hybrilit  33280 Oct 25 20:30 nwpw
+drwxr-xr-x  2 milias hybrilit  33280 Oct 25 20:29 solvation
+drwxr-xr-x  2 milias hybrilit  41472 Oct 25 20:29 property
+drwxr-xr-x  2 milias hybrilit  33280 Oct 25 20:29 qhop
+drwxr-xr-x  2 milias hybrilit  33280 Oct 25 20:29 mp2_grad
+drwxr-xr-x  2 milias hybrilit  33280 Oct 25 20:29 dplot
+drwxr-xr-x  2 milias hybrilit  41472 Oct 25 20:29 selci
+drwxr-xr-x  3 milias hybrilit  33280 Oct 25 20:29 hessian
+drwxr-xr-x  2 milias hybrilit  33280 Oct 25 20:29 esp
+drwxr-xr-x  2 milias hybrilit  41472 Oct 25 20:29 prepar
+drwxr-xr-x  4 milias hybrilit  33280 Oct 25 20:29 mcscf
+drwxr-xr-x  2 milias hybrilit  41472 Oct 25 20:29 vib
+drwxr-xr-x  3 milias hybrilit  41472 Oct 25 20:29 ccsd
+drwxr-xr-x  2 milias hybrilit  33280 Oct 25 20:29 cphf
+drwxr-xr-x  7 milias hybrilit  33280 Oct 25 20:29 optim
+drwxr-xr-x  2 milias hybrilit  33280 Oct 25 20:29 driver
+drwxr-xr-x  2 milias hybrilit  41472 Oct 25 20:29 stepper
+drwxr-xr-x  3 milias hybrilit  41472 Oct 25 20:29 rimp2
+drwxr-xr-x 19 milias hybrilit  33280 Oct 25 20:29 nwdft
+drwxr-xr-x  2 milias hybrilit  41472 Oct 25 20:29 moints
+drwxr-xr-x  2 milias hybrilit  33280 Oct 25 20:29 gradients
+drwxr-xr-x  3 milias hybrilit  41472 Oct 25 20:29 ddscf
+drwxr-xr-x  2 milias hybrilit  41472 Oct 25 20:29 atomscf
+drwxr-xr-x 14 milias hybrilit  33280 Oct 25 20:29 NWints
+drwxr-xr-x  9 milias hybrilit  33280 Oct 25 20:28 peigs
+drwxr-xr-x  3 milias hybrilit  57856 Oct 25 20:28 util
+drwxr-xr-x  2 milias hybrilit  41472 Oct 25 20:28 symmetry
+drwxr-xr-x  2 milias hybrilit  41472 Oct 25 20:28 task
+drwxr-xr-x  4 milias hybrilit  33280 Oct 25 20:28 rtdb
+drwxr-xr-x  2 milias hybrilit  33280 Oct 25 20:28 pstat
+drwxr-xr-x  2 milias hybrilit  33280 Oct 25 20:28 input
+drwxr-xr-x  2 milias hybrilit  33280 Oct 25 20:28 inp
+drwxr-xr-x  2 milias hybrilit  33280 Oct 25 20:28 geom
+drwxr-xr-x  6 milias hybrilit  41472 Oct 25 20:28 basis
+drwxr-xr-x  2 milias hybrilit  33280 Oct 25 20:28 include
+drwxr-xr-x  2 milias hybrilit  41472 Oct 25 20:28 tools
+-rw-r--r--  1 milias hybrilit  16133 Oct 25 20:18 stubs.F
 drwxr-xr-x  2 milias hybrilit  41472 Aug 28 05:28 64to32blas
-drwxr-xr-x  2 milias hybrilit  41472 Aug 28 05:28 analyz
 drwxr-xr-x  2 milias hybrilit 156160 Aug 28 05:28 argos
-drwxr-xr-x  2 milias hybrilit  41472 Aug 28 05:28 atomscf
-drwxr-xr-x  6 milias hybrilit  41472 Aug 28 05:28 basis
 drwxr-xr-x  4 milias hybrilit  33280 Aug 28 05:28 blas
-drwxr-xr-x  2 milias hybrilit  33280 Aug 28 05:28 bq
-drwxr-xr-x  2 milias hybrilit  41472 Aug 28 05:28 cafe
 drwxr-xr-x  7 milias hybrilit  33280 Aug 28 05:28 cca
-drwxr-xr-x  2 milias hybrilit  33280 Aug 28 05:28 ccca
 drwxr-xr-x  3 milias hybrilit  33280 Aug 28 05:28 cckohn
-drwxr-xr-x  3 milias hybrilit  41472 Aug 28 05:28 ccsd
 drwxr-xr-x  4 milias hybrilit  33280 Aug 28 05:28 chelp
-drwxr-xr-x  2 milias hybrilit  33280 Aug 28 05:28 cons
-drwxr-xr-x  2 milias hybrilit  33280 Aug 28 05:28 cphf
-drwxr-xr-x  2 milias hybrilit  33280 Aug 28 05:28 dangchang
 drwxr-xr-x 10 milias hybrilit  33280 Aug 28 05:28 data
-drwxr-xr-x  3 milias hybrilit  41472 Aug 28 05:28 ddscf
 drwxr-xr-x  2 milias hybrilit  41472 Aug 28 05:28 develop
 drwxr-xr-x  2 milias hybrilit  41472 Aug 28 05:28 diana
-drwxr-xr-x  2 milias hybrilit  41472 Aug 28 05:28 dimqm
-drwxr-xr-x  2 milias hybrilit  33280 Aug 28 05:28 dntmc
-drwxr-xr-x  2 milias hybrilit  33280 Aug 28 05:28 dplot
-drwxr-xr-x  2 milias hybrilit  41472 Aug 28 05:28 drdy
-drwxr-xr-x  2 milias hybrilit  33280 Aug 28 05:28 driver
 -rw-r--r--  1 milias hybrilit     60 Aug 28 05:28 empty.nw
-drwxr-xr-x  2 milias hybrilit  33280 Aug 28 05:28 esp
-drwxr-xr-x  2 milias hybrilit  33280 Aug 28 05:28 etrans
-drwxr-xr-x  2 milias hybrilit  33280 Aug 28 05:28 fcidump
-drwxr-xr-x  5 milias hybrilit  33280 Aug 28 05:28 fft
 drwxr-xr-x  2 milias hybrilit  33280 Aug 28 05:28 geninterface
-drwxr-xr-x  2 milias hybrilit  33280 Aug 28 05:28 geom
 -rw-r--r--  1 milias hybrilit   7331 Aug 28 05:28 GNUmakefile
-drwxr-xr-x  2 milias hybrilit  33280 Aug 28 05:28 gradients
-drwxr-xr-x  2 milias hybrilit  41472 Aug 28 05:28 gwmol
-drwxr-xr-x  3 milias hybrilit  33280 Aug 28 05:28 hessian
-drwxr-xr-x  2 milias hybrilit  33280 Aug 28 05:28 include
-drwxr-xr-x  2 milias hybrilit  33280 Aug 28 05:28 inp
 drwxr-xr-x  2 milias hybrilit  41472 Aug 28 05:28 java
 drwxr-xr-x  4 milias hybrilit  33280 Aug 28 05:28 lapack
 drwxr-xr-x  2 milias hybrilit  33280 Aug 28 05:28 leps
 drwxr-xr-x 10 milias hybrilit  33280 Aug 28 05:28 libext
 drwxr-xr-x  2 milias hybrilit  57856 Aug 28 05:28 lucia
 -rw-r--r--  1 milias hybrilit   1933 Aug 28 05:28 MakeFile
-drwxr-xr-x  4 milias hybrilit  33280 Aug 28 05:28 mcscf
-drwxr-xr-x  3 milias hybrilit  33280 Aug 28 05:28 mm
-drwxr-xr-x  2 milias hybrilit  41472 Aug 28 05:28 moints
-drwxr-xr-x  2 milias hybrilit  33280 Aug 28 05:28 mp2_grad
 drwxr-xr-x  3 milias hybrilit  33280 Aug 28 05:28 mrpt
 drwxr-xr-x  2 milias hybrilit  33280 Aug 28 05:28 nbo
 drwxr-xr-x  2 milias hybrilit  33280 Aug 28 05:28 ncc
@@ -140,38 +167,13 @@ drwxr-xr-x  4 milias hybrilit  33280 Aug 28 05:28 nwc_columbus
 -rw-r--r--  1 milias hybrilit  11841 Aug 28 05:28 nwchem.dsw
 -rw-r--r--  1 milias hybrilit  24519 Aug 28 05:28 nwchem.F
 -rw-r--r--  1 milias hybrilit    296 Aug 28 05:28 nwchem.nw
-drwxr-xr-x 19 milias hybrilit  33280 Aug 28 05:28 nwdft
-drwxr-xr-x 14 milias hybrilit  33280 Aug 28 05:28 NWints
-drwxr-xr-x  2 milias hybrilit  33280 Aug 28 05:28 nwmd
-drwxr-xr-x  9 milias hybrilit  33280 Aug 28 05:28 nwpw
 drwxr-xr-x  5 milias hybrilit  41472 Aug 28 05:28 nwxc
-drwxr-xr-x  7 milias hybrilit  33280 Aug 28 05:28 optim
-drwxr-xr-x  9 milias hybrilit  33280 Aug 28 05:28 peigs
-drwxr-xr-x  2 milias hybrilit  33280 Aug 28 05:28 perfm
-drwxr-xr-x  2 milias hybrilit  41472 Aug 28 05:28 prepar
-drwxr-xr-x  2 milias hybrilit  41472 Aug 28 05:28 property
-drwxr-xr-x  2 milias hybrilit  33280 Aug 28 05:28 pstat
-drwxr-xr-x  3 milias hybrilit  33280 Aug 28 05:28 python
-drwxr-xr-x  2 milias hybrilit  33280 Aug 28 05:28 qhop
-drwxr-xr-x  2 milias hybrilit  41472 Aug 28 05:28 qmd
-drwxr-xr-x  2 milias hybrilit  41472 Aug 28 05:28 qmmm
 drwxr-xr-x  3 milias hybrilit  41472 Aug 28 05:28 rdmft
-drwxr-xr-x  3 milias hybrilit  41472 Aug 28 05:28 rimp2
 drwxr-xr-x  3 milias hybrilit  41472 Aug 28 05:28 rimp2_grad
 drwxr-xr-x  6 milias hybrilit  33280 Aug 28 05:28 rism
-drwxr-xr-x  4 milias hybrilit  33280 Aug 28 05:28 rtdb
-drwxr-xr-x  2 milias hybrilit  41472 Aug 28 05:28 selci
 drwxr-xr-x 11 milias hybrilit  33280 Aug 28 05:28 smd
-drwxr-xr-x  2 milias hybrilit  33280 Aug 28 05:28 solvation
-drwxr-xr-x  2 milias hybrilit  33280 Aug 28 05:28 space
-drwxr-xr-x  2 milias hybrilit  41472 Aug 28 05:28 stepper
 -rw-r--r--  1 milias hybrilit   4871 Aug 28 05:28 stubs_win32.F
-drwxr-xr-x  2 milias hybrilit  41472 Aug 28 05:28 symmetry
-drwxr-xr-x  2 milias hybrilit  41472 Aug 28 05:28 task
-drwxr-xr-x 54 milias hybrilit  57856 Aug 28 05:28 tce
 drwxr-xr-x  2 milias hybrilit  33280 Aug 28 05:28 uccsdt
-drwxr-xr-x  2 milias hybrilit  41472 Aug 28 05:28 vib
-drwxr-xr-x  2 milias hybrilit  33280 Aug 28 05:28 vscf
 drwxr-xr-x  2 milias hybrilit  33280 Aug 28 05:28 xtb
 
  launching : FC=ifort ../contrib/getmem.nwchem
@@ -190,7 +192,7 @@ CPU family:            6
 Model:                 85
 Model name:            Intel(R) Xeon(R) Platinum 8268 CPU @ 2.90GHz
 Stepping:              7
-CPU MHz:               3373.303
+CPU MHz:               3378.082
 CPU max MHz:           3900.0000
 CPU min MHz:           1200.0000
 BogoMIPS:              5800.00
@@ -308,13 +310,26 @@ No. of processors    : 96
 Total Memory/proc    : 2047088 KB =  2 GB
 cfr 1432961 1048576
 Executing  make LIB_DEFINES+=" -DDFLT_TOT_MEM=183419008 -DMORE_MA_MEM=1 "
+bash: python3.10-config: command not found
+( cd /lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/src/config; make /lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/bin/LINUX64/depend.x ; )
+bash: python3.10-config: command not found
+make[1]: Entering directory `/lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/src/config'
+gcc  -g -o /lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/bin/LINUX64/depend.x depend.c
+/bin/rm -f depend.o
+make[1]: Leaving directory `/lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/src/config'
 /lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/bin/LINUX64/depend.x -I/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2018.1.163-9/compilers_and_libraries_2018.1.163/linux/mpi/intel64/include/gfortran/4.8.0 -I/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2018.1.163-9/compilers_and_libraries_2018.1.163/linux/mpi/intel64/include -I/lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/src/tools/install/include  > dependencies
-make: *** No rule to make target `/lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/src/include/util.fh', needed by `/lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/lib/LINUX64/libnwctask.a(input_parse.o)'.  Stop.
+bash: python3.10-config: command not found
+
+python3.10 not  found in your PATH
+
+../config/makefile.h:3244: *** .  Stop.
+bash: python3.10-config: command not found
 bash: /lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/src/tools/install/bin/ga-config: No such file or directory
 bash: /lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/src/tools/install/bin/ga-config: No such file or directory
 make nwchem.o stubs.o
+bash: python3.10-config: command not found
 make[1]: Entering directory `/lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/src'
-ifort -i8 -align -fpp -Qoption,fpp,-w0 -qopenmp -fimf-arch-consistency=true -align array64byte -O2 -g -fp-model source    -I. -I/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2018.1.163-9/compilers_and_libraries_2018.1.163/linux/mpi/intel64/include/gfortran/4.8.0 -I/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2018.1.163-9/compilers_and_libraries_2018.1.163/linux/mpi/intel64/include -I/lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/src/include -I/lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/src/tools/install/include -DEXT_INT -DLINUX -DLINUX64 -DIFCV8 -DIFCLINUX -DINTEL_64ALIGN -DUSE_F90_ALLOCATABLE -DUSE_FASTMEM -DUSE_OPENMP -DNOIO -DEAFHACK -DPARALLEL_DIAG -DUSE_F90_ALLOCATABLE -DMKL -DCOMPILATION_DATE="'`date +%a_%b_%d_%H:%M:%S_%Y`'" -DCOMPILATION_DIR="'/lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release'" -DNWCHEM_BRANCH="'7.2.3'"  -c -o nwchem.o nwchem.F
+ifort -i8 -align -fpp -Qoption,fpp,-w0 -qopenmp -fimf-arch-consistency=true -align array64byte -O2 -g -fp-model source    -I. -I/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2018.1.163-9/compilers_and_libraries_2018.1.163/linux/mpi/intel64/include/gfortran/4.8.0 -I/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2018.1.163-9/compilers_and_libraries_2018.1.163/linux/mpi/intel64/include -I/lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/src/include -I/lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/src/tools/install/include -DEXT_INT -DLINUX -DLINUX64 -DIFCV8 -DIFCLINUX -DINTEL_64ALIGN -DUSE_F90_ALLOCATABLE -DUSE_FASTMEM -DINTEL_64ALIGN -DUSE_OPENMP -DNOIO -DEAFHACK -DPARALLEL_DIAG -DUSE_F90_ALLOCATABLE -DMKL -DCOMPILATION_DATE="'`date +%a_%b_%d_%H:%M:%S_%Y`'" -DCOMPILATION_DIR="'/lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release'" -DNWCHEM_BRANCH="'7.2.3'"  -c -o nwchem.o nwchem.F
 nwchem.F(3): #error: can't find include file: errquit.fh
 nwchem.F(4): #error: can't find include file: mafdecls.fh
 nwchem.F(5): #error: can't find include file: global.fh
@@ -341,6 +356,7 @@ make[1]: Leaving directory `/lustre/home/user/m/milias/work/software/nwchem/nwch
 make: *** [link] Error 2
 
   make nwchem_config: 
+bash: python3.10-config: command not found
 make -C config -f make_nwchem_config NWCHEM_MODULES="all python"
 make[1]: Entering directory `/lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/src/config'
 echo \# This configuration generated automatically on \
@@ -375,30 +391,67 @@ for module in NWints analyz atomscf bq cafe ccca ccsd cons cphf dangchang ddscf 
 cat util_module_avail_F.end >> ../util/util_module_avail.F
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/src/config'
 \  launching make -j8 :
-test \! -f 64_to_32 -o \! -f 32_to_64 || rm -f 64_to_32 32_to_64
-Making libraries in tools
-test -d /lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/lib/LINUX64 || mkdir -p /lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/lib/LINUX64
-test -d /lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/bin/LINUX64 || mkdir -p /lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/bin/LINUX64
-./util/util_nwchem_version.bash
-which: no git in (/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/gcc/v10.2.0/bin:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/Python/v3.10.2/bin:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/ELPA/v2020.05.001_intel2018_python365/bin:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/Python/v3.6.5/bin:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2018.1.163-9/vtune_amplifier_2018.1.0.535340/bin64:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2018.1.163-9/advisor_2018.1.1.535164/bin64:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2018.1.163-9/compilers_and_libraries_2018.1.163/linux/mpi/intel64/bin:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2018.1.163-9/compilers_and_libraries_2018.1.163/linux/bin/intel64:/lustre/home/user/m/milias/work/software/wien2k/wien2k_23.2_intelserial_mkl:/lustre/home/user/m/milias/work/software/wien2k/wien2k_23.2_intelserial_mkl/SRC_structeditor/bin:/lustre/home/user/m/milias/work/software/wien2k/wien2k_23.2_intelserial_mkl/SRC_IRelast/script-elastic:/lustre/home/user/m/milias/work/software/ams/linux.openmpi/ams2021.107/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/puppetlabs/bin:.:/lustre/home/user/m/milias/work/software/wien2k/wien2k_23.2_intelserial_mkl:.:/lustre/home/user/m/milias/.local/bin:/lustre/home/user/m/milias/bin)
-make[1]: Entering directory `/lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/src/tools'
-make[1]: warning: -jN forced in submake: disabling jobserver mode.
-No Global Arrays found: Attempting running ./get-tools
-./get-tools-github
-which: no git in (/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/gcc/v10.2.0/bin:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/Python/v3.10.2/bin:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/ELPA/v2020.05.001_intel2018_python365/bin:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/Python/v3.6.5/bin:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2018.1.163-9/vtune_amplifier_2018.1.0.535340/bin64:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2018.1.163-9/advisor_2018.1.1.535164/bin64:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2018.1.163-9/compilers_and_libraries_2018.1.163/linux/mpi/intel64/bin:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2018.1.163-9/compilers_and_libraries_2018.1.163/linux/bin/intel64:/lustre/home/user/m/milias/work/software/wien2k/wien2k_23.2_intelserial_mkl:/lustre/home/user/m/milias/work/software/wien2k/wien2k_23.2_intelserial_mkl/SRC_structeditor/bin:/lustre/home/user/m/milias/work/software/wien2k/wien2k_23.2_intelserial_mkl/SRC_IRelast/script-elastic:/lustre/home/user/m/milias/work/software/ams/linux.openmpi/ams2021.107/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/puppetlabs/bin:.:/lustre/home/user/m/milias/work/software/wien2k/wien2k_23.2_intelserial_mkl:.:/lustre/home/user/m/milias/.local/bin:/lustre/home/user/m/milias/bin)
-downloading ga-5.8.2.tar.gz from https://github.com/GlobalArrays/ga/releases/download/v5.8.2/ga-5.8.2.tar.gz
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:04 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:05 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:06 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:07 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:08 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:09 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:10 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:11 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:12 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:13 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:14 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:15 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:16 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:17 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:18 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:19 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:20 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:21 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:22 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:23 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:24 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:25 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:26 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:27 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:28 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:29 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:30 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:31 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:32 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:33 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:34 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:35 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:36 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:37 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:38 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:39 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:40 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:41 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:42 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:43 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:44 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:45 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:46 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:47 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:48 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:49 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:50 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:51 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:52 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:53 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:54 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:55 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:56 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:57 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:58 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:59 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:00 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:03 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:04 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:05 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:06 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:07 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:08 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:09 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:10 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:11 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:12 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:13 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:14 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:15 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:16 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:17 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:18 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:19 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:20 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:21 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:22 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:23 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:24 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:25 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:26 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:27 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:28 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:29 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:30 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:31 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:32 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:33 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:34 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:35 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:36 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:37 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:38 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:39 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:40 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:41 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:42 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:43 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:44 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:45 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:46 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:47 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:48 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:49 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:50 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:51 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:52 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:53 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:54 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:55 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:56 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:57 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:58 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:59 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:02:00 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:02:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:02:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:02:03 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:02:04 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:02:05 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:02:06 --:--:--     0curl: (7) Failed connect to github.com:443; Connection timed out
-ga-5.8.2.tar.gz file integrity check failed
-Trying again. Try #0
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:04 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:05 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:06 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:07 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:08 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:09 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:10 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:11 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:12 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:13 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:14 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:15 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:16 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:17 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:18 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:19 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:20 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:21 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:22 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:23 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:24 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:25 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:26 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:27 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:28 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:29 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:30 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:31 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:32 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:33 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:34 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:35 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:36 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:37 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:38 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:39 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:40 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:41 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:42 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:43 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:44 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:45 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:46 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:47 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:48 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:49 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:50 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:51 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:52 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:53 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:54 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:55 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:56 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:57 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:58 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:59 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:00 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:03 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:04 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:05 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:06 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:07 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:08 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:09 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:10 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:11 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:12 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:13 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:14 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:15 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:16 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:17 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:18 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:19 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:20 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:21 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:22 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:23 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:24 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:25 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:26 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:27 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:28 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:29 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:30 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:31 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:32 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:33 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:34 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:35 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:36 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:37 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:38 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:39 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:40 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:41 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:42 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:43 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:44 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:45 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:46 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:47 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:48 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:49 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:50 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:51 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:52 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:53 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:54 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:55 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:56 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:57 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:58 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:59 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:02:00 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:02:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:02:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:02:03 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:02:04 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:02:05 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:02:06 --:--:--     0curl: (7) Failed connect to github.com:443; Connection timed out
-ga-5.8.2.tar.gz file integrity check failed
-Trying again. Try #1
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:04 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:05 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:06 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:07 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:08 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:09 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:10 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:11 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:12 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:13 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:14 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:15 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:16 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:17 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:18 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:19 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:20 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:21 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:22 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:23 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:24 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:25 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:26 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:27 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:28 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:29 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:30 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:31 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:32 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:33 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:34 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:35 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:36 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:37 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:38 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:39 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:40 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:41 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:42 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:43 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:44 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:45 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:46 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:47 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:48 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:49 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:50 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:51 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:52 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:53 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:54 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:55 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:56 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:57 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:58 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:59 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:00 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:03 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:04 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:05 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:01:06 --:--:--     0slurmstepd: error: *** JOB 6085968 ON n02p013 CANCELLED AT 2024-10-25T19:45:54 ***
-make[1]: *** [ga-5.8.2/Makefile.in] Terminatedmake: 
-*** [libraries] Terminated
+bash: python3.10-config: command not found
+
+python3.10 not  found in your PATH
+
+config/makefile.h:3244: *** .  Stop.
+
+ build the version info :
+bash: python3.10-config: command not found
+bash: /lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/src/tools/install/bin/ga-config: No such file or directory
+/lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/bin/LINUX64/depend.x -I/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2018.1.163-9/compilers_and_libraries_2018.1.163/linux/mpi/intel64/include/gfortran/4.8.0 -I/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2018.1.163-9/compilers_and_libraries_2018.1.163/linux/mpi/intel64/include -I/lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/src/tools/install/include  > dependencies
+bash: python3.10-config: command not found
+bash: /lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/src/tools/install/bin/ga-config: No such file or directory
+./catsrc nwchem.F config tools include basis geom inp input pstat rtdb task symmetry util peigs perfm bq cons  NWints atomscf ddscf gradients moints nwdft rimp2 stepper driver optim cphf ccsd vib mcscf prepar esp hessian selci dplot mp2_grad qhop property solvation nwpw fft python analyz nwmd cafe space drdy vscf qmmm qmd etrans tce bq mm cons perfm dntmc dangchang ccca dimqm fcidump gwmol 64to32blas | \
+	awk -f ids.awk > util_version.F
+-rw-r--r-- 1 milias hybrilit 12255 Oct 25 20:32 util_version.F
+bash: python3.10-config: command not found
+bash: /lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/src/tools/install/bin/ga-config: No such file or directory
+/lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/bin/LINUX64/depend.x -I/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2018.1.163-9/compilers_and_libraries_2018.1.163/linux/mpi/intel64/include/gfortran/4.8.0 -I/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2018.1.163-9/compilers_and_libraries_2018.1.163/linux/mpi/intel64/include -I/lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/src/tools/install/include  > dependencies
+bash: python3.10-config: command not found
+bash: /lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/src/tools/install/bin/ga-config: No such file or directory
+
+python3.10 not  found in your PATH
+
+../config/makefile.h:3244: *** .  Stop.
+bash: python3.10-config: command not found
+bash: /lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/src/tools/install/bin/ga-config: No such file or directory
+bash: /lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/src/tools/install/bin/ga-config: No such file or directory
+make nwchem.o stubs.o
+bash: python3.10-config: command not found
+make[1]: Entering directory `/lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/src'
+ifort -i8 -align -fpp -Qoption,fpp,-w0 -qopenmp -fimf-arch-consistency=true -align array64byte -O2 -g -fp-model source    -I. -I/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2018.1.163-9/compilers_and_libraries_2018.1.163/linux/mpi/intel64/include/gfortran/4.8.0 -I/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2018.1.163-9/compilers_and_libraries_2018.1.163/linux/mpi/intel64/include -I/lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/src/include -I/lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/src/tools/install/include -DEXT_INT -DLINUX -DLINUX64 -DIFCV8 -DIFCLINUX -DINTEL_64ALIGN -DUSE_F90_ALLOCATABLE -DUSE_FASTMEM -DINTEL_64ALIGN -DUSE_OPENMP -DNOIO -DEAFHACK -DPARALLEL_DIAG -DUSE_F90_ALLOCATABLE -DMKL -DCOMPILATION_DATE="'`date +%a_%b_%d_%H:%M:%S_%Y`'" -DCOMPILATION_DIR="'/lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release'" -DNWCHEM_BRANCH="'7.2.3'"  -c -o nwchem.o nwchem.F
+nwchem.F(3): #error: can't find include file: errquit.fh
+nwchem.F(4): #error: can't find include file: mafdecls.fh
+nwchem.F(5): #error: can't find include file: global.fh
+nwchem.F(6): #error: can't find include file: rtdb.fh
+nwchem.F(13): #error: can't find include file: pstat.fh
+nwchem.F(14): #error: can't find include file: util.fh
+nwchem.F(15): #error: can't find include file: inp.fh
+nwchem.F(16): #error: can't find include file: bgj_common.fh
+nwchem.F(17): #error: can't find include file: stdio.fh
+nwchem.F(428): #error: can't find include file: global.fh
+nwchem.F(429): #error: can't find include file: inp.fh
+nwchem.F(430): #error: can't find include file: mafdecls.fh
+nwchem.F(431): #error: can't find include file: util.fh
+nwchem.F(432): #error: can't find include file: stdio.fh
+nwchem.F(689): #error: can't find include file: global.fh
+nwchem.F(690): #error: can't find include file: errquit.fh
+nwchem.F(691): #error: can't find include file: inp.fh
+nwchem.F(692): #error: can't find include file: mafdecls.fh
+nwchem.F(693): #error: can't find include file: rtdb.fh
+nwchem.F(694): #error: can't find include file: stdio.fh
+nwchem.F(695): #error: can't find include file: util.fh
+make[1]: *** [nwchem.o] Error 21
+make[1]: Leaving directory `/lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/src'
+make: *** [link] Error 2
+
+ After the NWCHem compilation:
+
+   ls -l /lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/bin/LINUX64: 
+total 1
+-rwxr-xr-x 1 milias hybrilit 18544 Oct 25 20:31 depend.x
+
+   ls -l /lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release/lib/LINUX64:
+total 0

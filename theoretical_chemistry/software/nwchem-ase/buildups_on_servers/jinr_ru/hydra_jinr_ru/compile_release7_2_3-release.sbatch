@@ -92,14 +92,15 @@ module list
   # server's Intel compiler
   export FC=ifort
   echo -e "FC=$FC"
-  #export CC=icc # avoid !
-  #echo -e "CC=$CC"
+  export CC=icc # avoid !
+  echo -e "CC=$CC"
 
   #export MPI_F90=mpif90
   export MPI_F90=mpiifort
   echo -e "\nMPI_F90=$MPI_F90"
   echo -e "mpiifort ?"; which mpiifort; mpiifort -V
   echo -e "mpirun ?";  which mpirun; mpirun --version
+  echo -e "icc ?"; which icc; icc --version
 
  # export MPI_CC=mpicc
  # export MPI_CXX=mpicxx

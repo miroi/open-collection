@@ -10,7 +10,16 @@ clone
 ~~~~~
 milias@hydra.jinr.ru:~/work/software/nwchem/.nohup git clone git@github.com:nwemgit/nwchem.git nwchem_master  &
 [1] 54702
-milias@hydra.jinr.ru:~/work/software/nwchem/.nohup: ignoring input and appendi output to ‘nohup.out’
+
+ga
+~~
+milias@hydra.jinr.ru:~/work/software/nwchem/nwchem_master/src/tools/.get-tools-github
+downloading ga-5.8.2.tar.gz from https://github.com/GlobalArrays/ga/releases/download/v5.8.2/ga-5.8.2.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 8967k  100 8967k    0     0  5821k      0  0:00:01  0:00:01 --:--:-- 27.8M
+ga-5.8.2.tar.gz file integrity OK
 
 
 fix

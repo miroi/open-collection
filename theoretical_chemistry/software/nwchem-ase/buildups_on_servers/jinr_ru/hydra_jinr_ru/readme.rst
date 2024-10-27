@@ -20,6 +20,15 @@ downloading ga-5.8.2.tar.gz from https://github.com/GlobalArrays/ga/releases/dow
   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
 100 8967k  100 8967k    0     0  5821k      0  0:00:01  0:00:01 --:--:-- 27.8M
 ga-5.8.2.tar.gz file integrity OK
+gamalloc.patch applied
+strdup.patch applied
+mpipr-too-many.patch applied
+ga_ma_align.patch applied
+scalapacki4.patch applied
+ga_diag_seg_i4.patch applied
+autoconf.patch applied
+patched
+configure present. no autogen.sh required
 
 
 fix

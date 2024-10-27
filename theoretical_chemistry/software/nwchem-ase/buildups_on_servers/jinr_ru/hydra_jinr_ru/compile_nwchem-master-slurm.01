@@ -116,7 +116,7 @@ module list
   #export BLASOPT="${MKLROOT}/lib/mic/libmkl_blas95_ilp64.a -L${MKLROOT}/lib/mic -lmkl_scalapack_ilp64 -lmkl_cdft_core -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread -lm -ldl"
   #export BLASOPT="-mkl -i8"
   #export BLASOPT="-L$MKLROOT/lib/intel64 -lmkl_intel_ilp64 -lmkl_core -lmkl_sequential -lmkl_core -liomp5 -lpthread -ldmapp -lm"
-  export BLASOPT="-mkl -openmp -lpthread -lm"
+  export BLASOPT="-mkl -qopenmp -lpthread -lm"
   echo -e "BLASOPT=$BLASOPT"
 
   export LAPACK_SIZE=8
@@ -131,7 +131,7 @@ module list
   export SCALAPACK_SIZE=8
   echo -e "\n SCALAPACK_SIZE=$LAPACK_SIZE"
   #export SCALAPACK="-L$MKLROOT/lib/intel64 -lmkl_scalapack_ilp64 -lmkl_intel_ilp64 -lmkl_core -lmkl_sequential \  
-  export SCALAPACK="-mkl -openmp -lmkl_scalapack_ilp64 -lmkl_blacs_intelmpi_ilp64 -lpthread -lm"
+  export SCALAPACK="-mkl -qopenmp -lmkl_scalapack_ilp64 -lmkl_blacs_intelmpi_ilp64 -lpthread -lm"
   #export SCALAPACK="-mkl -openmp -lmkl_scalapack_ilp64 -lmkl_blacs_intelmpi_ilp64"
   echo -e "using SCALAPACK=$SCALAPACK"
 

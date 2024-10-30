@@ -8,7 +8,6 @@ hf = Atoms('HF',positions=[[0, 0, 0],[0, 0, d]])
 hf.calc = NWChem(xc='PBE',basis='6-311G', property=dict('mulliken'))
 #hf.calc = NWChem(xc='PBE',basis='6-311G')
 
-#print(hf.calc())
 en = hf.get_potential_energy() 
 
 print('HF PBE run, d(HF)=',d,'Ang; Energy=',en,' eV')

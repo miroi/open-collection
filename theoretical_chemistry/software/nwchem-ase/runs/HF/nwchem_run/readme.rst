@@ -1,5 +1,7 @@
-HF SCF
-======
-mpirun -np 2 /usr/bin/nwchem.openmpi hf_scf.nw
+========
+DFT MULL
+========
+
+nwchem HF_b3lyp_mull.nw > HF_b3lyp_mull.out
 
 

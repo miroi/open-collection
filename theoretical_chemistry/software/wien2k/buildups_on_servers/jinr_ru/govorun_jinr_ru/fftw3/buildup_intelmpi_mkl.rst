@@ -18,6 +18,15 @@ CC=icc MPICC=mpiicc   FC=ifort   ./configure --prefix=$PWD  --enable-openmp --en
 
 compile
 ~~~~~~~
+make -j2 all
+.
+.
 
+milias@hydra.jinr.ru:~/work/software/fftw3/fftw-3.3.10/.ls lib bin
+bin:
+fftw-wisdom*  fftw-wisdom-to-conf*
+
+lib:
+cmake/  libfftw3.a  libfftw3.la*  libfftw3_mpi.a  libfftw3_mpi.la*  libfftw3_omp.a  libfftw3_omp.la*  pkgconfig/
 
 

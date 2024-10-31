@@ -1,0 +1,24 @@
+title "HF "
+
+start nwchem
+
+geometry units angstrom nocenter noautosym noautoz
+  H  0.0000000000000000e+00 0.0000000000000000e+00 0.0000000000000000e+00
+  F  0.0000000000000000e+00 0.0000000000000000e+00 9.1000000000000003e-01
+end
+
+basis noprint
+   * library 6-311G
+end
+
+property
+  mulliken
+end
+
+dft
+  xc xpbe96 cpbe96
+  mult 1
+end
+
+task dft property
+

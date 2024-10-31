@@ -29,7 +29,22 @@ Wait while the installer is preparing...
   Installing 9 of 46: Intel® DPC++ Co     bili    ool
   ################---------------------------------------------------------  23%
 
-  Cancel
+.
+.
+
+final checks
+~~~~~~~~~~~~~
+milias@hydra.jinr.ru:~/intel/oneapi/.source setvars.sh
+
+milias@hydra.jinr.ru:~/intel/oneapi/.emkl
+Intel MKL library ? MKLROOT=/lustre/home/user/m/milias/intel/oneapi/mkl/2025.0
+
+milias@hydra.jinr.ru:~/.mpiicc -V
+/lustre/home/user/m/milias/intel/oneapi/mpi/2021.14/bin/mpiicx: line 552: icc: command not found
+milias@hydra.jinr.ru:~/.mpiifort -V
+/lustre/home/user/m/milias/intel/oneapi/mpi/2021.14/bin/mpiifx: line 715: ifort: command not found
+
+
 
 
 

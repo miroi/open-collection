@@ -52,8 +52,6 @@ Currently Loaded Modulefiles:
 
 milias@hydra.jinr.ru:~/work/software/elpa/elpa-2024.03.001_intelmpi_mkl/.SCALAPACK_LDFLAGS="-L$MKLROOT/lib/intel64 -lmkl_scalapack_lp64 -lmkl_intel_lp64 -lmkl_sequential  -lmkl_core -lmkl_blacs_intelmpi_lp64 -lpthread -lm -Wl,-rpath,$MKLROOT/lib/intel64" SCALAPACK_FCFLAGS="-L$MKLROOT/lib/intel64 -lmkl_scalapack_lp64 -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lmkl_blacs_intelmpi_lp64 -lpthread -lm -I$MKL_HOME/include/intel64/lp64"  CXX=g++   CC=mpiicc   FC=mpiifort    ./configure --prefix=$PWD  --enable-openmp  --with-mpi=yes
 .
-.
-configure: exit 0
 
 compilation with fix
 ~~~~~~~~~~~~~~~~~~~~
@@ -70,5 +68,5 @@ milias@hydra.jinr.ru:~/work/software/elpa/elpa-2024.03.001_intelmpi_mkl/.export 
 milias@hydra.jinr.ru:~/work/software/elpa/elpa-2024.03.001_intelmpi_mkl/.autoconf --version
 autoconf (GNU Autoconf) 2.71
 
-milias@hydra.jinr.ru:~/work/software/elpa/elpa-2024.03.001_intelmpi_mkl/.make -j4 all
+milias@hydra.jinr.ru:~/work/software/elpa/elpa-2024.03.001_intelmpi_mkl/.make -j2 all
 

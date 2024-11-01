@@ -15,11 +15,9 @@ print(hf.calc)
 
 print('atomic numbers array:',hf.get_atomic_numbers() )
 
-#print('atomic charges :',hf.get_charges())
-
 print('dipole moment :',hf.get_dipole_moment() )
 
 print('chemical formula :',hf.get_chemical_formula(mode='all') )
 
-print('atomic mulliken charges :',hf.get_charges())
+print('atomic mulliken charges :',hf.get_charges() )
 

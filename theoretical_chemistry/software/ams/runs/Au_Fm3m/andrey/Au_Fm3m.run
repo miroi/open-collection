@@ -1,0 +1,55 @@
+#!/bin/sh
+
+"$AMSBIN/ams" << eor
+
+Task GeometryOptimization
+Properties
+    Gradients Yes
+    StressTensor Yes
+End
+GeometryOptimization
+    OptimizeLattice Yes
+    Convergence
+        Energy 1e-06
+        Gradients 0.0001
+    End
+End
+System
+    Atoms
+        Au 0.0 0.0 0.0 
+        Au 2.02 2.02 0.0 
+        Au 0.0 2.02 2.02 
+        Au 2.02 0.0 2.02 
+    End
+    Lattice
+        4.04 0.0 0.0
+        0.0 4.04 0.0
+        0.0 0.0 4.04
+    End
+    BondOrders
+         1 2 1.0
+         1 3 1.0
+         1 4 1.0
+         2 3 1.0
+         2 4 1.0
+         3 4 1.0
+    End
+End
+
+Engine BAND
+    Basis
+        Type TZ2P
+        Core Small
+    End
+    NumericalQuality Good
+    Relativity
+        Level Spin-Orbit
+    End
+    XC
+        SpinOrbitMagnetization CollinearZ
+        GGA revPBE
+        DISPERSION GRIMME3 BJDAMP
+    End
+EndEngine
+eor
+

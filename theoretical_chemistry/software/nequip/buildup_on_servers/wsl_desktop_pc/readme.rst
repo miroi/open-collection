@@ -24,7 +24,7 @@ Successfully installed filelock-3.16.1 fsspec-2024.10.0 mpmath-1.3.0 networkx-3.
 
 pip uninstall torch
 
-pip install torch==1.13.*
+pip install torch==1.13.*   TO FINISH
 
 milias@DESKTOP-7OTLCGO:~/work/git-projects/open-collection/theoretical_chemistry/software/nequip/buildup_on_servers/wsl_desktop_pc/.pip install nequip
 .

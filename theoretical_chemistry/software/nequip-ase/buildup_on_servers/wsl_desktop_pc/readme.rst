@@ -31,7 +31,7 @@ usage: nequip-train [-h] [--equivariance-test [EQUIVARIANCE_TEST]] [--model-debu
 pip uninstall torch
 
 pip install torch==1.11.*
-
+pip show torch
 
 scikit-learn
 ~~~~~~~~~~~~

@@ -37,6 +37,7 @@ nequip                        0.6.1
 
 testing
 -------
-milias@DESKTOP-7OTLCGO:~/work/software/nequip/.pytest tests/unit/
+milias@DESKTOP-7OTLCGO:~/work/software/nequip/.nohup pytest tests/unit/  &
+
 
 

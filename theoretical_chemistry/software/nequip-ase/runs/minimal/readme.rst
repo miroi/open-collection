@@ -37,5 +37,15 @@ f_mae = 14.2858 | f_rmse = 20.5197
                f_mae =  14.285797
               f_rmse =  20.519672
 
+deploying
+~~~~~~~~~
+nequip-deploy --help
+
+milias@DESKTOP-7OTLCGO:~/work/git-projects/open-collection/theoretical_chemistry/software/nequip-ase/runs/minimal/.nequip-deploy build --train-dir results/aspirin/minimal   deployed_model.pth
+
+milias@DESKTOP-7OTLCGO:~/work/git-projects/open-collection/theoretical_chemistry/software/nequip-ase/runs/minimal/.ls -lt deployed_model.pth
+-rw-r--r-- 1 milias milias 610146 Nov 15 17:01 deployed_model.pth
+
+
 
 

@@ -39,5 +39,5 @@ testing
 -------
 milias@DESKTOP-7OTLCGO:~/work/software/nequip/.nohup pytest tests/unit/  &
 
-
+see  tests_nohup.logfile 
 

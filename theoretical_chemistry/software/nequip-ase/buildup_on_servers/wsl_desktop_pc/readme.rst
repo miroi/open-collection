@@ -21,6 +21,18 @@ torch
 ~~~~~
 pip install torch==1.13.*   
 
+milias@DESKTOP-7OTLCGO:~/work/git-projects/open-collection/theoretical_chemistry/software/nequip-ase/runs/minimal/.nequip-train -h
+/home/milias/.local/lib/python3.10/site-packages/nequip/__init__.py:20: UserWarning: !! PyTorch version 1.13.1 found. Upstream issues in PyTorch versions 1.13.* and 2.* have been seen to cause unusual performance degredations on some CUDA systems that become worse over time; see https://github.com/mir-group/nequip/discussions/311. The best tested PyTorch version to use with CUDA devices is 1.11; while using other versions if you observe this problem, an unexpected lack of this problem, or other strange behavior, please post in the linked GitHub issue.
+  warnings.warn(
+usage: nequip-train [-h] [--equivariance-test [EQUIVARIANCE_TEST]] [--model-debug-mode] [--grad-anomaly-mode] [--gpu-oom-offload] [--log LOG]
+                    [--warn-unused]
+                    config
+
+pip uninstall torch
+
+pip install torch==1.11.*
+
+
 scikit-learn
 ~~~~~~~~~~~~
 pip install scikit-learn

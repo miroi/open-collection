@@ -46,6 +46,7 @@ milias@DESKTOP-7OTLCGO:~/work/git-projects/open-collection/theoretical_chemistry
 milias@DESKTOP-7OTLCGO:~/work/git-projects/open-collection/theoretical_chemistry/software/nequip-ase/runs/minimal/.ls -lt deployed_model.pth
 -rw-r--r-- 1 milias milias 610146 Nov 15 17:01 deployed_model.pth
 
-
-
+usage with ase
+~~~~~~~~~~~~~~
+https://github.com/mir-group/nequip/blob/main/nequip/ase/nequip_calculator.py
 

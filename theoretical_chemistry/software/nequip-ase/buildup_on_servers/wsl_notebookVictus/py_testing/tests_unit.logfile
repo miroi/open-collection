@@ -1,0 +1,129 @@
+============================= test session starts ==============================
+platform linux -- Python 3.10.12, pytest-8.3.3, pluggy-1.5.0
+rootdir: /home/miroi/work/software/nequip
+collected 1348 items
+
+tests/unit/data/test_AtomicData.py ................                      [  1%]
+tests/unit/data/test_dataloader.py ......                                [  1%]
+tests/unit/data/test_dataset.py ....x................................... [  4%]
+..........                                                               [  5%]
+tests/unit/data/test_sampler.py ........................                 [  7%]
+tests/unit/model/test_builder_utils.py ............                      [  8%]
+tests/unit/model/test_nequip_model.py .................................. [ 10%]
+............s...........s...........s...........s....................... [ 15%]
+s...........s...........s...........s...........s...........s........... [ 21%]
+s...........s...................................s...........s........... [ 26%]
+............s...........s..............                                  [ 29%]
+tests/unit/model/test_pair/test_zbl.py ......s...........s...........s.. [ 31%]
+.........s.....ss                                                        [ 33%]
+tests/unit/nn/test_atomic.py ...                                         [ 33%]
+tests/unit/nn/test_embed.py ...                                          [ 33%]
+tests/unit/nn/test_rescale.py ....................................       [ 36%]
+tests/unit/nn/test_sequential.py ....                                    [ 36%]
+tests/unit/nn/test_utils.py .                                            [ 36%]
+tests/unit/trainer/test_early_stopping.py ...                            [ 36%]
+tests/unit/trainer/test_loss.py ..............                           [ 37%]
+tests/unit/trainer/test_metrics.py ........                              [ 38%]
+tests/unit/trainer/test_trainer.py .......................               [ 40%]
+tests/unit/utils/test_batch_ops.py ........                              [ 40%]
+tests/unit/utils/test_config.py .....................                    [ 42%]
+tests/unit/utils/test_gmm.py .........                                   [ 43%]
+tests/unit/utils/test_instantiate.py ................................... [ 45%]
+...........................................                              [ 48%]
+tests/unit/utils/test_output.py ....                                     [ 49%]
+tests/unit/utils/test_solver.py ......                                   [ 49%]
+tests/unit/utils/test_tests.py .....                                     [ 49%]
+tests/unit/utils/test_weight_init.py .                                   [ 50%]
+tests/unit/data/test_AtomicData.py ................                      [ 51%]
+tests/unit/data/test_dataloader.py ......                                [ 51%]
+tests/unit/data/test_dataset.py ....x................................... [ 54%]
+..........                                                               [ 55%]
+tests/unit/data/test_sampler.py ........................                 [ 57%]
+tests/unit/model/test_builder_utils.py ............                      [ 58%]
+tests/unit/model/test_nequip_model.py .................................. [ 60%]
+............s...........s...........s...........s....................... [ 65%]
+s...........s...........s...........s...........s...........s........... [ 71%]
+s...........s...................................s...........s........... [ 76%]
+............s...........s..............                                  [ 79%]
+tests/unit/model/test_pair/test_zbl.py ......s...........s...........s.. [ 81%]
+.........s.......                                                        [ 83%]
+tests/unit/nn/test_atomic.py ...                                         [ 83%]
+tests/unit/nn/test_embed.py ...                                          [ 83%]
+tests/unit/nn/test_rescale.py ....................................       [ 86%]
+tests/unit/nn/test_sequential.py ....                                    [ 86%]
+tests/unit/nn/test_utils.py .                                            [ 86%]
+tests/unit/trainer/test_early_stopping.py ...                            [ 86%]
+tests/unit/trainer/test_loss.py ..............                           [ 87%]
+tests/unit/trainer/test_metrics.py ........                              [ 88%]
+tests/unit/trainer/test_trainer.py .......................               [ 90%]
+tests/unit/utils/test_batch_ops.py ........                              [ 90%]
+tests/unit/utils/test_config.py .....................                    [ 92%]
+tests/unit/utils/test_gmm.py .........                                   [ 93%]
+tests/unit/utils/test_instantiate.py ................................... [ 95%]
+...........................................                              [ 98%]
+tests/unit/utils/test_output.py ....                                     [ 99%]
+tests/unit/utils/test_solver.py ......                                   [ 99%]
+tests/unit/utils/test_tests.py .....                                     [ 99%]
+tests/unit/utils/test_weight_init.py .                                   [100%]
+
+=============================== warnings summary ===============================
+../../../.local/lib/python3.10/site-packages/nequip/__init__.py:20
+  /home/miroi/.local/lib/python3.10/site-packages/nequip/__init__.py:20: UserWarning: !! PyTorch version 2.5.1 found. Upstream issues in PyTorch versions 1.13.* and 2.* have been seen to cause unusual performance degredations on some CUDA systems that become worse over time; see https://github.com/mir-group/nequip/discussions/311. The best tested PyTorch version to use with CUDA devices is 1.11; while using other versions if you observe this problem, an unexpected lack of this problem, or other strange behavior, please post in the linked GitHub issue.
+    warnings.warn(
+
+tests/unit/data/test_AtomicData.py: 2 warnings
+tests/unit/data/test_dataset.py: 8 warnings
+tests/unit/model/test_builder_utils.py: 24 warnings
+  /home/miroi/.local/lib/python3.10/site-packages/nequip/data/_dataset/_ase_dataset.py:231: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+    datas = [torch.load(d) for d in datas]
+
+tests/unit/data/test_AtomicData.py::test_to_ase_batches[float32]
+tests/unit/data/test_AtomicData.py::test_to_ase_batches[float64]
+  /home/miroi/.local/lib/python3.10/site-packages/nequip/data/AtomicData.py:566: UserWarning: AtomicData.to_ase(): self didn't contain atomic numbers... using atom_type as atomic numbers instead, but this means the chemical symbols in ASE (outputs) will be wrong
+    warnings.warn(
+
+tests/unit/data/test_dataset.py::TestReload::test_reload[float32-False-False-0]
+tests/unit/data/test_dataset.py::TestReload::test_reload[float64-False-False-0]
+  /home/miroi/.local/lib/python3.10/site-packages/nequip/utils/torch_geometric/dataset.py:153: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+    if osp.exists(f) and torch.load(f) != _repr(self.pre_transform):
+
+tests/unit/data/test_dataset.py::TestReload::test_reload[float32-False-False-0]
+tests/unit/data/test_dataset.py::TestReload::test_reload[float64-False-False-0]
+  /home/miroi/.local/lib/python3.10/site-packages/nequip/utils/torch_geometric/dataset.py:162: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+    if osp.exists(f) and torch.load(f) != _repr(self.pre_filter):
+
+tests/unit/data/test_dataset.py::TestReload::test_reload[float32-False-False-0]
+tests/unit/data/test_dataset.py::TestReload::test_reload[float64-False-False-0]
+  /home/miroi/.local/lib/python3.10/site-packages/nequip/data/_dataset/_base_datasets.py:154: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+    self.data, include_frames = torch.load(self.processed_paths[0])
+
+tests/unit/model/test_nequip_model.py: 48 warnings
+tests/unit/model/test_pair/test_zbl.py: 8 warnings
+  /home/miroi/.local/lib/python3.10/site-packages/nequip/utils/unittests/model_tests.py:108: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+    load_dat = torch.load(tmpdir + "/dat.pt")
+
+tests/unit/trainer/test_trainer.py::TestSaveLoad::test_from_file[float32-True]
+tests/unit/trainer/test_trainer.py::TestTrain::test_load_w_revision[float32]
+tests/unit/trainer/test_trainer.py::TestTrain::test_restart_training[float32]
+tests/unit/trainer/test_trainer.py::TestSaveLoad::test_from_file[float64-True]
+tests/unit/trainer/test_trainer.py::TestTrain::test_load_w_revision[float64]
+tests/unit/trainer/test_trainer.py::TestTrain::test_restart_training[float64]
+  /home/miroi/.local/lib/python3.10/site-packages/nequip/utils/savenload.py:275: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+    return torch.load(filename)
+
+tests/unit/trainer/test_trainer.py::TestSaveLoad::test_from_file[float32-True]
+tests/unit/trainer/test_trainer.py::TestTrain::test_load_w_revision[float32]
+tests/unit/trainer/test_trainer.py::TestTrain::test_restart_training[float32]
+tests/unit/trainer/test_trainer.py::TestSaveLoad::test_from_file[float64-True]
+tests/unit/trainer/test_trainer.py::TestTrain::test_load_w_revision[float64]
+tests/unit/trainer/test_trainer.py::TestTrain::test_restart_training[float64]
+  /home/miroi/.local/lib/python3.10/site-packages/nequip/train/trainer.py:704: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+    model_state_dict = torch.load(traindir + "/" + model_name, map_location=device)
+
+tests/unit/data/test_AtomicData.py::test_from_ase[float64]
+tests/unit/utils/test_weight_init.py::test_2mom[float64-unit_uniform_init_]
+  /home/miroi/.local/lib/python3.10/site-packages/nequip/utils/_global_options.py:95: UserWarning: Do NOT manually set PYTORCH_JIT_USE_NNC_NOT_NVFUSER=0 unless you know exactly what you're doing!
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+==== 1304 passed, 42 skipped, 2 xfailed, 113 warnings in 602.15s (0:10:02) =====

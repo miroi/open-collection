@@ -19,3 +19,11 @@ hello, torch.cuda.is_available ? True
 nvidia-smi
 ~~~~~~~~~~
 miroi@MIRO:~/work/projects/open-collection/computer_science/nvidia-gfx-card/buildup_on_servers/wsl_notebookVictus/.nvidia-smi > nvidia-smi.log
+
+nvcc example
+~~~~~~~~~~~~
+
+nvcc cuda_hello_world.cu
+a.out
+
+

@@ -1,0 +1,24 @@
+echo
+
+start pb-zora-mp-so
+
+geometry noautoz units au
+  Pb 0 0 0
+end
+
+basis spherical
+ Pb library dzp-dkh
+end
+
+dft
+ grid xfine
+ iterations 100
+end
+
+relativistic
+   zora on
+# 1 = modbas.4c, 2=modbas.2c
+   modelpotential 2
+end
+
+task sodft energy

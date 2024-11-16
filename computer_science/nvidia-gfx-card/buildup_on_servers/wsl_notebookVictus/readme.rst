@@ -15,3 +15,4 @@ Build cuda_11.5.r11.5/compiler.30672275_0
 
 python3 torch_cuda_check.py
 hello, torch.cuda.is_available ? True
+

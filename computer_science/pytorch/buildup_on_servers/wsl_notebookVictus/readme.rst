@@ -28,6 +28,13 @@ Successfully installed MarkupSafe-3.0.2 filelock-3.16.1 fsspec-2024.10.0 jinja2-
 quick test
 ~~~~~~~~~~
 miroi@MIRO:~/work/projects/open-collection/computer_science/pytorch/buildup_on_servers/wsl_notebookVictus/.python3 torch_cuda_test.py
-True
-tensor([1., 2.])
-tensor([1., 2.], device='cuda:0')
+torch.cuda.get_device_name() ? NVIDIA GeForce RTX 3050 Laptop GPU
+torch.cuda.is_available ? True
+ torch.version.cuda ? 12.4
+torch.tensor([1.0, 2.0]) ?  tensor([1., 2.])
+torch.tensor([1.0, 2.0]).cuda() ? tensor([1., 2.], device='cuda:0')
+ y=x*x, y.shape ?  torch.Size([1024, 1024])
+ y=x*x, y.device ?  cuda:0
+
+
+

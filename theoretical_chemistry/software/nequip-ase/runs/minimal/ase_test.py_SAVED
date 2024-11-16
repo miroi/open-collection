@@ -14,30 +14,27 @@ import nequip.scripts.deploy
 #  https://github.com/mir-group/nequip/discussions/115#discussioncomment-1722946
 
 from nequip.ase import NequIPCalculator
-#atoms.calc = NequIPCalculator.from_deployed_model(
 Atoms.calc = NequIPCalculator.from_deployed_model(
     model_path="deployed_model.pth",
- #   species_to_type_name = {
- #      "C": "NequIPTypeNameForCarbon",
- #      "H": "NequIPTypeNameForHydrogen"
- #   }
+    species_to_type_name = {
+        "C": "NequIPTypeNameForCarbon",
+       "H": "NequIPTypeNameForHydrogen"
+    }
 )
 
 print(nequip)
+#print(atoms.calc)
 
-d = 1.2  # may get proper bond distance
-moleculeO2 = Atoms('2O', [(0., 0., 0.), (0., 0., d)])
+#atomO = Atoms('O', calculator=atoms.calc() )
 
-#moleculeO2.set_calculator(Atoms.calc())
-#moleculeO2.get_potential_energy()
 
 #  see   https://github.com/mir-group/nequip/blob/main/nequip/ase/nequip_calculator.py
 
 #print(NequIPCalculator)
 
 
-#atomO = Atoms('O', calculator=EMT())
-#e_atom = atomO.get_potential_energy()
+#atom = Atoms('O', calculator=EMT())
+#e_atom = atom.get_potential_energy()
 #d = 1.2  # may get proper bond distance
 #molecule = Atoms('2O', [(0., 0., 0.), (0., 0., d)])
 #molecule.set_calculator(EMT())

@@ -7,7 +7,7 @@ from pymatgen.core import Structure
 chgnet = CHGNet.load()
 
 #structure = Structure.from_file('examples/mp-18767-LiMnO2.cif')
-structure = Structure.from_file('mp-18767-LiMnO2.cif')
+structure = Structure.from_file('../mp-18767-LiMnO2.cif')
 
 
 prediction = chgnet.predict_structure(structure)

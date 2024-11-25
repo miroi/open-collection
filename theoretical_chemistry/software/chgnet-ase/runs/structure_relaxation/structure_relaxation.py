@@ -8,7 +8,7 @@ from chgnet.model import StructOptimizer
 chgnet = CHGNet.load()
 
 #structure = Structure.from_file('examples/mp-18767-LiMnO2.cif')
-structure = Structure.from_file('mp-18767-LiMnO2.cif')
+structure = Structure.from_file('../mp-18767-LiMnO2.cif')
 
 relaxer = StructOptimizer()
 result = relaxer.relax(structure)

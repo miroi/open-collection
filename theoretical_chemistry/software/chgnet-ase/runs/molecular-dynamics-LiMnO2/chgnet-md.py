@@ -9,7 +9,7 @@ warnings.filterwarnings("ignore", module="pymatgen")
 warnings.filterwarnings("ignore", module="ase")
 
 #structure = Structure.from_file("examples/mp-18767-LiMnO2.cif")
-structure = Structure.from_file("mp-18767-LiMnO2.cif")
+structure = Structure.from_file("../mp-18767-LiMnO2.cif")
 chgnet = CHGNet.load()
 
 md = MolecularDynamics(

@@ -27,3 +27,13 @@ milias@DESKTOP-7OTLCGO:~/work/software/xtb/xtb-dist/bin/.xtb --version
 normal termination of xtb
 
 
+get environvariables
+~~~~~~~~~~~~~~~~~~~~
+see https://xtb-docs.readthedocs.io/en/latest/setup.html#environment-variables-for-xtb
+
+source /home/milias/work/software/xtb/xtb-dist/share/xtb/config_env.bash
+
+milias@DESKTOP-7OTLCGO:~/work/git-projects/open-collection/theoretical_chemistry/software/xtb/runs/gfn-ff/.xtb --help
+
+
+

@@ -1,16 +1,17 @@
 
 https://xtb-docs.readthedocs.io/en/latest/gfnff.html#how-to-use-it
-
 ... not implemented yet for periodic boundary conditions
 
 
 single point
 ~~~~~~~~~~~~
+xtb --gfnff coord > xtb_gfnff.log
 
-xtb --gfnff coord
-
+milias@DESKTOP-7OTLCGO:~/work/git-projects/open-collection/theoretical_chemistry/software/xtb/runs/gfn-ff/.ls
+coord  gfnff_charges  gfnff_topo  readme.rst  xtb_gfnff.log_SAVED
 
 geometry optimization
 ~~~~~~~~~~~~~~~~~~~~~
+xtb -o  --gfnff coord > xtb_gfnff_geopt.log
 
-xtb -o  --gfnff coord > xtb.out
+get xtbopt.coord,   xtbopt.log

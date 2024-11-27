@@ -7,12 +7,19 @@ see also https://github.com/grimme-lab/xtb/issues/185#issuecomment-2501191784
 
 download binaries
 ~~~~~~~~~~~~~~~~~
-https://github.com/grimme-lab/xtb/releases/download/v6.7.1/xtb-6.7.1-linux-x86_64.tar.xz
+wegt https://github.com/grimme-lab/xtb/releases/download/v6.7.1/xtb-6.7.1-linux-x86_64.tar.xz
 
-milias@DESKTOP-7OTLCGO:~/work/software/xtb/.mv /mnt/c/Users/milias/Downloads/xtb-6.7.1-linux-x86_64.tar.xz  .
-milias@DESKTOP-7OTLCGO:~/work/software/xtb/.tar xf xtb-6.7.1-linux-x86_64.tar.xz
+miroi@MIRO:~/work/software/.tar xf xtb-6.7.1-linux-x86_64.tar.xz
 
-milias@DESKTOP-7OTLCGO:~/work/software/xtb/xtb-dist/bin/.xtb --version
+
+get environvariables
+~~~~~~~~~~~~~~~~~~~~
+see https://xtb-docs.readthedocs.io/en/latest/setup.html#environment-variables-for-xtb
+
+source /home/miroi/work/software/xtb-dist/share/xtb/config_env.bash
+
+
+miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/xtb/buildup_on_servers/wsl_notebokVictus/.xtb --version
       -----------------------------------------------------------
      |                   =====================                   |
      |                           x T B                           |
@@ -26,14 +33,6 @@ milias@DESKTOP-7OTLCGO:~/work/software/xtb/xtb-dist/bin/.xtb --version
 
 normal termination of xtb
 
-
-get environvariables
-~~~~~~~~~~~~~~~~~~~~
-see https://xtb-docs.readthedocs.io/en/latest/setup.html#environment-variables-for-xtb
-
-source /home/milias/work/software/xtb/xtb-dist/share/xtb/config_env.bash
-
-milias@DESKTOP-7OTLCGO:~/work/git-projects/open-collection/theoretical_chemistry/software/xtb/runs/gfn-ff/.xtb --help
-
+miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/xtb/buildup_on_servers/wsl_notebokVictus/.xtb --help
 
 

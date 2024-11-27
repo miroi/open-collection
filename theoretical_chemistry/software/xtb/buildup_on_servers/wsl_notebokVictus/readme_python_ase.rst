@@ -13,4 +13,4 @@ pip install setuptools
 
 ??   sudo apt install intel-mkl  (no default )
 
-xtb-python/.pip install .
+xtb-python/.pip install -v .

@@ -3,6 +3,8 @@ xtb-python installation
 
 based on https://xtb-python.readthedocs.io/en/latest/installation.html#building
 
+packages
+~~~~~~~~
 see also https://github.com/grimme-lab/xtb-python/issues/119#issuecomment-2501779110
 
 git clone https://github.com/grimme-lab/xtb-python
@@ -12,6 +14,7 @@ pip install setuptools
 pip uninstall ninja
 pip install ninja
 
+pip install patchelf
 
 sudo apt-get install intel-mkl-full
 

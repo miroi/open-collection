@@ -110,6 +110,46 @@ Usage: runall.bat [version] [ncpus]
   Running exam01
   Running exam02
   Running exam03
+  Running exam04
+  Running exam06
+  Running exam07
+  Running exam08
+  Running exam09
+  Running exam10
+  Running exam11
+  Running exam12
+  Running exam13
+  Running exam14
+  Running exam15
+  Running exam16
+  Running exam17
+  Running exam18
+  Running exam19
+  Running exam20
+  Running exam21
+  Running exam22
+  Running exam24
+  Running exam26
+  Running exam28
+  Running exam29
+  Running exam30
+  Running exam31
+  Running exam33
+  Running exam34
+  Running exam35
+  Running exam36
+  Running exam37
+  Running exam38
+  Running exam40
+  Running exam41
+  Running exam43
+  Running exam44
+  Running exam48
+  Running exam49
+----------------------------------------------
+-                    FIN                     -
+----------------------------------------------
 
+C:\Users\Public\gamess-64>
 
 

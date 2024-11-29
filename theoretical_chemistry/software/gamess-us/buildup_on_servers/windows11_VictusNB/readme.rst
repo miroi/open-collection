@@ -12,6 +12,8 @@ via password delivered by email:
 
 https://www.msg.chem.iastate.edu/GAMESS/download/source/Windows/2023/gamess-64-2023-R1-intel.msi
 
+and follow https://www.msg.chem.iastate.edu/GAMESS/download/GAMESS-Windows-64-Bit-README-THEN-README-AGAIN.pdf
+
 
 check the version
 ~~~~~~~~~~~~~~~~~

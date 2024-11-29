@@ -6,4 +6,15 @@ from https://www.msg.chem.iastate.edu/
 for the installation on MS Windows, first install Intel MPI, after that gamess-us...
 
 
+check the version
+~~~~~~~~~~~~~~~~~
+C:\Users\Public\gamess-64>get-version-names.bat
+------                                  -------
+Binary                                  Version
+======                                  =======
+gamess.2023.R1.intel.exe                2023.R1.intel
+
+Press any key to continue . . .
+
+
 

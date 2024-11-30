@@ -194,9 +194,10 @@ validation
 ~~~~~~~~~~
 cd tests
 C:\Users\Public\gamess-64\tests>python checkgms.py --verbose_validation > parallel_test_python_validation.log
+cd ..
+C:\Users\Public\gamess-64>clean-runall-files.bat
 
+Finish removing exam*log, scratch\exam*.*, and restart\exam*.* files
 
-
-
-
+Press any key to continue . . .
 

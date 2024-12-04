@@ -8,4 +8,9 @@ https://vagon.io/blog/using-python-in-blender
 {'FINISHED'}
 
 
+cone
+----
+>>> bpy.ops.mesh.primitive_cone_add(radius1=3.0, depth=4.0, location=(0, 0, 0))
+{'FINISHED'}
+
 

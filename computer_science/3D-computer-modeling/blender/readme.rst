@@ -37,3 +37,12 @@ simple print
 >>> print("Hello, blender ! Taken from   "+bpy.app.binary_path)
 Hello, blender ! Taken from   C:\Program Files\Blender Foundation\Blender 4.3\blender.exe
 
+>>> bpy.data.scenes[0].render.resolution_percentage
+100
+
+
+>>> bpy.data.scenes[0].objects[0].data.vertices[0].co.x
+1.0
+
+
+

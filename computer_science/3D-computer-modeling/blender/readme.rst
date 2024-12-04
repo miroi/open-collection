@@ -44,5 +44,7 @@ Hello, blender ! Taken from   C:\Program Files\Blender Foundation\Blender 4.3\bl
 >>> bpy.data.scenes[0].objects[0].data.vertices[0].co.x
 1.0
 
+>>> mesh = bpy.data.meshes.new(name="MyMesh"); print(mesh)
+<bpy_struct, Mesh("MyMesh") at 0x0000021107BE5D08>
 
 

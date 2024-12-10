@@ -22,8 +22,9 @@ Au fcc crystal energy: -0.00013514121662172585
 
 print the database content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
-show also the bulk-modulus column
-milias@pc7321b:/mnt/c/Users/milias/Documents/git-projects/open-collection/theoretical_chemistry/software/ase/runs/adsorption_study/.ase db bulk.db -c +bm
+show also the bulk-modulus column :
+
+ase db bulk.db -c +bm
 id|age|user  |formula|calculator|energy|natoms| fmax|pbc|volume|charge|   mass|   bm
  1|52s|milias|Al     |emt       |-0.005|     1|0.000|TTT|15.932| 0.000| 26.982|0.249
  2|51s|milias|Ni     |emt       |-0.013|     1|0.000|TTT|10.601| 0.000| 58.693|1.105

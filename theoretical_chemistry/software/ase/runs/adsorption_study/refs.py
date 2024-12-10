@@ -1,5 +1,5 @@
 #
-#
+# Let’s also calculate the energy of the clean surfaces and the isolated adsorbates
 #
 
 from ase import Atoms

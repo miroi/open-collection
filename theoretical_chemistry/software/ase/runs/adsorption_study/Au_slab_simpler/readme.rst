@@ -1,7 +1,9 @@
+=======================
 Au slab with Pt addatom
 =======================
 
 exp.data :  https://www.sciencedirect.com/science/article/pii/S0009261407006513
+take Au(1 1 1) surface (Table 1)
 
 
 python3 prog.py

@@ -60,7 +60,7 @@ ase db ads.db -n
 63 rows
 
 Reference energies of surfaces and atoms
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------
 Let’s also calculate the energy of the clean surfaces and the isolated adsorbates
 
 python3 refs.py

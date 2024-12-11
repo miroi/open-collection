@@ -10,7 +10,6 @@ from ase.build import fcc111
 db1 = connect('bulk.db')
 db2 = connect('ads.db')
 
-
 def run(symb, a, n):
     atoms = fcc111(symb, (1, 1, n), a=a)
     atoms.calc = EMT()
@@ -26,12 +25,15 @@ for row in db1.select():
         id = db2.reserve(layers=n, surf=symb, ads='clean')
         if id is not None:
             atoms = run(symb, a, n)
+            print(' run:', symb,a,n)
             db2.write(atoms, id=id, layers=n, surf=symb, ads='clean')
 
-# Atoms:
+# Add-Atoms:
 for ads in 'CNO':
     a = Atoms(ads)
     a.calc = EMT()
     a.get_potential_energy()
     print(a.symbols,'atom pot.energy =',a.get_potential_energy())
     db2.write(a)
+
+print(' data written into ads.db')

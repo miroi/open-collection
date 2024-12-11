@@ -33,4 +33,5 @@ for ads in 'CNO':
     a = Atoms(ads)
     a.calc = EMT()
     a.get_potential_energy()
+    print(a.symbols,'atom pot.energy =',a.get_potential_energy())
     db2.write(a)

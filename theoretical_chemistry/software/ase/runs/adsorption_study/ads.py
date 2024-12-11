@@ -5,7 +5,9 @@ from ase.constraints import FixAtoms
 from ase.optimize import BFGS
 
 db1 = connect('bulk.db')
-db2 = connect('ads.db')
+
+db2file = 'ads.db'
+db2 = connect(db2file)
 
 # function
 def run(symb, a, n, ads):
@@ -29,4 +31,8 @@ for row in db1.select():
     for n in [1, 2, 3]:
         for ads in 'CNO':
             atoms = run(symb, a, n, ads)
+            print('done for :',symb,a,n,ads)
             db2.write(atoms, layers=n, surf=symb, ads=ads)
+
+print('all results written into',db2file)
+

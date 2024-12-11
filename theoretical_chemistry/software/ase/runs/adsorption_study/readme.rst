@@ -53,7 +53,7 @@ Added 0 key-value pairs (0 pairs updated)
 Inserted 7 rows
 
 Adsorptions
-~~~~~~~~~~~
+-----------
 python3 ads.py
 
 ase db ads.db -n

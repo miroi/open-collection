@@ -4,7 +4,8 @@ from ase.eos import calculate_eos
 from ase.db import connect
 
 # open the database
-db = connect('bulk.db')
+dbfile='bulk.db'
+db = connect(dbfile)
 
 #for symb in ['Al', 'Ni', 'Cu', 'Pd', 'Ag', 'Pt', 'Au', 'Tl']:
 for symb in ['Al', 'Ni', 'Cu', 'Pd', 'Ag', 'Pt', 'Au']:
@@ -22,3 +23,5 @@ for symb in ['Al', 'Ni', 'Cu', 'Pd', 'Ag', 'Pt', 'Au']:
     print(symb, 'fcc crystal energy:',atoms.get_potential_energy()
 )
     db.write(atoms, bm=B)
+
+print('results written into database file ',dbfile)

@@ -4,11 +4,13 @@ Surface adsorption study using the ASE database
 
 https://wiki.fysik.dtu.dk/ase/tutorials/db/db.html
 
-In this tutorial we will adsorb C, N and O on 7 different FCC(111) surfaces with 1, 2 and 3 layers and we will use database files to store the results.
+In this tutorial we will adsorb C, N and O atoms 
+on 7 different FCC(111) surfaces, consisting of 1, 2 and 3 layers.
+We will also use database files to store the results.
 
 equilibrium bulk FCC
 ~~~~~~~~~~~~~~~~~~~~
-First, we calculate the equilibrium bulk FCC lattice constants for the seven elements where the EMT potential works well:
+First, we calculate the equilibrium bulk FCC lattice constants for the seven elements, where the EMT potential works well:
 
 python3 bulk.py
 Al fcc crystal energy: -0.004882682308843922

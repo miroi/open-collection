@@ -4,10 +4,29 @@ Surface adsorption study using the ASE database
 
 https://wiki.fysik.dtu.dk/ase/tutorials/db/db.html
 
-python3 bulk.py 
+In this tutorial we will adsorb C, N and O atoms 
+on 7 different FCC(111) surfaces, consisting of 1, 2 and 3 layers.
+We will also use database files to store the results.
+
+equilibrium bulk FCC
+~~~~~~~~~~~~~~~~~~~~
+First, we calculate the equilibrium bulk FCC lattice constants for the seven elements, where the EMT potential works well:
+
+python3 bulk.py
+Al fcc crystal energy: -0.004882682308843922
+Ni fcc crystal energy: -0.013306890189579867
+Cu fcc crystal energy: -0.007036492048374754
+Pd fcc crystal energy: -0.00026992497101518964
+Ag fcc crystal energy: -0.00036686253917483924
+Pt fcc crystal energy: -0.00014952704168358366
+Au fcc crystal energy: -0.00013514121662172585
 
 
-milias@pc7321b:/mnt/c/Users/milias/Documents/git-projects/open-collection/theoretical_chemistry/software/ase/runs/adsorption_study/.ase db bulk.db -c +bm
+print the database content
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+show also the bulk-modulus column :
+
+ase db bulk.db -c +bm
 id|age|user  |formula|calculator|energy|natoms| fmax|pbc|volume|charge|   mass|   bm
  1|52s|milias|Al     |emt       |-0.005|     1|0.000|TTT|15.932| 0.000| 26.982|0.249
  2|51s|milias|Ni     |emt       |-0.013|     1|0.000|TTT|10.601| 0.000| 58.693|1.105
@@ -19,26 +38,86 @@ id|age|user  |formula|calculator|energy|natoms| fmax|pbc|volume|charge|   mass| 
 Rows: 7
 Keys: bm
 
+file bulk.db
+bulk.db: SQLite 3.x database, last written using SQLite version 3037002, file counter 14, database pages 17, cookie 0xe, schema 4, UTF-8, version-valid-for 14
+
 ase db bulk.db Cu -j
 
-milias@pc7321b:/mnt/c/Users/milias/Documents/git-projects/open-collection/theoretical_chemistry/software/ase/runs/adsorption_study/.file bulk.db
+file bulk.db
 bulk.db: SQLite 3.x database, last written using SQLite version 3037002, file counter 14, database pages 17, cookie 0xe, schema 4, UTF-8, version-valid-for 14
 
 json
 ~~~~
-milias@pc7321b:/mnt/c/Users/milias/Documents/git-projects/open-collection/theoretical_chemistry/software/ase/runs/adsorption_study/. ase db bulk.db --insert-into bulk.json
+ase db bulk.db --insert-into bulk.json
 Added 0 key-value pairs (0 pairs updated)
 Inserted 7 rows
 
 Adsorptions
-~~~~~~~~~~~
-milias@pc7321b:/mnt/c/Users/milias/Documents/git-projects/open-collection/theoretical_chemistry/software/ase/runs/adsorption_study/.python3 ads.py
+-----------
+python3 ads.py
 
-milias@pc7321b:/mnt/c/Users/milias/Documents/git-projects/open-collection/theoretical_chemistry/software/ase/runs/adsorption_study/.ase db ads.db -n
-126 rows
+ase db ads.db -n
+63 rows
 
 Reference energies of surfaces and atoms
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-milias@pc7321b:/mnt/c/Users/milias/Documents/git-projects/open-collection/theoretical_chemistry/software/ase/runs/adsorption_study/.python3 refs.py
+----------------------------------------
+Let’s also calculate the energy of the clean surfaces and the isolated adsorbates
 
+python3 refs.py
+
+ase db ads.db -n
+87 rows
+
+
+manipulating db
+~~~~~~~~~~~~~~~
+ase db ads.db ads=clean --insert-into refs.db
+Added 0 key-value pairs (0 pairs updated)
+Inserted 21 rows
+
+ase db ads.db ads=clean --delete --yes
+Deleted 21 rows
+
+ase db ads.db pbc=FFF --insert-into refs.db
+Added 0 key-value pairs (0 pairs updated)
+Inserted 3 rows
+
+ase db ads.db pbc=FFF --delete --yes
+Deleted 3 rows
+
+ase db ads.db -n
+63 rows
+
+ase db refs.db -n
+24 rows
+
+Analysis
+~~~~~~~~
+Now we have what we need to calculate the adsorption energies and heights
+
+python3 ea.py
+
+ase db ads.db Pt,layers=3 -c formula,ea,height
+formula|    ea|height
+Pt3C   |-3.715| 1.503
+Pt3N   |-5.419| 1.535
+Pt3O   |-4.724| 1.706
+Rows: 3
+Keys: ads, ea, height, layers, surf
+
+ase db ads.db Au,layers=3 -c formula,ea,height
+formula|    ea|height
+Au3C   |-3.547| 1.485
+Au3N   |-5.281| 1.499
+Au3O   |-4.603| 1.696
+Rows: 3
+Keys: ads, ea, height, layers, surf
+
+ase db ads.db Ag,layers=3 -c formula,ea,height
+formula|    ea|height
+Ag3C   |-3.560| 1.377
+Ag3N   |-5.336| 1.375
+Ag3O   |-4.592| 1.599
+Rows: 3
+Keys: ads, ea, height, layers, surf
 

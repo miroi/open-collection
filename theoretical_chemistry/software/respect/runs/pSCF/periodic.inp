@@ -1,0 +1,33 @@
+pscf:
+     geo-units:  bohr
+     geometry:
+          Ne   0.000000   0.000000   0.000000
+     lattice:
+          a1:    2.500000  -4.330127
+          a2:    2.500000   4.330127
+
+     kmesh:          11x11x1
+     basis:          ucc-pvdz
+     method:         ks/pbe
+     initmo:         atomic
+     nc-model:       point
+     diis:           on
+     maxiterations:  30
+     convergence:    1.0e-8
+
+     peri:
+          lmax:          15
+          threshold:     1.0e-10
+     grid:
+          all:   50   194
+     xc: 
+          library: libxc
+pscf-bands:
+     kpoints:      2d-hexagonal  40
+     kmesh:        11x11x1
+     print-bands:  2-9
+     full-print:   on
+     dos:
+       units:     eV
+       range:    -15.0  50.0
+       std-dev:    0.3

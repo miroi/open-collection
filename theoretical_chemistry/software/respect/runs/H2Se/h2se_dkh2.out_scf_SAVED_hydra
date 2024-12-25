@@ -1,0 +1,537 @@
+##############################################################################
+                              Environment setting
+##############################################################################
+
+ Job setting:
+    
+    Call arguments   are    --scf --scratch=/lustre/home/user/m/milias/scratch --inp=h2se_dkh2 --nt=12 
+    Input file name   is   h2se_dkh2.inp
+    Binary  directory is   /lustre/home/user/m/milias/work/software/respect/ReSpect_5.3.0_2024_x86_64_omp_static
+    Work    directory is   /lustre/home/user/m/milias/work/projects/open-collection/theoretical_chemistry/software/respect/runs/H2Se/
+    Scratch directory is   /lustre/home/user/m/milias/scratch/tmp242688.92cs7c6a.milias
+    Machine name      is   n02p074
+    OMP stack memory size  2048m
+    OMP parallel job with  12 threads
+    Output  file will be   /lustre/home/user/m/milias/work/projects/open-collection/theoretical_chemistry/software/respect/runs/H2Se/h2se_dkh2.out_scf
+
+
+ System setting:
+
+    core file size          (blocks, -c) unlimited
+    data seg size           (kbytes, -d) unlimited
+    scheduling priority             (-e) 0
+    file size               (blocks, -f) unlimited
+    pending signals                 (-i) 767566
+    max locked memory       (kbytes, -l) unlimited
+    max memory size         (kbytes, -m) 67108864
+    open files                      (-n) 131072
+    pipe size            (512 bytes, -p) 8
+    POSIX message queues     (bytes, -q) 819200
+    real-time priority              (-r) 0
+    stack size              (kbytes, -s) unlimited
+    cpu time               (seconds, -t) unlimited
+    max user processes              (-u) 767566
+    virtual memory          (kbytes, -v) unlimited
+    file locks                      (-x) unlimited
+    omp_thread_limit:
+    omp_stacksize:2048m
+    
+
+##############################################################################
+                               Program ReSpect
+##############################################################################
+::
+
+ Version:       5.3.0 (2024)
+ Released:      14. July 2024
+
+ Branch:        release-5.3-2024
+ Commit hash:   7b218e5b5
+ Commit author: Michal Repisky
+ Commit date:   Mon Jul 15 14:48:00 2024 +0200
+
+ Webpage:       http://www.respectprogram.org 
+ Copyright:     ReSpect is distributed as proprietary software at no cost
+                and is currently available as OpenMP parallel static binaries
+                for Linux OS and x86_64 architecture at the program webpage.
+                The program is limited to non-commercial, academic, and non-profit
+                private use and its further copy, modification, redistribution or
+                sublicense in whole or in part is not permitted.
+                The specific terms of use are available at:
+                http://www.respectprogram.org/download.html.
+                The program is distributed AS IS in a hope it becomes useful.
+                The experimental nature of the program means that authors accept
+                no responsibility for the correctness of results nor fitness for
+                a particular purpose.
+
+ Reference(s):  If results obtained with ReSpect are published in the scientific
+                literature or publicly accessible reports, the users shall reference
+                the program as:
+
+                ReSpect: Relativistic Spectroscopy DFT Program Package
+                M. Repisky, S. Komorovsky, M. Kadek, L. Konecny, U. Ekstrom,
+                E. Malkin, M. Kaupp, K. Ruud, O. L. Malkina, and V. G. Malkin,
+                J. Chem. Phys. 152, 184101 (2020) [DOI: https://doi.org/10.1063/5.0005094]
+                Version: 5.3.0 (2024), Program webpage: http://www.respectprogram.org
+
+                Using specific theoretical methods included in ReSpect may require citing
+                additional articles, as described in this output file as "REQUIRED REFERENCES".
+
+
+ -------
+ Authors
+ -------
+ Repisky Michal
+ Komorovsky Stanislav
+
+
+ --------
+ Founders
+ --------
+ Ruud Kenneth
+ Kaupp Martin
+ Malkina Olga L.
+ Malkin Vladimir G.
+
+
+ ------------
+ Contributors
+ ------------
+ Bast Radovan         - AutoCMake library
+ Di Remigio Roberto   - PCMSolver library
+ Ekstrom Ulf          - XCFun library
+ Joosten Marc         - NQCC/EFG library
+ Kadek Marius         - solid-state pSCF library
+                      - real-time TDDFT (RT-TDDFT) library
+ Knecht Stefan        - pilot MPI parallelization
+ Konecny Lukas        - real-time TDDFT (RT-TDDFT) library
+                      - damped-response TDDFT (DR-TDDFT) library
+ Malkin Elena         - one-component molecular properties
+                      - finite size nucleus and magnetic moment models
+ Malkin-Ondik Irina   - Douglas-Kroll-Hess (DKH) Hamiltonians
+ Moitra Torsha        - transient (pump-probe) absorption spectroscopy
+
+
+
+
+##############################################################################
+                    Configuration, build, and runtime info
+##############################################################################
+::
+
+ -----------------------------------
+ Configuration and build information
+ -----------------------------------
+
+ Who compiled           | repisky
+ Compiled on server     | quaternion
+ Operating system       | Linux-5.15.0-105-generic
+ CMake version          | 3.16.3
+ CMake generator        | Unix Makefiles
+ CMake build type       | release
+ Configuration time     | 2024-07-15 12:53:05.404450
+ Python version         | 3.9.1
+ Fortran compiler       | /opt/intel/oneapi/2023.1/compiler/2023.1.0/linux/bin/intel64/ifort
+ Fortran compiler flags |  -w -fpp -assume byterecl -static -static-intel -static-libgcc -static-libstdc++ -qopenmp -w -fpp -assume byterecl -static -static-intel -static-libgcc -static-libstdc++ -qopenmp -O2               -xW -ip
+ C compiler             | /usr/bin/gcc
+ C compiler flags       |  -std=c99 -DRESTRICT=restrict -DFUNDERSCORE=1 -DHAVE_NO_LSEEK64 -ffloat-store -Wno-unused -m64 -static -fpic -fopenmp -std=c99 -DRESTRICT=restrict -DFUNDERSCORE=1 -DHAVE_NO_LSEEK64 -ffloat-store -Wno-unused -m64 -static -fpic -fopenmp -O2 -ffast-math -funroll-loops -ftree-vectorize
+ C++ compiler           | /usr/bin/g++
+ C++ compiler flags     |  -Wall -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused -fno-rtti -fno-exceptions -m64 -static -fpic -fopenmp -Wall -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused -fno-rtti -fno-exceptions -m64 -static -fpic -fopenmp -O3 -mtune=native -DNDEBUG
+ Static linking         | True
+ MPI parallelization    | False
+ OMP parallelization    | True
+ Math libraries         | unknown
+ Explicit libraries     | unknown
+
+
+ ------------
+ Runtime info
+ ------------
+
+ Parallelization model: OpenMP
+   Master process has 12 threads of total 12
+
+ Initial time:
+    0:39:26, 26 December, 2024
+
+
+##############################################################################
+                            Input processing info
+##############################################################################
+::
+
+ ----------
+ Input file
+ ----------
+
+ scf:
+     method: hf-dkh2
+ 
+     geo-units: bohr
+     geometry:
+               H   -1.4523499293         0.0000000000         0.8996235720
+               H    1.4523499293         0.0000000000         0.8996235720
+               Se   0.0000000000         0.0000000000        -0.2249058930
+ 
+     basis:
+               H:  upc-1
+               Se: ucc-pvdz
+ 
+     nc-model:       point
+     initmo:        atomic
+     charge:        0
+     multiplicity:  1
+     diis:          on
+     maxiterations: 30
+     convergence:   1.0e-7
+
+
+ ----------------
+ Input processing
+ ----------------
+
+ ... method: Hartree-Fock theory based on
+             one-component second-order DKH Hamiltonian (HF-DKH2)
+
+ ... geometry defined in units: bohr
+
+ ... geometry processing (xyz format)
+
+     H   -1.4523499293         0.0000000000         0.8996235720
+     H    1.4523499293         0.0000000000         0.8996235720
+     Se   0.0000000000         0.0000000000        -0.2249058930
+ 
+ ... orbital basis required
+
+     H:  upc-1
+     Se: ucc-pvdz
+ 
+ ... nuclear charge distribution model: point
+
+ ... MO init: superposition of atomic densities
+ 
+ ... charge of the system:   0
+
+ ... multiplicity of the system:  1   (singlet)
+
+ ... DIIS scheme turned on
+
+ ... maximum number of scf iterations:   30
+
+ ... scf convergence criteria:  1.00E-07
+
+
+
+##############################################################################
+                             REQUIRED REFERENCES
+##############################################################################
+
+
+##############################################################################
+                    Atomic, molecular, and basis sets info
+##############################################################################
+
+
+Atomic and Nuclear Constants
+----------------------------
+::
+
+ The data used in this calculation (unless changed from input) are from
+ the CODATA recommended values of the fundamental physical constants 2010
+ (online at http://physics.nist.gov/constants) and from the 2006 compilation
+ of the Particle Data Group (online at http://pdg.lbl.gov).
+ All values are in the SI-based atomic units unless stated otherwise.
+
+ Inverse fine-structure constant =   137.035999074000
+ Bohr radius [A]                 =     0.529177210920
+ Hartree energy [eV]             =    27.211385050000
+ Electric dipole moment [Debye]  =     2.541746363608
+
+ atom    label     Z    isotop    atomic mass       spin         g-value 
+ ----------------------------------------------------------------------- 
+  H        1       1       1        1.007825      0.500000      5.585695
+  H        2       1       1        1.007825      0.500000      5.585695
+  Se       3      34      80       79.916521      0.000000      0.000000
+
+
+
+Molecular geometry [A]
+----------------------
+::
+
+ atom    label                 cartesian coordinates            
+ -------------------------------------------------------------- 
+  H        1        -0.768550         0.000000         0.476060
+  H        2         0.768550         0.000000         0.476060
+  Se       3         0.000000         0.000000        -0.119015
+
+
+
+Interatomic distances [A]
+-------------------------
+::
+
+ ---          H  (   1)          H  (   2)          Se (   3)
+ H  (   1)    0.000000
+ H  (   2)    1.537101          0.000000
+ Se (   3)    0.972000          0.972000          0.000000
+
+
+
+Atomic orbital basis
+--------------------
+::
+
+ atom  label     prim    cont     orbital basis set details     
+ ---------------------------------------------------------------
+  H      1          7       7     [4s1p]      upc-1
+  H      2          7       7     [4s1p]      upc-1
+  Se     3         77      77     [14s11p6d]  ucc-pvdz
+
+ Total number of           GTO shells =      41
+ Total number of spherical GTO functions =   91
+ Total number of cartesian GTO functions =   97
+
+
+
+##############################################################################
+                                ReSpect output
+##############################################################################
+
+
+  #####################################
+  Molecular one-component SCF procedure
+  #####################################
+
+ 
+  Fock setting
+  ------------
+  number atoms:                                 3
+  number electrons:                            36
+  number matrices:                              1
+  matrix dimension:                            97
+  number GTO shells:                           41
+  nucleus model:                            point
+  ERI classes (up to):                       LLLL
+  ERI acceleration:                          none
+  ERI screening threshold:             1.0000E-10
+  HF exchange scaling factor:          1.00000000
+  inverse fine-structure constant:   137.03599907
+ 
+  TwoFock setting (ERI)
+  ---------------------
+  number atoms:                                 3
+  matrix dimension:                            97
+  number GTO shells:                           41
+  ERI classes (up to):                       LLLL
+  ERI screening threshold:             1.0000E-10
+  inverse fine-structure constant:   137.03599907
+  Matrix to power -5.00E-01(min: 5.08E-03 max: 2.86E+01 thr: 1.00E-08 time: 7.87E-03 cpus:12)
+
+  Atomic initial guess ... 
+  Ne =    17.9990597146124     
+  DKH transforming: min: 0.21E+00 max: 0.25E+07
+  
+  TwoFock(1cJK) info:
+  symm     = 4x
+  naoc     = 97
+  ndmatJ   = 1
+  ndmatK   = 1
+  nshell   = 41
+  lshell   = 3
+  ncentr   = 3
+  nprimt   = 1
+  bastyp1  = llll
+  bastyp2  = llll
+  epsilon  = 1.00E-10
+  scaleJ   = 1.00E+00
+  scaleK   = 1.00E+00
+ 
+ 
+                     Energy           dE       max[F,D]   spin density    time (hh:mm:ss)
+                ----------------   ---------   --------   ------------    ---------------
+  Cycle:   1    -2429.8886430448   -2.43E+03   7.45E-01   <x>= 0.00E+00   eri= 00:00:00.7  
+                                                          <y>= 0.00E+00   xc=  00:00:00.0  
+                                                          <z>= 0.00E+00   dia= 00:00:00.0  
+                                                                          tot= 00:00:00.7  
+ 
+ 
+                     Energy           dE       max[F,D]   spin density    time (hh:mm:ss)
+                ----------------   ---------   --------   ------------    ---------------
+  Cycle:   2    -2428.5441613795    1.34E+00   1.95E-02   <x>= 0.00E+00   eri= 00:00:00.1  
+                                                          <y>= 0.00E+00   xc=  00:00:00.0  
+                                                          <z>= 0.00E+00   dia= 00:00:00.0  
+                                                                          tot= 00:00:00.1  
+ 
+ 
+                     Energy           dE       max[F,D]   spin density    time (hh:mm:ss)
+                ----------------   ---------   --------   ------------    ---------------
+  Cycle:   3    -2428.5470444846   -2.88E-03   1.63E-02   <x>= 0.00E+00   eri= 00:00:00.1  
+                                                          <y>= 0.00E+00   xc=  00:00:00.0  
+                                                          <z>= 0.00E+00   dia= 00:00:00.0  
+                                                                          tot= 00:00:00.1  
+ 
+ 
+                     Energy           dE       max[F,D]   spin density    time (hh:mm:ss)
+                ----------------   ---------   --------   ------------    ---------------
+  Cycle:   4    -2428.5495698550   -2.53E-03   1.36E-02   <x>= 0.00E+00   eri= 00:00:00.1  
+                                                          <y>= 0.00E+00   xc=  00:00:00.0  
+                                                          <z>= 0.00E+00   dia= 00:00:00.0  
+                                                                          tot= 00:00:00.1  
+ 
+ 
+                     Energy           dE       max[F,D]   spin density    time (hh:mm:ss)
+                ----------------   ---------   --------   ------------    ---------------
+  Cycle:   5    -2428.5631287885   -1.36E-02   6.68E-04   <x>= 0.00E+00   eri= 00:00:00.1  
+                                                          <y>= 0.00E+00   xc=  00:00:00.0  
+                                                          <z>= 0.00E+00   dia= 00:00:00.0  
+                                                                          tot= 00:00:00.1  
+ 
+ 
+                     Energy           dE       max[F,D]   spin density    time (hh:mm:ss)
+                ----------------   ---------   --------   ------------    ---------------
+  Cycle:   6    -2428.5631470397   -1.83E-05   1.68E-04   <x>= 0.00E+00   eri= 00:00:00.1  
+                                                          <y>= 0.00E+00   xc=  00:00:00.0  
+                                                          <z>= 0.00E+00   dia= 00:00:00.0  
+                                                                          tot= 00:00:00.1  
+ 
+ 
+                     Energy           dE       max[F,D]   spin density    time (hh:mm:ss)
+                ----------------   ---------   --------   ------------    ---------------
+  Cycle:   7    -2428.5631480635   -1.02E-06   2.86E-05   <x>= 0.00E+00   eri= 00:00:00.1  
+                                                          <y>= 0.00E+00   xc=  00:00:00.0  
+                                                          <z>= 0.00E+00   dia= 00:00:00.0  
+                                                                          tot= 00:00:00.1  
+ 
+ 
+                     Energy           dE       max[F,D]   spin density    time (hh:mm:ss)
+                ----------------   ---------   --------   ------------    ---------------
+  Cycle:   8    -2428.5631480899   -2.64E-08   3.86E-06   <x>= 0.00E+00   eri= 00:00:00.1  
+                                                          <y>= 0.00E+00   xc=  00:00:00.0  
+                                                          <z>= 0.00E+00   dia= 00:00:00.0  
+                                                                          tot= 00:00:00.1  
+ 
+ 
+                     Energy           dE       max[F,D]   spin density    time (hh:mm:ss)
+                ----------------   ---------   --------   ------------    ---------------
+  Cycle:   9    -2428.5631480906   -6.92E-10   6.04E-07   <x>= 0.00E+00   eri= 00:00:00.1  
+                                                          <y>= 0.00E+00   xc=  00:00:00.0  
+                                                          <z>= 0.00E+00   dia= 00:00:00.0  
+                                                                          tot= 00:00:00.1  
+ 
+ 
+                     Energy           dE       max[F,D]   spin density    time (hh:mm:ss)
+                ----------------   ---------   --------   ------------    ---------------
+  Cycle:  10    -2428.5631480906   -1.59E-11   1.02E-07   <x>= 0.00E+00   eri= 00:00:00.1  
+                                                          <y>= 0.00E+00   xc=  00:00:00.0  
+                                                          <z>= 0.00E+00   dia= 00:00:00.0  
+                                                                          tot= 00:00:00.1  
+
+                                                          Checkpointing ...
+ 
+ 
+                     Energy           dE       max[F,D]   spin density    time (hh:mm:ss)
+                ----------------   ---------   --------   ------------    ---------------
+  Cycle:  11    -2428.5631480906    1.05E-11   1.67E-08   <x>= 0.00E+00   eri= 00:00:00.1  
+                                                          <y>= 0.00E+00   xc=  00:00:00.0  
+                                                          <z>= 0.00E+00   dia= 00:00:00.0  
+                                                                          tot= 00:00:00.1  
+ 
+ 
+  Happy end
+ 
+ 
+  --- Electronic energy        --- =     -2465.928035106106
+  --- Nuclear-repulsion energy --- =        37.364887015514
+  --- Total energy             --- =     -2428.563148090592
+ 
+ 
+ 
+  Energy of occupied orbitals
+  ---------------------------
+ 
+  (1-5)          alpha:   -467.96288     -62.29920     -54.61971     -54.61907     -54.61863
+                 beta:    -467.96288     -62.29920     -54.61971     -54.61907     -54.61863
+ 
+  (6-10)         alpha:     -9.19657      -6.72061      -6.71005      -6.69735      -2.59713
+                 beta:      -9.19657      -6.72061      -6.71005      -6.69735      -2.59713
+ 
+  (11-15)        alpha:     -2.58253      -2.57107      -2.56728      -2.56439      -1.10904
+                 beta:      -2.58253      -2.57107      -2.56728      -2.56439      -1.10904
+ 
+  (16-18)        alpha:     -0.70677      -0.46793      -0.36460
+                 beta:      -0.70677      -0.46793      -0.36460
+ 
+ 
+ 
+ 
+  Energy of virtual orbitals
+  --------------------------
+ 
+  (19-23)        alpha:      0.17004       0.23399       0.32257       0.42497       0.61307
+                 beta:       0.17004       0.23399       0.32257       0.42497       0.61307
+ 
+  (24-28)        alpha:      0.61530       0.69658       0.69910       0.72214       0.85087
+                 beta:       0.61530       0.69658       0.69910       0.72214       0.85087
+ 
+  (29-33)        alpha:      0.87948       1.13530       1.26627       2.03861       2.25151
+                 beta:       0.87948       1.13530       1.26627       2.03861       2.25151
+ 
+  (34-38)        alpha:      2.38313       2.49683       2.62424       2.79994       3.28640
+                 beta:       2.38313       2.49683       2.62424       2.79994       3.28640
+ 
+  (39-43)        alpha:      3.41355       3.57135       3.58050       3.62632       4.02073
+                 beta:       3.41355       3.57135       3.58050       3.62632       4.02073
+ 
+  (44-48)        alpha:      4.36594       4.73734       5.06476       5.40109       7.56283
+                 beta:       4.36594       4.73734       5.06476       5.40109       7.56283
+ 
+  (49-53)        alpha:     14.44570      14.44961      14.45143      14.64599      14.93502
+                 beta:      14.44570      14.44961      14.45143      14.64599      14.93502
+ 
+  (54-58)        alpha:     20.58703      20.68157      21.80083      22.06784      22.37775
+                 beta:      20.58703      20.68157      21.80083      22.06784      22.37775
+ 
+  (59-63)        alpha:     54.10063      54.11396      54.11568      54.11763      54.26916
+                 beta:      54.10063      54.11396      54.11568      54.11763      54.26916
+ 
+  (64-68)        alpha:     54.45089      78.39557      78.52240      78.67418     223.92357
+                 beta:      54.45089      78.39557      78.52240      78.67418     223.92357
+ 
+  (69-73)        alpha:    223.92400     223.92572     224.00095     224.11801     251.62944
+                 beta:     223.92400     223.92572     224.00095     224.11801     251.62944
+ 
+  (74-78)        alpha:    251.72792     251.84515     290.56424     771.94075     772.01646
+                 beta:     251.72792     251.84515     290.56424     771.94075     772.01646
+ 
+  (79-83)        alpha:    772.10585    1119.55519    2426.14795    2426.20143    2426.26450
+                 beta:     772.10585    1119.55519    2426.14795    2426.20143    2426.26450
+ 
+  (84-88)        alpha:   3479.17101    8367.96834    8367.99681    8368.03042    9634.53567
+                 beta:    3479.17101    8367.96834    8367.99681    8368.03042    9634.53567
+ 
+  (89-91)        alpha:  24623.70519   60914.81246  162832.27681
+                 beta:   24623.70519   60914.81246  162832.27681
+ 
+ 
+ 
+ 
+
+  Checkpointing ...
+
+
+##############################################################################
+                              Finalization info
+##############################################################################
+ 
+ Memory peak for process    0 is             0.002 MB
+
+ Final time:
+    0:39:30, 26 December, 2024
+
+ Successful termination of ReSpect!
+
+
+real	0m3.576s
+user	0m26.356s
+sys	0m2.163s

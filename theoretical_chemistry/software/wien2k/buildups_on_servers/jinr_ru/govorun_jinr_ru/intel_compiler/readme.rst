@@ -8,7 +8,7 @@ https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit-down
 
 install
 ~~~~~~~
-#milias@hydra.jinr.ru:~/work/software/intel_compilers/.sh ./intel-oneapi-base-toolkit-2025.0.0.885_offline.sh  -a --silent --cli --eula accept
+milias@hydra.jinr.ru:~/work/software/intel_compilers/.sh ./intel-oneapi-base-toolkit-2025.0.0.885_offline.sh  --help
 
 milias@hydra.jinr.ru:~/work/software/intel_compilers/.sh ./intel-oneapi-base-toolkit-2025.0.0.885_offline.sh  -a  --cli --eula accept
 Extract intel-oneapi-base-toolkit-2025.0.0.885_offline to /lustre/home/user/m/milias/work/software/intel_compilers/intel-oneapi-base-toolkit-2025.0.0.885_offline...

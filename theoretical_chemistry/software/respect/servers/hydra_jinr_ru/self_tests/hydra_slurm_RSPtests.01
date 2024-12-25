@@ -43,6 +43,7 @@ echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
 #module purge
 #module load openmpi/v2.1.2-2
 module add GVR/v1.0-1
+module add Python/v3.10.13
 
 echo -e "\n\n loaded modules:"
 module list
@@ -52,13 +53,13 @@ module list
  RSP=/lustre/home/user/m/milias/work/software/respect/ReSpect_5.3.0_2024_x86_64_omp_static
 
  cd $RSP/test
- echo "I am in :";pwd; ls -lt
+ echo "I am in directory :";pwd; ls -lt
 
   ulimit -s unlimited
   df -h /tmp
 
 
-  echo ""
+  echo "Running ./testrs.py --nt=4 --scratch=/tmp "
   ./testrs.py --nt=4 --scratch=/tmp
 
 exit

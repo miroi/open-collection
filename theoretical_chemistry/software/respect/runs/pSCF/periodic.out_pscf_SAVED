@@ -1,0 +1,959 @@
+##############################################################################
+                              Environment setting
+##############################################################################
+
+ Job setting:
+    
+    Call arguments   are    --pscf --scratch=/lustre/home/user/m/milias/scratch --inp=periodic --nt=12 
+    Input file name   is   periodic.inp
+    Binary  directory is   /lustre/home/user/m/milias/work/software/respect/ReSpect_5.3.0_2024_x86_64_omp_static
+    Work    directory is   /lustre/home/user/m/milias/work/projects/open-collection/theoretical_chemistry/software/respect/runs/pSCF/
+    Scratch directory is   /lustre/home/user/m/milias/scratch/tmp28104._64f1tl5.milias
+    Machine name      is   n02p005
+    OMP stack memory size  2048m
+    OMP parallel job with  12 threads
+    Output  file will be   /lustre/home/user/m/milias/work/projects/open-collection/theoretical_chemistry/software/respect/runs/pSCF/periodic.out_pscf
+
+
+ System setting:
+
+    core file size          (blocks, -c) unlimited
+    data seg size           (kbytes, -d) unlimited
+    scheduling priority             (-e) 0
+    file size               (blocks, -f) unlimited
+    pending signals                 (-i) 767566
+    max locked memory       (kbytes, -l) unlimited
+    max memory size         (kbytes, -m) 67108864
+    open files                      (-n) 131072
+    pipe size            (512 bytes, -p) 8
+    POSIX message queues     (bytes, -q) 819200
+    real-time priority              (-r) 0
+    stack size              (kbytes, -s) unlimited
+    cpu time               (seconds, -t) unlimited
+    max user processes              (-u) 767566
+    virtual memory          (kbytes, -v) unlimited
+    file locks                      (-x) unlimited
+    omp_thread_limit:
+    omp_stacksize:2048m
+    
+
+##############################################################################
+                               Program ReSpect
+##############################################################################
+::
+
+ Version:       5.3.0 (2024)
+ Released:      14. July 2024
+
+ Branch:        release-5.3-2024
+ Commit hash:   7b218e5b5
+ Commit author: Michal Repisky
+ Commit date:   Mon Jul 15 14:48:00 2024 +0200
+
+ Webpage:       http://www.respectprogram.org 
+ Copyright:     ReSpect is distributed as proprietary software at no cost
+                and is currently available as OpenMP parallel static binaries
+                for Linux OS and x86_64 architecture at the program webpage.
+                The program is limited to non-commercial, academic, and non-profit
+                private use and its further copy, modification, redistribution or
+                sublicense in whole or in part is not permitted.
+                The specific terms of use are available at:
+                http://www.respectprogram.org/download.html.
+                The program is distributed AS IS in a hope it becomes useful.
+                The experimental nature of the program means that authors accept
+                no responsibility for the correctness of results nor fitness for
+                a particular purpose.
+
+ Reference(s):  If results obtained with ReSpect are published in the scientific
+                literature or publicly accessible reports, the users shall reference
+                the program as:
+
+                ReSpect: Relativistic Spectroscopy DFT Program Package
+                M. Repisky, S. Komorovsky, M. Kadek, L. Konecny, U. Ekstrom,
+                E. Malkin, M. Kaupp, K. Ruud, O. L. Malkina, and V. G. Malkin,
+                J. Chem. Phys. 152, 184101 (2020) [DOI: https://doi.org/10.1063/5.0005094]
+                Version: 5.3.0 (2024), Program webpage: http://www.respectprogram.org
+
+                Using specific theoretical methods included in ReSpect may require citing
+                additional articles, as described in this output file as "REQUIRED REFERENCES".
+
+
+ -------
+ Authors
+ -------
+ Repisky Michal
+ Komorovsky Stanislav
+
+
+ --------
+ Founders
+ --------
+ Ruud Kenneth
+ Kaupp Martin
+ Malkina Olga L.
+ Malkin Vladimir G.
+
+
+ ------------
+ Contributors
+ ------------
+ Bast Radovan         - AutoCMake library
+ Di Remigio Roberto   - PCMSolver library
+ Ekstrom Ulf          - XCFun library
+ Joosten Marc         - NQCC/EFG library
+ Kadek Marius         - solid-state pSCF library
+                      - real-time TDDFT (RT-TDDFT) library
+ Knecht Stefan        - pilot MPI parallelization
+ Konecny Lukas        - real-time TDDFT (RT-TDDFT) library
+                      - damped-response TDDFT (DR-TDDFT) library
+ Malkin Elena         - one-component molecular properties
+                      - finite size nucleus and magnetic moment models
+ Malkin-Ondik Irina   - Douglas-Kroll-Hess (DKH) Hamiltonians
+ Moitra Torsha        - transient (pump-probe) absorption spectroscopy
+
+
+
+
+##############################################################################
+                    Configuration, build, and runtime info
+##############################################################################
+::
+
+ -----------------------------------
+ Configuration and build information
+ -----------------------------------
+
+ Who compiled           | repisky
+ Compiled on server     | quaternion
+ Operating system       | Linux-5.15.0-105-generic
+ CMake version          | 3.16.3
+ CMake generator        | Unix Makefiles
+ CMake build type       | release
+ Configuration time     | 2024-07-15 12:53:05.404450
+ Python version         | 3.9.1
+ Fortran compiler       | /opt/intel/oneapi/2023.1/compiler/2023.1.0/linux/bin/intel64/ifort
+ Fortran compiler flags |  -w -fpp -assume byterecl -static -static-intel -static-libgcc -static-libstdc++ -qopenmp -w -fpp -assume byterecl -static -static-intel -static-libgcc -static-libstdc++ -qopenmp -O2               -xW -ip
+ C compiler             | /usr/bin/gcc
+ C compiler flags       |  -std=c99 -DRESTRICT=restrict -DFUNDERSCORE=1 -DHAVE_NO_LSEEK64 -ffloat-store -Wno-unused -m64 -static -fpic -fopenmp -std=c99 -DRESTRICT=restrict -DFUNDERSCORE=1 -DHAVE_NO_LSEEK64 -ffloat-store -Wno-unused -m64 -static -fpic -fopenmp -O2 -ffast-math -funroll-loops -ftree-vectorize
+ C++ compiler           | /usr/bin/g++
+ C++ compiler flags     |  -Wall -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused -fno-rtti -fno-exceptions -m64 -static -fpic -fopenmp -Wall -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused -fno-rtti -fno-exceptions -m64 -static -fpic -fopenmp -O3 -mtune=native -DNDEBUG
+ Static linking         | True
+ MPI parallelization    | False
+ OMP parallelization    | True
+ Math libraries         | unknown
+ Explicit libraries     | unknown
+
+
+ ------------
+ Runtime info
+ ------------
+
+ Parallelization model: OpenMP
+   Master process has 12 threads of total 12
+
+ Initial time:
+    0:27:50, 26 December, 2024
+
+
+##############################################################################
+                            Input processing info
+##############################################################################
+::
+
+ ----------
+ Input file
+ ----------
+
+ pscf:
+      geo-units:  bohr
+      geometry:
+           Ne   0.000000   0.000000   0.000000
+      lattice:
+           a1:    2.500000  -4.330127
+           a2:    2.500000   4.330127
+ 
+      kmesh:          11x11x1
+      basis:          ucc-pvdz
+      method:         ks/pbe
+      initmo:         atomic
+      nc-model:       point
+      diis:           on
+      maxiterations:  30
+      convergence:    1.0e-8
+ 
+      peri:
+           lmax:          15
+           threshold:     1.0e-10
+      grid:
+           all:   50   194
+      xc:
+           library: libxc
+
+
+ ----------------
+ Input processing
+ ----------------
+
+ ... geometry defined in units: bohr
+
+ ... geometry processing (xyz format)
+
+     Ne   0.000000   0.000000   0.000000
+ 
+ ... lattice geometry processing
+
+ ... primitive vector 1:  2.50E+00-4.33E+00 0.00E+00
+
+ ... primitive vector 2:  2.50E+00 4.33E+00 0.00E+00
+
+ ... mesh of k points: 11 x 11 x 1
+
+ ... orbital basis required
+
+     all: ucc-pvdz
+ 
+ ... method: Kohn-Sham DFT theory based on
+             one-component non-relativistic Hamiltonian (KS)
+
+ ... GGA XC functional: PBE
+
+ ... nuclear charge distribution model: point
+
+ ... DIIS scheme turned on
+
+ ... maximum number of periodic scf iterations:   30
+
+ ... periodic scf convergence criteria:  1.00E-08
+
+ ... max. angular momentum of multipole expansion:   15
+
+ ... integral screening threshold used for the calculation of ERIs:   1.00E-10
+
+ ... DFT grid of atom-specific quality required
+
+     all:   50   194
+
+ ... DFT XC library: LIBXC
+
+ ... crystalline orbitals init: superposition of atomic densities
+
+
+
+##############################################################################
+                             REQUIRED REFERENCES
+##############################################################################
+
+ The theoretical foundation and first benchmark data of the relativistic
+ four-component DFT for solids and periodic systems for the calculation
+ of electronic band structures and density-of-states were presented in:
+
+ [1] M. Kadek, M. Repisky, and K. Ruud, Phys. Rev. B 99, 205103 (2019)
+     [DOI: https://doi.org/10.1103/PhysRevB.99.205103]
+
+ LIBXC: a library of DFT exchange-correlation functionals (version 5.2.2)
+
+ [2] S. Lehtola, et al., SoftwareX 7, 1-5 (2018)
+     [DOI: https://doi.org/10.1016/j.softx.2017.11.002]
+
+
+##############################################################################
+                              Periodic DFT grid
+##############################################################################
+
+
+DFT grid generator (PBC)
+------------------------
+::
+
+ Becke atomic partitioning scheme
+ Lebedev angular quadrature (fixed size)
+ Rotational invariance of grid points: random rotation
+ Gauss-Chebyshev(I) radial quadrature
+ Radial grid points mapping:  Becke
+ Radial grid points shift:    True
+ Grid file:                   grid.pscf
+
+ Lattice size (A,B,#L):            1           1          61
+ Periodicity required:            2
+ Lattice size maximum:           61
+  
+ Atom   1 has    9700 grid points ( 0)
+ Total           9700 grid points (generated in    0.2 seconds)
+
+
+##############################################################################
+                    Atomic, molecular, and basis sets info
+##############################################################################
+
+
+Atomic and Nuclear Constants
+----------------------------
+::
+
+ The data used in this calculation (unless changed from input) are from
+ the CODATA recommended values of the fundamental physical constants 2010
+ (online at http://physics.nist.gov/constants) and from the 2006 compilation
+ of the Particle Data Group (online at http://pdg.lbl.gov).
+ All values are in the SI-based atomic units unless stated otherwise.
+
+ Inverse fine-structure constant =   137.035999074000
+ Bohr radius [A]                 =     0.529177210920
+ Hartree energy [eV]             =    27.211385050000
+ Electric dipole moment [Debye]  =     2.541746363608
+
+ atom    label     Z    isotop    atomic mass       spin         g-value 
+ ----------------------------------------------------------------------- 
+  Ne       1      10      20       19.992440      0.000000      0.000000
+
+
+
+Molecular geometry [A]
+----------------------
+::
+
+ atom    label                 cartesian coordinates            
+ -------------------------------------------------------------- 
+  Ne       1         0.000000         0.000000         0.000000
+
+
+
+Interatomic distances [A]
+-------------------------
+::
+
+ ---          Ne (   1)
+ Ne (   1)    0.000000
+
+
+
+Atomic orbital basis
+--------------------
+::
+
+ atom  label     prim    cont     orbital basis set details     
+ ---------------------------------------------------------------
+  Ne     1         26      26     [9s4p1d]  ucc-pvdz
+
+ Total number of           GTO shells =      14
+ Total number of spherical GTO functions =   26
+ Total number of cartesian GTO functions =   27
+
+
+
+
+ReSpect output
+==============
+
+ 
+  Lattice Fock setting
+  --------------------
+  number atoms:                                   1
+  number GTO shells:                             14
+  nucleus model:                              point
+  ERI classes (up to):                         LLLL
+  threshold relevant overlaps:           1.0000E-12
+  ERI threshold screening:               1.0000E-10
+  ERI threshold Gauss extent:            1.0000E-09
+  ERI well separated (ws) index:                  1
+  ERI max multipole order (L):                   15
+  ERI FMM lowest tier box length:        2.00000000
+  ERI acceleration:                             none
+  inverse fine-structure constant:     137.03599907
+  DFT:                                           on
+  DFT functional ID:                              4
+  DFT screening threshold:               1.0000E-10
+  HF global exchange scaling factor:     0.00000000
+  HF range-separated scaling factor:     0.00000000
+  HF range-separated erf w-argument:     0.00000000
+  XC library:                                  libxc
+  crystal periodicity:                            2
+  crystal near-field unit cells:                 31
+  crystal near field supercell:            7      7      1
+  lattice primitive vector 1:            2.50000000   -4.33012700    0.00000000
+  lattice primitive vector 2:            2.50000000    4.33012700    0.00000000
+  lattice primitive vector 3:            0.00000000    0.00000000    0.00000000
+  unit cell volume [Bohr^3]:            21.65063500
+ 
+ 
+  SCF setting
+  -----------
+  scalar basis size:                        26
+  wave-function components:                  1
+  number of matrices:                        1
+  number of electrons:                      10
+  nr. of fully filled bands:                 0
+  max. nr. conduction bands:                10
+  maximum number of iterations:             30
+  convergence threshold:            1.0000E-08
+  basis projection threshold:       1.0000E-07
+  NES identification threshold:     1.0000E-08
+  Fock matrix mixing factor:        0.20000000
+  spin-orbit scaling factor:        1.00000000
+  initial crystalline orbitals:   superposition of atomic densities
+  checkpoint iteration:                      5
+  Lowdin+Cmat (all k) require:           0.002 GB of memory per node
+  remaining matrices (1 k) req:          0.000 GB of memory per process
+  Lowdin+Cmat stored to disk:               no
+ 
+ 
+  Reciprocal lattice
+  ------------------
+  periodicity:                               2
+  number of k points:                11     11      1
+  inverse primitive vector 1:       1.25663706   -0.72551975    0.00000000
+  inverse primitive vector 2:       1.25663706    0.72551975    0.00000000
+  inverse primitive vector 3:       0.00000000    0.00000000    0.00000000
+ 
+ 
+  DIIS setting
+  ------------
+  DIIS acceleration:                        ON
+  start DIIS from iteration:                 2
+  minimum DIIS dimension:                    3
+  maximum DIIS dimension:                   49
+ 
+ 
+  Toeplitz real-space structures info
+  -----------------------------------
+  real-space supercell size:             5      5      1
+  relevant overlap distributions:             670
+  relevant matrix elements:                  3189
+  relevant quaternion components:               1
+  memory required per MPI process:          0.000 GB
+ 
+ 
+  Periodic Bloch-SCF
+  ==================
+ 
+ 
+  building the Lowdin orthogonalization matrix...
+ 
+  orthogonalization procedure output
+  ----------------------------------
+  number of projected bands range:             0      0
+  average (over k) nr projected bands:         0.000
+  maximum error on "L+SL=1" (LL):              8.227E-14
+  maximum error on "L+SL=1" (SS):              0.000E+00
+  maximum error on the RKB condition:          0.000E+00
+  maximum LL overlap on boundary:              1.781E-008
+  maximum SS overlap on boundary:              0.000E+000
+  smallest metric eigenvalue LL(,SS):          1.454E-02
+  relative eigenvalue range LL(,SS):           8.251E+02
+ 
+ 
+  calculating the Coulomb interactions...
+
+    unit cell charge and dipole moment (Cart.):        -0.000000000000        0.000000000000       -0.000000000000        0.000000000000
+
+  calculating the exchange-correlation (XC) terms...
+
+    Grid and Basis spatial extent:     2.2394351356E+03         7.8989815579E+00         16     1.0547E-01
+
+  ===============================================================================================
+ 
+  Cycle:   1   energy =        -128.779909413460     dE = -1.288E+02     max[F,D] =  0.000E+00
+               energy/vol =      -5.948089255279
+               LUCO-HOCO =        1.3944312071
+               e-p gap/(2c^2) =   0.0000000000
+ 
+  nr of el (+) minus pos (-) states:           0
+  fractional occ. at Fermi level:              1/1
+  err on grid integration (#electrons):      1.211E-05
+  max error on Fock (k space, oSAO):         4.547E-12
+  max error on Fock (realspace LL,SS):       3.469E-18     0.000E+00
+  cell extent of Pmat (LL):                  3.321E-01     1.661E-04
+  cell extent of Pmat (SS):                  0.000E+00     0.000E+00
+  error on the time-reversal symmetry:       0.000E+00
+  max energy diff of spin-splittings:        0.000E+00
+ 
+                                energy               wall-time
+                                ------               ---------
+  kinetic:                    129.524232345373
+  Coulomb:                   -245.850558062713       00:00:00.24
+  exact exchange:               0.000000000000       00:00:00.00
+  exchange-correlation:       -12.453583696119       00:00:00.26
+  total Fock:                -128.779909413460       00:00:00.51
+  DIIS wall-time:                                    00:00:00.00
+  disk access wall-time:                             00:00:00.00
+  FT wall-time:                                      00:00:00.02
+  diag wall-time:                                    00:00:00.02
+  remaining wall-time:                               00:00:00.01
+  total cycle wall-time:                             00:00:00.56
+ 
+ 
+ 
+ 
+ 
+  calculating the Coulomb interactions...
+
+    unit cell charge and dipole moment (Cart.):         0.000000000000       -0.002594791783        0.005839172054        0.000000000000
+
+  calculating the exchange-correlation (XC) terms...
+
+    Grid and Basis spatial extent:     2.2394351356E+03         7.8989815579E+00         16     1.0547E-01
+
+  ===============================================================================================
+ 
+  Cycle:   2   energy =        -128.799791548679     dE = -1.988E-02     max[F,D] =  2.701E-02
+               energy/vol =      -5.949007571772
+               LUCO-HOCO =        1.3959260193
+               e-p gap/(2c^2) =   0.0000000000
+ 
+  nr of el (+) minus pos (-) states:           0
+  fractional occ. at Fermi level:              1/1
+  err on grid integration (#electrons):      1.174E-05
+  max error on Fock (k space, oSAO):         3.638E-12
+  max error on Fock (realspace LL,SS):       3.686E-18     0.000E+00
+  cell extent of Pmat (LL):                  3.313E-01     1.645E-04
+  cell extent of Pmat (SS):                  0.000E+00     0.000E+00
+  error on the time-reversal symmetry:       0.000E+00
+  max energy diff of spin-splittings:        0.000E+00
+ 
+                                energy               wall-time
+                                ------               ---------
+  kinetic:                    128.431429078978
+  Coulomb:                   -244.832115394986       00:00:00.04
+  exact exchange:               0.000000000000       00:00:00.00
+  exchange-correlation:       -12.399105232671       00:00:00.24
+  total Fock:                -128.799791548679       00:00:00.28
+  DIIS wall-time:                                    00:00:00.01
+  disk access wall-time:                             00:00:00.00
+  FT wall-time:                                      00:00:00.02
+  diag wall-time:                                    00:00:00.01
+  remaining wall-time:                               00:00:00.01
+  total cycle wall-time:                             00:00:00.33
+ 
+ 
+ 
+ 
+ 
+  calculating the Coulomb interactions...
+
+    unit cell charge and dipole moment (Cart.):         0.000000000000       -0.002574615584        0.005795717396       -0.000000000000
+
+  calculating the exchange-correlation (XC) terms...
+
+    Grid and Basis spatial extent:     2.2394351356E+03         7.8989815579E+00         16     1.0547E-01
+
+  ===============================================================================================
+ 
+  Cycle:   3   energy =        -128.799869207174     dE = -7.766E-05     max[F,D] =  2.138E-02
+               energy/vol =      -5.949011158665
+               LUCO-HOCO =        1.3968749322
+               e-p gap/(2c^2) =   0.0000000000
+ 
+  nr of el (+) minus pos (-) states:           0
+  fractional occ. at Fermi level:              1/1
+  err on grid integration (#electrons):      1.182E-05
+  max error on Fock (k space, oSAO):         3.638E-12
+  max error on Fock (realspace LL,SS):       1.735E-18     0.000E+00
+  cell extent of Pmat (LL):                  3.308E-01     1.636E-04
+  cell extent of Pmat (SS):                  0.000E+00     0.000E+00
+  error on the time-reversal symmetry:       0.000E+00
+  max energy diff of spin-splittings:        0.000E+00
+ 
+                                energy               wall-time
+                                ------               ---------
+  kinetic:                    128.487522244886
+  Coulomb:                   -244.882680513924       00:00:00.04
+  exact exchange:               0.000000000000       00:00:00.00
+  exchange-correlation:       -12.404710938137       00:00:00.24
+  total Fock:                -128.799869207174       00:00:00.28
+  DIIS wall-time:                                    00:00:00.00
+  disk access wall-time:                             00:00:00.00
+  FT wall-time:                                      00:00:00.02
+  diag wall-time:                                    00:00:00.01
+  remaining wall-time:                               00:00:00.01
+  total cycle wall-time:                             00:00:00.33
+ 
+ 
+ 
+ 
+ 
+  calculating the Coulomb interactions...
+
+    unit cell charge and dipole moment (Cart.):        -0.000000000000       -0.002562161485        0.005768970709        0.000000000000
+
+  calculating the exchange-correlation (XC) terms...
+
+    Grid and Basis spatial extent:     2.2394351356E+03         7.8989815579E+00         16     1.0547E-01
+
+  ===============================================================================================
+ 
+  Cycle:   4   energy =        -128.799894910574     dE = -2.570E-05     max[F,D] =  1.698E-02
+               energy/vol =      -5.949012345854
+               LUCO-HOCO =        1.3989826059
+               e-p gap/(2c^2) =   0.0000000000
+ 
+  nr of el (+) minus pos (-) states:           0
+  fractional occ. at Fermi level:              1/1
+  err on grid integration (#electrons):      1.186E-05
+  max error on Fock (k space, oSAO):         4.547E-12
+  max error on Fock (realspace LL,SS):       1.110E-16     0.000E+00
+  cell extent of Pmat (LL):                  3.302E-01     1.624E-04
+  cell extent of Pmat (SS):                  0.000E+00     0.000E+00
+  error on the time-reversal symmetry:       0.000E+00
+  max energy diff of spin-splittings:        0.000E+00
+ 
+                                energy               wall-time
+                                ------               ---------
+  kinetic:                    128.519900773001
+  Coulomb:                   -244.911868692573       00:00:00.04
+  exact exchange:               0.000000000000       00:00:00.00
+  exchange-correlation:       -12.407926991002       00:00:00.24
+  total Fock:                -128.799894910574       00:00:00.28
+  DIIS wall-time:                                    00:00:00.01
+  disk access wall-time:                             00:00:00.00
+  FT wall-time:                                      00:00:00.02
+  diag wall-time:                                    00:00:00.01
+  remaining wall-time:                               00:00:00.01
+  total cycle wall-time:                             00:00:00.34
+ 
+ 
+ 
+ 
+ 
+  calculating the Coulomb interactions...
+
+    unit cell charge and dipole moment (Cart.):        -0.000000000000       -0.002536867018        0.005715259291        0.000000000000
+
+  calculating the exchange-correlation (XC) terms...
+
+    Grid and Basis spatial extent:     2.2394351356E+03         7.8989815579E+00         16     1.0547E-01
+
+  checkpoint: iteration    5 is recorded
+ 
+  ===============================================================================================
+ 
+  Cycle:   5   energy =        -128.799908910587     dE = -1.400E-05     max[F,D] =  1.603E-05
+               energy/vol =      -5.949012992487
+               LUCO-HOCO =        1.3989893562
+               e-p gap/(2c^2) =   0.0000000000
+ 
+  nr of el (+) minus pos (-) states:           0
+  fractional occ. at Fermi level:              1/1
+  err on grid integration (#electrons):      1.193E-05
+  max error on Fock (k space, oSAO):         2.728E-12
+  max error on Fock (realspace LL,SS):       1.735E-18     0.000E+00
+  cell extent of Pmat (LL):                  3.302E-01     1.624E-04
+  cell extent of Pmat (SS):                  0.000E+00     0.000E+00
+  error on the time-reversal symmetry:       0.000E+00
+  max energy diff of spin-splittings:        0.000E+00
+ 
+                                energy               wall-time
+                                ------               ---------
+  kinetic:                    128.567360939514
+  Coulomb:                   -244.954817510063       00:00:00.04
+  exact exchange:               0.000000000000       00:00:00.00
+  exchange-correlation:       -12.412452340038       00:00:00.24
+  total Fock:                -128.799908910587       00:00:00.28
+  DIIS wall-time:                                    00:00:00.01
+  disk access wall-time:                             00:00:00.00
+  FT wall-time:                                      00:00:00.02
+  diag wall-time:                                    00:00:00.01
+  remaining wall-time:                               00:00:00.07
+  total cycle wall-time:                             00:00:00.40
+ 
+ 
+ 
+ 
+ 
+  calculating the Coulomb interactions...
+
+    unit cell charge and dipole moment (Cart.):         0.000000000000       -0.002536774056        0.005715058193       -0.000000000000
+
+  calculating the exchange-correlation (XC) terms...
+
+    Grid and Basis spatial extent:     2.2394351356E+03         7.8989815579E+00         16     1.0547E-01
+
+  ===============================================================================================
+ 
+  Cycle:   6   energy =        -128.799908911108     dE = -5.211E-10     max[F,D] =  4.604E-07
+               energy/vol =      -5.949012992511
+               LUCO-HOCO =        1.3989891608
+               e-p gap/(2c^2) =   0.0000000000
+ 
+  nr of el (+) minus pos (-) states:           0
+  fractional occ. at Fermi level:              1/1
+  err on grid integration (#electrons):      1.193E-05
+  max error on Fock (k space, oSAO):         4.547E-12
+  max error on Fock (realspace LL,SS):       2.602E-18     0.000E+00
+  cell extent of Pmat (LL):                  3.302E-01     1.624E-04
+  cell extent of Pmat (SS):                  0.000E+00     0.000E+00
+  error on the time-reversal symmetry:       0.000E+00
+  max energy diff of spin-splittings:        0.000E+00
+ 
+                                energy               wall-time
+                                ------               ---------
+  kinetic:                    128.567631031173
+  Coulomb:                   -244.955059173424       00:00:00.04
+  exact exchange:               0.000000000000       00:00:00.00
+  exchange-correlation:       -12.412480768857       00:00:00.24
+  total Fock:                -128.799908911108       00:00:00.28
+  DIIS wall-time:                                    00:00:00.00
+  disk access wall-time:                             00:00:00.00
+  FT wall-time:                                      00:00:00.02
+  diag wall-time:                                    00:00:00.01
+  remaining wall-time:                               00:00:00.01
+  total cycle wall-time:                             00:00:00.34
+ 
+ 
+ 
+ 
+ 
+  calculating the Coulomb interactions...
+
+    unit cell charge and dipole moment (Cart.):         0.000000000000       -0.002536776743        0.005715064023       -0.000000000000
+
+  calculating the exchange-correlation (XC) terms...
+
+    Grid and Basis spatial extent:     2.2394351356E+03         7.8989815579E+00         16     1.0547E-01
+
+  ===============================================================================================
+ 
+  Cycle:   7   energy =        -128.799908911115     dE = -6.992E-12     max[F,D] =  2.163E-08
+               energy/vol =      -5.949012992511
+               LUCO-HOCO =        1.3989891694
+               e-p gap/(2c^2) =   0.0000000000
+ 
+  nr of el (+) minus pos (-) states:           0
+  fractional occ. at Fermi level:              1/1
+  err on grid integration (#electrons):      1.193E-05
+  max error on Fock (k space, oSAO):         4.547E-12
+  max error on Fock (realspace LL,SS):       3.469E-18     0.000E+00
+  cell extent of Pmat (LL):                  3.302E-01     1.624E-04
+  cell extent of Pmat (SS):                  0.000E+00     0.000E+00
+  error on the time-reversal symmetry:       0.000E+00
+  max energy diff of spin-splittings:        0.000E+00
+ 
+                                energy               wall-time
+                                ------               ---------
+  kinetic:                    128.567623709099
+  Coulomb:                   -244.955052675488       00:00:00.04
+  exact exchange:               0.000000000000       00:00:00.00
+  exchange-correlation:       -12.412479944727       00:00:00.24
+  total Fock:                -128.799908911115       00:00:00.28
+  DIIS wall-time:                                    00:00:00.01
+  disk access wall-time:                             00:00:00.00
+  FT wall-time:                                      00:00:00.02
+  diag wall-time:                                    00:00:00.01
+  remaining wall-time:                               00:00:00.01
+  total cycle wall-time:                             00:00:00.34
+ 
+ 
+ 
+ 
+ 
+  calculating the Coulomb interactions...
+
+    unit cell charge and dipole moment (Cart.):         0.000000000000       -0.002536776624        0.005715063764        0.000000000000
+
+  calculating the exchange-correlation (XC) terms...
+
+    Grid and Basis spatial extent:     2.2394351356E+03         7.8989815579E+00         16     1.0547E-01
+
+  ===============================================================================================
+ 
+  Cycle:   8   energy =        -128.799908911116     dE = -9.663E-13     max[F,D] =  1.128E-10
+               energy/vol =      -5.949012992511
+               LUCO-HOCO =        1.3989891693
+               e-p gap/(2c^2) =   0.0000000000
+ 
+  nr of el (+) minus pos (-) states:           0
+  fractional occ. at Fermi level:              1/1
+  err on grid integration (#electrons):      1.193E-05
+  max error on Fock (k space, oSAO):         4.547E-12
+  max error on Fock (realspace LL,SS):       1.110E-16     0.000E+00
+  cell extent of Pmat (LL):                  3.302E-01     1.624E-04
+  cell extent of Pmat (SS):                  0.000E+00     0.000E+00
+  error on the time-reversal symmetry:       0.000E+00
+  max energy diff of spin-splittings:        0.000E+00
+ 
+                                energy               wall-time
+                                ------               ---------
+  kinetic:                    128.567624057122
+  Coulomb:                   -244.955052986464       00:00:00.04
+  exact exchange:               0.000000000000       00:00:00.00
+  exchange-correlation:       -12.412479981775       00:00:00.24
+  total Fock:                -128.799908911116       00:00:00.28
+  DIIS wall-time:                                    00:00:00.01
+  disk access wall-time:                             00:00:00.00
+  FT wall-time:                                      00:00:00.02
+  diag wall-time:                                    00:00:00.01
+  remaining wall-time:                               00:00:00.01
+  total cycle wall-time:                             00:00:00.34
+ 
+ 
+ 
+ 
+ 
+ 
+  Happy end
+ 
+ 
+ 
+  Final iteration                     =            8
+  Total energy per unit cell          =         -128.799908911116
+  Total energy per unit cell [eV]     =        -3504.823915785310
+  Total energy per volume [eV/Bohr^3] =         -161.880883206673
+  Band energies shifted by            =           -0.4238805445
+  HOCO energy                         =            0.0000000000
+  LUCO energy                         =            1.3989891693
+  LUCO-HOCO energy                    =            1.3989891693
+  LUCO-HOCO energy [eV]               =           38.0684329675
+  Electron-positron gap [2c^2]        =            0.0000000000
+  Fractional occ. at Fermi level      =            1/1
+  Convergence of energy               =           -9.663E-13
+  Convergence of [F,D]                =            1.128E-10
+  Grid error (on #electrons)          =            1.193E-05
+  Err on sym of Fock (realspace, LL)  =            1.110E-16
+  Err on sym of Fock (realspace, SS)  =            0.000E+00
+  Err on sym of Fock (k space, oSAO)  =            4.547E-12
+  Err on time-reversal sym            =            0.000E+00
+  Max spin-splitting energy           =            0.000E+00
+  Pmat (LL) cell extent               =            3.302E-01     1.624E-04
+  Pmat (SS) cell extent               =            0.000E+00     0.000E+00
+ 
+ 
+  Crystalline-orbital energies at Gamma point:
+  --------------------------------------------
+                 Band           Energy[Hartree]          Energy[eV]       Occupation
+  ----------------------------------------------------------------------------------
+  CO_Energy:        1           -30.0322800506          -817.2199363862         1.00
+  CO_Energy:        2           -30.0322800506          -817.2199363862         1.00
+  CO_Energy:        3            -0.8811107895           -23.9762449658         1.00
+  CO_Energy:        4            -0.8811107895           -23.9762449658         1.00
+  CO_Energy:        5            -0.0319715481            -0.8699901061         1.00
+  CO_Energy:        6            -0.0319715481            -0.8699901061         1.00
+  CO_Energy:        7            -0.0000018457            -0.0000502244         1.00
+  CO_Energy:        8            -0.0000018457            -0.0000502244         1.00
+  CO_Energy:        9             0.0000000000             0.0000000000         1.00
+  CO_Energy:       10             0.0000000000             0.0000000000         1.00
+  CO_Energy:       11             1.5863669606            43.1672421957         0.00
+  CO_Energy:       12             1.5863669606            43.1672421957         0.00
+  CO_Energy:       13             1.9232162754            52.3333786053         0.00
+  CO_Energy:       14             1.9232162754            52.3333786053         0.00
+  CO_Energy:       15             1.9929948500            54.2321502667         0.00
+  CO_Energy:       16             1.9929948500            54.2321502667         0.00
+  CO_Energy:       17             1.9930045299            54.2324136699         0.00
+  CO_Energy:       18             1.9930045299            54.2324136699         0.00
+  CO_Energy:       19             5.0370093932           137.0640020998         0.00
+  CO_Energy:       20             5.0370093932           137.0640020998         0.00
+  CO_Energy:       21             5.0370311632           137.0645944895         0.00
+  CO_Energy:       22             5.0370311632           137.0645944895         0.00
+  CO_Energy:       23             5.0370362142           137.0647319353         0.00
+  CO_Energy:       24             5.0370362142           137.0647319353         0.00
+  CO_Energy:       25             5.0370517356           137.0651542933         0.00
+  CO_Energy:       26             5.0370517356           137.0651542933         0.00
+  CO_Energy:       27             5.0370723458           137.0657151266         0.00
+  CO_Energy:       28             5.0370723458           137.0657151266         0.00
+  CO_Energy:       29             8.9159478965           242.6152912971         0.00
+  CO_Energy:       30             8.9159478965           242.6152912971         0.00
+  CO_Energy:       31             9.2030338065           250.4272965358         0.00
+  CO_Energy:       32             9.2030338065           250.4272965358         0.00
+  CO_Energy:       33             9.2030418255           250.4275147456         0.00
+  CO_Energy:       34             9.2030418255           250.4275147456         0.00
+  CO_Energy:       35            18.4784026283           502.8229290286         0.00
+  CO_Energy:       36            18.4784026283           502.8229290286         0.00
+  CO_Energy:       37            51.5764289416          1403.4660674332         0.00
+  CO_Energy:       38            51.5764289416          1403.4660674332         0.00
+  CO_Energy:       39            51.7293234306          1407.6265382461         0.00
+  CO_Energy:       40            51.7293234306          1407.6265382461         0.00
+  CO_Energy:       41            51.7293238789          1407.6265504446         0.00
+  CO_Energy:       42            51.7293238789          1407.6265504446         0.00
+  CO_Energy:       43            91.3173636074          2484.8719428718         0.00
+  CO_Energy:       44            91.3173636074          2484.8719428718         0.00
+  CO_Energy:       45           349.7360866528          9516.8033197901         0.00
+  CO_Energy:       46           349.7360866528          9516.8033197901         0.00
+  CO_Energy:       47          1331.0491056376         36219.6897339624         0.00
+  CO_Energy:       48          1331.0491056376         36219.6897339624         0.00
+  CO_Energy:       49          5765.8334052409        156896.3129241631         0.00
+  CO_Energy:       50          5765.8334052409        156896.3129241631         0.00
+  CO_Energy:       51         34700.2407265896        944241.6117389225         0.00
+  CO_Energy:       52         34700.2407265896        944241.6117389225         0.00
+  ----------------------------------------------------------------------------------
+ 
+ 
+  Groups of overlapping bands, band positions, widths, and gaps
+  -------------------------------------------------------------
+  grouped bands from - to;        energy[eV] range from, to;          band width[eV]    gap above[eV]
+  ---------------------------------------------------------------------------------------------------
+   2 Bands:     1 -     2      -817.22007387      -817.21993639         0.00013748       793.24369142
+   2 Bands:     3 -     4       -23.97624497       -23.69152340         0.28472157        22.23283313
+   6 Bands:     5 -    10        -1.45869027         0.00000000         1.45869027        38.06843297
+   6 Bands:    11 -    16        38.06843297        54.23215027        16.16371730         0.00026340
+   2 Bands:    17 -    18        54.23241367        57.00782008         2.77540641        80.05618202
+  10 Bands:    19 -    28       137.06400210       137.07366897         0.00966687       102.29331564
+   6 Bands:    29 -    34       239.36698461       250.42751475        11.06053014       252.39541428
+   2 Bands:    35 -    36       502.82292903       506.15804726         3.33511824       895.42933418
+   6 Bands:    37 -    42      1401.58738144      1407.62655044         6.03916900      1077.24539243
+   2 Bands:    43 -    44      2484.87194287      2487.37441663         2.50247376      7029.42890316
+   2 Bands:    45 -    46      9516.80331979      9518.90342619         2.10010640     26700.78630778
+   2 Bands:    47 -    48     36219.68973396     36221.51930744         1.82957348    120674.79361673
+   2 Bands:    49 -    50    156896.31292416    156897.90440063         1.59147646    787343.70733830
+   2 Bands:    51 -    52    944241.61173892    944242.92357504         1.31183612         0.00000000
+  ---------------------------------------------------------------------------------------------------
+ 
+ 
+
+
+##############################################################################
+                              Finalization info
+##############################################################################
+ 
+ Memory peak for process    0 is             1.829 MB
+
+ Final time:
+    0:27:54, 26 December, 2024
+
+ Successful termination of ReSpect!
+
+
+real	0m4.358s
+user	0m37.167s
+sys	0m1.654s
+Job user is milias and his job rsp has assigned ID 7423561
+This job was submitted from the computer space01.hydra.local
+and from the home directory:
+/lustre/home/user/m/milias/work/projects/open-collection/theoretical_chemistry/software/respect/runs/pSCF
+
+It is running on the cluster compute node:
+gvr
+and is employing 1 node/nodes:
+n02p005
+
+Job partition is cascade 
+
+The job requests 12 CPU per task.
+
+
+ loaded modules:
+Currently Loaded Modulefiles:
+  1) GVR/v1.0-1        2) BASE/1.0          3) Python/v3.10.13
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda3       216G   14G  192G   7% /
+Filesystem                               Size  Used Avail Use% Mounted on
+10.220.25.3@o2ib,10.220.25.4@o2ib:/home  650T  467T  184T  72% /lustre/home
+
+ running /lustre/home/user/m/milias/work/software/respect/ReSpect_5.3.0_2024_x86_64_omp_static/respect --scratch=/lustre/home/user/m/milias/scratch --inp=periodic --nt=12 ...
+
+Starting time: 2024-12-26 00:27:48
+
+    ReSpect program, version 5.3.0 (2024)
+
+    Call arguments   are    --pscf --scratch=/lustre/home/user/m/milias/scratch --inp=periodic --nt=12 
+    Input file name   is   periodic.inp
+    Binary  directory is   /lustre/home/user/m/milias/work/software/respect/ReSpect_5.3.0_2024_x86_64_omp_static
+    Work    directory is   /lustre/home/user/m/milias/work/projects/open-collection/theoretical_chemistry/software/respect/runs/pSCF/
+    Scratch directory is   /lustre/home/user/m/milias/scratch/tmp28104._64f1tl5.milias
+    Machine name      is   n02p005
+    OMP stack memory size  2048m
+    OMP parallel job with  12 threads
+    Output  file will be   /lustre/home/user/m/milias/work/projects/open-collection/theoretical_chemistry/software/respect/runs/pSCF/periodic.out_pscf
+
+    Job is being run ...
+
+    ReSpect job is done ( elapsed time 0:00:07 )
+
+Ending time:   2024-12-26 00:27:55
+

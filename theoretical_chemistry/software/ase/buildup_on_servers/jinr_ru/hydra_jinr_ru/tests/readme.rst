@@ -14,3 +14,7 @@ Adsorption energy: 0.323519422318034
 batch run
 ~~~~~~~~~
 sbatch hydra_slurm_ase.01
+
+display in vm01/02:
+milias@vm01.hydra.local:~/work/projects/open-collection/theoretical_chemistry/software/ase/buildup_on_servers/jinr_ru/hydra_jinr_ru/tests/.ase gui N2Cu.traj
+

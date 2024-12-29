@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH -J ase
+#SBATCH -J asetests
 
 ##  partition (queue)
 #SBATCH -p cascade
@@ -9,19 +9,18 @@
 ## max. execution time
 ##SBATCH -t 10-00:00:00
 ##SBATCH -t 7-00:00:00
-#SBATCH -t 0-01:00:00
+#SBATCH -t 0-03:00:00
 
 ##SBATCH --exclusive
 
-#SBATCH --mem=8GB
-##SBATCH --mem=24GB
-##SBATCH --mem=16GB
+##SBATCH --mem=8GB
+#SBATCH --mem=16GB
 
 # do not restart in the case of nodefail!
 #SBATCH --no-requeue
 #SBATCH --no-kill
 
-#SBATCH -N 1 -n 2
+#SBATCH -N 1 -n 4
 #SBATCH  --sockets-per-node=1
 
 
@@ -81,10 +80,11 @@ echo -e "\n ase info :"; ase info
 
 export NSCM=$SLURM_CPUS_ON_NODE
 
-echo -e "\n Running in  $SLURM_SUBMIT_DIR : "
+echo -e "\n Running in  $SLURM_SUBMIT_DIR : ase test "
 
-  python3 test_N2Cu.py
-
+  #python3 test_N2Cu.py
   #$SLURM_SUBMIT_DIR/Po_on_O-bridges_al-q_010_O3cut_4x4_frozbottomSi.geopt_srzora_revpbe-d3bj_tzp_sc_01.run
+
+  ase test
 
 exit

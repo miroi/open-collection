@@ -47,7 +47,8 @@ fixed = list(range(len(atoms) - 1))
 atoms.constraints = [FixAtoms(indices=fixed)]
 
 atoms.calc = EMT()
-opt = BFGS(atoms, logfile=None)
+#opt = BFGS(atoms, logfile=None)
+opt = BFGS(atoms, logfile='Pt_on_Au-slab.BFGS_logfile', trajectory ='Pt_on_Au-slab.traj')
 opt.run(fmax=0.01)
 en_atom_on_surface=atoms.get_potential_energy()
 

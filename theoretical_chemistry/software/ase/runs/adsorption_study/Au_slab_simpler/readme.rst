@@ -19,3 +19,10 @@ Govorun job
 ~~~~~~~~~~~
 milias@hydra.jinr.ru:~/work/projects/open-collection/theoretical_chemistry/software/ase/runs/adsorption_study/Au_slab_simpler/.sbatch hydra_slurm_ase.01
 
+
+display trajectory
+~~~~~~~~~~~~~~~~~~
+milias@vm01.hydra.local:~/work/projects/open-collection/theoretical_chemistry/software/ase/runs/adsorption_study/Au_slab_simpler/.ase gui Pt_on_Au-slab.traj
+
+
+

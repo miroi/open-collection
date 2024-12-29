@@ -1,25 +1,168 @@
+===========================
 ase on milias@hydra.jinr.ru
 ===========================
 
 milias@hydra.jinr.ru:~/work/projects/open-collection/theoretical_chemistry/software/ase/servers/jinr_ru/hydra_jinr_ru/.pip install --upgrade ase
-
 milias@hydra.jinr.ru:~/work/projects/open-collection/theoretical_chemistry/software/ase/servers/jinr_ru/hydra_jinr_ru/.pip install pytest
 
-milias@hydra.jinr.ru:~/work/projects/open-collection/theoretical_chemistry/software/ase/servers/jinr_ru/hydra_jinr_ru/. ase --version
-ase-3.22.1
+milias@hydra.jinr.ru:~/work/projects/open-collection/theoretical_chemistry/software/ase/buildup_on_servers/jinr_ru/hydra_jinr_ru/.module list
+Currently Loaded Modulefiles:
+  1) GVR/v1.0-1        2) BASE/1.0          3) Python/v3.10.13
 
-ase gui ... works by launched Xming 
-
-milias@hydra.jinr.ru:~/work/projects/open-collection/theoretical_chemistry/software/ase/servers/jinr_ru/hydra_jinr_ru/.ase info
+milias@hydra.jinr.ru:~/work/projects/open-collection/theoretical_chemistry/software/ase/buildup_on_servers/jinr_ru/hydra_jinr_ru/.ase info
 platform                 Linux-3.10.0-1160.el7.x86_64-x86_64-with-glibc2.17
-python-3.10.2            /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/Python/v3.10.2/bin/python3.10
-ase-3.22.1               /lustre/home/user/m/milias/.local/lib/python3.10/site-packages/ase
+python-3.10.13           /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/Python/v3.10.13/bin/python3.10
+ase-3.24.0               /lustre/home/user/m/milias/.local/lib/python3.10/site-packages/ase
 numpy-1.26.4             /lustre/home/user/m/milias/.local/lib/python3.10/site-packages/numpy
 scipy-1.12.0             /lustre/home/user/m/milias/.local/lib/python3.10/site-packages/scipy
 matplotlib-3.8.3         /lustre/home/user/m/milias/.local/lib/python3.10/site-packages/matplotlib
-spglib                   not installed
-ase_ext                  not installed
-flask                    not installed
-psycopg2                 not installed
-pyamg                    not installed
+spglib-2.5.0             /lustre/home/user/m/milias/.local/lib/python3.10/site-packages/spglib
+ase_ext-20.9.0           /lustre/home/user/m/milias/.local/lib/python3.10/site-packages/ase_ext
+flask-3.0.3              /lustre/home/user/m/milias/.local/lib/python3.10/site-packages/flask
+psycopg2-2.9.9 (dt dec pq3 ext lo64) /lustre/home/user/m/milias/.local/lib/python3.10/site-packages/psycopg2
+pyamg-5.2.1              /lustre/home/user/m/milias/.local/lib/python3.10/site-packages/pyamg
+
+milias@hydra.jinr.ru:~/work/projects/open-collection/theoretical_chemistry/software/ase/buildup_on_servers/jinr_ru/hydra_jinr_ru/.pip list
+WARNING: Ignoring invalid distribution -ip (/lustre/home/user/m/milias/.local/lib/python3.10/site-packages)
+Package                      Version
+---------------------------- -----------
+absl-py                      2.1.0
+aiohappyeyeballs             2.4.3
+aiohttp                      3.11.8
+aiosignal                    1.3.1
+ase                          3.24.0
+ase-datafiles                0.1
+ase-ext                      20.9.0
+asttokens                    2.4.1
+astunparse                   1.6.3
+async-timeout                5.0.1
+attrs                        24.2.0
+blinker                      1.8.2
+certifi                      2024.8.30
+cffi                         1.17.1
+charset-normalizer           3.3.2
+click                        8.1.7
+contourpy                    1.2.0
+cycler                       0.12.1
+Cython                       3.0.10
+decorator                    5.1.1
+distlib                      0.3.8
+exceptiongroup               1.2.1
+executing                    2.1.0
+fastjsonschema               2.21.0
+filelock                     3.14.0
+Flask                        3.0.3
+flatbuffers                  24.3.25
+fonttools                    4.50.0
+frozenlist                   1.5.0
+fsspec                       2024.10.0
+gast                         0.6.0
+gin-config                   0.5.0
+google-pasta                 0.2.0
+grpcio                       1.66.2
+h5py                         3.12.1
+idna                         3.10
+iniconfig                    2.0.0
+ipython                      8.30.0
+itsdangerous                 2.2.0
+jedi                         0.19.2
+Jinja2                       3.1.4
+joblib                       1.4.2
+jsonschema                   4.23.0
+jsonschema-specifications    2024.10.1
+jupyter_core                 5.7.2
+keras                        3.5.0
+kiwisolver                   1.4.5
+libclang                     18.1.1
+lightning-utilities          0.11.9
+llvmlite                     0.41.1
+Markdown                     3.7
+markdown-it-py               3.0.0
+MarkupSafe                   2.1.5
+matplotlib                   3.8.3
+matplotlib-inline            0.1.7
+mdurl                        0.1.2
+ml-dtypes                    0.3.2
+mpmath                       1.3.0
+multidict                    6.1.0
+namex                        0.0.8
+nbformat                     5.10.4
+networkx                     3.4.2
+numba                        0.58.1
+numexpr                      2.10.1
+numpy                        1.26.4
+nvidia-cublas-cu12           12.4.5.8
+nvidia-cuda-cupti-cu12       12.4.127
+nvidia-cuda-nvrtc-cu12       12.4.127
+nvidia-cuda-runtime-cu12     12.4.127
+nvidia-cudnn-cu12            9.1.0.70
+nvidia-cufft-cu12            11.2.1.3
+nvidia-curand-cu12           10.3.5.147
+nvidia-cusolver-cu12         11.6.1.9
+nvidia-cusparse-cu12         12.3.1.170
+nvidia-nccl-cu12             2.21.5
+nvidia-nvjitlink-cu12        12.4.127
+nvidia-nvtx-cu12             12.4.127
+opt_einsum                   3.4.0
+optree                       0.12.1
+packaging                    24.0
+pandas                       2.2.3
+parso                        0.8.4
+pexpect                      4.9.0
+pillow                       10.3.0
+pip                          24.1
+platformdirs                 4.2.2
+plotly                       5.24.1
+pluggy                       1.5.0
+prompt_toolkit               3.0.48
+propcache                    0.2.0
+protobuf                     4.25.5
+psycopg2-binary              2.9.9
+ptyprocess                   0.7.0
+pure_eval                    0.2.3
+pyamg                        5.2.1
+pycparser                    2.22
+Pygments                     2.18.0
+pynndescent                  0.5.13
+pyparsing                    3.1.2
+pytest                       8.3.3
+python-dateutil              2.9.0.post0
+pytorch-lightning            2.4.0
+pytorch-metric-learning      2.7.0
+pytz                         2024.2
+PyYAML                       6.0.2
+referencing                  0.35.1
+requests                     2.32.3
+rich                         13.8.1
+rpds-py                      0.21.0
+scikit-learn                 1.5.2
+scipy                        1.12.0
+setuptools                   65.5.0
+six                          1.16.0
+spglib                       2.5.0
+stack-data                   0.6.3
+sympy                        1.13.1
+tenacity                     9.0.0
+tensorboard                  2.16.2
+tensorboard-data-server      0.7.2
+tensorflow                   2.16.1
+tensorflow-io-gcs-filesystem 0.37.1
+termcolor                    2.4.0
+threadpoolctl                3.5.0
+tomli                        2.0.1
+torch                        2.5.1
+torchmetrics                 1.6.0
+tqdm                         4.67.1
+traitlets                    5.14.3
+triton                       3.1.0
+typing_extensions            4.12.2
+tzdata                       2024.2
+umap-learn                   0.5.7
+urllib3                      2.2.3
+virtualenv                   20.26.2
+wcwidth                      0.2.13
+Werkzeug                     3.0.4
+wheel                        0.44.0
+wrapt                        1.16.0
+yarl                         1.18.0
 

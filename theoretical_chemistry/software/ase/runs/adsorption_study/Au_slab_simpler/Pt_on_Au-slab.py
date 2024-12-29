@@ -57,3 +57,4 @@ print('energy of atom plus surface system :',en_atom_on_surface)
 en_ads = en_atom_on_surface - en_atom - en_slab
 print('adsorption energy of Pt on Au fcc111 =', en_ads)
 
+#view(atoms) # for display

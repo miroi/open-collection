@@ -66,4 +66,58 @@ Installing collected packages: python-dateutil, pyparsing, pillow, numpy, kiwiso
 Successfully installed ase-3.24.0 contourpy-1.3.1 cycler-0.12.1 fonttools-4.55.3 kiwisolver-1.4.8 matplotlib-3.10.0 numpy-2.2.1 pillow-11.0.0 pyparsing-3.2.0 python-dateutil-2.9.0.post0 scipy-1.14.1
 (venv) miroi@MiroPhenomII-X6:~/software/.
 
+miroi@MiroPhenomII-X6:~/software/.source venv/bin/activate
+(venv) miroi@MiroPhenomII-X6:~/software/.ase info
+/home/miroi/software/venv/lib/python3.12/site-packages/numpy/_core/getlimits.py:551: UserWarning: Signature b'\x00\xd0\xcc\xcc\xcc\xcc\xcc\xcc\xfb\xbf\x00\x00\x00\x00\x00\x00' for <class 'numpy.longdouble'> does not match any known type: falling back to type probe function.
+This warnings indicates broken support for the dtype!
+  machar = _get_machar(dtype)
+platform                 Linux-4.4.0-19041-Microsoft-x86_64-with-glibc2.39
+python-3.12.3            /home/miroi/software/venv/bin/python3
+ase-3.24.0               /home/miroi/software/venv/lib/python3.12/site-packages/ase
+numpy-2.2.1              /home/miroi/software/venv/lib/python3.12/site-packages/numpy
+scipy-1.14.1             /home/miroi/software/venv/lib/python3.12/site-packages/scipy
+matplotlib-3.10.0        /home/miroi/software/venv/lib/python3.12/site-packages/matplotlib
+spglib                   not installed
+ase_ext                  not installed
+flask                    not installed
+psycopg2                 not installed
+pyamg                    not installed
 
+(venv) miroi@MiroPhenomII-X6:~/software/.sudo apt-get install python3-tk
+
+(venv) miroi@MiroPhenomII-X6:~/software/.ase gui
+/home/miroi/software/venv/lib/python3.12/site-packages/numpy/_core/getlimits.py:551: UserWarning: Signature b'\x00\xd0\xcc\xcc\xcc\xcc\xcc\xcc\xfb\xbf\x00\x00\x00\x00\x00\x00' for <class 'numpy.longdouble'> does not match any known type: falling back to type probe function.
+This warnings indicates broken support for the dtype!
+  machar = _get_machar(dtype)
+usage: ase [-h] [--version] [-T]
+           {help,info,test,gui,db,run,band-structure,build,dimensionality,eos,ulm,find,nebplot,nomad-upload,nomad-get,convert,reciprocal,completion,diff,exec}
+           ...
+ase: error: TclError: no display name and no $DISPLAY environment variable
+To get a full traceback, use: ase -T gui ...
+
+(venv) miroi@MiroPhenomII-X6:~/software/.ase -T gui
+/home/miroi/software/venv/lib/python3.12/site-packages/numpy/_core/getlimits.py:551: UserWarning: Signature b'\x00\xd0\xcc\xcc\xcc\xcc\xcc\xcc\xfb\xbf\x00\x00\x00\x00\x00\x00' for <class 'numpy.longdouble'> does not match any known type: falling back to type probe function.
+This warnings indicates broken support for the dtype!
+  machar = _get_machar(dtype)
+Traceback (most recent call last):
+  File "/home/miroi/software/venv/bin/ase", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/miroi/software/venv/lib/python3.12/site-packages/ase/cli/main.py", line 102, in main
+    f(args)
+  File "/home/miroi/software/venv/lib/python3.12/site-packages/ase/gui/ag.py", line 106, in run
+    gui = GUI(images, args.rotations, args.bonds, args.graph)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miroi/software/venv/lib/python3.12/site-packages/ase/gui/gui.py", line 45, in __init__
+    self.window = ui.ASEGUIWindow(close=self.exit, menu=menu,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miroi/software/venv/lib/python3.12/site-packages/ase/gui/ui.py", line 599, in __init__
+    MainWindow.__init__(self, 'ASE-GUI', close, menu)
+  File "/home/miroi/software/venv/lib/python3.12/site-packages/ase/gui/ui.py", line 500, in __init__
+    self.win = tk.Tk()
+               ^^^^^^^
+  File "/usr/lib/python3.12/tkinter/__init__.py", line 2345, in __init__
+    self.tk = _tkinter.create(screenName, baseName, className, interactive, wantobjects, useTk, sync, use)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_tkinter.TclError: couldn't connect to display ":0.0"
+(venv) miroi@MiroPhenomII-X6:~/software/.

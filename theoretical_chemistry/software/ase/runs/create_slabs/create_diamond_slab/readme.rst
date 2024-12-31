@@ -6,4 +6,5 @@ https://fhi-aims-club.gitlab.io/tutorials/slab-calculations-and-surface-simulati
 
 Running the above script should create the file Si_100.in which can be visualized, e.g. in VESTA
 
+python3  build_slab.py  ... creates Si_100.in file
 

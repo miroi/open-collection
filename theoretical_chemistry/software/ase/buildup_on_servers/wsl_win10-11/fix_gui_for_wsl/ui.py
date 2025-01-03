@@ -53,10 +53,9 @@ def helpwindow(text):
     set_windowtype(win.win, 'dialog')
     win.add(Text(text))
 
-
 def set_windowtype(win, wmtype):
-    # introduced tweak to fix frozen GUI on WSL,https://gitlab.com/ase/ase/-/issues/1511 
-    if platform.platform().find('WSL') != -1:
+    # introduced tweak to fix GUI on WSL, https://gitlab.com/ase/ase/-/issues/1511
+    if (platform.platform().find('WSL') and platform.platform().find('microsoft')) != -1:
         # only on X11, but not WSL
         # WM_TYPE, for possible settings see
         # https://specifications.freedesktop.org/wm-spec/wm-spec-latest.html#idm45623487848608

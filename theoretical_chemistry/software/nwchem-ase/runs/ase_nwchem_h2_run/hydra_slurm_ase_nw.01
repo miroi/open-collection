@@ -59,6 +59,7 @@ module purge
 module add GVR/v1.0-1
 module add ELPA/v2020.05.001_intel2018_python365
 module unload openmpi/v1.8.8-1
+module add Python/v3.10.2
 
 echo -e "\n\n loaded modules:"
 module list
@@ -76,6 +77,7 @@ echo -e "\n The total memory at the node (in GB)"
 free -t -g
 echo -e "\n"
 
+export PATH=/lustre/home/user/m/milias/.local/bin/ase:$PATH
 echo -e "\nMy PATH=$PATH\n"
 echo -e "Python -v :\c"; python -V
 #echo -e "\n mpirun ? \c"; which mpirun; mpirun --version

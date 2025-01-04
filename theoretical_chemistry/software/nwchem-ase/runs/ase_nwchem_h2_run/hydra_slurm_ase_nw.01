@@ -79,13 +79,16 @@ echo -e "\n"
 
 export PATH=/lustre/home/user/m/milias/.local/bin/ase:$PATH
 echo -e "\nMy PATH=$PATH\n"
-echo -e "Python -v :\c"; python -V
-#echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
+echo -e "Python -V :\c"; python -V
+echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
 echo -e "\n ase info :"; ase info
 
-export NWCHEM_TOP=/lustre/home/user/m/milias/work/software/nwchem/nwchem_master
-#export ASE_NWCHEM_COMMAND="mpirun -n $SLURM_NTASKS nwchem PREFIX.nwi > PREFIX.nwo"
-export ASE_NWCHEM_COMMAND="mpirun -n  $SLURM_CPUS_ON_NODE nwchem PREFIX.nwi > PREFIX.nwo"
+export NWCHEM_TOP=/lustre/home/user/m/milias/work/software/nwchem/nwchem_master/bin/LINUX64
+echo -e "NWCHEM=$NWCHEM_TOP/nwchem";ldd $NWCHEM_TOP/nwchem
+
+#export ASE_NWCHEM_COMMAND="mpirun -n $SLURM_NTASKS   nwchem   PREFIX.nwi > PREFIX.nwo"
+export ASE_NWCHEM_COMMAND="mpirun -n  $SLURM_CPUS_ON_NODE  $NWCHEM_TOP/nwchem PREFIX.nwi > PREFIX.nwo"
+echo -e "ASE_NWCHEM_COMMAND=$ASE_NWCHEM_COMMAND"
 
 echo -e "\n Running in  $SLURM_SUBMIT_DIR : "
 

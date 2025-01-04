@@ -83,14 +83,15 @@ echo -e "Python -V :\c"; python -V
 echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
 echo -e "\n ase info :"; ase info
 
-export NWCHEM_TOP=/lustre/home/user/m/milias/work/software/nwchem/nwchem_master/bin/LINUX64
-echo -e "NWCHEM=$NWCHEM_TOP/nwchem";ldd $NWCHEM_TOP/nwchem
+#export NWCHEM_TOP=/lustre/home/user/m/milias/work/software/nwchem/nwchem_master/bin/LINUX64
+export NWCHEM_TOP=/lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3/bin/LINUX64
+echo -e "\n NWCHEM=$NWCHEM_TOP/nwchem";ldd $NWCHEM_TOP/nwchem
 
 #export ASE_NWCHEM_COMMAND="mpirun -n $SLURM_NTASKS   nwchem   PREFIX.nwi > PREFIX.nwo"
 export ASE_NWCHEM_COMMAND="mpirun -n  $SLURM_CPUS_ON_NODE  $NWCHEM_TOP/nwchem PREFIX.nwi > PREFIX.nwo"
-echo -e "ASE_NWCHEM_COMMAND=$ASE_NWCHEM_COMMAND"
+echo -e "\n ASE_NWCHEM_COMMAND=$ASE_NWCHEM_COMMAND"
 
-echo -e "\n Running in  $SLURM_SUBMIT_DIR : "
+echo -e "\n Running in SLURM_SUBMIT_DIR=$SLURM_SUBMIT_DIR : "
 
   python3 ase_nwchem_h2_bfgs.py
 

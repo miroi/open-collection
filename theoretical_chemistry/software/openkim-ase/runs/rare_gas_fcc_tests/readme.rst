@@ -1,6 +1,9 @@
+======
 Og 
 ======
 
+install
+~~~~~~~
 milias@Miro:/mnt/c/Users/miroi/OneDrive/Desktop/Work/projekty/open-collection/theoretical_chemistry/software/openkim-ase/runs/rare_gas_fcc_tests/.pip install -U --no-deps kimpy
 Defaulting to user installation because normal site-packages is not writeable
 Collecting kimpy
@@ -8,6 +11,8 @@ Collecting kimpy
 Installing collected packages: kimpy
 Successfully installed kimpy-2.1.1
 
+run
+~~~
 milias@Miro:/mnt/c/Users/miroi/OneDrive/Desktop/Work/projekty/open-collection/theoretical_chemistry/software/openkim/runs/rare_gas_fcc_tests/.python3 Og_fcc_poten.py
 3D Og fcc potential energy: -2.67564203880867 eV
 

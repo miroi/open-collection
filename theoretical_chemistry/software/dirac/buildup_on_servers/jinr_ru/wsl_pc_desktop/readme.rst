@@ -158,3 +158,76 @@ cmake -DCMAKE_Fortran_COMPILER=mpif90 -DEXTRA_FCFLAGS="''" -DCMAKE_C_COMPILER=mp
    $ cd build_gnu_mkl_ilp64
    $ make
 milias@DESKTOP-7OTLCGO:~/work/software/dirac/trunk_cloned/.
+
+milias@DESKTOP-7OTLCGO:~/work/software/dirac/trunk_cloned/build_gnu_mkl_ilp64/.ldd dirac.x
+        linux-vdso.so.1 (0x00007ffede9ac000)
+        libmkl_gf_ilp64.so => /lib/x86_64-linux-gnu/libmkl_gf_ilp64.so (0x00007f6dbbc00000)
+        libmkl_gnu_thread.so => /lib/x86_64-linux-gnu/libmkl_gnu_thread.so (0x00007f6db9e00000)
+        libmkl_core.so => /lib/x86_64-linux-gnu/libmkl_core.so (0x00007f6db5600000)
+        libgfortran.so.5 => /lib/x86_64-linux-gnu/libgfortran.so.5 (0x00007f6db5325000)
+        libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f6dbc999000)
+        libmvec.so.1 => /lib/x86_64-linux-gnu/libmvec.so.1 (0x00007f6dbc89c000)
+        libhdf5_openmpi.so.103 => /lib/x86_64-linux-gnu/libhdf5_openmpi.so.103 (0x00007f6db4f70000)
+        libmpi_mpifh.so.40 => /lib/x86_64-linux-gnu/libmpi_mpifh.so.40 (0x00007f6dbbb9a000)
+        libmpi.so.40 => /lib/x86_64-linux-gnu/libmpi.so.40 (0x00007f6db9cc9000)
+        libgomp.so.1 => /lib/x86_64-linux-gnu/libgomp.so.1 (0x00007f6db9c7f000)
+        libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f6dbbb7a000)
+        libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f6db4d47000)
+        libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f6dbc895000)
+        libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f6dbc890000)
+        libquadmath.so.0 => /lib/x86_64-linux-gnu/libquadmath.so.0 (0x00007f6db4cff000)
+        /lib64/ld-linux-x86-64.so.2 (0x00007f6dde559000)
+        libcrypto.so.3 => /lib/x86_64-linux-gnu/libcrypto.so.3 (0x00007f6db48bb000)
+        libcurl.so.4 => /lib/x86_64-linux-gnu/libcurl.so.4 (0x00007f6db4814000)
+        libsz.so.2 => /lib/x86_64-linux-gnu/libsz.so.2 (0x00007f6dbc889000)
+        libz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x00007f6db9c63000)
+        libopen-pal.so.40 => /lib/x86_64-linux-gnu/libopen-pal.so.40 (0x00007f6db4761000)
+        libopen-rte.so.40 => /lib/x86_64-linux-gnu/libopen-rte.so.40 (0x00007f6db46a4000)
+        libhwloc.so.15 => /lib/x86_64-linux-gnu/libhwloc.so.15 (0x00007f6db4648000)
+        libnghttp2.so.14 => /lib/x86_64-linux-gnu/libnghttp2.so.14 (0x00007f6db461e000)
+        libidn2.so.0 => /lib/x86_64-linux-gnu/libidn2.so.0 (0x00007f6db9c42000)
+        librtmp.so.1 => /lib/x86_64-linux-gnu/librtmp.so.1 (0x00007f6db45ff000)
+        libssh.so.4 => /lib/x86_64-linux-gnu/libssh.so.4 (0x00007f6db4592000)
+        libpsl.so.5 => /lib/x86_64-linux-gnu/libpsl.so.5 (0x00007f6dbbb66000)
+        libssl.so.3 => /lib/x86_64-linux-gnu/libssl.so.3 (0x00007f6db44ee000)
+        libgssapi_krb5.so.2 => /lib/x86_64-linux-gnu/libgssapi_krb5.so.2 (0x00007f6db449a000)
+        libldap-2.5.so.0 => /lib/x86_64-linux-gnu/libldap-2.5.so.0 (0x00007f6db443b000)
+        liblber-2.5.so.0 => /lib/x86_64-linux-gnu/liblber-2.5.so.0 (0x00007f6db442a000)
+        libzstd.so.1 => /lib/x86_64-linux-gnu/libzstd.so.1 (0x00007f6db435b000)
+        libbrotlidec.so.1 => /lib/x86_64-linux-gnu/libbrotlidec.so.1 (0x00007f6db434d000)
+        libaec.so.0 => /lib/x86_64-linux-gnu/libaec.so.0 (0x00007f6db4344000)
+        libevent_core-2.1.so.7 => /lib/x86_64-linux-gnu/libevent_core-2.1.so.7 (0x00007f6db430f000)
+        libevent_pthreads-2.1.so.7 => /lib/x86_64-linux-gnu/libevent_pthreads-2.1.so.7 (0x00007f6db430a000)
+        libudev.so.1 => /lib/x86_64-linux-gnu/libudev.so.1 (0x00007f6db42e0000)
+        libunistring.so.2 => /lib/x86_64-linux-gnu/libunistring.so.2 (0x00007f6db4136000)
+        libgnutls.so.30 => /lib/x86_64-linux-gnu/libgnutls.so.30 (0x00007f6db3f4b000)
+        libhogweed.so.6 => /lib/x86_64-linux-gnu/libhogweed.so.6 (0x00007f6db3f03000)
+        libnettle.so.8 => /lib/x86_64-linux-gnu/libnettle.so.8 (0x00007f6db3ebd000)
+        libgmp.so.10 => /lib/x86_64-linux-gnu/libgmp.so.10 (0x00007f6db3e3b000)
+        libkrb5.so.3 => /lib/x86_64-linux-gnu/libkrb5.so.3 (0x00007f6db3d70000)
+        libk5crypto.so.3 => /lib/x86_64-linux-gnu/libk5crypto.so.3 (0x00007f6db3d41000)
+        libcom_err.so.2 => /lib/x86_64-linux-gnu/libcom_err.so.2 (0x00007f6db3d3b000)
+        libkrb5support.so.0 => /lib/x86_64-linux-gnu/libkrb5support.so.0 (0x00007f6db3d2d000)
+        libsasl2.so.2 => /lib/x86_64-linux-gnu/libsasl2.so.2 (0x00007f6db3d12000)
+        libbrotlicommon.so.1 => /lib/x86_64-linux-gnu/libbrotlicommon.so.1 (0x00007f6db3cef000)
+        libp11-kit.so.0 => /lib/x86_64-linux-gnu/libp11-kit.so.0 (0x00007f6db3bb2000)
+        libtasn1.so.6 => /lib/x86_64-linux-gnu/libtasn1.so.6 (0x00007f6db3b9a000)
+        libkeyutils.so.1 => /lib/x86_64-linux-gnu/libkeyutils.so.1 (0x00007f6db3b93000)
+        libresolv.so.2 => /lib/x86_64-linux-gnu/libresolv.so.2 (0x00007f6db3b7f000)
+        libffi.so.8 => /lib/x86_64-linux-gnu/libffi.so.8 (0x00007f6db3b72000)
+
+Tests
+~~~~~
+milias@DESKTOP-7OTLCGO:~/work/software/dirac/trunk_cloned/build_gnu_mkl_ilp64/.export DIRAC_MPI_COMMAND="mpirun -np 2"
+milias@DESKTOP-7OTLCGO:~/work/software/dirac/trunk_cloned/build_gnu_mkl_ilp64/.ctest -L short -j2
+Test project /home/milias/work/software/dirac/trunk_cloned/build_gnu_mkl_ilp64
+      Start  87: fscc_finite-field
+      Start  88: reladc_dip
+ 1/81 Test  #88: reladc_dip .......................   Passed    1.02 sec
+      Start  89: x2c-SCF_to_4c-SCF
+ 2/81 Test  #89: x2c-SCF_to_4c-SCF ................   Passed    2.76 sec
+      Start  90: xyz_symmetry_recognition
+ 3/81 Test  #90: xyz_symmetry_recognition .........   Passed    7.64 sec
+      Start  91: nmqm_operator
+ 4/81 Test  #87: fscc_finite-field ................   Passed   12.33 sec
+      Start  92: visual_div_rot

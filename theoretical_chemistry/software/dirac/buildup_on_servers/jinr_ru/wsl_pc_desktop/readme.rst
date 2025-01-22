@@ -231,3 +231,7 @@ Test project /home/milias/work/software/dirac/trunk_cloned/build_gnu_mkl_ilp64
       Start  91: nmqm_operator
  4/81 Test  #87: fscc_finite-field ................   Passed   12.33 sec
       Start  92: visual_div_rot
+.
+.
+.
+getting errors, due to memory allocations..

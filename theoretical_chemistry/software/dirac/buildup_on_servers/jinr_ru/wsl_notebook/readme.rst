@@ -22,7 +22,8 @@ mpirun (Open MPI) 4.1.2
 
 buildup
 ~~~~~~~
-miroi@MIRO:~/work/software/dirac-cloned/./setup  -mpi  --fc=mpif90 --cc=mpicc --cxx=mpicxx  --cmake-options="-D ENABLE_PELIB=ON"  build_gnu_mkl_ilp64
+miroi@MIRO:~/work/software/dirac-cloned/./setup  -mpi  --fc=mpif90 --cc=mpicc --cxx=mpicxx  --cmake-options="-D ENABLE_PELIB=ON"  build_gnu_mkl_lp64
+
 
 
 Tests

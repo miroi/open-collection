@@ -35,6 +35,8 @@ mpirun (Open MPI) 4.1.2
 
 buildup
 ~~~~~~~
+milias@DESKTOP-7OTLCGO:~/work/software/dirac/trunk_cloned/.sudo  apt-get install hdf5-tools  libhdf5-openmpi-dev
+
 milias@DESKTOP-7OTLCGO:~/work/software/dirac/trunk_cloned/../setup  --int64 --mpi  --fc=mpif90 --cc=mpicc --cxx=mpicxx   build_gnu_mkl_ilp64
 cmake -DCMAKE_Fortran_COMPILER=mpif90 -DEXTRA_FCFLAGS="''" -DCMAKE_C_COMPILER=mpicc -DEXTRA_CFLAGS="''" -DCMAKE_CXX_COMPILER=mpicxx -DEXTRA_CXXFLAGS="''" -DPREPROCESSOR_DEFINITIONS="''" -DPYTHON_INTERPRETER="''" -DENABLE_BLAS=auto -DENABLE_LAPACK=auto -DMKL_FLAG=off -DMATH_LIB_SEARCH_ORDER="MKL;ESSL;OPENBLAS;ATLAS;ACML;SYSTEM_NATIVE" -DBLAS_LANG=Fortran -DLAPACK_LANG=Fortran -DENABLE_MPI=True -DENABLE_OPENMP=True -DENABLE_CODE_COVERAGE=False -DENABLE_STATIC_LINKING=False -DENABLE_PROFILING=False -DENABLE_RUNTIMECHECK=False -DENABLE_64BIT_INTEGERS=True -DEXPLICIT_LIBS="off" -DENABLE_EXATENSOR=ON -DENABLE_PCMSOLVER=ON -DPCMSOLVER_ROOT='' -DCMAKE_BUILD_TYPE=release -G"Unix Makefiles" -H/home/milias/work/software/dirac/trunk_cloned -Bbuild_gnu_mkl_ilp64
 
@@ -80,8 +82,9 @@ cmake -DCMAKE_Fortran_COMPILER=mpif90 -DEXTRA_FCFLAGS="''" -DCMAKE_C_COMPILER=mp
 -- Performing Test blas_test_run - Failed
 -- Test of blas integer size SUCCESS .. blas is integer*8
 -- We have BLAS-integer*8
--- Could NOT find HDF5 (missing: HDF5_LIBRARIES HDF5_INCLUDE_DIRS C) (found version "")
--- HDF5 interface can not be used, no HDF5 installation found
+-- Found HDF5: /usr/lib/x86_64-linux-gnu/hdf5/openmpi/libhdf5.so;/usr/lib/x86_64-linux-gnu/libcrypto.so;/usr/lib/x86_64-linux-gnu/libcurl.so;/usr/lib/x86_64-linux-gnu/libsz.so;/usr/lib/x86_64-linux-gnu/libz.so;/usr/lib/x86_64-linux-gnu/libdl.a;/usr/lib/x86_64-linux-gnu/libm.so (found version "1.10.7") found components: C
+-- HFD5 found, enabling HDF5 interface
+-- HDF5 include directory location: /usr/include/hdf5/openmpi
 -- MPI package type: MPICH
 -- Compiling /home/milias/work/software/dirac/trunk_cloned/cmake/custom/test-MPI-compiler-compatibility.F90 ...
 -- Performing Test MPI_COMPILER_MATCHES ...
@@ -101,7 +104,6 @@ cmake -DCMAKE_Fortran_COMPILER=mpif90 -DEXTRA_FCFLAGS="''" -DCMAKE_C_COMPILER=mp
 -- Enable ExaTENSOR library: OFF
 -- Gen1Int module: ON
 -- PElib module: ON
--- X-AMFI, the (e)amf 2-electron scalar and spin-orbit picture-change correction module requires a working HDF5 library
 -- The XCFun submodule ENABLED
 -- ESR property module: ON
 -- Stieltjes external module ENABLED
@@ -110,7 +112,8 @@ cmake -DCMAKE_Fortran_COMPILER=mpif90 -DEXTRA_FCFLAGS="''" -DCMAKE_C_COMPILER=mp
 -- OpenRSP library: OFF
 -- LAO properties without connection matrices: ON
 -- Spinfree MCSCF module: ON
--- (e)amfX2C 2e-scalar and spin-orbit picture-change correction module: OFF
+-- NOTE: tests for the (e)amfX2C 2e-scalar and spin-orbit picture-change correction module require h5py in your python env!
+-- (e)amfX2C 2e-scalar and spin-orbit picture-change correction module: ON
 -- srDFT module: ON
 -- Specialized tutorial tests DISABLED
 -- Unit control tests DISABLED
@@ -120,7 +123,7 @@ cmake -DCMAKE_Fortran_COMPILER=mpif90 -DEXTRA_FCFLAGS="''" -DCMAKE_C_COMPILER=mp
 -- CMake version: 3.22.1
 -- CMake generator: Unix Makefiles
 -- CMake build type: release
--- Configuration time: 2025-01-22 12:17:17.180314+00:00
+-- Configuration time: 2025-01-22 12:39:01.424656+00:00
 -- Fortran compiler ID: GNU
 -- Fortran compiler: /usr/bin/mpif90
 -- Fortran compiler version: GNU 11.4.0
@@ -138,10 +141,10 @@ cmake -DCMAKE_Fortran_COMPILER=mpif90 -DEXTRA_FCFLAGS="''" -DCMAKE_C_COMPILER=mp
 -- MPI parallelization: True
 -- MPI launcher: /usr/bin/mpiexec
 -- Math libraries: -Wl,--start-group;/usr/lib/x86_64-linux-gnu/libmkl_lapack95_ilp64.a;/usr/lib/x86_64-linux-gnu/libmkl_gf_ilp64.so;-fopenmp;-Wl,--end-group;-Wl,--start-group;/usr/lib/x86_64-linux-gnu/libmkl_gf_ilp64.so;/usr/lib/x86_64-linux-gnu/libmkl_gnu_thread.so;/usr/lib/x86_64-linux-gnu/libmkl_core.so;/usr/lib/x86_64-linux-gnu/libpthread.a;/usr/lib/x86_64-linux-gnu/libm.so;-fopenmp;-Wl,--end-group
--- Compile definitions: HAVE_MKL_BLAS;HAVE_MKL_LAPACK;HAVE_MPI;HAVE_OPENMP;VAR_MPI;VAR_MPI2;SYS_LINUX;PRG_DIRAC;INT_STAR8;INSTALL_WRKMEM=64000000;HAS_PCMSOLVER;BUILD_GEN1INT;HAS_PELIB;HAS_STIELTJES;MOD_LAO_REARRANGED;MOD_MCSCF_spinfree;MOD_ESR;MOD_KRCC;MOD_SRDFT
+-- Compile definitions: HAVE_MKL_BLAS;HAVE_MKL_LAPACK;HAVE_MPI;HAVE_OPENMP;VAR_MPI;VAR_MPI2;SYS_LINUX;PRG_DIRAC;INT_STAR8;INSTALL_WRKMEM=64000000;HAS_PCMSOLVER;BUILD_GEN1INT;HAS_PELIB;HAS_STIELTJES;MOD_LAO_REARRANGED;MOD_MCSCF_spinfree;MOD_XAMFI;MOD_ESR;MOD_KRCC;MOD_SRDFT
 -- Exacorr module enabled : OFF
--- Could NOT find HDF5 (missing: HDF5_LIBRARIES HDF5_INCLUDE_DIRS HDF5_HL_LIBRARIES C HL) (found version "")
--- For checking, linked libraries to dirac.x: objlib.dirac.x;pelib_interface;/home/milias/work/software/dirac/trunk_cloned/build_gnu_mkl_ilp64/external/lib/libstieltjes.a;mpi_cxx;mpi;stdc++;m;gcc_s;gcc;c;gcc_s;gcc;/home/milias/work/software/dirac/trunk_cloned/build_gnu_mkl_ilp64/external/pcmsolver/install/lib/libpcm.a;/usr/lib/x86_64-linux-gnu/libz.so;mpi_cxx;mpi;stdc++;m;gcc_s;gcc;c;gcc_s;gcc;/usr/lib/x86_64-linux-gnu/libz.so;xcfun_fortran_bindings;/home/milias/work/software/dirac/trunk_cloned/build_gnu_mkl_ilp64/external/xcfun-build/src/libxcfun.a;/home/milias/work/software/dirac/trunk_cloned/build_gnu_mkl_ilp64/external/lib/libpelib.a;gen1int_interface;/home/milias/work/software/dirac/trunk_cloned/build_gnu_mkl_ilp64/external/lib/libgen1int.a;-Wl,--start-group;/usr/lib/x86_64-linux-gnu/libmkl_lapack95_ilp64.a;/usr/lib/x86_64-linux-gnu/libmkl_gf_ilp64.so;-fopenmp;-Wl,--end-group;-Wl,--start-group;/usr/lib/x86_64-linux-gnu/libmkl_gf_ilp64.so;/usr/lib/x86_64-linux-gnu/libmkl_gnu_thread.so;/usr/lib/x86_64-linux-gnu/libmkl_core.so;/usr/lib/x86_64-linux-gnu/libpthread.a;/usr/lib/x86_64-linux-gnu/libm.so;-fopenmp;-Wl,--end-group;qcorr;laplace
+-- Found HDF5: /usr/lib/x86_64-linux-gnu/hdf5/openmpi/libhdf5.so;/usr/lib/x86_64-linux-gnu/libcrypto.so;/usr/lib/x86_64-linux-gnu/libcurl.so;/usr/lib/x86_64-linux-gnu/libsz.so;/usr/lib/x86_64-linux-gnu/libz.so;/usr/lib/x86_64-linux-gnu/libdl.a;/usr/lib/x86_64-linux-gnu/libm.so (found version "1.10.7") found components: C HL
+-- For checking, linked libraries to dirac.x: objlib.dirac.x;pelib_interface;/home/milias/work/software/dirac/trunk_cloned/build_gnu_mkl_ilp64/external/lib/libstieltjes.a;mpi_cxx;mpi;stdc++;m;gcc_s;gcc;c;gcc_s;gcc;/home/milias/work/software/dirac/trunk_cloned/build_gnu_mkl_ilp64/external/pcmsolver/install/lib/libpcm.a;/usr/lib/x86_64-linux-gnu/libz.so;mpi_cxx;mpi;stdc++;m;gcc_s;gcc;c;gcc_s;gcc;/usr/lib/x86_64-linux-gnu/libz.so;xcfun_fortran_bindings;/home/milias/work/software/dirac/trunk_cloned/build_gnu_mkl_ilp64/external/xcfun-build/src/libxcfun.a;/home/milias/work/software/dirac/trunk_cloned/build_gnu_mkl_ilp64/external/lib/libpelib.a;gen1int_interface;/home/milias/work/software/dirac/trunk_cloned/build_gnu_mkl_ilp64/external/lib/libgen1int.a;-Wl,--start-group;/usr/lib/x86_64-linux-gnu/libmkl_lapack95_ilp64.a;/usr/lib/x86_64-linux-gnu/libmkl_gf_ilp64.so;-fopenmp;-Wl,--end-group;-Wl,--start-group;/usr/lib/x86_64-linux-gnu/libmkl_gf_ilp64.so;/usr/lib/x86_64-linux-gnu/libmkl_gnu_thread.so;/usr/lib/x86_64-linux-gnu/libmkl_core.so;/usr/lib/x86_64-linux-gnu/libpthread.a;/usr/lib/x86_64-linux-gnu/libm.so;-fopenmp;-Wl,--end-group;qcorr;HDF5::HDF5;laplace
 -- Found Sphinx: /home/milias/.local/bin/sphinx-build
 -- Copied DIRAC basis set directories into the build directory
 -- Copied data schema and python utilities into the build directory

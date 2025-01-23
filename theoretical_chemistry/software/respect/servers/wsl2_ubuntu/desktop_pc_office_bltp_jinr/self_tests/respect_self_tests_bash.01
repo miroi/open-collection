@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#RSP=/lustre/home/user/m/milias/work/software/respect/ReSpect_5.3.0_2024_x86_64_omp_static
+RSP=/home/milias/work/software/respect/ReSpect_5.3.0_2024_x86_64_omp_static
+
+
+ cd $RSP/test
+ echo "I am in directory :";pwd; ls -lt
+
+  ulimit -s unlimited
+  df -h /tmp
+
+
+  echo "Running ./testrs.py --nt=4 --scratch=/tmp "
+  ./testrs.py --nt=4 --scratch=/tmp
+
+exit

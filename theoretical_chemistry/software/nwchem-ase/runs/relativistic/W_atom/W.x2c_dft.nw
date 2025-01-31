@@ -1,0 +1,27 @@
+echo
+
+start 
+
+geometry noautoz units au
+  W    0 0 0
+end
+
+basis spherical
+ W library dzp-dkh
+end
+
+dft
+ b3lyp
+ mult 5
+#grid xfine
+ #iterations 100
+end
+
+relativistic
+  x2c on
+#   zora on
+# 1 = modbas.4c, 2=modbas.2c
+#  modelpotential 2
+end
+
+task sodft energy

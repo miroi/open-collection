@@ -1,9 +1,9 @@
 Sg atom with relativistic effects
 =================================
 
+mpirun -np 4 /usr/bin/nwchem Sg.dft_sozora.nw 
 
-mpirun -np 4 /usr/bin/nwchem Pb.dft_sozora.nw > Pb.dft_sozora.out
-
+bas_tag_lib: failed to locate basis sg_dzp-dkh in file /usr/share/nwchem/libraries/
 
 
 

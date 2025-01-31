@@ -1,0 +1,73 @@
+#!/bin/bash
+
+#SBATCH -J MoCO6
+
+##  partition (queue)
+#SBATCH -p cascade
+##SBATCH -p long
+##SBATCH -p flnr-ice
+
+## max. execution time
+##SBATCH -t 7-00:00:00
+#SBATCH -t 0-08:00:00
+
+#SBATCH --mem=64GB
+
+# do not restart in the case of nodefail!
+#SBATCH --no-requeue
+#SBATCH --no-kill
+
+#SBATCH -N 1 -n 8
+#SBATCH  --sockets-per-node=1
+
+#SBATCH -o log_slurm_job.%j.%N.std_out
+
+echo Job user is $SLURM_JOB_USER and his job $SLURM_JOB_NAME has assigned ID $SLURM_JOBID
+echo This job was submitted from the computer $SLURM_SUBMIT_HOST
+echo and from the home directory:
+echo $SLURM_SUBMIT_DIR
+echo
+echo It is running on the cluster compute node:
+echo $SLURM_CLUSTER_NAME
+echo and is employing $SLURM_JOB_NUM_NODES node/nodes:
+echo $SLURM_JOB_NODELIST
+echo
+echo -e "Job partition is $SLURM_JOB_PARTITION \n"
+echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
+
+#echo "modules at disposal:"
+#module avail
+#echo
+
+#
+#module purge
+#module load openmpi/v2.1.2-2
+module add GVR/v1.0-1
+module add Python/v3.10.13
+
+echo -e "\n\n loaded modules:"
+module list
+
+ulimit -s unlimited
+
+cd $SLURM_SUBMIT_DIR
+
+export TMPDIR=/lustre/home/user/m/milias/scratch
+df -h /tmp; df -h $TMPDIR
+NMPI=$SLURM_CPUS_ON_NODE
+
+MOPAC=/lustre/home/user/m/milias/work/software/mopac/install/bin/mopac
+export PATH=/lustre/home/user/m/milias/work/software/mopac/install/bin:$PATH
+#export LD_LIBRARY_PATH=/lustre/home/user/m/milias/work/software/mopac/install/lib:$LD_LIBRARY_PATH
+
+ldd $MOPAC
+
+#project=periodic
+#project=Ti_aq6_3p.doublet_geopt_pm7
+project=Mo-CO_6.geopt_thermo_pm7_precise
+
+echo -e "\n running MOPAC job: $MOPAC $project.mop  \n"; date 
+$MOPAC $project.mop
+
+echo -e "\n MOPAC job finished \c"; date
+exit

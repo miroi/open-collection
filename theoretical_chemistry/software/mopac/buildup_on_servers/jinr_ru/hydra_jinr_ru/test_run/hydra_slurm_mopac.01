@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH -J mopac
+#SBATCH -J MOPAC
 
 ##  partition (queue)
 #SBATCH -p cascade
@@ -56,16 +56,16 @@ export TMPDIR=/lustre/home/user/m/milias/scratch
 df -h /tmp; df -h $TMPDIR
 NMPI=$SLURM_CPUS_ON_NODE
 
+MOPAC=/lustre/home/user/m/milias/work/software/mopac/install/bin/mopac
 export PATH=/lustre/home/user/m/milias/work/software/mopac/install/bin:$PATH
-export LD_LIBRARY_PATH=/lustre/home/user/m/milias/work/software/mopac/install/lib:$LD_LIBRARY_PATH
+#export LD_LIBRARY_PATH=/lustre/home/user/m/milias/work/software/mopac/install/lib:$LD_LIBRARY_PATH
 
-ldd mopac
-mopac --help
+ldd $MOPAC
 
 #project=periodic
 project=Ti_aq6_3p.doublet_geopt_pm7
 
-#echo -e "\n running: $RSP/respect --scf  --scratch=$TMPDIR --inp=$project --nt=$NMPI  \n"
-
+echo -e "\n running: $MOPAC $project.mop  \n"
+$MOPAC $project.mop
 
 exit

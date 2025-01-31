@@ -1,0 +1,19 @@
+#!/bin/bash
+
+export PATH=/opt/mopac/bin:$PATH
+export LD_LIBRARY_PATH=/opt/mopac/bin:$LD_LIBRARY_PATH
+
+echo -e "\n running MOPAC 22.1.1 on server \"`hostname`\"  \n"
+
+
+echo "MOPAC postion and lib dependencies :"; which mopac; ldd `which mopac`
+echo
+
+#mop_inp=dioxygen_PM7_RHF_thermo.mop
+mop_inp=Bi_on_Goumans2007rec_as_molecule.mop
+
+echo -e "\n Running mopac with the input file = $mop_inp \n"  
+
+mopac $mop_inp
+
+exit 0

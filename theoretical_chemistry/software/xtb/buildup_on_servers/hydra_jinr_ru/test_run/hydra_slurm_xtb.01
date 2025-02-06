@@ -67,14 +67,10 @@ ldd $XTB
 
 $XTB --help
 
+echo -e "\n running xtb job   \n"; date 
 
-#project=periodic
-#project=Ti_aq6_3p.doublet_geopt_pm7
-#project=Mo-CO_6.geopt_thermo_pm7_precise
-project=W-CO_6.geopt_thermo_pm7_precise
+$XTB --opt --hess  --input xtb.inp  input.xyz
 
-#echo -e "\n running MOPAC job: $MOPAC $project.mop  \n"; date 
-#$MOPAC $project.mop
-#echo -e "\n MOPAC job finished \c"; date
+echo -e "\n xtb job finished \c"; date
 
 exit

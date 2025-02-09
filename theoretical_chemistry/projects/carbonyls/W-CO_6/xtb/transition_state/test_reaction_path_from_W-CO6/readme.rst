@@ -19,4 +19,11 @@ opt. pull strength       :     0.050
 norm(g) at est. TS, point: 0.03464  20
 
 
+npoint=1000
+forward  barrier (kcal)  :     0.971
+backward barrier (kcal)  :    71.201
+reaction energy  (kcal)  :   -70.229
+opt. pull strength       :     0.050
+norm(g) at est. TS, point: 0.03464  20
+
 

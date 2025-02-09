@@ -1,0 +1,1190 @@
+Job user is milias and his job xtb has assigned ID 8828251
+This job was submitted from the computer space04.hydra.local
+and from the home directory:
+/lustre/home/user/m/milias/work/projects/open-collection/theoretical_chemistry/projects/carbonyls/W-CO_6/xtb/transition_state/test_reaction_path_from_W-CO6
+
+It is running on the cluster compute node:
+gvr
+and is employing 1 node/nodes:
+n02p064
+
+Job partition is cascade 
+
+The job requests 4 CPU per task.
+
+
+ loaded modules:
+Currently Loaded Modulefiles:
+  1) GVR/v1.0-1        2) BASE/1.0          3) Python/v3.10.13
+Usage: xtb [options] <geometry> [options]
+
+<geometry> may be provided as valid TM coordinate file (*coord in Bohr),
+in xmol format (*.xyz in Ångström), sdf or mol file format, PDB format
+genFormat input or Vasp's POSCAR format.
+
+For a full list visit: https://grimme-lab.github.io/mctc-lib/page/index.html
+
+Options:
+
+-c, --chrg INT
+    specify molecular charge as INT, overrides .CHRG file and xcontrol option
+
+--ceh
+    calculate CEH (Charge-Extended Hückel model) charges and write them to ceh.charges file
+
+-u, --uhf INT
+    specify number of unpaired electrons as INT, overrides .UHF file and xcontrol option
+
+--gfn INT
+    specify parametrisation of GFN-xTB (default = 2)
+
+--gfnff, --gff
+    specify parametrisation of GFN-FF
+
+--tblite,
+    use tblite library as implementation for xTB, please note that solvation is not yet implemented within tblite
+
+--ptb,
+    performs single-point calculation with the density tight-binding method PTB.
+    Provides electronic structure and properties, such as, e.g., atomic charges, bond orders, and dipole moments,
+    but does not provide any energy-related properties, such as, e.g., total energy, nuclear gradients, or vibrational frequencies.
+
+--spinpol,
+    enables spin-polarization for xTB methods (tblite required)
+
+--oniom METHOD LIST
+    use subtractive embedding via ONIOM method. 'METHOD' is given as 'inner:outer'
+    where 'inner' can be 'orca', 'turbomole', 'gfn2', 'gfn1', or 'gfnff' and
+    'outer' can be 'gfn2', 'gfn1', or 'gfnff'.
+    The inner region is given as a comma separated indices directly in the commandline
+    or in a file with each index on a separate line.
+
+--etemp REAL
+    electronic temperature (default = 300K)
+
+--esp
+    calculate electrostatic potential on VdW-grid
+
+--stm
+    calculate STM image
+
+-a, --acc REAL
+    accuracy for SCC calculation, lower is better (default = 1.0)
+
+--vparam FILE
+    Parameter file for vTB calculation
+
+--xparam FILE
+    Parameter file for xTB calculation (not used)
+
+--alpb SOLVENT [STATE]
+    analytical linearized Poisson-Boltzmann (ALPB) model,
+    available solvents are acetone, acetonitrile, aniline, benzaldehyde,
+    benzene, ch2cl2, chcl3, cs2, dioxane, dmf, dmso, ether, ethylacetate, furane,
+    hexandecane, hexane, methanol, nitromethane, octanol, woctanol, phenol, toluene,
+    thf, water.
+    The solvent input is not case-sensitive. The Gsolv
+    reference state can be chosen as reference, bar1M, or gsolv (default).
+
+-g, --gbsa SOLVENT [STATE]
+    generalized born (GB) model with solvent accessable surface (SASA) model,
+    available solvents are acetone, acetonitrile, benzene (only GFN1-xTB), CH2Cl2,
+    CHCl3, CS2, DMF (only GFN2-xTB), DMSO, ether, H2O, methanol,
+    n-hexane (only GFN2-xTB), THF and toluene.
+    The solvent input is not case-sensitive.
+    The Gsolv reference state can be chosen as reference, bar1M, or gsolv (default).
+
+--cosmo SOLVENT/EPSILON
+    domain decomposition conductor-like screening model (ddCOSMO),
+    available solvents are all solvents that are available for alpb.
+    Additionally, the dielectric constant can be set manually or an ideal conductor
+    can be chosen by setting epsilon to infinity.
+
+--tmcosmo SOLVENT/EPSILON
+    same as --cosmo, but uses TM convention for writing the .cosmo files.
+
+--cpcmx SOLVENT
+    extended conduction-like polarizable continuum solvation model (CPCM-X),
+    available solvents are all solvents included in the Minnesota Solvation Database.
+
+--cma
+    shifts molecule to center of mass and transforms cartesian coordinates into the
+    coordinate system of the principle axis (not affected by ‘isotopes’-file).
+
+--pop
+    requests printout of Mulliken population analysis
+
+--molden
+    requests printout of molden file
+
+--dipole
+    requests dipole printout
+
+--raman
+    requests Raman spectrum calculation via combination of GFN2-xTB and PTB
+    using the temperature 'REAL' (default 298.15 K) and the wavelength of the
+    incident laser which must be given in nm 'REAL' (default 514 nm).
+
+--alpha
+    requests the extension of electrical properties to static molecular dipole polarizabilities. 
+
+--wbo
+    requests Wiberg bond order printout
+
+--lmo
+    requests localization of orbitals
+
+--fod
+    requests FOD calculation
+
+--scc, --sp
+    performs a single point calculation
+
+--vip
+    performs calculation of ionisation potential. This needs the param_ipea-xtb.txt
+    parameters and a GFN1 Hamiltonian.
+
+--vea
+    performs calculation of electron affinity. This needs the param_ipea-xtb.txt
+    parameters and a GFN1 Hamiltonian.
+
+--vipea
+    performs calculation of electron affinity and ionisation potential.
+    This needs the param_ipea-xtb.txt parameters and a GFN1 Hamiltonian.
+
+--vfukui
+    performs calculation of Fukui indices.
+
+--vomega
+    performs calculation of electrophilicity index. This needs the param_ipea-xtb.txt
+    parameters and a GFN1 Hamiltonian.
+
+--grad
+    performs a gradient calculation
+
+-o, --opt [LEVEL]
+    call ancopt(3) to perform a geometry optimization, levels from crude, sloppy,
+    loose, normal (default), tight, verytight to extreme can be chosen
+
+--hess
+    perform a numerical hessian calculation on input geometry
+
+--ohess [LEVEL]
+    perform a numerical hessian calculation on an ancopt(3) optimized geometry
+
+--bhess [LEVEL]
+    perform a biased numerical hessian calculation on an ancopt(3) optimized geometry
+
+--md
+    molecular dynamics simulation on start geometry
+
+--metadyn [int]
+    meta dynamics simulation on start geometry, saving int snapshots of the
+    trajectory to bias the simulation
+
+--omd
+    molecular dynamics simulation on ancopt(3) optimized geometry,
+    a loose optimization level will be chosen
+
+--metaopt [LEVEL]
+    call ancopt(3) to perform a geometry optimization, then try to find other
+    minimas by meta dynamics
+
+--path [FILE]
+    use meta dynamics to calculate a path from the input geometry to the given
+    product structure
+
+--modef INT
+    modefollowing algorithm. INT specifies the mode that should be used for the
+    modefollowing.
+
+-I, --input FILE
+    use FILE as input source for xcontrol(7) instructions
+
+--namespace STRING
+    give this xtb(1) run a namespace. All files, even temporary ones, will be named
+    according to STRING (might not work everywhere).
+
+--[no]copy
+    copies the xcontrol file at startup (default = true)
+
+--[no]restart
+    restarts calculation from xtbrestart (default = true)
+
+-P, --parallel INT
+    number of parallel processes
+
+--define
+    performs automatic check of input and terminate
+
+--json
+    write xtbout.json file
+
+--citation
+    print citation and terminate
+
+--license
+    print license and terminate
+
+-v, --verbose
+    be more verbose (not supported in every unit)
+
+-s, --silent
+    clutter the screen less (not supported in every unit)
+
+--ceasefiles
+    reduce the amount of output and files written
+
+--strict
+    turns all warnings into hard errors
+
+-h, --help
+    show help page
+
+Useful Maschine Settings:
+
+export MKL_NUM_THREADS=<NCORE>
+export OMP_NUM_THREADS=<NCORE>,1
+export OMP_STACKSIZE=4G
+ulimit -s unlimited
+
+Output Conventions:
+
+total energies are given in atomic units (Eh)
+gaps/HL energies are given in eV
+
+More information can be obtained by `man 1 xtb` and `man 7 xcontrol`
+or at https://xtb-docs.readthedocs.io/en/latest/contents.html
+
+normal termination of xtb
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda3       134G   45G   82G  36% /
+Filesystem                               Size  Used Avail Use% Mounted on
+10.220.25.3@o2ib,10.220.25.4@o2ib:/home  650T  460T  191T  71% /lustre/home
+
+ ldd xtb :
+	not a dynamic executable
+Usage: xtb [options] <geometry> [options]
+
+<geometry> may be provided as valid TM coordinate file (*coord in Bohr),
+in xmol format (*.xyz in Ångström), sdf or mol file format, PDB format
+genFormat input or Vasp's POSCAR format.
+
+For a full list visit: https://grimme-lab.github.io/mctc-lib/page/index.html
+
+Options:
+
+-c, --chrg INT
+    specify molecular charge as INT, overrides .CHRG file and xcontrol option
+
+--ceh
+    calculate CEH (Charge-Extended Hückel model) charges and write them to ceh.charges file
+
+-u, --uhf INT
+    specify number of unpaired electrons as INT, overrides .UHF file and xcontrol option
+
+--gfn INT
+    specify parametrisation of GFN-xTB (default = 2)
+
+--gfnff, --gff
+    specify parametrisation of GFN-FF
+
+--tblite,
+    use tblite library as implementation for xTB, please note that solvation is not yet implemented within tblite
+
+--ptb,
+    performs single-point calculation with the density tight-binding method PTB.
+    Provides electronic structure and properties, such as, e.g., atomic charges, bond orders, and dipole moments,
+    but does not provide any energy-related properties, such as, e.g., total energy, nuclear gradients, or vibrational frequencies.
+
+--spinpol,
+    enables spin-polarization for xTB methods (tblite required)
+
+--oniom METHOD LIST
+    use subtractive embedding via ONIOM method. 'METHOD' is given as 'inner:outer'
+    where 'inner' can be 'orca', 'turbomole', 'gfn2', 'gfn1', or 'gfnff' and
+    'outer' can be 'gfn2', 'gfn1', or 'gfnff'.
+    The inner region is given as a comma separated indices directly in the commandline
+    or in a file with each index on a separate line.
+
+--etemp REAL
+    electronic temperature (default = 300K)
+
+--esp
+    calculate electrostatic potential on VdW-grid
+
+--stm
+    calculate STM image
+
+-a, --acc REAL
+    accuracy for SCC calculation, lower is better (default = 1.0)
+
+--vparam FILE
+    Parameter file for vTB calculation
+
+--xparam FILE
+    Parameter file for xTB calculation (not used)
+
+--alpb SOLVENT [STATE]
+    analytical linearized Poisson-Boltzmann (ALPB) model,
+    available solvents are acetone, acetonitrile, aniline, benzaldehyde,
+    benzene, ch2cl2, chcl3, cs2, dioxane, dmf, dmso, ether, ethylacetate, furane,
+    hexandecane, hexane, methanol, nitromethane, octanol, woctanol, phenol, toluene,
+    thf, water.
+    The solvent input is not case-sensitive. The Gsolv
+    reference state can be chosen as reference, bar1M, or gsolv (default).
+
+-g, --gbsa SOLVENT [STATE]
+    generalized born (GB) model with solvent accessable surface (SASA) model,
+    available solvents are acetone, acetonitrile, benzene (only GFN1-xTB), CH2Cl2,
+    CHCl3, CS2, DMF (only GFN2-xTB), DMSO, ether, H2O, methanol,
+    n-hexane (only GFN2-xTB), THF and toluene.
+    The solvent input is not case-sensitive.
+    The Gsolv reference state can be chosen as reference, bar1M, or gsolv (default).
+
+--cosmo SOLVENT/EPSILON
+    domain decomposition conductor-like screening model (ddCOSMO),
+    available solvents are all solvents that are available for alpb.
+    Additionally, the dielectric constant can be set manually or an ideal conductor
+    can be chosen by setting epsilon to infinity.
+
+--tmcosmo SOLVENT/EPSILON
+    same as --cosmo, but uses TM convention for writing the .cosmo files.
+
+--cpcmx SOLVENT
+    extended conduction-like polarizable continuum solvation model (CPCM-X),
+    available solvents are all solvents included in the Minnesota Solvation Database.
+
+--cma
+    shifts molecule to center of mass and transforms cartesian coordinates into the
+    coordinate system of the principle axis (not affected by ‘isotopes’-file).
+
+--pop
+    requests printout of Mulliken population analysis
+
+--molden
+    requests printout of molden file
+
+--dipole
+    requests dipole printout
+
+--raman
+    requests Raman spectrum calculation via combination of GFN2-xTB and PTB
+    using the temperature 'REAL' (default 298.15 K) and the wavelength of the
+    incident laser which must be given in nm 'REAL' (default 514 nm).
+
+--alpha
+    requests the extension of electrical properties to static molecular dipole polarizabilities. 
+
+--wbo
+    requests Wiberg bond order printout
+
+--lmo
+    requests localization of orbitals
+
+--fod
+    requests FOD calculation
+
+--scc, --sp
+    performs a single point calculation
+
+--vip
+    performs calculation of ionisation potential. This needs the param_ipea-xtb.txt
+    parameters and a GFN1 Hamiltonian.
+
+--vea
+    performs calculation of electron affinity. This needs the param_ipea-xtb.txt
+    parameters and a GFN1 Hamiltonian.
+
+--vipea
+    performs calculation of electron affinity and ionisation potential.
+    This needs the param_ipea-xtb.txt parameters and a GFN1 Hamiltonian.
+
+--vfukui
+    performs calculation of Fukui indices.
+
+--vomega
+    performs calculation of electrophilicity index. This needs the param_ipea-xtb.txt
+    parameters and a GFN1 Hamiltonian.
+
+--grad
+    performs a gradient calculation
+
+-o, --opt [LEVEL]
+    call ancopt(3) to perform a geometry optimization, levels from crude, sloppy,
+    loose, normal (default), tight, verytight to extreme can be chosen
+
+--hess
+    perform a numerical hessian calculation on input geometry
+
+--ohess [LEVEL]
+    perform a numerical hessian calculation on an ancopt(3) optimized geometry
+
+--bhess [LEVEL]
+    perform a biased numerical hessian calculation on an ancopt(3) optimized geometry
+
+--md
+    molecular dynamics simulation on start geometry
+
+--metadyn [int]
+    meta dynamics simulation on start geometry, saving int snapshots of the
+    trajectory to bias the simulation
+
+--omd
+    molecular dynamics simulation on ancopt(3) optimized geometry,
+    a loose optimization level will be chosen
+
+--metaopt [LEVEL]
+    call ancopt(3) to perform a geometry optimization, then try to find other
+    minimas by meta dynamics
+
+--path [FILE]
+    use meta dynamics to calculate a path from the input geometry to the given
+    product structure
+
+--modef INT
+    modefollowing algorithm. INT specifies the mode that should be used for the
+    modefollowing.
+
+-I, --input FILE
+    use FILE as input source for xcontrol(7) instructions
+
+--namespace STRING
+    give this xtb(1) run a namespace. All files, even temporary ones, will be named
+    according to STRING (might not work everywhere).
+
+--[no]copy
+    copies the xcontrol file at startup (default = true)
+
+--[no]restart
+    restarts calculation from xtbrestart (default = true)
+
+-P, --parallel INT
+    number of parallel processes
+
+--define
+    performs automatic check of input and terminate
+
+--json
+    write xtbout.json file
+
+--citation
+    print citation and terminate
+
+--license
+    print license and terminate
+
+-v, --verbose
+    be more verbose (not supported in every unit)
+
+-s, --silent
+    clutter the screen less (not supported in every unit)
+
+--ceasefiles
+    reduce the amount of output and files written
+
+--strict
+    turns all warnings into hard errors
+
+-h, --help
+    show help page
+
+Useful Maschine Settings:
+
+export MKL_NUM_THREADS=<NCORE>
+export OMP_NUM_THREADS=<NCORE>,1
+export OMP_STACKSIZE=4G
+ulimit -s unlimited
+
+Output Conventions:
+
+total energies are given in atomic units (Eh)
+gaps/HL energies are given in eV
+
+More information can be obtained by `man 1 xtb` and `man 7 xcontrol`
+or at https://xtb-docs.readthedocs.io/en/latest/contents.html
+
+normal termination of xtb
+
+ running xtb job   
+
+Sun Feb  9 20:34:10 MSK 2025
+      -----------------------------------------------------------      
+     |                   =====================                   |     
+     |                           x T B                           |     
+     |                   =====================                   |     
+     |                         S. Grimme                         |     
+     |          Mulliken Center for Theoretical Chemistry        |     
+     |                    University of Bonn                     |     
+      -----------------------------------------------------------      
+
+   * xtb version 6.7.1 (edcfbbe) compiled by 'albert@albert-system' on 2024-07-22
+
+   xtb is free software: you can redistribute it and/or modify it under
+   the terms of the GNU Lesser General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+   
+   xtb is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU Lesser General Public License for more details.
+   
+   Cite this work as:
+   * C. Bannwarth, E. Caldeweyher, S. Ehlert, A. Hansen, P. Pracht,
+     J. Seibert, S. Spicher, S. Grimme, WIREs Comput. Mol. Sci., 2020, 11,
+     e01493. DOI: 10.1002/wcms.1493
+   
+   for GFN2-xTB:
+   * C. Bannwarth, S. Ehlert and S. Grimme., J. Chem. Theory Comput., 2019,
+     15, 1652-1671. DOI: 10.1021/acs.jctc.8b01176
+   for GFN1-xTB:
+   * S. Grimme, C. Bannwarth, P. Shushkov, J. Chem. Theory Comput., 2017,
+     13, 1989-2009. DOI: 10.1021/acs.jctc.7b00118
+   for GFN0-xTB:
+   * P. Pracht, E. Caldeweyher, S. Ehlert, S. Grimme, ChemRxiv, 2019, preprint.
+     DOI: 10.26434/chemrxiv.8326202.v1
+   for GFN-FF:
+   * S. Spicher and S. Grimme, Angew. Chem. Int. Ed., 2020, 59, 15665-15673.
+     DOI: 10.1002/anie.202004239
+   
+   for ALPB and GBSA implicit solvation:
+   * S. Ehlert, M. Stahn, S. Spicher, S. Grimme, J. Chem. Theory Comput.,
+     2021, 17, 4250-4261. DOI: 10.1021/acs.jctc.1c00471
+   
+   for ddCOSMO and CPCM-X implicit solvation:
+   * M. Stahn, S. Ehlert, S. Grimme, J. Phys. Chem. A,
+     2023, XX, XXXX-XXXX. DOI: 10.1021/acs.jpca.3c04382
+   
+   for DFT-D4:
+   * E. Caldeweyher, C. Bannwarth and S. Grimme, J. Chem. Phys., 2017,
+     147, 034112. DOI: 10.1063/1.4993215
+   * E. Caldeweyher, S. Ehlert, A. Hansen, H. Neugebauer, S. Spicher,
+     C. Bannwarth and S. Grimme, J. Chem. Phys., 2019, 150, 154122.
+     DOI: 10.1063/1.5090222
+   * E. Caldeweyher, J.-M. Mewes, S. Ehlert and S. Grimme, Phys. Chem. Chem. Phys.
+     2020, 22, 8499-8512. DOI: 10.1039/D0CP00502A
+   
+   for sTDA-xTB:
+   * S. Grimme and C. Bannwarth, J. Chem. Phys., 2016, 145, 054103.
+     DOI: 10.1063/1.4959605
+   
+   in the mass-spec context:
+   * V. Asgeirsson, C. Bauer and S. Grimme, Chem. Sci., 2017, 8, 4879.
+     DOI: 10.1039/c7sc00601b
+   * J. Koopman and S. Grimme, ACS Omega 2019, 4, 12, 15120-15133.
+     DOI: 10.1021/acsomega.9b02011
+   
+   for metadynamics refer to:
+   * S. Grimme, J. Chem. Theory Comput., 2019, 155, 2847-2862
+     DOI: 10.1021/acs.jctc.9b00143
+   
+   for SPH calculations refer to:
+   * S. Spicher and S. Grimme, J. Chem. Theory Comput., 2021, 17, 1701-1714
+     DOI: 10.1021/acs.jctc.0c01306
+   
+   for ONIOM refer to:
+   * C. Plett, A. Katbashev, S. Ehlert, S. Grimme, M. Bursch,
+     Phys. Chem. Chem. Phys., 2023, 25, 17860-17868. DOI: 10.1039/D3CP02178E
+   
+   for DIPRO refer to:
+   * J. Kohn, N. Gildemeister, S. Grimme, D. Fazzi, A. Hansen,
+     J. Chem. Phys., 2023, just accepted.
+   
+   for PTB refer to:
+   * S. Grimme, M. Mueller, A. Hansen, J. Chem. Phys., 2023, 158, 124111.
+     DOI: 10.1063/5.0137838
+   
+   with help from (in alphabetical order)
+   P. Atkinson, C. Bannwarth, F. Bohle, G. Brandenburg, E. Caldeweyher
+   M. Checinski, S. Dohm, S. Ehlert, S. Ehrlich, I. Gerasimov, C. Hölzer
+   A. Katbashev, J. Kohn, J. Koopman, C. Lavigne, S. Lehtola, F. März, M. Müller,
+   F. Musil, H. Neugebauer, J. Pisarek, C. Plett, P. Pracht, F. Pultar,
+   J. Seibert, P. Shushkov, S. Spicher, M. Stahn, M. Steiner, T. Strunk,
+   J. Stückrath, T. Rose, and J. Unsleber
+   
+ * started run on 2025/02/09 at 20:34:10.697     
+   ID    Z sym.   atoms
+    1    6 C      1, 3-7
+    2   74 W      2
+    3    8 O      8-13
+
+           -------------------------------------------------
+          |                Calculation Setup                |
+           -------------------------------------------------
+
+          program call               : /lustre/home/user/m/milias/work/software/xtb/xtb-dist/bin/xtb start.xyz --path W-CO_6.xtbopt.xyz --input path.inp
+          hostname                   : n02p064
+          coordinate file            : start.xyz
+          omp threads                :                     1
+
+
+molecular fragmentation (1/2 indicates fragments):
+1222222122222
+# atoms in fragment 1/2:     2    11
+ fragment masses (1/2) :       28.01      323.89
+CMA distance (Bohr)    :   8.989
+constraining FC (au)   :  0.0500
+
+           -------------------------------------------------
+          |                 G F N 2 - x T B                 |
+           -------------------------------------------------
+
+        Reference                      10.1021/acs.jctc.8b01176
+      * Hamiltonian:
+        H0-scaling (s, p, d)           1.850000    2.230000    2.230000
+        zeta-weighting                 0.500000
+      * Dispersion:
+        s8                             2.700000
+        a1                             0.520000
+        a2                             5.000000
+        s9                             5.000000
+      * Repulsion:
+        kExp                           1.500000    1.000000
+        rExp                           1.000000
+      * Coulomb:
+        alpha                          2.000000
+        third order                    shell-resolved
+        anisotropic                    true
+        a3                             3.000000
+        a5                             4.000000
+        cn-shift                       1.200000
+        cn-exp                         4.000000
+        max-rad                        5.000000
+
+
+          ...................................................
+          :                      SETUP                      :
+          :.................................................:
+          :  # basis functions                  58          :
+          :  # atomic orbitals                  57          :
+          :  # shells                           27          :
+          :  # electrons                        66          :
+          :  max. iterations                   250          :
+          :  Hamiltonian                  GFN2-xTB          :
+          :  restarted?                      false          :
+          :  GBSA solvation                  false          :
+          :  PC potential                    false          :
+          :  electronic temp.          300.0000000     K    :
+          :  accuracy                    1.0000000          :
+          :  -> integral cutoff          0.2500000E+02      :
+          :  -> integral neglect         0.1000000E-07      :
+          :  -> SCF convergence          0.1000000E-05 Eh   :
+          :  -> wf. convergence          0.1000000E-03 e    :
+          :  Broyden damping             0.4000000          :
+          :  net charge                          0          :
+          :  unpaired electrons                  0          :
+          ...................................................
+
+ iter      E             dE          RMSdq      gap      omega  full diag
+   1    -27.4237997 -0.274238E+02  0.228E+01    2.55       0.0  T
+   2    -25.2621305  0.216167E+01  0.265E+01    0.00       1.0  T
+   3    -33.7846189 -0.852249E+01  0.253E+01    0.13       1.0  T
+   4    -36.8998646 -0.311525E+01  0.157E+01    0.40       1.0  T
+   5    -38.6697892 -0.176992E+01  0.112E+01    0.56       1.0  T
+   6    -39.0882836 -0.418494E+00  0.940E+00    1.23       1.0  T
+   7    -38.9871789  0.101105E+00  0.772E+00    1.13       1.0  T
+   8    -39.8527015 -0.865523E+00  0.656E+00    1.60       1.0  T
+   9    -40.0323991 -0.179698E+00  0.252E+00    1.81       1.0  T
+  10    -40.0397019 -0.730279E-02  0.237E+00    2.03       1.0  T
+  11    -40.0327327  0.696918E-02  0.199E+00    2.11       1.0  T
+  12    -40.0466938 -0.139611E-01  0.150E+00    2.13       1.0  T
+  13    -40.0694951 -0.228013E-01  0.833E-01    2.06       1.0  T
+  14    -40.0709406 -0.144546E-02  0.134E+00    2.12       1.0  T
+  15    -40.0732301 -0.228954E-02  0.592E-01    2.08       1.0  T
+  16    -40.0737402 -0.510039E-03  0.520E-01    2.08       1.0  T
+  17    -40.0743176 -0.577386E-03  0.363E-01    2.08       1.0  T
+  18    -40.0747105 -0.392927E-03  0.249E-01    2.08       1.0  T
+  19    -40.0749298 -0.219370E-03  0.144E-01    2.08       1.0  T
+  20    -40.0750007 -0.708986E-04  0.614E-02    2.07       1.0  T
+  21    -40.0750073 -0.658508E-05  0.525E-02    2.07       1.0  T
+  22    -40.0750155 -0.813628E-05  0.175E-02    2.01       1.6  T
+  23    -40.0750184 -0.291446E-05  0.481E-03    2.02       5.8  T
+  24    -40.0750184 -0.354213E-07  0.534E-03    2.03       5.2  T
+  25    -40.0750185 -0.918690E-07  0.241E-03    2.03      11.5  T
+  26    -40.0750185 -0.269698E-07  0.113E-03    2.03      24.5  T
+  27    -40.0750185 -0.359603E-08  0.906E-04    2.03      30.6  T
+  28    -40.0750185 -0.210144E-08  0.360E-04    2.03      77.0  T
+
+   *** convergence criteria satisfied after 28 iterations ***
+
+         #    Occupation            Energy/Eh            Energy/eV
+      -------------------------------------------------------------
+         1        2.0000           -0.8199729             -22.3126
+       ...           ...                  ...                  ...
+        27        2.0000           -0.4940098             -13.4427
+        28        2.0000           -0.4874295             -13.2636
+        29        2.0000           -0.4830818             -13.1453
+        30        2.0000           -0.4830792             -13.1453
+        31        2.0000           -0.3924436             -10.6789
+        32        2.0000           -0.3924430             -10.6789
+        33        2.0000           -0.3876001             -10.5471 (HOMO)
+        34                         -0.3130478              -8.5185 (LUMO)
+        35                         -0.3130343              -8.5181
+        36                         -0.3115882              -8.4787
+        37                         -0.2811454              -7.6504
+        38                         -0.2811445              -7.6503
+       ...                                ...                  ...
+        57                          1.0257112              27.9110
+      -------------------------------------------------------------
+                  HL-Gap            0.0745523 Eh            2.0287 eV
+             Fermi-level           -0.3503240 Eh           -9.5328 eV
+
+ SCC (total)                   0 d,  0 h,  0 min,  0.029 sec
+ SCC setup                      ...        0 min,  0.000 sec (  1.461%)
+ Dispersion                     ...        0 min,  0.000 sec (  0.480%)
+ classical contributions        ...        0 min,  0.000 sec (  0.180%)
+ integral evaluation            ...        0 min,  0.005 sec ( 17.575%)
+ iterations                     ...        0 min,  0.017 sec ( 60.225%)
+ molecular gradient             ...        0 min,  0.006 sec ( 19.154%)
+ printout                       ...        0 min,  0.000 sec (  0.791%)
+
+         :::::::::::::::::::::::::::::::::::::::::::::::::::::
+         ::                     SUMMARY                     ::
+         :::::::::::::::::::::::::::::::::::::::::::::::::::::
+         :: total energy             -39.615023948679 Eh    ::
+         :: gradient norm              0.059682761604 Eh/a0 ::
+         :: HOMO-LUMO gap              2.028672323257 eV    ::
+         ::.................................................::
+         :: SCC energy               -40.074912705855 Eh    ::
+         :: -> isotropic ES            0.014425729069 Eh    ::
+         :: -> anisotropic ES          0.001547802465 Eh    ::
+         :: -> anisotropic XC          0.010583610651 Eh    ::
+         :: -> dispersion             -0.013978444512 Eh    ::
+         :: repulsion energy           0.459888757176 Eh    ::
+         :: add. restraining           0.000000000000 Eh    ::
+         :: total charge              -0.000000000000 e     ::
+         :::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+           -------------------------------------------------
+          |                Property Printout                |
+           -------------------------------------------------
+
+    * Orbital Energies and Occupations
+
+         #    Occupation            Energy/Eh            Energy/eV
+      -------------------------------------------------------------
+         1        2.0000           -0.8199729             -22.3126
+       ...           ...                  ...                  ...
+        21        2.0000           -0.6026684             -16.3994
+        22        2.0000           -0.6025299             -16.3957
+        23        2.0000           -0.6025295             -16.3957
+        24        2.0000           -0.5999155             -16.3245
+        25        2.0000           -0.5798690             -15.7790
+        26        2.0000           -0.5070738             -13.7982
+        27        2.0000           -0.4940098             -13.4427
+        28        2.0000           -0.4874295             -13.2636
+        29        2.0000           -0.4830818             -13.1453
+        30        2.0000           -0.4830792             -13.1453
+        31        2.0000           -0.3924436             -10.6789
+        32        2.0000           -0.3924430             -10.6789
+        33        2.0000           -0.3876001             -10.5471 (HOMO)
+        34                         -0.3130478              -8.5185 (LUMO)
+        35                         -0.3130343              -8.5181
+        36                         -0.3115882              -8.4787
+        37                         -0.2811454              -7.6504
+        38                         -0.2811445              -7.6503
+        39                         -0.2758622              -7.5066
+        40                         -0.2710225              -7.3749
+        41                         -0.2710219              -7.3749
+        42                         -0.2572609              -7.0004
+        43                         -0.2054873              -5.5916
+        44                         -0.2054789              -5.5914
+       ...                                ...                  ...
+        57                          1.0257112              27.9110
+      -------------------------------------------------------------
+                  HL-Gap            0.0745523 Eh            2.0287 eV
+             Fermi-level           -0.3503240 Eh           -9.5328 eV
+
+     #   Z          covCN         q      C6AA      α(0)
+     1   6 C        0.856     0.093    32.438     9.504
+     2  74 W        4.747    -0.482   640.014    55.797
+     3   6 C        1.803     0.234    25.740     8.199
+     4   6 C        1.803     0.194    26.579     8.331
+     5   6 C        1.803     0.194    26.579     8.331
+     6   6 C        1.803     0.194    26.579     8.331
+     7   6 C        1.803     0.194    26.579     8.331
+     8   8 O        0.856    -0.033    15.561     5.289
+     9   8 O        0.857    -0.103    16.554     5.455
+    10   8 O        0.857    -0.121    16.831     5.500
+    11   8 O        0.857    -0.121    16.832     5.501
+    12   8 O        0.857    -0.121    16.831     5.500
+    13   8 O        0.857    -0.121    16.832     5.501
+
+ Mol. C6AA /au·bohr⁶  :       6431.262488
+ Mol. C8AA /au·bohr⁸  :     351581.376827
+ Mol. α(0) /au        :        139.570137
+
+
+Wiberg/Mayer (AO) data.
+largest (>0.10) Wiberg bond orders for each atom
+
+ ---------------------------------------------------------------------------
+     #   Z sym  total        # sym  WBO       # sym  WBO       # sym  WBO
+ ---------------------------------------------------------------------------
+     1   6 C    2.733 --     8 O    2.621     2 W    0.105
+     2  74 W    6.452 --     3 C    1.376     7 C    0.984     5 C    0.984
+                             4 C    0.984     6 C    0.984     9 O    0.293
+                            13 O    0.184    11 O    0.184    10 O    0.184
+                            12 O    0.184     1 C    0.105
+     3   6 C    3.746 --     9 O    2.180     2 W    1.376
+     4   6 C    3.510 --    10 O    2.290     2 W    0.984
+     5   6 C    3.510 --    11 O    2.290     2 W    0.984
+     6   6 C    3.510 --    12 O    2.290     2 W    0.984
+     7   6 C    3.510 --    13 O    2.290     2 W    0.984
+     8   8 O    2.625 --     1 C    2.621
+     9   8 O    2.556 --     3 C    2.180     2 W    0.293
+    10   8 O    2.542 --     4 C    2.290     2 W    0.184
+    11   8 O    2.542 --     5 C    2.290     2 W    0.184
+    12   8 O    2.542 --     6 C    2.290     2 W    0.184
+    13   8 O    2.542 --     7 C    2.290     2 W    0.184
+ ---------------------------------------------------------------------------
+
+Topologies differ in total number of bonds
+Writing topology from bond orders to xtbtopo.mol
+
+molecular dipole:
+                 x           y           z       tot (Debye)
+ q only:        0.032       0.085       0.016
+   full:        0.451       1.305       0.194       3.543
+molecular quadrupole (traceless):
+                xx          xy          yy          xz          yz          zz
+ q only:       -1.627       2.162       3.863       0.324       0.933      -2.237
+  q+dip:       -2.478       3.306       5.888       0.499       1.435      -3.410
+   full:       -2.450       3.267       5.820       0.492       1.417      -3.371
+
+
+           -------------------------------------------------
+          | TOTAL ENERGY              -39.615023948679 Eh   |
+          | GRADIENT NORM               0.059682761604 Eh/α |
+          | HOMO-LUMO GAP               2.028672323257 eV   |
+           -------------------------------------------------
+           ------------------------------------------------- 
+          |                     P A T H                     |
+          |            RMSD-Push/Pull Path Finder           |
+           ------------------------------------------------- 
+ reading reference structures from W-CO_6.xtbopt.xyz ...
+reactant product RMSD :    1.273
+initial k push/pull (in code xNat) :    0.003   -0.015
+initial Gaussian width (1/Bohr)    :    1.200
+# refinement runs                  :   1
+# of 'an'-optimization steps       :  10
+# optlevel                         :   0
+ 
+degenerate system : F 0.048530 0.061047
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+ 33 # points, run   1 for k push/pull/alpha :   0.003  -0.015   1.200      prod-ed RMSD:   0.017
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+ 34 # points, run   2 for k push/pull/alpha :   0.003  -0.013   1.200      prod-ed RMSD:   0.016
+ 
+ path trials (see xtbpath_*.xyz), energies in kcal/mol
+run 1  barrier:  34.61  dE: -59.80  product-end path RMSD:   0.017
+run 2  barrier:   7.04  dE: -59.80  product-end path RMSD:   0.016
+path  2 taken with   34 points.
+screening points ...
+start path on file xtbpath_0.xyz                                                                   
+refinement cycle   1
+ optimizing points            2  ...
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+ optimizing points           10  ...
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+ optimizing points           20  ...
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+ optimizing points           30  ...
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+      ----------------------------------------------------------- 
+     |                   =====================                   |
+     |                        A N C O P T                        |
+     |                   =====================                   |
+     |               Approximate Normal Coordinate               |
+     |                Rational Function Optimizer                |
+      ----------------------------------------------------------- 
+ 
+forward  barrier (kcal)  :     0.000
+backward barrier (kcal)  :    59.802
+reaction energy  (kcal)  :   -59.802
+opt. pull strength       :     0.050
+norm(g) at est. TS, point: 0.01154   2
+ 
+terminated because max. # cycles reached
+estimated TS on file xtbpath_ts.xyz                                                                  
+path data (pmode=approx. path mode):
+point     drms     energy pmode ovlp pmode grad
+   2     0.000    -2.782     0.938  -0.00453
+   3     0.075    -4.089     0.976  -0.00294
+   4     0.130    -5.539     0.968  -0.00323
+   5     0.185    -7.117     0.951  -0.00349
+   6     0.240    -8.796     0.971  -0.00369
+   7     0.296   -10.647     0.977  -0.00405
+   8     0.352   -12.579     0.970  -0.00420
+   9     0.409   -14.690     0.981  -0.00456
+  10     0.465   -16.917     0.991  -0.00510
+  11     0.519   -19.310     0.956  -0.00548
+  12     0.572   -21.691     0.963  -0.00549
+  13     0.626   -23.965     0.927  -0.00579
+  14     0.674   -26.580     0.898  -0.00699
+  15     0.719   -29.839     0.908  -0.00705
+  16     0.776   -34.574     0.871  -0.00756
+  17     0.853   -38.457     0.928  -0.00784
+  18     0.914   -41.801     0.731  -0.00774
+  19     0.967   -45.806     0.701  -0.00694
+  20     1.037   -48.757     0.868  -0.00556
+  21     1.102   -51.138     0.880  -0.00545
+  22     1.156   -53.317     0.537  -0.00488
+  23     1.211   -54.395     0.674  -0.00218
+  24     1.271   -55.259     0.307  -0.00215
+  25     1.321   -55.075    -0.060   0.00025
+  26     1.412   -57.593     0.324  -0.00460
+  27     1.479   -59.143     0.376  -0.00380
+  28     1.529   -59.675     0.164  -0.00136
+  29     1.577   -59.698     0.215  -0.00010
+  30     1.606   -59.653    -0.617   0.00022
+  31     1.631   -58.853    -0.908   0.00264
+  32     1.668   -59.799    -0.456  -0.00273
+  33     1.711   -59.769    -0.511   0.00030
+  34     1.723   -59.802     0.170  -0.00029
+
+------------------------------------------------------------------------
+ * finished run on 2025/02/09 at 20:34:19.132     
+------------------------------------------------------------------------
+ total:
+ * wall-time:     0 d,  0 h,  0 min,  8.432 sec
+ *  cpu-time:     0 d,  0 h,  0 min,  8.272 sec
+ * ratio c/w:     0.981 speedup
+ SCF:
+ * wall-time:     0 d,  0 h,  0 min,  0.029 sec
+ *  cpu-time:     0 d,  0 h,  0 min,  0.029 sec
+ * ratio c/w:     0.993 speedup
+ path finder:
+ * wall-time:     0 d,  0 h,  0 min,  8.329 sec
+ *  cpu-time:     0 d,  0 h,  0 min,  8.221 sec
+ * ratio c/w:     0.987 speedup
+
+normal termination of xtb
+
+ xtb job finished Sun Feb  9 20:34:19 MSK 2025

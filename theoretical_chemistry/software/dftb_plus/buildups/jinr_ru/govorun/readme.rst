@@ -14,6 +14,11 @@ unpack
 milias@vm02.hydra.local:~/work/software/dftb_plus/.tar xf dftbplus-24.1.x86_64-linux.tar.xz 
 
 
+milias@vm02.hydra.local:~/work/software/dftb_plus/dftbplus-24.1.x86_64-linux/bin/.ls 
+buildwire*                calc_timeprop_spectrum*  dftb+*  integvalue*  mctc-convert*  phonons*    printunits*  skderivs*  waveplot*
+calc_timeprop_maxpoldir*  chimescalc*              flux*   makecube*    modes*         polyvalue*  setupgeom*   splvalue*
+
+
 
 
 

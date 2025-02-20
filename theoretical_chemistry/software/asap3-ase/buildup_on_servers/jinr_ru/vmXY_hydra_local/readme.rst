@@ -1,7 +1,8 @@
+=========================
 ASAP3 on vmXY.hydra.local
 =========================
 
-ilias@vm02.hydra.local:~/.pip install asap3
+milias@vm02.hydra.local:~/.pip install asap3
 Defaulting to user installation because normal site-packages is not writeable
 WARNING: Ignoring invalid distribution -ip (/lustre/home/user/m/milias/.local/lib/python3.10/site-packages)
 WARNING: Ignoring invalid distribution -ip (/lustre/home/user/m/milias/.local/lib/python3.10/site-packages)
@@ -21,44 +22,21 @@ Requirement already satisfied: python-dateutil>=2.7 in ./.local/lib/python3.10/s
 Requirement already satisfied: six>=1.5 in ./.local/lib/python3.10/site-packages (from python-dateutil>=2.7->matplotlib>=3.3.4->ase>=3.22.1->asap3) (1.16.0)
 WARNING: Ignoring invalid distribution -ip (/lustre/home/user/m/milias/.local/lib/python3.10/site-packages)
 
-milias@vm02.hydra.local:~/work/projects/open-collection/theoretical_chemistry/software/asap3-ase/buildup_on_servers/jinr_ru/vmXY_hydra_local/.pip list
+milias@vm02.hydra.local:~/work/projects/open-collection/theoretical_chemistry/software/asap3-ase/buildup_on_servers/jinr_ru/hydra_jinr_ru/.pip install --upgrade --user  asap3
+.
+.
+ Stored in directory: /lustre/home/user/m/milias/.cache/pip/wheels/f2/f7/48/10a78efcea5b08cb4fe6c97dd2d21b1e09e2fe5fee963c26fe
+Successfully built asap3
 WARNING: Ignoring invalid distribution -ip (/lustre/home/user/m/milias/.local/lib/python3.10/site-packages)
-Package         Version
---------------- -----------
-asap            2.0.0a8
-asap3           3.13.4
-ase             3.23.0
-contourpy       1.2.0
-cycler          0.12.1
-distlib         0.3.8
-exceptiongroup  1.2.1
-filelock        3.14.0
-fonttools       4.50.0
-gulp            0.1.0
-iniconfig       2.0.0
-kiwisolver      1.4.5
-llvmlite        0.41.1
-matplotlib      3.8.3
-numba           0.58.1
-numpy           1.26.4
-packaging       24.0
-pillow          10.3.0
-pip             24.1
-platformdirs    4.2.2
-pluggy          1.5.0
-pyparsing       3.1.2
-pytest          8.2.1
-python-dateutil 2.9.0.post0
-scipy           1.12.0
-setuptools      65.5.0
-six             1.16.0
-tomli           2.0.1
-virtualenv      20.26.2
+Installing collected packages: asap3
+Successfully installed asap3-3.13.6
 
-milias@vm02.hydra.local:~/work/projects/open-collection/theoretical_chemistry/software/asap3-ase/buildup_on_servers/jinr_ru/vmXY_hydra_local/test_simpleMD/.pip show asap3 ase
+
+milias@vm02.hydra.local:~/work/projects/open-collection/theoretical_chemistry/software/asap3-ase/buildup_on_servers/jinr_ru/hydra_jinr_ru/.pip show asap3 ase
+milias@vm02.hydra.local:~/work/projects/open-collection/theoretical_chemistry/software/asap3-ase/buildup_on_servers/jinr_ru/hydra_jinr_ru/.pip show asap3 ase
 WARNING: Ignoring invalid distribution -ip (/lustre/home/user/m/milias/.local/lib/python3.10/site-packages)
 Name: asap3
-Version: 3.13.4
+Version: 3.13.6
 Summary: ASAP - classical potentials for MD with ASE.
 Home-page: https://wiki.fysik.dtu.dk/asap
 Author: 
@@ -69,7 +47,7 @@ Requires: ase
 Required-by: 
 ---
 Name: ase
-Version: 3.23.0
+Version: 3.24.0
 Summary: Atomic Simulation Environment
 Home-page: https://wiki.fysik.dtu.dk/ase/
 Author: 
@@ -78,5 +56,6 @@ License: LGPLv2.1+
 Location: /lustre/home/user/m/milias/.local/lib/python3.10/site-packages
 Requires: matplotlib, numpy, scipy
 Required-by: asap3
+
 
 

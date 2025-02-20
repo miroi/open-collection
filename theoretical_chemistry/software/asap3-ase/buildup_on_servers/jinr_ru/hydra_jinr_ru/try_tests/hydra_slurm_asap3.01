@@ -89,8 +89,16 @@ echo
 # for running jobs from your homedir
 cd $SLURM_SUBMIT_DIR
 
+pip show asap3
+asap3 --help
+
 #python3 SimpleMD.py
 python3 TestAll.py --help
+
+echo -e "\n running test Trajectories ..."
+#python3 TestAll.py Trajectories
+
+python3 TestAll.py SpecialEMT
 
 
 exit

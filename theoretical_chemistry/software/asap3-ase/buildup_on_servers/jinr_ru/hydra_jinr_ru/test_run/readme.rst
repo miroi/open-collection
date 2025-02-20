@@ -4,11 +4,11 @@ SimpleMD
 
 https://asap3.readthedocs.io/en/latest/examples/Simple_molecular_dynamics_simulation.html#simple-molecular-dynamics-simulation
 
+run
+---
+sbatch hydra_slurm_asap3.01
 
-crash upon runa
-milias@hydra.jinr.ru:~/work/projects/open-collection/theoretical_chemistry/software/asap3/servers/hydra_jinr_ru/simpleMD/.python SimpleMD.py
+see log_slurm_job.8949516.n02p065.std_out_err_SAVED
 
-
-see https://gitlab-hybrilit.jinr.ru/hybrilit/hlit-user/-/issues/227
 
 

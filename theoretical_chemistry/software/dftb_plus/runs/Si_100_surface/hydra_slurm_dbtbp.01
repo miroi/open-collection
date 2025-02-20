@@ -94,6 +94,12 @@ echo
 # for running jobs from your homedir
 cd $SLURM_SUBMIT_DIR
 
+echo -e "\n making link to DFTB+ input:"
+ln -sf Si100_slab.hsd dftb_in.hsd
+ls -lt dftb_in.hsd
+
+echo -e "\n running dftb+ ... "
+
 dftb+
 
 exit

@@ -9,18 +9,20 @@ from asap3 import Atoms, EMT, units
 from ase.lattice.cubic import FaceCenteredCubic
 from asap3.md.langevin import Langevin
 
-from ase.lattice.cubic import FaceCenteredCubic
 from ase.calculators.kim.kim import KIM
 from ase.build import bulk
 
 # Create the atoms
 #atoms = FaceCenteredCubic(size=(5,5,5), symbol="Cu", pbc=False)
-atoms = bulk(name='Og',crystalstructure='hcp', a=5.25, size=(5,5,5))
+atoms = FaceCenteredCubic(size=(5,5,5), symbol="Og", pbc=True, latticeconstant=5.00)
+#atoms = bulk(name='Og',crystalstructure='hcp', a=5.25)
+
+# set calc
 calc = KIM("LJ_ElliottAkerson_2015_Universal__MO_959249795837_003")
 atoms.calc = calc
 
 # Associate the EMT potential with the atoms
-atoms.set_calculator(EMT())
+#atoms.set_calculator(EMT())
 
 # Temperature profile
 temperatures = (250, 500, 750, 1000, 1250, 1500, 1750)

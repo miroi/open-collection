@@ -10,3 +10,7 @@ pip install asap3
 Successfully installed asap3-3.13.6
 
 
+
+(venv) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/openkim-ase/runs/rare_gas_fcc_tests/Og_solid/melting/.python3 melting.py  > melting.log
+
+

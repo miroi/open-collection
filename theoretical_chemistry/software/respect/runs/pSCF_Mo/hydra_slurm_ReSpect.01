@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH -J rsp
+#SBATCH -J pSCF
 
 ##  partition (queue)
 #SBATCH -p cascade
@@ -9,7 +9,7 @@
 
 ## max. execution time
 ##SBATCH -t 7-00:00:00
-#SBATCH -t 0-08:00:00
+#SBATCH -t 0-04:00:00
 
 #SBATCH --mem=64GB
 
@@ -57,7 +57,9 @@ cd $SLURM_SUBMIT_DIR
 export TMPDIR=/lustre/home/user/m/milias/scratch
 df -h /tmp; df -h $TMPDIR
 NMPI=$SLURM_CPUS_ON_NODE
-project=periodic
+
+#project=periodic
+project=mo_mdks_ri-j
 
 echo -e "\n running $RSP/respect --scratch=$TMPDIR --inp=$project --nt=$NMPI ..."
 $RSP/respect --pscf  --scratch=$TMPDIR --inp=$project --nt=$NMPI

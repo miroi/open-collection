@@ -1,0 +1,1149 @@
+##############################################################################
+                              Environment setting
+##############################################################################
+
+ Job setting:
+    
+    Call arguments   are    --pscf --scratch=/lustre/home/user/m/milias/scratch --inp=mo_mdks_ri-j --nt=12 
+    Input file name   is   mo_mdks_ri-j.inp
+    Binary  directory is   /lustre/home/user/m/milias/work/software/respect/ReSpect_5.3.0_2024_x86_64_omp_static
+    Work    directory is   /lustre/home/user/m/milias/work/projects/open-collection/theoretical_chemistry/software/respect/runs/pSCF_Mo/
+    Scratch directory is   /lustre/home/user/m/milias/scratch/tmp314828.bxfcx_al.milias
+    Machine name      is   n02p069
+    OMP stack memory size  2048m
+    OMP parallel job with  12 threads
+    Output  file will be   /lustre/home/user/m/milias/work/projects/open-collection/theoretical_chemistry/software/respect/runs/pSCF_Mo/mo_mdks_ri-j.out_pscf
+
+
+ System setting:
+
+    core file size          (blocks, -c) unlimited
+    data seg size           (kbytes, -d) unlimited
+    scheduling priority             (-e) 0
+    file size               (blocks, -f) unlimited
+    pending signals                 (-i) 767566
+    max locked memory       (kbytes, -l) unlimited
+    max memory size         (kbytes, -m) 67108864
+    open files                      (-n) 131072
+    pipe size            (512 bytes, -p) 8
+    POSIX message queues     (bytes, -q) 819200
+    real-time priority              (-r) 0
+    stack size              (kbytes, -s) unlimited
+    cpu time               (seconds, -t) unlimited
+    max user processes              (-u) 767566
+    virtual memory          (kbytes, -v) unlimited
+    file locks                      (-x) unlimited
+    omp_thread_limit:
+    omp_stacksize:2048m
+    
+
+##############################################################################
+                               Program ReSpect
+##############################################################################
+::
+
+ Version:       5.3.0 (2024)
+ Released:      14. July 2024
+
+ Branch:        release-5.3-2024
+ Commit hash:   7b218e5b5
+ Commit author: Michal Repisky
+ Commit date:   Mon Jul 15 14:48:00 2024 +0200
+
+ Webpage:       http://www.respectprogram.org 
+ Copyright:     ReSpect is distributed as proprietary software at no cost
+                and is currently available as OpenMP parallel static binaries
+                for Linux OS and x86_64 architecture at the program webpage.
+                The program is limited to non-commercial, academic, and non-profit
+                private use and its further copy, modification, redistribution or
+                sublicense in whole or in part is not permitted.
+                The specific terms of use are available at:
+                http://www.respectprogram.org/download.html.
+                The program is distributed AS IS in a hope it becomes useful.
+                The experimental nature of the program means that authors accept
+                no responsibility for the correctness of results nor fitness for
+                a particular purpose.
+
+ Reference(s):  If results obtained with ReSpect are published in the scientific
+                literature or publicly accessible reports, the users shall reference
+                the program as:
+
+                ReSpect: Relativistic Spectroscopy DFT Program Package
+                M. Repisky, S. Komorovsky, M. Kadek, L. Konecny, U. Ekstrom,
+                E. Malkin, M. Kaupp, K. Ruud, O. L. Malkina, and V. G. Malkin,
+                J. Chem. Phys. 152, 184101 (2020) [DOI: https://doi.org/10.1063/5.0005094]
+                Version: 5.3.0 (2024), Program webpage: http://www.respectprogram.org
+
+                Using specific theoretical methods included in ReSpect may require citing
+                additional articles, as described in this output file as "REQUIRED REFERENCES".
+
+
+ -------
+ Authors
+ -------
+ Repisky Michal
+ Komorovsky Stanislav
+
+
+ --------
+ Founders
+ --------
+ Ruud Kenneth
+ Kaupp Martin
+ Malkina Olga L.
+ Malkin Vladimir G.
+
+
+ ------------
+ Contributors
+ ------------
+ Bast Radovan         - AutoCMake library
+ Di Remigio Roberto   - PCMSolver library
+ Ekstrom Ulf          - XCFun library
+ Joosten Marc         - NQCC/EFG library
+ Kadek Marius         - solid-state pSCF library
+                      - real-time TDDFT (RT-TDDFT) library
+ Knecht Stefan        - pilot MPI parallelization
+ Konecny Lukas        - real-time TDDFT (RT-TDDFT) library
+                      - damped-response TDDFT (DR-TDDFT) library
+ Malkin Elena         - one-component molecular properties
+                      - finite size nucleus and magnetic moment models
+ Malkin-Ondik Irina   - Douglas-Kroll-Hess (DKH) Hamiltonians
+ Moitra Torsha        - transient (pump-probe) absorption spectroscopy
+
+
+
+
+##############################################################################
+                    Configuration, build, and runtime info
+##############################################################################
+::
+
+ -----------------------------------
+ Configuration and build information
+ -----------------------------------
+
+ Who compiled           | repisky
+ Compiled on server     | quaternion
+ Operating system       | Linux-5.15.0-105-generic
+ CMake version          | 3.16.3
+ CMake generator        | Unix Makefiles
+ CMake build type       | release
+ Configuration time     | 2024-07-15 12:53:05.404450
+ Python version         | 3.9.1
+ Fortran compiler       | /opt/intel/oneapi/2023.1/compiler/2023.1.0/linux/bin/intel64/ifort
+ Fortran compiler flags |  -w -fpp -assume byterecl -static -static-intel -static-libgcc -static-libstdc++ -qopenmp -w -fpp -assume byterecl -static -static-intel -static-libgcc -static-libstdc++ -qopenmp -O2               -xW -ip
+ C compiler             | /usr/bin/gcc
+ C compiler flags       |  -std=c99 -DRESTRICT=restrict -DFUNDERSCORE=1 -DHAVE_NO_LSEEK64 -ffloat-store -Wno-unused -m64 -static -fpic -fopenmp -std=c99 -DRESTRICT=restrict -DFUNDERSCORE=1 -DHAVE_NO_LSEEK64 -ffloat-store -Wno-unused -m64 -static -fpic -fopenmp -O2 -ffast-math -funroll-loops -ftree-vectorize
+ C++ compiler           | /usr/bin/g++
+ C++ compiler flags     |  -Wall -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused -fno-rtti -fno-exceptions -m64 -static -fpic -fopenmp -Wall -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused -fno-rtti -fno-exceptions -m64 -static -fpic -fopenmp -O3 -mtune=native -DNDEBUG
+ Static linking         | True
+ MPI parallelization    | False
+ OMP parallelization    | True
+ Math libraries         | unknown
+ Explicit libraries     | unknown
+
+
+ ------------
+ Runtime info
+ ------------
+
+ Parallelization model: OpenMP
+   Master process has 12 threads of total 12
+
+ Initial time:
+   13:41:29, 10 March, 2025
+
+
+##############################################################################
+                            Input processing info
+##############################################################################
+::
+
+ ----------
+ Input file
+ ----------
+
+ pscf:
+      geo-units:  angstrom
+      geometry:
+           Mo   0.000000   0.000000   0.000000
+ 
+      basis:          dyall-dz
+      method:         mdks/pbe
+      initmo:         atomic
+      nc-model:       gauss
+      diis:           on
+      maxiterations:  30
+      convergence:    1.0e-6
+ 
+      grid:
+           all:  50  adaptive
+      peri:
+           acceleration:  ri-j
+           threshold:  1.0e-8
+
+
+ ----------------
+ Input processing
+ ----------------
+
+ ... geometry defined in units: angstrom
+
+ ... geometry processing (xyz format)
+
+     Mo   0.000000   0.000000   0.000000
+ 
+ ... orbital basis required
+
+     all: dyall-dz
+ 
+ ... method: Kohn-Sham DFT theory based on
+             four-component Dirac-Coulomb Hamiltonian (mDKS)
+
+ ... GGA XC functional: PBE
+
+ ... nuclear charge distribution model: gaussian
+
+ ... DIIS scheme turned on
+
+ ... maximum number of periodic scf iterations:   30
+
+ ... periodic scf convergence criteria:  1.00E-06
+
+ ... DFT grid of atom-specific quality required
+
+     all:  50  adaptive
+
+ ... RI approach used for the calculation of ERIs (J only)
+
+ ... integral screening threshold used for the calculation of ERIs:   1.00E-08
+
+ ... crystalline orbitals init: superposition of atomic densities
+
+
+
+##############################################################################
+                             REQUIRED REFERENCES
+##############################################################################
+
+ The theoretical foundation and first benchmark data of the relativistic
+ four-component DFT for solids and periodic systems for the calculation
+ of electronic band structures and density-of-states were presented in:
+
+ [1] M. Kadek, M. Repisky, and K. Ruud, Phys. Rev. B 99, 205103 (2019)
+     [DOI: https://doi.org/10.1103/PhysRevB.99.205103]
+
+ XCFun: a library of DFT exchange-correlation functionals
+
+ [2] U. Ekström, et al., J. Chem. Theory Comput. 6, 1971-1980 (2010)
+     [DOI: https://doi.org/10.1021/ct100117s]
+
+
+##############################################################################
+                              Periodic DFT grid
+##############################################################################
+
+
+DFT grid generator
+------------------
+::
+
+ Becke atomic partitioning scheme
+ Lebedev angular quadrature (adaptive size) 
+ Adaptive angular distribution limit     = 11
+ Adaptive angular distribution threshold =   1.0E-05
+ Rotational invariance of grid points: rotation wrt. standard orientation
+ Gauss-Chebyshev(I) radial quadrature
+ Radial grid points mapping:  Koester
+ Radial grid points shift:    False
+ Grid file:                   grid.pscf
+
+ Centre of nuclear charge (in A):  0.000D+00  0.000D+00  0.000D+00
+ NCMT eigenvalues:     0.0000000D+00  0.0000000D+00  0.0000000D+00  (t)
+ NCMT eigenvalues:     0.0000000D+00  0.0000000D+00  0.0000000D+00  (t)
+ NCMT eigenvalues:     0.0000000D+00  0.0000000D+00  0.0000000D+00  (t)
+
+ Standard molecular orientation (in A):
+  0.0000000000D+00  0.0000000000D+00  0.0000000000D+00
+
+ Rotationally invariant molecular orientation (in A):
+  0.0000000000D+00  0.0000000000D+00  0.0000000000D+00
+
+ Atom   1 has    1288 grid points ( 0)
+ Total           1288 grid points (generated in    0.0 seconds)
+ 
+
+
+##############################################################################
+                    Atomic, molecular, and basis sets info
+##############################################################################
+
+
+Atomic and Nuclear Constants
+----------------------------
+::
+
+ The data used in this calculation (unless changed from input) are from
+ the CODATA recommended values of the fundamental physical constants 2010
+ (online at http://physics.nist.gov/constants) and from the 2006 compilation
+ of the Particle Data Group (online at http://pdg.lbl.gov).
+ All values are in the SI-based atomic units unless stated otherwise.
+
+ Inverse fine-structure constant =   137.035999074000
+ Bohr radius [A]                 =     0.529177210920
+ Hartree energy [eV]             =    27.211385050000
+ Electric dipole moment [Debye]  =     2.541746363608
+
+ atom    label     Z    isotop    atomic mass       spin         g-value 
+ ----------------------------------------------------------------------- 
+  Mo       1      42      98       97.905408      0.000000      0.000000
+
+
+
+Molecular geometry [A]
+----------------------
+::
+
+ atom    label                 cartesian coordinates            
+ -------------------------------------------------------------- 
+  Mo       1         0.000000         0.000000         0.000000
+
+
+
+Interatomic distances [A]
+-------------------------
+::
+
+ ---          Mo (   1)
+ Mo (   1)    0.000000
+
+
+
+Atomic orbital basis
+--------------------
+::
+
+ atom  label     prim    cont     orbital basis set details     
+ ---------------------------------------------------------------
+  Mo     1        113     113     [21s14p10d]  dyall-dz
+
+ Total number of           GTO shells =      45
+ Total number of spherical GTO functions =  113
+ Total number of cartesian GTO functions =  123
+
+
+
+Auxiliary basis
+---------------
+::
+
+ atom  label     prim    cont    auxiliary basis set details  
+ -------------------------------------------------------------
+  Mo     1        415     415     [31s22p22d13f13g]  dyall-dz
+
+ Total number of           auxiliary shells =     101
+ Total number of spherical auxiliary functions =  415
+ Total number of cartesian auxiliary functions =  554
+
+
+
+
+ReSpect output
+==============
+
+  RI-J  
+  ----------
+  Coulomb metric matrix:                00:00:00.52
+ 
+  Lattice Fock setting
+  --------------------
+  number atoms:                                   1
+  number GTO shells:                             45
+  nucleus model:                              gauss
+  ERI classes (up to):                         SSSS (exact)
+  threshold relevant overlaps:           1.0000E-12
+  ERI threshold screening:               1.0000E-08
+  ERI threshold Gauss extent:            1.0000E-09
+  ERI well separated (ws) index:                  2
+  ERI max multipole order (L):                   20
+  ERI FMM lowest tier box length:        2.00000000
+  ERI acceleration:                             ri-j
+  inverse fine-structure constant:     137.03599907
+  DFT:                                           on
+  DFT functional ID:                              4
+  DFT screening threshold:               1.0000E-08
+  HF global exchange scaling factor:     0.00000000
+  HF range-separated scaling factor:     0.00000000
+  HF range-separated erf w-argument:     0.00000000
+  XC library:                                  xcfun
+  crystal periodicity:                            0
+  crystal near-field unit cells:                  1
+  crystal near field supercell:            1      1      1
+  lattice primitive vector 1:            0.00000000    0.00000000    0.00000000
+  lattice primitive vector 2:            0.00000000    0.00000000    0.00000000
+  lattice primitive vector 3:            0.00000000    0.00000000    0.00000000
+  unit cell volume [Bohr^3]:             1.00000000
+ 
+ 
+  SCF setting
+  -----------
+  scalar basis size:                       113
+  wave-function components:                  4
+  number of matrices:                        1
+  number of electrons:                      42
+  nr. of fully filled bands:                22
+  max. nr. conduction bands:                20
+  maximum number of iterations:             30
+  convergence threshold:            1.0000E-06
+  basis projection threshold:       1.0000E-07
+  NES identification threshold:     1.0000E-08
+  Fock matrix mixing factor:        0.20000000
+  spin-orbit scaling factor:        1.00000000
+  initial crystalline orbitals:   superposition of atomic densities
+  checkpoint iteration:                      5
+  Lowdin+Cmat (all k) require:           0.001 GB of memory per node
+  remaining matrices (1 k) req:          0.015 GB of memory per process
+  Lowdin+Cmat stored to disk:               no
+ 
+ 
+  Reciprocal lattice
+  ------------------
+  periodicity:                               0
+  number of k points:                 1      1      1
+  inverse primitive vector 1:       0.00000000    0.00000000    0.00000000
+  inverse primitive vector 2:       0.00000000    0.00000000    0.00000000
+  inverse primitive vector 3:       0.00000000    0.00000000    0.00000000
+ 
+ 
+  DIIS setting
+  ------------
+  DIIS acceleration:                        ON
+  start DIIS from iteration:                 2
+  minimum DIIS dimension:                    3
+  maximum DIIS dimension:                   49
+ 
+ 
+  Toeplitz real-space structures info
+  -----------------------------------
+  real-space supercell size:             1      1      1
+  relevant overlap distributions:            2025
+  relevant matrix elements:                 15129
+  relevant quaternion components:               6
+  memory required per MPI process:          0.002 GB
+ 
+ 
+  Periodic Bloch-SCF
+  ==================
+ 
+ 
+  building the Lowdin orthogonalization matrix...
+ 
+  orthogonalization procedure output
+  ----------------------------------
+  number of projected bands range:             0      0
+  average (over k) nr projected bands:         0.000
+  maximum error on "L+SL=1" (LL):              1.026E-12
+  maximum error on "L+SL=1" (SS):              1.317E-12
+  maximum error on the RKB condition:          2.175E-08
+  maximum LL overlap on boundary:              1.200E+001
+  maximum SS overlap on boundary:              1.149E+008
+  smallest metric eigenvalue LL(,SS):          6.161E-04 5.997E-03
+  relative eigenvalue range LL(,SS):           6.005E+04 1.769E+04
+ 
+ 
+  calculating the Coulomb interactions...
+
+  calculating the exchange-correlation (XC) terms...
+
+    Grid and Basis spatial extent:     1.0042314637E+01         2.5313792007E+01          2     6.0059E-02
+
+  ===============================================================================================
+ 
+  Cycle:   1   energy =       -4139.065403629241     dE = -4.139E+03     max[F,D] =  0.000E+00
+               energy/vol =   -4139.065403629241
+               LUCO-HOCO =        0.0000000000
+               e-p gap/(2c^2) =   0.9806857094
+ 
+  nr of el (+) minus pos (-) states:           0
+  fractional occ. at Fermi level:              1/6
+  err on grid integration (#electrons):      1.194E-01
+  max error on Fock (k space, oSAO):         1.237E-10
+  max error on Fock (realspace LL,SS):       0.000E+00     5.106E-17
+  cell extent of Pmat (LL):                  8.696E-01     8.696E-01
+  cell extent of Pmat (SS):                  8.701E-01     8.701E-01
+  error on the time-reversal symmetry:       0.000E+00
+  max energy diff of spin-splittings:        1.543E-10
+ 
+                                energy               wall-time
+                                ------               ---------
+  kinetic:                   4476.920218683444
+  Coulomb:                  -8489.911706727466       00:00:00.18
+  exact exchange:               0.000000000000       00:00:00.00
+  exchange-correlation:      -126.073915585220       00:00:00.18
+  total Fock:               -4139.065403629241       00:00:00.39
+  DIIS wall-time:                                    00:00:00.06
+  disk access wall-time:                             00:00:00.00
+  FT wall-time:                                      00:00:00.02
+  diag wall-time:                                    00:00:00.06
+  remaining wall-time:                               00:00:00.21
+  total cycle wall-time:                             00:00:00.74
+ 
+ 
+ 
+ 
+ 
+  calculating the Coulomb interactions...
+
+  calculating the exchange-correlation (XC) terms...
+
+    Grid and Basis spatial extent:     1.0042314637E+01         2.5313792007E+01          2     6.0059E-02
+
+  ===============================================================================================
+ 
+  Cycle:   2   energy =       -4049.086302341472     dE =  8.998E+01     max[F,D] =  3.133E-01
+               energy/vol =   -4049.086302341472
+               LUCO-HOCO =        0.0000000000
+               e-p gap/(2c^2) =   0.9806682588
+ 
+  nr of el (+) minus pos (-) states:           0
+  fractional occ. at Fermi level:              1/6
+  err on grid integration (#electrons):      1.231E-04
+  max error on Fock (k space, oSAO):         2.105E-10
+  max error on Fock (realspace LL,SS):       0.000E+00     5.106E-17
+  cell extent of Pmat (LL):                  8.614E-01     8.614E-01
+  cell extent of Pmat (SS):                  8.619E-01     8.619E-01
+  error on the time-reversal symmetry:       0.000E+00
+  max energy diff of spin-splittings:        2.894E-10
+ 
+                                energy               wall-time
+                                ------               ---------
+  kinetic:                   4175.140309892219
+  Coulomb:                  -8101.114622721871       00:00:00.13
+  exact exchange:               0.000000000000       00:00:00.00
+  exchange-correlation:      -123.111989511821       00:00:00.18
+  total Fock:               -4049.086302341472       00:00:00.33
+  DIIS wall-time:                                    00:00:00.06
+  disk access wall-time:                             00:00:00.00
+  FT wall-time:                                      00:00:00.02
+  diag wall-time:                                    00:00:00.05
+  remaining wall-time:                               00:00:00.12
+  total cycle wall-time:                             00:00:00.58
+ 
+ 
+ 
+ 
+ 
+  calculating the Coulomb interactions...
+
+  calculating the exchange-correlation (XC) terms...
+
+    Grid and Basis spatial extent:     1.0042314637E+01         2.5313792007E+01          2     6.0059E-02
+
+  ===============================================================================================
+ 
+  Cycle:   3   energy =       -4049.118303531172     dE = -3.200E-02     max[F,D] =  2.463E-01
+               energy/vol =   -4049.118303531172
+               LUCO-HOCO =        0.0000000000
+               e-p gap/(2c^2) =   0.9806556461
+ 
+  nr of el (+) minus pos (-) states:           0
+  fractional occ. at Fermi level:              1/6
+  err on grid integration (#electrons):      1.173E-04
+  max error on Fock (k space, oSAO):         2.362E-10
+  max error on Fock (realspace LL,SS):       0.000E+00     2.667E-17
+  cell extent of Pmat (LL):                  8.551E-01     8.551E-01
+  cell extent of Pmat (SS):                  8.556E-01     8.556E-01
+  error on the time-reversal symmetry:       0.000E+00
+  max energy diff of spin-splittings:        1.034E-10
+ 
+                                energy               wall-time
+                                ------               ---------
+  kinetic:                   4182.448781089311
+  Coulomb:                  -8108.227841554645       00:00:00.13
+  exact exchange:               0.000000000000       00:00:00.00
+  exchange-correlation:      -123.339243065837       00:00:00.18
+  total Fock:               -4049.118303531172       00:00:00.33
+  DIIS wall-time:                                    00:00:00.06
+  disk access wall-time:                             00:00:00.00
+  FT wall-time:                                      00:00:00.02
+  diag wall-time:                                    00:00:00.05
+  remaining wall-time:                               00:00:00.12
+  total cycle wall-time:                             00:00:00.57
+ 
+ 
+ 
+ 
+ 
+  calculating the Coulomb interactions...
+
+  calculating the exchange-correlation (XC) terms...
+
+    Grid and Basis spatial extent:     1.0042314637E+01         2.5313792007E+01          2     6.0059E-02
+
+  ===============================================================================================
+ 
+  Cycle:   4   energy =       -4049.130897487907     dE = -1.259E-02     max[F,D] =  1.940E-01
+               energy/vol =   -4049.130897487907
+               LUCO-HOCO =        0.0000000000
+               e-p gap/(2c^2) =   0.9806154123
+ 
+  nr of el (+) minus pos (-) states:           0
+  fractional occ. at Fermi level:              1/6
+  err on grid integration (#electrons):      1.155E-04
+  max error on Fock (k space, oSAO):         5.149E-10
+  max error on Fock (realspace LL,SS):       0.000E+00     2.667E-17
+  cell extent of Pmat (LL):                  8.449E-01     8.449E-01
+  cell extent of Pmat (SS):                  8.453E-01     8.453E-01
+  error on the time-reversal symmetry:       0.000E+00
+  max energy diff of spin-splittings:        1.815E-10
+ 
+                                energy               wall-time
+                                ------               ---------
+  kinetic:                   4187.232874538593
+  Coulomb:                  -8112.893080165080       00:00:00.13
+  exact exchange:               0.000000000000       00:00:00.00
+  exchange-correlation:      -123.470691861420       00:00:00.18
+  total Fock:               -4049.130897487907       00:00:00.32
+  DIIS wall-time:                                    00:00:00.09
+  disk access wall-time:                             00:00:00.00
+  FT wall-time:                                      00:00:00.02
+  diag wall-time:                                    00:00:00.05
+  remaining wall-time:                               00:00:00.14
+  total cycle wall-time:                             00:00:00.62
+ 
+ 
+ 
+ 
+ 
+  calculating the Coulomb interactions...
+
+  calculating the exchange-correlation (XC) terms...
+
+    Grid and Basis spatial extent:     1.0042314637E+01         2.5313792007E+01          2     6.0059E-02
+
+  checkpoint: iteration    5 is recorded
+ 
+  ===============================================================================================
+ 
+  Cycle:   5   energy =       -4049.135545786818     dE = -4.648E-03     max[F,D] =  1.182E-02
+               energy/vol =   -4049.135545786818
+               LUCO-HOCO =        0.0000000000
+               e-p gap/(2c^2) =   0.9806170029
+ 
+  nr of el (+) minus pos (-) states:           0
+  fractional occ. at Fermi level:              1/6
+  err on grid integration (#electrons):      9.916E-05
+  max error on Fock (k space, oSAO):         5.355E-10
+  max error on Fock (realspace LL,SS):       0.000E+00     2.667E-17
+  cell extent of Pmat (LL):                  8.390E-01     8.390E-01
+  cell extent of Pmat (SS):                  8.395E-01     8.395E-01
+  error on the time-reversal symmetry:       0.000E+00
+  max energy diff of spin-splittings:        1.131E-10
+ 
+                                energy               wall-time
+                                ------               ---------
+  kinetic:                   4200.197441489314
+  Coulomb:                  -8125.497379250433       00:00:00.15
+  exact exchange:               0.000000000000       00:00:00.00
+  exchange-correlation:      -123.835608025699       00:00:00.18
+  total Fock:               -4049.135545786818       00:00:00.35
+  DIIS wall-time:                                    00:00:00.12
+  disk access wall-time:                             00:00:00.00
+  FT wall-time:                                      00:00:00.02
+  diag wall-time:                                    00:00:00.05
+  remaining wall-time:                               00:00:00.20
+  total cycle wall-time:                             00:00:00.74
+ 
+ 
+ 
+ 
+ 
+  calculating the Coulomb interactions...
+
+  calculating the exchange-correlation (XC) terms...
+
+    Grid and Basis spatial extent:     1.0042314637E+01         2.5313792007E+01          2     6.0059E-02
+
+  ===============================================================================================
+ 
+  Cycle:   6   energy =       -4049.141531687330     dE = -5.986E-03     max[F,D] =  7.948E-04
+               energy/vol =   -4049.141531687330
+               LUCO-HOCO =        0.0000000000
+               e-p gap/(2c^2) =   0.9806169046
+ 
+  nr of el (+) minus pos (-) states:           0
+  fractional occ. at Fermi level:              1/6
+  err on grid integration (#electrons):      1.153E-04
+  max error on Fock (k space, oSAO):         1.415E-10
+  max error on Fock (realspace LL,SS):       0.000E+00     2.667E-17
+  cell extent of Pmat (LL):                  8.395E-01     8.395E-01
+  cell extent of Pmat (SS):                  8.399E-01     8.399E-01
+  error on the time-reversal symmetry:       0.000E+00
+  max energy diff of spin-splittings:        1.811E-10
+ 
+                                energy               wall-time
+                                ------               ---------
+  kinetic:                   4198.399270955433
+  Coulomb:                  -8123.849824598584       00:00:00.14
+  exact exchange:               0.000000000000       00:00:00.00
+  exchange-correlation:      -123.690978044179       00:00:00.18
+  total Fock:               -4049.141531687330       00:00:00.35
+  DIIS wall-time:                                    00:00:00.13
+  disk access wall-time:                             00:00:00.00
+  FT wall-time:                                      00:00:00.02
+  diag wall-time:                                    00:00:00.05
+  remaining wall-time:                               00:00:00.12
+  total cycle wall-time:                             00:00:00.66
+ 
+ 
+ 
+ 
+ 
+  calculating the Coulomb interactions...
+
+  calculating the exchange-correlation (XC) terms...
+
+    Grid and Basis spatial extent:     1.0042314637E+01         2.5313792007E+01          2     6.0059E-02
+
+  ===============================================================================================
+ 
+  Cycle:   7   energy =       -4049.141559895083     dE = -2.821E-05     max[F,D] =  2.884E-05
+               energy/vol =   -4049.141559895083
+               LUCO-HOCO =        0.0000000000
+               e-p gap/(2c^2) =   0.9806169013
+ 
+  nr of el (+) minus pos (-) states:           0
+  fractional occ. at Fermi level:              1/6
+  err on grid integration (#electrons):      1.144E-04
+  max error on Fock (k space, oSAO):         1.455E-10
+  max error on Fock (realspace LL,SS):       0.000E+00     5.106E-17
+  cell extent of Pmat (LL):                  8.395E-01     8.395E-01
+  cell extent of Pmat (SS):                  8.400E-01     8.400E-01
+  error on the time-reversal symmetry:       0.000E+00
+  max energy diff of spin-splittings:        2.453E-10
+ 
+                                energy               wall-time
+                                ------               ---------
+  kinetic:                   4198.499600112444
+  Coulomb:                  -8123.941660048480       00:00:00.15
+  exact exchange:               0.000000000000       00:00:00.00
+  exchange-correlation:      -123.699499959046       00:00:00.18
+  total Fock:               -4049.141559895083       00:00:00.34
+  DIIS wall-time:                                    00:00:00.11
+  disk access wall-time:                             00:00:00.00
+  FT wall-time:                                      00:00:00.02
+  diag wall-time:                                    00:00:00.05
+  remaining wall-time:                               00:00:00.14
+  total cycle wall-time:                             00:00:00.66
+ 
+ 
+ 
+ 
+ 
+  calculating the Coulomb interactions...
+
+  calculating the exchange-correlation (XC) terms...
+
+    Grid and Basis spatial extent:     1.0042314637E+01         2.5313792007E+01          2     6.0059E-02
+
+  ===============================================================================================
+ 
+  Cycle:   8   energy =       -4049.141559923116     dE = -2.803E-08     max[F,D] =  3.784E-06
+               energy/vol =   -4049.141559923116
+               LUCO-HOCO =        0.0000000000
+               e-p gap/(2c^2) =   0.9806169017
+ 
+  nr of el (+) minus pos (-) states:           0
+  fractional occ. at Fermi level:              1/6
+  err on grid integration (#electrons):      1.143E-04
+  max error on Fock (k space, oSAO):         1.455E-10
+  max error on Fock (realspace LL,SS):       0.000E+00     5.106E-17
+  cell extent of Pmat (LL):                  8.395E-01     8.395E-01
+  cell extent of Pmat (SS):                  8.400E-01     8.400E-01
+  error on the time-reversal symmetry:       0.000E+00
+  max energy diff of spin-splittings:        3.661E-10
+ 
+                                energy               wall-time
+                                ------               ---------
+  kinetic:                   4198.504193130570
+  Coulomb:                  -8123.945897652739       00:00:00.15
+  exact exchange:               0.000000000000       00:00:00.00
+  exchange-correlation:      -123.699855400947       00:00:00.18
+  total Fock:               -4049.141559923116       00:00:00.35
+  DIIS wall-time:                                    00:00:00.13
+  disk access wall-time:                             00:00:00.00
+  FT wall-time:                                      00:00:00.01
+  diag wall-time:                                    00:00:00.05
+  remaining wall-time:                               00:00:00.13
+  total cycle wall-time:                             00:00:00.67
+ 
+ 
+ 
+ 
+ 
+  calculating the Coulomb interactions...
+
+  calculating the exchange-correlation (XC) terms...
+
+    Grid and Basis spatial extent:     1.0042314637E+01         2.5313792007E+01          2     6.0059E-02
+
+  ===============================================================================================
+ 
+  Cycle:   9   energy =       -4049.141559934535     dE = -1.142E-08     max[F,D] =  4.023E-07
+               energy/vol =   -4049.141559934535
+               LUCO-HOCO =        0.0000000000
+               e-p gap/(2c^2) =   0.9806169017
+ 
+  nr of el (+) minus pos (-) states:           0
+  fractional occ. at Fermi level:              1/6
+  err on grid integration (#electrons):      1.144E-04
+  max error on Fock (k space, oSAO):         1.308E-10
+  max error on Fock (realspace LL,SS):       0.000E+00     5.106E-17
+  cell extent of Pmat (LL):                  8.395E-01     8.395E-01
+  cell extent of Pmat (SS):                  8.400E-01     8.400E-01
+  error on the time-reversal symmetry:       0.000E+00
+  max energy diff of spin-splittings:        1.168E-10
+ 
+                                energy               wall-time
+                                ------               ---------
+  kinetic:                   4198.503760879003
+  Coulomb:                  -8123.945512737436       00:00:00.17
+  exact exchange:               0.000000000000       00:00:00.00
+  exchange-correlation:      -123.699808076102       00:00:00.18
+  total Fock:               -4049.141559934535       00:00:00.37
+  DIIS wall-time:                                    00:00:00.13
+  disk access wall-time:                             00:00:00.00
+  FT wall-time:                                      00:00:00.02
+  diag wall-time:                                    00:00:00.05
+  remaining wall-time:                               00:00:00.14
+  total cycle wall-time:                             00:00:00.70
+ 
+ 
+ 
+ 
+ 
+ 
+  Happy end
+  WARNING: a metallic phase occurred in some SCF cycles!
+ 
+ 
+ 
+  Final iteration                     =            9
+  Total energy per unit cell          =        -4049.141559934535
+  Total energy per unit cell [eV]     =      -110182.750109336281
+  Total energy per volume [eV/Bohr^3] =      -110182.750109336281
+  Band energies shifted by            =            0.0000000000
+  HOCO energy                         =           -0.1270270007
+  LUCO energy                         =           -0.1270270007
+  LUCO-HOCO energy                    =            0.0000000000
+  LUCO-HOCO energy [eV]               =            0.0000000000
+  Electron-positron gap [2c^2]        =            0.9806169017
+  Fractional occ. at Fermi level      =            1/6
+  Convergence of energy               =           -1.142E-08
+  Convergence of [F,D]                =            4.023E-07
+  Grid error (on #electrons)          =            1.144E-04
+  Err on sym of Fock (realspace, LL)  =            0.000E+00
+  Err on sym of Fock (realspace, SS)  =            5.106E-17
+  Err on sym of Fock (k space, oSAO)  =            1.308E-10
+  Err on time-reversal sym            =            0.000E+00
+  Max spin-splitting energy           =            1.168E-10
+  Pmat (LL) cell extent               =            8.395E-01     8.395E-01
+  Pmat (SS) cell extent               =            8.400E-01     8.400E-01
+ 
+ 
+  Atomic-orbital energies and quantum numbers:
+  --------------------------------------------
+                  Type          Jz            Energy[Hartree]          Energy[eV]       Occupation
+  ------------------------------------------------------------------------------------------------
+  AO:     1       1s1/2       -0.50          -728.0843039530        -19812.1823437261         1.00
+  AO:     2       1s1/2        0.50          -728.0843039529        -19812.1823437246         1.00
+  AO:     3       2s1/2       -0.50          -102.7992067602         -2797.3087979870         1.00
+  AO:     4       2s1/2        0.50          -102.7992067601         -2797.3087979843         1.00
+  AO:     5       2p1/2       -0.50           -94.5653853171         -2573.2551122646         1.00
+  AO:     6       2p1/2        0.50           -94.5653853170         -2573.2551122624         1.00
+  AO:     7       2p3/2       -1.50           -90.6518223266         -2466.7616428138         1.00
+  AO:     8       2p3/2       -0.50           -90.6518223266         -2466.7616428125         1.00
+  AO:     9       2p3/2        0.50           -90.6518223227         -2466.7616427082         1.00
+  AO:    10       2p3/2        1.50           -90.6518223227         -2466.7616427069         1.00
+  AO:    11       3s1/2       -0.50           -17.4886513168          -475.8904249863         1.00
+  AO:    12       3s1/2        0.50           -17.4886513167          -475.8904249832         1.00
+  AO:    13       3p1/2       -0.50           -14.3559345465          -390.6448626975         1.00
+  AO:    14       3p1/2        0.50           -14.3559345465          -390.6448626962         1.00
+  AO:    15       3p3/2       -1.50           -13.7116830944          -373.1138883650         1.00
+  AO:    16       3p3/2       -0.50           -13.7116830944          -373.1138883642         1.00
+  AO:    17       3p3/2        0.50           -13.7116830843          -373.1138880905         1.00
+  AO:    18       3p3/2        1.50           -13.7116830843          -373.1138880900         1.00
+  AO:    19       3d3/2       -1.50            -8.1756321712          -222.4702750389         1.00
+  AO:    20       3d3/2       -0.50            -8.1756321712          -222.4702750383         1.00
+  AO:    21       3d3/2        0.50            -8.1756321616          -222.4702747754         1.00
+  AO:    22       3d3/2        1.50            -8.1756321615          -222.4702747741         1.00
+  AO:    23       3d5/2       -2.50            -8.0536542953          -219.1510880892         1.00
+  AO:    24       3d5/2       -1.50            -8.0536542952          -219.1510880873         1.00
+  AO:    25       3d5/2       -0.50            -8.0536542897          -219.1510879371         1.00
+  AO:    26       3d5/2        0.50            -8.0536542897          -219.1510879366         1.00
+  AO:    27       3d5/2        1.50            -8.0536542814          -219.1510877094         1.00
+  AO:    28       3d5/2        2.50            -8.0536542813          -219.1510877092         1.00
+  AO:    29       4s1/2       -0.50            -2.3527496378           -64.0215763211         1.00
+  AO:    30       4s1/2        0.50            -2.3527496378           -64.0215763205         1.00
+  AO:    31       4p1/2       -0.50            -1.4656362551           -39.8819924821         1.00
+  AO:    32       4p1/2        0.50            -1.4656362551           -39.8819924797         1.00
+  AO:    33       4p3/2       -1.50            -1.3745758264           -37.4041120934         1.00
+  AO:    34       4p3/2       -0.50            -1.3745758264           -37.4041120920         1.00
+  AO:    35       4p3/2        0.50            -1.3745758072           -37.4041115708         1.00
+  AO:    36       4p3/2        1.50            -1.3745758072           -37.4041115701         1.00
+  AO:    37       5s1/2       -0.50            -0.1463880054            -3.9834203830         0.50
+  AO:    38       5s1/2        0.50            -0.1463880054            -3.9834203815         0.50
+  AO:    39       4d3/2       -1.50            -0.1344865044            -3.6595640543         1.00
+  AO:    40       4d3/2       -0.50            -0.1344865043            -3.6595640536         1.00
+  AO:    41       4d3/2        0.50            -0.1344864893            -3.6595636454         1.00
+  AO:    42       4d3/2        1.50            -0.1344864893            -3.6595636448         1.00
+  AO:    43       4d5/2       -2.50            -0.1270271330            -3.4565842286         0.17
+  AO:    44       4d5/2       -1.50            -0.1270271330            -3.4565842282         0.17
+  AO:    45       4d5/2       -0.50            -0.1270271212            -3.4565839067         0.17
+  AO:    46       4d5/2        0.50            -0.1270271211            -3.4565839045         0.17
+  AO:    47       4d5/2        1.50            -0.1270270007            -3.4565806272         0.17
+  AO:    48       4d5/2        2.50            -0.1270270007            -3.4565806271         0.17
+  AO:    49       5p1/2       -0.50            -0.0371182638            -1.0100393689         0.00
+  AO:    50       5p1/2        0.50            -0.0371182638            -1.0100393679         0.00
+  AO:    51       5p3/2       -1.50            -0.0335504399            -0.9129539376         0.00
+  AO:    52       5p3/2       -0.50            -0.0335504398            -0.9129539371         0.00
+  AO:    53       5p3/2        0.50            -0.0335504363            -0.9129538403         0.00
+  AO:    54       5p3/2        1.50            -0.0335504363            -0.9129538396         0.00
+  AO:    55       6s1/2       -0.50             0.0594095736             1.6166167842         0.00
+  AO:    56       6s1/2        0.50             0.0594095737             1.6166167845         0.00
+  AO:    57       6p1/2       -0.50             0.1316723093             3.5829859100         0.00
+  AO:    58       6p1/2        0.50             0.1316723094             3.5829859101         0.00
+  AO:    59       6p3/2       -1.50             0.1392874097             3.7902033393         0.00
+  AO:    60       6p3/2       -0.50             0.1392874098             3.7902033398         0.00
+  AO:    61       6p3/2        0.50             0.1392874143             3.7902034634         0.00
+  AO:    62       6p3/2        1.50             0.1392874143             3.7902034636         0.00
+  AO:    63       5d3/2       -1.50             0.2584861140             7.0337651783         0.00
+  AO:    64       5d3/2       -0.50             0.2584861140             7.0337651785         0.00
+  AO:    65       5d3/2        0.50             0.2584861209             7.0337653651         0.00
+  AO:    66       5d3/2        1.50             0.2584861209             7.0337653661         0.00
+  AO:    67       5d5/2       -2.50             0.2618061187             7.1241071036         0.00
+  AO:    68       5d5/2       -1.50             0.2618061187             7.1241071039         0.00
+  AO:    69       5d5/2       -0.50             0.2618061238             7.1241072422         0.00
+  AO:    70       5d5/2        0.50             0.2618061239             7.1241072446         0.00
+  AO:    71       5d5/2        1.50             0.2618061903             7.1241090528         0.00
+  AO:    72       5d5/2        2.50             0.2618061903             7.1241090531         0.00
+  AO:    73       6d3/2       -1.50             1.4625777910            39.7987674367         0.00
+  AO:    74       6d3/2       -0.50             1.4625777910            39.7987674375         0.00
+  AO:    75       6d3/2        0.50             1.4625778037            39.7987677818         0.00
+  AO:    76       6d3/2        1.50             1.4625778038            39.7987677837         0.00
+  AO:    77       6d5/2       -2.50             1.4747724631            40.1306013553         0.00
+  AO:    78       6d5/2       -1.50             1.4747724631            40.1306013554         0.00
+  AO:    79       6d5/2       -0.50             1.4747724729            40.1306016222         0.00
+  AO:    80       6d5/2        0.50             1.4747724729            40.1306016223         0.00
+  AO:    81       6d5/2        1.50             1.4747725867            40.1306047172         0.00
+  AO:    82       6d5/2        2.50             1.4747725867            40.1306047174         0.00
+  AO:    83       7p1/2       -0.50             1.4888486719            40.5136344910         0.00
+  AO:    84       7p1/2        0.50             1.4888486719            40.5136344932         0.00
+  AO:    85       7s1/2       -0.50             1.5105795813            41.1049626363         0.00
+  AO:    86       7s1/2        0.50             1.5105795814            41.1049626381         0.00
+  AO:    87       7p3/2       -1.50             1.5584250120            42.4069030736         0.00
+  AO:    88       7p3/2       -0.50             1.5584250120            42.4069030742         0.00
+  AO:    89       7p3/2        0.50             1.5584250257            42.4069034459         0.00
+  AO:    90       7p3/2        1.50             1.5584250257            42.4069034463         0.00
+  AO:    91       7d3/2       -1.50             5.8858713985           160.1627129790         0.00
+  AO:    92       7d3/2       -0.50             5.8858713985           160.1627129794         0.00
+  AO:    93       7d3/2        0.50             5.8858714147           160.1627134206         0.00
+  AO:    94       7d3/2        1.50             5.8858714148           160.1627134239         0.00
+  AO:    95       7d5/2       -2.50             5.9281606360           161.3134617057         0.00
+  AO:    96       7d5/2       -1.50             5.9281606360           161.3134617058         0.00
+  AO:    97       7d5/2       -0.50             5.9281606521           161.3134621416         0.00
+  AO:    98       7d5/2        0.50             5.9281606522           161.3134621448         0.00
+  AO:    99       7d5/2        1.50             5.9281607146           161.3134638445         0.00
+  AO:   100       7d5/2        2.50             5.9281607147           161.3134638455         0.00
+  AO:   101       8p1/2       -0.50             8.4800967605           230.7551782117         0.00
+  AO:   102       8p1/2        0.50             8.4800967605           230.7551782120         0.00
+  AO:   103       8p3/2       -1.50             8.7758680732           238.8035252891         0.00
+  AO:   104       8p3/2       -0.50             8.7758680733           238.8035252910         0.00
+  AO:   105       8p3/2        0.50             8.7758680897           238.8035257360         0.00
+  AO:   106       8p3/2        1.50             8.7758680897           238.8035257371         0.00
+  AO:   107       8s1/2       -0.50            12.1783737177           331.3904165150         0.00
+  AO:   108       8s1/2        0.50            12.1783737177           331.3904165152         0.00
+  AO:   109       8d3/2       -1.50            19.7852441279           538.3838962738         0.00
+  AO:   110       8d3/2       -0.50            19.7852441281           538.3838962775         0.00
+  AO:   111       8d3/2        0.50            19.7852441419           538.3838966537         0.00
+  AO:   112       8d3/2        1.50            19.7852441419           538.3838966542         0.00
+  AO:   113       8d5/2       -2.50            19.9107518173           541.7991343344         0.00
+  AO:   114        N/A          N/A            19.9107518173           541.7991343346         0.00
+  AO:   115        N/A          N/A            19.9107518333           541.7991347711         0.00
+  AO:   116        N/A          N/A            19.9107518333           541.7991347716         0.00
+  AO:   117        N/A          N/A            19.9107518401           541.7991349547         0.00
+  AO:   118        N/A          N/A            19.9107518401           541.7991349551         0.00
+  AO:   119        N/A          N/A            33.7345644819           917.9642236099         0.00
+  AO:   120        N/A          N/A            33.7345644819           917.9642236105         0.00
+  AO:   121        N/A          N/A            34.7352182263           945.1933979511         0.00
+  AO:   122        N/A          N/A            34.7352182263           945.1933979522         0.00
+  AO:   123        N/A          N/A            34.7352182374           945.1933982536         0.00
+  AO:   124        N/A          N/A            34.7352182374           945.1933982546         0.00
+  AO:   125        N/A          N/A            56.7954732049          1545.4834904762         0.00
+  AO:   126        N/A          N/A            56.7954732050          1545.4834904774         0.00
+  AO:   127        N/A          N/A            58.9841934723          1605.0416004379         0.00
+  AO:   128        N/A          N/A            58.9841934723          1605.0416004381         0.00
+  AO:   129        N/A          N/A            58.9841934819          1605.0416006995         0.00
+  AO:   130        N/A          N/A            58.9841934819          1605.0416006995         0.00
+  AO:   131        N/A          N/A            59.3455297329          1614.8740605592         0.00
+  AO:   132        N/A          N/A            59.3455297331          1614.8740605627         0.00
+  AO:   133        N/A          N/A            59.3455297398          1614.8740607458         0.00
+  AO:   134        N/A          N/A            59.3455297398          1614.8740607466         0.00
+  AO:   135        N/A          N/A            59.3455297457          1614.8740609059         0.00
+  AO:   136        N/A          N/A            59.3455297458          1614.8740609093         0.00
+  AO:   137        N/A          N/A           116.0479881803          3157.8264906519         0.00
+  AO:   138        N/A          N/A           116.0479881804          3157.8264906536         0.00
+  AO:   139        N/A          N/A           119.2461726559          3244.8535198783         0.00
+  AO:   140        N/A          N/A           119.2461726559          3244.8535198796         0.00
+  AO:   141        N/A          N/A           119.2461726627          3244.8535200631         0.00
+  AO:   142        N/A          N/A           119.2461726627          3244.8535200633         0.00
+  AO:   143        N/A          N/A           168.3720671170          4581.6371499862         0.00
+  AO:   144        N/A          N/A           168.3720671173          4581.6371499939         0.00
+  AO:   145        N/A          N/A           168.3720671234          4581.6371501587         0.00
+  AO:   146        N/A          N/A           168.3720671234          4581.6371501604         0.00
+  AO:   147        N/A          N/A           169.5428493244          4613.4957554406         0.00
+  AO:   148        N/A          N/A           169.5428493244          4613.4957554407         0.00
+  AO:   149        N/A          N/A           169.5428493314          4613.4957556303         0.00
+  AO:   150        N/A          N/A           169.5428493316          4613.4957556364         0.00
+  AO:   151        N/A          N/A           169.5428493358          4613.4957557517         0.00
+  AO:   152        N/A          N/A           169.5428493360          4613.4957557559         0.00
+  AO:   153        N/A          N/A           196.9356053137          5358.8905862448         0.00
+  AO:   154        N/A          N/A           196.9356053138          5358.8905862479         0.00
+  AO:   155        N/A          N/A           364.8580619932          9928.2932134928         0.00
+  AO:   156        N/A          N/A           364.8580619932          9928.2932134947         0.00
+  AO:   157        N/A          N/A           374.7737984884         10198.1141373200         0.00
+  AO:   158        N/A          N/A           374.7737984886         10198.1141373235         0.00
+  AO:   159        N/A          N/A           374.7737984922         10198.1141374229         0.00
+  AO:   160        N/A          N/A           374.7737984923         10198.1141374263         0.00
+  AO:   161        N/A          N/A           497.2825926552         13531.7481074026         0.00
+  AO:   162        N/A          N/A           497.2825926553         13531.7481074043         0.00
+  AO:   163        N/A          N/A           497.2825926589         13531.7481075041         0.00
+  AO:   164        N/A          N/A           497.2825926593         13531.7481075132         0.00
+  AO:   165        N/A          N/A           501.8993646348         13657.3768674282         0.00
+  AO:   166        N/A          N/A           501.8993646348         13657.3768674289         0.00
+  AO:   167        N/A          N/A           501.8993646390         13657.3768675429         0.00
+  AO:   168        N/A          N/A           501.8993646395         13657.3768675560         0.00
+  AO:   169        N/A          N/A           501.8993646410         13657.3768675965         0.00
+  AO:   170        N/A          N/A           501.8993646410         13657.3768675971         0.00
+  AO:   171        N/A          N/A           598.5090877406         16286.2612424346         0.00
+  AO:   172        N/A          N/A           598.5090877409         16286.2612424423         0.00
+  AO:   173        N/A          N/A          1087.8094931106         29600.8029780774         0.00
+  AO:   174        N/A          N/A          1087.8094931106         29600.8029780779         0.00
+  AO:   175        N/A          N/A          1121.0039297285         30504.0695744060         0.00
+  AO:   176        N/A          N/A          1121.0039297285         30504.0695744061         0.00
+  AO:   177        N/A          N/A          1121.0039297315         30504.0695744861         0.00
+  AO:   178        N/A          N/A          1121.0039297315         30504.0695744882         0.00
+  AO:   179        N/A          N/A          1642.7132985746         44700.5040942679         0.00
+  AO:   180        N/A          N/A          1642.7132985746         44700.5040942698         0.00
+  AO:   181        N/A          N/A          1693.2127949326         46074.6653344974         0.00
+  AO:   182        N/A          N/A          1693.2127949327         46074.6653345007         0.00
+  AO:   183        N/A          N/A          1693.2127949343         46074.6653345435         0.00
+  AO:   184        N/A          N/A          1693.2127949345         46074.6653345488         0.00
+  AO:   185        N/A          N/A          1722.5934445928         46874.1535054205         0.00
+  AO:   186        N/A          N/A          1722.5934445928         46874.1535054206         0.00
+  AO:   187        N/A          N/A          1722.5934445938         46874.1535054466         0.00
+  AO:   188        N/A          N/A          1722.5934445938         46874.1535054481         0.00
+  AO:   189        N/A          N/A          1722.5934445949         46874.1535054778         0.00
+  AO:   190        N/A          N/A          1722.5934445951         46874.1535054820         0.00
+  AO:   191        N/A          N/A          3215.6506139889         87502.3070435209         0.00
+  AO:   192        N/A          N/A          3215.6506139890         87502.3070435233         0.00
+  AO:   193        N/A          N/A          3341.8148294000         90935.4100886038         0.00
+  AO:   194        N/A          N/A          3341.8148294000         90935.4100886042         0.00
+  AO:   195        N/A          N/A          3341.8148294020         90935.4100886592         0.00
+  AO:   196        N/A          N/A          3341.8148294021         90935.4100886603         0.00
+  AO:   197        N/A          N/A          4072.4312793643        110816.4956324466         0.00
+  AO:   198        N/A          N/A          4072.4312793645        110816.4956324502         0.00
+  AO:   199        N/A          N/A          9250.5443312391        251720.1237194412         0.00
+  AO:   200        N/A          N/A          9250.5443312391        251720.1237194422         0.00
+  AO:   201        N/A          N/A          9728.0167695272        264712.8100884618         0.00
+  AO:   202        N/A          N/A          9728.0167695272        264712.8100884624         0.00
+  AO:   203        N/A          N/A         10267.3859734884        279389.7931815615         0.00
+  AO:   204        N/A          N/A         10267.3859734884        279389.7931815618         0.00
+  AO:   205        N/A          N/A         10267.3859734888        279389.7931815740         0.00
+  AO:   206        N/A          N/A         10267.3859734889        279389.7931815761         0.00
+  AO:   207        N/A          N/A         19496.5813012105        530528.9809458687         0.00
+  AO:   208        N/A          N/A         19496.5813012105        530528.9809458702         0.00
+  AO:   209        N/A          N/A         32066.9487411743        872586.0895747067         0.00
+  AO:   210        N/A          N/A         32066.9487411744        872586.0895747097         0.00
+  AO:   211        N/A          N/A         34822.4930505303        947568.2667989294         0.00
+  AO:   212        N/A          N/A         34822.4930505304        947568.2667989311         0.00
+  AO:   213        N/A          N/A         34822.4930505305        947568.2667989339         0.00
+  AO:   214        N/A          N/A         34822.4930505306        947568.2667989359         0.00
+  AO:   215        N/A          N/A         38754.3565274366       1054559.7178330575         0.00
+  AO:   216        N/A          N/A         38754.3565274366       1054559.7178330584         0.00
+  AO:   217        N/A          N/A         74602.9251541221       2030048.9222251480         0.00
+  AO:   218        N/A          N/A         74602.9251541225       2030048.9222251582         0.00
+  AO:   219        N/A          N/A        143035.9527681324       3892206.3867672645         0.00
+  AO:   220        N/A          N/A        143035.9527681331       3892206.3867672826         0.00
+  AO:   221        N/A          N/A        281720.6948007981       7666010.3027780512         0.00
+  AO:   222        N/A          N/A        281720.6948007989       7666010.3027780717         0.00
+  AO:   223        N/A          N/A        589766.2801638169      16048357.3390437979         0.00
+  AO:   224        N/A          N/A        589766.2801638173      16048357.3390438110         0.00
+  AO:   225        N/A          N/A       1412675.0550942314      38440844.8746990934         0.00
+  AO:   226        N/A          N/A       1412675.0550942319      38440844.8746991083         0.00
+  ------------------------------------------------------------------------------------------------
+ 
+ 
+
+
+##############################################################################
+                              Finalization info
+##############################################################################
+ 
+ Memory peak for process    0 is            16.273 MB
+
+ Final time:
+   13:41:37, 10 March, 2025
+
+ Successful termination of ReSpect!
+
+
+real	0m9.147s
+user	1m17.873s
+sys	0m5.378s
+Job user is milias and his job pSCF has assigned ID 9913191
+This job was submitted from the computer space06.hydra.local
+and from the home directory:
+/lustre/home/user/m/milias/work/projects/open-collection/theoretical_chemistry/software/respect/runs/pSCF_Mo
+
+It is running on the cluster compute node:
+gvr
+and is employing 1 node/nodes:
+n02p069
+
+Job partition is cascade 
+
+The job requests 12 CPU per task.
+
+
+ loaded modules:
+Currently Loaded Modulefiles:
+  1) GVR/v1.0-1        2) BASE/1.0          3) Python/v3.10.13
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda3       134G   17G  111G  13% /
+Filesystem                               Size  Used Avail Use% Mounted on
+10.220.25.3@o2ib,10.220.25.4@o2ib:/home  650T  493T  158T  76% /lustre/home
+
+ running /lustre/home/user/m/milias/work/software/respect/ReSpect_5.3.0_2024_x86_64_omp_static/respect --scratch=/lustre/home/user/m/milias/scratch --inp=mo_mdks_ri-j --nt=12 ...
+
+Starting time: 2025-03-10 13:41:24
+
+    ReSpect program, version 5.3.0 (2024)
+
+    Call arguments   are    --pscf --scratch=/lustre/home/user/m/milias/scratch --inp=mo_mdks_ri-j --nt=12 
+    Input file name   is   mo_mdks_ri-j.inp
+    Binary  directory is   /lustre/home/user/m/milias/work/software/respect/ReSpect_5.3.0_2024_x86_64_omp_static
+    Work    directory is   /lustre/home/user/m/milias/work/projects/open-collection/theoretical_chemistry/software/respect/runs/pSCF_Mo/
+    Scratch directory is   /lustre/home/user/m/milias/scratch/tmp314828.bxfcx_al.milias
+    Machine name      is   n02p069
+    OMP stack memory size  2048m
+    OMP parallel job with  12 threads
+    Output  file will be   /lustre/home/user/m/milias/work/projects/open-collection/theoretical_chemistry/software/respect/runs/pSCF_Mo/mo_mdks_ri-j.out_pscf
+
+    Job is being run ...
+
+    ReSpect job is done ( elapsed time 0:00:14 )
+
+Ending time:   2025-03-10 13:41:38
+

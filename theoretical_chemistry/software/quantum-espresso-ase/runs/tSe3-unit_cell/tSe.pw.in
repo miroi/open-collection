@@ -1,0 +1,47 @@
+&CONTROL
+    calculation   = "relax"
+    forc_conv_thr =  1.00000e-03
+    max_seconds   =  1.72800e+05
+    nstep         = 100
+    pseudo_dir    = "./"
+/
+
+&SYSTEM
+    a           =  4.36620e+00
+    c           =  4.95360e+00
+    degauss     =  1.00000e-02
+    ecutrho     =  2.25000e+02
+    ecutwfc     =  2.50000e+01
+    ibrav       = 4
+    nat         = 3
+    ntyp        = 1
+    occupations = "smearing"
+    smearing    = "gaussian"
+/
+
+&ELECTRONS
+    conv_thr         =  1.00000e-06
+    electron_maxstep = 200
+    mixing_beta      =  7.00000e-01
+    startingpot      = "atomic"
+    startingwfc      = "atomic+random"
+/
+
+&IONS
+    ion_dynamics = "bfgs"
+/
+
+&CELL
+/
+
+K_POINTS {automatic}
+ 3  3  2  0 0 0
+
+ATOMIC_SPECIES
+Se     78.96000  Se.upf
+
+ATOMIC_POSITIONS angstrom
+    Se 0.98414148 0.0 1.6512
+    Se -0.49207074 0.8522915226 3.3024
+    Se 1.69102926 2.9289485954 0.0
+

@@ -1,0 +1,50 @@
+&CONTROL
+  calculation = "vc-relax"
+  etot_conv_thr =   3.0000000000d-05
+  forc_conv_thr =   1.0000000000d-04
+  pseudo_dir    = "./"
+  verbosity = 'low'
+/
+
+&SYSTEM
+  degauss =   2.0000000000d-02
+  ecutrho =   2.4000000000d+02
+  ecutwfc =   3.0000000000d+01
+  ibrav = 0
+  nat = 3
+  nosym = .false.
+  ntyp = 1
+  occupations = 'smearing'
+  smearing = 'cold'
+/
+
+&ELECTRONS
+  conv_thr =   6.0000000000d-10
+  electron_maxstep = 80
+  mixing_beta =   4.0000000000d-01
+  startingpot      = "atomic"
+  startingwfc      = "atomic+random"
+/
+
+&IONS
+    ion_dynamics = "bfgs"
+/
+
+&CELL
+/
+
+ATOMIC_SPECIES
+Se     78.96 Se.upf
+
+ATOMIC_POSITIONS crystal
+Se           0.2254000000       0.0000000000       0.3333300000
+Se          -0.0000000000       0.2254000000       0.6666700000
+Se           0.7746000000       0.7746000000       0.0000033333
+
+K_POINTS automatic
+12 12 9 0 0 0
+
+CELL_PARAMETERS angstrom
+      4.3662000000       0.0000000000       0.0000000000
+     -2.1831000000       3.7812401180       0.0000000000
+      0.0000000000       0.0000000000       4.9536000000

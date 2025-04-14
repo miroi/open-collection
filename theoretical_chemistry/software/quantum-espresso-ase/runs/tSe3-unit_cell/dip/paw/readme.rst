@@ -18,3 +18,4 @@ tSe3 with QE
      S matrix not positive definite
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+increase k points, wf-cut

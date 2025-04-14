@@ -1,82 +1,30 @@
+================
 QE buildup on NB
 ================
 
-miroi@MIRO:~/work/software/quantum_espresso/q-e/build_gnu_openmpi/.cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON
--DCMAKE_Fortran_COMPILER=mpif90 ..
--- The Fortran compiler identification is GNU 11.4.0
--- The C compiler identification is GNU 11.4.0
--- Detecting Fortran compiler ABI info
--- Detecting Fortran compiler ABI info - done
--- Check for working Fortran compiler: /usr/bin/mpif90 - skipped
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Check for working C compiler: /usr/bin/cc - skipped
--- Detecting C compile features
--- Detecting C compile features - done
--- Setting build type to 'Release' as none was specified
--- Enable sanitizer QE_ENABLE_SANITIZER=none
--- C preprocessor used by qe_preprocess_source in qeHelpers.cmake: /usr/bin/cpp
--- Performing Test Fortran_ISYSTEM_SUPPORTED
--- Performing Test Fortran_ISYSTEM_SUPPORTED - Success
--- Found MPI_Fortran: /usr/bin/mpif90 (found version "3.1")
--- Found MPI: TRUE (found version "3.1") found components: Fortran
--- Selected the Fortran 'mpi' module. QE_ENABLE_MPI_MODULE=ON
--- MPI settings used by CTest
-     MPIEXEC_EXECUTABLE : /usr/bin/mpiexec
-     MPIEXEC_NUMPROC_FLAG : -n
-     MPIEXEC_PREFLAGS :
-   Tests run as : /usr/bin/mpiexec -n <NUM_PROCS>  <EXECUTABLE>
--- Found Git: /usr/bin/git (found suitable version "2.34.1", minimum required is "2.13")
--- Source files are cloned from a git repository.
-   sed supports -E
-   Git branch: develop
-   Git commit hash: c129e404a1b34e2d280280c5087d1dc05a879a3f
--- Trying to find LAPACK from Intel MKL
--- Looking for pthread.h
--- Looking for pthread.h - found
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
--- Found Threads: TRUE
--- Looking for Fortran sgemm
--- Looking for Fortran sgemm - found
--- Found BLAS: /usr/lib/x86_64-linux-gnu/libmkl_gf_lp64.so;/usr/lib/x86_64-linux-gnu/libmkl_sequential.so;/usr/lib/x86_64-linux-gnu/libmkl_core.so;-lm;-ldl
--- Looking for Fortran cheev
--- Looking for Fortran cheev - found
--- Found LAPACK: /usr/lib/x86_64-linux-gnu/libmkl_gf_lp64.so;/usr/lib/x86_64-linux-gnu/libmkl_sequential.so;/usr/lib/x86_64-linux-gnu/libmkl_core.so;-lm;-ldl;-lm;-ldl
--- Looking for Fortran zhpev
--- Looking for Fortran zhpev - found
--- Installing Wannier90 via submodule
--- Installing MBD via submodule
--- Found Git: /usr/bin/git (found version "2.34.1")
--- Setting version tag to 0.13.0-2-g89a3cc1 from Git
--- Installing DeviceXlib via submodule
--- Found VendorFFTW: /usr/lib/x86_64-linux-gnu/libmkl_gf_lp64.so;/usr/lib/x86_64-linux-gnu/libmkl_sequential.so;/usr/lib/x86_64-linux-gnu/libmkl_core.so;-lm;-ldl;/usr/lib/x86_64-linux-gnu/libmkl_gf_lp64.so;/usr/lib/x86_64-linux-gnu/libmkl_sequential.so;/usr/lib/x86_64-linux-gnu/libmkl_core.so;-lm;-ldl;-lm;-ldl
--- Looking for mallinfo
--- Looking for mallinfo - found
--- Enabling tests in test-suite
 
-Only pw and cp results from ctest are reliable, we are working on making the rest tests work reliably with ctest. To run non-pw/cp tests, make a softlink of the bin directory to the root of QE source tree and run tests in the test-suite directory under that root.
+miroi@MIRO:~/work/software/quantum_espresso/q-e/build_gnu_openmpi/.cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_Fortran_COMPILER=mpif90  -DQE_FFTW_VENDOR=Intel_FFTW3 ..
 
--- generating tests in pw category
--- generating tests in cp category
--- Configuring done
--- Generating done
--- Build files have been written to: /home/miroi/work/software/quantum_espresso/q-e/build_gnu_openmpi
-miroi@MIRO:~/work/software/quantum_espresso/q-e/build_gnu_openmpi/.
+make -j6
 
-miroi@MIRO:~/work/software/quantum_espresso/q-e/build_gnu_openmpi/.m -j4
-
-..
-f951: Warning: Nonexistent include directory ‘/home/miroi/work/software/quantum_espresso/q-e/FFTXlib/VendorFFTW_INCLUDE_MKL_DFTI-NOTFOUND’ [-Wmissing-include-dirs]
-/home/miroi/work/software/quantum_espresso/q-e/FFTXlib/src/fft_scalar.DFTI.f90:19:2:
-
-   19 | !=----------------------------------------------------------------------=!
-      |  1~~~~~~~~~~~~~
-Fatal Error: mkl_dfti.f90: No such file or directory
-compilation terminated.
-make[2]: *** [FFTXlib/src/CMakeFiles/qe_fftx.dir/build.make:335: FFTXlib/src/CMakeFiles/qe_fftx.dir/fft_scalar.DFTI.f90.o] Error 1
-make[1]: *** [CMakeFiles/Makefile2:1315: FFTXlib/src/CMakeFiles/qe_fftx.dir/all] Error 2
-make: *** [Makefile:146: all] Error 2
+miroi@MIRO:~/work/software/quantum_espresso/q-e/build_gnu_openmpi/.ls bin/
+ZG.x*              dvscf_q2r.x*       fs.x*             matdyn.x*              pmw.x*           pwcond.x*              ups.x*
+abcoeff_to_eps.x*  dynmat.x*          graph.x*          memory_pw4gww.x*       postahc.x*       pwi2xsf.x*             virtual_v2.x*
+all_currents.x*    ef.x*              gww.x*            merge_wann.x*          postw90.x*       q2qstar.x*             w90chk2chk.x*
+alpha2f.x*         epa.x*             gww_fit.x*        molecularnexafs.x*     pp.x*            q2r.x*                 wannier2pw.x*
+average.x*         epsilon.x*         head.x*           molecularpdos.x*       pp_disca.x*      scan_ibrav.x*          wannier90.x*
+bands.x*           epsilon_Gaus.x*    hgh2qe.x*         neb.x*                 pp_spctrlfn.x*   simple.x*              wannier_ham.x*
+bands_unfold.x*    epw.x*             hp.x*             nscf2supercond.x*      ppacf.x*         simple_bse.x*          wannier_plot.x*
+bse_main.x*        ev.x*              ibrav2cell.x*     open_grid.x*           pprism.x*        simple_ip.x*           wfck2r.x*
+casino2upf.x*      fd.x*              initial_state.x*  path_interpolation.x*  projwfc.x*       spectra_correction.x*  wfdd.x*
+cell2ibrav.x*      fd_ef.x*           kcw.x*            pawplot.x*             pw.x*            sumpdos.x*             xspectra.x*
+cp.x*              fd_ifc.x*          kcwpp_interp.x*   ph.x*                  pw2bgw.x*        turbo_davidson.x*
+cppp.x*            fermi_int_0.x*     kcwpp_sh.x*       phcg.x*                pw2critic.x*     turbo_eels.x*
+d3hess.x*          fermi_int_1.x*     kpoints.x*        plan_avg.x*            pw2gt.x*         turbo_lanczos.x*
+disca.x*           fermi_proj.x*      lambda.x*         plotband.x*            pw2gw.x*         turbo_magnon.x*
+dos.x*             fermi_velocity.x*  ld1.x*            plotproj.x*            pw2wannier90.x*  turbo_spectrum.x*
+dos_sp.x*          fqha.x*            manycp.x*         plotrho.x*             pw4gww.x*        upfconv.x*
 
 
-
+miroi@MIRO:~/work/software/quantum_espresso/q-e/build_gnu_openmpi/.ctest -j 6
+99% tests passed, 1 tests failed out of 361

@@ -1,0 +1,43 @@
+&CONTROL
+  calculation = 'scf'
+  pseudo_dir = './'
+  verbosity = 'low'
+/
+
+&SYSTEM
+  smearing = 'gauss'
+  ecutwfc =  80
+  ibrav = 0
+  nat = 2
+  nosym = .false.
+  ntyp = 1
+  occupations = 'smearing'
+  degauss = 0.02,
+  lspinorb = 'true',
+  xdm = 'true'
+/
+
+&ELECTRONS
+  mixing_beta = 0.3
+  diagonalization = 'david' 
+  conv_thr =   1.D-9
+  electron_maxstep = 100
+  startingpot      = "atomic"
+  startingwfc      = "atomic+random"
+
+/
+
+ATOMIC_SPECIES
+Fl     289.0 Fl-6spd_r.upf
+
+ATOMIC_POSITIONS crystal
+Fl           0.0000000000       0.0000000000       0.0000000000
+Fl           0.0000000000       0.0000000000       2.8000000000
+
+K_POINTS automatic
+1 1 1 0 0 0
+
+CELL_PARAMETERS angstrom
+     15.0000000000       0.0000000000       0.0000000000
+      0.0000000000      15.0000000000       0.0000000000
+      0.0000000000       0.0000000000      15.0000000000

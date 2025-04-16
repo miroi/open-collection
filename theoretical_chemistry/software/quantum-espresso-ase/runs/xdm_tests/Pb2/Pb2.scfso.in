@@ -4,10 +4,10 @@
   forc_conv_thr =   1.0000000000d-04
   outdir = './out/'
   prefix = 'aiida'
-  pseudo_dir = './pseudo/'
+  pseudo_dir = './'
   tprnfor = .true.
   tstress = .true.
-  verbosity = 'high'
+  verbosity = 'low'
 /
 &SYSTEM
   degauss =   2.0000000000d-02
@@ -19,6 +19,9 @@
   ntyp = 1
   occupations = 'smearing'
   smearing = 'cold'
+  lspinorb = .true.
+  noncolin=.true.
+  xdm = .false.
 /
 &ELECTRONS
   conv_thr =   4.0000000000d-10
@@ -28,10 +31,10 @@
 ATOMIC_SPECIES
 Pb     207.2 Pb.pbesol-dn-kjpaw_psl.0.2.2.UPF
 ATOMIC_POSITIONS crystal
-Pb           0.5000000000       0.5000000000       0.5000000000
-Pb           0.6800000070       0.5000000000       0.5000000000
+Pb           0.0000000000       0.0000000000       0.0000000000
+Pb           0.0800000070       0.0000000000       2.5000000000
 K_POINTS automatic
-3 3 3 0 0 0
+1 1 1 0 0 0
 CELL_PARAMETERS angstrom
      15.0000000000       0.0000000000       0.0000000000
       0.0000000000      15.0000000000       0.0000000000

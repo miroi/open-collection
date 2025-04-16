@@ -1,5 +1,5 @@
 ===============
-Fl2 with QE-XDM
+Fl2 with QE-vdW
 ===============
 
 
@@ -16,6 +16,6 @@ milias@DESKTOP-7OTLCGO:~/work/git-projects/open-collection/theoretical_chemistry
 
   nohup mpirun -np 8 /home/milias/work/software/qe/q-e/build_gnu_openmpi/bin/pw.x < Fl2.scfso_xdm.in > Fl2.scfso_xdm.logfile &
 
-Govorun
-~~~~~~~
-~
+
+
+

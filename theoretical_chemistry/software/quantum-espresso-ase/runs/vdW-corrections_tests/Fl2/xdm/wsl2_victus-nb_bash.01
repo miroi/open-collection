@@ -3,16 +3,19 @@
 #export QE=/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/bin
 export QE=/home/miroi/work/software/quantum_espresso/q-e/build_gnu_openmpi/bin
 
-echo -e "\n running $QE \"`hostname`\"  "
+echo -e "\n running QE on \"`hostname`\"  at \c"; date
+echo -e " ldd $QE/pw.x : "; ldd $QE/pw.x
 
  #workdir=/data.local1/milias/scratch/NhOH_QE_workdir
  #mkdir -p $workdir
 
  proj=Fl2.scfso_xdm
- mpirun -np 4 $QE/pw.x < $proj.in > $proj.out
+ mpirun -np 6 $QE/pw.x < $proj.in > $proj.out
 
  #echo -e "\n Content of $workdir :"
  #ls -lt $workdir
  
+ echo -e "\n QE job finished at \c "; date
+
 exit 0
 

@@ -1,0 +1,385 @@
+
+     Program PWSCF v.7.4.1 starts on 16Apr2025 at 11:34:12 
+        Git branch: develop
+        Last git commit: c129e404a1b34e2d280280c5087d1dc05a879a3f
+        Last git commit date: Sun Apr 13 10:22:52 2025 +0000
+        Last git commit subject: Merge branch 'matdyn-remove-interaction-blocks' in
+
+     This program is part of the open-source Quantum ESPRESSO suite
+     for quantum simulation of materials; please cite
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 21 395502 (2009);
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 29 465901 (2017);
+         "P. Giannozzi et al., J. Chem. Phys. 152 154105 (2020);
+          URL http://www.quantum-espresso.org", 
+     in publications or presentations arising from this work. More details at
+     http://www.quantum-espresso.org/quote
+
+     Parallel version (MPI), running on     8 processors
+
+     MPI processes distributed on     1 nodes
+     14938 MiB available memory on the printing compute node when the environment starts
+
+     Waiting for input...
+     Reading input from standard input
+
+     Current dimensions of program PWSCF are:
+     Max number of different atomic species (ntypx) = 10
+     Max number of k-points (npk) =  40000
+     Max angular momentum in pseudopotentials (lmaxx) =  4
+     Message from routine iosys:
+     xdm is obsolete, use "vdw_corr='xdm'" instead
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
+
+     R & G space division:  proc/nbgrp/npool/nimage =       8
+     Subspace diagonalization in iterative solution of the eigenvalue problem:
+     a serial algorithm will be used
+
+
+     Parallelization info
+     --------------------
+     sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
+     Min        2557    1278    320               275175    97304   12188
+     Max        2558    1279    321               275180    97307   12193
+     Sum       20461   10229   2561              2201421   778439   97521
+
+     Using Slab Decomposition
+
+
+
+     bravais-lattice index     =            0
+     lattice parameter (alat)  =      28.3459  a.u.
+     unit-cell volume          =   22775.6289 (a.u.)^3
+     number of atoms/cell      =            2
+     number of atomic types    =            1
+     number of electrons       =        28.00
+     number of Kohn-Sham states=           36
+     kinetic-energy cutoff     =      40.0000  Ry
+     charge density cutoff     =     320.0000  Ry
+     scf convergence threshold =      4.0E-10
+     mixing beta               =       0.4000
+     number of iterations used =            8  plain     mixing
+     Exchange-correlation= PBE
+                           (   1   4   3   4   0   0   0)
+     Non magnetic calculation with spin-orbit
+
+
+     celldm(1)=  28.345892  celldm(2)=   0.000000  celldm(3)=   0.000000
+     celldm(4)=   0.000000  celldm(5)=   0.000000  celldm(6)=   0.000000
+
+     crystal axes: (cart. coord. in units of alat)
+               a(1) = (   1.000000   0.000000   0.000000 )  
+               a(2) = (   0.000000   1.000000   0.000000 )  
+               a(3) = (   0.000000   0.000000   1.000000 )  
+
+     reciprocal axes: (cart. coord. in units 2 pi/alat)
+               b(1) = (  1.000000  0.000000  0.000000 )  
+               b(2) = (  0.000000  1.000000  0.000000 )  
+               b(3) = (  0.000000  0.000000  1.000000 )  
+
+
+     PseudoPot. # 1 for Pb read from file:
+     .././Pb_r.upf
+     MD5 check sum: 73abbbd201951038fc1bdacebad68d2f
+     Pseudo is Norm-conserving + core correction, Zval = 14.0
+     Generated using ONCVPSP code by D. R. Hamann
+     Using radial grid of 1782 points, 10 beta functions with: 
+                l(1) =   0
+                l(2) =   0
+                l(3) =   1
+                l(4) =   1
+                l(5) =   1
+                l(6) =   1
+                l(7) =   2
+                l(8) =   2
+                l(9) =   2
+               l(10) =   2
+
+     atomic species   valence    mass     pseudopotential
+     Pb               14.00   207.20000     Pb( 1.00)
+
+      4 Sym. Ops. (no inversion) found
+
+
+                                    s                        frac. trans.
+
+      isym =  1     identity                                     
+
+ cryst.   s( 1) = (     1          0          0      )
+                  (     0          1          0      )
+                  (     0          0          1      )
+
+ cart.    s( 1) = (  1.0000000  0.0000000  0.0000000 )
+                  (  0.0000000  1.0000000  0.0000000 )
+                  (  0.0000000  0.0000000  1.0000000 )
+
+
+      isym =  2     180 deg rotation - cart. axis [1,0,0]        
+
+ cryst.   s( 2) = (     1          0          0      )
+                  (     0         -1          0      )
+                  (     0          0         -1      )
+
+ cart.    s( 2) = (  1.0000000  0.0000000  0.0000000 )
+                  (  0.0000000 -1.0000000  0.0000000 )
+                  (  0.0000000  0.0000000 -1.0000000 )
+
+
+      isym =  3     inv. 180 deg rotation - cart. axis [0,0,1]   
+
+ cryst.   s( 3) = (     1          0          0      )
+                  (     0          1          0      )
+                  (     0          0         -1      )
+
+ cart.    s( 3) = (  1.0000000  0.0000000  0.0000000 )
+                  (  0.0000000  1.0000000  0.0000000 )
+                  (  0.0000000  0.0000000 -1.0000000 )
+
+
+      isym =  4     inv. 180 deg rotation - cart. axis [0,1,0]   
+
+ cryst.   s( 4) = (     1          0          0      )
+                  (     0         -1          0      )
+                  (     0          0          1      )
+
+ cart.    s( 4) = (  1.0000000  0.0000000  0.0000000 )
+                  (  0.0000000 -1.0000000  0.0000000 )
+                  (  0.0000000  0.0000000  1.0000000 )
+
+
+   Cartesian axes
+
+     site n.     atom                  positions (alat units)
+         1        Pb     tau(   1) = (   0.0000000   0.0000000   0.0000000  )
+         2        Pb     tau(   2) = (   0.0800000   0.0000000   2.5000000  )
+
+   Crystallographic axes
+
+     site n.     atom                  positions (cryst. coord.)
+         1        Pb     tau(   1) = (  0.0000000  0.0000000  0.0000000  )
+         2        Pb     tau(   2) = (  0.0800000  0.0000000  2.5000000  )
+
+     number of k points=     1  Marzari-Vanderbilt smearing, width (Ry)=  0.0200
+                       cart. coord. in units 2pi/alat
+        k(    1) = (   0.0000000   0.0000000   0.0000000), wk =   1.0000000
+
+                       cryst. coord.
+        k(    1) = (   0.0000000   0.0000000   0.0000000), wk =   1.0000000
+
+     Dense  grid:  2201421 G-vectors     FFT dimensions: ( 162, 162, 162)
+
+     Smooth grid:   778439 G-vectors     FFT dimensions: ( 120, 120, 120)
+
+     Dynamical RAM for                 wfc:      13.36 MB
+
+     Dynamical RAM for     wfc (w. buffer):      13.36 MB
+
+     Dynamical RAM for           str. fact:       4.20 MB
+
+     Dynamical RAM for           local pot:       0.00 MB
+
+     Dynamical RAM for          nlocal pot:      12.62 MB
+
+     Dynamical RAM for                qrad:       3.76 MB
+
+     Dynamical RAM for          rho,v,vnew:     201.69 MB
+
+     Dynamical RAM for               rhoin:      67.23 MB
+
+     Dynamical RAM for            rho*nmix:     537.46 MB
+
+     Dynamical RAM for           G-vectors:      16.49 MB
+
+     Dynamical RAM for          h,s,v(r/c):       0.24 MB
+
+     Dynamical RAM for          <psi|beta>:       0.07 MB
+
+     Dynamical RAM for                 psi:      26.72 MB
+
+     Dynamical RAM for                hpsi:      26.72 MB
+
+     Dynamical RAM for      wfcinit/wfcrot:      20.07 MB
+
+     Estimated static dynamical RAM per process >     361.38 MB
+
+     Estimated max dynamical RAM per process >     952.60 MB
+
+     Estimated total dynamical RAM >       7.44 GB
+
+     Initial potential from superposition of free atoms
+
+     starting charge      27.9949, renormalised to      28.0000
+
+     negative rho (up, down):  7.961E-05 0.000E+00
+     Starting wfcs are   36 randomized atomic wfcs
+
+     total cpu time spent up to now is        1.8 secs
+
+     per-process dynamical memory:   383.6 Mb
+
+     Self-consistent Calculation
+
+     iteration #  1     ecut=    40.00 Ry     beta= 0.40
+     Davidson diagonalization with overlap
+
+---- Real-time Memory Report at c_bands before calling an iterative solver
+           292 MiB given to the printing process from OS
+           436 MiB allocation reported by mallinfo(arena+hblkhd)
+         12875 MiB available memory on the node where the printing process lives
+------------------
+     ethr =  1.00E-02,  avg # of iterations =  1.0
+At line 637 of file /home/milias/work/software/qe/q-e/PW/src/sum_band.f90
+Fortran runtime error: Attempt to DEALLOCATE unallocated 'grad_psic'
+
+Error termination. Backtrace:
+At line 637 of file /home/milias/work/software/qe/q-e/PW/src/sum_band.f90
+Fortran runtime error: Attempt to DEALLOCATE unallocated 'grad_psic'
+
+Error termination. Backtrace:
+At line 637 of file /home/milias/work/software/qe/q-e/PW/src/sum_band.f90
+Fortran runtime error: Attempt to DEALLOCATE unallocated 'grad_psic'
+
+Error termination. Backtrace:
+At line 637 of file /home/milias/work/software/qe/q-e/PW/src/sum_band.f90
+Fortran runtime error: Attempt to DEALLOCATE unallocated 'grad_psic'
+
+Error termination. Backtrace:
+At line 637 of file /home/milias/work/software/qe/q-e/PW/src/sum_band.f90
+Fortran runtime error: Attempt to DEALLOCATE unallocated 'grad_psic'
+
+Error termination. Backtrace:
+At line 637 of file /home/milias/work/software/qe/q-e/PW/src/sum_band.f90
+Fortran runtime error: Attempt to DEALLOCATE unallocated 'grad_psic'
+
+Error termination. Backtrace:
+At line 637 of file /home/milias/work/software/qe/q-e/PW/src/sum_band.f90
+Fortran runtime error: Attempt to DEALLOCATE unallocated 'grad_psic'
+
+Error termination. Backtrace:
+At line 637 of file /home/milias/work/software/qe/q-e/PW/src/sum_band.f90
+Fortran runtime error: Attempt to DEALLOCATE unallocated 'grad_psic'
+
+Error termination. Backtrace:
+#0  0x7fe16af48960 in ???
+#1  0x7fe16af494d9 in ???
+#2  0x7fe16af49ad6 in ???
+#0  0x7f8c0e348960 in ???
+#1  0x7f8c0e3494d9 in ???
+#2  0x7f8c0e349ad6 in ???
+#0  0x7f5660d48960 in ???
+#1  0x7f5660d494d9 in ???
+#2  0x7f5660d49ad6 in ???
+#0  0x7f011f748960 in ???
+#1  0x7f011f7494d9 in ???
+#2  0x7f011f749ad6 in ???
+#0  0x7f21d2b48960 in ???
+#1  0x7f21d2b494d9 in ???
+#2  0x7f21d2b49ad6 in ???
+#0  0x7f6b28548960 in ???
+#1  0x7f6b285494d9 in ???
+#2  0x7f6b28549ad6 in ???
+#0  0x7f58b5f48960 in ???
+#1  0x7f58b5f494d9 in ???
+#2  0x7f58b5f49ad6 in ???
+#0  0x7fa2cdb48960 in ???
+#1  0x7fa2cdb494d9 in ???
+#2  0x7fa2cdb49ad6 in ???
+#3  0x5618e8ad066d in ???
+#4  0x5618e8ad109e in ???
+#5  0x5618e89ba740 in ???
+#6  0x5618e89c8bc5 in ???
+#7  0x5618e8aa499c in ???
+#8  0x5618e89b1d42 in ???
+#9  0x5618e89b1a6e in ???
+#10  0x7f8c0e125d8f in ???
+#11  0x7f8c0e125e3f in ???
+#12  0x5618e89b1aa4 in ???
+#13  0xffffffffffffffff in ???
+#3  0x5592c47ac66d in ???
+#4  0x5592c47ad09e in ???
+#5  0x5592c4696740 in ???
+#6  0x5592c46a4bc5 in ???
+#7  0x5592c478099c in ???
+#8  0x5592c468dd42 in ???
+#9  0x5592c468da6e in ???
+#10  0x7fe16ad25d8f in ???
+#11  0x7fe16ad25e3f in ???
+#12  0x5592c468daa4 in ???
+#13  0xffffffffffffffff in ???
+#3  0x5599941c066d in ???
+#4  0x5599941c109e in ???
+#5  0x5599940aa740 in ???
+#6  0x5599940b8bc5 in ???
+#7  0x55999419499c in ???
+#8  0x5599940a1d42 in ???
+#9  0x5599940a1a6e in ???
+#3  0x5594393be66d in ???
+#4  0x5594393bf09e in ???
+#5  0x5594392a8740 in ???
+#6  0x5594392b6bc5 in ???
+#7  0x55943939299c in ???
+#8  0x55943929fd42 in ???
+#9  0x55943929fa6e in ???
+#10  0x7f6b28325d8f in ???
+#11  0x7f6b28325e3f in ???
+#12  0x55943929faa4 in ???
+#3  0x555e2f67e66d in ???
+#4  0x555e2f67f09e in ???
+#5  0x555e2f568740 in ???
+#6  0x555e2f576bc5 in ???
+#7  0x555e2f65299c in ???
+#8  0x555e2f55fd42 in ???
+#9  0x555e2f55fa6e in ???
+#10  0x7f58b5d25d8f in ???
+#11  0x7f58b5d25e3f in ???
+#12  0x555e2f55faa4 in ???
+#3  0x5563a7dff66d in ???
+#4  0x5563a7e0009e in ???
+#5  0x5563a7ce9740 in ???
+#6  0x5563a7cf7bc5 in ???
+#7  0x5563a7dd399c in ???
+#8  0x5563a7ce0d42 in ???
+#9  0x5563a7ce0a6e in ???
+#10  0x7f21d2925d8f in ???
+#11  0x7f21d2925e3f in ???
+#12  0x5563a7ce0aa4 in ???
+#13  0xffffffffffffffff in ???
+#3  0x55c4d32e866d in ???
+#4  0x55c4d32e909e in ???
+#5  0x55c4d31d2740 in ???
+#6  0x55c4d31e0bc5 in ???
+#7  0x55c4d32bc99c in ???
+#8  0x55c4d31c9d42 in ???
+#9  0x55c4d31c9a6e in ???
+#10  0x7f011f525d8f in ???
+#11  0x7f011f525e3f in ???
+#12  0x55c4d31c9aa4 in ???
+#13  0xffffffffffffffff in ???
+#13  0xffffffffffffffff in ???
+#13  0xffffffffffffffff in ???
+#10  0x7f5660b25d8f in ???
+#11  0x7f5660b25e3f in ???
+#12  0x5599940a1aa4 in ???
+#13  0xffffffffffffffff in ???
+#3  0x55af1194266d in ???
+#4  0x55af1194309e in ???
+#5  0x55af1182c740 in ???
+#6  0x55af1183abc5 in ???
+#7  0x55af1191699c in ???
+#8  0x55af11823d42 in ???
+#9  0x55af11823a6e in ???
+#10  0x7fa2cd925d8f in ???
+#11  0x7fa2cd925e3f in ???
+#12  0x55af11823aa4 in ???
+#13  0xffffffffffffffff in ???
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[8951,1],1]
+  Exit code:    2
+--------------------------------------------------------------------------

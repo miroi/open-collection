@@ -1,9 +1,9 @@
 
-     Program PWSCF v.7.4.1 starts on 16Apr2025 at 11: 8: 9 
+     Program PWSCF v.7.4.1 starts on 16Apr2025 at 21:36:10 
         Git branch: develop
-        Last git commit: c129e404a1b34e2d280280c5087d1dc05a879a3f
-        Last git commit date: Sun Apr 13 10:22:52 2025 +0000
-        Last git commit subject: Merge branch 'matdyn-remove-interaction-blocks' in
+        Last git commit: 756be738206df6ac4853971d4a4997ab876ac5bc
+        Last git commit date: Wed Apr 16 16:38:52 2025 +0000
+        Last git commit subject: Merge branch 'sum_band_glitch' into 'develop'
 
      This program is part of the open-source Quantum ESPRESSO suite
      for quantum simulation of materials; please cite
@@ -14,10 +14,10 @@
      in publications or presentations arising from this work. More details at
      http://www.quantum-espresso.org/quote
 
-     Parallel version (MPI), running on     8 processors
+     Parallel version (MPI), running on     4 processors
 
      MPI processes distributed on     1 nodes
-     14390 MiB available memory on the printing compute node when the environment starts
+     7127 MiB available memory on the printing compute node when the environment starts
 
      Waiting for input...
      Reading input from standard input
@@ -26,12 +26,10 @@
      Max number of different atomic species (ntypx) = 10
      Max number of k-points (npk) =  40000
      Max angular momentum in pseudopotentials (lmaxx) =  4
-     Message from routine iosys:
-     xdm is obsolete, use "vdw_corr='xdm'" instead
      Message from routine setup:
      using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
 
-     R & G space division:  proc/nbgrp/npool/nimage =       8
+     R & G space division:  proc/nbgrp/npool/nimage =       4
      Subspace diagonalization in iterative solution of the eigenvalue problem:
      a serial algorithm will be used
 
@@ -39,8 +37,8 @@
      Parallelization info
      --------------------
      sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
-     Min        2557    2557    641               275175   275175   34369
-     Max        2558    2558    642               275180   275180   34372
+     Min        5115    5115   1282               550353   550353   68740
+     Max        5116    5116   1283               550358   550358   68741
      Sum       20461   20461   5129              2201421  2201421  274961
 
      Using Slab Decomposition
@@ -214,41 +212,41 @@
 
      Dense  grid:  2201421 G-vectors     FFT dimensions: ( 162, 162, 162)
 
-     Dynamical RAM for                 wfc:      54.59 MB
+     Dynamical RAM for                 wfc:     109.18 MB
 
-     Dynamical RAM for     wfc (w. buffer):      54.59 MB
+     Dynamical RAM for     wfc (w. buffer):     109.18 MB
 
-     Dynamical RAM for           str. fact:       4.20 MB
+     Dynamical RAM for           str. fact:       8.40 MB
 
      Dynamical RAM for           local pot:       0.00 MB
 
-     Dynamical RAM for          nlocal pot:      50.39 MB
+     Dynamical RAM for          nlocal pot:     100.78 MB
 
      Dynamical RAM for                qrad:       7.46 MB
 
-     Dynamical RAM for          rho,v,vnew:     201.69 MB
+     Dynamical RAM for          rho,v,vnew:     398.57 MB
 
-     Dynamical RAM for               rhoin:      67.23 MB
+     Dynamical RAM for               rhoin:     132.86 MB
 
-     Dynamical RAM for            rho*nmix:     537.46 MB
+     Dynamical RAM for            rho*nmix:    1074.91 MB
 
-     Dynamical RAM for           G-vectors:      17.85 MB
+     Dynamical RAM for           G-vectors:      35.69 MB
 
      Dynamical RAM for          h,s,v(r/c):       0.50 MB
 
      Dynamical RAM for          <psi|beta>:       0.15 MB
 
-     Dynamical RAM for                 psi:     109.18 MB
+     Dynamical RAM for                 psi:     218.36 MB
 
-     Dynamical RAM for                hpsi:     109.18 MB
+     Dynamical RAM for                hpsi:     218.36 MB
 
-     Dynamical RAM for      wfcinit/wfcrot:      81.95 MB
+     Dynamical RAM for      wfcinit/wfcrot:     163.83 MB
 
-     Estimated static dynamical RAM per process >     445.44 MB
+     Estimated static dynamical RAM per process >     875.41 MB
 
-     Estimated max dynamical RAM per process >       1.17 GB
+     Estimated max dynamical RAM per process >       2.33 GB
 
-     Estimated total dynamical RAM >       9.39 GB
+     Estimated total dynamical RAM >       9.33 GB
 
      Initial potential from superposition of free atoms
 
@@ -257,9 +255,9 @@
      negative rho (up, down):  8.014E-04 0.000E+00
      Starting wfcs are   52 randomized atomic wfcs
 
-     total cpu time spent up to now is        3.4 secs
+     total cpu time spent up to now is        8.1 secs
 
-     per-process dynamical memory:   437.4 Mb
+     per-process dynamical memory:   866.2 Mb
 
      Self-consistent Calculation
 
@@ -267,163 +265,37 @@
      Davidson diagonalization with overlap
 
 ---- Real-time Memory Report at c_bands before calling an iterative solver
-           393 MiB given to the printing process from OS
-           527 MiB allocation reported by mallinfo(arena+hblkhd)
-         11624 MiB available memory on the node where the printing process lives
+           732 MiB given to the printing process from OS
+          1045 MiB allocation reported by mallinfo(arena+hblkhd)
+          4402 MiB available memory on the node where the printing process lives
 ------------------
      ethr =  1.00E-02,  avg # of iterations =  2.0
-At line 637 of file /home/milias/work/software/qe/q-e/PW/src/sum_band.f90
-Fortran runtime error: Attempt to DEALLOCATE unallocated 'grad_psic'
 
-Error termination. Backtrace:
-At line 637 of file /home/milias/work/software/qe/q-e/PW/src/sum_band.f90
-Fortran runtime error: Attempt to DEALLOCATE unallocated 'grad_psic'
+     Threshold (ethr) on eigenvalues was too large:
+     Diagonalizing with lowered threshold
 
-Error termination. Backtrace:
-At line 637 of file /home/milias/work/software/qe/q-e/PW/src/sum_band.f90
-Fortran runtime error: Attempt to DEALLOCATE unallocated 'grad_psic'
+     Davidson diagonalization with overlap
 
-Error termination. Backtrace:
-At line 637 of file /home/milias/work/software/qe/q-e/PW/src/sum_band.f90
-Fortran runtime error: Attempt to DEALLOCATE unallocated 'grad_psic'
+---- Real-time Memory Report at c_bands before calling an iterative solver
+          1195 MiB given to the printing process from OS
+          1067 MiB allocation reported by mallinfo(arena+hblkhd)
+          3857 MiB available memory on the node where the printing process lives
+------------------
+     ethr =  2.35E-04,  avg # of iterations =  4.0
 
-Error termination. Backtrace:
-At line 637 of file /home/milias/work/software/qe/q-e/PW/src/sum_band.f90
-Fortran runtime error: Attempt to DEALLOCATE unallocated 'grad_psic'
+     negative rho (up, down):  5.423E-04 0.000E+00
 
-Error termination. Backtrace:
-At line 637 of file /home/milias/work/software/qe/q-e/PW/src/sum_band.f90
-Fortran runtime error: Attempt to DEALLOCATE unallocated 'grad_psic'
+     total cpu time spent up to now is       44.6 secs
 
-Error termination. Backtrace:
-At line 637 of file /home/milias/work/software/qe/q-e/PW/src/sum_band.f90
-Fortran runtime error: Attempt to DEALLOCATE unallocated 'grad_psic'
+     total energy              =    -770.30211805 Ry
+     estimated scf accuracy    <       0.10985847 Ry
 
-Error termination. Backtrace:
-At line 637 of file /home/milias/work/software/qe/q-e/PW/src/sum_band.f90
-Fortran runtime error: Attempt to DEALLOCATE unallocated 'grad_psic'
+     iteration #  2     ecut=    80.00 Ry     beta= 0.30
+     Davidson diagonalization with overlap
 
-Error termination. Backtrace:
-#0  0x7fefce148960 in ???
-#1  0x7fefce1494d9 in ???
-#2  0x7fefce149ad6 in ???
-#3  0x5605408a166d in ???
-#4  0x5605408a209e in ???
-#5  0x56054078b740 in ???
-#6  0x560540799bc5 in ???
-#7  0x56054087599c in ???
-#8  0x560540782d42 in ???
-#9  0x560540782a6e in ???
-#10  0x7fefcdf25d8f in ???
-#11  0x7fefcdf25e3f in ???
-#12  0x560540782aa4 in ???
-#13  0xffffffffffffffff in ???
-#0  0x7f8510348960 in ???
-#1  0x7f85103494d9 in ???
-#2  0x7f8510349ad6 in ???
-#3  0x561333bbd66d in ???
-#4  0x561333bbe09e in ???
-#5  0x561333aa7740 in ???
-#6  0x561333ab5bc5 in ???
-#7  0x561333b9199c in ???
-#8  0x561333a9ed42 in ???
-#9  0x561333a9ea6e in ???
-#10  0x7f8510125d8f in ???
-#11  0x7f8510125e3f in ???
-#12  0x561333a9eaa4 in ???
-#13  0xffffffffffffffff in ???
-#0  0x7f0eef748960 in ???
-#1  0x7f0eef7494d9 in ???
-#2  0x7f0eef749ad6 in ???
-#3  0x5638b56e966d in ???
-#4  0x5638b56ea09e in ???
-#5  0x5638b55d3740 in ???
-#6  0x5638b55e1bc5 in ???
-#7  0x5638b56bd99c in ???
-#8  0x5638b55cad42 in ???
-#9  0x5638b55caa6e in ???
-#10  0x7f0eef525d8f in ???
-#11  0x7f0eef525e3f in ???
-#12  0x5638b55caaa4 in ???
-#13  0xffffffffffffffff in ???
-#0  0x7fdf2b548960 in ???
-#1  0x7fdf2b5494d9 in ???
-#2  0x7fdf2b549ad6 in ???
-#3  0x55ec0f42466d in ???
-#4  0x55ec0f42509e in ???
-#5  0x55ec0f30e740 in ???
-#6  0x55ec0f31cbc5 in ???
-#7  0x55ec0f3f899c in ???
-#8  0x55ec0f305d42 in ???
-#9  0x55ec0f305a6e in ???
-#10  0x7fdf2b325d8f in ???
-#11  0x7fdf2b325e3f in ???
-#12  0x55ec0f305aa4 in ???
-#13  0xffffffffffffffff in ???
-#0  0x7fdf78d48960 in ???
-#1  0x7fdf78d494d9 in ???
-#2  0x7fdf78d49ad6 in ???
-#3  0x5580a9c9e66d in ???
-#4  0x5580a9c9f09e in ???
-#5  0x5580a9b88740 in ???
-#6  0x5580a9b96bc5 in ???
-#7  0x5580a9c7299c in ???
-#8  0x5580a9b7fd42 in ???
-#9  0x5580a9b7fa6e in ???
-#10  0x7fdf78b25d8f in ???
-#11  0x7fdf78b25e3f in ???
-#12  0x5580a9b7faa4 in ???
-#13  0xffffffffffffffff in ???
-#0  0x7f0b98d48960 in ???
-#1  0x7f0b98d494d9 in ???
-#2  0x7f0b98d49ad6 in ???
-#3  0x565460fbe66d in ???
-#4  0x565460fbf09e in ???
-#5  0x565460ea8740 in ???
-#6  0x565460eb6bc5 in ???
-#7  0x565460f9299c in ???
-#8  0x565460e9fd42 in ???
-#9  0x565460e9fa6e in ???
-#10  0x7f0b98b25d8f in ???
-#11  0x7f0b98b25e3f in ???
-#12  0x565460e9faa4 in ???
-#13  0xffffffffffffffff in ???
-#0  0x7f1dc3948960 in ???
-#1  0x7f1dc39494d9 in ???
-#2  0x7f1dc3949ad6 in ???
-#3  0x55e53219f66d in ???
-#4  0x55e5321a009e in ???
-#5  0x55e532089740 in ???
-#6  0x55e532097bc5 in ???
-#7  0x55e53217399c in ???
-#8  0x55e532080d42 in ???
-#9  0x55e532080a6e in ???
-#10  0x7f1dc3725d8f in ???
-#11  0x7f1dc3725e3f in ???
-#12  0x55e532080aa4 in ???
-#13  0xffffffffffffffff in ???
-#0  0x7f24f3b48960 in ???
-#1  0x7f24f3b494d9 in ???
-#2  0x7f24f3b49ad6 in ???
-#3  0x556b9036166d in ???
-#4  0x556b9036209e in ???
-#5  0x556b9024b740 in ???
-#6  0x556b90259bc5 in ???
-#7  0x556b9033599c in ???
-#8  0x556b90242d42 in ???
-#9  0x556b90242a6e in ???
-#10  0x7f24f3925d8f in ???
-#11  0x7f24f3925e3f in ???
-#12  0x556b90242aa4 in ???
-#13  0xffffffffffffffff in ???
---------------------------------------------------------------------------
-Primary job  terminated normally, but 1 process returned
-a non-zero exit code. Per user-direction, the job has been aborted.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-mpirun detected that one or more processes exited with non-zero status, thus causing
-the job to be terminated. The first process to do so was:
-
-  Process name: [[11548,1],1]
-  Exit code:    2
---------------------------------------------------------------------------
+---- Real-time Memory Report at c_bands before calling an iterative solver
+          1845 MiB given to the printing process from OS
+          1169 MiB allocation reported by mallinfo(arena+hblkhd)
+          4251 MiB available memory on the node where the printing process lives
+------------------
+     ethr =  2.50E-04,  avg # of iterations =  2.0

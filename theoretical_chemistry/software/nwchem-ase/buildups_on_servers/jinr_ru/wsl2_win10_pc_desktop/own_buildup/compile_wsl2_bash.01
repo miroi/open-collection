@@ -1,0 +1,31 @@
+#!/bin/bash
+
+
+###   see https://nwchemgit.github.io/Compiling-NWChem.html
+
+
+#export NWCHEM_TOP=/lustre/home/ilias/work/qch/software/nwchem/nwchem-7.2.0
+export NWCHEM_TOP=/home/milias/work/software/nwchem/nwchem_git
+
+export NWCHEM_TARGET=LINUX64
+
+export ARMCI_NETWORK=MPI-PR
+export USE_MPI=y
+export NWCHEM_MODULES="all python"
+export USE_NOFSCHECK=TRUE
+export USE_SCALAPACK=y
+export BLAS_SIZE=8
+export SCALAPACK_SIZE=8
+
+export MKLROOT=/usr
+#export BLASOPT="-L${MKLROOT}/lib/intel64_lin -lmkl_blas95_ilp64 -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -liomp5 -lpthread -lm -ldl"
+export BLASOPT="-L${MKLROOT}/lib/intel64_lin -lmkl_blas95_ilp64 -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -liomp5 -lpthread -lm -ldl"
+
+#export LAPACK_LIB="-L${MKLROOT}/lib/intel64_lin -lmkl_lapack95_ilp64 -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -liomp5 -lpthread -lm -ldl"
+export LAPACK_LIB="-L${MKLROOT}/lib/intel64_lin -lmkl_lapack95_ilp64 -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -liomp5 -lpthread -lm -ldl"
+
+cd $NWCHEM_TOP/src
+
+make -j4
+
+exit 0

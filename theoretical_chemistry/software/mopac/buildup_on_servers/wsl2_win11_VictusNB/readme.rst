@@ -5,6 +5,8 @@ install for Linux
 ~~~~~~~~~~~~~~~~~~
 miroi@MIRO:~/work/software/mopac/.wget http://openmopac.net/mopac-22.1.1-linux.run
 
+miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/mopac/buildup_on_servers/wsl_win11_VictusNB/.wget https://github.com/openmopac/mopac/releases/download/v23.1.2/mopac-23.1.2-linux.run
+
 sudo apt-get install libxcb-glx0 libxcb-glx0-dev
 sudo apt-get install libx11-xcb-dev libxcb-icccm4-dev  libxcb-icccm4
 sudo apt-get install libxcb-image0 libxcb-image0-dev
@@ -14,7 +16,14 @@ sudo apt-get  libxcb-randr0  libxcb-randr0-dev
 .
 sudo apt-get install libgl-dev
 
+
+miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/mopac/buildup_on_servers/wsl_win11_VictusNB/.chmod u+x mopac-23.1.2-linux.run
+miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/mopac/buildup_on_servers/wsl_win11_VictusNB/.sudo ./mopac-23.1.2-linux.run
+miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/mopac/buildup_on_servers/wsl_win11_VictusNB/.sudo /bin/rm -r /opt/mopac/
+
 miroi@MIRO:~/work/software/mopac/. sudo ./mopac-22.1.1-linux.run
+
+miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/mopac/buildup_on_servers/wsl_win11_VictusNB/.sudo ./mopac-23.1.2-linux.run
 
 /opt/mopac  added to PATH
 

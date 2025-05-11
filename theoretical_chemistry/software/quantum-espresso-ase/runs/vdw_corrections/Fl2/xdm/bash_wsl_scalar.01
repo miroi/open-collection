@@ -1,7 +1,11 @@
 #!/bin/bash
 
-#export QE=/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/bin
-export QE=/home/miroi/work/software/quantum_espresso/q-e/build_gnu_openmpi/bin
+
+if [[`hostname` == MIRO ]] then
+   export QE=/home/miroi/work/software/quantum_espresso/q-e/build_gnu_openmpi_mkl/bin
+else
+   export QE=/home/miroi/work/software/quantum_espresso/q-e/build_gnu_openmpi_mkl/bin
+fi
 
 echo -e "\n === Running QE on \"`hostname`\" ; date: \c"; date
 echo -e " ldd $QE/pw.x : "; ldd $QE/pw.x

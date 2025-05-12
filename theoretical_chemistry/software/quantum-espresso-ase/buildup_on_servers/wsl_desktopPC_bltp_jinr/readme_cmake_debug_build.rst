@@ -61,5 +61,19 @@ Only pw and cp results from ctest are reliable, we are working on making the res
 -- Build files have been written to: /home/milias/work/software/qe/q-e/build_gnu_mkl_serial
 milias@DESKTOP-7OTLCGO:~/work/software/qe/q-e/build_gnu_mkl_serial/.
 
+milias@DESKTOP-7OTLCGO:~/work/software/qe/q-e/build_gnu_mkl_serial/.ldd bin/pw.x
+        linux-vdso.so.1 (0x00007fffad05c000)
+        libmkl_gf_lp64.so => /lib/x86_64-linux-gnu/libmkl_gf_lp64.so (0x00007ff25dc00000)
+        libmkl_sequential.so => /lib/x86_64-linux-gnu/libmkl_sequential.so (0x00007ff25be00000)
+        libmkl_core.so => /lib/x86_64-linux-gnu/libmkl_core.so (0x00007ff257600000)
+        libgfortran.so.5 => /lib/x86_64-linux-gnu/libgfortran.so.5 (0x00007ff257325000)
+        libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007ff25db19000)
+        libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007ff25e9d8000)
+        libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007ff2570fc000)
+        libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007ff25e9d3000)
+        libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007ff25e9ce000)
+        libquadmath.so.0 => /lib/x86_64-linux-gnu/libquadmath.so.0 (0x00007ff25e986000)
+        /lib64/ld-linux-x86-64.so.2 (0x00007ff26071a000)
+milias@DESKTOP-7OTLCGO:~/work/software/qe/q-e/build_gnu_mkl_serial/.
 
 

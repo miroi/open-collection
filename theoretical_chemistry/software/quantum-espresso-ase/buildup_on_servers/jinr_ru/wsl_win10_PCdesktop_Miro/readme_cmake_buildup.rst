@@ -55,7 +55,11 @@ milias@DESKTOP-7OTLCGO:~/work/software/qe/q-e/build_gnu_openmpi/.ctest -j8
 .
 97% tests passed, 12 tests failed out of 361
 
+also works
+~~~~~~~~~~
+milias@DESKTOP-7OTLCGO:~/work/software/qe/q-e/build_gnu_openmpi/.cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_Fortran_COMPILER=mpif90  -DQE_FFTW_VENDOR=Intel_FFTW3 ..
 
+97% tests passed, 12 tests failed out of 361
 
 
 

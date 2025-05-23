@@ -89,8 +89,15 @@ echo -e "\n mpifort ? \c"; which mpifort; mpifort --version
 echo -e "\n mpicc ? \c"; which mpicc; mpicc --version
 echo
 
-cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON   -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DCMAKE_Fortran_COMPILER=mpifort .. 
+cd $QE
+echo -e "\n I am in  pwd=\c";pwd
+echo -e "\n Going to run cmake .."
 
+cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON  -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DCMAKE_Fortran_COMPILER=mpifort .. 
+
+
+
+echo -e "\n Going to run make .."
 make -j 4
 
 

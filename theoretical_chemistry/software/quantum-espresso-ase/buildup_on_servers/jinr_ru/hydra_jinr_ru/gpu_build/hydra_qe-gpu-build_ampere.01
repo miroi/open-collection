@@ -91,6 +91,8 @@ module load GVR/v1.0-1 Python/v3.10.13 CMake/v3.29.2
 
 module load git
 
+module load fftw/v3.3.10_gcc1120  LAPACK/v3.9.0 
+
 # NVHPC with OpenMPI ?
 module load cuda/v12.1
 #module load CUDA/v11.8-1 # not from NICA !
@@ -159,7 +161,11 @@ echo -e "\n\n\n Running cmake :"
 #cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_Fortran_COMPILER=mpifort  ..
 
 #cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_C_COMPILER=nvcc -DCMAKE_Fortran_COMPILER=pgfortran  ..
-cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=nvfortran -DQE_ENABLE_MPI=OFF -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_CUDA=ON -DQE_FFTW_VENDOR=Internal -DQE_LAPACK_INTERNAL=ON ..
+#cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=nvfortran -DQE_ENABLE_MPI=OFF -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_CUDA=ON -DQE_FFTW_VENDOR=Internal -DQE_LAPACK_INTERNAL=ON ..
+
+#cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=pgfortran -DQE_ENABLE_MPI=OFF -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_CUDA=ON -DQE_FFTW_VENDOR=Internal -DQE_LAPACK_INTERNAL=ON ..
+
+cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=pgfortran -DQE_ENABLE_MPI=OFF -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_CUDA=ON ..
 
 #ls -lt $QE/bin
 

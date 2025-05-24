@@ -83,8 +83,9 @@ echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
 module purge
 #module load GVR/v1.0-1 gcc/v11.2.0 fftw/v3.3.10_gcc1120 LAPACK/v3.9.0 openmpi/v4.1.1_gcc1120
 #module load GVR/v1.0-1 intel/v2021.1 Python/v3.10.13 CMake/v3.29.2
-module load GVR/v1.0-1 Python/v3.10.13 CMake/v3.29.2 cuda/v12.1
-module load openmpi/v5.0.3_gcc1230
+module load GVR/v1.0-1 Python/v3.10.13 CMake/v3.29.2
+module load cuda/v12.1
+#module load openmpi/v5.0.3_gcc1230
 
 echo -e "\n adding git module from source /cvmfs/nica.jinr.ru/sw/os/login.sh :"
 source /cvmfs/nica.jinr.ru/sw/os/login.sh
@@ -121,6 +122,9 @@ echo -e "\n git ? \c"; which git; git --version
 
 echo -e "\n nvidia-smi ? \c"; which nvidia-smi; nvidia-smi
 
+echo -e "\n\n nvcc ? ; \c"; which nvcc; nvcc --version
+echo -e "\n nvfortran ? ; \c"; which nvfortran; nvfortran --version
+
 # for running jobs from your homedir, use ...
 #cd $SLURM_SUBMIT_DIR
 
@@ -132,7 +136,9 @@ echo " It has the disk space of (df -h) :"; df -h .
 echo -e "\n\n\n Running cmake :"
 #cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DCMAKE_Fortran_COMPILER=mpiifort -DCMAKE_Fortran_FLAGS="-g -parallel -xHost"  .. 
 
-cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=mpif90 ..
+#cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=mpif90 -DQE_ENABLE_MPI_GPU_AWARE=ON ..
+
+cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=nvfortran -DQE_ENABLE_MPI_GPU_AWARE=ON ..
 
 
 #ls -lt $QE/bin

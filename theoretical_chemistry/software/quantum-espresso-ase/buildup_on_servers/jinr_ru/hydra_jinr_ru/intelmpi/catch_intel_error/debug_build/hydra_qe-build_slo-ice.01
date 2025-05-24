@@ -117,9 +117,9 @@ echo -e "\n git ? \c"; which git; git --version
 
 QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e
 BUILD=build_intelmpimkl_dbg
-mkdir $QE/$BUILD
+#mkdir $QE/$BUILD
 
-ls $QE/build*
+ls $QE/$BUILD
 
 cd $QE/$BUILD
 
@@ -132,7 +132,7 @@ echo
 #export I_MPI_HYDRA_IFACE="ib0"
 
 echo -e "\n\n Running cmake :"
-cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DCMAKE_Fortran_COMPILER=mpiifort -DCMAKE_Fortran_FLAGS="-g -Winline -diag-dump -diag-enable=warn,vec,par,cpu-dispatch"  .. 
+cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DCMAKE_Fortran_COMPILER=mpiifort -DCMAKE_Fortran_FLAGS="-g -Winline -diag-dump -diag-enable=all"  .. 
 
 echo -e "\n\n Running make -j $SLURM_CPUS_ON_NODE :"
 make -j $SLURM_CPUS_ON_NODE

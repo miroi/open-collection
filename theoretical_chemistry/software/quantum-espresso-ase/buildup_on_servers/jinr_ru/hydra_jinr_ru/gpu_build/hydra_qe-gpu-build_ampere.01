@@ -86,8 +86,8 @@ module purge
 module load GVR/v1.0-1 Python/v3.10.13 CMake/v3.29.2
 module load cuda/v12.1
 # try...
-#module load openmpi/v5.0.3_gcc1230
-module load intel/v2021.1
+module load openmpi/v5.0.3_gcc1230
+#module load intel/v2021.1
 
 echo -e "\n adding git module from source /cvmfs/nica.jinr.ru/sw/os/login.sh :"
 source /cvmfs/nica.jinr.ru/sw/os/login.sh
@@ -149,7 +149,8 @@ echo -e "\n\n\n Running cmake :"
 #cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=nvfortran -DQE_ENABLE_MPI_GPU_AWARE=ON ..
 #cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_C_COMPILER=nvc -DQE_ENABLE_MPI_GPU_AWARE=ON ..
 
-cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_C_COMPILER=nvc -DQE_ENABLE_MPI_GPU_AWARE=OFF ..
+#cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=pgfortran -DQE_ENABLE_MPI_GPU_AWARE=OFF ..
+cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=mpifort  ..
 
 #ls -lt $QE/bin
 

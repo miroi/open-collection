@@ -79,20 +79,25 @@ echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
 #export OPENBLAS_NUM_THREADS=$RATIO
 #echo -e "\nFor openblas internal parallelization, OPENBLAS_NUM_THREADS=$OPENBLAS_NUM_THREADS"
 
+echo -e "\n adding git module from source /cvmfs/nica.jinr.ru/sw/os/login.sh :"
+source /cvmfs/nica.jinr.ru/sw/os/login.sh
+echo -e "\n all modules, including /cvmfs/nica.jinr.ru/sw/os/login.sh"; module avail
+
 
 module purge
 #module load GVR/v1.0-1 gcc/v11.2.0 fftw/v3.3.10_gcc1120 LAPACK/v3.9.0 openmpi/v4.1.1_gcc1120
 #module load GVR/v1.0-1 intel/v2021.1 Python/v3.10.13 CMake/v3.29.2
 module load GVR/v1.0-1 Python/v3.10.13 CMake/v3.29.2
-module load cuda/v12.1
-# try...
-module load openmpi/v5.0.3_gcc1230
-#module load intel/v2021.1
 
-echo -e "\n adding git module from source /cvmfs/nica.jinr.ru/sw/os/login.sh :"
-source /cvmfs/nica.jinr.ru/sw/os/login.sh
-module add git
-echo -e "\n all modules, including /cvmfs/nica.jinr.ru/sw/os/login.sh"; module avail
+module load git
+
+# NVHPC with OpenMPI ?
+module load cuda/v12.1
+#module load CUDA/v11.8-1 # not from NICA !
+
+# need MPI, try...
+#module load openmpi/v5.0.3_gcc1230
+#module load intel/v2021.1
 
 
 echo -e "\n\n All loaded modules:"
@@ -126,6 +131,7 @@ echo -e "\n nvidia-smi ? \c"; which nvidia-smi; nvidia-smi
 
 echo -e "\n\n nvcc ? ; \c"; which nvcc; nvcc --version
 echo -e "\n nvfortran ? ; \c"; which nvfortran; nvfortran --version
+echo -e "\n pgfortran ? ; \c"; which pgfortran; pgfortran --version
 
 echo -e "\n ls  /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/Linux_x86_64/23.5/compilers:";
 ls  /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/Linux_x86_64/23.5/compilers
@@ -148,9 +154,11 @@ echo -e "\n\n\n Running cmake :"
 #cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=mpif90 -DQE_ENABLE_MPI_GPU_AWARE=ON ..
 #cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=nvfortran -DQE_ENABLE_MPI_GPU_AWARE=ON ..
 #cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_C_COMPILER=nvc -DQE_ENABLE_MPI_GPU_AWARE=ON ..
-
 #cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=pgfortran -DQE_ENABLE_MPI_GPU_AWARE=OFF ..
-cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=mpifort  ..
+#cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=mpifort  ..
+#cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_Fortran_COMPILER=mpifort  ..
+
+cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_C_COMPILER=nvcc -DCMAKE_Fortran_COMPILER=pgfortran  ..
 
 #ls -lt $QE/bin
 

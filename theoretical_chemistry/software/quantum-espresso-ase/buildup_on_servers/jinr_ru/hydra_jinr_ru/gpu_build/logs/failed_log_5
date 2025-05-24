@@ -1,0 +1,400 @@
+
+Running on host ampere01.hydra.local
+Time is Sat May 24 22:27:17 MSK 2025 
+
+
+Job user is SLURM_JOB_USER= milias
+User job SLURM_JOB_NAME=QEbuild has assigned ID SLURM_JOBID=12370479
+This job was submitted from the computer SLURM_SUBMIT_HOST=space06.hydra.local
+and from the home directory SLURM_SUBMIT_DIR:
+/lustre/home/user/m/milias/work/projects/open-collection/theoretical_chemistry/software/quantum-espresso-ase/buildup_on_servers/jinr_ru/hydra_jinr_ru/gpu_build
+Job is running on the cluster compute node: SLURM_CLUSTER_NAME=gvr
+and is employing SLURM_JOB_NUM_NODES=1 node/nodes:
+SLURM_JOB_NODELIST = ampere01
+Job partition is SLURM_JOB_PARTITION=ampere 
+
+Number of allocated CPUs on each single node, SLURM_CPUS_ON_NODE=6 .
+Number of all reserved threads over ALL nodes, SLURM_NTASKS=6 .
+Job has reserved memory per node, SLURM_MEM_PER_NODE=65536 MB of memory
+The node's CPU model name	: AMD EPYC 7763 64-Core Processor
+BTW, this node has total 256 CPUs available for an EXCLUSIVE job.
+Based on reserved memory, this node got 6 CPUs allocated for SLURM calculations.
+This job wants SLURM_NTASKS=6 threads . 
+
+ adding git module from source /cvmfs/nica.jinr.ru/sw/os/login.sh :
+Script called without parameters. Defaulting to latest version of modules. For certain version use:
+login.sh legacy - for packages from before 23.09.23 release
+login.sh latest - for packages starting from 23.09.23 release
+Loading git/v2.45.2-1
+  Loading requirement: OpenSSH/v9.7.1-2 OpenSSL/v3.3.1-1 curl/v8.8.0-1
+
+ all modules, including /cvmfs/nica.jinr.ru/sw/os/login.sh
+-------------- /cvmfs/nica.jinr.ru/sw/202309/MODULES/slc7_x86-64 ---------------
+abseil-cpp/v20230802.2-1        libpng/v1.6.43-2                zlib/v1.3.1-1  
+abseil-cpp/v20240116.2-1        libtiff/v4.6.0-1                zstd/v1.5.5-1  
+ACTS/v33.1.0-1                  libtirpc/v1.3.4-1               zstd/v1.5.6-1  
+ACTS/v35.2.0-1                  LibTorch/v2.6.0-1               
+ACTS/v36.0.0-1                  libxml2/v2.12.5-1               
+ACTS/v37.2.0-1                  libxml2/v2.13.0-1               
+ACTS/v40.0.0-1                  lz4/v1.9.4-1                    
+alibuild-recipe-tools/v0.3.1-1  lz4/v1.9.4-2                    
+AliEn-CAs/v2023.04.23-1         lzma/v5.6.1-1                   
+AliEn-Runtime/v2024.03-1        lzma/v5.6.2-1                   
+AliEn-Runtime/v2024.03-2        mfddev/0-1                      
+ApMon-CPP/v2.2.8-a6-1           mpddev/v23.09.23-1              
+autotools/v1.7.0-1              mpddev/v23.12.23-1              
+Boost/v1.83.0-1                 mpddev/v24.03.24-1              
+Boost/v1.83.0-2                 mpddev/v24.06.24-1              
+bzip2/v1.0.8-1                  mpddev/v24.09.24-1              
+Catch2/v3.5.3-1                 mpddev/v24.12.24-1              
+Catch2/v3.6.0-1                 mpddev/v25.03.25-1              
+clang-format/v18.1.1-1          mpdroot/v23.09.23-1             
+clang-format/v18.1.8-1          mpdroot/v23.12.23-1             
+CMake/v3.28.3-1                 mpdroot/v24.03.24-1             
+CMake/v3.29.6-1                 mpdroot/v24.06.24-1             
+CUDA/v11.8-1                    mpdroot/v24.09.24-1             
+curl/v8.6.0-1                   mpdroot/v24.12.24-1             
+curl/v8.8.0-1 <aL>              mpdroot/v25.03.25-1             
+DD4hep/v1.27.2-1                mxpfit/vCPC-1                   
+DD4hep/v1.29-1                  mxpfit/vCPC-2                   
+DD4hep/v1.30.0-pre-1            ndmspc/v0.20240624.0-1          
+DDS/v3.7.23-1                   NICA_scheduler/v22.08.0-1       
+DDS/v3.10.0-1                   NICA_scheduler/v24.06.0-1       
+EDM4hep/v0.10.5-1               nicadist-recipe-tools/v0.3.1-1  
+EDM4hep/v0.10.5-2               ninja/v1.11.1-1                 
+EDM4hep/v0.99.1-1               ninja/v1.12.1-1                 
+Eigen3/v3.4.0-1                 nlohmann_json/v3.11.3-1         
+Eigen3/v3.4.0-2                 nlohmann_json/v3.11.3-2         
+EMACS/v29.2-1                   OpenSSH/v9.7.1-1                
+emulzie/v1.0.0-1                OpenSSH/v9.7.1-2 <aL>           
+EnvironmentModules/v5.4.0-1     OpenSSL/v3.2.1-1                
+FairCMakeModules/v1.0.0-1       OpenSSL/v3.3.1-1 <aL>           
+FairCMakeModules/v1.0.0-2       PCRE/v8.45-1                    
+FairLogger/v1.11.1-1            PFSimple/v2024.03.28-gvr-1      
+FairLogger/v2.0.0-1             PFSimple/v2024.03.28-hlit-1     
+FairMQ/v1.8.4-1                 PFSimple/v2024.03.28-knl-1      
+FairMQ/v1.8.4-2                 pigz/v2.8-1                     
+FairRoot/v18.6.10-1             podio/v0.17.4-1                 
+FairRoot/v18.6.10-2             podio/v0.17.4-2                 
+FFTW/v3.3.10-1                  podio/v1.1.0-1                  
+FFTW/v3.3.10-2                  PostgreSQL/v16.2-1              
+FlatBuffers/v23.5.26-1          PostgreSQL/v16.3-1              
+FlatBuffers/v24.3.25-1          protobuf/v24.4-1                
+fmt/v10.1.1-1                   protobuf/v27.1-1                
+fmt/v10.2.1-1                   pythia/v8.3.9-1                 
+freeglut/v3.4.0-1               pythia/v8.3.12-1                
+freeglut/v3.6.0-1               pythia6/v6.4.28-1               
+FreeType/v2.13.2-1              pythia6/v6.4.28-2               
+FreeType/v2.13.2-2              Pythia8JAM2/v8.2.44-1           
+GCC-ToolChain/v13.2.0-1         Python-modules-list/v2024.03-1  
+GEANT3/v4.3-1                   Python-modules-list/v2024.06-1  
+GEANT3/v4.4-1                   Python-modules/v2024.03-1       
+GEANT4/v11.1.3-1                Python-modules/v2024.06-1       
+GEANT4/v11.2.1-1                Python/v3.11.8-1                
+GEANT4_VMC/v6.4-1               Python/v3.12.4-1                
+GEANT4_VMC/v6.6.2-1             QnTools/v2023.08.20-1           
+generators/v2023.09-1           RapidYAML/v0.7.0-1              
+generators/v2024.06-1           ROOT/v6.28.12-1                 
+giflib/v5.2.2-1                 ROOT/v6.32.06-1                 
+git/v2.44.0-1                   simulation/v2024.03-1           
+git/v2.45.2-1 <L>               simulation/v2024.06-1           
+gl2ps/v1.4.1-1                  sqlite/v3.45.1-1                
+glew/v2.3.0-pre-1               sqlite/v3.46.0-1                
+GSL/v2.7-1                      TBB/v2021.10.0-1                
+GSL/v2.8-1                      TBB/v2021.12.0-1                
+HepMC/v2.6.11-1                 texinfo/v7.1.1-1                
+HepMC/v2.6.11-2                 UUID/v2.39.3-1                  
+HepMC3/v3.2.7-1                 UUID/v2.40.1-1                  
+HepMC3/v3.3.0-1                 Vc/v1.4.4-gvr-1                 
+HepPDT/v3.04.01-1               Vc/v1.4.4-hlit-1                
+JAM2/v2.0097-1                  Vc/v1.4.4-knl-1                 
+KFParticle/v2020.06.10-gvr-1    VGM/v5.2-1                      
+KFParticle/v2020.06.10-hlit-1   VGM/v5.3-1                      
+KFParticle/v2020.06.10-knl-1    VMC/v2.0-1                      
+LCIO/v2.20.2-1                  VMC/v2.0-2                      
+LCIO/v2.22.1-1                  xerces-c/v3.2.5-1               
+LHAPDF/v6.5.2-1                 xerces-c/v3.2.5-2               
+LHAPDF/v6.5.2-2                 XGBoost/v3.0.0-1                
+libbsd/v0.12.2-1                XRootD/v5.6.9-1                 
+libffi/v3.4.6-1                 XRootD/v5.6.9-2                 
+libICU/v73.2-1                  xxHash/v0.8.2-1                 
+libICU/v75.1-1                  xxHash/v0.8.2-2                 
+libjpeg-turbo/v3.0.2-1          yaml-cpp/v0.8.0-1               
+libjpeg-turbo/v3.0.3-1          yaml-cpp/v0.8.0-2               
+libmd/v1.1.0-1                  ZeroMQ/v4.3.5-1                 
+libpng/v1.6.43-1                ZeroMQ/v4.3.5-2                 
+
+-------------- /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/modulefiles --------------
+ABINIT/v9.10.3_openmpi411              GMP/v6.2.1_gcc1120                  
+ABINIT/v10.0.3_openmpi411              GROMACS/v5.1.3_gcc485_cuda80        
+ABINIT/v10.0.7_openmpi411              GROMACS/v2019.3                     
+AmberTools/v22                         GROMACS/v2024.3                     
+AMS/v2021.107_intel                    GSL/v1.16-1                         
+AMS/v2021.107_openmpi                  GSL/v2.6                            
+BASE/1.0 <L>                           GVR/v1.0-1 <L>                      
+CLN/v1.3.4-1                           intel-qs/v20-07-14                  
+CMake/v3.29.2 <L>                      intel-qs/v21-01-14                  
+COMSOL/v6.2                            intel/oneapi                        
+cuda/v8.0-1                            intel/v2018.1.163-9                 
+cuda/v9.2                              intel/v2019.3.199                   
+cuda/v10.0-1                           intel/v2021.1                       
+cuda/v10.1-1                           JAM/v1.90596                        
+cuda/v11.4                             java/v8u91-1                        
+cuda/v12.1 <L>                         java/v8u181                         
+DIRAC/v19.0_intel2018                  Julia/v1.11.5                       
+dssp/v2.3.0                            LAMMPS/v02.04.25                    
+ELPA/v2020.05.001_intel2018_python365  LAMMPS/v12.12.18                    
+EMACS/v25.3                            LAPACK/v3.9.0                       
+EOS/v1.0                               LAPACK/v3.12.0_gcc1230              
+FairRoot/oct17p1                       libpqxx/v7.0_gcc910                 
+FairRoot/v16.06_gcc485                 MAGMA/v2.6.1_gcc830_cuda101         
+FairRoot/v18.0.4                       Maple/v2020.2                       
+FairRoot/v18.2.0_gcc485                Mathematica/v11.2-1                 
+FairRoot/v18.2.1_gcc485                MATLAB/R2022b                       
+FairRoot/v18.4.2_gcc1120               mpich/v4.1.2_gcc1120                
+FairSoft/apr21patches_gcc1120          ndm-lite/v1.0                       
+FairSoft/june19p1_gcc485               opencv/v4.1.0                       
+FairSoft/june19p2_gcc485               openmpi/v1.8.8-1                    
+FairSoft/may16p1_gcc485                openmpi/v2.1.2-2                    
+FairSoft/may18p1                       openmpi/v3.1.2                      
+FairSoft/oct17p1                       openmpi/v3.1.2_gcc1230              
+fftw/v3.3.7-2                          openmpi/v3.1.3                      
+fftw/v3.3.7-5                          openmpi/v3.1.3_psm2                 
+fftw/v3.3.10_gcc1120                   openmpi/v4.1.1_gcc1120              
+fftw/v3.3.10_openmpi503                openmpi/v4.1.6_gcc1230              
+FLAIR/v2.3.0                           openmpi/v5.0.3_gcc1230 <L>          
+FLUKA/v2011.2x-8                       ORCA/v5.0.1                         
+FLUKA/v2020.0.3                        ORCA/v6.0.0                         
+FLUKA/v2021.2.2                        PandaRoot/dec17p2b                  
+FLUKA/v2021.2.9                        PandaRoot/may19                     
+FLUKA/v2023.3.2                        PostgreSQL/v12.1_gcc910             
+FLUKA/v2023.3.3                        protobuf/v3.11.3                    
+FLUKA/v2024.1                          pyorbit/v2023.11.20                 
+FLUKA/v2025.1                          Python/v2.7.10-3                    
+Gate/v9.3                              Python/v3.6.5                       
+Gate/v9.3-qttest                       Python/v3.10.2                      
+gcc/v4.9.3-1                           Python/v3.10.13 <L>                 
+gcc/v5.3.0-1                           quantum-espresso/v6.4.1             
+gcc/v6.2.0-2                           quantum-espresso/v6.6_oneapi        
+gcc/v7.2.0-1                           quantum-espresso/v7.3.1_openmpi503  
+gcc/v8.2.0-1                           R/v4.3.2                            
+gcc/v8.3.0                             reduce-algebra/svn-4830             
+gcc/v9.1.0-1                           ROOT/v6-18-00                       
+gcc/v9.4.0                             ROOT/v6.24.06-qttest                
+gcc/v10.2.0                            ROOT/v6.24.06_gcc1120               
+gcc/v11.2.0                            SMASH_gcc485/v1.8                   
+gcc/v12.3.0 <L>                        Tesseract/v5.0.0_gcc1120            
+GEANT4/v4.10.07.p01_gcc910             TRNG/v4.24_gcc102                   
+GEANT4/v11.1.3-qttest                  Valgrind/v3.16.1_gcc485             
+GEANT4/v11.1.3_gcc1120                 ViennaCL/v1.7.1_gcc1120_cuda101     
+GEANT4/v11.1.3_gcc1120-mt              zlib/v1.2.11-1                      
+Ginac/v1.7.3-1                         
+
+Key:
+<module-tag>  <L>=loaded  <aL>=auto-loaded  
+
+
+ All loaded modules:
+Currently Loaded Modulefiles:
+ 1) GVR/v1.0-1        5) cuda/v12.1               9) OpenSSL/v3.3.1-1 <aL>  
+ 2) BASE/1.0          6) gcc/v12.3.0             10) curl/v8.8.0-1 <aL>     
+ 3) Python/v3.10.13   7) openmpi/v5.0.3_gcc1230  11) git/v2.45.2-1          
+ 4) CMake/v3.29.2     8) OpenSSH/v9.7.1-2 <aL>   
+
+Key:
+<module-tag>  <aL>=auto-loaded  
+
+Running on host ampere01.hydra.local
+Time is Sat May 24 22:27:21 MSK 2025 
+
+
+ The total memory at the node (in GB)
+              total        used        free      shared  buff/cache   available
+Mem:           2003          59        1943           0           0        1941
+Swap:            31           0          31
+Total:         2035          59        1975
+
+
+
+ ls /lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_gpu_cuda :
+
+
+ My PATH=/cvmfs/nica.jinr.ru/sw/202309/slc7_x86-64/git/v2.45.2-1/libexec/git-core:/cvmfs/nica.jinr.ru/sw/202309/slc7_x86-64/git/v2.45.2-1/bin:/cvmfs/nica.jinr.ru/sw/202309/slc7_x86-64/curl/v8.8.0-1/bin:/cvmfs/nica.jinr.ru/sw/202309/slc7_x86-64/OpenSSL/v3.3.1-1/bin:/cvmfs/nica.jinr.ru/sw/202309/slc7_x86-64/OpenSSH/v9.7.1-2/sbin:/cvmfs/nica.jinr.ru/sw/202309/slc7_x86-64/OpenSSH/v9.7.1-2/bin:/cvmfs/nica.jinr.ru/sw/202309/slc7_x86-64/EnvironmentModules/v5.4.0-1/bin:/cvmfs/nica.jinr.ru/sw/os/linux/bin/:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/openmpi/v5.0.3_gcc1230/bin:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/gcc/v12.3.0/bin:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/Linux_x86_64/23.5/comm_libs/mpi/bin:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/Linux_x86_64/23.5/compilers/bin:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/bin:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/CMake/v3.29.2/bin:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/Python/v3.10.13/bin:/lustre/home/user/m/milias/work/software/wien2k/wien2k_23.2_intelserial_mkl:/lustre/home/user/m/milias/work/software/wien2k/wien2k_23.2_intelserial_mkl/SRC_structeditor/bin:/lustre/home/user/m/milias/work/software/wien2k/wien2k_23.2_intelserial_mkl/SRC_IRelast/script-elastic:/lustre/home/user/m/milias/work/software/ams/linux.openmpi/ams2021.107/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/puppetlabs/bin:.:/lustre/home/user/m/milias/work/software/wien2k/wien2k_23.2_intelserial_mkl:.:/lustre/home/user/m/milias/.local/bin:/lustre/home/user/m/milias/bin
+
+
+ My LD_LIBRARY_PATH=/cvmfs/nica.jinr.ru/sw/202309/slc7_x86-64/curl/v8.8.0-1/lib:/cvmfs/nica.jinr.ru/sw/202309/slc7_x86-64/OpenSSL/v3.3.1-1/lib:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/openmpi/v5.0.3_gcc1230/lib:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/gcc/v12.3.0/lib64:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/lib64:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/Python/v3.10.13/lib64:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/Python/v3.10.13/lib:..... 
+
+ python -v :Python 3.10.13
+
+ cmake ? /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/CMake/v3.29.2/bin/cmake
+cmake version 3.29.2
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
+
+ git ? /cvmfs/nica.jinr.ru/sw/202309/slc7_x86-64/git/v2.45.2-1/libexec/git-core/git
+git version 2.45.2
+
+ nvidia-smi ? /usr/bin/nvidia-smi
+Sat May 24 22:27:24 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 550.54.15              Driver Version: 550.54.15      CUDA Version: N/A      |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-80GB          Off |   00000000:07:00.0 Off |                    0 |
+| N/A   29C    P0             59W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA A100-SXM4-80GB          Off |   00000000:0A:00.0 Off |                    0 |
+| N/A   27C    P0             60W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   2  NVIDIA A100-SXM4-80GB          Off |   00000000:45:00.0 Off |                    0 |
+| N/A   27C    P0             61W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   3  NVIDIA A100-SXM4-80GB          Off |   00000000:4B:00.0 Off |                    0 |
+| N/A   30C    P0             61W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   4  NVIDIA A100-SXM4-80GB          Off |   00000000:83:00.0 Off |                    0 |
+| N/A   30C    P0             59W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   5  NVIDIA A100-SXM4-80GB          Off |   00000000:89:00.0 Off |                    0 |
+| N/A   26C    P0             57W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   6  NVIDIA A100-SXM4-80GB          Off |   00000000:BF:00.0 Off |                    0 |
+| N/A   27C    P0             61W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   7  NVIDIA A100-SXM4-80GB          Off |   00000000:C2:00.0 Off |                    0 |
+| N/A   29C    P0             62W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+
+
+ nvcc ? ; /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/Linux_x86_64/23.5/compilers/bin/nvcc
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2023 NVIDIA Corporation
+Built on Mon_Apr__3_17:16:06_PDT_2023
+Cuda compilation tools, release 12.1, V12.1.105
+Build cuda_12.1.r12.1/compiler.32688072_0
+
+ nvfortran ? ; /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/Linux_x86_64/23.5/compilers/bin/nvfortran
+
+nvfortran 23.5-0 64-bit target on x86-64 Linux -tp zen3 
+NVIDIA Compilers and Tools
+Copyright (c) 2022, NVIDIA CORPORATION & AFFILIATES.  All rights reserved.
+
+ ls  /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/Linux_x86_64/23.5/compilers:
+bin
+etc
+extras
+include
+include_acc
+include_man
+include-stdexec
+include-stdpar
+lib
+license
+man
+share
+src
+
+ ls  /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/Linux_x86_64/23.5/compilers/bin:
+compute-sanitizer
+cuda-gdb
+cuda-memcheck
+cuobjdump
+localrc
+localrc-lock
+makelocalrc
+ncu
+ncu-ui
+nsys
+nsys-ui
+nvaccelerror
+nvaccelinfo
+nvc
+nvc++
+nvcc
+nvcpuid
+nvcudainit
+nvdecode
+nvextract
+nvfortran
+nv-nsight-cu-cli
+nvprepro
+nvprof
+nvsize
+nvunzip
+nvzip
+pgaccelerror
+pgaccelinfo
+pgc++
+pgcc
+pgcpuid
+pgcudainit
+pgf77
+pgf90
+pgf95
+pgfortran
+pgprepro
+pgsize
+pgunzip
+pgzip
+rcfiles
+tools
+
+ Current directory where this SLURM job is running /lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_gpu_cuda
+ It has the disk space of (df -h) :
+Filesystem                  Size  Used Avail Use% Mounted on
+10.220.24.208:/lustre/home  650T  534T  117T  83% /lustre/home
+
+
+
+ Running cmake :
+-- The Fortran compiler identification is NVHPC 23.5.0
+-- The C compiler identification is NVHPC 23.5.0
+-- Detecting Fortran compiler ABI info
+-- Detecting Fortran compiler ABI info - done
+-- Check for working Fortran compiler: /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/Linux_x86_64/23.5/compilers/bin/nvfortran - skipped
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/Linux_x86_64/23.5/compilers/bin/nvc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Setting build type to 'Release' as none was specified
+-- Enable sanitizer QE_ENABLE_SANITIZER=none
+-- C preprocessor used by qe_preprocess_source in qeHelpers.cmake: /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/gcc/v12.3.0/bin/cpp
+-- Performing Test Fortran_ISYSTEM_SUPPORTED
+-- Performing Test Fortran_ISYSTEM_SUPPORTED - Success
+-- Found OpenMP_Fortran: -mp (found version "5.1")
+-- Found OpenMP: TRUE (found version "5.1") found components: Fortran
+-- Found OpenACC_C: -acc
+-- Found OpenACC_Fortran: -acc
+   nvfortran CUDA related compile and link options : -cuda
+-- Performing Test NVFORTRAN_CUDA_VALID
+-- Performing Test NVFORTRAN_CUDA_VALID - Success
+-- Could NOT find MPI_Fortran (missing: MPI_Fortran_WORKS) 
+CMake Error at /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/CMake/v3.29.2/share/cmake-3.29/Modules/FindPackageHandleStandardArgs.cmake:230 (message):
+  Could NOT find MPI (missing: MPI_Fortran_FOUND Fortran)
+Call Stack (most recent call first):
+  /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/CMake/v3.29.2/share/cmake-3.29/Modules/FindPackageHandleStandardArgs.cmake:600 (_FPHSA_FAILURE_MESSAGE)
+  /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/CMake/v3.29.2/share/cmake-3.29/Modules/FindMPI.cmake:1837 (find_package_handle_standard_args)
+  CMakeLists.txt:379 (find_package)
+
+
+-- Configuring incomplete, errors occurred!

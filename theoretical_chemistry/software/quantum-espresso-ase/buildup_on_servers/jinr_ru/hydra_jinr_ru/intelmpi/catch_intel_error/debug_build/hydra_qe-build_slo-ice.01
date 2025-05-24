@@ -119,20 +119,22 @@ QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e
 BUILD=build_intelmpimkl_dbg
 #mkdir $QE/$BUILD
 
-ls $QE/$BUILD
+ls $QE/
 
 cd $QE/$BUILD
 
 echo -e "\n Current directory where this SLURM job is running `pwd`"
 echo " It has the disk space of (df -h) :"
 df -h .
-echo
+echo -e "\n ls -lt $PWD"; ls -lt
 
 # https://community.intel.com/t5/Intel-MPI-Library/Unable-to-run-bstrap-proxy-error-with-intel-oneapi-mpi-2021-8/m-p/1538989/highlight/true#M11093
 #export I_MPI_HYDRA_IFACE="ib0"
 
-echo -e "\n\n Running cmake :"
-cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DCMAKE_Fortran_COMPILER=mpiifort -DCMAKE_Fortran_FLAGS="-g -Winline -diag-dump -diag-enable=all"  .. 
+echo -e "\n\n\n Running cmake :"
+#cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DCMAKE_Fortran_COMPILER=mpiifort -DCMAKE_Fortran_FLAGS="-g -Winline -diag-dump -diag-enable=all"  .. 
+
+cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DCMAKE_Fortran_COMPILER=mpiifort -DCMAKE_Fortran_FLAGS="-g -Winline -diag-enable=all -qopt-report=4 -qopt-report-phase ipo"  .. 
 
 echo -e "\n\n Running make -j $SLURM_CPUS_ON_NODE :"
 make -j $SLURM_CPUS_ON_NODE

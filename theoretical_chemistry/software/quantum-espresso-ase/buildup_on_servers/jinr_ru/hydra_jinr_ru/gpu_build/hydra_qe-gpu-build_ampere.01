@@ -158,7 +158,8 @@ echo -e "\n\n\n Running cmake :"
 #cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=mpifort  ..
 #cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_Fortran_COMPILER=mpifort  ..
 
-cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_C_COMPILER=nvcc -DCMAKE_Fortran_COMPILER=pgfortran  ..
+#cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_C_COMPILER=nvcc -DCMAKE_Fortran_COMPILER=pgfortran  ..
+cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=nvfortran -DQE_ENABLE_MPI=OFF -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_CUDA=ON -DQE_FFTW_VENDOR=Internal -DQE_LAPACK_INTERNAL=ON ..
 
 #ls -lt $QE/bin
 

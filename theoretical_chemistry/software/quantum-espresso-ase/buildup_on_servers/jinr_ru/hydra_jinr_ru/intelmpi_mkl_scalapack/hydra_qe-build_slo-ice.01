@@ -39,7 +39,7 @@
 #SBATCH --mail-type=ALL
 
 echo -e "\nRunning on host `hostname`"
-echo -e "Time is `date` \n"
+echo -e "Date & Time is `date` \n"
 
 echo -e "\nJob user is SLURM_JOB_USER= $SLURM_JOB_USER"
 echo -e "User job SLURM_JOB_NAME=$SLURM_JOB_NAME has assigned ID SLURM_JOBID=$SLURM_JOBID"
@@ -125,12 +125,18 @@ echo " It has the disk space of (df -h) :"
 df -h .
 echo -e "\n ls -lt $PWD"; ls -lt
 
+#
+# see https://gitlab.com/QEF/q-e/-/wikis/Developers/CMake-build-system
+#
+
 echo -e "\n\n\n Running cmake :"
 #cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DCMAKE_Fortran_COMPILER=mpiifort -DCMAKE_Fortran_FLAGS="-g -Winline -diag-dump -diag-enable=all"  .. 
 
 #cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DCMAKE_Fortran_COMPILER=mpiifort -DCMAKE_Fortran_FLAGS="-g -Winline -diag-enable=all -qopt-report=4 -qopt-report-phase ipo"  .. 
 
-cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DCMAKE_Fortran_COMPILER=mpiifort -DCMAKE_Fortran_FLAGS="-g -traceback" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON -DQE_ENABLE_HDF5=ON  .. 
+#cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DCMAKE_Fortran_COMPILER=mpiifort -DCMAKE_Fortran_FLAGS="-g -traceback" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON -DQE_ENABLE_HDF5=ON  .. 
+
+cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DCMAKE_Fortran_COMPILER=mpiifort -DCMAKE_Fortran_FLAGS="-g -traceback" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=OFF -DQE_ENABLE_HDF5=OFF  .. 
 
 echo -e "\n\n Running make -j $SLURM_CPUS_ON_NODE :"
 make -j $SLURM_CPUS_ON_NODE
@@ -141,5 +147,9 @@ ls -lt $QE/$BUILD/bin
 echo -e "\n\n ldd $QE/$BUILD/bin/pw.x :"
 ldd $QE/$BUILD/bin/pw.x
 
+echo -e "\n\n running ctest -j  $SLURM_CPUS_ON_NODE :"
+ctest -j  $SLURM_CPUS_ON_NODE
+
+echo -e "\n\n End of script. Date & Time is `date` \n"
 
 exit

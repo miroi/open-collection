@@ -60,6 +60,10 @@ module purge
 #module load GVR/v1.0-1  Python/v3.10.13 ELPA/v2020.05.001_intel2018_python365  CMake/v3.29.2  fftw/v3.3.7-5
 module load LAPACK/v3.12.0_gcc1230 fftw openmpi/v5.0.3_gcc1230 CMake/v3.29.2
 
+echo -e "\n adding git module from source /cvmfs/nica.jinr.ru/sw/os/login.sh :"
+source /cvmfs/nica.jinr.ru/sw/os/login.sh
+module add git
+
 echo -e "\n\n loaded modules:"
 module list
 
@@ -101,17 +105,16 @@ echo -e "\n Going to run cmake .."
 cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON  -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DCMAKE_Fortran_COMPILER=mpifort .. 
 
 
-
 echo -e "\n Going to run make .."
 make -j  $SLURM_CPUS_ON_NODE
 
 
-echo -e "\n ls -l $QE/bin : "
+echo -e "\n\n ls -l $QE/bin : "
 ls -l $QE/bin
-echo -e "\n ldd  $QE/bin/pw.x :"
+echo -e "\n\n ldd  $QE/bin/pw.x :"
 ldd  $QE/bin/pw.x
 
-echo -e "\n I am in  pwd=\c";pwd
+echo -e "\n\n I am in  pwd=\c";pwd
 echo -e "\n running ctest -j$SLURM_CPUS_ON_NODE"
 ctest -j$SLURM_CPUS_ON_NODE
 

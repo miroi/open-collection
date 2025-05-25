@@ -151,6 +151,6 @@ out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SL
 #mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --byslot   $QE/bin/pw.x  < $inp > $out
 #mpirun -f $MACHINEFILE  -np $SLURM_NTASKS   $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
 
-$QE/bin/pw.x  < $inp > $out
+ srun  $QE/bin/pw.x  < $inp > $out
 
 exit

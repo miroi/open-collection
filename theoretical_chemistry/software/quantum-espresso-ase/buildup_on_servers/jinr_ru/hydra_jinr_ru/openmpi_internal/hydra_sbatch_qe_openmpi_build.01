@@ -37,6 +37,8 @@
 ##SBATCH --mail-user=
 ##SBATCH --mail-type=ALL
 
+echo -e "\nRunning on host `hostname`"
+echo -e "Start time is `date` \n"
  
 echo Job user is $SLURM_JOB_USER and his job $SLURM_JOB_NAME has assigned ID $SLURM_JOBID
 echo This job was submitted from the computer $SLURM_SUBMIT_HOST
@@ -67,9 +69,6 @@ module add git
 
 echo -e "\n\n loaded modules:"
 module list
-
-echo -e "\nRunning on host `hostname`"
-echo -e "Time is `date` \n"
 
 # CPU model, total numer of CPUs, number of allocated CPUs
 echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
@@ -104,7 +103,7 @@ cd $QE
 echo -e "\n I am in  pwd=\c";pwd
 echo -e "\n Going to run cmake .."
 
-cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON  -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DCMAKE_Fortran_COMPILER=mpifort .. 
+cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON  -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DCMAKE_Fortran_COMPILER=mpifort  -DQE_FFTW_VENDOR=Internal -DQE_LAPACK_INTERNAL=ON  -DQE_BLAS_INTERNAL=ON  .. 
 
 echo -e "\n Going to run make .."
 make -j $SLURM_CPUS_ON_NODE
@@ -117,5 +116,7 @@ ldd  $QE/bin/pw.x
 echo -e "\n\n I am in  pwd=\c";pwd
 echo -e "\n running ctest -j$SLURM_CPUS_ON_NODE"
 ctest -j$SLURM_CPUS_ON_NODE
+
+echo -e "\n\n End time is `date` \n"
 
 exit

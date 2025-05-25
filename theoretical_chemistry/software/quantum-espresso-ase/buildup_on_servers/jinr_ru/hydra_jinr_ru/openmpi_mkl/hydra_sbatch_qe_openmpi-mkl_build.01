@@ -24,7 +24,7 @@
 ##SBATCH --no-requeue
 ##SBATCH --no-kill
 
-#SBATCH -N 1 -n 4
+#SBATCH -N 1 -n 6
 
 ## memory NO !!!
 ##SBATCH --mem-per-cpu=28G
@@ -80,10 +80,11 @@ echo -e "\n"
 
 #echo -e "\nldd $AMSHOME/bin/ams.exe:"
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_intelmpi_mkl/
-QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_openmpi
+#QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_openmpi
+QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_openmpi_mkl
 
 echo -e "\n QE=$QE"
-#echo -e "\n ifort -V: \c"; ifort -V
+echo -e "\n ls -l $QE";ls -l $QE
 
 echo -e "\nMy PATH=$PATH\n"
 echo -e "\n cmake ? \c"; which cmake; cmake --version
@@ -105,7 +106,7 @@ cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON  -DCMAKE_C_COMPILER=gcc -DCMA
 
 
 echo -e "\n Going to run make .."
-make -j 4
+make -j $SLURM_CPUS_ON_NODE
 
 
 echo -e "\n ls -l $QE/bin : "
@@ -114,7 +115,7 @@ echo -e "\n ldd  $QE/bin/pw.x :"
 ldd  $QE/bin/pw.x
 
 echo -e "\n I am in  pwd=\c";pwd
-echo -e "\n running ctest -j4"
-ctest -j4
+echo -e "\n running ctest -j$SLURM_CPUS_ON_NODE"
+ctest -j$SLURM_CPUS_ON_NODE
 
 exit

@@ -159,15 +159,17 @@ echo -e "\n\n\n Running cmake :"
 #cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=pgfortran -DQE_ENABLE_MPI_GPU_AWARE=OFF ..
 #cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=mpifort  ..
 #cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_Fortran_COMPILER=mpifort  ..
-
 #cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_C_COMPILER=nvcc -DCMAKE_Fortran_COMPILER=pgfortran  ..
 #cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=nvfortran -DQE_ENABLE_MPI=OFF -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_CUDA=ON -DQE_FFTW_VENDOR=Internal -DQE_LAPACK_INTERNAL=ON ..
-
 #cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=pgfortran -DQE_ENABLE_MPI=OFF -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_CUDA=ON -DQE_FFTW_VENDOR=Internal -DQE_LAPACK_INTERNAL=ON ..
 
-cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=pgfortran -DQE_ENABLE_MPI=OFF -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_CUDA=ON ..
+# ... this is proper
+#cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=pgfortran -DQE_ENABLE_MPI=OFF -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_CUDA=ON ..
 
-#ls -lt $QE/bin
+echo -e "\n running :  make -j $SLURM_CPUS_ON_NODE "
+make -j $SLURM_CPUS_ON_NODE
 
+ls -lt $QE/bin
+ldd $QE/bin/pw.x
 
 exit

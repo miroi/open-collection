@@ -98,10 +98,10 @@ free -t -g
 
 echo -e "\n\n My PATH=$PATH\n"
 echo -e "\n My LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
-echo -e "\n python ? ; python -v :\c"; which python; python -V
-echo -e "\n ifort ? ; ifort -V: \c"; which ifort; ifort -V
-echo -e "\n mpifort ? ;  mpifort -V: \c";which mpifort;  mpifort -V
-echo -e "\n icc ? ; icc -V: \c"; which icc;  icc -V
+echo -e "\n python ? :\c"; which python; python -V
+echo -e "\n mpif90 ?  \c";which mpif90;  mpif90 --version
+echo -e "\n ifort ?  \c"; which ifort; ifort -V
+echo -e "\n icc ?  \c"; which icc;  icc -V
 echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"
 echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
 echo -e "\n cmake ? \c"; which cmake; cmake --version
@@ -138,7 +138,7 @@ echo -e "\n\n\n Running cmake :"
 
 #cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DCMAKE_Fortran_COMPILER=mpiifort -DCMAKE_Fortran_FLAGS="-g -traceback" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON -DQE_ENABLE_HDF5=ON  .. 
 
-cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DCMAKE_Fortran_COMPILER=mpifort -DCMAKE_Fortran_FLAGS="-g -traceback" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=OFF -DQE_ENABLE_HDF5=OFF  .. 
+cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DCMAKE_Fortran_COMPILER=mpif90 -DCMAKE_Fortran_FLAGS="-g -traceback" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=OFF -DQE_ENABLE_HDF5=OFF  .. 
 
 echo -e "\n\n Running make -j $SLURM_CPUS_ON_NODE :"
 make -j $SLURM_CPUS_ON_NODE

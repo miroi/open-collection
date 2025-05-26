@@ -98,23 +98,19 @@ echo -e "\n The total memory at the node (in GB)"
 free -t -g
 echo -e "\n"
 
-#QE=/lustre/home/user/m/milias/work/software/quantum-espresso/openmpi/qe-7.3.1
-#QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-7.3.1
-#QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_intelmpi_mkl
-#QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_intelmpi_mkl_xh
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_intelmpimkl_dbg
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_intelmpi_mkl_scalapack
-QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_openmpi_intelmkl_scalapack
+QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_openmpi_intelmkl_scalapack_again
 
 echo -e "\n ldd  $QE/bin/pw.x :"
 ldd  $QE/bin/pw.x
 
 echo -e "\n\n My PATH=$PATH\n"
 echo -e "\nMy LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
-echo -e "Python ? :\c"; which python; python -V
+echo -e "\n Python ? :\c"; which python; python -V
 echo -e "\n ifort ?: \c"; which ifort; ifort -V
+echo -e "\n mpifort ?: \c"; which mpifort; mpifort -V
 echo -e "\n icc ?: \c"; which icc; icc -V
-echo -e "\n mpiifort ?: \c"; which mpiifort; mpiifort -V
 echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
 
 # for running jobs from your homedir, use ...
@@ -138,10 +134,6 @@ out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SL
 echo -e "\n Running QE pw.x OpenMPI parallel job on : \c"; date;echo
 #  OpenMPI : #
 #export OMPI_MCA_btl=^openib
-
-# try fix, see https://community.intel.com/t5/Intel-MPI-Library/Intel-MPI-helloworld-quot-program-not-work-on-the-machine/m-p/1417089
-export I_MPI_PIN_RESPECT_CPUSET=0
-unset I_MPI_PMI_LIBRARY
 
 mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --byslot   $QE/bin/pw.x  < $inp > $out
 

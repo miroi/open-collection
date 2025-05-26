@@ -81,8 +81,8 @@ echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
 
 module purge
 #module load GVR/v1.0-1 gcc/v11.2.0 fftw/v3.3.10_gcc1120 LAPACK/v3.9.0 openmpi/v4.1.1_gcc1120
-module load GVR/v1.0-1 intel/v2021.1 Python/v3.10.13
-
+module load GVR/v1.0-1 Python/v3.10.13
+module load openmpi/v5.0.7_icc2021
 
 echo -e "\n\n loaded modules:"
 module list
@@ -107,9 +107,10 @@ ldd  $QE/bin/pw.x
 
 echo -e "\n\n My PATH=$PATH\n"
 echo -e "\nMy LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
-echo -e "Python -v :\c"; python -V
-echo -e "\n ifort -V: \c"; ifort -V
-echo -e "\n mpiifort -V: \c"; mpiifort -V
+echo -e "Python ? :\c"; which python; python -V
+echo -e "\n ifort ?: \c"; which ifort; ifort -V
+echo -e "\n icc ?: \c"; which icc; icc -V
+echo -e "\n mpiifort ?: \c"; which mpiifort; mpiifort -V
 echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
 
 # for running jobs from your homedir, use ...

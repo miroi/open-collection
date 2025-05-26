@@ -138,6 +138,11 @@ out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SL
 echo -e "\n Running QE pw.x OpenMPI parallel job on : \c"; date;echo
 #  OpenMPI : #
 #export OMPI_MCA_btl=^openib
+
+# try fix, see https://community.intel.com/t5/Intel-MPI-Library/Intel-MPI-helloworld-quot-program-not-work-on-the-machine/m-p/1417089
+export I_MPI_PIN_RESPECT_CPUSET=0
+unset I_MPI_PMI_LIBRARY
+
 mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --byslot   $QE/bin/pw.x  < $inp > $out
 
 echo -e "\n\n QE finished on : \c";date

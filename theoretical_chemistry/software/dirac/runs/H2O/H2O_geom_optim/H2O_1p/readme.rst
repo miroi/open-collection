@@ -2,6 +2,8 @@
 H2O(+) open-shell geometry optimization
 =======================================
 
+DC-SF, openshell, PBE, numgradient
+
 
  Geometry converged in            6  iterations!
 

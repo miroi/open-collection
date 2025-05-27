@@ -43,4 +43,4 @@ Total number of energy calculation steps    89
 * Occupation of subblocks
                        E1 :  A'   A"
   closed shells (f=1.0000):    4    0
-
+  open shell #1 (f=0.5000):    0    1

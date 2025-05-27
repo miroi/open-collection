@@ -1,0 +1,45 @@
+#!/bin/bash
+
+#
+# script for interactive job runs 
+#
+# Launched as:
+# ~~~~~~~~~~~~
+# nohup labs-fpv-umb-sk_run-bash.01 &> log.labs-fpv-umb-sk_run-bash.01.std_err_out &
+#
+
+echo -e "\nRunning on host `hostname -f`"
+echo Time is `date`
+echo Directory is `pwd`
+
+NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
+echo -e "\nThis computer has $NPROCS CPUs."
+
+#export MKL_NUM_THREADS=$NPROCS
+#echo "Internal MKL library parallelization with MKL_NUM_THREADS=$MKL_NUM_THREADS"
+#export MKL_DOMAIN_NUM_THREADS="MKL_BLAS=$NPROCS"
+#export OMP_NUM_THREADS=1
+#export MKL_DYNAMIC="FALSE"
+#export OMP_DYNAMIC="FALSE"
+
+#inpfile=CN.geomopt_dcsf_pbe_1os.inp
+inpfile=CN.geomopt_dcsf_pbe_autoocc.inp
+molfile=CN.sto-2g.lsym.mol
+#molfile=CN.sto-2g.C2v.mol
+#molfile=CN.sto-2g.C1.mol
+
+echo -e "\nWorking server `hostname -f` memory status:"
+free -g -t -h
+
+#echo -e "\n Loaded Modules"
+#module list
+
+#export DALTON_TMPDIR=/tmp # working directory
+export DIRAC_TMPDIR=/tmp # working directory
+export DIRAC=/home/miroi/work/software/dirac/trunk/build_gnu_mkl_lp64
+
+$DIRAC/pam --noarch --mpi=2 --inp=$inpfile --mol=$molfile
+
+echo  -e "\n End Time is `date` "
+
+exit 0

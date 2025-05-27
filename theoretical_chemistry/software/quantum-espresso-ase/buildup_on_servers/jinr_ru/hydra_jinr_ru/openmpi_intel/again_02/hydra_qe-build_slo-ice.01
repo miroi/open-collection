@@ -112,13 +112,13 @@ echo -e "\n git ? \c"; which git; git --version
 
 QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e
 #BUILD=build_intelmpi_mkl_scalapack
-BUILD=build_openmpi_intelmkl_scalapack_again
+BUILD=build_openmpi_intelmkl_scalapack_again2
 
 #mkdir $QE/$BUILD
 
 echo -e "\n\n QE=$QE"
-echo -e "ls $QE/"
-ls $QE/
+echo -e "ls $QE/build*"
+ls $QE/build*
 
 cd $QE/$BUILD
 
@@ -138,7 +138,7 @@ echo -e "\n\n\n Running cmake :"
 
 #cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DCMAKE_Fortran_COMPILER=mpiifort -DCMAKE_Fortran_FLAGS="-g -traceback" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON -DQE_ENABLE_HDF5=ON  .. 
 
-cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DCMAKE_Fortran_COMPILER=mpif90 -DCMAKE_Fortran_FLAGS="-g -traceback" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=OFF -DQE_ENABLE_HDF5=OFF  .. 
+cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DCMAKE_Fortran_COMPILER=mpif90 -DCMAKE_Fortran_FLAGS="-g -traceback" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=OFF -DQE_ENABLE_HDF5=OFF -DMPIEXEC_EXECUTABLE=/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/openmpi/v5.0.7_icc2021/bin/mpirun .. 
 
 echo -e "\n\n Running make -j $SLURM_CPUS_ON_NODE :"
 make -j $SLURM_CPUS_ON_NODE

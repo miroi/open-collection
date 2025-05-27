@@ -23,7 +23,7 @@ echo -e "\nThis computer has $NPROCS CPUs."
 #export OMP_DYNAMIC="FALSE"
 
 inpfile=CN.geomopt_dcsf_pbe_1os.inp
-molfile=CN.sto-2g.mol
+molfile=CN.sto-2g.lsym.mol
 
 echo -e "\nWorking server `hostname -f` memory status:"
 free -g -t -h
@@ -35,7 +35,8 @@ free -g -t -h
 export DIRAC_TMPDIR=/tmp # working directory
 export DIRAC=/home/miroi/work/software/dirac/trunk/build_gnu_mkl_lp64
 
+$DIRAC/pam --noarch --mpi=2 --inp=$inpfile --mol=$molfile
 
- $DIRAC/pam --noarch --mpi=2 --inp=$inpfile --mol=$molfile
+echo  -e "\n End Time is `date` "
 
 exit 0

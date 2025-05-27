@@ -22,6 +22,9 @@ C2v
  Energy at final geometry is       :     -72.906978295668 a.u.
  Energy change during optimization :      -0.016224259878 a.u.
                                                -42.596788 kJ/mol
-
-
 Total number of energy calculation steps    53
+
+* Occupation of subblocks
+                       E1 :  A1   B1   B2   A2
+  closed shells (f=1.0000):    3    0    1    0
+  open shell #1 (f=0.5000):    0    1    0    0

@@ -31,5 +31,7 @@ or
 
 Tests
 ~~~~~
-milias@DESKTOP-7OTLCGO:~/work/software/dirac/trunk_cloned/build_gnu_mkl_ilp64/.export DIRAC_MPI_COMMAND="mpirun -np 2"
-milias@DESKTOP-7OTLCGO:~/work/software/dirac/trunk_cloned/build_gnu_mkl_ilp64/.ctest -L short -j2
+...dirac/build_gnu_mkl_ilp64/.export DIRAC_MPI_COMMAND="mpirun -np 2"
+...dirac/build_gnu_mkl_ilp64/.ctest -L short -j2
+
+

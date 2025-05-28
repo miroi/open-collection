@@ -100,7 +100,7 @@ echo -e "\n"
 
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_intelmpimkl_dbg
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_intelmpi_mkl_scalapack
-QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_openmpi_intelmkl_scalapack_again
+QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_openmpi_intelmkl_scalapack_again2
 
 echo -e "\n ldd  $QE/bin/pw.x :"
 ldd  $QE/bin/pw.x
@@ -135,7 +135,7 @@ echo -e "\n Running QE pw.x OpenMPI parallel job on : \c"; date;echo
 #  OpenMPI : #
 #export OMPI_MCA_btl=^openib
 
-mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --byslot   $QE/bin/pw.x  < $inp > $out
+/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/openmpi/v5.0.7_icc2021/bin/mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --byslot   $QE/bin/pw.x  < $inp > $out
 
 echo -e "\n\n QE finished on : \c";date
 exit

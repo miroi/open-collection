@@ -112,7 +112,16 @@ echo -e "\n git ? \c"; which git; git --version
 QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e
 BUILD=build_intelmpi_mkl_elpa
 
-#mkdir $QE/$BUILD
+if [ -d "$QE/$BUILD" ]; then
+  echo -e "\n The directory $QE/$BUILD does exist."
+  echo -e "Its old content :"; ls -lt $QE/$BUILD/.
+  echo -e "Cleaning it !"
+  /bin/rm -rf $QE/$BUILD/*
+  echo -e "It shgould be empty :"; ls -lt $QE/$BUILD/.
+else
+  echo -e "\n The directory  $QE/$BUILD does exist, creating it."
+  mkdir $QE/$BUILD
+fi
 
 echo -e "\n\n QE=$QE"
 echo -e "ls $QE/"

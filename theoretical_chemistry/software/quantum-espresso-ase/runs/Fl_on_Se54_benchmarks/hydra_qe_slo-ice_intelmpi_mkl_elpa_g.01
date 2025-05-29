@@ -19,7 +19,7 @@
 ##SBATCH --exclusive
 
 ##SBATCH --mem=640GB
-#SBATCH --mem=260GB
+#SBATCH --mem=200GB
 ##SBATCH --mem=16GB
 
 ##SBATCH --mem-per-cpu=10GB
@@ -29,8 +29,8 @@
 ##SBATCH --no-kill
 
 #
-#SBATCH -N 3
-#SBATCH --ntasks-per-node=30
+#SBATCH -N 2
+#SBATCH --ntasks-per-node=20
 
 
 ## stdout/stderr output file
@@ -123,7 +123,7 @@ echo
 # https://community.intel.com/t5/Intel-MPI-Library/Unable-to-run-bstrap-proxy-error-with-intel-oneapi-mpi-2021-8/m-p/1538989/highlight/true#M11093
 #export I_MPI_HYDRA_IFACE="ib0"
 
-project=Se54_r_Fl
+project=Se54_r_Fl_2steprelax.in
 inp=$project.in
 
 #out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOBID.out$SLURM_CPUS_ON_NODE

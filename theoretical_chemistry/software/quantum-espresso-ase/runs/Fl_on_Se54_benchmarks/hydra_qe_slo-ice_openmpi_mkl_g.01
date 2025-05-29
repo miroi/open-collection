@@ -110,8 +110,9 @@ ldd  $QE/bin/pw.x
 echo -e "\n\n My PATH=$PATH\n"
 echo -e "\nMy LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
 echo -e "Python -v :\c"; python -V
-echo -e "\n ifort -V: \c"; ifort -V
-echo -e "\n mpiifort -V: \c"; mpiifort -V
+#echo -e "\n ifort -V: \c"; ifort -V
+#echo -e "\n mpiifort -V: \c"; mpiifort -V
+echo -e "\n mpif90 -V: \c"; mpif90 -V
 echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
 
 # for running jobs from your homedir, use ...
@@ -132,14 +133,14 @@ inp=$project.in
 #out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.omp$OPENBLAS_NUM_THREADS.id$SLURM_JOBID.out
 out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out
 
-#echo -e "\n Running QE pw.x OpenMPI parallel job:"
+echo -e "\n Running QE pw.x OpenMPI parallel job:"
 #  OpenMPI : #
 #export OMPI_MCA_btl=^openib
-#mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE  $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
+mpirun -v --bind-to :overload-allowed -np $SLURM_NTASKS --hostfile $MACHINEFILE  $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
 
 # IntelMPI :
-echo -e "\n\n Running QE pw.x IntelMPI parallel job  on \c";date; echo
-mpirun -f $MACHINEFILE -np $SLURM_NTASKS  $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
+#echo -e "\n\n Running QE pw.x IntelMPI parallel job  on \c";date; echo
+#mpirun -f $MACHINEFILE -np $SLURM_NTASKS  $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
 
 echo -e "\n\n QE finished on : \c";date
 exit

@@ -61,7 +61,7 @@ module purge
 #module load openmpi/v4.1.1_gcc1120
 #module load GVR/v1.0-1  Python/v3.10.13 ELPA/v2020.05.001_intel2018_python365  CMake/v3.29.2  fftw/v3.3.7-5
 #module load LAPACK/v3.12.0_gcc1230 fftw openmpi/v5.0.3_gcc1230 CMake/v3.29.2
-module load openmpi/v5.0.3_gcc1230 CMake/v3.29.2
+module load openmpi/v5.0.3_gcc1230 CMake/v3.29.2  LAPACK/v3.12.0_gcc1230
 
 echo -e "\n adding git module from source /cvmfs/nica.jinr.ru/sw/os/login.sh latest :"
 source /cvmfs/nica.jinr.ru/sw/os/login.sh latest
@@ -103,7 +103,9 @@ cd $QE
 echo -e "\n I am in  pwd=\c";pwd
 echo -e "\n Going to run cmake .."
 
-cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON  -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DCMAKE_Fortran_COMPILER=mpifort  -DQE_FFTW_VENDOR=Internal -DQE_LAPACK_INTERNAL=ON  -DQE_BLAS_INTERNAL=ON  .. 
+#cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON  -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DCMAKE_Fortran_COMPILER=mpifort  -DQE_FFTW_VENDOR=Internal -DQE_LAPACK_INTERNAL=ON  -DQE_BLAS_INTERNAL=ON  .. 
+
+cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON  -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DCMAKE_Fortran_COMPILER=mpifort  -DQE_FFTW_VENDOR=Internal -DQE_LAPACK_INTERNAL=ON  -DQE_BLAS_INTERNAL=ON -DBLA_VENDOR=Generic   .. 
 
 echo -e "\n Going to run make .."
 make -j $SLURM_CPUS_ON_NODE

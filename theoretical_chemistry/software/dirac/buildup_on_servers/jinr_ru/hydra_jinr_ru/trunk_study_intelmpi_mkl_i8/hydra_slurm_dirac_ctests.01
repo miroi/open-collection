@@ -1,12 +1,12 @@
 #!/bin/bash
 
-#SBATCH -J DIR1
+#SBATCH -J DIR3
 
 ##  partition (queue)
 #SBATCH -p cascade
 ##SBATCH -p knl
-##SBATCH -p long
 ##SBATCH -p flnr-ice
+#SBATCH -p slo-ice
 
 ## max. execution time
 #SBATCH -t 0-04:00:00
@@ -14,8 +14,7 @@
 ##SBATCH --exclusive
 
 ##SBATCH --mem=128GB
-##SBATCH --mem=264GB
-#SBATCH --mem=24GB
+#SBATCH --mem=32GB
 
 # do not restart in the case of nodefail!
 #SBATCH --no-requeue
@@ -79,48 +78,49 @@ module purge
 module add GVR/v1.0-1
 module add Python/v3.10.2
 module add CMake/v3.29.2
-module add openmpi/v5.0.3_gcc1230
-module add intel/v2021.1
+module add  intel/v2021.1
+#module add openmpi/v5.0.3_gcc1230
 #module add LAPACK/v3.12.0_gcc1230
-#
 module list
 
 echo -e "\n python ? :\c"; which python; python -V
-echo -e " cmake ? :\c";  which cmake; cmake --version
-echo -e " mpif90 ? :\c"; which mpif90; mpif90 --version
-echo -e " mpicc ? :\c"; which mpicc; mpicc --version
-echo -e " mpicxx ? :\c"; which mpicxx; mpicxx  --version
-echo -e " mpirun ? :\c"; which mpirun; mpirun  --version
-#echo -e "\n LAPACK and  BLAS libs in /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/LAPACK/v3.12.0_gcc1230/lib64 ?";
-#ls -lt /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/LAPACK/v3.12.0_gcc1230/lib64
-echo -e "\n Intel MKL library ?  MKLROOT=$MKLROOT ?";
+echo -e "  cmake ? :\c";  which cmake; cmake --version
+echo -e "  mpiifort ? :\c"; which mpiifort; mpiifort -V
+echo -e "  mpiicc ? :\c"; which mpiicc; mpiicc -V
+echo -e "  mpiicc ? :\c"; which mpiicpc; mpiicpc  -V
+echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"; ls -lt  $MKLROOT/lib/intel64
 
-echo -e "\n\n The environmental variable PATH=$PATH "
-echo -e "\n The environmental variable LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
+echo -e "\n The variable PATH=$PATH\n"
 
 #DIRAC=/lustre/home/user/m/milias/work/software/dirac/trunk
 DIRAC=/lustre/home/user/m/milias/work/software/dirac/trunk_study
 cd $DIRAC
 pwd
 
-BUILD=build_openmpi5_mkl_i8
-echo -e "\n DIRAC build directory, BUILD=$BUILD"
-if [ -d $BUILD  ]; then
-  echo "Directory BUILD exists. Going to delete it !"
-  /bin/rm -rf $BUILD
-  echo "Directory BUILD deleted. It will be created again."
+BUILD=build_intelmpi_mkl_i8
+echo -e "\n DIRAC build directory, DIRAC/BUILD=$DIRAC/$BUILD"
+if [ -d $BUILD ]; then
+  echo "Directory BUILD exists. Leaving it intact !"
+#  /bin/rm -rf $BUILD
+#  echo "Directory BUILD deleted. It will be created again."
 fi
 
-#./setup --mpi --exatensor=OFF --fc=mpiifort --cc=mpiicc --cxx=mpiicpc --mkl --int64  $BUILD
-#./setup --mpi --exatensor=OFF --pcmsolver=ON  --pcmsolver-dir="/lustre/home/user/m/milias/work/software/dirac/trunk/external/pcmsolver"  --fc=mpif90 --cc=mpicc --cxx=mpicxx --blas=off --lapack=off  --explicit-libs="-L/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/LAPACK/v3.12.0_gcc1230/lib64 -llapack -lblas"  $BUILD
-./setup --mpi --exatensor=OFF --pcmsolver=OFF --fc=mpif90 --cc=mpicc --cxx=mpicxx --blas=off --lapack=off  --explicit-libs="-L/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/LAPACK/v3.12.0_gcc1230/lib64 -llapack -lblas"  $BUILD
+#./setup --mpi --exatensor=OFF --pcmsolver=OFF  --fc=mpiifort --cc=mpiicc --cxx=mpiicpc --int64 $BUILD
 
 cd $BUILD
-echo -e "\n I am in : \c "; pwd
-cmake ..
-echo -e "Going to compile...  make -j $SLURM_CPUS_ON_NODE :"
-make -j $SLURM_CPUS_ON_NODE
+echo -e "\n I am in DIRAC/BUILD : \c "; pwd
+#cmake ..
+#echo -e "Going to compile...  make -j $SLURM_CPUS_ON_NODE :"
+#make -j $SLURM_CPUS_ON_NODE
 
-echo -e "\n ldd dirac.x"; ldd dirac.x
+echo -e "\n\n Checking existing executable,  ldd dirac.x:"
+ldd dirac.x
+
+echo -e "\n\n  DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND "
+# run ctests parallel
+export DIRAC_MPI_COMMAND="mpirun -np 2"
+echo -e "\n  Running ctest -L short -j 2 :  "
+ctest -L short -j 2
+
 
 exit

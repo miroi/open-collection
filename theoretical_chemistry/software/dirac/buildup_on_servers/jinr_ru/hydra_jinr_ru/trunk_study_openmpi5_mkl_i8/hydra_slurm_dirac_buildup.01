@@ -109,7 +109,7 @@ echo -e "\n DIRAC build directory, DIRAC/BUILD=$DIRAC/$BUILD"
 if [ -d $BUILD  ]; then
   echo "Directory BUILD exists. Going to delete it first !"
   /bin/rm -rf $BUILD
-  echo "Directory BUILD deleted. It will be created again."
+  echo "Directory BUILD deleted. It will be created again via setup..."
 fi
 
 echo -e "\n first setup check: "; ./setup --help
@@ -120,21 +120,21 @@ echo -e "\n first setup check: "; ./setup --help
 
 
 echo -e "\n\n own setup :"
-./setup --mpi --int64  --exatensor=OFF --pcmsolver=OFF --fc=mpif90 --cc=mpicc --cxx=mpicxx --blas=auto --lapack=auto  $BUILD
+./setup --mpi --int64  --exatensor=OFF --pcmsolver=OFF -DHAS_PELIB=OFF --fc=mpif90 --cc=mpicc --cxx=mpicxx --blas=auto --lapack=auto  $BUILD
 
 cd $BUILD
 echo -e "\n I am in : \c "; pwd
-cmake ..
 echo -e "Going to compile...  make -j $SLURM_CPUS_ON_NODE :"
 make -j $SLURM_CPUS_ON_NODE
 
-echo -e "\n\n After compilation; ldd dirac.x"; ldd dirac.x
+echo -e "\n\n After the compilation; ldd dirac.x"; ldd dirac.x
 
 echo -e "\n\n Prepared DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND "
 
 # run ctests parallel
 #export DIRAC_MPI_COMMAND="mpirun -np 2"
 export DIRAC_MPI_COMMAND="/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/openmpi/v5.0.3_gcc1230/bin/mpirun -np 2"
+echo -e "\n\n Fro ctest, setting DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
 echo -e "\n  Running ctest -j2 -L short :"
 ctest -j2 -L short 
 

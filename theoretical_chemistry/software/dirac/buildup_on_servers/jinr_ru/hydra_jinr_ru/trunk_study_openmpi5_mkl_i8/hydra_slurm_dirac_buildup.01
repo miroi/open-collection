@@ -102,14 +102,16 @@ echo -e "\n The environmental variable LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
 DIRAC=/lustre/home/user/m/milias/work/software/dirac/trunk_study
 
 cd $DIRAC
-echo -e "\n I am in the directory: \c ";pwd
+echo -e "\n I am in the directory DIRAC= \c ";pwd
 
 BUILD=build_openmpi5_mkl_i8
 echo -e "\n DIRAC build directory, DIRAC/BUILD=$DIRAC/$BUILD"
 if [ -d $BUILD  ]; then
-  echo "Directory BUILD exists. Going to delete it first !"
+  echo "Directory BUILD=$BUILD exists. Going to delete it first !"
   /bin/rm -rf $BUILD
-  echo "Directory BUILD deleted. It will be created again via setup..."
+  echo "Directory BUILD=$BUILD deleted. It will be created again via setup."
+else 
+  echo "Directory BUILD=$BUILD does not exists. It will be created via setup."
 fi
 
 echo -e "\n first setup check: "; ./setup --help
@@ -119,8 +121,8 @@ echo -e "\n first setup check: "; ./setup --help
 #./setup --mpi --exatensor=OFF --pcmsolver=OFF --fc=mpif90 --cc=mpicc --cxx=mpicxx --blas=off --lapack=off  --explicit-libs="-L/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/LAPACK/v3.12.0_gcc1230/lib64 -llapack -lblas"  $BUILD
 
 
-echo -e "\n\n own setup :"
-./setup --mpi --int64  --exatensor=OFF --pcmsolver=OFF -DHAS_PELIB=OFF --fc=mpif90 --cc=mpicc --cxx=mpicxx --blas=auto --lapack=auto  $BUILD
+echo -e "\n\n own setup build :"
+./setup --mpi --int64  --exatensor=OFF --pcmsolver=OFF  --cmake-options="-D ENABLE_PELIB=OFF" --fc=mpif90 --cc=mpicc --cxx=mpicxx --blas=auto --lapack=auto  $BUILD
 
 cd $BUILD
 echo -e "\n I am in : \c "; pwd
@@ -134,7 +136,7 @@ echo -e "\n\n Prepared DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND "
 # run ctests parallel
 #export DIRAC_MPI_COMMAND="mpirun -np 2"
 export DIRAC_MPI_COMMAND="/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/openmpi/v5.0.3_gcc1230/bin/mpirun -np 2"
-echo -e "\n\n Fro ctest, setting DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
+echo -e "\n\n From ctest, setting DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
 echo -e "\n  Running ctest -j2 -L short :"
 ctest -j2 -L short 
 

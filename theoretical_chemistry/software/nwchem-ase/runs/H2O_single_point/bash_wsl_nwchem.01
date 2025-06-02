@@ -28,8 +28,9 @@ echo -e "\n Checking : which mpirun ? \c"; which mpirun
 echo -e "\n\n Date&time of nwchem starting job : \c"; date
 
 # ... project name 
-proj=h2o_scf_6-31g
-echo -e "\n Launching NWChem with 2 CPU:"
+#proj=h2o_scf_6-31g
+proj=h2o_scf
+echo -e "\n Launching NWChem with 2 CPU, with input=$proj.nw"
 mpirun -np 2 $NWCHEM_EXECUTABLE  $THISDIR/$proj.nw >  $THISDIR/$proj.out
 
 echo -e "\n Working files in scratch dir $TMPDIR:"

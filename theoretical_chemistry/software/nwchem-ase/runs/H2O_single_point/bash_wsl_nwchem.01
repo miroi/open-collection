@@ -1,0 +1,47 @@
+#!/bin/bash
+
+#export NWCHEM_EXECUTABLE=/home/milias/work/qch_software/nwchem/bin/LINUX64/nwchem
+export NWCHEM_EXECUTABLE=/usr/bin/nwchem
+echo -e "\n\n NWCHEM_EXECUTABLE=$NWCHEM_EXECUTABLE"
+echo -e "\n  ldd $NWCHEM_EXECUTABLE :"
+ldd $NWCHEM_EXECUTABLE
+
+# ... make random string for working directory ...
+randstr=`openssl rand -hex  6` 
+export TMPDIR=/tmp/$USER/nwchem_run.$randstr
+
+echo -e "\n Scratch directory, TMPDIR=$TMPDIR";
+echo -e "Size of the scratch dir, df -h /tmp :"; df -h /tmp
+
+export THISDIR=$PWD
+echo -e "Current working directory,  THISDIR=$THISDIR"
+
+echo -e "\n Creating scratch dir,  mkdir -p $TMPDIR"
+mkdir -p $TMPDIR
+cd $TMPDIR
+echo -e "\nI am in newly created TMPDIR=$TMPDIR"
+echo -e "For control,  pwd=\c";pwd
+
+
+echo -e "\n Checking : which mpirun ? \c"; which mpirun
+
+echo -e "\n\n Date&time of nwchem starting job : \c"; date
+
+# ... project name 
+#proj=h2o_scf_6-31g
+proj=h2o_scf
+echo -e "\n Launching NWChem with 2 CPU, with input=$proj.nw"
+mpirun -np 2 $NWCHEM_EXECUTABLE  $THISDIR/$proj.nw >  $THISDIR/$proj.out
+
+echo -e "\n Working files in scratch dir $TMPDIR:"
+ls -lt $TMPDIR
+du -h -s $TMPDIR
+cd .. ; echo -e "just for control -  pwd=\c";pwd; ls -lt
+echo -e "\nDeleting scratch directory $TMPDIR: "; /bin/rm -r $TMPDIR
+
+echo -e "\n returning to $THISDIR"
+cd $THISDIR
+
+echo -e "\n\n Date&time of finishing : \c"; date
+
+exit 0

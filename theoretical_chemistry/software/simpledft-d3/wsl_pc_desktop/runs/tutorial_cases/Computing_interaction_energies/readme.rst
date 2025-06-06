@@ -2,7 +2,8 @@
 DFT-D3 tests
 ============
 
-see https://dftd3.readthedocs.io/en/latest/tutorial/first-steps-cli.html
+https://dftd3.readthedocs.io/en/latest/tutorial/first-steps-cli.html
+
 
 ilias@DESKTOP-7OTLCGO:~/work/git-projects/open-collection/theoretical_chemistry/software/dft-d3/wsl_pc_desktop/some_tests/.~/work/software/simple_dft-d3/simple-dftd3/_build/app/s-dftd3 dimer.xyz  --bj PBE0
 -----------------------------------

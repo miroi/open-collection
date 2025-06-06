@@ -17,6 +17,8 @@ subroutine example
 
    call new(mol, num, xyz, charge=0.0_wp, uhf=0)
 
+  ! print *,mol
+
    ! ...
 end subroutine example
 

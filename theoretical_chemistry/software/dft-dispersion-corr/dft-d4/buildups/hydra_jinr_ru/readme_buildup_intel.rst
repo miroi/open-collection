@@ -41,7 +41,6 @@ milias@hydra.jinr.ru:~/work/software/dft_dispersion_corrections/dft-d4/dftd4/.FC
 -- mctc-lib: Find installed package
 -- Could NOT find mctc-lib (missing: mctc-lib_DIR)
 -- Retrieving mctc-lib revision v0.4.1 from https://github.com/grimme-lab/mctc-lib
--- Retrieving mctc-lib revision v0.4.1 from https://github.com/grimme-lab/mctc-lib
 -- Found OpenMP_C: -fopenmp (found version "3.1")
 -- Found OpenMP_Fortran: -qopenmp (found version "5.0")
 -- Found OpenMP: TRUE (found version "3.1")
@@ -54,9 +53,68 @@ milias@hydra.jinr.ru:~/work/software/dft_dispersion_corrections/dft-d4/dftd4/.FC
 -- Looking for Fortran cheev
 -- Looking for Fortran cheev - found
 -- Found LAPACK: /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2021.1/mkl/latest/lib/intel64/libmkl_intel_lp64.so;/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2021.1/mkl/latest/lib/intel64/libmkl_intel_thread.so;/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2021.1/mkl/latest/lib/intel64/libmkl_core.so;/lustre/home/user/m/milias/work/software/ams/linux.openmpi/ams2021.107/bin/lib/libiomp5.so;-lpthread;-lm;-ldl;-lpthread;-lm;-ldl
-CMake Error at CMakeLists.txt:155 (add_subdirectory):
-  add_subdirectory given source "test" which is not an existing directory.
+-- Configuring done (351.7s)
+CMake Warning at build_intel/_deps/multicharge-src/app/CMakeLists.txt:16 (add_executable):
+  Cannot generate a safe runtime search path for target multicharge-exe
+  because files in some directories may conflict with libraries in implicit
+  directories:
+
+    runtime library [libiomp5.so] in /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2021.1/compiler/2021.1.1/linux/compiler/lib/intel64_lin may be hidden by files in:
+      /lustre/home/user/m/milias/work/software/ams/linux.openmpi/ams2021.107/bin/lib
+
+  Some of these libraries may not be found correctly.
 
 
--- Configuring incomplete, errors occurred!
+CMake Warning at build_intel/_deps/multicharge-src/test/unit/CMakeLists.txt:32 (add_executable):
+  Cannot generate a safe runtime search path for target multicharge-tester
+  because files in some directories may conflict with libraries in implicit
+  directories:
+
+    runtime library [libiomp5.so] in /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2021.1/compiler/2021.1.1/linux/compiler/lib/intel64_lin may be hidden by files in:
+      /lustre/home/user/m/milias/work/software/ams/linux.openmpi/ams2021.107/bin/lib
+
+  Some of these libraries may not be found correctly.
+
+
+CMake Warning at app/CMakeLists.txt:17 (add_executable):
+  Cannot generate a safe runtime search path for target dftd4-exe because
+  files in some directories may conflict with libraries in implicit
+  directories:
+
+    runtime library [libiomp5.so] in /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2021.1/compiler/2021.1.1/linux/compiler/lib/intel64_lin may be hidden by files in:
+      /lustre/home/user/m/milias/work/software/ams/linux.openmpi/ams2021.107/bin/lib
+
+  Some of these libraries may not be found correctly.
+
+
+CMake Warning at test/api/CMakeLists.txt:17 (add_executable):
+  Cannot generate a safe runtime search path for target dftd4-api-tester
+  because files in some directories may conflict with libraries in implicit
+  directories:
+
+    runtime library [libiomp5.so] in /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2021.1/compiler/2021.1.1/linux/compiler/lib/intel64_lin may be hidden by files in:
+      /lustre/home/user/m/milias/work/software/ams/linux.openmpi/ams2021.107/bin/lib
+
+  Some of these libraries may not be found correctly.
+
+
+CMake Warning at test/unit/CMakeLists.txt:35 (add_executable):
+  Cannot generate a safe runtime search path for target dftd4-tester because
+  files in some directories may conflict with libraries in implicit
+  directories:
+
+    runtime library [libiomp5.so] in /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2021.1/compiler/2021.1.1/linux/compiler/lib/intel64_lin may be hidden by files in:
+      /lustre/home/user/m/milias/work/software/ams/linux.openmpi/ams2021.107/bin/lib
+
+  Some of these libraries may not be found correctly.
+
+
+-- Generating done (93.6s)
+-- Build files have been written to: /lustre/home/user/m/milias/work/software/dft_dispersion_corrections/dft-d4/dftd4/build_intel
+milias@hydra.jinr.ru:~/work/software/dft_dispersion_corrections/dft-d4/dftd4/.
+
+compilation
+~~~~~~~~~~~
+milias@hydra.jinr.ru:~/work/software/dft_dispersion_corrections/dft-d4/dftd4/build_intel/.m -j2
+
 

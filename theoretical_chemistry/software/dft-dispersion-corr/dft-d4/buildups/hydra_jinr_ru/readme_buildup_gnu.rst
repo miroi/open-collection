@@ -1,6 +1,6 @@
-=======================================
-DFTD4 on vm02.hydra.local/hydra.jinr.ru
-=======================================
+======================
+DFTD4 on hydra.jinr.ru
+======================
 
 
 git clone  git@github.com:dftd4/dftd4.git

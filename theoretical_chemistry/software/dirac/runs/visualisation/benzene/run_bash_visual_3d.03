@@ -1,0 +1,52 @@
+#!/bin/bash
+
+#
+# script for interactive job runs 
+#
+
+echo -e "\nRunning on host `hostname -f`"
+echo Time is `date`
+echo Directory is `pwd`
+
+NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
+echo -e "\nThis computer has NPROCS=$NPROCS CPUs. \n"
+
+#export MKL_NUM_THREADS=$NPROCS
+#echo "Internal MKL library parallelization with MKL_NUM_THREADS=$MKL_NUM_THREADS"
+#export MKL_DOMAIN_NUM_THREADS="MKL_BLAS=$NPROCS"
+#export OMP_NUM_THREADS=1
+#export MKL_DYNAMIC="FALSE"
+#export OMP_DYNAMIC="FALSE"
+
+echo -e "\nWorking server `hostname -f` memory status:"
+free -g -t -h
+
+#echo -e "\n Loaded Modules"
+#module list
+
+export DIRAC_TMPDIR=/tmp # working directory
+#export DIRAC=/home/miroi/work/software/dirac/trunk/build_gnu_mkl_lp64
+export DIRAC=/home/miroi/work/software/dirac/trunk/build_gnu_mkl_ilp64
+
+echo -e "\n DIRAC=$DIRAC"
+
+echo -e "\n ldd $DIRAC/dirac.x :"
+ldd $DIRAC/dirac.x
+
+#inpfile=response.inp
+#inpfile=density_2d.inp
+inpfile=density_3d.inp
+molfile=benzene_sto3d.mol
+
+echo -e "\n\n Running $DIRAC/pam with --inp=$inpfile  --mol=$molfile  : \n\n"
+
+#$DIRAC/pam  --noarch --mpi=2   --get="DFCOEF PAMXVC" --inp=$inpfile  --mol=$molfile   
+#$DIRAC/pam  --noarch --mpi=2   --get="DFPCMO PAMXVC" --inp=$inpfile  --mol=$molfile   
+
+#$DIRAC/pam  --noarch --mpi=2   --inp=$inpfile  --mol=$molfile   --put="DFPCMO_benzene=DFPCMO"   --get="plot.2d.scalar plot.2d.vector"
+
+$DIRAC/pam  --noarch --mpi=2   --inp=$inpfile  --mol=$molfile   --put="DFPCMO_benzene=DFPCMO"   --get="plot.3d.cube plot.3d.scalar"
+
+echo -e "\n End Time is `date` "
+
+exit 0

@@ -18,9 +18,6 @@ echo -e "\nThis computer has NPROCS=$NPROCS CPUs. \n"
 #export MKL_DYNAMIC="FALSE"
 #export OMP_DYNAMIC="FALSE"
 
-inpfile=response.inp
-molfile=benzene_sto3d.mol
-
 echo -e "\nWorking server `hostname -f` memory status:"
 free -g -t -h
 
@@ -36,10 +33,16 @@ echo -e "\n DIRAC=$DIRAC"
 echo -e "\n ldd $DIRAC/dirac.x :"
 ldd $DIRAC/dirac.x
 
-echo -e "\n\n running $DIRAC/pam : --inp=$inpfile  --mol=$molfile  \n\n"
+#inpfile=response.inp
+molfile=density_2d.inp
+molfile=benzene_sto3d.mol
+
+echo -e "\n\n Running $DIRAC/pam : --inp=$inpfile  --mol=$molfile  \n\n"
 
 #$DIRAC/pam  --noarch --mpi=2   --get="DFCOEF PAMXVC" --inp=$inpfile  --mol=$molfile   
-$DIRAC/pam  --noarch --mpi=2   --get="DFPCMO PAMXVC" --inp=$inpfile  --mol=$molfile   
+#$DIRAC/pam  --noarch --mpi=2   --get="DFPCMO PAMXVC" --inp=$inpfile  --mol=$molfile   
+
+$DIRAC/pam  --noarch --mpi=2   --inp=$inpfile  --mol=$molfile   --put="DFPCMO_benzene=DFPCMO"   --get="plot.2d.scalar plot.2d.vector"
 
 echo -e "\n End Time is `date` "
 

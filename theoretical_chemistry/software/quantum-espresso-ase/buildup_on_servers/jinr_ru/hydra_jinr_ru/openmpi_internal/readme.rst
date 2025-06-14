@@ -1,2 +1,0 @@
-QE-devel build with OpenMPI
-===========================

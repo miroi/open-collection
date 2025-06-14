@@ -33,10 +33,12 @@ export DIRAC=/home/miroi/work/software/dirac/trunk/build_gnu_mkl_ilp64
 
 echo -e "\n DIRAC=$DIRAC"
 
+echo -e "\n ldd $DIRAC/dirac.x :"
 ldd $DIRAC/dirac.x
 
 echo -e "\n\n running $DIRAC/pam : \n"
-$DIRAC/pam  --noarch --mpi=2 --inp=$inpfile --mol=$molfile   
+#$DIRAC/pam  --noarch --mpi=2   --get="DFCOEF PAMXVC" --inp=$inpfile  --mol=$molfile   
+$DIRAC/pam  --noarch --mpi=2   --get="DFPCMO PAMXVC" --inp=$inpfile  --mol=$molfile   
 
 echo -e "\n End Time is `date` "
 

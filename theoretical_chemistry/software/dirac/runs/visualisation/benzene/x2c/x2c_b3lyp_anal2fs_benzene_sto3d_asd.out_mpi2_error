@@ -1,10 +1,9 @@
- warning: MPI library has no thread support
   ** interface to 64-bit integer MPI enabled **
 
-DIRAC nodes 1 to 1 starts by allocating           322000000 r*8 words (   2.399 GB) of memory
-DIRAC nodes 1 to 1 to allocate at most            335000000 r*8 words (   2.496 GB) of memory
-DIRAC master    (MIRO) starts by allocating      322000000 r*8 words (   2.399 GB) of memory
-DIRAC master    (MIRO) to allocate at most       335000000 r*8 words (   2.496 GB) of memory
+DIRAC master    (MIRO) starts by allocating       64000000 r*8 words (   0.477 GB) of memory
+DIRAC nodes 1 to 1 starts by allocating            64000000 r*8 words (   0.477 GB) of memory
+DIRAC master    (MIRO) to allocate at most      2147483648 r*8 words (  16.000 GB) of memory
+DIRAC nodes 1 to 1 to allocate at most           2147483648 r*8 words (  16.000 GB) of memory
  
 Note: maximum allocatable memory for master+nodes can be set by -aw (MW)/-ag (GB) flags in pam
  
@@ -243,7 +242,7 @@ Execution time and host
 -----------------------
 
  
-     Date and time (Linux)  : Sat Jun 14 20:01:31 2025
+     Date and time (Linux)  : Sat Jun 14 20:11:18 2025
      Host name              : MIRO                                    
 
  * Opening checkpoint file 
@@ -2154,8 +2153,8 @@ C      0.0000000000   0.0000000000  -1.3910160000
 No. of electronic orbitals (NESH):    54      54     108
 No. of positronic orbitals (NPSH):     0       0       0
 Total no. of orbitals      (NORB):    54      54     108
- >>> CPU  time used in PAMSET is   0.12 seconds
- >>> WALL time used in PAMSET is   0.12 seconds
+ >>> CPU  time used in PAMSET is   0.13 seconds
+ >>> WALL time used in PAMSET is   0.14 seconds
 
 
   *****************************************************************************
@@ -2169,7 +2168,7 @@ Total no. of orbitals      (NORB):    54      54     108
  Reference: S. Lehtola, L. Visscher, E. Engel,  J. Chem. Phys. 152 (2020) 144105. (small GRASP fit)
 
 
-########## START ITERATION NO.   1 ##########   Sat Jun 14 20:01:31 2025
+########## START ITERATION NO.   1 ##########   Sat Jun 14 20:11:19 2025
 
 
 * AUTOCC( 0) : Initial occupation:
@@ -2180,16 +2179,16 @@ E_HOMO...E_LUMO, symmetry 1:                                 11  -0.98454   12  
 E_HOMO...E_LUMO, symmetry 2:                                 64  -1.08080   65  -0.77090
 
 => Calculating sum of orbital energies
-It.    1     38.71671794532      0.00D+00  0.00D+00  0.00D+00               0.01352201s   Atom. scrpot   Sat Jun 14
+It.    1     38.71671794532      0.00D+00  0.00D+00  0.00D+00               0.01387200s   Atom. scrpot   Sat Jun 14
 
-########## START ITERATION NO.   2 ##########   Sat Jun 14 20:01:31 2025
+########## START ITERATION NO.   2 ##########   Sat Jun 14 20:11:19 2025
 
 
 * GETGAB: label "GABAO1XX" not found; calling GABGEN.
 SCR        scr.thr.    Step1    Step2  Coulomb  Exchange   WALL-time
-SOfock:LL  1.00D-12    0.00%    4.13%    0.00%    0.00%   0.10936106s
- >>> CPU  time used in SO Fock is   0.12 seconds
- >>> WALL time used in SO Fock is   0.12 seconds
+SOfock:LL  1.00D-12    0.00%    4.13%    0.00%    0.00%   0.11848545s
+ >>> CPU  time used in SO Fock is   0.13 seconds
+ >>> WALL time used in SO Fock is   0.13 seconds
 
 
  ********************************************************************************
@@ -2257,9 +2256,9 @@ C       2   0.731E-05   0.895E+01   0.131E+00      92    6794
    Number of grid points in quadrature:     38675 ( 40.8%)
 
 
- >>>> Time used in DFTGRD:   0.10 seconds
+ >>>> Time used in DFTGRD:   0.11 seconds
 
- Unknown functional 'IË—~Ãb'. Aborting.
+ Unknown functional 'm¹'ïb'. Aborting.
 
  
 Available functionals:
@@ -2311,7 +2310,7 @@ Available functionals:
  SRVWN5
  HJSX
  SRPBEC
- Unknown functional 'IË—~Ãb'. Aborting.
+ Unknown functional 'm¹'ïb'. Aborting.
 
  
 Available functionals:
@@ -2373,47 +2372,47 @@ Error termination. Backtrace:
 In file '/home/miroi/work/software/dirac/trunk/src/xcint/interface_mo.F90', around line 233: Error allocating 4707284157440 bytes: Cannot allocate memory
 
 Error termination. Backtrace:
-#0  0x723284623960 in ???
-#1  0x7232846244d9 in ???
-#2  0x723284624ad6 in ???
-#0  0x7601c8c23960 in ???
-#1  0x7601c8c244d9 in ???
-#2  0x7601c8c2484c in ???
-#3  0x62c513f4cfdf in __interface_mo_MOD_interface_mo_read
+#0  0x70417ae23960 in ???
+#1  0x70417ae244d9 in ???
+#2  0x70417ae24ad6 in ???
+#0  0x7d2e23a23960 in ???
+#1  0x7d2e23a244d9 in ???
+#2  0x7d2e23a2484c in ???
+#3  0x62e8d10b6fdf in __interface_mo_MOD_interface_mo_read
 	at /home/miroi/work/software/dirac/trunk/src/xcint/interface_mo.F90:232
-#3  0x5de96045b00d in __interface_mo_MOD_interface_mo_read
+#3  0x55dbf5cf100d in __interface_mo_MOD_interface_mo_read
 	at /home/miroi/work/software/dirac/trunk/src/xcint/interface_mo.F90:232
-#4  0x62c513f6c20e in __xcint_main_MOD_integrate_xc
+#4  0x62e8d10d620e in __xcint_main_MOD_integrate_xc
 	at /home/miroi/work/software/dirac/trunk/src/xcint/xcint_main.F90:567
-#4  0x5de96047a20e in __xcint_main_MOD_integrate_xc
-	at /home/miroi/work/software/dirac/trunk/src/xcint/xcint_main.F90:567
-#5  0x5de960455b12 in xcint_launch_slave_process_
-	at /home/miroi/work/software/dirac/trunk/src/xcint/interface_fortran.F90:42
-#5  0x62c513f47ab0 in xcint_potential_rks_
+#5  0x62e8d10b1ab0 in xcint_potential_rks_
 	at /home/miroi/work/software/dirac/trunk/src/xcint/interface_fortran.F90:25
-#6  0x5de95fca277e in dirnod_
+#4  0x55dbf5d1020e in __xcint_main_MOD_integrate_xc
+	at /home/miroi/work/software/dirac/trunk/src/xcint/xcint_main.F90:567
+#5  0x55dbf5cebb12 in xcint_launch_slave_process_
+	at /home/miroi/work/software/dirac/trunk/src/xcint/interface_fortran.F90:42
+#6  0x55dbf553877e in dirnod_
 	at /home/miroi/work/software/dirac/trunk/src/main/dirac.F:1371
-#7  0x5de95fc9c522 in dirac_program
+#7  0x55dbf5532522 in dirac_program
 	at /home/miroi/work/software/dirac/trunk/src/main/main.F90:196
-#8  0x5de95fc9c1fe in main
+#8  0x55dbf55321fe in main
 	at /home/miroi/work/software/dirac/trunk/src/main/main.F90:21
-#6  0x62c5138be31d in scfcyc_1_
+#6  0x62e8d0a2831d in scfcyc_1_
 	at /home/miroi/work/software/dirac/trunk/src/dirac/dirscf.F:1462
-#7  0x62c5138bf94f in scfcyc_
+#7  0x62e8d0a2994f in scfcyc_
 	at /home/miroi/work/software/dirac/trunk/src/dirac/dirscf.F:1233
-#8  0x62c5138c0ebb in psiscf_
+#8  0x62e8d0a2aebb in psiscf_
 	at /home/miroi/work/software/dirac/trunk/src/dirac/dirscf.F:136
-#9  0x62c513793746 in pampsi_
+#9  0x62e8d08fd746 in pampsi_
 	at /home/miroi/work/software/dirac/trunk/src/main/dirac.F:346
-#10  0x62c513793c9d in pamdrv_
+#10  0x62e8d08fdc9d in pamdrv_
 	at /home/miroi/work/software/dirac/trunk/src/main/dirac.F:245
-#11  0x62c513793c9d in dirctl_
+#11  0x62e8d08fdc9d in dirctl_
 	at /home/miroi/work/software/dirac/trunk/src/main/dirac.F:199
-#12  0x62c5137940cb in dirac_
+#12  0x62e8d08fe0cb in dirac_
 	at /home/miroi/work/software/dirac/trunk/src/main/dirac.F:96
-#13  0x62c51378ebf6 in dirac_program
+#13  0x62e8d08f8bf6 in dirac_program
 	at /home/miroi/work/software/dirac/trunk/src/main/main.F90:189
-#14  0x62c51378e1fe in main
+#14  0x62e8d08f81fe in main
 	at /home/miroi/work/software/dirac/trunk/src/main/main.F90:21
 --------------------------------------------------------------------------
 Primary job  terminated normally, but 1 process returned
@@ -2423,6 +2422,6 @@ a non-zero exit code. Per user-direction, the job has been aborted.
 mpirun detected that one or more processes exited with non-zero status, thus causing
 the job to be terminated. The first process to do so was:
 
-  Process name: [[32416,1],1]
+  Process name: [[25077,1],1]
   Exit code:    1
 --------------------------------------------------------------------------

@@ -103,9 +103,9 @@ echo -e "\n Checking configure --help :"
 configure --help
 
 
-echo -e "\n\n Going to do the the configure : \n "
-#./configure --prefix=$PWD F77=ifort FC=ifort FFLAGS=-i8 FCFLAGS=-i8 CXX=icpc CC=icc
-./configure --prefix=$PWD  F77=gfortran FC=gfortran  CXX=gcc CC=g++  FFLAGS=-i8 FCFLAGS=-i8  \
+echo -e "\n\n Going to do the the configure with GNU compilers & Integer*8  : \n "
+./configure --prefix=$PWD  F77=gfortran FC=gfortran  CXX=gcc CC=g++ \
+ FFLAGS="-m64 -fdefault-integer-8" FCFLAGS="-m64 -fdefault-integer-8"  CFLAGS=-m64  CXXFLAGS=-m64  \
 --enable-mpi-fortran=usempi  --enable-mpi1-compatibility
 
  

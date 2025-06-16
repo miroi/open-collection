@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH -J ompi
+#SBATCH -J OMPIconf
 
 ##  partition (queue)
 ##SBATCH -p cascade
@@ -9,7 +9,7 @@
 #SBATCH -p slo-ice
 
 ## max. execution time
-#SBATCH -t 0-01:00:00
+#SBATCH -t 0-04:00:00
 
 ##SBATCH --exclusive
 
@@ -79,34 +79,44 @@ module purge
 module add GVR/v1.0-1
 module add Python/v3.10.2
 module add CMake/v3.29.2
-module add  intel/v2021.1
+#module add  intel/v2021.1
 #module add openmpi/v5.0.3_gcc1230
 #module add LAPACK/v3.12.0_gcc1230
+module add  gcc/v12.3.0
 module list
 
 echo -e "\n python ? :\c"; which python; python -V
 echo -e "  cmake ? :\c";  which cmake; cmake --version
-echo -e "  ifort ? :\c"; which ifort; ifort -V
-echo -e "  icc ? :\c"; which icc; icc -V
-echo -e "  icpc ? :\c"; which icpc; icpc  -V
+echo -e "  gfortran ? :\c"; which gfortran; gfortran --version
+echo -e "  gcc ? :\c"; which gcc; gcc --version
+echo -e "  g++ ? :\c"; which g++; g++ --version
 #echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"; ls -lt  $MKLROOT/lib/intel64
 
 echo -e "\n The variable PATH=$PATH\n"
 
 #OMPI=/lustre/home/user/m/milias/work/software/openmpi/openmpi-5.0.5-intel_v2021.1-i8/openmpi-5.0.5
-#OMPI=/lustre/home/user/m/milias/work/software/openmpi/openmpi-5.0.7-intel_v2021.1
-OMPI=/lustre/home/user/m/milias/work/software/openmpi//openmpi-5.0.7-gnu12.3.0-i8
+OMPI=/lustre/home/user/m/milias/work/software/openmpi/openmpi-5.0.7-gnu12.3.0-i8/openmpi-5.0.7
+
 cd $OMPI
 echo -e "\n I am  in :\c"; pwd
+echo -e "\n Checking configure --help :"
+configure --help
 
-ls -lt
 
-echo -e "\n\n Going to do unzip :"
-
-tar xvzf openmpi-5.0.7.tar.gz
-
-echo -e "\n Finished"
-ls -lt
+echo -e "\n\n Going to do the the configure : \n "
+#./configure --prefix=$PWD F77=ifort FC=ifort FFLAGS=-i8 FCFLAGS=-i8 CXX=icpc CC=icc
+./configure --prefix=$PWD  F77=gfortran FC=gfortran  CXX=gcc CC=g++  FFLAGS=-i8 FCFLAGS=-i8  \
+--enable-mpi-fortran=usempi  --enable-mpi1-compatibility
 
  
+#echo -e "\n\n Going to do make -j $SLURM_CPUS_ON_NODE :"
+#make -j $SLURM_CPUS_ON_NODE 
+#echo -e "\n\n Going to do make all install :"
+#make all install
+
+#echo -e "\n after the compilation, check OpenMPI binaries and libs:"
+#ls 
+#ls -lt $PWD/bin/*
+#ls -lt $PWD/lib/*
+
 exit

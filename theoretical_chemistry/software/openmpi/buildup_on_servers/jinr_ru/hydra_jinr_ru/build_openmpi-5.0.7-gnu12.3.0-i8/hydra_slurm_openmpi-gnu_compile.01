@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH -J OMPIconf
+#SBATCH -J OMPIcompile
 
 ##  partition (queue)
 ##SBATCH -p cascade
@@ -99,24 +99,24 @@ OMPI=/lustre/home/user/m/milias/work/software/openmpi/openmpi-5.0.7-gnu12.3.0-i8
 
 cd $OMPI
 echo -e "\n I am  in :\c"; pwd
-echo -e "\n\n Checking configure --help :"
-configure --help
+#echo -e "\n\n Checking configure --help :"
+#configure --help
 
 
-echo -e "\n\n Going to do the the configure OpenMPI with GNU compilers & Integer*8  : \n "
-./configure --prefix=$PWD  F77=gfortran  FC=gfortran  CC=gcc  CXX=g++ \
- FFLAGS="-m64 -fdefault-integer-8" FCFLAGS="-m64 -fdefault-integer-8"  CFLAGS=-m64  CXXFLAGS=-m64  \
---enable-mpi-fortran=usempi  --enable-mpi1-compatibility
+#echo -e "\n\n Going to do the the configure OpenMPI with GNU compilers & Integer*8  : \n "
+#./configure --prefix=$PWD  F77=gfortran  FC=gfortran  CC=gcc  CXX=g++ \
+# FFLAGS="-m64 -fdefault-integer-8" FCFLAGS="-m64 -fdefault-integer-8"  CFLAGS=-m64  CXXFLAGS=-m64  \
+#--enable-mpi-fortran=usempi  --enable-mpi1-compatibility
 
  
-#echo -e "\n\n Going to do make -j $SLURM_CPUS_ON_NODE :"
-#make -j $SLURM_CPUS_ON_NODE 
-#echo -e "\n\n Going to do make all install :"
-#make all install
+echo -e "\n\n Going to do make -j $SLURM_CPUS_ON_NODE :"
+make -j $SLURM_CPUS_ON_NODE 
+echo -e "\n\n Going to do make all install :"
+make all install
 
-#echo -e "\n after the compilation, check OpenMPI binaries and libs:"
-#ls 
-#ls -lt $PWD/bin/*
-#ls -lt $PWD/lib/*
+echo -e "\n\n after the compilation, check OpenMPI binaries and libs:"
+ls 
+ls -lt $PWD/bin/*
+ls -lt $PWD/lib/*
 
 exit

@@ -1,0 +1,121 @@
+#!/bin/bash
+
+#SBATCH -J DIR1
+
+##  partition (queue)
+##SBATCH -p cascade
+##SBATCH -p knl
+##SBATCH -p flnr-ice
+#SBATCH -p slo-ice
+
+## max. execution time
+#SBATCH -t 0-04:00:00
+
+##SBATCH --exclusive
+
+##SBATCH --mem=128GB
+##SBATCH --mem=264GB
+#SBATCH --mem=32GB
+
+# do not restart in the case of nodefail!
+#SBATCH --no-requeue
+#SBATCH --no-kill
+
+#SBATCH -N 1 -n 4
+##SBATCH --ntasks-per-node=12
+
+##SBATCH  --sockets-per-node=1
+
+## memory NO !!!
+##SBATCH --mem-per-cpu=28G
+
+## stdout/stderr output file
+##SBATCH -o log_slurm_job.%j.%N.std_out_err
+#SBATCH -o log_slurm_job.%j.%N.std_out
+
+## mail
+##SBATCH --mail-user=siuraksh@jinr.ru
+#SBATCH --mail-type=ALL
+
+echo -e "\nRunning on host `hostname`"
+echo -e "Time is `date` \n"
+ulimit -s unlimited
+
+echo -e "\n The total memory at the node (in GB)"
+free -t -g
+echo -e "\n"
+ 
+echo Job user is $SLURM_JOB_USER and his job $SLURM_JOB_NAME has assigned ID $SLURM_JOBID
+echo This job was submitted from the computer $SLURM_SUBMIT_HOST
+echo and from the home directory:
+echo $SLURM_SUBMIT_DIR
+echo
+echo It is running on the cluster compute node:
+echo $SLURM_CLUSTER_NAME
+echo and is employing $SLURM_JOB_NUM_NODES node/nodes:
+echo $SLURM_JOB_NODELIST
+echo
+echo -e "Job partition is $SLURM_JOB_PARTITION \n"
+echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
+
+# CPU model, total numer of CPUs, number of allocated CPUs
+echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
+NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
+echo "This node has total NPROCS=$NPROCS CPUs available for an EXCLUSIVE job."
+echo "Based on reserved memory, this node got SLURM_CPUS_ON_NODE=$SLURM_CPUS_ON_NODE CPUs allocated for SLURM calculations."
+echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
+
+
+#MACHINEFILE="nodes.$SLURM_JOB_PARTITION.$SLURM_JOB_ID"
+# Generate Machinefile for mpi such that hosts are in the same
+# order as if run via srun
+#srun -l /bin/hostname | sort -n | awk '{print $2}' > $MACHINEFILE
+echo -e "\n Allocated working nodes:"
+srun -l /bin/hostname | sort -n | awk '{print $2}' 
+#echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; echo "containing:"; cat $MACHINEFILE
+
+echo -e "\n\n loaded modules:"
+module purge
+module add GVR/v1.0-1
+module add Python/v3.10.2
+module add CMake/v3.29.2
+module add intel/v2021.1
+#module add openmpi/v5.0.3_gcc1230
+#module add LAPACK/v3.12.0_gcc1230
+module add  gcc/v12.3.0
+module list
+
+# Add your own OpenMPI-i8 
+export PATH=$PATH:/lustre/home/user/m/milias/work/software/openmpi/openmpi-5.0.7-gnu12.3.0-i8/openmpi-5.0.7/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/lustre/home/user/m/milias/work/software/openmpi/openmpi-5.0.7-gnu12.3.0-i8/openmpi-5.0.7/lib
+
+echo -e "\n\n The environmental variable PATH=$PATH "
+echo -e "\n The environmental variable LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
+
+echo -e "\n python ? :\c"; which python; python -V
+echo -e " cmake ? :\c";  which cmake; cmake --version
+echo -e " mpif90 ? :\c"; which mpif90; mpif90 --version
+echo -e " mpicc ? :\c"; which mpicc; mpicc --version
+echo -e " mpicxx ? :\c"; which mpicxx; mpicxx  --version
+echo -e " mpirun ? :\c"; which mpirun; mpirun  --version
+echo -e " ompi_info -a | grep 'Fort integer size'"; ompi_info -a | grep 'Fort integer size'
+#echo -e "\n LAPACK and  BLAS libs in /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/LAPACK/v3.12.0_gcc1230/lib64 ?";
+#ls -lt /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/LAPACK/v3.12.0_gcc1230/lib64
+echo -e "\n Intel MKL library ?  MKLROOT=$MKLROOT ?";
+
+#DIRAC=/lustre/home/user/m/milias/work/software/dirac/trunk
+DIRAC=/lustre/home/user/m/milias/work/software/dirac/trunk_study
+BUILD=build_openmpi5-i8_mkl_i8
+cd $DIRAC
+cd $DIRAC/$BUILD
+echo -e "\n\n\n I am in DIRAC/BUILD=$DIRAC/$BUILD: "; pwd
+
+echo -e "\n\n Checking ldd dirac.x"; ldd dirac.x
+
+# run ctests parallel #
+export DIRAC_MPI_COMMAND="mpirun -np 2"
+echo -e "\n\n Prepared DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND "
+echo -e "\n  Running ctest -j2 -L short :"
+ctest -j2 -L short 
+
+exit

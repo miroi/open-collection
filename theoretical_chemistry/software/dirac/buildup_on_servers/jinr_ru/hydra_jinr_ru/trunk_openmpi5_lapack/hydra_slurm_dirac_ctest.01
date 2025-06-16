@@ -5,8 +5,8 @@
 ##  partition (queue)
 ##SBATCH -p cascade
 ##SBATCH -p knl
-##SBATCH -p long
-#SBATCH -p flnr-ice
+##SBATCH -p flnr-ice
+#SBATCH -p slo-ice
 
 ## max. execution time
 #SBATCH -t 0-04:00:00
@@ -15,7 +15,7 @@
 
 ##SBATCH --mem=128GB
 ##SBATCH --mem=264GB
-#SBATCH --mem=24GB
+#SBATCH --mem=36GB
 
 # do not restart in the case of nodefail!
 #SBATCH --no-requeue
@@ -96,7 +96,8 @@ ls -lt /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/LAPACK/v3.12.0_gcc1230/lib64
 echo -e "\n The environmental variable PATH=$PATH "
 echo -e "\n The environmental variable LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
 
-DIRAC=/lustre/home/user/m/milias/work/software/dirac/trunk
+#DIRAC=/lustre/home/user/m/milias/work/software/dirac/trunk
+DIRAC=/lustre/home/user/m/milias/work/software/dirac/trunk_study
 BUILD=build_openmpi5_lapack_blas_i4
 cd $DIRAC/$BUILD
 
@@ -104,6 +105,7 @@ echo -e "\n I am in : \c "; pwd
 echo -e "\n ldd dirac.x"; ldd dirac.x
 
 echo -e "\n\n Going to do tests...  ctest -j $SLURM_CPUS_ON_NODE -L short:"
+
 ctest -j$SLURM_CPUS_ON_NODE -L short
 
 exit

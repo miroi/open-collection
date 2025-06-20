@@ -5,9 +5,9 @@
 
 ##  partition (queue)
 ##SBATCH -p cascade
-##SBATCH -p knl
+#SBATCH -p knl
 ##SBATCH -p flnr-ice
-#SBATCH -p slo-ice
+##SBATCH -p slo-ice
 
 ##SBATCH --qos=dirac
 
@@ -17,8 +17,8 @@
 
 ##SBATCH --exclusive
 
-#SBATCH --mem=64GB
-##SBATCH --mem=32GB
+##SBATCH --mem=64GB
+#SBATCH --mem=32GB
 
 ##SBATCH --mem-per-cpu=4GB
 
@@ -79,14 +79,15 @@ echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
 
 module purge
 #module load GVR/v1.0-1 gcc/v11.2.0 fftw/v3.3.10_gcc1120 LAPACK/v3.9.0 openmpi/v4.1.1_gcc1120
-module load GVR/v1.0-1 intel/v2021.1 Python/v3.10.13 CMake/v3.29.2
+module load GVR/v1.0-1 Python/v3.10.13 CMake/v3.29.2
+module load intel/oneapi
 
 echo -e "\n adding git module from source /cvmfs/nica.jinr.ru/sw/os/login.sh :"
 source /cvmfs/nica.jinr.ru/sw/os/login.sh
 module add git
 
 
-echo -e "\n\n loaded modules:"
+echo -e "\n\n List of loaded modules:"
 module list
 
 echo -e "\nRunning on host `hostname`"
@@ -110,15 +111,23 @@ echo -e "\n git ? \c"; which git; git --version
 #cd $SLURM_SUBMIT_DIR
 
 QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e
-BUILD=/build_intelmpi_mkl_scalapack
+echo -e "\n\n The directory QE=$QE"
+#echo -e "ls $QE/"
+cd $QE
+echo -e "I am in QE, pwd QE=: \c "; pwd
 
-#mkdir $QE/$BUILD
-
-echo -e "\n\n QE=$QE"
-echo -e "ls $QE/"
-ls $QE/
+BUILD=build_inteloneapimpi_mkl_scalapack
+if [ -d $BUILD  ]; then
+  echo "Directory BUILD=$BUILD exists. Going to delete it first !"
+  /bin/rm -rf $BUILD
+  echo "Directory BUILD=$BUILD deleted. It will be created again via setup."
+else
+  echo "Directory BUILD=$BUILD does not exists. Will be created"
+  mkdir $BUILD
+fi
 
 cd $QE/$BUILD
+echo -e "I am in QE/BUILD, pwd \c "; pwd
 
 echo -e "\n Current directory where this SLURM job is running `pwd`"
 echo " It has the disk space of (df -h) :"

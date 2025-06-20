@@ -12,7 +12,7 @@
 ##SBATCH --qos=dirac
 
 ## max. execution time
-#SBATCH -t 12-00:00:00
+#SBATCH -t 4-00:00:00
 ##SBATCH -t 0-08:00:00
 ##SBATCH -t 30-00:00:00
 
@@ -29,8 +29,8 @@
 ##SBATCH --no-kill
 
 #
-#SBATCH -N 3
-#SBATCH --ntasks-per-node=30
+#SBATCH -N 2
+#SBATCH --ntasks-per-node=20
 
 
 ## stdout/stderr output file
@@ -81,7 +81,7 @@ echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
 
 module purge
 #module load GVR/v1.0-1 gcc/v11.2.0 fftw/v3.3.10_gcc1120 LAPACK/v3.9.0 openmpi/v4.1.1_gcc1120
-module load GVR/v1.0-1 intel/v2021.1 Python/v3.10.13 ELPA/v2025.01.002_oneapi
+module load GVR/v1.0-1  intel/oneapi  Python/v3.10.13 ELPA/v2025.01.002_oneapi
 
 
 echo -e "\n\n loaded modules:"
@@ -100,7 +100,7 @@ echo -e "\n"
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_intelmpi_mkl_xh
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_intelmpimkl_dbg
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_intelmpi_mkl_scalapack
-QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_intelmpi_mkl_elpa
+QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_inteloneapi_mpi_mkl_elpa
 
 echo -e "\n ldd  $QE/bin/pw.x :"
 ldd  $QE/bin/pw.x

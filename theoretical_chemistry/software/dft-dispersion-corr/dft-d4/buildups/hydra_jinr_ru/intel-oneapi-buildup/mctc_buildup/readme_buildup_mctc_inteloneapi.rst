@@ -11,6 +11,19 @@ milias@hydra.jinr.ru:~/work/software/dft_dispersion_corrections/dft-d4/mctc/mctc
 app/     CMakeLists.txt  doc/     example/  include/  man/         meson_options.txt  src/          test/
 _build/  config/         docs.md  fpm.toml  LICENSE   meson.build  README.md          subprojects/
 
+modules
+~~~~~~~
+milias@hydra.jinr.ru:~/work/software/dft_dispersion_corrections/dft-d4/mctc/mctc-lib/build_inteloneapi/.module list
+Currently Loaded Modulefiles:
+  1) GVR/v1.0-1      2) BASE/1.0        3) CMake/v3.29.2   4) intel/oneapi
+
+milias@hydra.jinr.ru:~/work/software/dft_dispersion_corrections/dft-d4/mctc/mctc-lib/build_inteloneapi/.ifort -V
+Intel(R) Fortran Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.4.0 Build 20210910_000000
+
+milias@hydra.jinr.ru:~/work/software/dft_dispersion_corrections/dft-d4/mctc/mctc-lib/build_inteloneapi/.icc -V
+Intel(R) C Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.4.0 Build 20210910_000000
+
+
 configuration
 ~~~~~~~~~~~~~
 milias@hydra.jinr.ru:~/work/software/dft_dispersion_corrections/dft-d4/mctc/mctc-lib/build_inteloneapi/.FC=ifort CC=icc cmake ..-- The Fortran compiler identification is Intel 2021.4.0.20210910

@@ -24,7 +24,7 @@ milias@hydra.jinr.ru:~/work/software/dft_dispersion_corrections/dft-d4/dftd4/.if
 ifort (IFORT) 2021.4.0 20210910
 
 
-milias@hydra.jinr.ru:~/work/software/dft_dispersion_corrections/dft-d4/dftd4/.FC=ifort cmake -B build_inteloneapi
+milias@hydra.jinr.ru:~/work/software/dft_dispersion_corrections/dft-d4/dftd4/.CC=icc FC=ifort cmake -B build_inteloneapi
 
 compilation
 ~~~~~~~~~~~

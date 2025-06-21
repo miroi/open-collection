@@ -64,17 +64,17 @@ module purge
 #module load LAPACK/v3.12.0_gcc1230  gcc/v12.3.0  CMake/v3.29.2 
 module add CMake/v3.29.2 intel/oneapi
 
-echo -e "\n adding git module from source /cvmfs/nica.jinr.ru/sw/os/login.sh latest :"
-source /cvmfs/nica.jinr.ru/sw/os/login.sh latest
-module add git
+#echo -e "\n adding git module from source /cvmfs/nica.jinr.ru/sw/os/login.sh latest :"
+#source /cvmfs/nica.jinr.ru/sw/os/login.sh latest
+#module add git
 
 echo -e "\n\n List of all loaded modules:"
 module list
 
 # CPU model, total numer of CPUs, number of allocated CPUs
-echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
+echo -e "The node's CPU : \c"; cat /proc/cpuinfo | grep 'model name' | uniq
 NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
-echo "This node has total $NPROCS CPUs available for anEXCLUSIVE job."
+echo "This node has total $NPROCS CPUs (available for an EXCLUSIVE job)."
 #echo "This node has $SLURM_CPUS_ON_NODE CPUs allocated for SLURM calculations."
 
 echo -e "\n\n The total memory at the node (in GB)"
@@ -82,21 +82,25 @@ free -t -g
 echo -e "\n"
 
 DFTD4=/lustre/home/user/m/milias/work/software/dft_dispersion_corrections/dft-d4/dftd4
-
 echo -e "\n DFTD4=$DFTD4"
 
-echo -e "\nMy PATH=$PATH\n"
-echo -e "\n My LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
-echo -e "\n python ? ; python -v :\c"; which python; python -V
 echo -e "\n ifort -V: \c"; ifort  -V
 echo -e "\n icc -V: \c"; icc  -V
 echo -e "\n cmake ? \c"; which cmake; cmake --version
-echo -e "\n git ? \c"; which git; git --version
+#echo -e "\n git ? \c"; which git; git --version
 
 #echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
 #echo -e "\n mpifort ? \c"; which mpifort; mpifort --version
 #echo -e "\n mpicc ? \c"; which mpicc; mpicc --version
 #echo -e "\n gfortran ? \c"; which gfortran; gfortran --version
+
+# add MCTC library 
+export   LD_LIBRARY_PATH=/lustre/home/user/m/milias/work/software/dft_dispersion_corrections/dft-d4/mctc/mctc-lib/build_inteloneapi:$LD_LIBRARY_PATH
+export INCLUDE=/lustre/home/user/m/milias/work/software/dft_dispersion_corrections/dft-d4/mctc/mctc-lib/build_inteloneapi/include:$INCLUDE
+echo -e "add libmctc-lib.a, include"
+
+echo -e "\nMy PATH=$PATH\n"
+echo -e "\n My LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
 
 cd $DFTD4
 echo -e "\n\n I am in  pwd=\c";pwd
@@ -110,7 +114,6 @@ if [ -d $BUILD  ]; then
 else
   echo "Directory BUILD=$BUILD does not exists. It will be created via cmake."
 fi
-
 
 echo -e "\n\n Going to run cmake into BUILD=$BUILD .."
 #FC=gfortran cmake ..

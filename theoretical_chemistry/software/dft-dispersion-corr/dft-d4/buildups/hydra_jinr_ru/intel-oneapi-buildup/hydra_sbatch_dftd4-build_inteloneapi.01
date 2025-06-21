@@ -81,7 +81,7 @@ echo -e "\n\n The total memory at the node (in GB)"
 free -t -g
 echo -e "\n"
 
-DFTD4=/lustre/home/user/m/milias/work/software/dft_dispersion_corrections/dft-d4/dftd4/build_inteloneapi
+DFTD4=/lustre/home/user/m/milias/work/software/dft_dispersion_corrections/dft-d4/dftd4
 
 echo -e "\n DFTD4=$DFTD4"
 
@@ -102,9 +102,10 @@ cd $DFTD4
 echo -e "\n\n I am in  pwd=\c";pwd
 echo -e "Content of current directory, ls -l : "; ls -l
 
-echo -e "\n\n Going to run cmake .."
+BUILD=build_inteloneapi
+echo -e "\n\n Going to run cmake into BUILD=$BUILD .."
 #FC=gfortran cmake ..
-FC=ifort cmake -B build_inteloneapi
+FC=ifort cmake -B $BUILD
 
 #echo -e "\n Going to run make .."
 #make VERBOSE=1  -j $SLURM_CPUS_ON_NODE

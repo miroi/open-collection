@@ -6,14 +6,15 @@
 ##  partition (queue)
 ##SBATCH -p cascade
 ##SBATCH -p knl
-#SBATCH -p flnr-ice
+##SBATCH -p flnr-ice
+#SBATCH -p slo-ice
 ##SBATCH -p flnr-sod
 
 ##SBATCH --qos=dirac
 
 ## max. execution time
 ##SBATCH -t 21-00:00:00
-#SBATCH -t 0-04:00:00
+#SBATCH -t 0-01:00:00
 
 ##SBATCH --exclusive
 
@@ -64,14 +65,14 @@ module purge
 #module load LAPACK/v3.12.0_gcc1230  gcc/v12.3.0  CMake/v3.29.2 
 module add CMake/v3.29.2 intel/oneapi
 
-#echo -e "\n adding git module from source /cvmfs/nica.jinr.ru/sw/os/login.sh latest :"
-#source /cvmfs/nica.jinr.ru/sw/os/login.sh latest
-#module add git
+echo -e "\n adding git module from source /cvmfs/nica.jinr.ru/sw/os/login.sh latest :"
+source /cvmfs/nica.jinr.ru/sw/os/login.sh latest
+module add git
 
 echo -e "\n\n List of all loaded modules:"
 module list
 
-# CPU model, total numer of CPUs, number of allocated CPUs
+## CPU model, total numer of CPUs, number of allocated CPUs
 echo -e "The node's CPU : \c"; cat /proc/cpuinfo | grep 'model name' | uniq
 NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
 echo "This node has total $NPROCS CPUs (available for an EXCLUSIVE job)."
@@ -87,17 +88,12 @@ echo -e "\n DFTD4=$DFTD4"
 echo -e "\n ifort -V: \c"; ifort  -V
 echo -e "\n icc -V: \c"; icc  -V
 echo -e "\n cmake ? \c"; which cmake; cmake --version
-#echo -e "\n git ? \c"; which git; git --version
-
-#echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
-#echo -e "\n mpifort ? \c"; which mpifort; mpifort --version
-#echo -e "\n mpicc ? \c"; which mpicc; mpicc --version
-#echo -e "\n gfortran ? \c"; which gfortran; gfortran --version
+echo -e "\n git ? \c"; which git; git --version
 
 # add MCTC library 
-export   LD_LIBRARY_PATH=/lustre/home/user/m/milias/work/software/dft_dispersion_corrections/dft-d4/mctc/mctc-lib/build_inteloneapi:$LD_LIBRARY_PATH
-export INCLUDE=/lustre/home/user/m/milias/work/software/dft_dispersion_corrections/dft-d4/mctc/mctc-lib/build_inteloneapi/include:$INCLUDE
-echo -e "add libmctc-lib.a, include"
+#export   LD_LIBRARY_PATH=/lustre/home/user/m/milias/work/software/dft_dispersion_corrections/dft-d4/mctc/mctc-lib/build_inteloneapi:$LD_LIBRARY_PATH
+#export INCLUDE=/lustre/home/user/m/milias/work/software/dft_dispersion_corrections/dft-d4/mctc/mctc-lib/build_inteloneapi/include:$INCLUDE
+#export PATH=/lustre/home/user/m/milias/work/software/dft_dispersion_corrections/dft-d4/mctc/mctc-lib/build_inteloneapi:$PATH
 
 echo -e "\nMy PATH=$PATH\n"
 echo -e "\n My LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
@@ -117,7 +113,7 @@ fi
 
 echo -e "\n\n Going to run cmake into BUILD=$BUILD .."
 #FC=gfortran cmake ..
-FC=ifort CC=icc cmake -B $BUILD
+FC=ifort CC=icc cmake -B $BUILD  -D mctc-lib_DIR=/lustre/home/user/m/milias/work/software/dft_dispersion_corrections/dft-d4/mctc/mctc-lib/build_inteloneapi
 
 echo -e "\n Going to run make .."
 make VERBOSE=1  -j $SLURM_CPUS_ON_NODE
@@ -127,6 +123,5 @@ echo -e "\n running ctest -j$SLURM_CPUS_ON_NODE"
 ctest -j$SLURM_CPUS_ON_NODE
 
 echo -e "\n\n End time is `date` \n"
-
 
 exit

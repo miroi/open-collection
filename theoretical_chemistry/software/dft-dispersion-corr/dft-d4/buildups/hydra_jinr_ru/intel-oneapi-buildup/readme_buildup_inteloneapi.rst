@@ -23,9 +23,7 @@ module add CMake/v3.29.2  intel/oneapi
 milias@hydra.jinr.ru:~/work/software/dft_dispersion_corrections/dft-d4/dftd4/.ifort --version
 ifort (IFORT) 2021.4.0 20210910
 
-
-milias@hydra.jinr.ru:~/work/software/dft_dispersion_corrections/dft-d4/dftd4/.CC=icc FC=ifort cmake -B build_inteloneapi
+milias@hydra.jinr.ru:~/work/software/dft_dispersion_corrections/dft-d4/dftd4/.FC=ifort CC=icc cmake -B $BUILD  -Dmctc-lib_DIR=$MCTCDIR
 
 compilation
 ~~~~~~~~~~~
-milias@hydra.jinr.ru:~/work/software/dft_dispersion_corrections/dft-d4/dftd4/build_inteloneapi/

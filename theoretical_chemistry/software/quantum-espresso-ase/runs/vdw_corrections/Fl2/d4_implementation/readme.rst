@@ -9,3 +9,5 @@ q-e_miro_fork/build_gnu/.cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON  -DC
 
 runs
 ~~~~
+ wsl2_victus_nb.01
+ wsl2_Dekstop.01

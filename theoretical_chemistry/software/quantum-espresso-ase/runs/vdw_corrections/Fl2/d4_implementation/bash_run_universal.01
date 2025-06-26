@@ -3,9 +3,18 @@
 #export QE=/data.local1/milias/software/quantum-epresso/q-e-qe-6.5/bin
 #export QE=/home/miroi/work/software/quantum_espresso/q-e/build_gnu_openmpi/bin
 #export QE=/home/miroi/work/software/quantum_espresso/q-e/build_gnu_openmpi_mkl/bin
-export QE=/home/milias/work/software/qe/q-e-devel/build_gnu_mkl/bin
 
-echo -e "\n === Running QE on \"`hostname`\" ; date: \c"; date
+THIS_HOSTNAME=`hostname`
+
+if [[ $THIS_HOSTNAME == DESKTOP-7OTLCGO ]]; then
+    export QE=/home/milias/work/software/qe/q-e-devel/build_gnu_mkl/bin
+elif [[ $THIS_HOSTNAME == MIRO ]]; then
+    export QE=/home/miroi/work/software/quantum_espresso/q-e_miro_fork/build_gnu/bin
+else 
+    echo -e "\n\n no QE for THIS_HOSTNAME=$THIS_HOSTNAME found, exit !";exit -1
+fi
+
+echo -e "\n\n === Running QE on \"`hostname`\" ; date: \c"; date
 echo -e "\n ldd $QE/pw.x : "; ldd $QE/pw.x
 
  #workdir=/data.local1/milias/scratch/NhOH_QE_workdir

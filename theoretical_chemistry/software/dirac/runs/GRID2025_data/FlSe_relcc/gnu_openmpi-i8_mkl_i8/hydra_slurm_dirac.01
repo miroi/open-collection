@@ -3,10 +3,10 @@
 #SBATCH -J FlSeCC1
 
 ##  partition (queue)
-##SBATCH -p cascade
+#SBATCH -p cascade
 ##SBATCH -p slo-ice
 ##SBATCH -p knl
-#SBATCH -p flnr-ice
+##SBATCH -p flnr-ice
 
 ## max. execution time
 ##SBATCH -t 10-00:00:00
@@ -14,8 +14,8 @@
 
 ##SBATCH --exclusive
 
-#SBATCH --mem=204GB
-##SBATCH --mem=124GB
+##SBATCH --mem=204GB
+#SBATCH --mem=124GB
 
 # do not restart in the case of nodefail!
 #SBATCH --no-requeue
@@ -34,7 +34,7 @@
 #SBATCH -o log_slurm_job.%j.%N.std_out
 
 ## Email
-#SBATCH --mail-user=miro.ilias@gmail.com
+#SBATCH --mail-user=milias@theor.jinr.ru
 #SBATCH --mail-type=ALL
 
 echo -e "\nRunning on host `hostname`"
@@ -128,6 +128,6 @@ echo -e "\n\nRunning parallel DIRAC job:"
 
 #$DIRAC/$BUILD/pam  --mpi=$THISMPI  --put="DFPCMO.FlSe.acv3z_x2c_scf_lsym=DFPCMO"  --noarch --gb=122.0 --ag=123.0 --inp=x2c-ach0.scf_relcc_m3.20-vir10.00.inp   --mol=FlSe.dyall_acv3z_lsym.mol   --suffix=out_mpi$THISMPI-$SLURM_JOB_PARTITION-$SLURM_JOBID
 
-$DIRAC/$BUILD/pam  --mpi=$THISMPI  --put="DFPCMO.FlSe.acv3z_x2c_scf_lsym=DFPCMO"  --noarch --gb=202.0 --ag=203.0 --inp=x2c-ach0.scf_relcc_m3.20-vir100.00.inp   --mol=FlSe.dyall_acv3z_lsym.mol   --suffix=out_mpi$THISMPI-$SLURM_JOB_PARTITION-$SLURM_JOBID
+$DIRAC/$BUILD/pam  --mpi=$THISMPI  --put="DFPCMO.FlSe.acv3z_x2c_scf_lsym=DFPCMO"  --noarch --gb=122.0 --ag=123.0 --inp=x2c-ach0.scf_relcc_m3.20-vir100.00.inp   --mol=FlSe.dyall_acv3z_lsym.mol   --suffix=out_mpi$THISMPI-$SLURM_JOB_PARTITION-$SLURM_JOBID
 
 exit

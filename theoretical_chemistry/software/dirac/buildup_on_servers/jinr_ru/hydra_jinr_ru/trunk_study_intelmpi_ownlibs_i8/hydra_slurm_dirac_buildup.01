@@ -100,9 +100,9 @@ pwd
 BUILD=build_intelmpi_ownlibs_i8
 echo -e "\n DIRAC build directory, BUILD=$BUILD"
 if [ -d $BUILD ]; then
-  echo "Directory BUILD exists. Going to delete it ! \n"
+  echo -e "Directory BUILD exists. Going to delete it ! \n"
   /bin/rm -rf $BUILD
-  echo "Directory BUILD deleted. It will be created again. \n"
+  echo -e "Directory BUILD deleted. It will be created again. \n"
 fi
 
 ./setup --mpi --exatensor=OFF --pcmsolver=OFF  --cmake-options="-D ENABLE_PELIB=OFF -D ENABLE_BUILTIN_BLAS=ON -D ENABLE_BUILTIN_LAPACK=ON" --fc=mpiifort  --cc=mpiicc --cxx=mpiicpc --int64 $BUILD

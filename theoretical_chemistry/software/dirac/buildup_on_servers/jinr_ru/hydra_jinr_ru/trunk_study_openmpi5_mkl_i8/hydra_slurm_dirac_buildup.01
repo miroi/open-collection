@@ -74,11 +74,11 @@ echo -e "\n Allocated working nodes:"
 srun -l /bin/hostname | sort -n | awk '{print $2}' 
 #echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; echo "containing:"; cat $MACHINEFILE
 
-echo -e "\n\n loaded modules:"
+echo -e "\n\n All loaded modules:"
 module purge
 module add GVR/v1.0-1
 module add CMake/v3.29.2
-module add intel/v2021.1
+module add intel/oneapi
 module add openmpi/v5.0.3_gcc1230
 #module add LAPACK/v3.12.0_gcc1230
 module add Python/v3.10.2

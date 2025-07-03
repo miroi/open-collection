@@ -110,9 +110,11 @@ export MKL_DYNAMIC=FALSE
 
 # to fix with overload-allowed...
 # https://manpages.debian.org/unstable/openmpi-bin/mpirun.openmpi.1.en.html
-export DIRAC_MPI_COMMAND="mpirun  -f $SLURM_SUBMIT_DIR/$MACHINEFILE -np $SLURM_NTASKS"
+#export DIRAC_MPI_COMMAND="mpirun  -f $SLURM_SUBMIT_DIR/$MACHINEFILE -np $SLURM_NTASKS"
 #export DIRAC_MPI_COMMAND="mpirun  --bind-to :overload-allowed  -f $SLURM_SUBMIT_DIR/$MACHINEFILE -np $SLURM_NTASKS"
-#export DIRAC_MPI_COMMAND="/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/openmpi/v5.0.7_icc2021/bin/mpirun  --use-hwthread-cpus  --bind-to core:overload-allowed  -f $SLURM_SUBMIT_DIR/$MACHINEFILE -np $SLURM_NTASKS"
+
+export DIRAC_MPI_COMMAND="/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/openmpi/v5.0.7_icc2021/bin/mpirun  --use-hwthread-cpus  --bind-to core:overload-allowed  -f $SLURM_SUBMIT_DIR/$MACHINEFILE -np $SLURM_NTASKS"
+
 echo -e "\n\n DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
 out_suffix=out.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out
 
@@ -121,6 +123,7 @@ echo -e "\n\n I am in the directory: \c "; pwd
 #
 # DIRAC test directory, input, mol files and some pam parameters
 #
+
 THISMPI=$SLURM_NTASKS
 echo -e "\n\n Running parallel DIRAC job with  --mpi=$THISMPI :"
 

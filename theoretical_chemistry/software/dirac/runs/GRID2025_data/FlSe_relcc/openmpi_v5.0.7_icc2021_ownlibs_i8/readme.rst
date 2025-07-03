@@ -16,5 +16,3 @@ processes to more cpus than are available in your allocation:
 You can override this protection by adding the "overload-allowed"
 option to your binding directive.
 --------------------------------------------------------------------------
-
-milias@hydra.jinr.ru:~/work/projects/open-collection/theoretical_chemistry/software/dirac/runs/GRID2025_data/FlSe_relcc/openmpi_v5.0.7_icc2021_mkl_i8/.

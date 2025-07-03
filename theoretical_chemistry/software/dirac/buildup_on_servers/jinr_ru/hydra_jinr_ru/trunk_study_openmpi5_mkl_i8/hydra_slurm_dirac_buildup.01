@@ -77,11 +77,11 @@ srun -l /bin/hostname | sort -n | awk '{print $2}'
 echo -e "\n\n loaded modules:"
 module purge
 module add GVR/v1.0-1
-module add Python/v3.10.2
 module add CMake/v3.29.2
 module add intel/v2021.1
 module add openmpi/v5.0.3_gcc1230
 #module add LAPACK/v3.12.0_gcc1230
+module add Python/v3.10.2
 #
 module list
 
@@ -93,7 +93,7 @@ echo -e " mpicxx ? :\c"; which mpicxx; mpicxx  --version
 echo -e " mpirun ? :\c"; which mpirun; mpirun  --version
 #echo -e "\n LAPACK and  BLAS libs in /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/LAPACK/v3.12.0_gcc1230/lib64 ?";
 #ls -lt /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/LAPACK/v3.12.0_gcc1230/lib64
-echo -e "\n Intel MKL library ?  MKLROOT=$MKLROOT ?";
+echo -e "\n Intel MKL library ?  MKLROOT=$MKLROOT ?"; ls $MKLROOT
 
 echo -e "\n\n The environmental variable PATH=$PATH "
 echo -e "\n The environmental variable LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
@@ -105,21 +105,20 @@ cd $DIRAC
 echo -e "\n I am in the directory DIRAC= \c ";pwd
 
 BUILD=build_openmpi5_mkl_i8
-echo -e "\n DIRAC build directory, DIRAC/BUILD=$DIRAC/$BUILD"
+echo -e "\n\n DIRAC build directory, DIRAC/BUILD=$DIRAC/$BUILD"
 if [ -d $BUILD  ]; then
-  echo "Directory BUILD=$BUILD exists. Going to delete it first !"
+  echo -e  "Directory BUILD=$BUILD exists. Going to delete it first !"
   /bin/rm -rf $BUILD
-  echo "Directory BUILD=$BUILD deleted. It will be created again via setup."
+  echo -e "Directory BUILD=$BUILD deleted. It will be created again via setup."
 else 
-  echo "Directory BUILD=$BUILD does not exists. It will be created via setup."
+  echo -e "Directory BUILD=$BUILD does not exists. It will be created via setup."
 fi
 
-echo -e "\n first setup check: "; ./setup --help
+echo -e "\n\n first setup check: "; ./setup --help
 
 #./setup --mpi --exatensor=OFF --fc=mpiifort --cc=mpiicc --cxx=mpiicpc --mkl --int64  $BUILD
 #./setup --mpi --exatensor=OFF --pcmsolver=ON  --pcmsolver-dir="/lustre/home/user/m/milias/work/software/dirac/trunk/external/pcmsolver"  --fc=mpif90 --cc=mpicc --cxx=mpicxx --blas=off --lapack=off  --explicit-libs="-L/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/LAPACK/v3.12.0_gcc1230/lib64 -llapack -lblas"  $BUILD
 #./setup --mpi --exatensor=OFF --pcmsolver=OFF --fc=mpif90 --cc=mpicc --cxx=mpicxx --blas=off --lapack=off  --explicit-libs="-L/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/LAPACK/v3.12.0_gcc1230/lib64 -llapack -lblas"  $BUILD
-
 
 echo -e "\n\n own setup build :"
 ./setup --mpi --int64  --exatensor=OFF --pcmsolver=OFF  --cmake-options="-D ENABLE_PELIB=OFF" --fc=mpif90 --cc=mpicc --cxx=mpicxx --blas=auto --lapack=auto  $BUILD

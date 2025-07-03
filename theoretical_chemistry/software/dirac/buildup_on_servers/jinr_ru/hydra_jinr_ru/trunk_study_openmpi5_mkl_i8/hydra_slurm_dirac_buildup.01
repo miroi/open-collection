@@ -125,7 +125,7 @@ echo -e "\n\n own setup build :"
 
 cd $BUILD
 echo -e "\n I am in : \c "; pwd
-echo -e "Going to compile...  make -j $SLURM_CPUS_ON_NODE :"
+echo -e "\n Going to compile...  make -j $SLURM_CPUS_ON_NODE :"
 make -j $SLURM_CPUS_ON_NODE
 
 echo -e "\n\n After the compilation; ldd dirac.x"; ldd dirac.x
@@ -133,10 +133,12 @@ echo -e "\n\n After the compilation; ldd dirac.x"; ldd dirac.x
 echo -e "\n\n Prepared DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND "
 
 # run ctests parallel
-#export DIRAC_MPI_COMMAND="mpirun -np 2"
-export DIRAC_MPI_COMMAND="/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/openmpi/v5.0.3_gcc1230/bin/mpirun -np 2"
+export DIRAC_MPI_COMMAND="mpirun -np 2"
+#export DIRAC_MPI_COMMAND="/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/openmpi/v5.0.3_gcc1230/bin/mpirun -np 2"
 echo -e "\n\n From ctest, setting DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
-echo -e "\n  Running ctest -j2 -L short :"
+echo -e "\n\n  Running ctest -j2 -L short :"
 ctest -j2 -L short 
+
+echo -e "\n Finished at `date` \n"
 
 exit

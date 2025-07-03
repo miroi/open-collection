@@ -1,6 +1,8 @@
 FlSe with DIRAC RelCC
 =====================
 
+https://manpages.debian.org/unstable/openmpi-bin/mpirun.openmpi.1.en.html
+
 --------------------------------------------------------------------------
 A request was made to bind that would require binding
 processes to more cpus than are available in your allocation:

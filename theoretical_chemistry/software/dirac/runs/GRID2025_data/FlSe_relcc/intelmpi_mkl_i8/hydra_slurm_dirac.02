@@ -15,7 +15,7 @@
 
 ##SBATCH --exclusive
 
-#SBATCH --mem=124GB
+#SBATCH --mem=64GB
 
 # do not restart in the case of nodefail!
 #SBATCH --no-requeue
@@ -23,7 +23,7 @@
 
 #SBATCH -N 1
 
-#SBATCH --ntasks-per-node=12
+#SBATCH --ntasks-per-node=6
 ##SBATCH  --sockets-per-node=1
 
 ## memory NO !!!
@@ -119,6 +119,6 @@ echo -e "\n\nRunning parallel DIRAC job:"
 
 #$DIRAC/$BUILD/pam  --mpi=$THISMPI  --put="DFPCMO.FlSe.acv3z_x2c_scf_lsym=DFPCMO"  --noarch --gb=262.0 --ag=263.0 --inp=x2c-ach0.scf_relcc_m3.20-vir50.00.inp   --mol=FlSe.dyall_acv3z_lsym.mol   --suffix=out_mpi$THISMPI-$SLURM_JOB_PARTITION-$SLURM_JOBID
 
-$DIRAC/$BUILD/pam   --put="../DFPCMO.FlSe.acv3z_x2c_scf_lsym=DFPCMO"  --noarch --gb=122.0 --ag=123.0 --inp=../x2c-ach0.scf_relcc_m3.20-vir50.00.inp   --mol=../FlSe.dyall_acv3z_lsym.mol   --suffix=$out_suffix
+$DIRAC/$BUILD/pam   --put="../DFPCMO.FlSe.acv3z_x2c_scf_lsym=DFPCMO"  --noarch --gb=62.0 --ag=63.0 --inp=../x2c-ach0.scf_relcc_m3.20-vir50.00.inp   --mol=../FlSe.dyall_acv3z_lsym.mol   --suffix=$out_suffix
 
 exit

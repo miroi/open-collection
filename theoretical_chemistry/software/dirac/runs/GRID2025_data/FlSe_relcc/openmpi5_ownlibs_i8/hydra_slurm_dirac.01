@@ -76,13 +76,13 @@ paste -s $MACHINEFILE
 echo -e "\n\n Loaded modules:"
 module purge
 module add GVR/v1.0-1
-module add Python/v3.10.2
 #module add CMake/v3.29.2
 #module add  intel/v2021.1
 #module add openmpi/v5.0.3_gcc1230
 #module add LAPACK/v3.12.0_gcc1230
 #module add  openmpi/v5.0.7_icc2021
 module add openmpi/v5.0.3_gcc1230
+module add Python/v3.10.2
 module list
 
 echo -e "\n\nPython ? :\c"; which python; python -V
@@ -94,7 +94,7 @@ echo -e " OpenMPI v5.0.7 mpirun ? :\c"; which mpirun; mpirun  -V
 #echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"; ls -lt  $MKLROOT/lib/intel64
 
 echo -e "\n\n The variable PATH=$PATH\n"
-echo -e "\n\n The variable LD_LIBRARY_PATH=$LD_LIBRARY_PATH\n"
+echo -e "\n The variable LD_LIBRARY_PATH=$LD_LIBRARY_PATH\n"
 
 DIRAC=/lustre/home/user/m/milias/work/software/dirac/trunk_study
 #BUILD=build_intelmpi_mkl_i8
@@ -119,7 +119,8 @@ export MKL_DYNAMIC=FALSE
 
 #export DIRAC_MPI_COMMAND="/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/openmpi/v5.0.7_icc2021/bin/mpirun  --bind-to core:overload-allowed  --machinefile $SLURM_SUBMIT_DIR/$MACHINEFILE -np $SLURM_NTASKS"
 
-export DIRAC_MPI_COMMAND="mpirun  --bind-to core:overload-allowed  --machinefile $SLURM_SUBMIT_DIR/$MACHINEFILE"
+#export DIRAC_MPI_COMMAND="mpirun  --bind-to core:overload-allowed  --machinefile $SLURM_SUBMIT_DIR/$MACHINEFILE"
+export DIRAC_MPI_COMMAND="mpirun  --machinefile $SLURM_SUBMIT_DIR/$MACHINEFILE"
 
 #export DIRAC_MPI_COMMAND="/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/openmpi/v5.0.7_icc2021/bin/mpirun  --use-hwthread-cpus  --bind-to core:overload-allowed  -f $SLURM_SUBMIT_DIR/$MACHINEFILE"
 

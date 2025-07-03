@@ -3,8 +3,8 @@
 #SBATCH -J FlSeCC1
 
 ##  partition (queue)
-##SBATCH -p cascade
-#SBATCH -p slo-ice
+#SBATCH -p cascade
+##SBATCH -p slo-ice
 ##SBATCH -p knl
 ##SBATCH -p flnr-ice
 ##SBATCH -p flnr-sod
@@ -15,8 +15,7 @@
 
 ##SBATCH --exclusive
 
-#SBATCH --mem=264GB
-##SBATCH --mem=124GB
+#SBATCH --mem=124GB
 
 # do not restart in the case of nodefail!
 #SBATCH --no-requeue
@@ -24,7 +23,7 @@
 
 #SBATCH -N 1
 
-#SBATCH --ntasks-per-node=24
+#SBATCH --ntasks-per-node=12
 ##SBATCH  --sockets-per-node=1
 
 ## memory NO !!!
@@ -95,7 +94,7 @@ echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"; ls -lt  $MKLROOT/lib/intel64
 echo -e "\n\n The variable PATH=$PATH\n"
 echo -e "\n\n The variable LD_LIBRARY_PATH=$LD_LIBRARY_PATH\n"
 
-DIRAC=/lustre/home/user/m/milias/work/software/dirac/trunk
+DIRAC=/lustre/home/user/m/milias/work/software/dirac/trunk_study
 BUILD=build_intelmpi_mkl_i8
 echo -e "\n\n checking the workhorse executable, ldd $DIRAC/$BUILD/dirac.x:"
 ldd $DIRAC/$BUILD/dirac.x
@@ -118,12 +117,8 @@ echo -e "\n\n I am in the directory: \c "; pwd
 THISMPI=$SLURM_NTASKS
 echo -e "\n\nRunning parallel DIRAC job:"
 
-#$DIRAC/$BUILD/pam --mpi=$THISMPI --get="DFPCMO=DFPCMO.PbSe3.v3z_x2c_b3lyp_opt" --put="DFPCMO.PbSe3.v3z_x2c_b3lyp=DPFCMO" --noarch --gb=101.0 --ag=103.0 --inp=geom_opt.x2c.b3lyp.inp   --mol=PbSe3.v3z.C1.mol   --suffix=out_mpi$THISMPI-$SLURM_JOB_PARTITION-$SLURM_JOBID
+#$DIRAC/$BUILD/pam  --mpi=$THISMPI  --put="DFPCMO.FlSe.acv3z_x2c_scf_lsym=DFPCMO"  --noarch --gb=262.0 --ag=263.0 --inp=x2c-ach0.scf_relcc_m3.20-vir50.00.inp   --mol=FlSe.dyall_acv3z_lsym.mol   --suffix=out_mpi$THISMPI-$SLURM_JOB_PARTITION-$SLURM_JOBID
 
-#$DIRAC/$BUILD/pam --mpi=$THISMPI    --get="DFPCMO=DFPCMO.FlSe3.acv3z_x2c_scf_C2v" --noarch --gb=78.0 --ag=79.0 --inp=x2c_ach0.scf.inp   --mol=FlSe.dyall_acv3z_lsym.mol   --suffix=out_mpi$THISMPI-$SLURM_JOB_PARTITION-$SLURM_JOBID
-
-#$DIRAC/$BUILD/pam  --mpi=$THISMPI  --put="DFPCMO.FlSe.acv3z_x2c_scf_lsym=DFPCMO"  --noarch --gb=122.0 --ag=123.0 --inp=x2c-ach0.scf_relcc_m3.20-vir10.00.inp   --mol=FlSe.dyall_acv3z_lsym.mol   --suffix=out_mpi$THISMPI-$SLURM_JOB_PARTITION-$SLURM_JOBID
-
-$DIRAC/$BUILD/pam  --mpi=$THISMPI  --put="DFPCMO.FlSe.acv3z_x2c_scf_lsym=DFPCMO"  --noarch --gb=262.0 --ag=263.0 --inp=x2c-ach0.scf_relcc_m3.20-vir50.00.inp   --mol=FlSe.dyall_acv3z_lsym.mol   --suffix=out_mpi$THISMPI-$SLURM_JOB_PARTITION-$SLURM_JOBID
+$DIRAC/$BUILD/pam   --put="DFPCMO.FlSe.acv3z_x2c_scf_lsym=DFPCMO"  --noarch --gb=262.0 --ag=263.0 --inp=x2c-ach0.scf_relcc_m3.20-vir50.00.inp   --mol=FlSe.dyall_acv3z_lsym.mol   --suffix=out_mpi$THISMPI-$SLURM_JOB_PARTITION-$SLURM_JOBID
 
 exit

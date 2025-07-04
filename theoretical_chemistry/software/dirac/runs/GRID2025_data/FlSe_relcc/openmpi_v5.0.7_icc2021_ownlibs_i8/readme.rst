@@ -2,17 +2,11 @@
 FlSe with DIRAC RelCC
 =====================
 
-https://manpages.debian.org/unstable/openmpi-bin/mpirun.openmpi.1.en.html
+openmpi_v5.0.7_icc2021_ownlibs_i8
 
---------------------------------------------------------------------------
-A request was made to bind that would require binding
-processes to more cpus than are available in your allocation:
+cascade.N1.n12  1h46min34s
+cascade.N1.n9   1h42min31s
+cascade.N1.n6   1h59min52s
+cascade.N1.n3   2h40min53s
 
-   Application:     /lustre/home/user/m/milias/DIRAC_scratch_directory/milias/DIRAC_x2c-ach0.scf_relcc_m3.20-vir50.00_FlSe.dyall_acv3z_lsym_59814/dirac.x
-   #processes:      6
-   Mapping policy:  BYCORE
-   Binding policy:  CORE
 
-You can override this protection by adding the "overload-allowed"
-option to your binding directive.
---------------------------------------------------------------------------

@@ -3,8 +3,8 @@
 #SBATCH -J FlSeCC
 
 ##  partition (queue)
-#SBATCH -p cascade
-##SBATCH -p slo-ice
+##SBATCH -p cascade
+#SBATCH -p slo-ice
 ##SBATCH -p knl
 ##SBATCH -p flnr-ice
 ##SBATCH -p flnr-sod
@@ -106,8 +106,8 @@ ldd $DIRAC/$BUILD/dirac.x
 echo -e "\n checking pam script, $DIRAC/$BUILD/pam --help  :"
 $DIRAC/$BUILD/pam --help
 
-export OMPI_MCA_oob=^usock
-export OMPI_MCA_orte_process_binding=none
+#export OMPI_MCA_oob=^usock
+#export OMPI_MCA_orte_process_binding=none
 export MKL_NUM_THREADS=1
 export MKL_DYNAMIC=FALSE
 
@@ -119,7 +119,7 @@ export MKL_DYNAMIC=FALSE
 #export DIRAC_MPI_COMMAND="mpirun  --use-hwthread-cpus  --bind-to core:overload-allowed  --machinefile $SLURM_SUBMIT_DIR/$MACHINEFILE"
 #export DIRAC_MPI_COMMAND="mpirun  -np $SLURM_NTASKS  --machinefile $SLURM_SUBMIT_DIR/$MACHINEFILE"
 #export DIRAC_MPI_COMMAND="mpirun  -np $SLURM_NTASKS  --bind-to core:overload-allowed   --machinefile $SLURM_SUBMIT_DIR/$MACHINEFILE"
-export DIRAC_MPI_COMMAND="mpirun  --machinefile $SLURM_SUBMIT_DIR/$MACHINEFILE"
+export DIRAC_MPI_COMMAND="mpirun -np $SLURM_NTASKS  --machinefile $SLURM_SUBMIT_DIR/$MACHINEFILE --bind-to core:overload-allowed"
 
 echo -e "\n\n DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
 out_suffix=out.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out

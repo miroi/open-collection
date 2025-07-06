@@ -1,3 +1,4 @@
+==================
 MOPAC on WSL-Win11
 ==================
 
@@ -38,9 +39,5 @@ miroi@MIRO:~/work/software/mopac/.ldd /opt/mopac/bin/mopac
         libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007ff878071000)
         /lib64/ld-linux-x86-64.so.2 (0x00007ff87d8ea000)
         librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00007ff87806c000)
-
-install debichem packages
--------------------------
-miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/mopac/buildup_on_servers/wsl_win11_VictusNB/.sudo apt-get install debichem-semiempirical debichem-molecular-abinitio  debichem-molecular-dynamics  debichem-periodic-abinitio debichem-crystallography
 
 

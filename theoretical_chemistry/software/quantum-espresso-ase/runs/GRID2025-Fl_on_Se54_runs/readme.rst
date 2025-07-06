@@ -8,6 +8,8 @@ slo-ice,  Intel(R) Xeon(R) Platinum 8368Q CPU @ 2.60GHz
 BTW, this node has total 152 CPUs available for an EXCLUSIVE job
  .. Its 38 cores running at 2.60GH
 
+cascade.N1.n20
+Se54_r_Fl_2steprelax.gvr.cascade.N1.n20.jid12785574.out_SAVED   5h56m
 
 N=2, 20CPUs per node :
 12521995.n05p016  build_intelmpi_mkl_elpa_xh  6h25m

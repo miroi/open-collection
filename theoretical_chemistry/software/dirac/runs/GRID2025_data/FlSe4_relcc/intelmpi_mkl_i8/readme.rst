@@ -14,6 +14,6 @@ Predicted RelCC memory demand:          25.198 GB
 x2c-ach2.scf_relcc_FlSe4.v2z_b3lyp_Cs.out_mpi12-slo-ice-12661317_SAVED
 
 N1 12CPU   slo-ice (n5) ... 23h46min54s
-N1 6CPU    slo-ice (n5) ... 
+N1 6CPU    slo-ice (n5) ... 2days1h29min9s
 
 

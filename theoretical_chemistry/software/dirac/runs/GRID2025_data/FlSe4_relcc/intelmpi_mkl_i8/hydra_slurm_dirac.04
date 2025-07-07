@@ -1,21 +1,21 @@
 #!/bin/bash
 
-#SBATCH -J FlSeCC1
+#SBATCH -J FlSe4CC
 
 ##  partition (queue)
-##SBATCH -p cascade
+#SBATCH -p cascade
 ##SBATCH -p slo-ice
-#SBATCH -p knl
+##SBATCH -p knl
 ##SBATCH -p flnr-ice
 ##SBATCH -p flnr-sod
 
 ## max. execution time
 ##SBATCH -t 10-00:00:00
-#SBATCH -t 1-00:00:00
+#SBATCH -t 4-00:00:00
 
 ##SBATCH --exclusive
 
-#SBATCH --mem=74GB
+#SBATCH --mem=144GB
 
 # do not restart in the case of nodefail!
 #SBATCH --no-requeue
@@ -119,6 +119,6 @@ echo -e "\n\nRunning parallel DIRAC job:"
 
 #$DIRAC/$BUILD/pam  --mpi=$THISMPI  --put="DFPCMO.FlSe.acv3z_x2c_scf_lsym=DFPCMO"  --noarch --gb=262.0 --ag=263.0 --inp=x2c-ach0.scf_relcc_m3.20-vir50.00.inp   --mol=FlSe.dyall_acv3z_lsym.mol   --suffix=out_mpi$THISMPI-$SLURM_JOB_PARTITION-$SLURM_JOBID
 
-$DIRAC/$BUILD/pam   --put="../DFPCMO.FlSe.acv3z_x2c_scf_lsym=DFPCMO"  --noarch --gb=72.0 --ag=73.0 --inp=../x2c-ach0.scf_relcc_m3.20-vir50.00.inp   --mol=../FlSe.dyall_acv3z_lsym.mol   --suffix=$out_suffix
+$DIRAC/$BUILD/pam   --put="DFPCMO.FlSe4.scf_v2z_x2c_Cs=DFPCMO"  --noarch --gb=142.0 --ag=143.0 --inp=x2c-ach2.scf_relcc.inp   --mol=FlSe4.v2z_b3lyp_Cs.mol   --suffix=$out_suffix
 
 exit

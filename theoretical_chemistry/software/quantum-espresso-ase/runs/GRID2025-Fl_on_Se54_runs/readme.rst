@@ -9,8 +9,10 @@ BTW, this node has total 152 CPUs available for an EXCLUSIVE job
  .. Its 38 cores running at 2.60GH
 
 
+
 intelmpi_mkl_elpa:
 slo-ice.N1.n10    8h33m    RAM >      60.80 GB
+slo-ice.N1.n20    8h25m    RAM >      61.55 GB
 slo-ice.N2.n40    6h24m    RAM >      98.51 GB
 slo-ice.N2.n60    4h15m    RAM >      99.94 GB
 

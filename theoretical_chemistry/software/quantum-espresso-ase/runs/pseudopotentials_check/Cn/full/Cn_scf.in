@@ -1,0 +1,42 @@
+&CONTROL
+  calculation = "scf"
+  etot_conv_thr =   1.0d-09
+  pseudo_dir    = "./"
+  verbosity = 'low'
+/
+
+&SYSTEM
+  smearing = 'gauss'
+  ecutwfc =  60
+  ibrav = 0
+  nat = 1
+  nosym = .false.
+  ntyp = 1
+  occupations = 'smearing'
+  degauss = 0.02
+  noncolin= .true.
+  lspinorb= .true.
+/
+
+&ELECTRONS
+  mixing_beta = 0.2
+  diagonalization = 'david' 
+  conv_thr =   1.D-9
+  electron_maxstep = 100
+  startingpot      = "atomic"
+  startingwfc      = "atomic+random"
+/
+
+ATOMIC_SPECIES
+    Cn     285.0 Cn_5spdf_r_fixed.upf
+
+ATOMIC_POSITIONS (angstrom)
+Cn           5.0000000000       5.0000000000       5.0000000000
+
+K_POINTS automatic
+1 1 1 0 0 0
+
+CELL_PARAMETERS angstrom
+     10.0000000000       0.0000000000       0.0000000000
+      0.0000000000      10.0000000000       0.0000000000
+      0.0000000000       0.0000000000      10.0000000000

@@ -24,8 +24,6 @@ slo-ice.N2.n40    6h34m    RAM >      98.51 GB
 openmpi_gnulibs:
 slo-ice.N2.n40    2d12h    RAM >      98.51 GB
 
-
-
 N=2, 20CPUs per node :
 12521995.n05p016  build_intelmpi_mkl_elpa_xh  6h25m
 12521993.n05p016  build_intelmpi_mkl_elpa     6h24m

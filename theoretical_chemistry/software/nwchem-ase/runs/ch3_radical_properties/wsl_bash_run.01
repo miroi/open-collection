@@ -1,27 +1,45 @@
 #!/bin/bash
 
-echo -e "NWChem job started \c"; date
+echo -e "\n\nNWChem job started \c"; date
 echo -e "Hostname is \c "; hostname
+echo -e "User name is \c ";whoami
 
 # CPU model
 echo -e "\nThe host CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
 NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
-echo "This host has total NPROCS=$NPROCS CPUs available."
+#echo "This host has total NPROCS=$NPROCS CPUs available."
 
 string=`cat /proc/cpuinfo | grep 'cpu cores'`
 number_string=$(echo "$string" | grep -o -E '[0-9]+(\.[0-9]+)?')
-echo $number_string
+#echo $number_string
 MAXTHREADS=$(echo "$number_string" | grep -oE '[0-9]+' | sort | uniq -c | awk '$1 > 1 {print $2}')
-echo -e "MAXTHREADS=$MAXTHREADS"
+echo -e "Number of cores, or max number of mpi threads MAXTHREADS=$MAXTHREADS"
+
 
 # process command line arguments
 
-echo -e "\n number of arguments is $#"
+#echo -e "\n number of arguments is $#"
 
-if [[$# gt 0 ]]; then
- echo first argument is $1
+if [[ $# -gt 0 ]]; then
+ first_arg=$1
+ echo first argument is $first_arg
+
+ if [[ $first_arg =~ ^[0-9]+$ ]]; then
+    echo "entering first parm is number ! "
+    if [[ $first_arg  -gt 0 && $first_arg  -le $MAXTHREADS ]]; then
+      echo "number of threads is in proper range 1 - $MAXTHREADS !"                
+      NTHREADS=$first_arg
+    else
+      echo "number of threads is NOT in proper range 1 - $MAXTHREADS ! Setting it to two !"
+      NTHREADS=2
+    fi
+ else 
+    echo "entering firt param is not a number !  Setting NTHREADS=2 !"
+     NTHREADS=2
+ fi
 else
  echo "no command line arguments, taking NTHREADS=2"
+     NTHREADS=2
 fi
 
 #export NWCHEM_EXECUTABLE=/home/milias/work/qch_software/nwchem/bin/LINUX64/nwchem
@@ -53,9 +71,8 @@ echo -e "\n Checking : which mpirun ? \c"; which mpirun; mpirun --version
 #proj=h2o_freq_tasks
 proj=ch3_zora_b3lyp_prop
 
-ncpus=2 # should be as parameter
-echo -e "\n Launching NWChem project $proj on  $ncpus CPU(s):"
-#mpirun -np $ncpus $NWCHEM_EXECUTABLE  $THISDIR/$proj.nw >  $THISDIR/$proj.out
+echo -e "\n Launching NWChem project $proj with $NTHREADS MPI threads :"
+mpirun -np $NTHREADS $NWCHEM_EXECUTABLE  $THISDIR/$proj.nw >  $THISDIR/$proj.out
 
 echo -e "\n\n Working files in scratch dir $TMPDIR:"
 ls -lt $TMPDIR

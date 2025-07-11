@@ -11,11 +11,21 @@ echo "This host has total NPROCS=$NPROCS CPUs available."
 string=`cat /proc/cpuinfo | grep 'cpu cores'`
 number_string=$(echo "$string" | grep -o -E '[0-9]+(\.[0-9]+)?')
 echo $number_string
-MAXTHREADS=$(echo "$number_string" | grep -oE '[0-9]+' | sort | uniq -c | awk '$1 > 1 {print $2}')$
+MAXTHREADS=$(echo "$number_string" | grep -oE '[0-9]+' | sort | uniq -c | awk '$1 > 1 {print $2}')
+echo -e "MAXTHREADS=$MAXTHREADS"
+
+# process command line arguments
+
+echo -e "\n number of arguments is $#"
+
+if [[$# gt 0 ]]; then
+ echo first argument is $1
+else
+ echo "no command line arguments, taking NTHREADS=2"
+fi
 
 #export NWCHEM_EXECUTABLE=/home/milias/work/qch_software/nwchem/bin/LINUX64/nwchem
 export NWCHEM_EXECUTABLE=/usr/bin/nwchem
-
 
 echo -e "\n  NWCHEM_EXECUTABLE=$NWCHEM_EXECUTABLE"
 ldd $NWCHEM_EXECUTABLE

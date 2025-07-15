@@ -9,6 +9,9 @@ cloning
 see https://two.avogadro.cc/develop/build
 
 miroi@MIRO:~/work/software/avogadro2/cloned/openchemistry/.git submodule update --init --recursive
+
+git submodule update --remote
+
 Submodule 'avogadro-i18n' (https://github.com/OpenChemistry/avogadro-i18n.git) registered for path 'avogadro-i18n'
 Submodule 'avogadroapp' (https://github.com/OpenChemistry/avogadroapp.git) registered for path 'avogadroapp'
 Submodule 'avogadrodata' (https://github.com/OpenChemistry/avogadrodata.git) registered for path 'avogadrodata'
@@ -59,6 +62,10 @@ CMake build
 https://two.avogadro.cc/develop/build#configuring-cmake
 
 sudo apt install -y qtcreator qtbase5-dev qt5-qmake cmake (https://askubuntu.com/questions/1404263/how-do-you-install-qt-on-ubuntu22-04)
+sudo apt install python3-mmtf libmmtf-java
+sudo apt-get install build-essential
+sudo apt-get install libopengl-dev   freeglut3-dev
+
 
 miroi@MIRO:~/work/software/avogadro2/cloned/.cmake -DQT_VERSION=5 -DBUILD_MOLEQUEUE=OFF -S ./openchemistry -B ./build
 -- The CXX compiler identification is GNU 11.4.0
@@ -73,6 +80,8 @@ miroi@MIRO:~/work/software/avogadro2/cloned/.cmake -DQT_VERSION=5 -DBUILD_MOLEQU
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /home/miroi/work/software/avogadro2/cloned/build
+
+needs cmake 3.24 ! apply https://apt.kitware.com/
 
 miroi@MIRO:~/work/software/avogadro2/cloned/build/.make -j4 all
 

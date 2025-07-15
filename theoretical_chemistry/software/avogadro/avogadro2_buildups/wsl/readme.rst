@@ -5,7 +5,7 @@ https://github.com/OpenChemistry/avogadroapp
 
 
 cloning
-~~~~~~~
+-------
 see https://two.avogadro.cc/develop/build
 
 miroi@MIRO:~/work/software/avogadro2/cloned/openchemistry/.git submodule update --init --recursive
@@ -58,30 +58,43 @@ Submodule path 'thirdparty/yaehmop': checked out '719975c2b13a2c0e57cf21ab1367e4
 miroi@MIRO:~/work/software/avogadro2/cloned/openchemistry/.
 
 CMake build
-~~~~~~~~~~~
+-----------
 https://two.avogadro.cc/develop/build#configuring-cmake
 
 sudo apt install -y qtcreator qtbase5-dev qt5-qmake cmake (https://askubuntu.com/questions/1404263/how-do-you-install-qt-on-ubuntu22-04)
 sudo apt install python3-mmtf libmmtf-java
 sudo apt-get install build-essential
-sudo apt-get install libopengl-dev   freeglut3-dev
+sudo apt-get install libopengl-dev freeglut3-dev
+sudo apt-get install libeigen3-dev
+sudo apt-get install libboost-dev
+sudo apt install  libboost1.74-all-dev
+sudo apt install  libarchive-dev libarchive-any-perl libarchive-tools
+
+
+cmake update
+~~~~~~~~~~~~
+needs cmake 3.24 ! apply https://apt.kitware.com/
 
 
 miroi@MIRO:~/work/software/avogadro2/cloned/.cmake -DQT_VERSION=5 -DBUILD_MOLEQUEUE=OFF -S ./openchemistry -B ./build
--- The CXX compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 13.3.0
 -- Detecting CXX compiler ABI info
 -- Detecting CXX compiler ABI info - done
 -- Check for working CXX compiler: /usr/bin/c++ - skipped
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
 -- Setting build type to 'Debug' as none was specified.
--- Found ZLIB: /usr/lib/x86_64-linux-gnu/libz.so (found version "1.2.11")
--- Found LibXml2: /usr/lib/x86_64-linux-gnu/libxml2.so (found version "2.9.13")
--- Configuring done
--- Generating done
+-- Found ZLIB: /usr/lib/x86_64-linux-gnu/libz.so (found version "1.3")
+-- Found LibXml2: /usr/lib/x86_64-linux-gnu/libxml2.so (found version "2.9.14")
+-- Configuring done (3.4s)
+-- Generating done (0.0s)
 -- Build files have been written to: /home/miroi/work/software/avogadro2/cloned/build
 
-needs cmake 3.24 ! apply https://apt.kitware.com/
 
 miroi@MIRO:~/work/software/avogadro2/cloned/build/.make -j4 all
+.
+.
+.
+see  https://discuss.avogadro.cc/t/cmake-buildup-of-fresh-repos-failes-on-wsl-ubuntu-24-04-2/7049
+
 

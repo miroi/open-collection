@@ -12,5 +12,5 @@ flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/fl
 
 flatpak install org.openchemistry.Avogadro2//beta
 
-error: The application org.openchemistry.Avogadro2/x86_64/beta requires the runtime org.kde.Platform/x86_64/6.8 which was not foun
+error: The application org.openchemistry.Avogadro2/x86_64/beta requires the runtime org.kde.Platform/x86_64/6.8 which was not found
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## jobname
-#SBATCH -J Se_vc
+#SBATCH -J Se_vc02
 
 ##  partition (queue)
 ##SBATCH -p test
@@ -38,7 +38,7 @@
 #SBATCH -o log_slurm_job.%j.%N.std_out_err
 
 ## E-mail
-#SBATCH --mail-user=dsen@theor.jinr.ru
+#SBATCH --mail-user=milias@theor.jinr.ru
 #SBATCH --mail-type=ALL
 
 echo -e "\nRunning on host `hostname`"
@@ -95,11 +95,8 @@ echo -e "\n The total memory at the node (in GB)"
 free -t -g
 echo -e "\n"
 
-#QE=/lustre/home/user/m/milias/work/software/quantum-espresso/openmpi/qe-7.3.1
-#QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-7.3.1
-#QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_intelmpi_mkl
-#QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_intelmpi_mkl_elpa
-QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_inteloneapimpi_mkl_scalapack
+#QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_inteloneapimpi_mkl_scalapack
+QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_inteloneapimpi_mkl
 
 echo -e "\n ldd  $QE/bin/pw.x :"
 ldd  $QE/bin/pw.x

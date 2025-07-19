@@ -68,5 +68,29 @@ org.openchemistry.Avogadro2 permissions:
 Installation complete.
 miroi@MIRO:~/work/software/avogadro2/.
 
+run Avogadro2
+~~~~~~~~~~~~
+miroi@MIRO:~/work/software/avogadro2/.flatpak run org.openchemistry.Avogadro2
+Avogadroapp version:  1.100.0
+Avogadrolibs version:  1.100.0
+Qt version:  6.8.3
+qt.core.qobject.connect: QObject::connect(QObject, Unknown): invalid nullptr parameter
+SSL version:  "OpenSSL 3.3.3 11 Feb 2025"
+Using locale:  "C"
+ registering obmm plugins
+"/app/bin/obabel"  found:  "/app/bin/obabel: Open Babel 3.1.1 -- Nov 11 2011 -- 11:11:11"
+"Cannot load script /home/miroi/.var/app/org.openchemistry.Avogadro2/data/OpenChemistry/Avogadro/commands/avogadro-build-ase/mx2.py"
+"Cannot load script /home/miroi/.var/app/org.openchemistry.Avogadro2/data/OpenChemistry/Avogadro/commands/avogadro-build-ase/ribbon.py"
+"Cannot load script /home/miroi/.var/app/org.openchemistry.Avogadro2/data/OpenChemistry/Avogadro/commands/TurtleMol/TurtleMol/avogadroPlugin/fillBox.py"
+"Cannot load script /home/miroi/.var/app/org.openchemistry.Avogadro2/data/OpenChemistry/Avogadro/commands/TurtleMol/TurtleMol/avogadroPlugin/fillSphere.py"
+"Cannot load script /home/miroi/.var/app/org.openchemistry.Avogadro2/data/OpenChemistry/Avogadro/commands/TurtleMol/TurtleMol/avogadroPlugin/fillMesh.py"
+"Cannot load script /home/miroi/.var/app/org.openchemistry.Avogadro2/data/OpenChemistry/Avogadro/commands/TurtleMol/TurtleMol/avogadroPlugin/densityBox.py"
+"Cannot load script /home/miroi/.var/app/org.openchemistry.Avogadro2/data/OpenChemistry/Avogadro/commands/TurtleMol/TurtleMol/avogadroPlugin/densitySphere.py"
+"Cannot load script /home/miroi/.var/app/org.openchemistry.Avogadro2/data/OpenChemistry/Avogadro/commands/TurtleMol/TurtleMol/avogadroPlugin/densityMesh.py"
+"Cannot load script /home/miroi/.var/app/org.openchemistry.Avogadro2/data/OpenChemistry/Avogadro/commands/TurtleMol/TurtleMol/avogadroPlugin/definiteBox.py"
+"Cannot load script /home/miroi/.var/app/org.openchemistry.Avogadro2/data/OpenChemistry/Avogadro/commands/TurtleMol/TurtleMol/avogadroPlugin/definiteSphere.py"
+"Cannot load script /home/miroi/.var/app/org.openchemistry.Avogadro2/data/OpenChemistry/Avogadro/commands/TurtleMol/TurtleMol/avogadroPlugin/definiteMesh.py"
+Open Babel formats ready:  144
+Setting default format to cjson.
 
 

@@ -1,12 +1,16 @@
-Hg@Se-slab
-==========
+============
+Hg@Se54(100)
+============
 
-/lustre/home/user/d/dsen/Documents/2_example/adorption_example/5
+from Dip's /lustre/home/user/d/dsen/Documents/2_example/adorption_example/5
 
 modified - removed DFTD4
 
 milias@DESKTOP-7OTLCGO:~/work/git-projects/open-collection/theoretical_chemistry/software/ase/runs/Hg_on_Se-slab_Dip/.python hg_se.py > logfile
 
+Program systematicaly scans all surface positions on frozen Se54(100) slab, places Hg atom there and optimizes the geometry.
+
+After scanning all the positions if finds out the most suitable - that is the global minima of Hg@Se54(100) system.
 
 
 

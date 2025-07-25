@@ -15,9 +15,11 @@ subroutine example
      &  1.19220800552211_wp,  1.19220800552211_wp, -1.19220800552211_wp],&
      & [3, size(num)])
 
+   print *,'calling routine new...'
    call new(mol, num, xyz, charge=0.0_wp, uhf=0)
 
-  ! print *,mol
+   !print *,mol
+   print *,xyz
 
    ! ...
 end subroutine example

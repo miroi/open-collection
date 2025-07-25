@@ -69,7 +69,7 @@ sudo apt-get install libeigen3-dev
 sudo apt-get install libboost-dev
 sudo apt install  libboost1.74-all-dev
 sudo apt install  libarchive-dev libarchive-any-perl libarchive-tools
-
+sudo apt install libacl1 python3-pylibacl liblinux-acl-perl
 
 cmake update
 ~~~~~~~~~~~~

@@ -4,7 +4,7 @@ import numpy as np
 from ase import Atoms
 from ase.build import add_adsorbate
 from ase.calculators.lj import LennardJones
-#from dftd4.ase import DFTD4
+from dftd4.ase import DFTD4
 from ase.optimize import BFGS
 from ase.constraints import FixAtoms
 from ase.io import write
@@ -154,10 +154,10 @@ def screen_adsorption_sites(slab, sites):
             'sigma': 2.75,     # Å
             'rc': 10.0         # Cutoff radius
         }
-       # slab_with_hg.calc = SumCalculator([
-       #     LennardJones(**lj_params),
-       #     DFTD4(method="PBE") ])
-        slab_with_hg.calc = SumCalculator([LennardJones(**lj_params) ])
+        slab_with_hg.calc = SumCalculator([
+            LennardJones(**lj_params),
+            DFTD4(method="PBE")
+]       )
         
         # Relax only Hg
         relax = BFGS(slab_with_hg, trajectory=f'traj_files/hg_{name}.traj')  # Moved to traj_files

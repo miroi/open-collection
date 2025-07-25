@@ -10,9 +10,10 @@ python hg_se.py > logfile
 
 Program systematicaly scans all surface positions on frozen Se54(100) slab, places Hg atom there and optimizes the geometry.
 
-After scanning all the positions if finds out the most suitable - that is the global minima of Hg@Se54(100) system.
+After scanning all the positions it finds the most suitable - that is the global minima of Hg@Se54(100) system.
+
 All energies are stored in the file adsorption_summary.txt . 
 
 The program creates subdirectries with optimized geometries, and also with optimization trajectories. 
 
-
+Program works upon the fast Lenard-Johnson interatomic potential, which part of ase ecosystem.

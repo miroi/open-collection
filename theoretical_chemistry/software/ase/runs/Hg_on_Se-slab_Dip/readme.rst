@@ -2,18 +2,17 @@
 Hg@Se54(100)
 ============
 
-from Dip's /lustre/home/user/d/dsen/Documents/2_example/adorption_example/5
+Program systematicaly scans all surface positions on frozen Se54(100) slab, places Hg atom on each position and optimizes the system's  geometry.
 
-modified - removed DFTD4
+After checking all the surface positions it finds the most suitable - that is the global minima of Hg@Se54(100) system.
 
-python hg_se.py > logfile
-
-Program systematicaly scans all surface positions on frozen Se54(100) slab, places Hg atom there and optimizes the geometry.
-
-After scanning all the positions it finds the most suitable - that is the global minima of Hg@Se54(100) system.
-
-All energies are stored in the file adsorption_summary.txt . 
+All energies get stored in the file adsorption_summary.txt . 
 
 The program creates subdirectries with optimized geometries, and also with optimization trajectories. 
 
-Program works upon the fast Lenard-Johnson interatomic potential, which part of ase ecosystem.
+Program works upon the fast Lenard-Johnson (LJ) interatomic potential, which part of ase ecosystem.
+
+from Dip's /lustre/home/user/d/dsen/Documents/2_example/adorption_example/5
+modified - removed DFTD4 part, keeping only LJ term
+
+running: python hg_se.py > logfile

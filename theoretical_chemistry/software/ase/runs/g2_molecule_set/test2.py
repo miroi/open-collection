@@ -1,5 +1,7 @@
 from ase.build import molecule
+from ase import Atoms
 from ase.collections import g2
+from ase.visualize import view
 
 # Get a list of names from the g2 database
 molecule_names = g2.names
@@ -16,3 +18,4 @@ print(f"Experimental atomization energy of H2O: {h2o_energy} eV")
 
 ch3oh_energy = get_atomization_energy('CH3OH')
 print(f"Experimental atomization energy of CH3OH: {ch3oh_energy} eV")
+

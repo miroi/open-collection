@@ -94,7 +94,7 @@ module list
 
 echo -e "\n\n cmake ? \c"; which cmake; cmake --version
 echo -e "\n python ? ; python -v :\c"; which python; python -V
-#echo -e "\n ifort ? ; ifort -V: \c"; which ifort; ifort -V
+echo -e "\n ifort ? ; ifort -V: \c"; which ifort; ifort -V
 #echo -e "\n mpiifort ? ;  mpiifort -V: \c";which mpiifort;  mpiifort -V
 echo -e "\n icc ? ; icc -V: \c"; which icc;  icc -V
 echo -e "\n mpiicc ? ; mpiicc -V: \c"; which mpiicc;  mpiicc -V
@@ -121,8 +121,11 @@ echo -e "Content :"; ls -lt
 echo -e "\n Buildup /lustre/home/user/m/milias/work/software/libxc/libxc-7.0.0 :"
 # https://libxc.gitlab.io/installation/#building-with-cmake
 
-cmake -H. -Bobjdir
-cd objdir && make
+BUILD=build_icc
+#cmake -H. -Bobjdir
+cmake -H. -B $BUILD -D CMAKE_C_COMPILER=icc -D CMAKE_Fortran_COMPILER=ifort -D ENABLE_FORTRAN=ON  -D CMAKE_INSTALL_PREFIX=/lustre/home/user/m/milias/work/software/libxc
+cd $BUILD
+make
 make test
 make install
 

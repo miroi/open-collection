@@ -98,9 +98,8 @@ module load git
 # NVHPC with OpenMPI ?
 
 #module load cuda/v12.1
-module load cuda/v8.0-1
+#module load cuda/v8.0-1
 
-#module load CUDA/v11.8-1 # not from NICA !
 
 # need MPI, try...
 #module load openmpi/v5.0.3_gcc1230
@@ -129,11 +128,49 @@ echo -e "\n python -v :\c"; python -V
 echo -e "\n cmake ? \c"; which cmake; cmake --version
 echo -e "\n git ? \c"; which git; git --version
 
-echo -e "\n nvidia-smi ? \c"; which nvidia-smi; nvidia-smi
+echo -e "\n\n nvidia-smi ? \c"; which nvidia-smi; nvidia-smi
 
+#module load cuda/v12.1
+module load cuda/v8.0-1
 echo -e "\n\n nvcc ? ; \c"; which nvcc; nvcc --version
 echo -e "\n nvfortran ? ; \c"; which nvfortran; nvfortran --version
-echo -e "\n pgfortran ? ; \c"; which pgfortran; pgfortran --version
+#echo -e "\n pgfortran ? ; \c"; which pgfortran; pgfortran --version
+module unload cuda/v8.0-1
+
+module load cuda/v9.2
+echo -e "\n\n nvcc ? ; \c"; which nvcc; nvcc --version
+echo -e "\n nvfortran ? ; \c"; which nvfortran; nvfortran --version
+#echo -e "\n pgfortran ? ; \c"; which pgfortran; pgfortran --version
+module unload cuda/v9.2
+
+module load cuda/v10.0-1
+echo -e "\n\n nvcc ? ; \c"; which nvcc; nvcc --version
+echo -e "\n nvfortran ? ; \c"; which nvfortran; nvfortran --version
+#echo -e "\n pgfortran ? ; \c"; which pgfortran; pgfortran --version
+module unload cuda/v10.0-1
+
+module load cuda/v10.1-1
+echo -e "\n\n nvcc ? ; \c"; which nvcc; nvcc --version
+echo -e "\n nvfortran ? ; \c"; which nvfortran; nvfortran --version
+#echo -e "\n pgfortran ? ; \c"; which pgfortran; pgfortran --version
+module unload cuda/v10.1-1
+
+module load cuda/v11.4
+echo -e "\n\n nvcc ? ; \c"; which nvcc; nvcc --version
+echo -e "\n nvfortran ? ; \c"; which nvfortran; nvfortran --version
+#echo -e "\n pgfortran ? ; \c"; which pgfortran; pgfortran --version
+module unload cuda/v11.4
+
+module load cuda/v12.1
+echo -e "\n\n nvcc ? ; \c"; which nvcc; nvcc --version
+echo -e "\n nvfortran ? ; \c"; which nvfortran; nvfortran --version
+#echo -e "\n pgfortran ? ; \c"; which pgfortran; pgfortran --version
+module unload cuda/v12.1
+
+
+
+
+
 
 #echo -e "\n\n ls  /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/Linux_x86_64/23.5/compilers:";
 #ls  /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/Linux_x86_64/23.5/compilers

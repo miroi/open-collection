@@ -51,3 +51,35 @@ nvfortran 25.7-0 64-bit target on x86-64 Linux -tp alderlake
 NVIDIA Compilers and Tools
 Copyright (c) 2025, NVIDIA CORPORATION & AFFILIATES.  All rights reserved.
 
+
+CUDA-Fortran
+~~~~~~~~~~~~
+ls /opt/nvidia/hpc_sdk/Linux_x86_
+64/25.7/examples/
+AutoPar/  CUDA-Fortran/  CUDA-Libraries/  F2003/  MPI/  NVLAmath/  OpenACC/  OpenMP/  README  stdpar/
+
+small example
+~~~~~~~~~~~~~~
+./opt/nvidia/hpc_sdk/Linux_x86_64/25.7/compilers/bin/nvfortran  deviceQuery.cuf
+a.out
+
+One CUDA device found
+
+Device Number: 0
+  Device Name: NVIDIA GeForce GTX 1650
+  Compute Capability: 7.5
+  Number of Multiprocessors: 14
+  Single- to Double-Precision Perf Ratio: 32
+  Max Threads per Multiprocessor: 1024
+  Supports Cooperative Kernels: Yes
+
+  Global Memory (GB):     4.000
+
+  Execution Configuration Limits
+    Max Grid Dims: 2147483647 x 65535 x 65535
+    Max Block Dims: 1024 x 1024 x 64
+    Max Threads per Block: 1024
+
+  Managed Memory
+    Can Allocate Managed Memory: Yes
+    Device/CPU Concurrent Access to Managed Memory: No

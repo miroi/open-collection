@@ -15,8 +15,8 @@ nvhpc_2025_257_Linux_x86_64_cuda_12.9/install
 
 interactive installation
 ------------------------
-
 milias@vm02.hydra.local:~/work/software/nvhpc/nvhpc_2025_253_Linux_x86_64_cuda_12.8/../install
+
 
 Welcome to the NVIDIA HPC SDK Linux installer!
 
@@ -53,4 +53,39 @@ Installation directory? [/opt/nvidia/hpc_sdk]
 
 Installing NVIDIA HPC SDK version 25.3 into /lustre/home/user/m/milias/work/software/nvhpc
 
+Making symbolic link in /lustre/home/user/m/milias/work/software/nvhpc/Linux_x86_64
+
+generating environment modules for NV HPC SDK 25.3 ... done.
+Installation complete.
+HPC SDK successfully installed into /lustre/home/user/m/milias/work/software/nvhpc
+
+If you use the Environment Modules package, that is, the module load
+command, the NVIDIA HPC SDK includes a script to set up the
+appropriate module files.
+
+% module load /lustre/home/user/m/milias/work/software/nvhpc/modulefiles/nvhpc/25.3
+% module load nvhpc/25.3
+
+Alternatively, the shell environment may be initialized to use the HPC SDK.
+
+In csh, use these commands:
+
+% set path = (/lustre/home/user/m/milias/work/software/nvhpc/Linux_x86_64/25.3/compilers/bin $path)
+% setenv MANPATH /lustre/home/user/m/milias/work/software/nvhpc/Linux_x86_64/25.3/compilers/man:"$MANPATH"
+
+To use MPI, also set:
+
+% set path = (/lustre/home/user/m/milias/work/software/nvhpc/Linux_x86_64/25.3/comm_libs/mpi/bin $path)
+
+In bash, sh, or ksh, use these commands:
+
+$ export PATH=/lustre/home/user/m/milias/work/software/nvhpc/Linux_x86_64/25.3/compilers/bin:$PATH
+$ export MANPATH=/lustre/home/user/m/milias/work/software/nvhpc/Linux_x86_64/25.3/compilers/man:$MANPATH
+
+To use MPI, also set:
+
+$ export PATH=/lustre/home/user/m/milias/work/software/nvhpc/Linux_x86_64/25.3/comm_libs/mpi/bin:$PATH
+
+Please check https://developer.nvidia.com for documentation,
+use of NVIDIA HPC SDK software, and other questions.
 

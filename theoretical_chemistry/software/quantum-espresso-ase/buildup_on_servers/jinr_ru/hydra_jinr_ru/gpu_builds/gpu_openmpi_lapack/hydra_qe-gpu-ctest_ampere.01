@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## jobname
-#SBATCH -J QEb
+#SBATCH -J QEbc
 
 ##  partition (queue)
 ##SBATCH -p cascade
@@ -143,24 +143,11 @@ ls  /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/Linux_x86_64/23.5/compiler
 QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e
 BUILD=build_gpu_cuda_openmpi_lapack
 
-if [ -d "$BUILD" ]; then
-  echo -e "\n The directory $QE/$BUILD does exist."
-  echo -e "Its old content :"; ls -lt $QE/$BUILD/.
-  echo -e "Deleting it !"
-  /bin/rm -rf $BUILD
-   mkdir $BUILD
-   echo -e "\n The directory $QE/$BUILD was recreated."
-else
-  echo -e "\n The directory $QE/$BUILD does not exist, so creating it."
-  mkdir $QE/$BUILD
-fi
-
-
 cd $QE/$BUILD
 echo -e "\n Current directory where this SLURM job is running `pwd`"
 echo " It has the disk space of (df -h) :"; df -h .
 
-echo -e "\n\n\n Running cmake :"
+#echo -e "\n\n\n Running cmake :"
 #cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=mpif90 -DQE_ENABLE_MPI_GPU_AWARE=ON ..
 #cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=nvfortran -DQE_ENABLE_MPI_GPU_AWARE=ON ..
 #cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_C_COMPILER=nvc -DQE_ENABLE_MPI_GPU_AWARE=ON ..
@@ -172,15 +159,17 @@ echo -e "\n\n\n Running cmake :"
 # ... this is proper
 #cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=pgfortran -DQE_ENABLE_MPI=OFF -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_CUDA=ON ..
 
-cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=pgfortran -DQE_ENABLE_MPI=ON -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_CUDA=ON -DQE_LAPACK_INTERNAL=OFF ..
+#cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=pgfortran -DQE_ENABLE_MPI=ON -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_CUDA=ON -DQE_LAPACK_INTERNAL=OFF ..
 
-echo -e "\n\n  running :  make -j $SLURM_CPUS_ON_NODE "
-make -j $SLURM_CPUS_ON_NODE
+#echo -e "\n running :  make -j $SLURM_CPUS_ON_NODE "
+#make -j $SLURM_CPUS_ON_NODE
 
 echo -e "\n\n  ls -lt $QE/$BUILD/bin : "
 ls -lt $QE/$BUILD/bin
 echo -e "\n\n ldd $QE/$BUILD/bin/pw.x :  "
 ldd $QE/$BUILD/bin/pw.x
 
+echo -e "\n\n running :  ctest  -j $SLURM_CPUS_ON_NODE "
+ctest  -j $SLURM_CPUS_ON_NODE
 
 exit

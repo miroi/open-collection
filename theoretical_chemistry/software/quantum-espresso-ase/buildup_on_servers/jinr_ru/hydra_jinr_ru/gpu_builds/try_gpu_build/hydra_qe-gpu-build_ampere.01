@@ -87,7 +87,7 @@ echo -e "\n all modules, including /cvmfs/nica.jinr.ru/sw/os/login.sh"; module a
 module purge
 #module load GVR/v1.0-1 gcc/v11.2.0 fftw/v3.3.10_gcc1120 LAPACK/v3.9.0 openmpi/v4.1.1_gcc1120
 #module load GVR/v1.0-1 intel/v2021.1 Python/v3.10.13 CMake/v3.29.2
-module load GVR/v1.0-1 Python/v3.10.13 CMake/v3.29.2
+module load GVR/v1.0-1 Python/v3.10.13 CMake/v3.29.2  gcc/v11.2.0
 
 module load git
 
@@ -150,7 +150,7 @@ if [ -d "$BUILD" ]; then
   echo -e "Deleting it !"
   /bin/rm -rf $BUILD
    mkdir $BUILD
-   echo -e "\n The directory $QE/$BUILD was recreated."
+   echo -e "\n The directory $QE/$BUILD was re-created."
 else
   echo -e "\n The directory $QE/$BUILD does not exist, creating it."
   mkdir $QE/$BUILD
@@ -174,8 +174,8 @@ echo " It has the disk space of (df -h) :"; df -h .
 
 # this is proper:
 echo -e "\n\n\n Running cmake :"
-#cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=pgfortran -DQE_ENABLE_MPI=OFF -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_CUDA=ON ..
-cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=nvfortran -DQE_ENABLE_MPI_GPU_AWARE=ON -DQE_ENABLE_CUDA=ON ..
+cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=pgfortran -DQE_ENABLE_MPI=OFF -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_CUDA=ON ..
+#cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=nvfortran -DQE_ENABLE_MPI_GPU_AWARE=ON -DQE_ENABLE_CUDA=ON ..
 
 echo -e "\n Running make -j $SLURM_CPUS_ON_NODE : "
 make -j $SLURM_CPUS_ON_NODE

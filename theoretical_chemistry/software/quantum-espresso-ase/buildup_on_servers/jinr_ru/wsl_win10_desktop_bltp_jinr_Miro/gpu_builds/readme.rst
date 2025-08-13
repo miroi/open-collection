@@ -132,4 +132,62 @@ Only pw and cp results from ctest are reliable, we are working on making the res
 -- Build files have been written to: /home/milias/work/software/qe/q-e-devel/build_gpu
 milias@DESKTOP-7OTLCGO:~/work/software/qe/q-e-devel/build_gpu/.m -j 8
 
+milias@DESKTOP-7OTLCGO:~/work/software/qe/q-e-devel/build_gpu/.ldd bin/pw.x
+        linux-vdso.so.1 (0x00007fff2a4d1000)
+        libmkl_intel_lp64.so => /lib/x86_64-linux-gnu/libmkl_intel_lp64.so (0x00007474d8600000)
+        libmkl_intel_thread.so => /lib/x86_64-linux-gnu/libmkl_intel_thread.so (0x00007474d4c00000)
+        libmkl_core.so => /lib/x86_64-linux-gnu/libmkl_core.so (0x00007474d0400000)
+        libomp.so.5 => /lib/x86_64-linux-gnu/libomp.so.5 (0x00007474d4ae0000)
+        libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007474d8519000)
+        libnvhpcwrapcufft.so => /opt/nvidia/hpc_sdk/Linux_x86_64/25.7/compilers/lib/libnvhpcwrapcufft.so (0x00007474d0000000)
+        libcufft.so.11 => /opt/nvidia/hpc_sdk/Linux_x86_64/25.7/math_libs/12.9/lib64/libcufft.so.11 (0x00007474be200000)
+        libcudaforwraprand.so => /opt/nvidia/hpc_sdk/Linux_x86_64/25.7/compilers/lib/libcudaforwraprand.so (0x00007474bde00000)
+        libcurand.so.10 => /opt/nvidia/hpc_sdk/Linux_x86_64/25.7/math_libs/12.9/lib64/libcurand.so.10 (0x00007474b3600000)
+        libcusolver.so.11 => /opt/nvidia/hpc_sdk/Linux_x86_64/25.7/math_libs/12.9/lib64/libcusolver.so.11 (0x00007474a1400000)
+        libnvJitLink.so.12 => /opt/nvidia/hpc_sdk/Linux_x86_64/25.7/cuda/12.9/lib64/libnvJitLink.so.12 (0x000074749b600000)
+        libcublas.so.12 => /opt/nvidia/hpc_sdk/Linux_x86_64/25.7/math_libs/12.9/lib64/libcublas.so.12 (0x0000747494e00000)
+        libcublasLt.so.12 => /opt/nvidia/hpc_sdk/Linux_x86_64/25.7/math_libs/12.9/lib64/libcublasLt.so.12 (0x0000747462a00000)
+        libcudaforwrapblas.so => /opt/nvidia/hpc_sdk/Linux_x86_64/25.7/compilers/lib/libcudaforwrapblas.so (0x0000747462600000)
+        libcudaforwrapblas117.so => /opt/nvidia/hpc_sdk/Linux_x86_64/25.7/compilers/lib/libcudaforwrapblas117.so (0x0000747462200000)
+        libcudart.so.12 => /opt/nvidia/hpc_sdk/Linux_x86_64/25.7/cuda/12.9/lib64/libcudart.so.12 (0x0000747461e00000)
+        libcudafor_128.so => /opt/nvidia/hpc_sdk/Linux_x86_64/25.7/compilers/lib/libcudafor_128.so (0x000074745f000000)
+        libcudafor.so => /opt/nvidia/hpc_sdk/Linux_x86_64/25.7/compilers/lib/libcudafor.so (0x000074745ec00000)
+        libacchost.so => /opt/nvidia/hpc_sdk/Linux_x86_64/25.7/compilers/lib/libacchost.so (0x000074745e800000)
+        libaccdevaux.so => /opt/nvidia/hpc_sdk/Linux_x86_64/25.7/compilers/lib/libaccdevaux.so (0x000074745e400000)
+        libaccdevice.so => /opt/nvidia/hpc_sdk/Linux_x86_64/25.7/compilers/lib/libaccdevice.so (0x000074745e000000)
+        libcudadevice.so => /opt/nvidia/hpc_sdk/Linux_x86_64/25.7/compilers/lib/libcudadevice.so (0x000074745dc00000)
+        libcudafor2.so => /opt/nvidia/hpc_sdk/Linux_x86_64/25.7/compilers/lib/libcudafor2.so (0x000074745d800000)
+        libnvf.so => /opt/nvidia/hpc_sdk/Linux_x86_64/25.7/compilers/lib/libnvf.so (0x000074745d000000)
+        libnvomp.so => /opt/nvidia/hpc_sdk/Linux_x86_64/25.7/compilers/lib/libnvomp.so (0x000074745be00000)
+        libnvhpcatm.so => /opt/nvidia/hpc_sdk/Linux_x86_64/25.7/compilers/lib/libnvhpcatm.so (0x000074745ba00000)
+        libnvcpumath.so => /opt/nvidia/hpc_sdk/Linux_x86_64/25.7/compilers/lib/libnvcpumath.so (0x000074745b400000)
+        libnvc.so => /opt/nvidia/hpc_sdk/Linux_x86_64/25.7/compilers/lib/libnvc.so (0x000074745b000000)
+        libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x000074745ac00000)
+        libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007474d938b000)
+        libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007474d9386000)
+        libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007474d9381000)
+        /lib64/ld-linux-x86-64.so.2 (0x00007474d93c3000)
+        librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00007474d937c000)
+        libcusparse.so.12 => /opt/nvidia/hpc_sdk/Linux_x86_64/25.7/math_libs/12.9/lib64/libcusparse.so.12 (0x000074743da00000)
+milias@DESKTOP-7OTLCGO:~/work/software/qe/q-e-devel/build_gpu/.ctest -j4
+.
+.
+.
+milias@DESKTOP-7OTLCGO:~/work/software/qe/q-e-devel/build_gpu/test-suite/.grep 'GPU acceleration is ACTIVE'  */test.out*
+cp_h2o/test.out.010121.inp=h2o-mt-blyp-1.in:     GPU acceleration is ACTIVE.  1 visible GPUs per MPI rank
+cp_h2o/test.out.010121.inp=h2o-mt-blyp-2.in:     GPU acceleration is ACTIVE.  1 visible GPUs per MPI rank
+cp_h2o/test.out.010121.inp=h2o-mt-blyp-3.in:     GPU acceleration is ACTIVE.  1 visible GPUs per MPI rank
+cp_h2o/test.out.010121.inp=h2o-mt-blyp-4.in:     GPU acceleration is ACTIVE.  1 visible GPUs per MPI rank
+cp_h2o/test.out.010121.inp=h2o-mt-blyp-5.in:     GPU acceleration is ACTIVE.  1 visible GPUs per MPI rank
+cp_o2/test.out.010121.inp=o2-us-para-pbe-1.in:     GPU acceleration is ACTIVE.  1 visible GPUs per MPI rank
+cp_o2/test.out.010121.inp=o2-us-para-pbe-2.in:     GPU acceleration is ACTIVE.  1 visible GPUs per MPI rank
+cp_o2/test.out.010121.inp=o2-us-para-pbe-3.in:     GPU acceleration is ACTIVE.  1 visible GPUs per MPI rank
+cp_sio2/test.out.010121.inp=sio2-us-lda-1.in:     GPU acceleration is ACTIVE.  1 visible GPUs per MPI rank
+pw_berry/test.out.010121.inp=berry.in:     GPU acceleration is ACTIVE.  1 visible GPUs per MPI rank
+pw_electric/test.out.010121.inp=electric.in:     GPU acceleration is ACTIVE.  1 visible GPUs per MPI rank
+pw_metaGGA/test.out.010121.inp=metaGGA.in:     GPU acceleration is ACTIVE.  1 visible GPUs per MPI rank
+pw_metal/test.out.010121.inp=metal-tetrahedra.in:     GPU acceleration is ACTIVE.  1 visible GPUs per MPI rank
+pw_noncolin/test.out.010121.inp=noncolin.in:     GPU acceleration is ACTIVE.  1 visible GPUs per MPI rank
+pw_scf/test.out.010121.inp=scf-disk_io.in:     GPU acceleration is ACTIVE.  1 visible GPUs per MPI rank
+pw_scf/test.out.010121.inp=scf.in:     GPU acceleration is ACTIVE.  1 visible GPUs per MPI rank
 

@@ -38,3 +38,9 @@ Built on Tue_May_27_02:21:03_PDT_2025
 Cuda compilation tools, release 12.9, V12.9.86
 Build cuda_12.9.r12.9/compiler.36037853_0
 
+add vars
+~~~~~~~~~
+export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/25.7/compilers/bin:$PATH
+export MANPATH=/opt/nvidia/hpc_sdk/Linux_x86_64/25.7/compilers/man:$MANPATH
+
+export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/25.7/comm_libs/mpi/bin:$PATH

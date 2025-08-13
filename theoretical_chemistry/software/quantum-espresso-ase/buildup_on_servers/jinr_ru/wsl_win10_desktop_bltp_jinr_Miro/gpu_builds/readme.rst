@@ -169,6 +169,9 @@ milias@DESKTOP-7OTLCGO:~/work/software/qe/q-e-devel/build_gpu/.ldd bin/pw.x
         /lib64/ld-linux-x86-64.so.2 (0x00007474d93c3000)
         librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00007474d937c000)
         libcusparse.so.12 => /opt/nvidia/hpc_sdk/Linux_x86_64/25.7/math_libs/12.9/lib64/libcusparse.so.12 (0x000074743da00000)
+
+ctest
+~~~~~
 milias@DESKTOP-7OTLCGO:~/work/software/qe/q-e-devel/build_gpu/.ctest -j4
 .
 .

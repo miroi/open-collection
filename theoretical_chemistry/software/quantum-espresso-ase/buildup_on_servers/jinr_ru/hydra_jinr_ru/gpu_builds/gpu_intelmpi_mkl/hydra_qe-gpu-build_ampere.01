@@ -90,10 +90,9 @@ module purge
 #module load GVR/v1.0-1 gcc/v11.2.0 fftw/v3.3.10_gcc1120 LAPACK/v3.9.0 openmpi/v4.1.1_gcc1120
 #module load GVR/v1.0-1 intel/v2021.1 Python/v3.10.13 CMake/v3.29.2
 module load GVR/v1.0-1 Python/v3.10.13 CMake/v3.29.2 
-module load LAPACK/v3.12.0_gcc1230
-
+#module load LAPACK/v3.12.0_gcc1230
 #module load fftw/v3.3.10_gcc1120
-module load fftw/v3.3.10_openmpi503
+module load intel/oneapi
 
 module load git
 
@@ -145,7 +144,7 @@ ls  /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/Linux_x86_64/23.5/compiler
 
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-7.3.1
 QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e
-BUILD=build_gpu_cuda_NOopenmpi_lapack
+BUILD=build_gpu_cuda_NOopenmpi_mkl
 
 cd $QE; echo -e "\n\nI am in the directory QE=$QE"; pwd
 
@@ -202,7 +201,7 @@ export OMP_NUM_THREADS=$SLURM_CPUS_ON_NODE
 echo -e "\n\n OMP_NUM_THREADS=$OMP_NUM_THREADS"
 
 #echo -e "\n\n running :  ctest  -j $SLURM_CPUS_ON_NODE : "
-echo -e "\n\n running :  ctest   "
+echo -e "\n\n running :  ctest with OMP_NUM_THREADS=$OMP_NUM_THREADS :  "
 #ctest  -j $SLURM_CPUS_ON_NODE
 ctest  
 

@@ -88,16 +88,14 @@ module purge
 #module load GVR/v1.0-1 gcc/v11.2.0 fftw/v3.3.10_gcc1120 LAPACK/v3.9.0 openmpi/v4.1.1_gcc1120
 #module load GVR/v1.0-1 intel/v2021.1 Python/v3.10.13 CMake/v3.29.2
 module load GVR/v1.0-1 Python/v3.10.13 CMake/v3.29.2 
-module load openmpi/v5.0.3_gcc1230  LAPACK/v3.12.0_gcc1230
-module load fftw/v3.3.10_openmpi503
+#module load openmpi/v5.0.3_gcc1230  LAPACK/v3.12.0_gcc1230
+#module load fftw/v3.3.10_openmpi503
+module load intel/oneapi
 
 module load git
 
 # NVHPC with OpenMPI ?
 module load cuda/v12.1
-
-# overlappibg CUDA-MPI and OpenMPI ...
-#module load openmpi/v5.0.3_gcc1230  LAPACK/v3.12.0_gcc1230
 
 
 echo -e "\n\n All loaded modules:"
@@ -131,9 +129,8 @@ echo -e "\n pgfortran ? ; \c"; which pgfortran; pgfortran --version
 # for running jobs from your homedir, use ...
 #cd $SLURM_SUBMIT_DIR
 
-#QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-7.3.1
 QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e
-BUILD=build_gpu_cuda_openmpi_lapack
+BUILD=build_gpu_cuda_NOopenmpi_mkl
 
 echo -e "\n\n  ls -lt $QE/$BUILD/bin : "
 ls -lt $QE/$BUILD/bin
@@ -147,8 +144,8 @@ echo " It has the disk space of (df -h) :"; df -h .
 #echo -e "\n\n running :  ctest  -j $SLURM_CPUS_ON_NODE : "
 #ctest  -j $SLURM_CPUS_ON_NODE
 
-#export OMP_NUM_THREADS=$SLURM_CPUS_ON_NODE
-#echo -e "\n\n OMP_NUM_THREADS=$OMP_NUM_THREADS"
+export OMP_NUM_THREADS=$SLURM_CPUS_ON_NODE
+echo -e "\n\n OMP_NUM_THREADS=$OMP_NUM_THREADS"
 
 project=Se54_r_Fl
 
@@ -156,7 +153,8 @@ inp=$project.in
 out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out
 
 #mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE  $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
-mpirun -v -np 1 $QE/$BUILD/bin/pw.x  < $inp > $out
+#mpirun -v -np 1 $QE/$BUILD/bin/pw.x  < $inp > $out
+$QE/$BUILD/bin/pw.x  < $inp > $out
 
 
 

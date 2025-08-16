@@ -156,7 +156,8 @@ inp=$project.in
 out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out
 
 #mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE  $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
-mpirun -v -np 1 $QE/$BUILD/bin/pw.x  < $inp > $out
+#mpirun -v -np 1 $QE/$BUILD/bin/pw.x  < $inp > $out
+/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/openmpi/v5.0.3_gcc1230/bin/mpirun -v -np 1 $QE/$BUILD/bin/pw.x  < $inp > $out
 
 
 

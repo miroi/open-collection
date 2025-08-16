@@ -130,7 +130,7 @@ echo -e "\n pgfortran ? ; \c"; which pgfortran; pgfortran --version
 #cd $SLURM_SUBMIT_DIR
 
 QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e
-BUILD=build_gpu_cuda_NOopenmpi_mkl
+BUILD=build_gpu_cuda_intelmpi_mkl
 
 echo -e "\n\n  ls -lt $QE/$BUILD/bin : "
 ls -lt $QE/$BUILD/bin
@@ -155,8 +155,9 @@ out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SL
 #mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE  $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
 #mpirun -v -np 1 $QE/$BUILD/bin/pw.x  < $inp > $out
 
-$QE/$BUILD/bin/pw.x  < $inp > $out
+#mpirun $QE/$BUILD/bin/pw.x  < $inp > $out
 
+/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mpi/latest/bin/mpirun  $QE/$BUILD/bin/pw.x  < $inp > $out
 
 
 exit

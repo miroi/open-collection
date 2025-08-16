@@ -172,7 +172,7 @@ echo -e "\n\n\n Running cmake :"
 # ... this is proper
 #cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=pgfortran -DQE_ENABLE_MPI=OFF -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_CUDA=ON ..
 
-cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=pgfortran -DQE_ENABLE_MPI=ON -DQE_ENABLE_OPENMP=OFF -DQE_ENABLE_CUDA=ON -DQE_LAPACK_INTERNAL=OFF   -DQE_ENABLE_SCALAPACK=OFF -DQE_ENABLE_ELPA=OFF -DQE_ENABLE_LIBXC=OFF  -DQE_ENABLE_HDF5=OFF  -DQE_ENABLE_MPI_GPU_AWARE=OFF ..
+cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=pgfortran -DQE_ENABLE_MPI=ON -DQE_ENABLE_OPENMP=OFF -DQE_ENABLE_CUDA=ON -DQE_LAPACK_INTERNAL=OFF   -DQE_ENABLE_SCALAPACK=OFF -DQE_ENABLE_ELPA=OFF -DQE_ENABLE_LIBXC=OFF  -DQE_ENABLE_HDF5=OFF  -DQE_ENABLE_MPI_GPU_AWARE=ON ..
 
 echo -e "\n\n  running :  make -j $SLURM_CPUS_ON_NODE "
 make -j $SLURM_CPUS_ON_NODE
@@ -181,6 +181,11 @@ echo -e "\n\n  ls -lt $QE/$BUILD/bin : "
 ls -lt $QE/$BUILD/bin
 echo -e "\n\n ldd $QE/$BUILD/bin/pw.x :  "
 ldd $QE/$BUILD/bin/pw.x
+
+#echo -e "\n\n running :  ctest  -j $SLURM_CPUS_ON_NODE : "
+echo -e "\n\n running :  ctest   "
+#ctest  -j $SLURM_CPUS_ON_NODE
+ctest -V
 
 
 

@@ -182,6 +182,13 @@ make -j $SLURM_CPUS_ON_NODE
 
 echo -e "\n\n  ls -lt $QE/$BUILD/bin : "
 ls -lt $QE/$BUILD/bin
+
+if [ -f "$QE/$BUILD/bin/pw.x" ]; then
+  echo -e "\nFile pw.x exists. Fine, continuing"
+else
+  echo -e "\n Regular file pw.x does not exist, exit ! "; exit -2
+fi
+
 echo -e "\n\n ldd $QE/$BUILD/bin/pw.x :  "
 ldd $QE/$BUILD/bin/pw.x
 

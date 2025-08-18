@@ -117,17 +117,19 @@ fi
 
 mkdir $BUILD
 cd $BUILD
+
 echo -e "\n\n\n Im in directory MCTC/BUILD=$MCTC/$BUILD"; pwd
 
-echo -e "\n running cmake : "
+echo -e "\n\n running cmake : \n "
 FC=ifort CC=icc cmake -DCMAKE_INSTALL_PREFIX=$MCTC_INSTALL ..
 
 echo -e "\n Going to run make .."
-make VERBOSE=1 -j $SLURM_CPUS_ON_NODE
+#make VERBOSE=1 -j $SLURM_CPUS_ON_NODE
+make -j $SLURM_CPUS_ON_NODE
 
-echo -e "\n Now running ctest -j$SLURM_CPUS_ON_NODE"
+echo -e "\n\n Now running ctest -j$SLURM_CPUS_ON_NODE : \n"
 ctest -j$SLURM_CPUS_ON_NODE
 
-echo -e "\n\n End time is `date` \n"
+echo -e "\n\n Finished, time is `date` \n"
 
 exit

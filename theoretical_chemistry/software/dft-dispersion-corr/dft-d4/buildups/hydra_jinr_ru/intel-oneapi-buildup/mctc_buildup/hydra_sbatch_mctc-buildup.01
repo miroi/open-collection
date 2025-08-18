@@ -84,7 +84,7 @@ echo -e "\n"
 
 #DFTD4=/lustre/home/user/m/milias/work/software/dft_dispersion_corrections/dft-d4/dftd4
 MCTC=/lustre/home/user/m/milias/work/software/dft_dispersion_corrections/dft-d4/mctc/mctc-lib
-MCTC_INSTALL=/lustre/home/user/m/milias/work/software/dft_dispersion_corrections/dft-d4/mctc
+MCTC_INSTALL=/lustre/home/user/m/milias/work/software/dft_dispersion_corrections/dft-d4/mctc/mctc_installed
 echo -e "\n MCTC=$MCTC"
 echo -e "\n MCTC_INSTALL=$MCTC_INSTALL"
 
@@ -126,6 +126,12 @@ FC=ifort CC=icc cmake -DCMAKE_INSTALL_PREFIX=$MCTC_INSTALL ..
 echo -e "\n Going to run make .."
 #make VERBOSE=1 -j $SLURM_CPUS_ON_NODE
 make -j $SLURM_CPUS_ON_NODE
+
+
+echo -e "\n\n Going to run make install : "
+make install
+
+echo -e "\n\n Check $MCTC_INSTALL :"; ls -l $MCTC_INSTALL
 
 echo -e "\n\n Now running ctest -j$SLURM_CPUS_ON_NODE : \n"
 ctest -j$SLURM_CPUS_ON_NODE

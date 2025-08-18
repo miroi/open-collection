@@ -108,12 +108,9 @@ else
   echo "Directory BUILD=$BUILD does not exists. It will be created via cmake."
 fi
 
-MCTCDIR=/lustre/home/user/m/milias/work/software/dft_dispersion_corrections/dft-d4/mctc/mctc-lib/build_inteloneapi
+MCTCDIR=/lustre/home/user/m/milias/work/software/dft_dispersion_corrections/dft-d4/mctc/mctc_installed
 echo -e "\n\n mctc-lib_DIR=$MCTCDIR"
-echo -e "ls -lt $MCTCDIR :"; ls -lt $MCTCDIR
-ls -lt $MCTCDIR/include
-ls -lt $MCTCDIR/libmctc-lib.a
-ar t $MCTCDIR/libmctc-lib.a
+echo -e "ls -lt of MCTCDIR=$MCTCDIR :"; ls -lt $MCTCDIR/
 
 export LD_LIBRARY_PATH=$MCTCDIR:$LD_LIBRARY_PATH
 
@@ -124,7 +121,7 @@ echo -e "\n\n\n Going to run cmake into BUILD=$BUILD .."
 #FC=gfortran cmake ..
 FC=ifort CC=icc cmake -B $BUILD  -Dmctc-lib_DIR=$MCTCDIR
 
-echo -e "\n Going to run make .."
+echo -e "\n\n Going to run make .."
 make VERBOSE=1  -j $SLURM_CPUS_ON_NODE
 
 echo -e "\n\n I am in  pwd=\c";pwd

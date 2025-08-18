@@ -161,9 +161,8 @@ else
   mkdir $BUILD
 fi
 
-
-cd $QE/$BUILD
-echo -e "\n Current directory where this SLURM job is running `pwd`"
+cd $BUILD
+echo -e "\n Current directory where this SLURM job is running QE/BUILD=$QE/$BUILD";pwd
 echo " It has the disk space of (df -h) :"; df -h .
 
 echo -e "\n\n\n Running cmake :"
@@ -202,8 +201,8 @@ export OMP_NUM_THREADS=$SLURM_CPUS_ON_NODE
 echo -e "\n\n OMP_NUM_THREADS=$OMP_NUM_THREADS"
 
 #echo -e "\n\n running :  ctest  -j $SLURM_CPUS_ON_NODE : "
-echo -e "\n\n running :  ctest   "
+echo -e "\n\n running :  ctest -V   "
 #ctest  -j $SLURM_CPUS_ON_NODE
-ctest  
+ctest -V 
 
 exit

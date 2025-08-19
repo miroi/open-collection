@@ -52,5 +52,6 @@ milias@DESKTOP-7OTLCGO:~/work/git-projects/open-collection/computer_science/cuda
 
 milias@DESKTOP-7OTLCGO:~/work/git-projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/.make all > ../make.logfile 2>&1
 
+1 Test Failed
 
 

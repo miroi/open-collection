@@ -16,5 +16,6 @@ srun: Job step aborted: Waiting up to 122 seconds for job step to finish.
 srun: error: Timed out waiting for job step to complete
 
 
+it gives empty output file, like Se54_r_Fl.gvr.ampere.N1.n4.jid13289877.out
 
 

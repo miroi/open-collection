@@ -88,7 +88,7 @@ module purge
 #module load GVR/v1.0-1 gcc/v11.2.0 fftw/v3.3.10_gcc1120 LAPACK/v3.9.0 openmpi/v4.1.1_gcc1120
 #module load GVR/v1.0-1 intel/v2021.1 Python/v3.10.13 CMake/v3.29.2
 module load GVR/v1.0-1 Python/v3.10.13 CMake/v3.29.2 
-module LAPACK/v3.12.0_gcc1230
+module load LAPACK/v3.12.0_gcc1230
 module load fftw/v3.3.10_openmpi503
 
 module load git
@@ -157,7 +157,6 @@ out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SL
 
 #mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE  $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
 $QE/$BUILD/bin/pw.x  < $inp > $out
-
 
 
 exit

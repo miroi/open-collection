@@ -3,8 +3,10 @@
 #SBATCH -J asetests
 
 ##  partition (queue)
-#SBATCH -p cascade
+##SBATCH -p cascade
 #SBATCH -p flnr-ice
+##SBATCH -p slo-ice
+##SBATCH -p knl
 
 ## max. execution time
 ##SBATCH -t 10-00:00:00
@@ -31,7 +33,7 @@
 #SBATCH -o log_slurm_job.%j.%N.std_out_err
 
 ## mail
-#SBATCH --mail-user=miro.ilias@gmail.com
+#SBATCH --mail-user=milias@theor.jinr.ru
 #SBATCH --mail-type=ALL
 
  
@@ -74,17 +76,18 @@ free -t -g
 echo -e "\n"
 
 echo -e "\nMy PATH=$PATH\n"
-echo -e "Python -v :\c"; python -V
+echo -e "Python ? :\c"; which python; python -V
 #echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
-echo -e "\n ase info :"; ase info
+echo -e "\n\n ase ?:"; ase info; pip show ase;
 
-export NSCM=$SLURM_CPUS_ON_NODE
+echo -e "\n\n pip list ?";pip list
 
-echo -e "\n Running in  $SLURM_SUBMIT_DIR : ase test "
+#export NSCM=$SLURM_CPUS_ON_NODE
 
-  #python3 test_N2Cu.py
-  #$SLURM_SUBMIT_DIR/Po_on_O-bridges_al-q_010_O3cut_4x4_frozbottomSi.geopt_srzora_revpbe-d3bj_tzp_sc_01.run
+echo -e "\n\n Running in  $SLURM_SUBMIT_DIR : ase --help "
+  ase --help
 
+echo -e "\n\n Running in  $SLURM_SUBMIT_DIR : ase test "
   ase test
 
 exit

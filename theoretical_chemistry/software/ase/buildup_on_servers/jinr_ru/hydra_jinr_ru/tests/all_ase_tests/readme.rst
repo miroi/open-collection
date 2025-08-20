@@ -2,7 +2,17 @@
 ase all tests on Govorun
 ========================
 
+on nodes
+~~~~~~~~
 sbatch hydra_slurm_ase.01
 
-==== 2975 passed, 520 skipped, 26 xfailed, 5 warnings in 222.54s (0:03:42) =====
+error on nodes:
+
+    import tkinter as tk
+E   ModuleNotFoundError: No module named 'tkinter'
+
+
+interactive
+~~~~~~~~~~~
+
 

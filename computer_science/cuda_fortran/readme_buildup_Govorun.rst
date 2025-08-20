@@ -18,25 +18,14 @@ mpif90 -O2  -o mpiDevices.out mpiDevices.cuf
 0: ALLOCATE: 80 bytes requested; status = 35(CUDA driver version is insufficient for CUDA runtime version)
 
 
-make.logfile_Govorun-dgx_SAVED
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+make.logfile_Govorun-dgx3_PASSED
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 sbatch hydra_gpu-build_dgx.01:
 
-nvfortran -O2  -o cufKernel.out cufKernel.cuf
-make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter3/cufKernel'
-make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter3/cufKernel
-'
-./cufKernel.out
-0: ALLOCATE: 4194304 bytes requested; not enough memory: 35(CUDA driver version is insufficient for CUDA runtime version)
-make[1]: *** [run] Error 127
-make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter3/cufKernel'
-
-mpif90 -O2  -c ../common/mpiDeviceUtil.cuf
-/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/Linux_x86_64/23.5/comm_libs/openmpi/openmpi-3.1.5/bin/.bin/mpif90: error while loading shared librarie
-s: librdmacm.so.1: cannot open shared object file: No such file or directory
-make[1]: *** [build] Error 127
-make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/transp
-oseMPI'
+milias@hydra.jinr.ru:~/work/projects/open-collection/computer_science/cuda_fortran/.grep libatomic.so.1  make.logfile_Govorun-dgx3_PASSED
+/usr/bin/ld: warning: libatomic.so.1, needed by /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.4/Linux_x86_64/24.5/comm_libs/12.4/hpcx/hpcx-2.19/ompi/lib/libmpi_usempif08.so, not found (try using -rpath or -rpath-link)
+/usr/bin/ld: warning: libatomic.so.1, needed by /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.4/Linux_x86_64/24.5/comm_libs/12.4/hpcx/hpcx-2.19/ompi/lib/libmpi_usempif08.so, not found (try using -rpath or -rpath-link)
+/usr/bin/ld: warning: libatomic.so.1, needed by /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.4/Linux_x86_64/24.5/comm_libs/12.4/hpcx/hpcx-2.19/ompi/lib/libmpi_usempif08.so, not found (try using -rpath or -rpath-link)
 
 
 

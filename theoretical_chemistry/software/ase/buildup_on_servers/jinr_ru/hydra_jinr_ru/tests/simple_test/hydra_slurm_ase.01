@@ -1,28 +1,27 @@
 #!/bin/bash
 
-#SBATCH -J asetests
+#SBATCH -J ase
 
 ##  partition (queue)
-##SBATCH -p cascade
+#SBATCH -p cascade
 #SBATCH -p flnr-ice
-##SBATCH -p slo-ice
-##SBATCH -p knl
 
 ## max. execution time
 ##SBATCH -t 10-00:00:00
 ##SBATCH -t 7-00:00:00
-#SBATCH -t 0-03:00:00
+#SBATCH -t 0-01:00:00
 
 ##SBATCH --exclusive
 
-##SBATCH --mem=8GB
-#SBATCH --mem=16GB
+#SBATCH --mem=8GB
+##SBATCH --mem=24GB
+##SBATCH --mem=16GB
 
 # do not restart in the case of nodefail!
 #SBATCH --no-requeue
 #SBATCH --no-kill
 
-#SBATCH -N 1 -n 4
+#SBATCH -N 1 -n 2
 #SBATCH  --sockets-per-node=1
 
 
@@ -33,7 +32,7 @@
 #SBATCH -o log_slurm_job.%j.%N.std_out_err
 
 ## mail
-#SBATCH --mail-user=milias@theor.jinr.ru
+#SBATCH --mail-user=miro.ilias@gmail.com
 #SBATCH --mail-type=ALL
 
  
@@ -76,18 +75,16 @@ free -t -g
 echo -e "\n"
 
 echo -e "\nMy PATH=$PATH\n"
-echo -e "Python ? :\c"; which python; python -V
+echo -e "Python -v :\c"; python -V
 #echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
-echo -e "\n\n ase ?:"; ase info; pip show ase;
+echo -e "\n ase info :"; ase info
 
-echo -e "\n\n pip list ?";pip list
+export NSCM=$SLURM_CPUS_ON_NODE
 
-#export NSCM=$SLURM_CPUS_ON_NODE
+echo -e "\n Running in  $SLURM_SUBMIT_DIR : "
 
-echo -e "\n\n Running in  $SLURM_SUBMIT_DIR : ase --help "
-  ase --help
+  python3 test_N2Cu.py
 
-echo -e "\n\n Running in  $SLURM_SUBMIT_DIR : ase test "
-  ase test
+  #$SLURM_SUBMIT_DIR/Po_on_O-bridges_al-q_010_O3cut_4x4_frozbottomSi.geopt_srzora_revpbe-d3bj_tzp_sc_01.run
 
 exit

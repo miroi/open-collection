@@ -195,4 +195,50 @@ Test project /lustre/home/user/m/milias/work/software/dft_dispersion_corrections
 Total Test time (real) =  24.84 sec
 milias@hydra.jinr.ru:~/work/software/dft_dispersion_corrections/dft-d4/dftd4/build_intel_api/.
 
+milias@hydra.jinr.ru:~/work/software/dft_dispersion_corrections/dft-d4/dftd4/build_intel_api/./lustre/home/user/m/milias/work/software/dft_dispersion_corrections/dft-d4/installed_dftd4/bin/dftd4 --help
+Usage: dftd4 [run|param] [options] ...
+
+Generally Applicable Atomic-Charge Dependent London Dispersion Correction.
+Takes an geometry input to calculate the D4(S) dispersion correction.
+Periodic calculations are performed automatically for periodic input formats.
+Reads .CHRG file (if present) from the same directory as the input.
+Specify the functional to select the correct parameters.
+
+Commands
+
+  run       Evaluate dispersion correction on the provided input structure.
+            Periodic calculations are performed automatically for periodic inputs
+            If no command is specified run is selected by default.
+
+  param     Inspect damping parameters.
+
+Options
+
+-c,--charge <real>       Set charge to molecule, overwrites .CHRG file
+-i,--input <format>      Hint for the format of the input file
+-f,--func <method>       Use damping parameters for given functional
+   --param <list>        Specify parameters for rational damping,
+                         expected order is s6, s8, a1, a2 (requires four arguments)
+   --mbdscale <s9>       Use scaled ATM three-body dispersion
+   --zeta <list>         Adjust charge scaling parameters, takes two reals,
+                         expected order is ga, gc (default: 3.0, 2.0)
+   --wfactor <real>      Adjust weighting factor for interpolation (only D4)
+                         (default: 6.0)
+-m,--model <model>       Use specific D4 model (options: D4 (default), D4S)
+-g,--grad [file]         Evaluate molecular gradient and virial,
+                         write results to file (default: dftd4.txt),
+                         attempts to add to Turbomole gradient and gradlatt files
+   --hessian             Evaluate molecular hessian
+   --property            Show dispersion related atomic and system properties
+   --pair-resolved       Calculate pairwise representation of dispersion energy
+   --noedisp             Disable writing of dispersion energy to .EDISP file
+   --json [file]         Dump results to JSON output (default: dftd4.json)
+-v,--verbose             Show more, can be used multiple times
+-s,--silent              Show less, use twice to supress all output
+   --version             Print program version and exit
+   --citation            Print citation information and exit
+   --license             Print license header and exit
+-h,--help                Show this help message
+
+milias@hydra.jinr.ru:~/work/software/dft_dispersion_corrections/dft-d4/dftd4/build_intel_api/.
 

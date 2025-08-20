@@ -2,4 +2,6 @@
 QE buildup on GPU
 =================
 
-inteloneapi + MKL
+CUDA-oepnmpi + MKL (scalapack)
+
+

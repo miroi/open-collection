@@ -10,6 +10,7 @@
 ##SBATCH -p slo-ice
 ##SBATCH -p ampere
 #SBATCH -p dgx
+#SBATCH -w dgx03
 
 ##SBATCH --qos=dirac
 
@@ -91,13 +92,16 @@ echo -e "\n all modules, including /cvmfs/nica.jinr.ru/sw/os/login.sh"; module a
 module purge
 
 # NVHPC with OpenMPI ?
-module load cuda/v12.1
+module load cuda/v12.4
 
 #module load GVR/v1.0-1 gcc/v11.2.0 fftw/v3.3.10_gcc1120 LAPACK/v3.9.0 openmpi/v4.1.1_gcc1120
 #module load GVR/v1.0-1 intel/v2021.1 Python/v3.10.13 CMake/v3.29.2
 module load GVR/v1.0-1 Python/v3.10.13 CMake/v3.29.2 
-module load openmpi/v5.0.3_gcc1230  LAPACK/v3.12.0_gcc1230
-module load fftw/v3.3.10_openmpi503
+#module load openmpi/v5.0.3_gcc1230  LAPACK/v3.12.0_gcc1230
+module load LAPACK/v3.12.0_gcc1230
+
+#module load fftw/v3.3.10_openmpi503
+module load fftw/v3.3.10_gcc1120
 
 module load git
 
@@ -134,6 +138,7 @@ echo -e "\n nvidia-smi ? \c"; which nvidia-smi; nvidia-smi
 echo -e "\n\n nvcc ? ; \c"; which nvcc; nvcc --version
 echo -e "\n nvfortran ? ; \c"; which nvfortran; nvfortran --version
 echo -e "\n pgfortran ? ; \c"; which pgfortran; pgfortran --version
+echo -e "\n mpif90 ? ; \c"; which mpif90; mpif90 --version
 
 echo -e "\n ls  /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/Linux_x86_64/23.5/compilers:";
 ls  /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/Linux_x86_64/23.5/compilers
@@ -183,7 +188,7 @@ echo -e "\n\n\n Running cmake :"
 
 #cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=pgfortran -DQE_ENABLE_MPI=ON -DQE_ENABLE_OPENMP=OFF -DQE_ENABLE_CUDA=ON -DQE_LAPACK_INTERNAL=OFF   -DQE_ENABLE_SCALAPACK=OFF -DQE_ENABLE_ELPA=OFF -DQE_ENABLE_LIBXC=OFF  -DQE_ENABLE_HDF5=OFF  -DQE_ENABLE_MPI_GPU_AWARE=ON ..
 
-cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=nvfortran -DQE_ENABLE_MPI=ON -DQE_ENABLE_OPENMP=OFF -DQE_ENABLE_CUDA=ON -DQE_LAPACK_INTERNAL=OFF   -DQE_ENABLE_SCALAPACK=OFF -DQE_ENABLE_ELPA=OFF -DQE_ENABLE_LIBXC=OFF  -DQE_ENABLE_HDF5=OFF  -DQE_ENABLE_MPI_GPU_AWARE=ON ..
+cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=mpif90 -DQE_ENABLE_MPI=ON -DQE_ENABLE_OPENMP=OFF -DQE_ENABLE_CUDA=ON -DQE_LAPACK_INTERNAL=OFF   -DQE_ENABLE_SCALAPACK=OFF -DQE_ENABLE_ELPA=OFF -DQE_ENABLE_LIBXC=OFF  -DQE_ENABLE_HDF5=OFF  -DQE_ENABLE_MPI_GPU_AWARE=ON ..
 
 echo -e "\n\n  running :  make -j $SLURM_CPUS_ON_NODE "
 make -j $SLURM_CPUS_ON_NODE

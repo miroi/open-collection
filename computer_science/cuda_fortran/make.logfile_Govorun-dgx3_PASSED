@@ -1,10 +1,10 @@
 
 Running on host dgx03.hydra.local
-Time is Wed Aug 20 14:57:25 MSK 2025 
+Time is Wed Aug 20 15:39:42 MSK 2025 
 
 
 Job user is SLURM_JOB_USER= milias
-User job SLURM_JOB_NAME=CUDAFor has assigned ID SLURM_JOBID=13311382
+User job SLURM_JOB_NAME=CUDAFor has assigned ID SLURM_JOBID=13315303
 This job was submitted from the computer SLURM_SUBMIT_HOST=space06.hydra.local
 and from the home directory SLURM_SUBMIT_DIR:
 /lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran
@@ -199,14 +199,14 @@ Loading Python/v3.10.13
 
  All loaded modules:
 Currently Loaded Modulefiles:
- 1) GVR/v1.0-1      3) Python/v3.10.13   5) cuda/v12.4  
- 2) BASE/1.0 <aL>   4) CMake/v3.29.2    
+ 1) GVR/v1.0-1      3) Python/v3.10.13   5) gcc/v12.3.0  
+ 2) BASE/1.0 <aL>   4) CMake/v3.29.2     6) cuda/v12.4   
 
 Key:
 <module-tag>  <aL>=auto-loaded  
 
 Running on host dgx03.hydra.local
-Time is Wed Aug 20 14:57:37 MSK 2025 
+Time is Wed Aug 20 15:39:42 MSK 2025 
 
 
  The total memory at the node (in GB)
@@ -221,24 +221,23 @@ Total:          535          15         519
 CUDA-Fortran-Book
 hydra_gpu-build_ampere.01
 hydra_gpu-build_dgx3.01
-log_slurm_job.13311382.dgx03.std_out_err
-make.logfile_Govorun-ampere_SAVED
-make.logfile_Govorun-dgx3_SAVED
-make.logfile_Govorun-dgx_SAVED
-make.logfile_WSL2_SAVED
+log_slurm_job.13315303.dgx03.std_out_err
+make.logfile_Govorun-ampere_FAILED
+make.logfile_Govorun-dgx3_PASSED
+make.logfile_WSL2_PASSED
 readme_buildup_Govorun.rst
 readme_buildup_WSL2.rst
 
 
- My PATH=/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.4/Linux_x86_64/24.5/comm_libs/mpi/bin:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.4/Linux_x86_64/24.5/compilers/bin:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.4/bin:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/CMake/v3.29.2/bin:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/Python/v3.10.13/bin:/cvmfs/nica.jinr.ru/sw/202309/slc7_x86-64/EnvironmentModules/v5.4.0-1/bin:/cvmfs/nica.jinr.ru/sw/os/linux/bin/:/lustre/home/user/m/milias/work/software/ams/linux.openmpi/ams2021.107/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/puppetlabs/bin:.:/lustre/home/user/m/milias/.local/bin:/lustre/home/user/m/milias/bin
+ My PATH=/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.4/Linux_x86_64/24.5/comm_libs/mpi/bin:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.4/Linux_x86_64/24.5/compilers/bin:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.4/bin:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/gcc/v12.3.0/bin:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/CMake/v3.29.2/bin:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/Python/v3.10.13/bin:/cvmfs/nica.jinr.ru/sw/202309/slc7_x86-64/EnvironmentModules/v5.4.0-1/bin:/cvmfs/nica.jinr.ru/sw/os/linux/bin/:/lustre/home/user/m/milias/work/software/ams/linux.openmpi/ams2021.107/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/puppetlabs/bin:.:/lustre/home/user/m/milias/.local/bin:/lustre/home/user/m/milias/bin
 
 
- My LD_LIBRARY_PATH=/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.4/lib64:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/Python/v3.10.13/lib64:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/Python/v3.10.13/lib 
+ My LD_LIBRARY_PATH=/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.4/lib64:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/gcc/v12.3.0/lib64:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/Python/v3.10.13/lib64:/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/Python/v3.10.13/lib 
 
  python -v :Python 3.10.13
 
  nvidia-smi ? /usr/bin/nvidia-smi
-Wed Aug 20 14:57:38 2025       
+Wed Aug 20 15:39:43 2025       
 +-----------------------------------------------------------------------------------------+
 | NVIDIA-SMI 550.163.01             Driver Version: 550.163.01     CUDA Version: 12.4     |
 |-----------------------------------------+------------------------+----------------------+
@@ -305,6 +304,12 @@ Copyright (c) 2024, NVIDIA CORPORATION & AFFILIATES.  All rights reserved.
 
 pgfortran (aka nvfortran) 24.5-1 64-bit target on x86-64 Linux -tp broadwell 
 PGI Compilers and Tools
+Copyright (c) 2024, NVIDIA CORPORATION & AFFILIATES.  All rights reserved.
+
+ mpif90 ? ; /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.4/Linux_x86_64/24.5/comm_libs/mpi/bin/mpif90
+
+nvfortran 24.5-1 64-bit target on x86-64 Linux -tp broadwell 
+NVIDIA Compilers and Tools
 Copyright (c) 2024, NVIDIA CORPORATION & AFFILIATES.  All rights reserved.
 
  ls  /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/Linux_x86_64/23.5/compilers:
@@ -638,13 +643,13 @@ make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-colle
 ./async.out
  Device: Tesla V100-SXM2-16GB
 
- Time for sequential transfer and execute (ms):     3.546912    
+ Time for sequential transfer and execute (ms):     3.502400    
    max error:    1.1920929E-07
- Time for asynchronous V1 transfer and execute (ms):     2.041664    
+ Time for asynchronous V1 transfer and execute (ms):     2.050336    
    max error:    1.1920929E-07
- Time for asynchronous V2 transfer and execute (ms):     2.033696    
+ Time for asynchronous V2 transfer and execute (ms):     2.028992    
    max error:    1.1920929E-07
- Time for asynchronous V3 transfer and execute (ms):     2.037600    
+ Time for asynchronous V3 transfer and execute (ms):     2.039264    
    max error:    1.1920929E-07
  Test Passed
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter3/async'
@@ -744,73 +749,73 @@ Transfer size (MB): 4
 Single Precision
 
  Offset, Bandwidth (GB/s):
-            0    512.0000    
+            0    481.8823    
             1    512.0000    
             2    512.0000    
-            3    512.0000    
-            4    512.0000    
-            5    546.1334    
+            3    546.1334    
+            4    546.1334    
+            5    512.0000    
             6    512.0000    
             7    512.0000    
             8    512.0000    
             9    512.0000    
            10    512.0000    
-           11    513.0020    
-           12    512.0000    
+           11    512.0000    
+           12    546.1334    
            13    546.1334    
            14    512.0000    
            15    512.0000    
-           16    546.1334    
+           16    512.0000    
            17    512.0000    
            18    512.0000    
-           19    481.8823    
-           20    512.0000    
+           19    512.0000    
+           20    546.1334    
            21    512.0000    
            22    512.0000    
-           23    512.0000    
+           23    546.1334    
            24    512.0000    
            25    512.0000    
            26    512.0000    
-           27    512.0000    
-           28    546.1334    
+           27    546.1334    
+           28    512.0000    
            29    512.0000    
            30    512.0000    
            31    512.0000    
-           32    512.0000    
+           32    546.1334    
  
  Stride, Bandwidth (GB/s):
-            1    512.0000    
+            1    546.1334    
             2    327.6800    
-            3    234.0571    
-            4    178.0870    
-            5    143.7193    
-            6    115.3803    
+            3    227.5556    
+            4    182.0444    
+            5    146.2857    
+            6    113.7778    
             7    94.16092    
-            8    79.53398    
-            9    70.01710    
-           10    63.50388    
+            8    80.31373    
+            9    70.62069    
+           10    64.00000    
            11    60.23529    
-           12    55.72789    
-           13    52.17834    
+           12    56.10959    
+           13    51.84810    
            14    48.47337    
            15    46.81143    
            16    47.62791    
-           17    45.01099    
-           18    44.28108    
+           17    44.52174    
+           18    44.76503    
            19    41.16583    
-           20    39.96098    
-           21    44.04301    
-           22    43.57447    
-           23    42.44559    
+           20    40.35468    
+           21    43.34391    
+           22    42.66666    
+           23    41.37374    
            24    42.89005    
-           25    42.89005    
-           26    43.80749    
-           27    40.55445    
-           28    39.96098    
-           29    41.37374    
-           30    38.82464    
-           31    40.96000    
-           32    43.11579    
+           25    40.96000    
+           26    43.57447    
+           27    39.00953    
+           28    39.00953    
+           29    39.57488    
+           30    41.16583    
+           31    40.15686    
+           32    41.16583    
  Test Passed
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter3/offsetNstride'
 make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter3/offsetNstride'
@@ -833,18 +838,18 @@ Thread-level parallelism runs
 
   Multiple Blocks per Multiprocessor
        Threads/Block         Bandwidth (GB/s)
-                  32               55.69
+                  32               48.91
                   64              246.11
                  128              423.86
-                 256              508.63
+                 256              544.96
                  512              544.96
-                1024              508.63
+                1024              544.96
 
   Single Block per Multiprocessor
        Threads/Block         Bandwidth (GB/s)
                   32               67.70
-                  64              124.12
-                 128              215.58
+                  64              126.03
+                 128              221.41
                  256              341.33
                  512              481.88
                 1024              546.13
@@ -854,7 +859,7 @@ Intruction-level parallelism runs
   ILP=4, Single Block per Multiprocessor
        Threads/Block         Bandwidth (GB/s)
  *** Test Passed ***
-                  32              174.30
+                  32              170.67
  *** Test Passed ***
                   64              341.33
  *** Test Passed ***
@@ -864,7 +869,7 @@ Intruction-level parallelism runs
  *** Test Passed ***
                  512              585.14
  *** Test Passed ***
-                1024              546.13
+                1024              585.14
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter3/parallelism'
 make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter3/parallelism'
 Cleaning up...
@@ -880,12 +885,12 @@ make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-colle
  Transfer size (MB):     16.00000    
  
  Pageable transfers
-   Host to Device bandwidth (GB/s):     8.625144    
-   Device to Host bandwidth (GB/s):     11.43685    
+   Host to Device bandwidth (GB/s):     8.289663    
+   Device to Host bandwidth (GB/s):     11.25057    
  
  Pinned transfers
-   Host to Device bandwidth (GB/s):     10.87351    
-   Device to Host bandwidth (GB/s):     12.37491    
+   Host to Device bandwidth (GB/s):     10.92062    
+   Device to Host bandwidth (GB/s):     11.90508    
  *** Pinned transfers passed ***
  
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter3/pinned'
@@ -925,15 +930,15 @@ grid:  32  32   1,   tBlock:  32   8   1
 
                   Routine         Bandwidth (GB/s)
        shared memory copy *** Test Passed ***
-              771.37
+              764.18
           naive transpose *** Test Passed ***
-              169.47
+              167.53
       coalesced transpose *** Test Passed ***
               436.44
   conflict-free transpose *** Test Passed ***
-              755.72
+              753.63
        diagonal transpose *** Test Passed ***
-              723.67
+              723.04
  
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter3/transpose'
 make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter3/transpose'
@@ -1002,7 +1007,7 @@ make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collec
 cd chapter4/P2P/transposeP2P; make build; make run; make clean
 make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/P2P/transposeP2P'
 nvfortran  -c timing.f90
-cc  -c wallclock.c
+/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/gcc/v12.3.0/bin/gcc  -c wallclock.c
 nvfortran -O2  -o transposeP2P.out timing.o wallclock.o transposeP2P.cuf
 transposeP2P.cuf:
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/P2P/transposeP2P'
@@ -1026,84 +1031,72 @@ async mode:  T
 
  *** Test Passed ***
 
-Bandwidth (GB/s):  195.10
+Bandwidth (GB/s):  199.19
 
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/P2P/transposeP2P'
 make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/P2P/transposeP2P'
 Cleaning up...
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/P2P/transposeP2P'
-cd chapter4/MPI/mpiDevices; make build; make NPROCS=4 run; make clean
+cd chapter4/MPI/mpiDevices; make build; make NPROCS=2 run; make clean
 make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/mpiDevices'
 mpif90 -O2  -o mpiDevices.out mpiDevices.cuf
-/usr/bin/ld: warning: libatomic.so.1, needed by /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.4/Linux_x86_64/24.5/comm_libs/12.4/hpcx/hpcx-2.19/ompi/lib/libmpi_usempif08.so, not found (try using -rpath or -rpath-link)
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/mpiDevices'
 make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/mpiDevices'
-mpiexec -np 4 ./mpiDevices.out
---------------------------------------------------------------------------
-A request was made to bind to that would result in binding more
-processes than cpus on a resource:
-
-   Bind to:     CORE
-   Node:        dgx03
-   #processes:  2
-   #cpus:       1
-
-You can override this protection by adding the "overload-allowed"
-option to your binding directive.
---------------------------------------------------------------------------
-make[1]: *** [run] Error 1
+mpiexec -np 2 ./mpiDevices.out
+[0] using device: 0 in compute mode: 0
+[1] using device: 0 in compute mode: 0
+  [1] after allocation on rank: 0, device arrays allocated: 1
+  [0] after allocation on rank: 0, device arrays allocated: 1
+  [0] after allocation on rank: 1, device arrays allocated: 2
+  [1] after allocation on rank: 1, device arrays allocated: 2
+ Test Passed
+ Test Passed
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/mpiDevices'
 make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/mpiDevices'
 Cleaning up...
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/mpiDevices'
-cd chapter4/MPI/assignDevice; make build; make NPROCS=4 run; make clean
+cd chapter4/MPI/assignDevice; make build; make NPROCS=2 run; make clean
 make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/assignDevice'
 mpif90 -O2  -c ../common/mpiDeviceUtil.cuf
 mpif90 -O2  -o assignDevice.out mpiDeviceUtil.o assignDevice.cuf
 assignDevice.cuf:
-/usr/bin/ld: warning: libatomic.so.1, needed by /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.4/Linux_x86_64/24.5/comm_libs/12.4/hpcx/hpcx-2.19/ompi/lib/libmpi_usempif08.so, not found (try using -rpath or -rpath-link)
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/assignDevice'
 make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/assignDevice'
-mpiexec -np 4 ./assignDevice.out
---------------------------------------------------------------------------
-A request was made to bind to that would result in binding more
-processes than cpus on a resource:
-
-   Bind to:     CORE
-   Node:        dgx03
-   #processes:  2
-   #cpus:       1
-
-You can override this protection by adding the "overload-allowed"
-option to your binding directive.
---------------------------------------------------------------------------
-make[1]: *** [run] Error 1
+mpiexec -np 2 ./assignDevice.out
+[0] host: dgx03.hydra.local,  device: 0
+[1] host: dgx03.hydra.local,  device: 1
+  [0] device arrays allocated: 78
+  [1] device arrays allocated: 2
+ Test Passed
+ Test Passed
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/assignDevice'
 make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/assignDevice'
 Cleaning up...
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/assignDevice'
-cd chapter4/MPI/transposeMPI; make build; make NPROCS=4 run; make clean
+cd chapter4/MPI/transposeMPI; make build; make NPROCS=2 run; make clean
 make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/transposeMPI'
 mpif90 -O2  -c ../common/mpiDeviceUtil.cuf
 mpif90 -O2  -o transposeMPI.out mpiDeviceUtil.o transposeMPI.cuf
 transposeMPI.cuf:
-/usr/bin/ld: warning: libatomic.so.1, needed by /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.4/Linux_x86_64/24.5/comm_libs/12.4/hpcx/hpcx-2.19/ompi/lib/libmpi_usempif08.so, not found (try using -rpath or -rpath-link)
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/transposeMPI'
 make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/transposeMPI'
-mpiexec -np 4 ./transposeMPI.out
---------------------------------------------------------------------------
-A request was made to bind to that would result in binding more
-processes than cpus on a resource:
+mpiexec -np 2 ./transposeMPI.out
+ 
 
-   Bind to:     CORE
-   Node:        dgx03
-   #processes:  2
-   #cpus:       1
+Array size: 2048x2048
 
-You can override this protection by adding the "overload-allowed"
-option to your binding directive.
---------------------------------------------------------------------------
-make[1]: *** [run] Error 1
+CUDA block size: 32x8,  CUDA tile size: 32x32
+dimGrid: 32x32x1,   dimBlock: 32x8x1
+
+nprocs: 2,  Local input array size: 2048x1024
+mpiTileDim: 1024x1024
+
+[0]*** Test Passed ***
+
+Bandwidth (GB/s):   10.64
+
+[1]*** Test Passed ***
+
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/transposeMPI'
 make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/transposeMPI'
 Cleaning up...
@@ -1176,34 +1169,34 @@ make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-colle
 ./compute_pi_performance_sp.out
   Compute pi  in single precision (seed=                   1234567 )
   Times (CUF),(Two stages), (Single stage) (CPU):
-   3.3960000E-03   5.9000002E-05   1.3480000E-03   8.0000000E-06
+   4.0119998E-03   6.0999999E-05   1.3490000E-03   7.0000001E-06
   Samples=     10000  Pi=3.16720009  Error= 0.2561E-01
   
  Test Passed
   Times (CUF),(Two stages), (Single stage) (CPU):
-   2.4000001E-05   2.4000001E-05   5.7000001E-05   6.8000001E-05
+   2.4999999E-05   2.6000000E-05   6.2999999E-05   6.7000001E-05
   Samples=    100000  Pi=3.13919997  Error= 0.2393E-02
   
  Test Passed
   Times (CUF),(Two stages), (Single stage) (CPU):
-   3.6000001E-05   3.2000000E-05   7.1000002E-05   6.1699998E-04
+   3.7000002E-05   2.6000000E-05   6.6000001E-05   5.9800001E-04
   Samples=   1000000  Pi=3.14109206  Error= 0.5007E-03
   
  Test Passed
 ./compute_pi_performance_dp.out
   Compute pi  in double precision (seed=                   1234567 )
   Times (CUF),(Two stages), (Single stage) (CPU):
-   3.3710001E-03   5.6000001E-05   1.4220000E-03   1.6000000E-05
+   3.9149998E-03   6.2999999E-05   1.3839999E-03   1.5000000E-05
   Samples=     10000  Pi=3.12880000  Error= 0.1279E-01
   
  Test Passed
   Times (CUF),(Two stages), (Single stage) (CPU):
-   2.6000000E-05   2.6000000E-05   6.1999999E-05   1.1900000E-04
+   2.4999999E-05   2.4000001E-05   6.2999999E-05   1.0800000E-04
   Samples=    100000  Pi=3.14676000  Error= 0.5167E-02
   
  Test Passed
   Times (CUF),(Two stages), (Single stage) (CPU):
-   4.8999998E-05   4.0999999E-05   7.5000004E-05   1.2600000E-03
+   4.8999998E-05   3.7999998E-05   7.5000004E-05   1.2009999E-03
   Samples=   1000000  Pi=3.14274000  Error= 0.1147E-02
   
  Test Passed
@@ -1232,20 +1225,20 @@ make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-colle
  Montecarlo value of call option  =    1.322458    
  BlackScholes value of call option=    1.323104    
  Confidence interval of call option  = [    1.319745     ,    1.325171     ]
- Elapsed time (ms) :    153.9499    
+ Elapsed time (ms) :    28.80154    
  Test Passed
 ./mc_european_dp.out
   European option with random numbers
   in double precision using                   1000000  samples
  Montecarlo  value of put option  =   0.1280019167019663     
  BlackScholes value of put option =   0.1280215707263190     
- Confidence interval of put option  = [   0.1273886989425720      , 
-   0.1286151344613607      ]
+ Confidence interval of put option  = [   0.1273886989425719      , 
+   0.1286151344613606      ]
  Montecarlo value of call option  =    1.322242692975767     
  BlackScholes value of call option=    1.323103872723463     
- Confidence interval of call option  = [    1.319531953505467      , 
+ Confidence interval of call option  = [    1.319531953505466      , 
     1.324953432446068      ]
- Elapsed time (ms) :    16.75638    
+ Elapsed time (ms) :    17.76208    
  Test Passed
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter5/mc_european'
 make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter5/mc_european'
@@ -1270,8 +1263,8 @@ x derivatives
   Using shared memory tile of x-y: 64x4
    RMS error:    7.2519310E-06
    MAX error:    2.7179718E-05
-   Average time (ms):    4.4032000E-03
-   Average Bandwidth (GB/s):     476.2791    
+   Average time (ms):    4.2495998E-03
+   Average Bandwidth (GB/s):     493.4940    
    Test Passed
 
   Single syncthreads, using shared memory tile of x-y: 64x4
@@ -1284,8 +1277,8 @@ x derivatives
   Using shared memory tile of x-y: 64x32
    RMS error:    7.2519310E-06
    MAX error:    2.7179718E-05
-   Average time (ms):    4.8640002E-03
-   Average Bandwidth (GB/s):     431.1579    
+   Average time (ms):    4.7615999E-03
+   Average Bandwidth (GB/s):     440.4301    
    Test Passed
 
 y derivatives
@@ -1293,15 +1286,15 @@ y derivatives
   Using shared memory tile of x-y: 4x64
    RMS error:    7.2517619E-06
    MAX error:    2.7179718E-05
-   Average time (ms):    6.1951997E-03
-   Average Bandwidth (GB/s):     338.5124    
+   Average time (ms):    6.1439998E-03
+   Average Bandwidth (GB/s):     341.3333    
    Test Passed
 
   Using shared memory tile of x-y: 32x64
    RMS error:    7.2517619E-06
    MAX error:    2.7179718E-05
-   Average time (ms):    4.4032000E-03
-   Average Bandwidth (GB/s):     476.2791    
+   Average time (ms):    4.5055998E-03
+   Average Bandwidth (GB/s):     465.4546    
    Test Passed
 
 z derivatives
@@ -1309,15 +1302,15 @@ z derivatives
   Using shared memory tile of x-z: 4x64
    RMS error:    7.2517541E-06
    MAX error:    2.7179718E-05
-   Average time (ms):    6.1951997E-03
-   Average Bandwidth (GB/s):     338.5124    
+   Average time (ms):    6.2976005E-03
+   Average Bandwidth (GB/s):     333.0081    
    Test Passed
 
   Using shared memory tile of x-z: 32x64
    RMS error:    7.2517541E-06
    MAX error:    2.7179718E-05
-   Average time (ms):    4.3520001E-03
-   Average Bandwidth (GB/s):     481.8824    
+   Average time (ms):    4.5055998E-03
+   Average Bandwidth (GB/s):     465.4546    
    Test Passed
  
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter6/finiteDifference'
@@ -1340,27 +1333,27 @@ Single Precision
 x derivative with x-y tile: 64x4
    RMS error:    7.2519310E-06
    MAX error:    2.7179718E-05
-   Average time (ms):    4.3520001E-03
-   Mem Bandwidth (GB/s):     481.8824    
+   Average time (ms):    4.4032000E-03
+   Mem Bandwidth (GB/s):     476.2791    
    Test Passed
 
 x derivative mem with x-y tile: 64x4
    RMS error:     4.465209    
    MAX error:     6.361378    
-   Average time (ms):    4.0960000E-03
-   Mem Bandwidth (GB/s):     512.0000    
+   Average time (ms):    4.0448001E-03
+   Mem Bandwidth (GB/s):     518.4810    
 
 x derivative gmem with x-y tile: 64x4
    RMS error:     4.465209    
    MAX error:     6.361378    
-   Average time (ms):    3.9423998E-03
-   Mem Bandwidth (GB/s):     531.9481    
+   Average time (ms):    3.8911998E-03
+   Mem Bandwidth (GB/s):     538.9474    
 
 x derivative math with x-y tile: 64x4
    RMS error:     4.465209    
    MAX error:     6.361378    
-   Average time (ms):    3.8400001E-03
-   Mem Bandwidth (GB/s):     546.1333    
+   Average time (ms):    3.7888002E-03
+   Mem Bandwidth (GB/s):     553.5135    
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter6/limitingFactor'
 make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter6/limitingFactor'
 Cleaning up...
@@ -1384,22 +1377,22 @@ x derivatives
   Using shared memory tile of x-y: 64x4
    RMS error:    3.8798994E-06
    MAX error:    2.2888184E-05
-   Average time (ms):    2.4166401E-02
-   Average Bandwidth (GB/s):     86.77966    
+   Average time (ms):    2.4217600E-02
+   Average Bandwidth (GB/s):     86.59619    
    Test Passed
 
   Single syncthreads, using shared memory tile of x-y: 64x4
    RMS error:    3.8798994E-06
    MAX error:    2.2888184E-05
-   Average time (ms):    2.3910400E-02
-   Average Bandwidth (GB/s):     87.70878    
+   Average time (ms):    2.4320001E-02
+   Average Bandwidth (GB/s):     86.23158    
    Test Passed
 
   Using shared memory tile of x-y: 64x32
    RMS error:    3.8798994E-06
    MAX error:    2.2888184E-05
-   Average time (ms):    7.3728003E-03
-   Average Bandwidth (GB/s):     284.4444    
+   Average time (ms):    7.4239997E-03
+   Average Bandwidth (GB/s):     282.4828    
    Test Passed
 
 y derivatives
@@ -1407,15 +1400,15 @@ y derivatives
   Using shared memory tile of x-y: 4x64
    RMS error:    3.8799290E-06
    MAX error:    2.2888184E-05
-   Average time (ms):    8.2943998E-03
-   Average Bandwidth (GB/s):     252.8395    
+   Average time (ms):    8.4991995E-03
+   Average Bandwidth (GB/s):     246.7470    
    Test Passed
 
   Using shared memory tile of x-y: 32x64
    RMS error:    3.8799290E-06
    MAX error:    2.2888184E-05
-   Average time (ms):    4.5055998E-03
-   Average Bandwidth (GB/s):     465.4546    
+   Average time (ms):    4.4543999E-03
+   Average Bandwidth (GB/s):     470.8046    
    Test Passed
 
 z derivatives
@@ -1423,15 +1416,15 @@ z derivatives
   Using shared memory tile of x-z: 4x64
    RMS error:    3.8799230E-06
    MAX error:    2.2888184E-05
-   Average time (ms):    8.2943998E-03
-   Average Bandwidth (GB/s):     252.8395    
+   Average time (ms):    8.4480001E-03
+   Average Bandwidth (GB/s):     248.2424    
    Test Passed
 
   Using shared memory tile of x-z: 32x64
    RMS error:    3.8799230E-06
    MAX error:    2.2888184E-05
-   Average time (ms):    4.4543999E-03
-   Average Bandwidth (GB/s):     470.8046    
+   Average time (ms):    4.5055998E-03
+   Average Bandwidth (GB/s):     465.4546    
    Test Passed
  
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter6/finiteDifferenceStr'
@@ -1580,13 +1573,13 @@ make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collec
 make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter7/exampleOverlapFFT'
 ./exampleOverlapFFT.out
  I/O only
- Elapsed time :   0.1125030    
+ Elapsed time :   0.1124010    
 
 Single stream  loop
- Elapsed time :   0.1243220    
+ Elapsed time :   0.1238890    
 
 Do loop with multiple streams
- Elapsed time :   9.0708002E-02
+ Elapsed time :   9.0741001E-02
  Test Passed
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter7/exampleOverlapFFT'
 make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter7/exampleOverlapFFT'

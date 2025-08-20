@@ -91,7 +91,7 @@ echo -e "\n all modules, including /cvmfs/nica.jinr.ru/sw/os/login.sh"; module a
 module purge
 #module load GVR/v1.0-1 gcc/v11.2.0 fftw/v3.3.10_gcc1120 LAPACK/v3.9.0 openmpi/v4.1.1_gcc1120
 #module load GVR/v1.0-1 intel/v2021.1 Python/v3.10.13 CMake/v3.29.2
-module load GVR/v1.0-1 Python/v3.10.13 CMake/v3.29.2 
+module load GVR/v1.0-1 Python/v3.10.13 CMake/v3.29.2 gcc/v12.3.0
 #module load LAPACK/v3.12.0_gcc1230
 
 #module load fftw/v3.3.10_gcc1120
@@ -153,7 +153,8 @@ cd $CFB; echo -e "\n\nI am in the directory CFB=$CFB"; pwd
 
 export FC=nvfortran
 
-export NPROCS=$SLURM_NTASKS
+#export NPROCS=$SLURM_NTASKS
+
 make all 
 
 exit

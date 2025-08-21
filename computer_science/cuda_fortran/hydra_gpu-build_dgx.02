@@ -10,6 +10,7 @@
 ##SBATCH -p slo-ice
 ##SBATCH -p ampere
 #SBATCH -p dgx
+#SBATCH -w dgx04
 
 ##SBATCH --qos=dirac
 
@@ -28,7 +29,6 @@
 ##SBATCH --no-requeue
 ##SBATCH --no-kill
 
-#
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=4
 
@@ -129,6 +129,7 @@ echo -e "\n nvidia-smi ? \c"; which nvidia-smi; nvidia-smi
 echo -e "\n\n nvcc ? ; \c"; which nvcc; nvcc --version
 echo -e "\n nvfortran ? ; \c"; which nvfortran; nvfortran --version
 echo -e "\n pgfortran ? ; \c"; which pgfortran; pgfortran --version
+echo -e "\n mpif90 ? ; \c"; which mpif90; mpif90 --version
 
 echo -e "\n ls  /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/Linux_x86_64/23.5/compilers:";
 ls  /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/Linux_x86_64/23.5/compilers
@@ -149,7 +150,6 @@ else
   echo -e "\n The directory $CFB_TMP does not exist, exit !"
   exit -1
 fi
-
 
 echo -e "\n Copying $CFB  to  $CFB_TMP/."
 cp -R $CFB  $CFB_TMP/.

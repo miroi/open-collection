@@ -1,10 +1,10 @@
 
 Running on host ampere01.hydra.local
-Time is Tue Aug 19 14:32:12 MSK 2025 
+Time is Thu Aug 21 12:12:04 MSK 2025 
 
 
 Job user is SLURM_JOB_USER= milias
-User job SLURM_JOB_NAME=CUDAFor has assigned ID SLURM_JOBID=13293856
+User job SLURM_JOB_NAME=CUDAFor has assigned ID SLURM_JOBID=13338934
 This job was submitted from the computer SLURM_SUBMIT_HOST=space06.hydra.local
 and from the home directory SLURM_SUBMIT_DIR:
 /lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran
@@ -15,7 +15,7 @@ Job partition is SLURM_JOB_PARTITION=ampere
 
 Number of allocated CPUs on each single node, SLURM_CPUS_ON_NODE=4 .
 Number of all reserved threads over ALL nodes, SLURM_NTASKS=4 .
-Job has reserved memory per node, SLURM_MEM_PER_NODE=65536 MB of memory
+Job has reserved memory per node, SLURM_MEM_PER_NODE=32768 MB of memory
 The node's CPU model name	: AMD EPYC 7763 64-Core Processor
 BTW, this node has total 256 CPUs available for an EXCLUSIVE job.
 Based on reserved memory, this node got 4 CPUs allocated for SLURM calculations.
@@ -125,22 +125,23 @@ libpng/v1.6.43-1                ZeroMQ/v4.3.5-2
 libpng/v1.6.43-2                zlib/v1.3.1-1                   
 
 -------------- /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/modulefiles --------------
-ABINIT/v9.10.3_openmpi411              GMP/v6.2.1_gcc1120                  
-ABINIT/v10.0.3_openmpi411              GROMACS/v5.1.3_gcc485_cuda80        
-ABINIT/v10.0.7_openmpi411              GROMACS/v2019.3                     
-AmberTools/v22                         GROMACS/v2024.3                     
-AMS/v2021.107_intel                    GSL/v1.16-1                         
-AMS/v2021.107_openmpi                  GSL/v2.6                            
-BASE/1.0                               GVR/v1.0-1 <L>                      
-CLN/v1.3.4-1                           intel-qs/v20-07-14                  
-CMake/v3.29.2                          intel-qs/v21-01-14                  
-COMSOL/v6.2                            intel/oneapi                        
-cuda/v8.0-1                            intel/v2018.1.163-9                 
-cuda/v9.2                              intel/v2019.3.199                   
-cuda/v10.0-1                           intel/v2021.1                       
-cuda/v10.1-1                           JAM/v1.90596                        
-cuda/v11.4                             java/v8u91-1                        
-cuda/v12.1                             java/v8u181                         
+ABINIT/v9.10.3_openmpi411              Ginac/v1.7.3-1                      
+ABINIT/v10.0.3_openmpi411              GMP/v6.2.1_gcc1120                  
+ABINIT/v10.0.7_openmpi411              GROMACS/v5.1.3_gcc485_cuda80        
+AmberTools/v22                         GROMACS/v2019.3                     
+AMS/v2021.107_intel                    GROMACS/v2024.3                     
+AMS/v2021.107_openmpi                  GSL/v1.16-1                         
+BASE/1.0                               GSL/v2.6                            
+CLN/v1.3.4-1                           GVR/v1.0-1 <L>                      
+CMake/v3.29.2                          intel-qs/v20-07-14                  
+COMSOL/v6.2                            intel-qs/v21-01-14                  
+cuda/v8.0-1                            intel/oneapi                        
+cuda/v9.2                              intel/v2018.1.163-9                 
+cuda/v10.0-1                           intel/v2019.3.199                   
+cuda/v10.1-1                           intel/v2021.1                       
+cuda/v11.4                             JAM/v1.90596                        
+cuda/v12.1                             java/v8u91-1                        
+cuda/v12.4                             java/v8u181                         
 DIRAC/v19.0_intel2018                  Julia/v1.11.5                       
 dssp/v2.3.0                            LAMMPS/v02.04.25                    
 ELPA/v2020.05.001_intel2018_python365  LAMMPS/v12.12.18                    
@@ -189,7 +190,6 @@ GEANT4/v4.10.07.p01_gcc910             TRNG/v4.24_gcc102
 GEANT4/v11.1.3-qttest                  Valgrind/v3.16.1_gcc485             
 GEANT4/v11.1.3_gcc1120                 ViennaCL/v1.7.1_gcc1120_cuda101     
 GEANT4/v11.1.3_gcc1120-mt              zlib/v1.2.11-1                      
-Ginac/v1.7.3-1                         
 
 Key:
 <module-tag>  <L>=loaded  
@@ -206,22 +206,25 @@ Key:
 <module-tag>  <aL>=auto-loaded  
 
 Running on host ampere01.hydra.local
-Time is Tue Aug 19 14:32:18 MSK 2025 
+Time is Thu Aug 21 12:12:09 MSK 2025 
 
 
  The total memory at the node (in GB)
               total        used        free      shared  buff/cache   available
-Mem:           2003         115        1887           0           0        1885
+Mem:           2003          59        1943           0           0        1941
 Swap:            31           0          31
-Total:         2035         115        1919
+Total:         2035          59        1975
 
 
 
  ls  :
 CUDA-Fortran-Book
 hydra_gpu-build_ampere.01
-log_slurm_job.13293856.ampere01.std_out_err
-make.logfile_WSL2_SAVED
+hydra_gpu-build_dgx3.01
+log_slurm_job.13338934.ampere01.std_out_err
+make.logfile_Govorun-ampere_FAILED
+make.logfile_Govorun-dgx3_PASSED
+make.logfile_WSL2_PASSED
 readme_buildup_Govorun.rst
 readme_buildup_WSL2.rst
 
@@ -234,44 +237,44 @@ readme_buildup_WSL2.rst
  python -v :Python 3.10.13
 
  nvidia-smi ? /usr/bin/nvidia-smi
-Tue Aug 19 14:32:20 2025       
+Thu Aug 21 12:12:11 2025       
 +-----------------------------------------------------------------------------------------+
-| NVIDIA-SMI 550.54.15              Driver Version: 550.54.15      CUDA Version: N/A      |
+| NVIDIA-SMI 550.163.01             Driver Version: 550.163.01     CUDA Version: N/A      |
 |-----------------------------------------+------------------------+----------------------+
 | GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
 | Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
 |                                         |                        |               MIG M. |
 |=========================================+========================+======================|
 |   0  NVIDIA A100-SXM4-80GB          Off |   00000000:07:00.0 Off |                    0 |
-| N/A   30C    P0             67W /  400W |    1021MiB /  81920MiB |      0%      Default |
+| N/A   27C    P0             49W /  400W |       1MiB /  81920MiB |      0%      Default |
 |                                         |                        |             Disabled |
 +-----------------------------------------+------------------------+----------------------+
 |   1  NVIDIA A100-SXM4-80GB          Off |   00000000:0A:00.0 Off |                    0 |
-| N/A   27C    P0             60W /  400W |       0MiB /  81920MiB |      0%      Default |
+| N/A   25C    P0             50W /  400W |       1MiB /  81920MiB |      0%      Default |
 |                                         |                        |             Disabled |
 +-----------------------------------------+------------------------+----------------------+
 |   2  NVIDIA A100-SXM4-80GB          Off |   00000000:45:00.0 Off |                    0 |
-| N/A   27C    P0             62W /  400W |       0MiB /  81920MiB |      0%      Default |
+| N/A   25C    P0             51W /  400W |       1MiB /  81920MiB |      0%      Default |
 |                                         |                        |             Disabled |
 +-----------------------------------------+------------------------+----------------------+
 |   3  NVIDIA A100-SXM4-80GB          Off |   00000000:4B:00.0 Off |                    0 |
-| N/A   30C    P0             62W /  400W |       0MiB /  81920MiB |      0%      Default |
+| N/A   28C    P0             51W /  400W |       1MiB /  81920MiB |      0%      Default |
 |                                         |                        |             Disabled |
 +-----------------------------------------+------------------------+----------------------+
 |   4  NVIDIA A100-SXM4-80GB          Off |   00000000:83:00.0 Off |                    0 |
-| N/A   30C    P0             59W /  400W |       0MiB /  81920MiB |      0%      Default |
+| N/A   28C    P0             49W /  400W |       1MiB /  81920MiB |      0%      Default |
 |                                         |                        |             Disabled |
 +-----------------------------------------+------------------------+----------------------+
 |   5  NVIDIA A100-SXM4-80GB          Off |   00000000:89:00.0 Off |                    0 |
-| N/A   27C    P0             58W /  400W |       0MiB /  81920MiB |      0%      Default |
+| N/A   25C    P0             47W /  400W |       1MiB /  81920MiB |      0%      Default |
 |                                         |                        |             Disabled |
 +-----------------------------------------+------------------------+----------------------+
 |   6  NVIDIA A100-SXM4-80GB          Off |   00000000:BF:00.0 Off |                    0 |
-| N/A   27C    P0             61W /  400W |       0MiB /  81920MiB |      0%      Default |
+| N/A   25C    P0             51W /  400W |       1MiB /  81920MiB |      0%      Default |
 |                                         |                        |             Disabled |
 +-----------------------------------------+------------------------+----------------------+
 |   7  NVIDIA A100-SXM4-80GB          Off |   00000000:C2:00.0 Off |                    0 |
-| N/A   30C    P0             62W /  400W |       0MiB /  81920MiB |      0%      Default |
+| N/A   28C    P0             52W /  400W |       1MiB /  81920MiB |      0%      Default |
 |                                         |                        |             Disabled |
 +-----------------------------------------+------------------------+----------------------+
                                                                                          
@@ -280,7 +283,7 @@ Tue Aug 19 14:32:20 2025
 |  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
 |        ID   ID                                                               Usage      |
 |=========================================================================================|
-|    0   N/A  N/A     15125      C   python                                       1012MiB |
+|  No running processes found                                                             |
 +-----------------------------------------------------------------------------------------+
 
 
@@ -33701,38 +33704,180 @@ make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collec
 make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/P2P/transposeP2P'
 Cleaning up...
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/P2P/transposeP2P'
-cd chapter4/MPI/mpiDevices; make build; make NPROCS=4 run; make clean
+cd chapter4/MPI/mpiDevices; make build; make NPROCS=2 run; make clean
 make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/mpiDevices'
 mpif90 -O2  -o mpiDevices.out mpiDevices.cuf
-/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/Linux_x86_64/23.5/comm_libs/openmpi/openmpi-3.1.5/bin/.bin/mpif90: error while loading shared libraries: librdmacm.so.1: cannot open shared object file: No such file or directory
-make[1]: *** [build] Error 127
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/mpiDevices'
 make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/mpiDevices'
-make[1]: *** No rule to make target `mpiDevices.out', needed by `run'.  Stop.
+mpiexec -np 2 ./mpiDevices.out
+--------------------------------------------------------------------------
+WARNING: No preset parameters were found for the device that Open MPI
+detected:
+
+  Local host:            ampere01
+  Device name:           mlx5_0
+  Device vendor ID:      0x02c9
+  Device vendor part ID: 4125
+
+Default device parameters will be used, which may result in lower
+performance.  You can edit any of the files specified by the
+btl_openib_device_param_files MCA parameter to set values for your
+device.
+
+NOTE: You can turn off this warning by setting the MCA parameter
+      btl_openib_warn_no_device_params_found to 0.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+No OpenFabrics connection schemes reported that they were able to be
+used on a specific port.  As such, the openib BTL (OpenFabrics
+support) will be disabled for this port.
+
+  Local host:           ampere01
+  Local device:         mlx5_1
+  Local port:           1
+  CPCs attempted:       rdmacm, udcm
+--------------------------------------------------------------------------
+[0] using device: 12 in compute mode: 0
+[1] using device: 12 in compute mode: 0
+0: ALLOCATE: 4194304 bytes requested; status = 802(system not yet initialized)
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpiexec detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[37950,1],0]
+  Exit code:    127
+--------------------------------------------------------------------------
+[ampere01.hydra.local:11395] 3 more processes have sent help message help-mpi-btl-openib.txt / no device params found
+[ampere01.hydra.local:11395] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[ampere01.hydra.local:11395] 1 more process has sent help message help-mpi-btl-openib-cpc-base.txt / no cpcs for port
+make[1]: *** [run] Error 127
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/mpiDevices'
 make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/mpiDevices'
 Cleaning up...
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/mpiDevices'
-cd chapter4/MPI/assignDevice; make build; make NPROCS=4 run; make clean
+cd chapter4/MPI/assignDevice; make build; make NPROCS=2 run; make clean
 make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/assignDevice'
 mpif90 -O2  -c ../common/mpiDeviceUtil.cuf
-/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/Linux_x86_64/23.5/comm_libs/openmpi/openmpi-3.1.5/bin/.bin/mpif90: error while loading shared libraries: librdmacm.so.1: cannot open shared object file: No such file or directory
-make[1]: *** [build] Error 127
+mpif90 -O2  -o assignDevice.out mpiDeviceUtil.o assignDevice.cuf
+assignDevice.cuf:
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/assignDevice'
 make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/assignDevice'
-make[1]: *** No rule to make target `assignDevice.out', needed by `run'.  Stop.
+mpiexec -np 2 ./assignDevice.out
+--------------------------------------------------------------------------
+WARNING: No preset parameters were found for the device that Open MPI
+detected:
+
+  Local host:            ampere01
+  Device name:           mlx5_0
+  Device vendor ID:      0x02c9
+  Device vendor part ID: 4125
+
+Default device parameters will be used, which may result in lower
+performance.  You can edit any of the files specified by the
+btl_openib_device_param_files MCA parameter to set values for your
+device.
+
+NOTE: You can turn off this warning by setting the MCA parameter
+      btl_openib_warn_no_device_params_found to 0.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+No OpenFabrics connection schemes reported that they were able to be
+used on a specific port.  As such, the openib BTL (OpenFabrics
+support) will be disabled for this port.
+
+  Local host:           ampere01
+  Local device:         mlx5_1
+  Local port:           1
+  CPCs attempted:       rdmacm, udcm
+--------------------------------------------------------------------------
+[0] host: ampere01.hydra.local,  device: 0
+[1] host: ampere01.hydra.local,  device: 1
+0: ALLOCATE: 4194304 bytes requested; status = 802(system not yet initialized)
+0: ALLOCATE: 4194304 bytes requested; status = 802(system not yet initialized)
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpiexec detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[37974,1],0]
+  Exit code:    127
+--------------------------------------------------------------------------
+[ampere01.hydra.local:11499] 3 more processes have sent help message help-mpi-btl-openib.txt / no device params found
+[ampere01.hydra.local:11499] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[ampere01.hydra.local:11499] 1 more process has sent help message help-mpi-btl-openib-cpc-base.txt / no cpcs for port
+make[1]: *** [run] Error 127
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/assignDevice'
 make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/assignDevice'
 Cleaning up...
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/assignDevice'
-cd chapter4/MPI/transposeMPI; make build; make NPROCS=4 run; make clean
+cd chapter4/MPI/transposeMPI; make build; make NPROCS=2 run; make clean
 make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/transposeMPI'
 mpif90 -O2  -c ../common/mpiDeviceUtil.cuf
-/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/Linux_x86_64/23.5/comm_libs/openmpi/openmpi-3.1.5/bin/.bin/mpif90: error while loading shared libraries: librdmacm.so.1: cannot open shared object file: No such file or directory
-make[1]: *** [build] Error 127
+mpif90 -O2  -o transposeMPI.out mpiDeviceUtil.o transposeMPI.cuf
+transposeMPI.cuf:
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/transposeMPI'
 make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/transposeMPI'
-make[1]: *** No rule to make target `transposeMPI.out', needed by `run'.  Stop.
+mpiexec -np 2 ./transposeMPI.out
+--------------------------------------------------------------------------
+WARNING: No preset parameters were found for the device that Open MPI
+detected:
+
+  Local host:            ampere01
+  Device name:           mlx5_0
+  Device vendor ID:      0x02c9
+  Device vendor part ID: 4125
+
+Default device parameters will be used, which may result in lower
+performance.  You can edit any of the files specified by the
+btl_openib_device_param_files MCA parameter to set values for your
+device.
+
+NOTE: You can turn off this warning by setting the MCA parameter
+      btl_openib_warn_no_device_params_found to 0.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+No OpenFabrics connection schemes reported that they were able to be
+used on a specific port.  As such, the openib BTL (OpenFabrics
+support) will be disabled for this port.
+
+  Local host:           ampere01
+  Local device:         mlx5_1
+  Local port:           1
+  CPCs attempted:       rdmacm, udcm
+--------------------------------------------------------------------------
+ 
+
+Array size: 2048x2048
+
+CUDA block size: 32x8,  CUDA tile size: 32x32
+dimGrid: 32x32x1,   dimBlock: 32x8x1
+
+nprocs: 2,  Local input array size: 2048x1024
+mpiTileDim: 1024x1024
+
+0: ALLOCATE: 8388608 bytes requested; status = 802(system not yet initialized)
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpiexec detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[38353,1],1]
+  Exit code:    127
+--------------------------------------------------------------------------
+[ampere01.hydra.local:11628] 3 more processes have sent help message help-mpi-btl-openib.txt / no device params found
+[ampere01.hydra.local:11628] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[ampere01.hydra.local:11628] 1 more process has sent help message help-mpi-btl-openib-cpc-base.txt / no cpcs for port
+make[1]: *** [run] Error 127
 make[1]: Leaving directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/transposeMPI'
 make[1]: Entering directory `/lustre/home/user/m/milias/work/projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book/chapter4/MPI/transposeMPI'
 Cleaning up...

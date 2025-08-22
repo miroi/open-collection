@@ -25,5 +25,10 @@ Installing collected packages: pycparser, cffi, dftd4
 Successfully installed cffi-1.17.1 dftd4-3.7.0 pycparser-2.22
 
 
+run
+---
+(myenv) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/dftd4-ase/runs/test_dftd4_executable/pip_installed_dftd4/.python test_pip_installed.py > test_pip_installed.logfile
+
+
 
 

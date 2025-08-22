@@ -3,8 +3,9 @@
 #SBATCH -J ase
 
 ##  partition (queue)
-#SBATCH -p cascade
-#SBATCH -p flnr-ice
+##SBATCH -p cascade
+##SBATCH -p flnr-ice
+#SBATCH -p knl
 
 ## max. execution time
 ##SBATCH -t 10-00:00:00
@@ -32,9 +33,11 @@
 #SBATCH -o log_slurm_job.%j.%N.std_out_err
 
 ## mail
-#SBATCH --mail-user=miro.ilias@gmail.com
+#SBATCH --mail-user=milias@theor.jinr.ru
 #SBATCH --mail-type=ALL
 
+echo -e "Job started at `date` \n\n"
+echo -e "\nRunning on host `hostname`"
  
 echo Job user is $SLURM_JOB_USER and his job $SLURM_JOB_NAME has assigned ID $SLURM_JOBID
 echo This job was submitted from the computer $SLURM_SUBMIT_HOST
@@ -61,9 +64,6 @@ module add Python/v3.10.13
 echo -e "\n\n loaded modules:"
 module list
 
-echo -e "\nRunning on host `hostname`"
-echo -e "Time is `date` \n"
-
 # CPU model, total numer of CPUs, number of allocated CPUs
 echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
 NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
@@ -78,13 +78,15 @@ echo -e "\nMy PATH=$PATH\n"
 echo -e "Python -v :\c"; python -V
 #echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
 echo -e "\n ase info :"; ase info
+echo -e "\n pip show ase :"; pip show ase
 
-export NSCM=$SLURM_CPUS_ON_NODE
+#export NSCM=$SLURM_CPUS_ON_NODE
+#$SLURM_SUBMIT_DIR/Po_on_O-bridges_al-q_010_O3cut_4x4_frozbottomSi.geopt_srzora_revpbe-d3bj_tzp_sc_01.run
 
-echo -e "\n Running in  $SLURM_SUBMIT_DIR : "
+echo -e "\n Running in  $SLURM_SUBMIT_DIR : \n "
 
-  python3 test_N2Cu.py
+  python test_N2Cu.py
 
-  #$SLURM_SUBMIT_DIR/Po_on_O-bridges_al-q_010_O3cut_4x4_frozbottomSi.geopt_srzora_revpbe-d3bj_tzp_sc_01.run
+echo -e "\n\n Job finished at : \c";date
 
 exit

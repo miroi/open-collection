@@ -30,5 +30,10 @@ run
 (myenv) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/dftd4-ase/runs/test_dftd4_executable/pip_installed_dftd4/.python test_pip_installed.py > test_pip_installed.logfile
 
 
+fixed version
+~~~~~~~~~~~~~
+(myenv) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/dftd4-ase/runs/test_dftd4_executable/pip_installed_dftd4/.python test_pip_installed_fixed.py > test_pip_installed_fixed.logfile
+
+
 
 

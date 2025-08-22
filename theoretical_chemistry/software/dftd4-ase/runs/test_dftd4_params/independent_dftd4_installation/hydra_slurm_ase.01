@@ -60,6 +60,7 @@ echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
 module purge
 module add GVR/v1.0-1
 module add Python/v3.10.13
+module add intel/oneapi 
 
 echo -e "\n\n loaded modules:"
 module list
@@ -85,7 +86,7 @@ echo -e "\n pip show ase :"; pip show ase
 
 echo -e "\n Running in  $SLURM_SUBMIT_DIR : \n "
 
-  python test_N2Cu.py
+  python test_a8fac.py
 
 echo -e "\n\n Job finished at : \c";date
 

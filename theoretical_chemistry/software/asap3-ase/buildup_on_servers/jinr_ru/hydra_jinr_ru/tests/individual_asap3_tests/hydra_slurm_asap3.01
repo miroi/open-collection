@@ -37,6 +37,8 @@
 #SBATCH --mail-user=Miroslav.Ilias@umb.sk
 #SBATCH --mail-type=ALL
 
+echo -e "\nRunning on host `hostname`"
+echo -e "Time is `date` \n"
  
 echo Job user is $SLURM_JOB_USER and his job $SLURM_JOB_NAME has assigned ID $SLURM_JOBID
 echo This job was submitted from the computer $SLURM_SUBMIT_HOST
@@ -59,13 +61,10 @@ echo
 module purge
 module load GVR/v1.0-1  
 module load Python/v3.10.13
-#module load openmpi/v4.1.1_gcc1120
+module load openmpi/v4.1.1_gcc1120
 
 echo -e "\n\n loaded modules:"
 module list
-
-echo -e "\nRunning on host `hostname`"
-echo -e "Time is `date` \n"
 
 # CPU model, total numer of CPUs, number of allocated CPUs
 echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
@@ -91,20 +90,22 @@ pip show asap3
 #asap3 --help
 
 #python3 SimpleMD.py
-python3 TestAll.py --help
+python TestAll.py --help
 
-#echo -e "\n running few single tests  ..."
-#python3 TestAll.py Trajectories
-#python3 TestAll.py SpecialEMT
+echo -e "\n\n running few single tests  ..."
+python TestAll.py Trajectories.py
+#python TestAll.py SpecialEMT
 
-echo -e "\n running SpecialEMT.py  ..."
-python3 SpecialEMT.py
+echo -e "\n\n running SpecialEMT.py  ..."
+python SpecialEMT.py
 
-echo -e "\n running Lattice.py  ..."
-python3 Lattice.py
+echo -e "\n\n running Lattice.py  ..."
+python Lattice.py
 
-echo -e "\n running Trajectories.py  ..."
-python3 Trajectories.py
+echo -e "\n\n running Trajectories.py  ..."
+python Trajectories.py
 
+echo -e "\n\n running FIRE.py  ..."
+python FIRE.py
 
 exit

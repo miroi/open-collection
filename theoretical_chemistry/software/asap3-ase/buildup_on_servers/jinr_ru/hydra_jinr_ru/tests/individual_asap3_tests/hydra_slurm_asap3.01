@@ -3,10 +3,8 @@
 #SBATCH -J asap3
 
 ##  partition (queue)
-##SBATCH -p cpu
-##SBATCH -p test
-#SBATCH -p cascade
-##SBATCH -p knl
+##SBATCH -p cascade
+#SBATCH -p knl
 
 ## max. execution time
 ##SBATCH -t 7-00:00:00
@@ -60,8 +58,8 @@ echo
 #
 module purge
 module load GVR/v1.0-1  
-module load Python/v3.10.2  
-module load openmpi/v4.1.1_gcc1120
+module load Python/v3.10.13
+#module load openmpi/v4.1.1_gcc1120
 
 echo -e "\n\n loaded modules:"
 module list

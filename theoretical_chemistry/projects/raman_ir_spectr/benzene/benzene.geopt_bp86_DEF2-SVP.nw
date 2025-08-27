@@ -1,0 +1,37 @@
+start 
+
+title "benzene"
+charge 0
+
+print low
+
+geometry units angstroms print xyz autosym
+H      1.073416   -0.950670   -2.011668
+C      0.603210   -0.534173   -1.130494
+C      1.347060   -0.334723    0.024565
+H      2.397102   -0.595645    0.043847
+C      0.743836    0.199450    1.155050
+H      1.323672    0.354974    2.055399
+C     -0.603219    0.534175    1.130482
+H     -1.073404    0.950680    2.011662
+C     -1.347062    0.334720   -0.024585
+H     -2.397100    0.595668   -0.043753
+C     -0.743846   -0.199450   -1.155068
+H     -1.323655   -0.354987   -2.055428
+end
+
+basis
+  * library DEF2-SVP
+end
+
+dft
+  xc becke88 perdew86
+  mult 1
+end
+
+task dft optimize
+
+driver
+    xyz benzene_bp86_def2svp_optgeom.xyz
+end
+

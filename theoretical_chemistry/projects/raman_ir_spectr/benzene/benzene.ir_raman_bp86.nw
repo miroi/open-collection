@@ -1,0 +1,49 @@
+echo
+
+start molecule
+
+title "benzene"
+charge 0
+
+print low
+
+geometry units angstroms print xyz autosym
+     H                         2.23908902     1.13351136     0.00000000
+     C                         1.25555977     0.63561321     0.00000000
+     C                         1.17823707    -0.76954005     0.00000000
+     H                         2.10119414    -1.37235229     0.00000000
+     C                        -0.07732270    -1.40515326     0.00000000
+     H                        -0.13789488    -2.50586365     0.00000000
+     C                        -1.25555977    -0.63561321     0.00000000
+     H                        -2.23908902    -1.13351136     0.00000000
+     C                        -1.17823707     0.76954005     0.00000000
+     H                        -2.10119414     1.37235229     0.00000000
+     C                         0.07732270     1.40515326     0.00000000
+     H                         0.13789488     2.50586365     0.00000000
+end
+
+basis
+  * library DEF2-SVP
+end
+
+dft
+  xc becke88 perdew86
+  mult 1
+end
+
+property
+ response 1 8.8559E-2  
+ damping 0.007  
+end
+
+raman
+  normal
+  lorentzian
+  width 20.0
+end
+
+task dft optimize
+task dft freq
+task dft raman
+
+

@@ -1,0 +1,28 @@
+
+
+geometry ;symmetry d2h
+  N      0.00000000    0.00000000    0.51      
+end
+
+basis
+  N  library  cc-pvdz
+end 
+
+dft
+  xc pbe0
+end
+print medium
+#task dft
+
+python  
+  e = task_energy('dft') 
+  if (ga_nodeid() == 0):
+    print('DFT energy=',e)
+
+#input_parse('dplot; TITLE MO_cube; vectors n2.movecs;  LimitXYZ; -3.0 3.0 10;  -3.0 3.0 10;  -3.0 3.0 10; spin total; gaussian; orbitals view; 1; 7; output homo_7.cube; end') 
+#input_parse('task dft')
+#input_parse('task dplot')
+
+end
+
+task python

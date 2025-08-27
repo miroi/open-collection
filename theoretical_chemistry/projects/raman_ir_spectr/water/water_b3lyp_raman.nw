@@ -1,0 +1,32 @@
+start water
+title "Water Raman Spectrum"
+
+memory 100 mb
+
+geometry units angstroms
+  o 0.0 0.0 0.0
+  h 0.757 0.587 0.0
+  h -0.757 0.587 0.0
+end
+
+basis "ao basis" spherical
+  o library sto-3g
+  h library sto-3g
+end
+
+dft
+  xc b3lyp
+  mult 1
+end
+
+property
+  response
+end
+
+raman
+  normal
+  lorentzian
+  width 20.0
+end
+
+task dft raman

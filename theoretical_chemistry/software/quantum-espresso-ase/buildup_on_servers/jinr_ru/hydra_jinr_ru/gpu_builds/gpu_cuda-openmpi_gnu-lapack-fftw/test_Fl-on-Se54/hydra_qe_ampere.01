@@ -81,14 +81,15 @@ echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
 
 
 module purge
-module load GVR/v1.0-1 Python/v3.10.13 CMake/v3.29.2
-module load openmpi/v5.0.3_gcc1230  LAPACK/v3.12.0_gcc1230
-module load fftw/v3.3.10_openmpi503
+
+module load cuda/v12.4
+
+module load GVR/v1.0-1 Python/v3.10.13 
+module load LAPACK/v3.12.0_gcc1230
+module load fftw/v3.3.10_gcc1120
 
 module load git
 
-# NVHPC with OpenMPI ?
-module load cuda/v12.1
 
 echo -e "\n\n loaded modules:"
 module list
@@ -106,7 +107,7 @@ echo -e "\n"
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_intelmpi_mkl_xh
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_intelmpimkl_dbg
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_intelmpi_mkl_scalapack
-QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_inteloneapi_mpi_mkl_elpa_libxc
+QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_gpu_cuda_openmpi_lapack
 
 echo -e "\n ldd  $QE/bin/pw.x :"
 ldd  $QE/bin/pw.x

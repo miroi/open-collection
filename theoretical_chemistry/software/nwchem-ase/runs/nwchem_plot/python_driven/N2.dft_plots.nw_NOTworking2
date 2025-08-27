@@ -1,0 +1,23 @@
+ start N2
+ title "N2 molecule,DFT; MOs outputs"
+ print high
+ geometry units angstroms noautoz
+   N      0.00000000    0.00000000    0.00000000
+   N      0.00000000    0.00000000    1.098
+ end
+ basis
+   N library   cc-pvdz
+ end 
+ dft
+   xc B3LYP
+   #vectors output n2.movecs
+ end
+ task dft energy
+ python
+   e=task_energy('dft');print(e)
+   print('DFT with gives energy=',e)
+#input_parse('dplot; TITLE MO_cube; vectors n2.movecs;  LimitXYZ; -3.0 3.0 10;  -3.0 3.0 10;  -3.0 3.0 10; spin total; gaussian; orbitals view; 1; 7; output homo_7.cube; end') 
+#input_parse('task dft')
+#input_parse('task dplot')
+ end
+ task python

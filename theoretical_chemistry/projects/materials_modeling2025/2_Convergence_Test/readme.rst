@@ -12,7 +12,12 @@ Adjust ranges (e.g., np.arange(20, 80, 10)), and higher tolerance (e.g. 0.05) fo
 Step 2.1: Run the ASE job
 python3 convergence_test_si.py > convergence_test_si.out
 
+python convergence_test_si.py > convergence_test_si.logfile
+
+python convergence_test2_si.py > convergence_test2_si.logfile
+
 Note: When performing a series of calculations, ASE automatically overwrites the Quantum ESPRESSO output (.pwo) and input (.pwi) files after each step. How many different SCF calculations did ASE run to converge cutoff energy / K-points grid in this task?
+
 
 TASK 2.2: Run a final QE SCF calculation with your converged ecutwfc and kpoints (similar to TASK 1), along with tstress = .true. and tprnfor = .true. in the input file (under &CONTROL) to compute stress and atomic forces and inspect the output.
 /path/to/qebin/pw.x < Si_force_stress.in > Si_force_stress.out

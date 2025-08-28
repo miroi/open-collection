@@ -66,3 +66,11 @@ ASE run
 --------
 
 python cell_relaxation_si.py > cell_relaxation_si_py.logfile
+
+modified start geometry + cell:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+python cell_relaxation2_si.py > cell_relaxation2_si_py.logfile
+
+
+

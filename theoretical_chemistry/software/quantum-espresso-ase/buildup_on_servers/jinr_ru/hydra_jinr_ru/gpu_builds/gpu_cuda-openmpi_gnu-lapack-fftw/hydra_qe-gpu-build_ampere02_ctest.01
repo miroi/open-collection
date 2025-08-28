@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## jobname
-#SBATCH -J QEbGPU2
+#SBATCH -J QEbGPU
 
 ##  partition (queue)
 ##SBATCH -p cascade
@@ -9,11 +9,11 @@
 ##SBATCH -p flnr-ice
 ##SBATCH -p slo-ice
 
-##SBATCH -p ampere
-##SBATCH -w ampere02
+#SBATCH -p ampere
+#SBATCH -w ampere02
 
-#SBATCH -p dgx
-#SBATCH -w dgx04
+##SBATCH -p dgx
+##SBATCH -w dgx03
 
 ##SBATCH --qos=dirac
 
@@ -100,10 +100,11 @@ module load cuda/v12.4
 #module load GVR/v1.0-1 gcc/v11.2.0 fftw/v3.3.10_gcc1120 LAPACK/v3.9.0 openmpi/v4.1.1_gcc1120
 #module load GVR/v1.0-1 intel/v2021.1 Python/v3.10.13 CMake/v3.29.2
 module load GVR/v1.0-1 Python/v3.10.13 CMake/v3.29.2 
-module load openmpi/v5.0.3_gcc1230  LAPACK/v3.12.0_gcc1230
+#module load openmpi/v5.0.3_gcc1230  LAPACK/v3.12.0_gcc1230
+module load LAPACK/v3.12.0_gcc1230
 
-module load fftw/v3.3.10_openmpi503
-#module load fftw/v3.3.10_gcc1120
+#module load fftw/v3.3.10_openmpi503
+module load fftw/v3.3.10_gcc1120
 
 module load git
 
@@ -154,7 +155,7 @@ ls  /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/Linux_x86_64/23.5/compiler
 
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-7.3.1
 QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e
-BUILD=build_cuda_openmpi_gnu-lapack-fftw
+BUILD=build_gpu_cuda_openmpi_lapack
 
 cd $QE
 echo -e "\n\n I am in QE=$QE"; pwd
@@ -162,13 +163,9 @@ echo -e "\n\n I am in QE=$QE"; pwd
 if [ -d "$BUILD" ]; then
   echo -e "\n The directory $QE/$BUILD does exist."
   echo -e "Its old content :"; ls -lt $QE/$BUILD/.
-  echo -e "Deleting it !"
-  /bin/rm -rf $BUILD
-   mkdir $BUILD
-   echo -e "\n The directory $QE/$BUILD was recreated."
 else
-  echo -e "\n The directory $QE/$BUILD does not exist, so creating it."
-  mkdir $QE/$BUILD
+  echo -e "\n The directory $QE/$BUILD does not exist, exit !!!!"
+ exit -1
 fi
 
 
@@ -190,11 +187,10 @@ echo -e "\n\n\n Running cmake :"
 
 #cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=pgfortran -DQE_ENABLE_MPI=ON -DQE_ENABLE_OPENMP=OFF -DQE_ENABLE_CUDA=ON -DQE_LAPACK_INTERNAL=OFF   -DQE_ENABLE_SCALAPACK=OFF -DQE_ENABLE_ELPA=OFF -DQE_ENABLE_LIBXC=OFF  -DQE_ENABLE_HDF5=OFF  -DQE_ENABLE_MPI_GPU_AWARE=ON ..
 
-cmake -DCMAKE_C_COMPILER=/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.4/Linux_x86_64/24.5/comm_libs/mpi/bin/mpicc -DCMAKE_Fortran_COMPILER=/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.4/Linux_x86_64/24.5/comm_libs/mpi/bin/mpif90  -DQE_ENABLE_MPI=ON -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_CUDA=ON -DQE_LAPACK_INTERNAL=OFF   -DQE_ENABLE_SCALAPACK=OFF -DQE_ENABLE_ELPA=OFF -DQE_ENABLE_LIBXC=OFF  -DQE_ENABLE_HDF5=OFF  -DQE_ENABLE_MPI_GPU_AWARE=ON ..
+###cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=mpif90 -DQE_ENABLE_MPI=ON -DQE_ENABLE_OPENMP=OFF -DQE_ENABLE_CUDA=ON -DQE_LAPACK_INTERNAL=OFF   -DQE_ENABLE_SCALAPACK=OFF -DQE_ENABLE_ELPA=OFF -DQE_ENABLE_LIBXC=OFF  -DQE_ENABLE_HDF5=OFF  -DQE_ENABLE_MPI_GPU_AWARE=ON ..
 
-
-echo -e "\n\n  running :  make -j $SLURM_CPUS_ON_NODE "
-make -j $SLURM_CPUS_ON_NODE
+#echo -e "\n\n  running :  make -j $SLURM_CPUS_ON_NODE "
+#make -j $SLURM_CPUS_ON_NODE
 
 if [ -f "$QE/$BUILD/bin/pw.x" ]; then
   echo -e "\nFile pw.x exists. Fine, continuing"

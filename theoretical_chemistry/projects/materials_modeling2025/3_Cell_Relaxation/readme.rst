@@ -62,4 +62,7 @@ Cut off  Total Energy  Total Force
 65.0000 -16.92527497 0.000000
 ------------------------------------
 
+ASE run
+--------
 
+python cell_relaxation_si.py > cell_relaxation_si_py.logfile

@@ -16,3 +16,7 @@ Compare your computed DOS with silicon's experimental band gap- does your match?
 Note: To verify the quality of the projections, two key checks are necessary: (1) ensure the spilling parameter is low enough, and (2) confirm that the summed PDOS (from .pdos_tot) closely matches the total DOS, at least below the Fermi level. While the script automatically reports both metrics, it's strongly recommended to manually plot and compare the .pdos_tot and total_dos.dat files and visually validate it.
 
 Note: SCF (Self-Consistent Field) calculations iteratively solve the Kohn-Sham equations to find the ground-state electron density and total energy by converging the charge density. NSCF (Non-Self-Consistent Field) calculations use the pre-converged charge density from SCF but compute eigenvalues on a denser k-point grid without re-converging the density. For DOS (Density of States), NSCF is essential because it provides higher-resolution sampling of the Brillouin zone, capturing fine electronic structure details that the coarser SCF grid would miss, while avoiding the computational cost of fully re-converging at each k-point. This ensures accurate and smooth DOS plots without redundant SCF iterations.
+
+python electronic_properties_a_si.py >  electronic_properties_a_si_py.logfile
+
+

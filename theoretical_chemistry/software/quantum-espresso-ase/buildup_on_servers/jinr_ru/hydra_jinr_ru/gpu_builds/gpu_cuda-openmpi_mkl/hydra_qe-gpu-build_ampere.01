@@ -1,25 +1,30 @@
 #!/bin/bash
 
 ## jobname
-#SBATCH -J QEbuild2
+#SBATCH -J QEbGPU
 
 ##  partition (queue)
 ##SBATCH -p cascade
 ##SBATCH -p knl
 ##SBATCH -p flnr-ice
 ##SBATCH -p slo-ice
+
 #SBATCH -p ampere
+#SBATCH -w ampere02
+
+##SBATCH -p dgx
+##SBATCH -w dgx03
 
 ##SBATCH --qos=dirac
 
 ## max. execution time
 ##SBATCH -t 3-00:00:00
-#SBATCH -t 0-08:00:00
+#SBATCH -t 0-05:00:00
 
 ##SBATCH --exclusive
 
 ##SBATCH --mem=640GB
-#SBATCH --mem=64GB
+#SBATCH --mem=32GB
 
 ##SBATCH --mem-per-cpu=4GB
 
@@ -30,6 +35,9 @@
 #
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=6
+
+#Set the number of GPUs per node
+#SBATCH --gres=gpu:6
 
 
 ## stdout/stderr output file
@@ -85,21 +93,24 @@ echo -e "\n all modules, including /cvmfs/nica.jinr.ru/sw/os/login.sh"; module a
 
 
 module purge
+
+# NVHPC with OpenMPI ?
+module load cuda/v12.4
+
 #module load GVR/v1.0-1 gcc/v11.2.0 fftw/v3.3.10_gcc1120 LAPACK/v3.9.0 openmpi/v4.1.1_gcc1120
 #module load GVR/v1.0-1 intel/v2021.1 Python/v3.10.13 CMake/v3.29.2
-module load GVR/v1.0-1 Python/v3.10.13 CMake/v3.29.2
+module load GVR/v1.0-1 Python/v3.10.13 CMake/v3.29.2 
+#module load openmpi/v5.0.3_gcc1230  LAPACK/v3.12.0_gcc1230
+
+#module load fftw/v3.3.10_openmpi503
+#module load fftw/v3.3.10_gcc1120
 
 module load git
 
-#module load fftw/v3.3.10_gcc1120  LAPACK/v3.9.0 
+module load intel/oneapi
 
 # NVHPC with OpenMPI ?
-module load cuda/v12.1
-#module load CUDA/v11.8-1 # not from NICA !
-
-# need MPI, try...
-#module load openmpi/v5.0.3_gcc1230
-module load intel/v2021.1
+module load cuda/v12.4
 
 
 echo -e "\n\n All loaded modules:"
@@ -112,11 +123,6 @@ echo -e "\n The total memory at the node (in GB)"
 free -t -g
 echo -e "\n"
 
-#QE=/lustre/home/user/m/milias/work/software/quantum-espresso/openmpi/qe-7.3.1
-#QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-7.3.1
-#QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_intelmpi_mkl_xh
-QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_gpu_cuda_mkl
-
 echo -e "\n ls $QE :"; ls $QE
 
 echo -e "\n\n My PATH=$PATH\n"
@@ -124,8 +130,9 @@ echo -e "\n My LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
 echo -e "\n python -v :\c"; python -V
 #echo -e "\n ifort -V: \c"; ifort -V
 #echo -e "\n mpiifort -V: \c"; mpiifort -V
+echo -e "\n CUDA mpif90 ? \c"; /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.4/Linux_x86_64/24.5/comm_libs/mpi/bin/mpif90 --version
 #echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT "
-#echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
+echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
 echo -e "\n cmake ? \c"; which cmake; cmake --version
 echo -e "\n git ? \c"; which git; git --version
 
@@ -134,6 +141,7 @@ echo -e "\n nvidia-smi ? \c"; which nvidia-smi; nvidia-smi
 echo -e "\n\n nvcc ? ; \c"; which nvcc; nvcc --version
 echo -e "\n nvfortran ? ; \c"; which nvfortran; nvfortran --version
 echo -e "\n pgfortran ? ; \c"; which pgfortran; pgfortran --version
+echo -e "\n mpif90 ? ; \c"; which mpif90; mpif90 --version
 
 echo -e "\n ls  /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/Linux_x86_64/23.5/compilers:";
 ls  /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/Linux_x86_64/23.5/compilers
@@ -145,14 +153,31 @@ ls  /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/Linux_x86_64/23.5/compiler
 # for running jobs from your homedir, use ...
 #cd $SLURM_SUBMIT_DIR
 
-cd $QE
+#QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-7.3.1
+QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e
+BUILD=build_gpu_cuda-openmpi_mkl
 
-echo -e "\n Current directory where this SLURM job is running `pwd`"
+cd $QE
+echo -e "\n\n I am in QE=$QE"; pwd
+
+if [ -d "$BUILD" ]; then
+  echo -e "\n The directory $QE/$BUILD does exist."
+  echo -e "Its old content :"; ls -lt $QE/$BUILD/.
+  echo -e "Deleting it !"
+  /bin/rm -rf $BUILD
+   mkdir $BUILD
+   echo -e "\n The directory $QE/$BUILD was recreated."
+else
+  echo -e "\n The directory $QE/$BUILD does not exist, so creating it."
+  mkdir $QE/$BUILD
+fi
+
+
+cd $BUILD
+echo -e "\n Current directory where this SLURM job is running QE/BUILD=$QE/$BUILD"; pwd
 echo " It has the disk space of (df -h) :"; df -h .
 
 echo -e "\n\n\n Running cmake :"
-#cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DCMAKE_Fortran_COMPILER=mpiifort -DCMAKE_Fortran_FLAGS="-g -parallel -xHost"  .. 
-
 #cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=mpif90 -DQE_ENABLE_MPI_GPU_AWARE=ON ..
 #cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=nvfortran -DQE_ENABLE_MPI_GPU_AWARE=ON ..
 #cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_C_COMPILER=nvc -DQE_ENABLE_MPI_GPU_AWARE=ON ..
@@ -161,15 +186,31 @@ echo -e "\n\n\n Running cmake :"
 #cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_Fortran_COMPILER=mpifort  ..
 #cmake -DQE_ENABLE_CUDA=ON  -DCMAKE_C_COMPILER=nvcc -DCMAKE_Fortran_COMPILER=pgfortran  ..
 #cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=nvfortran -DQE_ENABLE_MPI=OFF -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_CUDA=ON -DQE_FFTW_VENDOR=Internal -DQE_LAPACK_INTERNAL=ON ..
-#cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=pgfortran -DQE_ENABLE_MPI=OFF -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_CUDA=ON -DQE_FFTW_VENDOR=Internal -DQE_LAPACK_INTERNAL=ON ..
-
 # ... this is proper
 #cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=pgfortran -DQE_ENABLE_MPI=OFF -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_CUDA=ON ..
 
-echo -e "\n running :  make -j $SLURM_CPUS_ON_NODE "
+#cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=pgfortran -DQE_ENABLE_MPI=ON -DQE_ENABLE_OPENMP=OFF -DQE_ENABLE_CUDA=ON -DQE_LAPACK_INTERNAL=OFF   -DQE_ENABLE_SCALAPACK=OFF -DQE_ENABLE_ELPA=OFF -DQE_ENABLE_LIBXC=OFF  -DQE_ENABLE_HDF5=OFF  -DQE_ENABLE_MPI_GPU_AWARE=ON ..
+
+cmake -DCMAKE_C_COMPILER=/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.4/Linux_x86_64/24.5/comm_libs/mpi/bin/mpicc -DCMAKE_Fortran_COMPILER=/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.4/Linux_x86_64/24.5/comm_libs/mpi/bin/mpif90 -DQE_ENABLE_MPI=ON -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_CUDA=ON -DQE_LAPACK_INTERNAL=OFF   -DQE_ENABLE_SCALAPACK=OFF -DQE_ENABLE_ELPA=OFF -DQE_ENABLE_LIBXC=OFF  -DQE_ENABLE_HDF5=OFF  -DQE_ENABLE_MPI_GPU_AWARE=ON ..
+
+echo -e "\n\n  running :  make -j $SLURM_CPUS_ON_NODE "
 make -j $SLURM_CPUS_ON_NODE
 
-ls -lt $QE/bin
-ldd $QE/bin/pw.x
+if [ -f "$QE/$BUILD/bin/pw.x" ]; then
+  echo -e "\nFile pw.x exists. Fine, continuing"
+else
+  echo -e "\n\n Regular file pw.x does not exist, exit ! "; exit -2
+fi
+
+echo -e "\n\n  ls -lt $QE/$BUILD/bin : "
+ls -lt $QE/$BUILD/bin
+echo -e "\n\n ldd $QE/$BUILD/bin/pw.x :  "
+ldd $QE/$BUILD/bin/pw.x
+
+#echo -e "\n\n running :  ctest  -j $SLURM_CPUS_ON_NODE : "
+echo -e "\n\n running :  ctest -V   "
+#ctest  -j $SLURM_CPUS_ON_NODE
+ctest -V
+
 
 exit

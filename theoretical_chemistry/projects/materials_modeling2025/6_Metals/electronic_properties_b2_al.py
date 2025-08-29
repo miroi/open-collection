@@ -17,12 +17,12 @@ sys.stdout.flush()
 # 1. Quantum Espresso Input Parameters
 # ==============================================
 pseudopotentials = {
-    'Al': 'Al.upf'
+    'Al': 'Al.paw'
 }
 
 base_input_data = {
     'control': {
-        'prefix': 'Al_BandStructure',
+        'prefix': 'Al_BandStructure2',
         'outdir': './tmp',
         'verbosity': 'low',
         'tstress': True,

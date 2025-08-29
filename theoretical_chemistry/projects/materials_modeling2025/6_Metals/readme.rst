@@ -23,3 +23,5 @@ Inspect electronic_b_si.out to verify all steps have completed successfully., th
 
 Note: NSCF (bands) calculation does not print Fermi level, so Fermi level has to be taken from the preceding SCF step. In the job script, ASE automatically handles it.
 Note: Install ghostscript (check the accompanied notes), if you want the script to convert the plotband.x generated postscript file to jpg, other wise disable the relevant line.
+
+

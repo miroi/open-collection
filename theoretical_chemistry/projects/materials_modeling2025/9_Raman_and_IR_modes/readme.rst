@@ -11,3 +11,8 @@ Inspect the raman_si.out file and examine the individual SCF, ph.x, and dynmat.x
 
 Note:
 This calculation needs LDA norm-conserving pseudopotentials (required for Raman property calculations).
+
+python raman_si.py > raman_si.py_logfile
+
+
+

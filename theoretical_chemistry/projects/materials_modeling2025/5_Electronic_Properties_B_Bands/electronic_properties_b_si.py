@@ -276,15 +276,19 @@ kpts_crystal = np.array([
 # ==============================================
 # Set QE bin directory
 #qe_bin = "/home/dsen/work/bin/qe-7.4.1_serial"
-qe_bin = "/home/dsen/work/bin/qe-7.4.1"
+#qe_bin = "/home/dsen/work/bin/qe-7.4.1"
+qe_bin = "/usr/bin"
 
 # Main QE calculation 
 #pw_command = f'{qe_bin}/bin/pw.x'
-pw_command = f'mpirun -np 4 {qe_bin}/bin/pw.x'
+#pw_command = f'mpirun -np 4 {qe_bin}/bin/pw.x'
+pw_command = f'mpirun -np 6 {qe_bin}/pw.x'
 
 # Serial post-processing commands for fast execution
-bands_command = f"{qe_bin}/bin/bands.x < bands.in > bands.out 2>&1"
-plotband_command = f"{qe_bin}/bin/plotband.x < plotband.in > plotband.out 2>&1"
+#bands_command = f"{qe_bin}/bin/bands.x < bands.in > bands.out 2>&1"
+bands_command = f"{qe_bin}/bands.x < bands.in > bands.out 2>&1"
+#plotband_command = f"{qe_bin}/bin/plotband.x < plotband.in > plotband.out 2>&1"
+plotband_command = f"{qe_bin}/plotband.x < plotband.in > plotband.out 2>&1"
 
 profile = EspressoProfile(
     command=pw_command,

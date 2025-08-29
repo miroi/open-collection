@@ -14,9 +14,9 @@ input_data = {
     },
     'system': {
         'ibrav': 0,
-        'nat': 2,
+        'nat': 1,
         'ntyp': 1,
-        'ecutwfc': 30,
+        'ecutwfc': 65,
         'occupations': 'smearing',
         'smearing': 'gauss',
         'degauss': 0.01
@@ -48,11 +48,11 @@ atoms = Atoms(
 # ==============================================
 # Set QE bin directory 
 #qe_bin = "/home/dsen/work/bin/qe-7.4.1_serial"
-qe_bin = "/home/dsen/work/bin/qe-7.4.1"
+qe_bin = "/usr/bin"
 
 # Parallel calculation 
 #pw_command = f'{qe_bin}/bin/pw.x'
-pw_command = f'mpirun -np 4 {qe_bin}/bin/pw.x'
+pw_command = f'mpirun -np 8 {qe_bin}/pw.x'
 
 pw_profile = EspressoProfile(
     command=pw_command,

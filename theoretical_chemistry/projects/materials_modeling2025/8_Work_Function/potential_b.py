@@ -36,7 +36,6 @@ base_input_data = {
         'ibrav': 0,
         'nat': 2,
         'ntyp': 1,
-        'assume_isolated': '2D'
     },
     'electrons': {
         'conv_thr': 1.0e-10
@@ -184,9 +183,9 @@ try:
     planar_avg_ev = data[:, 1] * 13.6058
     macroscopic_avg_ev = data[:, 2] * 13.6058
     
-    with open('plot_potential.gp', 'w') as f:
+    with open('plot_potential_b.gp', 'w') as f:
         f.write(f"""set terminal pngcairo enhanced size 1200,900 font "Arial,14"
-set output 'potential_plot.png'
+set output 'potential_plot_b.png'
 set title 'Electrostatic Potential Averaging (z-direction)'
 set xlabel 'Position along z-axis (Å)'
 set ylabel 'Electrostatic Potential (eV)'
@@ -219,8 +218,8 @@ set output
     
     # Run gnuplot
     try:
-        subprocess.run('gnuplot plot_potential.gp', shell=True, check=True)
-        print("  Plot saved as 'potential_plot.png'", flush=True)
+        subprocess.run('gnuplot plot_potential_b.gp', shell=True, check=True)
+        print("  Plot saved as 'potential_plot_b.png'", flush=True)
     except (subprocess.CalledProcessError, FileNotFoundError):
         print("  Gnuplot not available, skipping plotting", flush=True)
         

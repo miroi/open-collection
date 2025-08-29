@@ -19,6 +19,10 @@ Step 5.4:
 python3 electronic_properties_b_si.py > electronic_properties_b_si.out
 (update the Quantum ESPRESSO executable path to your local pw.x location.)
 
+
+python electronic_properties_b_si.py > electronic_properties_b_si_py.logfile
+
+
 Inspect electronic_b_si.out to verify all steps have completed successfully., then review the bands and plotband input/output files. Finally, compare your computed band structure with silicon’s experimental results.
 
 Note: NSCF (bands) calculation does not print Fermi level, so Fermi level has to be taken from the preceding SCF step. In the job script, ASE automatically handles it.

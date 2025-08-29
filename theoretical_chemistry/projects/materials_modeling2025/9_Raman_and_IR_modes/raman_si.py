@@ -62,17 +62,17 @@ atoms = Atoms(
 # 3. Calculator configuration
 # ==============================================
 # Set QE bin directory 
-qe_bin = "/home/dsen/work/bin/qe-7.4.1_serial"
+qe_bin = "/usr/bin"
 #qe_bin = "/home/dsen/work/bin/qe-7.4.1"
 
 # Parallel calculation 
-pw_command = f'{qe_bin}/bin/pw.x'
+pw_command = f'{qe_bin}/pw.x'
 #pw_command = f'mpirun -np 4 {qe_bin}/bin/pw.x'
-ph_command = f'{qe_bin}/bin/ph.x < ph.in > ph.out 2>&1'
+ph_command = f'{qe_bin}/ph.x < ph.in > ph.out 2>&1'
 #ph_command = f'mpirun -np 4 {qe_bin}/bin/ph.x < ph.in > ph.out 2>&1'
 
 # Serial post-processing commands for fast execution
-dynmat_command = f'{qe_bin}/bin/dynmat.x < dynmat.in > dynmat.out 2>&1'
+dynmat_command = f'{qe_bin}/dynmat.x < dynmat.in > dynmat.out 2>&1'
 
 pw_profile = EspressoProfile(
     command=pw_command,

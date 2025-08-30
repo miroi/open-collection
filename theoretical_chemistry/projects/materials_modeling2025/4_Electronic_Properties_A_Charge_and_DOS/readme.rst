@@ -19,4 +19,6 @@ Note: SCF (Self-Consistent Field) calculations iteratively solve the Kohn-Sham e
 
 python electronic_properties_a_si.py >  electronic_properties_a_si_py.logfile
 
+Modified :
+            python electronic_properties2_a_si.py >  electronic_properties2_a_si_py.logfile
 

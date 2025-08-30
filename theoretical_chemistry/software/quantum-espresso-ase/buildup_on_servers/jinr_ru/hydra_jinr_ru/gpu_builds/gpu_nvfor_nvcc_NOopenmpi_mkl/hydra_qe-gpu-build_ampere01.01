@@ -149,7 +149,7 @@ ls  /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/Linux_x86_64/23.5/compiler
 
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-7.3.1
 QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e
-BUILD=build_gpu_cuda_nvfor_nvcc_NOopenmpi_mkl_scalapack
+BUILD=build_gpu_cuda_nvfor_nvcc_NOopenmpi_mkl
 
 cd $QE; echo -e "\n\nI am in the directory QE=$QE"; pwd
 
@@ -186,7 +186,7 @@ echo -e "\n\n\n Running cmake :"
 
 #cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=pgfortran -DQE_ENABLE_MPI=OFF -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_CUDA=ON -DQE_LAPACK_INTERNAL=OFF  -DQE_ENABLE_SCALAPACK=OFF -DQE_ENABLE_ELPA=OFF -DQE_ENABLE_LIBXC=OFF  -DQE_ENABLE_HDF5=OFF ..
 
-cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=nvfortran -DQE_ENABLE_MPI=OFF -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_CUDA=ON -DQE_LAPACK_INTERNAL=OFF  -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_ELPA=OFF -DQE_ENABLE_LIBXC=OFF  -DQE_ENABLE_HDF5=OFF ..
+cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=nvfortran -DQE_ENABLE_MPI=OFF -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_CUDA=ON -DQE_LAPACK_INTERNAL=OFF  -DQE_ENABLE_SCALAPACK=OFF -DQE_ENABLE_ELPA=OFF -DQE_ENABLE_LIBXC=OFF  -DQE_ENABLE_HDF5=OFF ..
 
 echo -e "\n\n  running :  make -j $SLURM_CPUS_ON_NODE "
 make -j $SLURM_CPUS_ON_NODE

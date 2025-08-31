@@ -10,4 +10,4 @@ needs  '-DQE_FFTW_VENDOR=Internal
   location: -DSCALAPACK_DIR=/your/path/to/scalapack
 
 
-
+mpif90 from CUDA-NVHPC SKD

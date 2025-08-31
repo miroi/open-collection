@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## jobname
-#SBATCH -J QEgpuX
+#SBATCH -J QEgpuMPI
 
 ##  partition (queue)
 ##SBATCH -p cascade
@@ -38,7 +38,7 @@
 #SBATCH --ntasks-per-node=4
 
 #Set the number of GPUs per node
-#SBATCH --gres=gpu:1
+#SBATCH --gres=gpu:4
 
 ## stdout/stderr output file
 #SBATCH -o log_slurm_job.%j.%N.std_out_err
@@ -127,7 +127,9 @@ echo -e "\n python -v :\c"; python -V
 #echo -e "\n ifort -V: \c"; ifort -V
 #echo -e "\n mpiifort -V: \c"; mpiifort -V
 #echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT "
-#echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
+
+echo -e "\n mpif90 ? \c"; which mpif90; mpif90 --version
+echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
 echo -e "\n cmake ? \c"; which cmake; cmake --version
 echo -e "\n git ? \c"; which git; git --version
 
@@ -149,7 +151,7 @@ ls  /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/cuda/v12.1/Linux_x86_64/23.5/compiler
 
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-7.3.1
 QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e
-BUILD=build_gpu_cuda_nvfor_nvcc_cuda-openmpi
+BUILD=build_gpu_cuda_mpif90-nvfor_nvcc_cuda-openmpi
 
 cd $QE; echo -e "\n\nI am in the directory QE=$QE"; pwd
 
@@ -188,7 +190,9 @@ echo -e "\n\n\n Running cmake :"
 
 #cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=nvfortran -DQE_ENABLE_MPI=OFF -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_CUDA=ON -DQE_LAPACK_INTERNAL=OFF  -DQE_ENABLE_SCALAPACK=OFF -DQE_ENABLE_ELPA=OFF -DQE_ENABLE_LIBXC=OFF  -DQE_ENABLE_HDF5=OFF ..
 
-cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=nvfortran -DQE_ENABLE_MPI=ON -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_CUDA=ON  -DQE_ENABLE_LIBXC=OFF  -DQE_ENABLE_HDF5=OFF -DQE_FFTW_VENDOR=Internal  -DQE_ENABLE_SCALAPACK=OFF ..
+#cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=nvfortran -DQE_ENABLE_MPI=ON -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_CUDA=ON  -DQE_ENABLE_LIBXC=OFF  -DQE_ENABLE_HDF5=OFF -DQE_FFTW_VENDOR=Internal  -DQE_ENABLE_SCALAPACK=OFF ..
+
+cmake -DCMAKE_C_COMPILER=nvc -DCMAKE_Fortran_COMPILER=mpif90 -DQE_ENABLE_MPI=ON -DQE_ENABLE_OPENMP=ON -DQE_ENABLE_CUDA=ON  -DQE_ENABLE_LIBXC=OFF  -DQE_ENABLE_HDF5=OFF -DQE_FFTW_VENDOR=Internal  -DQE_ENABLE_SCALAPACK=OFF ..
 
 echo -e "\n\n  running :  make -j $SLURM_CPUS_ON_NODE "
 make -j $SLURM_CPUS_ON_NODE

@@ -11,7 +11,7 @@
 
 # GPU nodes
 #SBATCH -p ampere
-#SBATCH -w ampere01
+#SBATCH -w ampere02
 
 ##SBATCH -p dgx
 ##SBATCH -w dgx03
@@ -103,7 +103,6 @@ module load git
 # NVHPC with OpenMPI ?
 module load cuda/v12.4
 
-module load intel/oneapi
 
 echo -e "\n\n All loaded modules:"
 module list
@@ -138,7 +137,8 @@ echo -e "\n pgfortran ? ; \c"; which pgfortran; pgfortran --version
 
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-7.3.1
 QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e
-BUILD=build_gpu_cuda_nvfor_nvcc_NOopenmpi_mkl
+#BUILD=build_gpu_cuda_nvfor_nvcc_NOopenmpi_mkl
+BUILD=build_gpu_cuda_nvfor_nvcc_cuda-openmpi
 
 echo -e "\n\n  ls -lt $QE/$BUILD/bin : "
 ls -lt $QE/$BUILD/bin
@@ -152,8 +152,8 @@ echo " It has the disk space of (df -h) :"; df -h .
 #echo -e "\n\n running :  ctest  -j $SLURM_CPUS_ON_NODE : "
 #ctest  -j $SLURM_CPUS_ON_NODE
 
-export OMP_NUM_THREADS=$SLURM_CPUS_ON_NODE
-#export OMP_NUM_THREADS=1
+#export OMP_NUM_THREADS=$SLURM_CPUS_ON_NODE
+export OMP_NUM_THREADS=1
 echo -e "\n\n OMP_NUM_THREADS=$OMP_NUM_THREADS"
 
 project=Se54_r_Fl
@@ -162,7 +162,13 @@ inp=$project.in
 out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out
 
 #mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE  $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
-$QE/$BUILD/bin/pw.x  < $inp > $out
+
+echo -e "\n\n mpirun --help:";mpirun --help
+
+echo -e "\n\n running: mpirun -v -np $SLURM_NTASKS -nk 2 $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out "
+mpirun -v -np $SLURM_NTASKS -nk 2 $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
+
+#$QE/$BUILD/bin/pw.x  < $inp > $out
 
 
 exit

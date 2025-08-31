@@ -165,8 +165,9 @@ out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SL
 
 echo -e "\n\n mpirun --help:";mpirun --help
 
+#echo -e "\n\n running: mpirun -v -np $SLURM_NTASKS -nk 2 $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out "
 echo -e "\n\n running: mpirun -v -np $SLURM_NTASKS -nk 2 $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out "
-mpirun -v -np $SLURM_NTASKS -nk 2 $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
+mpirun -v -np $SLURM_NTASKS $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
 
 #$QE/$BUILD/bin/pw.x  < $inp > $out
 

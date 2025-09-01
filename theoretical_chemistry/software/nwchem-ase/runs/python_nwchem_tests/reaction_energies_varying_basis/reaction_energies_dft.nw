@@ -1,0 +1,43 @@
+#
+# 2H2 + C2H4 → 2CH4
+#
+#  reaction energy is cca -1780.6 kJ/mol (Google AI)
+#
+
+dft 
+  xc b3lyp
+end
+
+print none
+
+python
+  energies = {}
+  c2h4 = 'geometry noprint; symmetry d2h; \
+          C 0 0 0.672; H 0 0.935 1.238; end\n'
+  ch4  = 'geometry noprint; symmetry td; \
+          C 0 0 0; H 0.634 0.634 0.634; end\n'
+  h2   = 'geometry noprint; symmetry d2h; \
+          H 0 0 0.378; end\n'
+
+  results = open("results_dft.txt",'w')
+
+  def energy(basis, geometry):
+    input_parse('''
+      basis spherical noprint
+        c library %s ; h library %s 
+      end
+    ''' % (basis, basis))
+    input_parse(geometry)
+    return task_energy('dft')
+
+  for basis in ('sto-3g', '6-31g', '6-31g*', 'cc-pvdz', 'cc-pvtz'):
+     energies[basis] =  ( 2*energy(basis, ch4) \
+                       - 2*energy(basis, h2) - energy(basis, c2h4))*2625  # convert to kJ/mol
+     if (ga_nodeid() == 0): 
+        print (basis, ' %8.6f' % energies[basis])
+        #results.write( "basis=" % basis  % ' %8.6f' % energies[basis])
+        results.write( "\n basis=" + basis  + " DFT react en = %8.6f kJ/mol" % energies[basis])
+end 
+
+task python
+

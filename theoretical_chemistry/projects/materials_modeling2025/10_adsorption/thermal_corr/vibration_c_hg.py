@@ -76,7 +76,8 @@ atoms = Atoms(
 # Set QE bin directory 
 #qe_bin = "/home/dsen/work/bin/qe-7.4.1_serial"
 #qe_bin = "/home/dsen/work/bin/qe-7.4.1"
-qe_bin = "/usr/bin"
+#qe_bin = "/usr/bin"
+qe_bin = "/home/miroi/work/software/quantum_espresso/q-e_miro_fork/build_gnu/bin"
 
 # Job commands
 #pw_command = f'{qe_bin}/bin/pw.x'

@@ -1,0 +1,26 @@
+#!/bin/bash
+
+
+#export MOPACDIR=/home/miroi/work/software/mopac
+export MOPACDIR=/home/milias/work/software/mopac
+
+export PATH=$MOPACDIR/mopac-23.1.2-linux/bin:$PATH
+export LD_LIBRARY_PATH=$MOPACDIR/mopac-23.1.2-linux/lib:$LD_LIBRARY_PATH
+
+
+echo -e "\n Running MOPAC 23.1.2 on server \"`hostname`\"  "
+
+which mopac; ldd `which mopac`
+echo
+
+#input=dipyridamole_PM7.mop
+#input=Cholesteryl-palmitate-acd-avogopt.singlepoint.mop
+#input=dna_pm7
+input=Hg_on_C8.geopt_pm7
+
+mopac $input
+#command time -f "%e" mopac $input
+
+echo -e "\n MOPAC run ends on \c"; date
+
+exit 0

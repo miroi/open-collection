@@ -81,31 +81,25 @@ module add CMake/v3.29.2
 module add intel/v2021.1
 #module add openmpi/v5.0.3_gcc1230
 #module add LAPACK/v3.12.0_gcc1230
-module add  gcc/v12.3.0
 module list
-
-# Add your own OpenMPI-i8
-export PATH=$PATH:/lustre/home/user/m/milias/work/software/openmpi/openmpi-5.0.7-gnu12.3.0-i8/openmpi-5.0.7/bin
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/lustre/home/user/m/milias/work/software/openmpi/openmpi-5.0.7-gnu12.3.0-i8/openmpi-5.0.7/lib
 
 echo -e "\n\n The environmental variable PATH=$PATH "
 echo -e "\n The environmental variable LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
 
-echo -e "\n python ? :\c"; which python; python -V
-echo -e " cmake ? :\c";  which cmake; cmake --version
-echo -e " mpif90 ? :\c"; which mpif90; mpif90 --version
-echo -e " mpicc ? :\c"; which mpicc; mpicc --version
-echo -e " mpicxx ? :\c"; which mpicxx; mpicxx  --version
-echo -e " mpirun ? :\c"; which mpirun; mpirun  --version
-echo -e " ompi_info -a | grep 'Fort integer size'"; ompi_info -a | grep 'Fort integer size'
-#echo -e "\n LAPACK and  BLAS libs in /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/LAPACK/v3.12.0_gcc1230/lib64 ?";
-#ls -lt /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/LAPACK/v3.12.0_gcc1230/lib64
-echo -e "\n Intel MKL library ?  MKLROOT=$MKLROOT ?";
+echo -e "\n\nPython ? :\c"; which python; python -V
+#echo -e "  cmake ? :\c";  which cmake; cmake --version
+echo -e "  mpiifort ? :\c"; which mpiifort; mpiifort -V
+echo -e "  mpiicc ? :\c"; which mpiicc; mpiicc -V
+echo -e "  mpiicc ? :\c"; which mpiicpc; mpiicpc  -V
+echo -e "  Intel  mpirun ? :\c";  which mpirun; mpirun  -V
+echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"; ls -lt  $MKLROOT/lib/intel64
+
+echo -e "\n\n The variable PATH=$PATH\n"
 
 #DIRAC=/lustre/home/user/m/milias/work/software/dirac/trunk
 DIRAC=/lustre/home/user/m/milias/work/software/dirac/trunk_study
-#BUILD=build_intelmpi_mkl_i8
-BUILD=build_openmpi5-i8_mkl_i8
+BUILD=build_intelmpi_mkl_i8
+#BUILD=build_openmpi5_mkl_i8
 
 echo -e "\n\n checking the workhorse executable, ldd $DIRAC/$BUILD/dirac.x:"
 ldd $DIRAC/$BUILD/dirac.x
@@ -128,6 +122,6 @@ echo -e "\n\n I am in the directory: \c "; pwd
 #
 THISMPI=$SLURM_NTASKS
 echo -e "\n\n Running parallel DIRAC job: \n"
-$DIRAC/$BUILD/pam --mpi=$THISMPI  --put="DFPCMO.Lr.scf_v2z_x2c_lsym=DFPCMO" --noarch --gb=122.0 --ag=123.0 --inp=Lr.x2c-gaunt_scf_relcc.inp  --mol=Lr.v2z_linsymm.mol  --suffix=$out_suffix
+$DIRAC/$BUILD/pam --mpi=$THISMPI  --get="DFPCMO=DFPCMO.Lr.scf_v2z_x2c_lsym" --noarch --gb=122.0 --ag=123.0 --inp=Lr.x2c-gaunt_scf_relcc.inp  --mol=Lr.v2z_linsymm.mol  --suffix=$out_suffix
 
 exit

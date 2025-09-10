@@ -14,7 +14,7 @@
 ##SBATCH --exclusive
 
 ##SBATCH --mem=224GB
-#SBATCH --mem=124GB
+#SBATCH --mem=164GB
 ##SBATCH --mem=64GB
 
 # do not restart in the case of nodefail!
@@ -22,7 +22,7 @@
 #SBATCH --no-kill
 
 #SBATCH -N 1
-#SBATCH --ntasks-per-node=10
+#SBATCH --ntasks-per-node=12
 
 ##SBATCH  --sockets-per-node=1
 
@@ -124,6 +124,6 @@ THISMPI=$SLURM_NTASKS
 echo -e "\n\n Running parallel DIRAC job: \n"
 #$DIRAC/$BUILD/pam --mpi=$THISMPI  --get="DFPCMO=DFPCMO.Lr.scf_v2z_x2c_lsym" --noarch --gb=122.0 --ag=123.0 --inp=Lr.x2c-gaunt_scf_relcc.inp  --mol=Lr.v2z_linsymm.mol  --suffix=$out_suffix
 
-$DIRAC/$BUILD/pam --mpi=$THISMPI  --get="DFPCMO=DFPCMO.Lr.scf_cc-pVTZ-DK3+_x2c_lsym" --noarch --gb=122.0 --ag=123.0 --inp=Lr.x2c-gaunt_scf_relcc.inp  --mol=Lr.kirk_linsymm.mol  --suffix=$out_suffix
+$DIRAC/$BUILD/pam --mpi=$THISMPI  --get="DFPCMO=DFPCMO.Lr.scf_ae4z_x2c_lsym" --noarch --gb=162.0 --ag=163.0 --inp=Lr.x2c-gaunt_scf_relcc.inp  --mol=Lr.ae4z_linsymm.mol  --suffix=$out_suffix
 
 exit

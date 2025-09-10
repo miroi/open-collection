@@ -163,14 +163,17 @@ out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SL
 
 #mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE  $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
 
-echo -e "\n\n mpirun --help:";mpirun --help
+echo -e "\n\n which mpirun;  mpirun --help:";which mpirun;  mpirun --help
 
 #echo -e "\n\n running: mpirun -v -np $SLURM_NTASKS -nk 2 $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out "
 echo -e "\n\n running: mpirun ....  < $inp > $out "
 #mpirun -v -np $SLURM_NTASKS $QE/bin/pw.x  -nk 1 -npool $SLURM_JOB_NUM_NODES  < $inp > $out
 #mpirun -v -np $SLURM_NTASKS $QE/bin/pw.x  -nk $SLURM_NTASKS  < $inp > $out
 
-mpirun  -np 2 --bind-to core:overload-allowed  -v  $QE/bin/pw.x -nk 2   < $inp > $out
+#mpirun  -np 2 --bind-to core:overload-allowed  -v  $QE/bin/pw.x -nk 2   < $inp > $out
+#mpirun  -np 2  -v  $QE/bin/pw.x -nk 2   < $inp > $out
+
+mpirun  -np 2  -v  $QE/bin/pw.x -nk 2   < $inp > $out
 
 #$QE/$BUILD/bin/pw.x  < $inp > $out
 

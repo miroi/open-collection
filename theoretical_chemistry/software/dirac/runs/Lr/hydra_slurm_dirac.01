@@ -122,6 +122,8 @@ echo -e "\n\n I am in the directory: \c "; pwd
 #
 THISMPI=$SLURM_NTASKS
 echo -e "\n\n Running parallel DIRAC job: \n"
-$DIRAC/$BUILD/pam --mpi=$THISMPI  --get="DFPCMO=DFPCMO.Lr.scf_v2z_x2c_lsym" --noarch --gb=122.0 --ag=123.0 --inp=Lr.x2c-gaunt_scf_relcc.inp  --mol=Lr.v2z_linsymm.mol  --suffix=$out_suffix
+#$DIRAC/$BUILD/pam --mpi=$THISMPI  --get="DFPCMO=DFPCMO.Lr.scf_v2z_x2c_lsym" --noarch --gb=122.0 --ag=123.0 --inp=Lr.x2c-gaunt_scf_relcc.inp  --mol=Lr.v2z_linsymm.mol  --suffix=$out_suffix
+
+$DIRAC/$BUILD/pam --mpi=$THISMPI  --get="DFPCMO=DFPCMO.Lr.scf_cc-pVTZ-DK3+_x2c_lsym" --noarch --gb=122.0 --ag=123.0 --inp=Lr.x2c-gaunt_scf_relcc.inp  --mol=Lr.kirk_linsymm.mol  --suffix=$out_suffix
 
 exit

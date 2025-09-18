@@ -16,8 +16,8 @@ sys.stdout.flush()
 # 1. Quantum Espresso Input Parameters
 # ==============================================
 pseudopotentials = {
-    'C': 'C.upf',
-    'Hg': 'Hg.upf'
+    'C': 'C_r.upf',
+    'Hg': 'Hg-sp_r.upf'
 }
 
 input_data = {
@@ -37,7 +37,9 @@ input_data = {
         'nat': 9,
         'ntyp': 2,
         'assume_isolated': '2D',
-        'vdw_corr' : 'DFT-D3'
+        'vdw_corr' : 'DFT-D3',
+        'noncolin': True,
+        'lspinorb': True
     },
     'electrons': {
         'conv_thr': 1.0e-10
@@ -74,11 +76,12 @@ atoms = Atoms(
 # Set QE bin directory 
 #qe_bin = "/home/dsen/work/bin/qe-7.4.1_serial"
 #qe_bin = "/home/dsen/work/bin/qe-7.4.1"
-qe_bin = "/usr/bin"
+qe_bin = "~/work/software/quantum_espresso/q-e_miro_fork/build_gnu/bin"
+#qe_bin = "/usr/bin"
 
 # Job commands
 #pw_command = f'{qe_bin}/bin/pw.x'
-pw_command = f'mpirun -np 10 {qe_bin}/pw.x'
+pw_command = f'mpirun -np 4 {qe_bin}/pw.x'
 
 pw_profile = EspressoProfile(
     command=pw_command,

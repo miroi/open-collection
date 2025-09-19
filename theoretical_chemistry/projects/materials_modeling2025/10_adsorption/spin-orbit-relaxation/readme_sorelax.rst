@@ -5,7 +5,8 @@ Hg@graphene
 
 full relativistic pseudos from https://github.com/PseudoDojo/ONCVPSP-PBE-FR-PDv0.4/tree/master
 
-
+ase-driven relaxation
+~~~~~~~~~~~~~~~~~~~~~
 
 (myenv) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/projects/materials_modeling2025/10_adsorption/spin-orbit-relaxation/.python atom_so-relaxation_c_hg.py
 
@@ -22,5 +23,7 @@ Final relaxed structure saved to: final_relaxed_structure.vasp
 Relaxation complete
 (myenv) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/projects/materials_modeling2025/10_adsorption/spin-orbit-relaxation/.
 
-
+qe-driven relaxation
+~~~~~~~~~~~~~~~~~~~~
+-430.1196442627 Ry ... -5852.0805542 eV
 

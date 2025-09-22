@@ -74,11 +74,12 @@ atoms = Atoms(
 # Set QE bin directory 
 #qe_bin = "/home/dsen/work/bin/qe-7.4.1_serial"
 #qe_bin = "/home/dsen/work/bin/qe-7.4.1"
-qe_bin = "/usr/bin"
+#qe_bin = "/usr/bin"
+qe_bin = "/home/milias/work/software/qe/q-e-devel/build_gnu_mkl/bin"
 
 # Job commands
 #pw_command = f'{qe_bin}/bin/pw.x'
-pw_command = f'mpirun -np 10 {qe_bin}/pw.x'
+pw_command = f'mpirun -np 6 {qe_bin}/pw.x'
 
 pw_profile = EspressoProfile(
     command=pw_command,
@@ -108,7 +109,7 @@ traj = Trajectory('relaxation.traj', 'w', atoms)
 opt = BFGS(atoms, trajectory=traj, logfile='relaxation.log')
 
 try:
-    opt.run(fmax=0.01) # Convergence criterion: max force < 0.01 eV/Å
+    opt.run(fmax=0.001) # Convergence criterion: max force < 0.001 eV/Å
         
     # Get final results
     final_energy = atoms.get_potential_energy()

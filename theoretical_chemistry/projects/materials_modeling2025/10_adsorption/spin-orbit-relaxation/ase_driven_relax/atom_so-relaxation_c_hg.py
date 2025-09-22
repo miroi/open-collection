@@ -76,7 +76,8 @@ atoms = Atoms(
 # Set QE bin directory 
 #qe_bin = "/home/dsen/work/bin/qe-7.4.1_serial"
 #qe_bin = "/home/dsen/work/bin/qe-7.4.1"
-qe_bin = "/home/miroi/work/software/quantum_espresso/q-e_miro_fork/build_gnu/bin"
+#qe_bin = "/home/miroi/work/software/quantum_espresso/q-e_miro_fork/build_gnu/bin"
+qe_bin = "/home/milias/work/software/qe/q-e-devel/build_gnu_mkl/bin"
 #qe_bin = "/usr/bin"
 
 # Job commands
@@ -111,7 +112,7 @@ traj = Trajectory('relaxation.traj', 'w', atoms)
 opt = BFGS(atoms, trajectory=traj, logfile='relaxation.log')
 
 try:
-    opt.run(fmax=0.005) # Convergence criterion: max force < 0.01 eV/Å
+    opt.run(fmax=0.001) # Convergence criterion: max force < 0.01 eV/Å
         
     # Get final results
     final_energy = atoms.get_potential_energy()

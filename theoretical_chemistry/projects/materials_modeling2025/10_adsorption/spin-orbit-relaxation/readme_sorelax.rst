@@ -45,3 +45,5 @@ qe-driven relaxation
 
 better precision:
 -430.1196454044 Ry ... -5852.0805698 eV 
+
+diff (Num-Anal) = -5852.075390 -(-5852.0805698) = .0051798 eV

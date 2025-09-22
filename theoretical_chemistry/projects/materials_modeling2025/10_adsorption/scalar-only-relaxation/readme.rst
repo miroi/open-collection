@@ -18,9 +18,17 @@ Final relaxed structure saved to: final_relaxed_structure.vasp
 
 Relaxation complete
 
-
 qe-driven
 ----------
 
+    Energy error            =      5.2E-09 Ry
+     Gradient error          =      2.6E-05 Ry/Bohr
 
+     bfgs converged in  17 scf cycles and  16 bfgs steps
+     (criteria: energy <  1.0E-08 Ry, force <  1.0E-04 Ry/Bohr)
 
+     End of BFGS Geometry Optimization
+
+     Final energy             =    -428.3488610096 Ry  = -5827.9878015 eV
+
+diff (Num-Anal) = -5827.982643-(-5827.9878015) = .0051585 eV

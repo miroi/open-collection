@@ -1,0 +1,94 @@
+#!/bin/bash
+
+echo -e "\n\nQE job started \c"; date
+echo -e "Hostname is \c "; hostname
+echo -e "User name is \c ";whoami
+
+# CPU model
+echo -e "\nThe host CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
+NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
+#echo "This host has total NPROCS=$NPROCS CPUs available."
+
+string=`cat /proc/cpuinfo | grep 'cpu cores'`
+number_string=$(echo "$string" | grep -o -E '[0-9]+(\.[0-9]+)?')
+#echo $number_string
+MAXTHREADS=$(echo "$number_string" | grep -oE '[0-9]+' | sort | uniq -c | awk '$1 > 1 {print $2}')
+echo -e "Number of cores, or max number of mpi threads MAXTHREADS=$MAXTHREADS"
+
+
+# process command line arguments
+
+#echo -e "\n number of arguments is $#"
+
+if [[ $# -gt 0 ]]; then
+ first_arg=$1
+ echo first argument is $first_arg
+
+ if [[ $first_arg =~ ^[0-9]+$ ]]; then
+    echo "entering first parm is number ! "
+    if [[ $first_arg  -gt 0 && $first_arg  -le $MAXTHREADS ]]; then
+      echo "number of threads is in proper range 1 - $MAXTHREADS !"                
+      NTHREADS=$first_arg
+    else
+      echo "number of threads is NOT in proper range 1 - $MAXTHREADS ! Setting it to two !"
+      NTHREADS=2
+    fi
+ else 
+    echo "entering firt param is not a number !  Setting NTHREADS=2 !"
+     NTHREADS=2
+ fi
+else
+ echo "no command line arguments, taking  default NTHREADS=2"
+     NTHREADS=2
+fi
+
+#export QE_EXECUTABLE=/usr/bin/pw.x
+export QE_EXECUTABLE=~/work/software/qe/q-e-devel/build_gnu_mkl/bin/pw.x
+
+echo -e "\n  QE_EXECUTABLE=$QE_EXECUTABLE ; linked libraries: "
+ldd $QE_EXECUTABLE
+
+# pseudo directory of the quantum-espresso package installation
+#export ESPRESSO_PSEUDO=/usr/share/espresso/pseudo
+export ESPRESSO_PSEUDO=~/work/software/qe/q-e-devel/pseudo
+echo -e "\n QE pseudopot. files, ESPRESSO_PSEUDO=$ESPRESSO_PSEUDO"
+
+
+randstr=`openssl rand -hex  6` 
+#export TMP_DIR=/tmp/$USER/qe_run.$randstr
+export ESPRESSO_TMPDIR=$PWD/qe_run_tmpdir.$randstr
+echo -e "\n Scratch directory, ESPRESSO_TMPDIR=$ESPRESSO_TMPDIR";
+#echo -e "Size of the scratch dir, df -h /tmp :"; df -h /tmp
+
+export THISDIR=$PWD
+echo -e "Current working directory,  THISDIR=$THISDIR"
+
+#echo -e "\n Creating scratch dir,  mkdir -p $TMP_DIR"
+#mkdir -p $TMP_DIR
+#cd $TMPDIR
+#echo -e "\nI am in newly created TMPDIR=$TMPDIR"
+#echo -e "For control,  pwd=\c";pwd
+
+echo -e "\n Checking MPI launcher : which mpirun ? \c"; which mpirun; mpirun --version
+
+# ... project name #
+#proj=h2o_freq_tasks
+#proj=water.qe_scf
+#proj=HgC8.2Drelax-so
+proj=HgC8.2Drelax-sr
+
+echo -e "\n Launching QE project $proj with $NTHREADS MPI-threads :"
+mpirun -np $NTHREADS $QE_EXECUTABLE <  $THISDIR/$proj.in >  $THISDIR/$proj.outN$NTHREADS
+
+echo -e "\n\n Working files in scratch dir $TMP_DIR:"
+ls -lt $TMPDIR
+du -h -s $TMPDIR
+cd .. ; echo -e "just for control -  pwd=\c";pwd; ls -lt
+#echo -e "\nDeleting scratch directory $TMPDIR: "; /bin/rm -r $TMPDIR
+
+#echo -e "\n returning to $THISDIR"
+#cd $THISDIR
+
+echo -e "\n\n QE job ended \c"; date
+
+exit 0

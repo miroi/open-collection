@@ -1,0 +1,26 @@
+=====
+Hg@C8
+=====
+
+ase-driven
+-----------
+milias@DESKTOP-7OTLCGO:~/work/git-projects/open-collection/theoretical_chemistry/projects/materials_modeling2025/10_adsorption/scalar-only-relaxation/ase-driven-relax/.python atom_relaxation_c_hg_scalar.py
+
+Starting cell relaxation by ASE
+
+Final results
+  Total Energy                  : -5827.982643 eV
+  ASE-style max force (norm)    : 0.000601 eV/Å
+  QE-style max force            : 0.000599 eV/Å
+  Pressure                      : -3.787955 kbar
+
+Final relaxed structure saved to: final_relaxed_structure.vasp
+
+Relaxation complete
+
+
+qe-driven
+----------
+
+
+

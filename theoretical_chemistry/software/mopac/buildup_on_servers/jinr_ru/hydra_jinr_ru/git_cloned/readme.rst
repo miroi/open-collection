@@ -91,4 +91,16 @@ milias@hydra.jinr.ru:~/work/software/mopac/git_cloned/mopac/build/.ldd mopac
         libintlc.so.5 => /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin/libintlc.so.5 (0x00007fb314e65000)
 milias@hydra.jinr.ru:~/work/software/mopac/git_cloned/mopac/build/.
 
+milias@hydra.jinr.ru:~/work/software/mopac/git_cloned/mopac/build/../mopac-api-test
+ Passed API test 1
+ Passed API test 2
+ Passed API test 3
+ Passed API test 4
+ Passed API test 5
+ Passed API test 6
+ Passed API test 7
+ Passed API test 8
+ Passed API test 9
+ Passed API test 10
+milias@hydra.jinr.ru:~/work/software/mopac/git_cloned/mopac/build/.
 

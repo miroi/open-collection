@@ -1,3 +1,11 @@
+#
+#
+# ... description ...
+#
+#
+#
+
+
 import os
 import numpy as np
 from ase import Atoms
@@ -20,7 +28,7 @@ os.makedirs('traj_files', exist_ok=True)
 element = 'Ag'
 size = (4, 4, 3)      # (x, y, z): number of repetitions
 vacuum = 10.0          # Å vacuum along z-direction
-a = 4.086             # Lattice constant for Ag in Å (FCC)
+a = 4.086             # Experimental Lattice constant for Ag in Å (FCC)
 
 # Build slab using ASE's built-in function
 slab = fcc111(symbol=element, size=size, a=a, vacuum=vacuum, periodic=False)
@@ -54,6 +62,7 @@ hollow_height = 1.8
 adsorbates = ['C', 'H', 'N', 'O', 'S']
 
 # LJ parameters (adjust based on element)
+# params are from ...
 lj_params = {
     'C': {'epsilon': 0.05, 'sigma': 3.0},
     'H': {'epsilon': 0.02, 'sigma': 2.0},

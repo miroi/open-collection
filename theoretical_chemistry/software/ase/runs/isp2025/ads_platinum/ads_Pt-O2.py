@@ -17,7 +17,7 @@ os.makedirs('ase_outputs', exist_ok=True)
 os.makedirs('traj_files', exist_ok=True)
 
 # ==============================================
-# 1. Load Slab
+# 1. Load Slab  Pf fcc(111), from ase gui, put in a(exp)
 # ==============================================
 atoms = Atoms(
     symbols=['Pt']*48,

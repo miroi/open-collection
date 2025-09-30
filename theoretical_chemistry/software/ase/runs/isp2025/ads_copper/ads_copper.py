@@ -94,9 +94,9 @@ hollow_height = 1.8
 # Specify adsorbate 
 adsorbate_symbol = 'C'  
 
-# LJ parameters 
-lj_epsilon = 0.041        # Adjust depending on your system
-lj_sigma = 2.88          # Adjust depending on your system
+# LJ parameters ... from where ?
+lj_epsilon = 0.041      # Adjust depending on your system
+lj_sigma = 2.88         # Adjust depending on your system
 
 # ==============================================
 # 3. Define all unique adsorption sites

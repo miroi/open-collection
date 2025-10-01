@@ -108,6 +108,13 @@ milias@DESKTOP-7OTLCGO:~/work/software/qe/q-e-devel-official/build_openmpi/.ctes
 .
 .
 .
+99% tests passed, 1 tests failed out of 364
+Total Test time (real) = 394.20 sec
 
+The following tests FAILED:
+        204 - system--pw_plugins-correctness (Failed)
+Errors while running CTest
+Output from these tests are in: /home/milias/work/software/qe/q-e-devel-official/build_openmpi/Testing/Temporary/LastTest.log
+Use "--rerun-failed --output-on-failure" to re-run the failed cases verbosely.
 
 

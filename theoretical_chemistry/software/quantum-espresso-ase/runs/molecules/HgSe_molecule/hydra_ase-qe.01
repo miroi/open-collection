@@ -16,9 +16,9 @@
 ##SBATCH -p slo-ice
 
 ## max. execution time
-##SBATCH -t 3-00:00:00
+#SBATCH -t 3-00:00:00
 ##SBATCH -t 0-08:00:00
-#SBATCH -t 30-00:00:00
+##SBATCH -t 30-00:00:00
 
 ##SBATCH --exclusive
 
@@ -40,7 +40,7 @@
 #SBATCH -o log_slurm_job.%j.%N.std_out_err
 
 ## E-mail
-#SBATCH --mail-user=dsen@theor.jinr.ru
+#SBATCH --mail-user=milias@theor.jinr.ru
 #SBATCH --mail-type=ALL
 ##------------------------------------------------------------------------------------------------------------
 ##
@@ -165,7 +165,8 @@ echo
 ##---------------------------------------------------Run job----------------------------------------------------
 ## Specify ASE script here
 echo -e "\n Starting ASE parallel job on \c";date; echo
-python dimer.py
+#python dimer.py
+python HgSe_ase-qe_geomopt.py
 
 echo -e "\n ASE finished on : \c";date
 exit

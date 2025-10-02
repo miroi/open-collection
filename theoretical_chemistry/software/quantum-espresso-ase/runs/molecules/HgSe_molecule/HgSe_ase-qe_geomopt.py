@@ -21,7 +21,7 @@ input_data = {
         'tstress': True,
         'tprnfor': True,
         'disk_io': 'minimal',
-        'calculation': 'scf'
+        'calculation': 'relax'
     },
     'system': {
         'ecutwfc': 90,
@@ -51,10 +51,10 @@ input_data = {
 # ==============================================
 # 2. Distance range parameters
 # ==============================================
-min_distance = 2.0  # Angstrom
-max_distance = 5.0  # Angstrom
-num_points = 20
-distances = np.linspace(min_distance, max_distance, num_points)
+#min_distance = 2.0  # Angstrom
+#max_distance = 5.0  # Angstrom
+#num_points = 20
+#distances = np.linspace(min_distance, max_distance, num_points)
 
 # ==============================================
 # 3. Set up calculator
@@ -87,36 +87,31 @@ print("Starting Hg-Se distance scan with QE (spin-orbit)...", flush=True)
 print("\nDistance (Å)\tEnergy (eV)", flush=True)
 print("---------------------------", flush=True)
 
-for i, distance in enumerate(distances):
+distance = 2.4
     # Create Hg-Se dimer in large box
-    atoms = Atoms(
-        symbols=['Hg', 'Se'],
-        positions=[
-            [0.0, 0.0, 0.0],           # Hg atom at origin
-            [distance, 0.0, 0.0]       # Se atom at specified distance along x-axis
+atoms = Atoms(
+    symbols=['Hg', 'Se'],
+    positions=[
+         [0.0, 0.0, 0.0],           # Hg atom at origin
+         [distance, 0.0, 0.0]       # Se atom at specified distance along x-axis
         ],
-        cell=[20.0, 20.0, 20.0],       # Large box to isolate the dimer
-        pbc=[True, True, True]         # Periodic boundary conditions
-    )
+    cell=[20.0, 20.0, 20.0],       # Large box to isolate the dimer
+    pbc=[True, True, True]         # Periodic boundary conditions
+)
     
     # Set calculator and calculate
     atoms.calc = qe_calc
     
-    try:
-        energy = atoms.get_potential_energy()
-        energies.append(energy)
+try:
+    energy = atoms.get_potential_energy()
+ #   energies.append(energy)
+       
+    # Print result for this distance
+    #print(f"{distance:.6f}\t{energy:.6f}", flush=True)
         
-        # Print result for this distance
-        print(f"{distance:.6f}\t{energy:.6f}", flush=True)
-        
-    except Exception as e:
-        print(f"{distance:.6f}\tFAILED: {str(e)}", flush=True)
-        energies.append(np.nan)
+except Exception as e:
+    print(f"{distance:.6f}\tFAILED: {str(e)}", flush=True)
 
 # Save raw data to file
-results = np.column_stack((distances, energies))
-np.savetxt('hg_se_potential_curve.dat', results, 
-           header='Distance(Angstrom) Energy(eV)', fmt='%.6f')
-
 print("\n=== Calculation completed ===", flush=True)
-print("Results saved to hg_se_potential_curve.dat", flush=True)
+#print("Results saved to hg_se_potential_curve.dat", flush=True)

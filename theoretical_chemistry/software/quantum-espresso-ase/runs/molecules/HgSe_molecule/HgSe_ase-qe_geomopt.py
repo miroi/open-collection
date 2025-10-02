@@ -21,6 +21,8 @@ input_data = {
         'tstress': True,
         'tprnfor': True,
         'disk_io': 'minimal',
+        'etot_conv_thr' : 1.0D-8,
+        'forc_conv_thr' : 1.0D-5,
         'calculation': 'relax'
     },
     'system': {
@@ -84,11 +86,9 @@ qe_calc = Espresso(
 energies = []
 
 print("Starting Hg-Se distance scan with QE (spin-orbit)...", flush=True)
-print("\nDistance (Å)\tEnergy (eV)", flush=True)
-print("---------------------------", flush=True)
 
 distance = 2.4
-    # Create Hg-Se dimer in large box
+# Create Hg-Se dimer in large box
 atoms = Atoms(
     symbols=['Hg', 'Se'],
     positions=[
@@ -99,8 +99,8 @@ atoms = Atoms(
     pbc=[True, True, True]         # Periodic boundary conditions
 )
     
-    # Set calculator and calculate
-    atoms.calc = qe_calc
+# Set calculator and calculate
+atoms.calc = qe_calc
     
 try:
     energy = atoms.get_potential_energy()

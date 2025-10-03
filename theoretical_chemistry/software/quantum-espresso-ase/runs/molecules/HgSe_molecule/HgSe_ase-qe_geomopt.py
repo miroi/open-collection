@@ -21,8 +21,8 @@ input_data = {
         'tstress': True,
         'tprnfor': True,
         'disk_io': 'minimal',
-        'etot_conv_thr' : 1.0D-8,
-        'forc_conv_thr' : 1.0D-5,
+        'etot_conv_thr' : 1.0e-8,
+        'forc_conv_thr' : 1.0e-5,
         'calculation': 'relax'
     },
     'system': {
@@ -31,8 +31,6 @@ input_data = {
         'smearing': 'gauss',
         'degauss': 0.01,
         'assume_isolated': 'martyna-tuckerman',
-        'nosym': True,
-        'noinv': True,
         'ibrav': 0,
         'nat': 2,
         'ntyp': 2,
@@ -47,6 +45,8 @@ input_data = {
         'startingpot': 'atomic',
         'startingwfc': 'atomic+random',
         'conv_thr': 1.0e-9
+    },
+    'ions': {
     }
 }
 

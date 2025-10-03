@@ -10,3 +10,6 @@ memory demands:
      Estimated max dynamical RAM per process >     559.43 MB
      Estimated total dynamical RAM >      29.03 GB
 
+     End of BFGS Geometry Optimization
+     Final energy             =    -575.9761003790 Ry
+

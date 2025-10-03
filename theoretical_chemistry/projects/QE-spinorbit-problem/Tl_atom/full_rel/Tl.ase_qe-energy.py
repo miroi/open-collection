@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from ase import Atoms
 from ase.calculators.espresso import Espresso, EspressoProfile
-from dftd4.ase import DFTD4
+#from dftd4.ase import DFTD4
 from ase.io import write
 from ase.optimize import BFGS
 from ase.constraints import FixAtoms
@@ -103,35 +103,26 @@ atoms.calc = combined_calc
 # 5. Run SCF Calculation
 # ==============================================
 
-print("\nStarting SCF total energy calculation with QE+D4...", flush=True)
+#print("\nStarting SCF total energy calculation with QE+D4...", flush=True)
+print("\nStarting SCF total energy calculation with QE...", flush=True)
 
 # Get total energy (QE+D4) from combined calculator
-total_energy = combined_calc.get_potential_energy(atoms)
+#total_energy = combined_calc.get_potential_energy(atoms)
 
 # Get individual components
 qe_energy = qe_calc.get_potential_energy(atoms)
-d4_energy = dftd4_calc.get_potential_energy(atoms)
+#d4_energy = dftd4_calc.get_potential_energy(atoms)
 
 # Verify sum matches combined energy
-tolerance = 1e-6  # eV
-sum_energy = qe_energy + d4_energy
-energy_diff = abs(total_energy - sum_energy)
+#tolerance = 1e-6  # eV
+#sum_energy = qe_energy + d4_energy
+#energy_diff = abs(total_energy - sum_energy)
 
 print("\nSCF Energy Results:", flush=True)
 print(f"  QE Electronic Energy: {qe_energy:.6f} eV", flush=True)
-print(f"  DFT-D4 Dispersion:    {d4_energy:.6f} eV", flush=True)
-print(f"  Sum (QE + D4):        {sum_energy:.6f} eV", flush=True)
-print(f"  Total Energy (QE+D4): {total_energy:.6f} eV", flush=True)
-
-if energy_diff > tolerance:
-    print(f"\nWARNING: Energy difference exceeds tolerance ({energy_diff:.2e} eV)", flush=True)
-    print("Possible causes:", flush=True)
-    print("1. Different atomic positions used in calculations", flush=True)
-    print("2. Numerical precision issues in SumCalculator", flush=True)
-    print("3. Convergence problems in either QE or DFTD4", flush=True)
-else:
-    print("\nEnergy sum verified (QE + D4 = Total within tolerance)", flush=True)
-    print(f"Difference: {energy_diff:.2e} eV", flush=True)
+#print(f"  DFT-D4 Dispersion:    {d4_energy:.6f} eV", flush=True)
+#print(f"  Sum (QE + D4):        {sum_energy:.6f} eV", flush=True)
+#print(f"  Total Energy (QE+D4): {total_energy:.6f} eV", flush=True)
 
 # Force final flush
 sys.stdout.flush()

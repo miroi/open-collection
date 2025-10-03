@@ -91,13 +91,15 @@ qe_calc = Espresso(
     kpts=(1, 1, 1), 
     koffset=(0, 0, 0) 
 )
-dftd4_calc = DFTD4(
-    method="PBE",
-    verbose=True,
-)
-from ase.calculators.mixing import SumCalculator
-combined_calc = SumCalculator([qe_calc, dftd4_calc])
-atoms.calc = combined_calc
+
+
+#dftd4_calc = DFTD4(
+#    method="PBE",
+#    verbose=True,
+#)
+#from ase.calculators.mixing import SumCalculator
+#combined_calc = SumCalculator([qe_calc, dftd4_calc])
+#atoms.calc = combined_calc
 
 # ==============================================
 # 5. Run SCF Calculation

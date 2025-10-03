@@ -1,0 +1,48 @@
+&CONTROL
+   verbosity        = 'low'
+   disk_io          = 'minimal'
+   pseudo_dir       = './'
+/
+&SYSTEM
+   ibrav            = 0
+   nat              = 1
+   ntyp             = 1
+   ecutwfc          = 90
+   nosym            = .true.
+   occupations      = 'fixed'
+   noncolin         = .true.
+   lspinorb         = .true.
+   assume_isolated  = 'martyna-tuckerman'
+   starting_magnetization(1) = 0.0
+/
+&ELECTRONS
+   electron_maxstep = 100
+   conv_thr         = 1e-10
+   mixing_beta      = 0.2
+   diagonalization  = 'david'
+   diago_full_acc   = .true.
+   startingpot      = 'atomic'
+   startingwfc      = 'atomic+random'
+/
+&IONS
+/
+&CELL
+/
+&FCP
+/
+&RISM
+/
+ATOMIC_SPECIES
+Tl  204.38 Tl.upf
+
+K_POINTS automatic
+1 1 1  0 0 0
+
+CELL_PARAMETERS angstrom
+20.00000000000000 0.00000000000000 0.00000000000000
+0.00000000000000 20.00000000000000 0.00000000000000
+0.00000000000000 0.00000000000000 20.00000000000000
+
+ATOMIC_POSITIONS angstrom
+Tl  10.0000000000 10.0000000000 10.0000000000  
+

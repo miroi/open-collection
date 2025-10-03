@@ -1,0 +1,146 @@
+#!/bin/bash
+
+##------------------------------------------------------------------------------------------------------------
+##
+##                                  ASE job submission script v2.0
+##
+##-----------------------------------------Slurm settings-----------------------------------------------------
+## jobname
+#SBATCH -J QED4-En
+
+##  partition (queue)
+##SBATCH -p cascade
+##SBATCH -p knl
+##SBATCH -p flnr-ice
+#SBATCH -p flnr-sod 
+##SBATCH -p slo-ice
+
+## max. execution time
+##SBATCH -t 3-00:00:00
+#SBATCH -t 0-08:00:00
+##SBATCH -t 30-00:00:00
+
+##SBATCH --exclusive
+
+##SBATCH --mem=640GB
+##SBATCH --mem=30GB
+#SBATCH --mem=96GB
+
+##SBATCH --mem-per-cpu=4GB
+
+## do not restart in the case of nodefail!
+##SBATCH --no-requeue
+##SBATCH --no-kill
+
+## nodes
+#SBATCH -N 1
+#SBATCH --ntasks-per-node=32
+
+## stdout/stderr output file
+#SBATCH -o log_slurm_job.%j.%N.std_out_err
+
+## E-mail
+#SBATCH --mail-user=milias@theor.jinr.ru
+#SBATCH --mail-type=ALL
+##------------------------------------------------------------------------------------------------------------
+##
+##
+##--------------------------------------QE builds with DFT-D4 patch-------------------------------------------
+# Loading modules to avoid mkl version mismatch - oneAPI
+# oneAPI with ScaLAPACK
+#export qe_bin="/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_inteloneapimpi_mkl_scalapack"
+# oneAPI without ScaLAPACK/ ELPA
+export qe_bin="/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_inteloneapimpi_mkl"
+module purge
+module load intel/oneapi
+export MKL_INTERFACE_LAYER=LP64
+export MKL_THREADING_LAYER=INTEL
+export LD_PRELOAD=$MKLROOT/lib/intel64/libmkl_rt.so
+module load GVR/v1.0-1 Python/v3.10.13
+
+# Loading modules to avoid mkl version mismatch - ELPA
+#export qe_bin="/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_intelmpi_mkl_elpa"
+# module purge
+# module load GVR/v1.0-1 intel/v2021.1 Python/v3.10.13 
+# export MKL_INTERFACE_LAYER=LP64
+# export MKL_THREADING_LAYER=INTEL
+# export LD_PRELOAD=/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2021.1/intelpython/latest/lib/libmkl_rt.so
+# module load ELPA/v2025.01.002_oneapi 
+
+# Loading modules to avoid mkl version mismatch - intel 2021 (use only on cascade)
+#export qe_bin="/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_intelmpi_mkl"
+#module purge
+#module load GVR/v1.0-1 intel/v2021.1 Python/v3.10.13 
+#export MKL_INTERFACE_LAYER=LP64
+#export MKL_THREADING_LAYER=INTEL
+#export LD_PRELOAD=/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/v2021.1/intelpython/latest/lib/libmkl_rt.so
+##--------------------------------------------------------------------------------------------------------------
+##
+##
+##-------------------------------------------Print debug info---------------------------------------------------
+echo -e "\n\nRunning on host `hostname`"
+echo -e "Time is `date` \n"
+
+echo -e "\nJob user is SLURM_JOB_USER= $SLURM_JOB_USER"
+echo -e "User job SLURM_JOB_NAME=$SLURM_JOB_NAME has assigned ID SLURM_JOBID=$SLURM_JOBID"
+echo -e "This job was submitted from the computer SLURM_SUBMIT_HOST=$SLURM_SUBMIT_HOST"
+echo -e "and from the home directory SLURM_SUBMIT_DIR:"
+echo -e "$SLURM_SUBMIT_DIR"
+
+echo -e "Job is running on the cluster compute node: SLURM_CLUSTER_NAME=$SLURM_CLUSTER_NAME"
+echo -e "and is employing SLURM_JOB_NUM_NODES=$SLURM_JOB_NUM_NODES node/nodes:"
+echo -e "SLURM_JOB_NODELIST = $SLURM_JOB_NODELIST"
+echo -e "Job partition is SLURM_JOB_PARTITION=$SLURM_JOB_PARTITION \n"
+echo -e "Number of allocated CPUs on each single node, SLURM_CPUS_ON_NODE=$SLURM_CPUS_ON_NODE ."
+echo -e "Number of all reserved threads over ALL nodes, SLURM_NTASKS=$SLURM_NTASKS ."
+echo -e "Job has reserved memory per node, SLURM_MEM_PER_NODE=$SLURM_MEM_PER_NODE MB of memory"
+
+## Generate Machinefile for mpi such that hosts are in the same order as if run via srun
+MACHINEFILE="nodes.$SLURM_JOB_PARTITION.$SLURM_JOB_ID"
+srun -l /bin/hostname | sort -n | awk '{print $2}' > $MACHINEFILE
+echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; echo "containing:"; cat $MACHINEFILE
+
+echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
+NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
+echo "BTW, this node has total $NPROCS CPUs available for an EXCLUSIVE job."
+echo "Based on reserved memory, this node got $SLURM_CPUS_ON_NODE CPUs allocated for SLURM calculations."
+echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
+
+echo -e "\n\nLoaded modules:"
+module list
+
+echo -e "\nRunning on host `hostname`"
+echo -e "Time is `date` \n"
+
+echo -e "\nThe total memory at the node (in GB)"
+free -t -g
+echo -e "\n"
+
+echo -e "\nldd  $qe_bin/bin/pw.x :"
+ldd  $qe_bin/bin/pw.x
+
+echo -e "\n\nMy PATH=$PATH\n"
+echo -e "\nMy LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
+echo -e "Python -v :\c"; python -V
+echo -e "\n ifort -V: \c"; ifort -V
+echo -e "\n mpiifort -V: \c"; mpiifort -V
+echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
+
+## For running jobs from your homedir, use ...
+cd $SLURM_SUBMIT_DIR
+
+echo -e "\nCurrent directory where this SLURM job is running `pwd`"
+echo "It has the disk space of (df -h) :"
+df -h .
+echo
+##--------------------------------------------------------------------------------------------------------------
+##
+##
+##---------------------------------------------------Run job----------------------------------------------------
+## Specify ASE script here
+echo -e "\n Starting ASE-QE parallel job on \c";date; echo
+python Tl.ase_qe-energy.py
+
+echo -e "\n ASE finished on : \c";date
+exit
+##--------------------------------------------------------------------------------------------------------------

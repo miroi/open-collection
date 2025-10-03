@@ -13,7 +13,7 @@ sys.stdout.flush()  # Force immediate output
 # 1. Quantum Espresso Input Parameters
 # ==============================================
 pseudopotentials = {
-    'Tl': 'Tl_r.upf'
+    'Tl': 'Tl.upf'
 }
 
 input_data = {

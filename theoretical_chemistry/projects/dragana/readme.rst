@@ -1,6 +1,11 @@
-Sucrose
-=======
+=========================
+Sucrose-Midodrine complex
+=========================
 
-https://pubchem.ncbi.nlm.nih.gov/compound/Sucrose
+connectingh Midorine to Sucrose via OH groups condensation (removal of water)
 
-test
+quick geometry optimization of the complex (UFF)
+
+
+
+

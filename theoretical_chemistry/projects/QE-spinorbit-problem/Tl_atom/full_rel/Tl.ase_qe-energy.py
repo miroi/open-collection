@@ -18,7 +18,7 @@ pseudopotentials = {
 
 input_data = {
     'control': {
-        'verbosity': 'low',
+        'verbosity': 'high',
         'disk_io': 'minimal'
     },
     'system': {

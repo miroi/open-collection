@@ -18,18 +18,20 @@ pseudopotentials = {
 
 input_data = {
     'control': {
-        'verbosity': 'low',
+        'verbosity': 'high',
         'disk_io': 'minimal'
     },
     'system': {
         'ecutwfc': 90,
-        'occupations': 'fixed',
+        'occupations': 'smearing',
+        'smearing' : 'gaussian',
+        'degauss' : 0.02,
         'assume_isolated': 'martyna-tuckerman',
         'nosym': True,
         'ibrav': 0,
         'nat': 1,
         'ntyp': 1,
-        'noncolin': True,
+        'noncolin': False,
         'lspinorb': False 
     },
     'electrons': {

@@ -6,6 +6,10 @@ Cu.upf from https://www.pseudo-dojo.org/
 
 milias@DESKTOP-7OTLCGO:~/work/git-projects/open-collection/theoretical_chemistry/software/quantum-espresso-ase/runs/capacitance/copper_crystal/.python Cu.py
 
+TODO:  check function version and use the proper one !!!
+        """Simple trapezoidal integration of DOS using the recommended function"""
+        return np.trapezoid(dos, energy) # newer version of numpy
+        #return np.trapz(dos, energy) # older version
 
 Running SCF calculation...
   Total energy: -20637.937209 eV

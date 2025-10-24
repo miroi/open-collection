@@ -319,7 +319,8 @@ try:
     # Calculate integrated DOS below Fermi
     def integrate_dos(energy, dos):
         """Simple trapezoidal integration of DOS using the recommended function"""
-        return np.trapezoid(dos, energy)
+        return np.trapezoid(dos, energy) # newer version of numpy
+        #return np.trapz(dos, energy) # older version
     
     int_tdos = integrate_dos(energy_tdos[mask_tdos], tdos[mask_tdos])
     int_pdos = integrate_dos(energy_tdos[mask_tdos], interp_pdos)

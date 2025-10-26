@@ -4,8 +4,11 @@ ASE driven ALIGNN
 
 https://github.com/usnistgov/alignn
 
+see issue https://github.com/usnistgov/alignn/issues/193
+
 installation
 ~~~~~~~~~~~~~
+
 miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/alignn-ase/wsl2/.source ~/work/software/myenv/bin/activate
 (myenv) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/alignn-ase/wsl2/.pip install -q dgl -f https://data.dgl.ai/wheels/torch-2.1/repo.html
 

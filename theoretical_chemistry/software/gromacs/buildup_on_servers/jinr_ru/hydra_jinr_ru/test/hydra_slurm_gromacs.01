@@ -74,15 +74,16 @@ echo -e "MACHINEFILE contains these nodes:"
 # print nicely in the line !
 paste -s $MACHINEFILE
 
-echo -e "\n\n Loaded modules:"
+echo -e "\n\n I am adding modules ..."
 module purge
 module add GVR/v1.0-1
-module add 
+module add GROMACS/v5.1.3_gcc485_cuda80
 #module add Python/v3.10.2
 #module add CMake/v3.29.2
 #module add  intel/v2021.1
 #module add openmpi/v5.0.3_gcc1230
 #module add LAPACK/v3.12.0_gcc1230
+echo -e "\n\n Loaded modules:"
 module list
 
 #echo -e "\n\nPython ? :\c"; which python; python -V
@@ -96,7 +97,7 @@ module list
 echo -e "\n\n The variable PATH=$PATH\n"
 echo -e "\n\n The variable LD_LIBRARY_PATH=$LD_LIBRARY_PATH\n"
 
-echo -e "\n\n checking the GROMACS scripr, gmx :"; which gmx;  gmx --versopm
+echo -e "\n\n checking the GROMACS scripr, gmx :"; which gmx;  gmx --version
 
 #export OMPI_MCA_oob=^usock
 #export MKL_NUM_THREADS=1

@@ -1,3 +1,7 @@
+#
+# from https://colab.research.google.com/drive/1ZrTuTvavXiCxTFyjBV4GqlARxgFwYAtX#scrollTo=9W62pQUiw9c2
+#
+
 from rdkit import Chem
 from rdkit.Chem import Draw
 
@@ -11,8 +15,9 @@ sm_dict = {
     'DEC': 'CCOC(=O)OCC'
 }
 
-#Draw.MolsToGridImage([Chem.MolFromSmiles(sm_dict[mol]) for mol in sm_dict], legends=list(sm_dict.keys()))
+img=Draw.MolsToGridImage([Chem.MolFromSmiles(sm_dict[mol]) for mol in sm_dict], legends=list(sm_dict.keys()))
 
-#Draw.MolToImageFile(([Chem.MolFromSmiles(sm_dict[mol]) for mol in sm_dict], legends=list(sm_dict.keys())), 'molecules.png')
-#Draw.MolToImageFile(mol, 'ethanol.png')
+# Save the image to a file (e.g., as a PNG)
+img.save('picture.png')
+
 

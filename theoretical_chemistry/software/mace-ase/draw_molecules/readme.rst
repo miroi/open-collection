@@ -1,5 +1,22 @@
-Draw
-====
+===============
+Draw with rdkit
+===============
+
+version
+--------
+pip show rdkit
+Name: rdkit
+Version: 2025.9.1
+Summary: A collection of chemoinformatics and machine-learning software written in C++ and Python
+Home-page: https://github.com/kuelumbus/rdkit-pypi
+Author: Christopher Kuenneth
+Author-email: chris@kuenneth.dev
+License: BSD-3-Clause
+Location: /home/miroi/work/software/myenv/lib/python3.12/site-packages
+Requires: numpy, Pillow
+Required-by:
+
+
 
 from collab tutorial
 

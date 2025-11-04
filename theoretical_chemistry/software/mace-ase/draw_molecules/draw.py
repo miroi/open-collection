@@ -11,6 +11,8 @@ sm_dict = {
     'DEC': 'CCOC(=O)OCC'
 }
 
-Draw.MolsToGridImage([Chem.MolFromSmiles(sm_dict[mol]) for mol in sm_dict], legends=list(sm_dict.keys()))
+#Draw.MolsToGridImage([Chem.MolFromSmiles(sm_dict[mol]) for mol in sm_dict], legends=list(sm_dict.keys()))
 
+#Draw.MolToImageFile(([Chem.MolFromSmiles(sm_dict[mol]) for mol in sm_dict], legends=list(sm_dict.keys())), 'molecules.png')
+#Draw.MolToImageFile(mol, 'ethanol.png')
 

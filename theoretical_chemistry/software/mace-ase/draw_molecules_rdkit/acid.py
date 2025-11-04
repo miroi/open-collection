@@ -7,7 +7,7 @@ mol = Chem.MolFromSmiles('c1ccccc1C(=O)O') # Benzoic acid
 drawer = Draw.MolDraw2DCairo(400, 300) # For PNG output
 options = drawer.drawOptions()
 options.bondLineWidth = 2
-options.atomLabelFontSize = 18
+#options.atomLabelFontSize = 18
 drawer.drawOptions = options
 
 # Draw the molecule with highlights and options

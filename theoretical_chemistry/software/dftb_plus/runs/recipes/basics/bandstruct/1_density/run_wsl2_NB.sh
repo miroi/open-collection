@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+ulimit -s unlimited
 
 /home/miroi/work/software/dftbplus/dftb+_installed/bin/dftb+ > output
 

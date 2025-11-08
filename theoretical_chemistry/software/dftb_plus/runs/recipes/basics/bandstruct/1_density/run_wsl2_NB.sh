@@ -2,7 +2,7 @@
 
 set -e
 
-dftb+ > output
+/home/miroi/work/software/dftbplus/dftb+_installed/bin/dftb+ > output
 
 dp_dos band.out dos_total.dat >> output
 dp_dos -w dos_ti.1.out dos_ti.s.dat >> output

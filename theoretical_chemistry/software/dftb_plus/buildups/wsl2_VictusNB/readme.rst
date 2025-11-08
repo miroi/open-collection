@@ -142,5 +142,20 @@ miroi@MIRO:~/work/software/dftbplus/dftb+_installed/.ls bin/
 calc_timeprop_maxpoldir*  dftb+*  integvalue*    modes*              mstore-info*  polyvalue*   s-dftd3*   splvalue*  waveplot*
 calc_timeprop_spectrum*   dftd4*  mctc-convert*  mstore-fortranize*  multicharge*  printunits*  skderivs*  tblite*
 
+miroi@MIRO:~/work/software/dftbplus/dftb+_installed/bin/.ldd dftb+
+        linux-vdso.so.1 (0x00007ffcf75b4000)
+        libmkl_gf_lp64.so => /lib/x86_64-linux-gnu/libmkl_gf_lp64.so (0x000078e925400000)
+        libmkl_gnu_thread.so => /lib/x86_64-linux-gnu/libmkl_gnu_thread.so (0x000078e923600000)
+        libmkl_core.so => /lib/x86_64-linux-gnu/libmkl_core.so (0x000078e91ee00000)
+        libgomp.so.1 => /lib/x86_64-linux-gnu/libgomp.so.1 (0x000078e926ff9000)
+        libgfortran.so.5 => /lib/x86_64-linux-gnu/libgfortran.so.5 (0x000078e91ea00000)
+        libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x000078e923517000)
+        libmvec.so.1 => /lib/x86_64-linux-gnu/libmvec.so.1 (0x000078e91e907000)
+        libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x000078e9261d2000)
+        libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x000078e91e600000)
+        libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x000078e926ff2000)
+        libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x000078e926fed000)
+        /lib64/ld-linux-x86-64.so.2 (0x000078e927067000)
+
 
 

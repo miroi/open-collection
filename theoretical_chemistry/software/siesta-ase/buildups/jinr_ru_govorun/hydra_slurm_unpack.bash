@@ -1,0 +1,61 @@
+#!/bin/bash
+
+#SBATCH -J SIESTA
+
+##  partition (queue)
+#SBATCH -p cascade
+##SBATCH -p flnr-ice
+##SBATCH -p knl
+
+
+## max. execution time
+##SBATCH -t 7-00:00:00
+#SBATCH -t 0-04:00:00
+
+#SBATCH --mem=32GB
+
+# do not restart in the case of nodefail!
+#SBATCH --no-requeue
+#SBATCH --no-kill
+
+#SBATCH -N 1 -n 4
+#SBATCH  --sockets-per-node=1
+
+#SBATCH -o log_slurm_job.%j.%N.std_out
+
+echo Job user is $SLURM_JOB_USER and his job $SLURM_JOB_NAME has assigned ID $SLURM_JOBID
+echo This job was submitted from the computer $SLURM_SUBMIT_HOST
+echo and from the home directory:
+echo $SLURM_SUBMIT_DIR
+echo
+echo It is running on the cluster compute node:
+echo $SLURM_CLUSTER_NAME
+echo and is employing $SLURM_JOB_NUM_NODES node/nodes:
+echo $SLURM_JOB_NODELIST
+echo
+echo -e "Job partition is $SLURM_JOB_PARTITION \n"
+echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
+
+#echo "modules at disposal:"
+#module avail
+#echo
+
+#
+#module purge
+#module load openmpi/v2.1.2-2
+module add GVR/v1.0-1
+module add Python/v3.10.13
+
+echo -e "\n\n loaded modules:"
+module list
+
+ulimit -s unlimited
+
+echo -e "I am in \c";pwd
+
+cd /lustre/home/user/m/milias/work/software/siesta/downloaded_package
+tar xvzf siesta-5.4.1.tar.gz
+
+
+
+exit

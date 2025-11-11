@@ -88,19 +88,24 @@ milias@DESKTOP-7OTLCGO:~/work/software/siesta/packaged/siesta-5.4.1/.cmake -S. -
 
 Compilation
 ~~~~~~~~~~~
-milias@DESKTOP-7OTLCGO:~/work/software/siesta/packaged/siesta-5.4.1/_build/.m -j6
-
+milias@DESKTOP-7OTLCGO:~/work/software/siesta/packaged/siesta-5.4.1/_build/.m 
 .
 .
-Scanning dependencies of target libpsml-lib
-[ 12%] Building Fortran object _deps/libfdf-build/tests/CMakeFiles/test-ambiguous-units.dir/units-ambiguous.f90.o
-[ 12%] Building Fortran object _deps/xmlf90-build/doc/Examples/sax/features/CMakeFiles/lib-handlers.dir/m_handlers.f90.o
-[ 12%] Building Fortran object _deps/libpsml-build/CMakeFiles/libpsml-lib.dir/src/assoc_list.F90.o
-[ 12%] Building Fortran object _deps/libfdf-build/tests/CMakeFiles/test-ambiguous-units.dir/test-ambiguous-units.f90.o
-/usr/bin/ld: /usr/lib/x86_64-linux-gnu/libmkl_blacs_openmpi_lp64.so: undefined reference to `MPI_Barrier'
-/usr/bin/ld: /usr/lib/x86_64-linux-gnu/libmkl_blacs_openmpi_lp64.so: undefined reference to `MPI_Waitall'
 .
-.
+[ 33%] Building Fortran object _deps/elsi-build/test/CMakeFiles/elsi_test.dir/Fortran/test_occ_normal.f90.o
+[ 33%] Building Fortran object _deps/elsi-build/test/CMakeFiles/elsi_test.dir/Fortran/test_occ_non_aufbau.f90.o
+[ 33%] Linking Fortran executable ../bin/elsi_test
+/usr/bin/ld: ../lib/libpexsi.a(interface.cpp.o): in function `MPI::Op::Init(void (*)(void const*, void*, int, MPI::Datatype const&), bool)':
+interface.cpp:(.text._ZN3MPI2Op4InitEPFvPKvPviRKNS_8DatatypeEEb[_ZN3MPI2Op4InitEPFvPKvPviRKNS_8DatatypeEEb]+0x1d): undefined reference to `ompi_mpi_cxx_op_intercept'
+/usr/bin/ld: ../lib/libpexsi.a(interface.cpp.o): in function `MPI::Intracomm::Clone() const':
+interface.cpp:(.text._ZNK3MPI9Intracomm5CloneEv[_ZNK3MPI9Intracomm5CloneEv]+0x40): undefined reference to `MPI::Comm::Comm()'
+/usr/bin/ld: ../lib/libpexsi.a(interface.cpp.o): in function `MPI::Graphcomm::Clone() const':
+interface.cpp:(.text._ZNK3MPI9Graphcomm5CloneEv[_ZNK3MPI9Graphcomm5CloneEv]+0x3a): undefined reference to `MPI::Comm::Comm()'
+/usr/bin/ld: ../lib/libpexsi.a(interface.cpp.o): in function `MPI::Cartcomm::Sub(bool const*) const':
+interface.cpp:(.text._ZNK3MPI8Cartcomm3SubEPKb[_ZNK3MPI8Cartcomm3SubEPKb]+0x96): undefined reference to `MPI::Comm::Comm()'
+/usr/bin/ld: ../lib/libpexsi.a(interface.cpp.o): in function `MPI::Intracomm::Create_graph(int, int const*, int const*, bool) const':
+interface.cpp:(.text._ZNK3MPI9Intracomm12Create_graphEiPKiS2_b[_ZNK3MPI9Intracomm12Create_graphEiPKiS2_b]+0x42): undefined reference to `MPI::Comm::Comm()'
+/usr/bin/ld: ../lib/libpexsi.a(interface.cpp.o): in function `MPI::Cartcomm::Clone() const':
 
 Tests
 ~~~~~

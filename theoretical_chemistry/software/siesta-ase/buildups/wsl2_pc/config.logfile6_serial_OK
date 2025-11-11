@@ -1,0 +1,689 @@
+milias@DESKTOP-7OTLCGO:~/work/software/siesta/packaged/siesta-5.4.1/.cmake -S. -B_build02  -DCMAKE_INSTALL_PREFIX=/home/milias/work/software/siesta/packaged  -DSIESTA_WITH_MPI=OFF -DSIESTA_WITH_ELPA=OFF    -DSIESTA_WITH_FLOOK=OFF
+-- The Fortran compiler identification is GNU 11.4.0
+-- The C compiler identification is GNU 11.4.0
+-- Detecting Fortran compiler ABI info
+-- Detecting Fortran compiler ABI info - done
+-- Check for working Fortran compiler: /usr/bin/f95 - skipped
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Normal build, no guard against relocation of prefix
+-- Check use of deprecated variables
+--   All Siesta variables/options are prefixed with SIESTA_, e.g. SIESTA_WITH_MPI
+-- Check use of deprecated variables - success
+-- Using GNU compiler
+-- Using toolchain: cmake/toolchains/gnu.cmake
+--
+No build type selected. SIESTA will default to 'Release'.
+To override pass -DCMAKE_BUILD_TYPE=<type> in order to configure SIESTA.
+Available options are:
+  * -DCMAKE_BUILD_TYPE=Release - For an optimized build with no assertions or debug info.
+  * -DCMAKE_BUILD_TYPE=Debug - For an unoptimized build with assertions and debug info.
+  * -DCMAKE_BUILD_TYPE=Check - For an unoptimized build with assertions and debug info + code checks.
+  * -DCMAKE_BUILD_TYPE=RelWithDebInfo - For an optimized build with no assertions but with debug info.
+  * -DCMAKE_BUILD_TYPE=MinSizeRel - For a build optimized for size instead of speed.
+
+-- Flags for C-compiler (build type: Release):  -O3 -march=native
+-- Flags for Fortran-compiler (build type: Release):  -O3 -march=native
+-- Adding '-fallow-argument-mismatch' for GNU >= 10.0
+-- Checking default compiler usability and flags.
+--   checking C flags
+--     Performing Test flags_C_default
+--     Performing Test flags_C_default - Success
+--     Performing Test runs_C_default
+--     Performing Test runs_C_default - Success
+--     checking C flags - passed
+--   checking Fortran flags
+--     Performing Test flags_Fortran_default
+--     Performing Test flags_Fortran_default - Success
+--     Performing Test runs_Fortran_default
+--     Performing Test runs_Fortran_default - Success
+--     checking Fortran flags - passed
+--   Can use IPO for all enabled languages
+-- Checking default compiler usability and flags. - passed
+-- Enabling setting of rpath in installed objects
+-- Found PkgConfig: /usr/bin/pkg-config (found version "0.29.2")
+-- Checking Siesta version
+--   SIESTA_VERSION: 5.4.1 (err=0)
+--
+-- Checking Siesta version - found release version
+-- Parsing BLAS options
+--   Locating BLAS library
+--   Looking for Fortran sgemm
+--   Looking for Fortran sgemm - not found
+--   Looking for pthread.h
+--   Looking for pthread.h - found
+--   Performing Test CMAKE_HAVE_LIBC_PTHREAD
+--   Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+--   Found Threads: TRUE
+--   Looking for Fortran sgemm
+--   Looking for Fortran sgemm - found
+--   Found BLAS: /usr/lib/x86_64-linux-gnu/libmkl_gf_lp64.so;/usr/lib/x86_64-linux-gnu/libmkl_gnu_thread.so;/usr/lib/x86_64-linux-gnu/libmkl_core.so;/usr/lib/gcc/x86_64-linux-gnu/11/libgomp.so;-lm;-ldl
+--   Found CustomBlas: /usr/lib/x86_64-linux-gnu/libmkl_gf_lp64.so;/usr/lib/x86_64-linux-gnu/libmkl_gnu_thread.so;/usr/lib/x86_64-linux-gnu/libmkl_core.so;/usr/lib/gcc/x86_64-linux-gnu/11/libgomp.so;-lm;-ldl
+--   Locating BLAS library - found
+--   BLAS library: /usr/lib/x86_64-linux-gnu/libmkl_gf_lp64.so;/usr/lib/x86_64-linux-gnu/libmkl_gnu_thread.so;/usr/lib/x86_64-linux-gnu/libmkl_core.so;/usr/lib/gcc/x86_64-linux-gnu/11/libgomp.so;-lm;-ldl
+--   BLAS link flags:
+-- Parsing LAPACK options
+--   Locating LAPACK library
+--   Looking for Fortran cheev
+--   Looking for Fortran cheev - found
+--   Found LAPACK: /usr/lib/x86_64-linux-gnu/libmkl_gf_lp64.so;/usr/lib/x86_64-linux-gnu/libmkl_gnu_thread.so;/usr/lib/x86_64-linux-gnu/libmkl_core.so;/usr/lib/gcc/x86_64-linux-gnu/11/libgomp.so;-lm;-ldl;-lm;-ldl
+--   Found CustomLapack: /usr/lib/x86_64-linux-gnu/libmkl_gf_lp64.so;/usr/lib/x86_64-linux-gnu/libmkl_gnu_thread.so;/usr/lib/x86_64-linux-gnu/libmkl_core.so;/usr/lib/gcc/x86_64-linux-gnu/11/libgomp.so;-lm;-ldl;-lm;-ldl
+--   Locating LAPACK library - found
+--   LAPACK library: /usr/lib/x86_64-linux-gnu/libmkl_gf_lp64.so;/usr/lib/x86_64-linux-gnu/libmkl_gnu_thread.so;/usr/lib/x86_64-linux-gnu/libmkl_core.so;/usr/lib/gcc/x86_64-linux-gnu/11/libgomp.so;-lm;-ldl;-lm;-ldl
+--   LAPACK link flags:
+-- Found MPI_Fortran: /usr/lib/x86_64-linux-gnu/libmpi_usempif08.so (found version "3.1")
+-- Found MPI: TRUE (found version "3.1") found components: Fortran
+-- MPI is disabled
+-- Checking that BLAS library works...
+--   Performing Test blas_has_sgemm
+--   Performing Test blas_has_sgemm - Success
+--   Performing Test blas_sgemm_basic
+--   Performing Test blas_sgemm_basic - Success
+--   Performing Test blas_cdotu_return_convention
+--   Performing Test blas_cdotu_return_convention - Success
+-- Checking that LAPACK library works...
+--   Performing Test lapack_has_dsysv
+--   Performing Test lapack_has_dsysv - Success
+-- Checking linear algebra compatibility and extensions
+--   Performing Test BLAS_HAS_GEMM3M
+--   Performing Test BLAS_HAS_GEMM3M - Success
+--   Performing Test LAPACK_HAS_MRRR
+--   Performing Test LAPACK_HAS_MRRR - Success
+--   Performing Test LAPACK_HAS_VX_2STAGE
+--   Performing Test LAPACK_HAS_VX_2STAGE - Success
+--   Performing Test LAPACK_HAS_VD_2STAGE
+--   Performing Test LAPACK_HAS_VD_2STAGE - Success
+--   Performing Test LAPACK_HAS_V_2STAGE
+--   Performing Test LAPACK_HAS_V_2STAGE - Success
+--   Performing Test LAPACK_HAS_VR_2STAGE
+--   Performing Test LAPACK_HAS_VR_2STAGE - Success
+-- Found NetCDF: /usr/include (found suitable version "4.8.1", minimum required is "4.0.0") found components: Fortran C
+-- FindNetCDF defines targets:
+--   - NetCDF_VERSION [4.8.1]
+--   - NetCDF_PARALLEL [FALSE]
+--   - NetCDF_C_CONFIG_EXECUTABLE [/usr/bin/nc-config]
+--   - NetCDF::NetCDF_C [SHARED] [Root: /usr] Lib: /usr/lib/x86_64-linux-gnu/libnetcdf.so
+--   - NetCDF_Fortran_CONFIG_EXECUTABLE [/usr/bin/nf-config]
+--   - NetCDF::NetCDF_Fortran [SHARED] [Root: /usr] Lib: /usr/lib/x86_64-linux-gnu/libnetcdff.so
+-- Searching for libfdf
+-- | Siesta_find_package[libfdf] METHODS | ALLOWED = cmake;pkgconf;source;fetch | cmake;pkgconf;source;fetch
+-- | CMake package lookup [libfdf]
+-- | CMake package lookup [libfdf] - not found/compatible
+-- | pkg-config package lookup[libfdf]
+-- | Checking for module 'libfdf>=0.5.1'
+-- |   No package 'libfdf' found
+-- | pkg-config package lookup[libfdf] - not found/compatible
+-- | source in folder: /home/milias/work/software/siesta/packaged/siesta-5.4.1/External/libfdf
+-- | source in folder: /home/milias/work/software/siesta/packaged/siesta-5.4.1/External/libfdf - not found/compatible
+-- | fetching from https://gitlab.com/siesta-project/libraries/libfdf.git
+-- | BINARY_DIR for fetched libfdf: /home/milias/work/software/siesta/packaged/siesta-5.4.1/_build02/_deps/libfdf-build
+-- | fetching from https://gitlab.com/siesta-project/libraries/libfdf.git - fetched
+-- Searching for libfdf - found
+-- Searching for xmlf90
+-- | Siesta_find_package[xmlf90] METHODS | ALLOWED = cmake;pkgconf;source;fetch | cmake;pkgconf;source;fetch
+-- | CMake package lookup [xmlf90]
+-- | CMake package lookup [xmlf90] - not found/compatible
+-- | pkg-config package lookup[xmlf90]
+-- | Checking for module 'xmlf90'
+-- |   No package 'xmlf90' found
+-- | pkg-config package lookup[xmlf90] - not found/compatible
+-- | source in folder: /home/milias/work/software/siesta/packaged/siesta-5.4.1/External/xmlf90
+-- | source in folder: /home/milias/work/software/siesta/packaged/siesta-5.4.1/External/xmlf90 - not found/compatible
+-- | fetching from https://gitlab.com/siesta-project/libraries/xmlf90.git
+-- | BINARY_DIR for fetched xmlf90: /home/milias/work/software/siesta/packaged/siesta-5.4.1/_build02/_deps/xmlf90-build
+-- | fetching from https://gitlab.com/siesta-project/libraries/xmlf90.git - fetched
+-- Searching for xmlf90 - found
+-- Searching for libpsml
+-- | Siesta_find_package[libpsml] METHODS | ALLOWED = cmake;pkgconf;source;fetch | cmake;pkgconf;source;fetch
+-- | CMake package lookup [libpsml]
+-- | CMake package lookup [libpsml] - not found/compatible
+-- | pkg-config package lookup[libpsml]
+-- | Checking for module 'libpsml'
+-- |   No package 'libpsml' found
+-- | pkg-config package lookup[libpsml] - not found/compatible
+-- | source in folder: /home/milias/work/software/siesta/packaged/siesta-5.4.1/External/libpsml
+-- | source in folder: /home/milias/work/software/siesta/packaged/siesta-5.4.1/External/libpsml - not found/compatible
+-- | fetching from https://gitlab.com/siesta-project/libraries/libpsml.git
+-- | xmlf90 (from source/fetch) has the 'stat' feature
+-- | BINARY_DIR for fetched libpsml: /home/milias/work/software/siesta/packaged/siesta-5.4.1/_build02/_deps/libpsml-build
+-- | fetching from https://gitlab.com/siesta-project/libraries/libpsml.git - fetched
+-- Searching for libpsml - found
+--   libpsml (submodule/fetch) has the 'procedure pointer' feature
+-- Searching for libXC library
+--   Checking for module 'libxc'
+--     No package 'libxc' found
+--   Using pkg-config to search for libxcf03
+--   Checking for module 'libxcf03'
+--     No package 'libxcf03' found
+--   Using pkg-config to search for libxcf03 - not found
+--   Using pkg-config to search for libxcf90
+--   Checking for module 'libxcf90'
+--     No package 'libxcf90' found
+--   Using pkg-config to search for libxcf90 - not found
+--   Could not find any libxc fortran libraries.
+--   Searched (in priority order):
+--     - libxcf03 (FOUND = )
+--     - libxcf90 (FOUND = )
+-- Searching for libXC library - not found
+-- Searching for libgridxc
+-- | Siesta_find_package[libgridxc] METHODS | ALLOWED = cmake;pkgconf;source;fetch | cmake;pkgconf;source;fetch
+-- | CMake package lookup [libgridxc]
+-- | CMake package lookup [libgridxc] - not found/compatible
+-- | pkg-config package lookup[gridxc_multi]
+-- | Checking for module 'libgridxc_dp>=>=2.0.1'
+-- |   No package 'libgridxc_dp>=' found
+-- | pkg-config package lookup[gridxc_multi] - not found/compatible
+-- | source in folder: /home/milias/work/software/siesta/packaged/siesta-5.4.1/External/libgridxc
+-- | source in folder: /home/milias/work/software/siesta/packaged/siesta-5.4.1/External/libgridxc - not found/compatible
+-- | fetching from https://gitlab.com/siesta-project/libraries/libgridxc.git
+-- | Proceeding to declare variables for on-the-fly libgridxc compilation...
+-- | .... Libgridxc: WITH_MPI=OFF
+-- | .... Libgridxc: WITH_GRID_SP=OFF
+-- | .... Libgridxc: WITH_LIBXC=OFF
+| Using a GNU compiler
+-- |   Adding '-fallow-argument-mismatch' for GNU >= 10.0
+-- | Flags for Fortran-compiler (build type: Release):   -fallow-argument-mismatch  -O3 -march=native
+-- | Flags for C-compiler (build type: Release):    -O3 -march=native
+-- | Configuring docs
+-- | Configuring libgridxc tests...
+-- | BINARY_DIR for fetched libgridxc: /home/milias/work/software/siesta/packaged/siesta-5.4.1/_build02/_deps/libgridxc-build
+-- | fetching from https://gitlab.com/siesta-project/libraries/libgridxc.git - fetched
+-- Searching for libgridxc - found
+--   Checking for libgridxc compatibility
+--   libgridxc (from source/fetch) has procedure pointers
+--   Checking for libgridxc compatibility - found
+-- Searching for s-dftd3
+-- | Siesta_find_package[s-dftd3] METHODS | ALLOWED = cmake;pkgconf;source;fetch | cmake;pkgconf;source;fetch
+-- | CMake package lookup [s-dftd3]
+-- | CMake package lookup [s-dftd3] - not found/compatible
+-- | pkg-config package lookup[s-dftd3]
+-- | Checking for module 's-dftd3'
+-- |   No package 's-dftd3' found
+-- | pkg-config package lookup[s-dftd3] - not found/compatible
+-- | source in folder: /home/milias/work/software/siesta/packaged/siesta-5.4.1/External/DFTD3/s-dftd3
+-- | source in folder: /home/milias/work/software/siesta/packaged/siesta-5.4.1/External/DFTD3/s-dftd3 - not found/compatible
+-- | fetching from https://github.com/dftd3/simple-dftd3.git
+-- | Searching for mctc-lib
+-- | | Siesta_find_package[mctc-lib] METHODS | ALLOWED = cmake;pkgconf;source;fetch | cmake;pkgconf;source;fetch
+-- | | CMake package lookup [mctc-lib]
+-- | | CMake package lookup [mctc-lib] - not found/compatible
+-- | | pkg-config package lookup[mctc-lib]
+-- | | Checking for module 'mctc-lib'
+-- | |   No package 'mctc-lib' found
+-- | | pkg-config package lookup[mctc-lib] - not found/compatible
+-- | | source in folder: /home/milias/work/software/siesta/packaged/siesta-5.4.1/External/DFTD3/mctc-lib
+-- | | source in folder: /home/milias/work/software/siesta/packaged/siesta-5.4.1/External/DFTD3/mctc-lib - not found/compatible
+-- | | fetching from https://github.com/grimme-lab/mctc-lib.git
+-- | | BINARY_DIR for fetched mctc-lib: /home/milias/work/software/siesta/packaged/siesta-5.4.1/_build02/_deps/mctc-lib-build
+-- | | fetching from https://github.com/grimme-lab/mctc-lib.git - fetched
+-- | Searching for mctc-lib - found
+-- | Searching for toml-f
+-- | | Siesta_find_package[toml-f] METHODS | ALLOWED = cmake;pkgconf;source;fetch | cmake;pkgconf;source;fetch
+-- | | CMake package lookup [toml-f]
+-- | | CMake package lookup [toml-f] - not found/compatible
+-- | | pkg-config package lookup[toml-f]
+-- | | Checking for module 'toml-f'
+-- | |   No package 'toml-f' found
+-- | | pkg-config package lookup[toml-f] - not found/compatible
+-- | | source in folder: /home/milias/work/software/siesta/packaged/siesta-5.4.1/External/DFTD3/toml-f
+-- | | source in folder: /home/milias/work/software/siesta/packaged/siesta-5.4.1/External/DFTD3/toml-f - not found/compatible
+-- | | fetching from https://github.com/toml-f/toml-f.git
+-- | | Searching for test-drive
+-- | | | Siesta_find_package[test-drive] METHODS | ALLOWED = cmake;pkgconf;source;fetch | cmake;pkgconf;source;fetch
+-- | | | CMake package lookup [test-drive]
+-- | | | CMake package lookup [test-drive] - not found/compatible
+-- | | | pkg-config package lookup[test-drive]
+-- | | | Checking for module 'test-drive'
+-- | | |   No package 'test-drive' found
+-- | | | pkg-config package lookup[test-drive] - not found/compatible
+-- | | | source in folder: /home/milias/work/software/siesta/packaged/siesta-5.4.1/External/DFTD3/test-drive
+-- | | | source in folder: /home/milias/work/software/siesta/packaged/siesta-5.4.1/External/DFTD3/test-drive - not found/compatible
+-- | | | fetching from https://github.com/fortran-lang/test-drive.git
+-- | | | Performing Test WITH_QP
+-- | | | Performing Test WITH_QP - Success
+-- | | | Performing Test WITH_XDP
+-- | | | Performing Test WITH_XDP - Success
+-- | | | BINARY_DIR for fetched test-drive: /home/milias/work/software/siesta/packaged/siesta-5.4.1/_build02/_deps/test-drive-build
+-- | | | fetching from https://github.com/fortran-lang/test-drive.git - fetched
+-- | | Searching for test-drive - found
+-- | | BINARY_DIR for fetched toml-f: /home/milias/work/software/siesta/packaged/siesta-5.4.1/_build02/_deps/toml-f-build
+-- | | fetching from https://github.com/toml-f/toml-f.git - fetched
+-- | Searching for toml-f - found
+-- | BINARY_DIR for fetched s-dftd3: /home/milias/work/software/siesta/packaged/siesta-5.4.1/_build02/_deps/s-dftd3-build
+-- | fetching from https://github.com/dftd3/simple-dftd3.git - fetched
+-- Searching for s-dftd3 - found
+-- SIESTA_ELPA_HAS_GPU_SUPPORT:  FALSE
+-- SIESTA_NEEDS_ELPA_TARGET: FALSE
+-- SIESTA_NEEDS_ELSI_TARGET_FOR_ELPA: FALSE
+-- Found FFTW: /usr/include  found components: DOUBLE_LIB
+-- Value of SIESTA_WITH_UNIT_CONVENTION in Src/libunits: CODATA2018
+-- Siesta using units: codata2018
+-- SIESTA_NEEDS_ELPA_TARGET: FALSE
+-- Found Python3: /usr/bin/python3.10 (found suitable version "3.10.12", minimum required is "3.5.0") found components: Interpreter
+CMake Warning at Util/SiestaSubroutine/ProtoNEB/Src/CMakeLists.txt:3 (message):
+
+  /home/milias/work/software/siesta/packaged/siesta-5.4.1/Util/SiestaSubroutine/ProtoNEB/Src
+  skipped due to missing MPI support
+
+
+-- Default pseudo directory for tests: /home/milias/work/software/siesta/packaged/siesta-5.4.1/Tests/Pseudos
+--
+-- Printing out information related to the build about to proceed.
+-- Please carefully go through the following lines to assert that the options are as expected, some default fall-backs may disable features depending on how variables are passed.
+--
+-- ++++ Compiler information >>> ++++++++++++++++++++++++++++++++++++++++++++++++++
+-- +
+-- + ---- Compiler Fortran is ON ----------------------------------------------------
+-- + | Required feature (cannot be disabled)
+-- + | Using 'Release' build type
+-- + | Variables used to enable feature:
+-- + |  - CMAKE_Fortran_COMPILER_ID=GNU
+-- + |  - CMAKE_Fortran_COMPILER_VERSION=11.4.0
+-- + |  - CMAKE_Fortran_COMPILER=/usr/bin/f95
+-- + |  - CMAKE_Fortran_FLAGS= -fallow-argument-mismatch
+-- + |  - CMAKE_Fortran_FLAGS_RELEASE=-O3 -march=native
+-- + |  - CMAKE_Fortran_FLAGS_DEBUG=-g
+-- + |  - CMAKE_Fortran_FLAGS_MINSIZEREL=-Os -DNDEBUG -Os
+-- + |  - CMAKE_Fortran_FLAGS_RELWITHDEBINFO=-O2 -g -DNDEBUG
+-- + | Empty or undefined variables (only useful for developers!):
+-- + |  - CMAKE_Fortran_FLAGS_CHECK
+-- + --------------------------------------------------------------------------------
+-- +
+-- +
+-- + ---- Compiler C is ON ----------------------------------------------------------
+-- + | Required feature (cannot be disabled)
+-- + | Using 'Release' build type
+-- + | Variables used to enable feature:
+-- + |  - CMAKE_C_COMPILER_ID=GNU
+-- + |  - CMAKE_C_COMPILER_VERSION=11.4.0
+-- + |  - CMAKE_C_COMPILER=/usr/bin/cc
+-- + |  - CMAKE_C_FLAGS_RELEASE=-O3 -march=native
+-- + |  - CMAKE_C_FLAGS_DEBUG=-g
+-- + |  - CMAKE_C_FLAGS_MINSIZEREL=-Os -DNDEBUG
+-- + |  - CMAKE_C_FLAGS_RELWITHDEBINFO=-O2 -g -DNDEBUG
+-- + | Empty or undefined variables (only useful for developers!):
+-- + |  - CMAKE_C_FLAGS
+-- + |  - CMAKE_C_FLAGS_CHECK
+-- + --------------------------------------------------------------------------------
+-- +
+-- +
+-- + ---- Linking/building is ON ----------------------------------------------------
+-- + | Required feature (cannot be disabled)
+-- + | How libraries and executables are linked
+-- + | Variables used to enable feature:
+-- + |  - CMAKE_EXE_LINKER_FLAGS_INIT=
+-- + |  - CMAKE_EXE_LINKER_FLAGS= -Wl,--enable-new-dtags
+-- + |  - CMAKE_BUILD_WITH_INSTALL_RPATH=FALSE
+-- + |  - CMAKE_INSTALL_RPATH=$ORIGIN/../lib;/home/milias/work/software/siesta/packaged/lib
+-- + |  - CMAKE_INSTALL_RPATH_USE_LINK_PATH=TRUE
+-- + |  - CMAKE_LIBRARY_PATH_FLAG=-L
+-- + |  - CMAKE_LINK_LIBRARY_FLAG=-l
+-- + |  - CMAKE_SHARED_LINKER_FLAGS= -Wl,--enable-new-dtags
+-- + | Empty or undefined variables (only useful for developers!):
+-- + |  - CMAKE_LINK_LIBRARY_FILE_FLAG
+-- + |  - CMAKE_MODULE_LINKER_FLAGS
+-- + |  - CMAKE_POSITION_INDEPENDENT_CODE
+-- + |  - CMAKE_STATIC_LINKER_FLAGS
+-- + |  - CMAKE_LINK_DEPENDS_NO_SHARED
+-- + --------------------------------------------------------------------------------
+-- +
+-- ++++++++++++++++++++++++++++++++++++++++++++++++++ <<< Compiler information ++++
+--
+-- ++++ Parallel >>> ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-- +
+-- + ---- OpenMP is OFF -------------------------------------------------------------
+-- + | Feature is turned OFF and requires additional information to be available
+-- + | Can be used for extremely large systems to reduce memory requirements
+-- + | at the cost of some overhead since only some parts of the code is parallelized with OpenMP
+-- + | Empty or undefined variables (possibly some are needed to enable the feature):
+-- + |  - SIESTA_EXECUTABLE_SUFFIX
+-- + --------------------------------------------------------------------------------
+-- +
+-- +
+-- + ---- MPI is OFF ----------------------------------------------------------------
+-- + | Feature is turned OFF but can be turned ON (controlled by 'SIESTA_WITH_MPI')
+-- + | Parallel support is highly advised to allow scalable and faster calculations
+-- + | The following dependencies are required to use this feature:
+-- + |  - ScaLAPACK
+-- + --------------------------------------------------------------------------------
+-- +
+-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ <<< Parallel ++++
+--
+-- ++++ Linear algebra >>> ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-- +
+-- + ---- BLAS is ON ----------------------------------------------------------------
+-- + |Required library for fast performance
+-- + |Recommended libraries are:
+-- + |  - mkl
+-- + |  - openblas
+-- + |  - blis
+-- + |The NetLib BLAS library is a reference implementation which should be avoided
+-- + |for performance reasons
+-- + | Variables used to enable feature:
+-- + |  - BLAS_LIBRARY=/usr/lib/x86_64-linux-gnu/libmkl_gf_lp64.so;/usr/lib/x86_64-linux-gnu/libmkl_gnu_thread.so;/usr/lib/x86_64-linux-gnu/libmkl_core.so;/usr/lib/gcc/x86_64-linux-gnu/11/libgomp.so;-lm;-ldl
+-- + |  - BLAS_LIBRARIES=/usr/lib/x86_64-linux-gnu/libmkl_gf_lp64.so;/usr/lib/x86_64-linux-gnu/libmkl_gnu_thread.so;/usr/lib/x86_64-linux-gnu/libmkl_core.so;/usr/lib/gcc/x86_64-linux-gnu/11/libgomp.so;-lm;-ldl
+-- + |  - BLAS_DETECTION=False
+-- + |  - BLAS_HAS_GEMM3M=1
+-- + | Empty or undefined variables (only useful for developers!):
+-- + |  - BLAS_LIBRARY_DIR
+-- + |  - BLAS_LINKER_FLAG
+-- + --------------------------------------------------------------------------------
+-- +
+-- +
+-- + ---- LAPACK is ON --------------------------------------------------------------
+-- + |Required library for fast performance
+-- + |Recommended libraries are:
+-- + |  - mkl
+-- + |  - openblas (can have built-in LAPACK support)
+-- + |  - flame
+-- + |The NetLib LAPACK library is fine to use as long as the linked BLAS library is
+-- + |NOT the NetLib BLAS library!
+-- + | Required feature (cannot be disabled)
+-- + | Variables used to enable feature:
+-- + |  - LAPACK_LIBRARY=/usr/lib/x86_64-linux-gnu/libmkl_gf_lp64.so;/usr/lib/x86_64-linux-gnu/libmkl_gnu_thread.so;/usr/lib/x86_64-linux-gnu/libmkl_core.so;/usr/lib/gcc/x86_64-linux-gnu/11/libgomp.so;-lm;-ldl;-lm;-ldl
+-- + |  - LAPACK_LIBRARIES=/usr/lib/x86_64-linux-gnu/libmkl_gf_lp64.so;/usr/lib/x86_64-linux-gnu/libmkl_gnu_thread.so;/usr/lib/x86_64-linux-gnu/libmkl_core.so;/usr/lib/gcc/x86_64-linux-gnu/11/libgomp.so;-lm;-ldl;-lm;-ldl
+-- + |  - LAPACK_DETECTION=False
+-- + |  - LAPACK_HAS_MRRR=1
+-- + |  - LAPACK_HAS_2STAGE=TRUE
+-- + | Empty or undefined variables (only useful for developers!):
+-- + |  - LAPACK_LIBRARY_DIR
+-- + |  - LAPACK_LINKER_FLAG
+-- + --------------------------------------------------------------------------------
+-- +
+-- +
+-- + **** Parallel >>> **************************************************************
+-- + *
+-- + * ---- ScaLAPACK is OFF ----------------------------------------------------------
+-- + * | Feature is turned OFF and requires additional information to be available
+-- + * | Parallel support is highly advised to allow scalable and faster calculations
+-- + * | The following dependencies are required to use this feature:
+-- + * |  - MPI
+-- + * | Empty or undefined variables (possibly some are needed to enable the feature):
+-- + * |  - SCALAPACK_LIBRARY_DIR
+-- + * |  - SCALAPACK_LIBRARY
+-- + * |  - SCALAPACK_LIBRARIES
+-- + * |  - SCALAPACK_LINKER_FLAG
+-- + * |  - SCALAPACK_DETECTION
+-- + * |  - SCALAPACK_HAS_MRRR
+-- + * --------------------------------------------------------------------------------
+-- + *
+-- + *
+-- + * ---- ELPA is OFF ---------------------------------------------------------------
+-- + * | Feature is turned OFF and requires additional information to be available
+-- + * | ELPA provides a significant speedup for diagonalizations, users are
+-- + * | generally advised to add support for this library, if able.
+-- + * | The following dependencies are required to use this feature:
+-- + * |  - MPI
+-- + * |  - ScaLAPACK
+-- + * | Variables used but the feature is NOT enabled still:
+-- + * |  - SIESTA_ELPA_HAS_GPU_SUPPORT=FALSE
+-- + * |  - SIESTA_ELPA_GPU_STRING=no-gpu
+-- + * |  - SIESTA_ELPA_REAL_GPU_KERNEL=-1
+-- + * |  - SIESTA_ELPA_COMPLEX_GPU_KERNEL=-1
+-- + * | Empty or undefined variables (possibly some are needed to enable the feature):
+-- + * |  - SIESTA_HAS_ELPA_THROUGH_ELSI
+-- + * |  - ELPA_LIBDIR
+-- + * |  - ELPA_LIBRARIES
+-- + * |  - ELPA_LINK_LIBRARIES
+-- + * |  - ELPA_INCLUDEDIR
+-- + * |  - ELPA_INCLUDE_DIRS
+-- + * |  - ELPA_FCFLAGS
+-- + * --------------------------------------------------------------------------------
+-- + *
+-- + *
+-- + * ---- ELSI is OFF ---------------------------------------------------------------
+-- + * | Feature is turned OFF and requires additional information to be available
+-- + * | ELSI provides a common interface to various solvers,
+-- + * | including ELPA and PEXSI. Compiled on-the-fly by default.
+-- + * | The following dependencies are required to use this feature:
+-- + * |  - MPI
+-- + * |  - ScaLAPACK
+-- + * | Empty or undefined variables (possibly some are needed to enable the feature):
+-- + * |  - ELSI_ELPA_HAS_GPU_SUPPORT
+-- + * |  - ELSI_HAS_EXTERNAL_ELPA
+-- + * |  - ELSI_HAS_PEXSI
+-- + * |  - ELSI_ELPA_GPU_STRING
+-- + * |  - ELSI_ELPA_REAL_GPU_KERNEL
+-- + * |  - ELSI_ELPA_COMPLEX_GPU_KERNEL
+-- + * --------------------------------------------------------------------------------
+-- + *
+-- + ************************************************************** <<< Parallel ****
+-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++ <<< Linear algebra ++++
+--
+-- ++++ Required dependencies >>> +++++++++++++++++++++++++++++++++++++++++++++++++
+-- +
+-- + ---- libfdf is ON --------------------------------------------------------------
+-- + | Required feature (cannot be disabled)
+-- + | Variables used to enable feature:
+-- + |  - LIBFDF_FOUND_METHOD=fetch
+-- + | Empty or undefined variables (only useful for developers!):
+-- + |  - LIBFDF_GIT_REPOSITORY
+-- + |  - LIBFDF_GIT_TAG
+-- + |  - LIBFDF_SOURCE_DIR
+-- + --------------------------------------------------------------------------------
+-- +
+-- +
+-- + ---- xmlf90 is ON --------------------------------------------------------------
+-- + | Required feature (cannot be disabled)
+-- + | Variables used to enable feature:
+-- + |  - XMLF90_FOUND_METHOD=fetch
+-- + | Empty or undefined variables (only useful for developers!):
+-- + |  - XMLF90_GIT_REPOSITORY
+-- + |  - XMLF90_GIT_TAG
+-- + |  - XMLF90_SOURCE_DIR
+-- + --------------------------------------------------------------------------------
+-- +
+-- +
+-- + ---- LibGridXC is ON -----------------------------------------------------------
+-- + | Required feature (cannot be disabled)
+-- + | The following dependencies are optional when using this feature:
+-- + |  - Libxc
+-- + |  - MPI
+-- + | Variables used to enable feature:
+-- + |  - LIBGRIDXC_USES_PROCEDURE_POINTER=TRUE
+-- + |  - LIBGRIDXC_FOUND_METHOD=fetch
+-- + | Empty or undefined variables (only useful for developers!):
+-- + |  - LIBGRIDXC_GIT_REPOSITORY
+-- + |  - LIBGRIDXC_GIT_TAG
+-- + |  - LIBGRIDXC_SOURCE_DIR
+-- + --------------------------------------------------------------------------------
+-- +
+-- +
+-- + ---- LibPSML is ON -------------------------------------------------------------
+-- + |Allows using pseudo-potentials from pseudo-dojo.org
+-- + | Required feature (cannot be disabled)
+-- + | The following dependencies are required to use this feature:
+-- + |  - xmlf90
+-- + | Variables used to enable feature:
+-- + |  - LIBPSML_USES_PROCEDURE_POINTER=TRUE
+-- + |  - LIBPSML_FOUND_METHOD=fetch
+-- + | Empty or undefined variables (only useful for developers!):
+-- + |  - LIBPSML_LINK_LIBRARIES
+-- + |  - LIBPSML_INCLUDE_DIRS
+-- + |  - LIBPSML_INCLUDEDIR
+-- + |  - LIBPSML_GIT_REPOSITORY
+-- + |  - LIBPSML_GIT_TAG
+-- + |  - LIBPSML_SOURCE_DIR
+-- + --------------------------------------------------------------------------------
+-- +
+-- +++++++++++++++++++++++++++++++++++++++++++++++++ <<< Required dependencies ++++
+--
+-- ++++ Recommended dependencies >>> ++++++++++++++++++++++++++++++++++++++++++++++
+-- +
+-- + ---- Libxc is OFF --------------------------------------------------------------
+-- + | Feature is turned OFF and requires additional information to be available
+-- + | Users are advised to use the libxc library for full feature completeness
+-- + | using the libxc interaction with libgridxc.
+-- + | The XC functionals will be restricted to those directly implemented in Siesta.
+-- + | Variables used but the feature is NOT enabled still:
+-- + |  - LIBXC_Fortran_INTERFACE=f03;f90
+-- + | Empty or undefined variables (possibly some are needed to enable the feature):
+-- + |  - LIBXC_C_LIBDIR
+-- + |  - LIBXC_C_LIBRARIES
+-- + |  - LIBXC_C_LINK_LIBRARIES
+-- + |  - LIBXC_C_INCLUDEDIR
+-- + |  - LIBXC_C_INCLUDE_DIRS
+-- + |  - LIBXC_F03_LIBDIR
+-- + |  - LIBXC_F03_LIBRARIES
+-- + |  - LIBXC_F03_LINK_LIBRARIES
+-- + |  - LIBXC_F03_INCLUDEDIR
+-- + |  - LIBXC_F03_INCLUDE_DIRS
+-- + |  - LIBXC_F90_LIBDIR
+-- + |  - LIBXC_F90_LIBRARIES
+-- + |  - LIBXC_F90_LINK_LIBRARIES
+-- + |  - LIBXC_F90_INCLUDEDIR
+-- + |  - LIBXC_F90_INCLUDE_DIRS
+-- + --------------------------------------------------------------------------------
+-- +
+-- +
+-- + ---- NetCDF is ON --------------------------------------------------------------
+-- + | Feature is turned ON and controlled by 'SIESTA_WITH_NETCDF'
+-- + | Variables used to enable feature:
+-- + |  - NetCDF_INCLUDE_DIRS=/usr/include
+-- + |  - NetCDF_LIBRARIES=/usr/lib/x86_64-linux-gnu/libnetcdf.so;/usr/lib/x86_64-linux-gnu/libnetcdff.so
+-- + |  - NetCDF_PARALLEL=FALSE
+-- + |  - NetCDF_Fortran_LIBRARIES=-L/usr/lib/x86_64-linux-gnu -lnetcdff -Wl,-Bsymbolic-functions -flto=auto -ffat-lto-objects -flto=auto -Wl,-z,relro -Wl,-z,now -lnetcdf -lnetcdf -lm
+-- + |  - NetCDF_Fortran_INCLUDE_DIR=/usr/include
+-- + |  - NetCDF_Fortran_INCLUDE_DIRS=/usr/include
+-- + | Empty or undefined variables (only useful for developers!):
+-- + |  - NetCDF_ROOT
+-- + |  - NetCDF_PATH
+-- + |  - NetCDF_INCLUDE_DIR
+-- + --------------------------------------------------------------------------------
+-- +
+-- ++++++++++++++++++++++++++++++++++++++++++++++ <<< Recommended dependencies ++++
+--
+-- ++++ Optional features >>> +++++++++++++++++++++++++++++++++++++++++++++++++++++
+-- +
+-- + ---- flook is OFF --------------------------------------------------------------
+-- + | Feature is turned OFF but can be turned ON (controlled by 'SIESTA_WITH_FLOOK')
+-- + | Empty or undefined variables (possibly some are needed to enable the feature):
+-- + |  - FLOOK_ROOT
+-- + |  - FLOOK_LINK_LIBRARIES
+-- + |  - FLOOK_INCLUDE_DIRS
+-- + |  - FLOOK_SOURCE_DIR
+-- + --------------------------------------------------------------------------------
+-- +
+-- +
+-- + ---- pexsi is OFF --------------------------------------------------------------
+-- + | Feature is turned OFF and requires additional information to be available
+-- + | Empty or undefined variables (possibly some are needed to enable the feature):
+-- + |  - PEXSI_ROOT
+-- + |  - PEXSI_LINK_LIBRARIES
+-- + |  - PEXSI_INCLUDE_DIRS
+-- + --------------------------------------------------------------------------------
+-- +
+-- +
+-- + ---- wannier90 is OFF ----------------------------------------------------------
+-- + | Feature is turned OFF and requires additional information to be available
+-- + --------------------------------------------------------------------------------
+-- +
+-- +
+-- + ---- DFTD3 is ON ---------------------------------------------------------------
+-- + | Feature is turned ON and controlled by 'SIESTA_WITH_DFTD3'
+-- + | Variables used to enable feature:
+-- + |  - s-dftd3_FOUND_METHOD=fetch
+-- + |  - s-dftd3_SOURCE_DIR=/home/milias/work/software/siesta/packaged/siesta-5.4.1/_build02/_deps/s-dftd3-src
+-- + | Empty or undefined variables (only useful for developers!):
+-- + |  - s-dftd3_GIT_REPOSITORY
+-- + |  - s-dftd3_GIT_TAG
+-- + --------------------------------------------------------------------------------
+-- +
+-- +
+-- + ---- FFTW is ON ----------------------------------------------------------------
+-- + | Feature is turned ON and controlled by 'SIESTA_WITH_FFTW'
+-- + --------------------------------------------------------------------------------
+-- +
+-- +++++++++++++++++++++++++++++++++++++++++++++++++++++ <<< Optional features ++++
+--
+-- ++++ Siesta specific options >>> +++++++++++++++++++++++++++++++++++++++++++++++
+-- +
+-- + ---- Suffixes is ON ------------------------------------------------------------
+-- + | Required feature (cannot be disabled)
+-- + | Handling the suffixes of the executables and libraries
+-- + | Empty or undefined variables (only useful for developers!):
+-- + |  - SIESTA_SUFFIX
+-- + |  - SIESTA_EXECUTABLE_SUFFIX
+-- + |  - SIESTA_SHARED_LIBRARY_SUFFIX
+-- + |  - SIESTA_STATIC_LIBRARY_SUFFIX
+-- + --------------------------------------------------------------------------------
+-- +
+-- +
+-- + ---- Kinds is ON ---------------------------------------------------------------
+-- + | Required feature (cannot be disabled)
+-- + | Cross-compiling and specification for kinds
+-- + | Empty or undefined variables (only useful for developers!):
+-- + |  - SIESTA_INTEGER_KINDS
+-- + |  - SIESTA_REAL_KINDS
+-- + --------------------------------------------------------------------------------
+-- +
+-- +++++++++++++++++++++++++++++++++++++++++++++++ <<< Siesta specific options ++++
+-- Done with build information
+--
+--
+-- ++++ Siesta build >>> ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-- +
+-- + ---- SIESTA is ON --------------------------------------------------------------
+-- + | Required feature (cannot be disabled)
+-- + | The SIESTA build information will be listed here.
+-- + | In particular how the targets and the variables affecting binaries are interpreted.
+-- + | It can be used to debug how the final linker lines for siesta
+-- + | is handled.
+-- + | Variables used to enable feature:
+-- + |  - SIESTA_WITH_UNIT_CONVENTION=CODATA2018
+-- + |  - SIESTA_WITH_MPI=OFF
+-- + |  - SIESTA_WITH_OPENMP=OFF
+-- + |  - SIESTA_WITH_IPO=OFF
+-- + |  - SIESTA_WITH_NETCDF=ON
+-- + |  - SIESTA_WITH_NCDF=ON
+-- + |  - SIESTA_WITH_LIBXC=OFF
+-- + |  - SIESTA_WITH_PEXSI=OFF
+-- + |  - SIESTA_WITH_FFTW=ON
+-- + |  - SIESTA_WITH_DFTD3=ON
+-- + |  - SIESTA_WITH_WANNIER90=OFF
+-- + |  - SIESTA_WITH_CHESS=OFF
+-- + |  - SIESTA_WITH_ELSI=OFF
+-- + |  - SIESTA_WITH_ELPA=OFF
+-- + |  - SIESTA_WITH_FLOOK=OFF
+-- + |  - SIESTA_INSTALL=ON
+-- + |  - BUILD_SHARED_LIBS=OFF
+-- + |  - SIESTA_SHARED_LIBS=OFF
+-- + |  - SIESTA_TESTS=ON
+-- + |  - SIESTA_TESTS_MPI_MIN_NUMPROCS=1
+-- + |  - SIESTA_TESTS_MPI_NUMPROCS=1
+-- + |  - SIESTA_TESTS_MPI_MAX_NUMPROCS=1
+-- + |  - SIESTA_TOOLCHAIN=gnu
+-- + |  - SIESTA_BUILD_DOCS=OFF
+-- + | Empty or undefined variables (only useful for developers!):
+-- + |  - SIESTA_WITH_NETCDF_PARALLEL
+-- + |  - SIESTA_LINKER_FLAGS_PRE
+-- + |  - SIESTA_LINKER_FLAGS_POST
+-- + |  - SIESTA_LINKER_FLAGS
+-- + |  - SIESTA_WITH_NO_MPI_INTERFACES
+-- + |  - SIESTA_SUFFIX
+-- + |  - SIESTA_EXECUTABLE_SUFFIX
+-- + |  - SIESTA_SHARED_LIBRARY_SUFFIX
+-- + |  - SIESTA_STATIC_LIBRARY_SUFFIX
+-- + |  - SIESTA_INTEGER_KINDS
+-- + |  - SIESTA_REAL_KINDS
+-- + |  - SIESTA_WITH_PROFILE_NVTX
+-- + |  - SIESTA_PROFILE_NVTX_LIBRARY
+-- + --------------------------------------------------------------------------------
+-- +
+-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ <<< Siesta build ++++
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/milias/work/software/siesta/packaged/siesta-5.4.1/_build02
+
+milias@DESKTOP-7OTLCGO:~/work/software/siesta/packaged/siesta-5.4.1/_build02/.m
+.
+.
+Scanning dependencies of target test-citations
+[100%] Building Fortran object Tests/Unit_Tests/CMakeFiles/test-citations.dir/__/__/Src/m_cite.F90.o
+[100%] Building Fortran object Tests/Unit_Tests/CMakeFiles/test-citations.dir/test_citations.f90.o
+[100%] Linking Fortran executable test-citations
+[100%] Built target test-citations
+

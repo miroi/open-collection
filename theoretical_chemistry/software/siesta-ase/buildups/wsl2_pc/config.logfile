@@ -1,0 +1,116 @@
+milias@DESKTOP-7OTLCGO:~/work/software/siesta/packaged/siesta-5.4.1/.cmake -S. -B_build -DCMAKE_INSTALL_PREFIX=/home/milias/work/software/siesta/packaged  -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=ON
+-- The Fortran compiler identification is GNU 11.4.0
+-- The C compiler identification is GNU 11.4.0
+-- Detecting Fortran compiler ABI info
+-- Detecting Fortran compiler ABI info - done
+-- Check for working Fortran compiler: /usr/bin/f95 - skipped
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Normal build, no guard against relocation of prefix
+-- Check use of deprecated variables
+--   All Siesta variables/options are prefixed with SIESTA_, e.g. SIESTA_WITH_MPI
+-- Check use of deprecated variables - success
+-- Using GNU compiler
+-- Using toolchain: cmake/toolchains/gnu.cmake
+--
+No build type selected. SIESTA will default to 'Release'.
+To override pass -DCMAKE_BUILD_TYPE=<type> in order to configure SIESTA.
+Available options are:
+  * -DCMAKE_BUILD_TYPE=Release - For an optimized build with no assertions or debug info.
+  * -DCMAKE_BUILD_TYPE=Debug - For an unoptimized build with assertions and debug info.
+  * -DCMAKE_BUILD_TYPE=Check - For an unoptimized build with assertions and debug info + code checks.
+  * -DCMAKE_BUILD_TYPE=RelWithDebInfo - For an optimized build with no assertions but with debug info.
+  * -DCMAKE_BUILD_TYPE=MinSizeRel - For a build optimized for size instead of speed.
+
+-- Flags for C-compiler (build type: Release):  -O3 -march=native
+-- Flags for Fortran-compiler (build type: Release):  -O3 -march=native
+-- Adding '-fallow-argument-mismatch' for GNU >= 10.0
+-- Checking default compiler usability and flags.
+--   checking C flags
+--     Performing Test flags_C_default
+--     Performing Test flags_C_default - Success
+--     Performing Test runs_C_default
+--     Performing Test runs_C_default - Success
+--     checking C flags - passed
+--   checking Fortran flags
+--     Performing Test flags_Fortran_default
+--     Performing Test flags_Fortran_default - Success
+--     Performing Test runs_Fortran_default
+--     Performing Test runs_Fortran_default - Success
+--     checking Fortran flags - passed
+--   Can use IPO for all enabled languages
+-- Checking default compiler usability and flags. - passed
+-- Enabling setting of rpath in installed objects
+-- Found PkgConfig: /usr/bin/pkg-config (found version "0.29.2")
+-- Checking Siesta version
+--   SIESTA_VERSION: 5.4.1 (err=0)
+--
+-- Checking Siesta version - found release version
+-- Parsing BLAS options
+--   Locating BLAS library
+--   Looking for Fortran sgemm
+--   Looking for Fortran sgemm - not found
+--   Looking for pthread.h
+--   Looking for pthread.h - found
+--   Performing Test CMAKE_HAVE_LIBC_PTHREAD
+--   Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+--   Found Threads: TRUE
+--   Looking for Fortran sgemm
+--   Looking for Fortran sgemm - found
+--   Found BLAS: /usr/lib/x86_64-linux-gnu/libmkl_gf_lp64.so;/usr/lib/x86_64-linux-gnu/libmkl_gnu_thread.so;/usr/lib/x86_64-linux-gnu/libmkl_core.so;/usr/lib/gcc/x86_64-linux-gnu/11/libgomp.so;-lm;-ldl
+--   Found CustomBlas: /usr/lib/x86_64-linux-gnu/libmkl_gf_lp64.so;/usr/lib/x86_64-linux-gnu/libmkl_gnu_thread.so;/usr/lib/x86_64-linux-gnu/libmkl_core.so;/usr/lib/gcc/x86_64-linux-gnu/11/libgomp.so;-lm;-ldl
+--   Locating BLAS library - found
+--   BLAS library: /usr/lib/x86_64-linux-gnu/libmkl_gf_lp64.so;/usr/lib/x86_64-linux-gnu/libmkl_gnu_thread.so;/usr/lib/x86_64-linux-gnu/libmkl_core.so;/usr/lib/gcc/x86_64-linux-gnu/11/libgomp.so;-lm;-ldl
+--   BLAS link flags:
+-- Parsing LAPACK options
+--   Locating LAPACK library
+--   Looking for Fortran cheev
+--   Looking for Fortran cheev - found
+--   Found LAPACK: /usr/lib/x86_64-linux-gnu/libmkl_gf_lp64.so;/usr/lib/x86_64-linux-gnu/libmkl_gnu_thread.so;/usr/lib/x86_64-linux-gnu/libmkl_core.so;/usr/lib/gcc/x86_64-linux-gnu/11/libgomp.so;-lm;-ldl;-lm;-ldl
+--   Found CustomLapack: /usr/lib/x86_64-linux-gnu/libmkl_gf_lp64.so;/usr/lib/x86_64-linux-gnu/libmkl_gnu_thread.so;/usr/lib/x86_64-linux-gnu/libmkl_core.so;/usr/lib/gcc/x86_64-linux-gnu/11/libgomp.so;-lm;-ldl;-lm;-ldl
+--   Locating LAPACK library - found
+--   LAPACK library: /usr/lib/x86_64-linux-gnu/libmkl_gf_lp64.so;/usr/lib/x86_64-linux-gnu/libmkl_gnu_thread.so;/usr/lib/x86_64-linux-gnu/libmkl_core.so;/usr/lib/gcc/x86_64-linux-gnu/11/libgomp.so;-lm;-ldl;-lm;-ldl
+--   LAPACK link flags:
+-- Found MPI_Fortran: /usr/lib/x86_64-linux-gnu/libmpi_usempif08.so (found version "3.1")
+-- Found MPI: TRUE (found version "3.1") found components: Fortran
+-- Parsing ScaLAPACK options
+--   Locating ScaLAPACK library
+CMake Warning at cmake/Modules/FindCustomScalapack.cmake:98 (find_package):
+  By not providing "Findscalapack.cmake" in CMAKE_MODULE_PATH this project
+  has asked CMake to find a package configuration file provided by
+  "scalapack", but CMake did not find one.
+
+  Could not find a package configuration file provided by "scalapack" with
+  any of the following names:
+
+    scalapackConfig.cmake
+    scalapack-config.cmake
+
+  Add the installation prefix of "scalapack" to CMAKE_PREFIX_PATH or set
+  "scalapack_DIR" to a directory containing one of the above files.  If
+  "scalapack" provides a separate development package or SDK, be sure it has
+  been installed.
+Call Stack (most recent call first):
+  CMakeLists.txt:228 (find_package)
+
+
+--   Trying to use pkg-config
+--   Could NOT find CustomScalapack (missing: SCALAPACK_LIBRARY)
+CMake Warning at CMakeLists.txt:243 (message):
+  ScaLAPACK could not be found by CMakeTry adding SCALAPACK_LIBRARIES with
+  appropriate flagsIf ScaLAPACK is not present MPI needs to be turned off:
+
+    -DSIESTA_WITH_MPI=OFF
+
+
+CMake Error at CMakeLists.txt:249 (message):
+  MPI was requested, but ScaLAPACK could not be found by CMake
+
+
+-- Configuring incomplete, errors occurred!
+See also "/home/milias/work/software/siesta/packaged/siesta-5.4.1/_build/CMakeFiles/CMakeOutput.log".
+See also "/home/milias/work/software/siesta/packaged/siesta-5.4.1/_build/CMakeFiles/CMakeError.log".
+milias@DESKTOP-7OTLCGO:~/work/software/siesta/packaged/siesta-5.4.1/.

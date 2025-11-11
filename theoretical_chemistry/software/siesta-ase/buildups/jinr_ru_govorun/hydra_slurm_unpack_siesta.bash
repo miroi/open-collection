@@ -3,8 +3,9 @@
 #SBATCH -J SIESTA
 
 ##  partition (queue)
-#SBATCH -p cascade
+##SBATCH -p cascade
 ##SBATCH -p flnr-ice
+#SBATCH -p flnr-sod
 ##SBATCH -p knl
 
 

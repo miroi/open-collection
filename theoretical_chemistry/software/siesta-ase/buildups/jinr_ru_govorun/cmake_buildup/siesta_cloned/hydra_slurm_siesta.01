@@ -54,8 +54,12 @@ echo -e "\n\n loaded modules:"
 module list
 #ulimit -s unlimited
 
-
-echo "Intel MKL library ? MKLROOT=$MKLROOT"
+echo -e "\n Python ? \c"; which Python; Python -V
+echo -e "\n CMake ? \c"; which cmake; cmake --version
+echo -e "\n pkg-config ? \c"; which pkg-config; pkg-config --version
+echo -e "\n mpiifort ? \c"; which mpiifort; mpiifort --version
+echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
+echo -e "\nIntel MKL library ? MKLROOT=$MKLROOT"; ls -l $MKLROOT
 
 
 #SIESTA=/lustre/home/user/m/milias/work/software/siesta/downloaded_package/siesta-5.4.1
@@ -66,14 +70,16 @@ if [ -d "$BUILD" ]; then
   echo -e "\nDirectory '$BUILD' exists. Removing it..."
   rm -rf "$BUILD"
 else
-  echo -e "\nDirectory '$BUILD' does not exist.Will be created by CMake."
+  echo -e "\nDirectory '$BUILD' does not exist - will be created by CMake."
 fi
 
 
 cd $SIESTA
 echo -e "\nI am in the directory $SIESTA :\c";pwd
 
-cmake -S. -B$BUILD -DCMAKE_INSTALL_PREFIX=/lustre/home/user/m/milias/work/software/siesta/downloaded_package  -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=ON  -DSCALAPACK_LIBRARY="/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_scalapack_lp64.so;/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_blacs_intelmpi_lp64.so"
+#cmake -S. -B$BUILD -DCMAKE_INSTALL_PREFIX=/lustre/home/user/m/milias/work/software/siesta/downloaded_package  -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=ON  -DSCALAPACK_LIBRARY="/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_scalapack_lp64.so;/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_blacs_intelmpi_lp64.so" -DFLOOK_ROOT=/lustre/home/user/m/milias/work/software/siesta/git_cloned/siesta_dev/External/Lua-Engine/flook
+
+cmake -S. -B$BUILD -DCMAKE_INSTALL_PREFIX=/lustre/home/user/m/milias/work/software/siesta/downloaded_package  -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=ON  -DSCALAPACK_LIBRARY="/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_scalapack_lp64.so;/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_blacs_intelmpi_lp64.so" -DSIESTA_WITH_FLOOK=OFF
 
 cd $BUILD
 echo -e "\nI am in the directory $SIESTA/$BUILD :";pwd

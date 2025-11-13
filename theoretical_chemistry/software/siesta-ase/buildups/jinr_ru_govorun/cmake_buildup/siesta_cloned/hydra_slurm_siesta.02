@@ -68,7 +68,8 @@ find /usr/lib64 -name 'libreadline.so*'; find /usr/include -name readline.h
 
 #SIESTA=/lustre/home/user/m/milias/work/software/siesta/downloaded_package/siesta-5.4.1
 SIESTA=/lustre/home/user/m/milias/work/software/siesta/git_cloned/siesta_dev
-BUILD=build_intelmpi_elpa
+#BUILD=build_intelmpi_elpa
+BUILD=build_intelmpi_mkl
 
 if [ -d "$BUILD" ]; then
   echo -e "\nDirectory '$BUILD' exists. Removing it..."
@@ -85,10 +86,17 @@ echo -e "\nI am in the directory $SIESTA :\c";pwd
 
 #cmake -S. -B$BUILD -DCMAKE_INSTALL_PREFIX=/lustre/home/user/m/milias/work/software/siesta/downloaded_package  -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=ON  -DSCALAPACK_LIBRARY="/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_scalapack_lp64.so;/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_blacs_intelmpi_lp64.so" -DSIESTA_WITH_FLOOK=OFF
 
-cmake -S. -B$BUILD -DCMAKE_INSTALL_PREFIX=/lustre/home/user/m/milias/work/software/siesta/downloaded_package  -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=OFF  -DSCALAPACK_LIBRARY="/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_scalapack_lp64.so;/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_blacs_intelmpi_lp64.so" -DSIESTA_WITH_FLOOK=OFF
+# 
+FC=mpiifort cmake -S. -B$BUILD -DCMAKE_INSTALL_PREFIX=/lustre/home/user/m/milias/work/software/siesta/downloaded_package  -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=OFF  -DSCALAPACK_LIBRARY="/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_scalapack_lp64.so;/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_blacs_intelmpi_lp64.so" -DSIESTA_WITH_FLOOK=OFF  -DCMAKE_PREFIX_PATH="/lustre/home/user/m/milias/work/software/libxc"
 
 cd $BUILD
 echo -e "\nI am in the directory $SIESTA/$BUILD :";pwd
+
+make
+
 ls -lt
+#ctest
+
+
 
 exit

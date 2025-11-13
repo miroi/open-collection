@@ -39,3 +39,9 @@ Submodule path 'libpsml': checked out 'b7049e4de25333fe8bd2dbf9a3495ef0f77ba168'
 Submodule path 'xmlf90': checked out '963fe5d11487233d43ac59dd0c1340a7b2cc3dc5'
 milias@hydra.jinr.ru:~/work/software/siesta/git_cloned/siesta_dev/External/.
 
+ELPA missing
+~~~~~~~~~~~~
+-- Searching for ELPA library
+-- Checking for one of the modules 'elpa;elpa-2020.05.001;elpa-2021.05.001;elpa-2021.11.001'
+-- Searching for ELPA library - not found
+

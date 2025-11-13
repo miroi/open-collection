@@ -71,6 +71,9 @@ SIESTA=/lustre/home/user/m/milias/work/software/siesta/git_cloned/siesta_dev
 #BUILD=build_intelmpi_elpa
 BUILD=build_intelmpi_mkl
 
+cd $SIESTA
+echo -e "\nI am in the directory SIESTA=$SIESTA; verify via pwd=";pwd
+
 if [ -d "$BUILD" ]; then
   echo -e "\nDirectory '$BUILD' exists. Removing it..."
   rm -rf "$BUILD"
@@ -79,8 +82,7 @@ else
 fi
 
 
-cd $SIESTA
-echo -e "\nI am in the directory $SIESTA :\c";pwd
+echo -e "\n\n launchin CMake configuration command : "
 
 #cmake -S. -B$BUILD -DCMAKE_INSTALL_PREFIX=/lustre/home/user/m/milias/work/software/siesta/downloaded_package  -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=ON  -DSCALAPACK_LIBRARY="/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_scalapack_lp64.so;/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_blacs_intelmpi_lp64.so" -DFLOOK_ROOT=/lustre/home/user/m/milias/work/software/siesta/git_cloned/siesta_dev/External/Lua-Engine/flook
 
@@ -90,7 +92,7 @@ echo -e "\nI am in the directory $SIESTA :\c";pwd
 FC=ifort CC=icc MPIFC=mpiifort  cmake -S. -B$BUILD -DCMAKE_INSTALL_PREFIX=/lustre/home/user/m/milias/work/software/siesta/downloaded_package  -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=OFF  -DSCALAPACK_LIBRARY="/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_scalapack_lp64.so;/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_blacs_intelmpi_lp64.so" -DSIESTA_WITH_FLOOK=OFF  -DCMAKE_PREFIX_PATH="/lustre/home/user/m/milias/work/software/libxc"
 
 cd $BUILD
-echo -e "\nI am in the directory $SIESTA/$BUILD :";pwd
+echo -e "\nI am in the directory $SIESTA/$BUILD , check via pwd :";pwd
 
 make
 

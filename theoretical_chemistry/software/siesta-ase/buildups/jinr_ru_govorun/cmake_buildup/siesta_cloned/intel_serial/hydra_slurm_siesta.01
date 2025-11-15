@@ -11,7 +11,7 @@
 
 ## max. execution time
 ##SBATCH -t 7-00:00:00
-#SBATCH -t 0-04:00:00
+#SBATCH -t 0-08:00:00
 
 #SBATCH --mem=32GB
 
@@ -46,12 +46,9 @@ module purge
 #module load openmpi/v2.1.2-2
 module add GVR/v1.0-1
 module add Python/v3.10.13
-#module add intel/oneapi
-#module add ELPA/v2025.01.002_oneapi
+module add intel/oneapi
+module add ELPA/v2025.01.002_oneapi
 module add CMake/v3.29.2
-module add openmpi/v5.0.7_gcc1230 
-module add LAPACK/v3.12.0_gcc1230
-module add ScaLAPACK/v2.2.2_openmpi507
 
 echo -e "\n\n loaded modules:"
 module list
@@ -60,20 +57,19 @@ module list
 echo -e "\n Python ? \c"; which Python; Python -V
 echo -e "\n CMake ? \c"; which cmake; cmake --version
 echo -e "\n pkg-config ? \c"; which pkg-config; pkg-config --version
-echo -e "\n mpif90 ? \c"; which mpif90; mpif90 --version
+echo -e "\n mpiifort ? \c"; which mpiifort; mpiifort --version
 echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
+
+echo -e "\nIntel MKL library ? MKLROOT=$MKLROOT"; ls -l $MKLROOT
 
 # readline-devel lib
 echo -e "\n readline-devel library ? \c"; rpm -q readline-devel
 find /usr/lib64 -name 'libreadline.so*'; find /usr/include -name readline.h
 
-#SIESTA=/lustre/home/user/m/milias/work/software/siesta/downloaded_package/siesta-5.4.1
-
 SIESTA_DIR=/lustre/home/user/m/milias/work/software/siesta/git_cloned
 SIESTA=$SIESTA_DIR/siesta_dev
 
-#BUILD=build_intelmpi_elpa
-BUILD=build_gnu_openmpi_lapack_scalapack
+BUILD=build_intelserial_mkl_openmp_check
 
 INSTALL_DIR=/lustre/home/user/m/milias/work/software/siesta/git_cloned/install_$BUILD
 cd $SIESTA_DIR
@@ -87,9 +83,6 @@ else
   echo -e "\nPREVIOUS directory 'install_$BUILD' does not exist - will be created by mkdir."
   mkdir install_$BUILD
 fi
-echo -e "Checking install dir :"; ls -lt install_$BUILD
-
-
 
 
 cd $SIESTA
@@ -103,7 +96,7 @@ else
 fi
 
 
-echo -e "\n\n launching CMake configuration command : "
+echo -e "\n\n launchin CMake configuration command : "
 
 #cmake -S. -B$BUILD -DCMAKE_INSTALL_PREFIX=/lustre/home/user/m/milias/work/software/siesta/downloaded_package  -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=ON  -DSCALAPACK_LIBRARY="/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_scalapack_lp64.so;/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_blacs_intelmpi_lp64.so" -DFLOOK_ROOT=/lustre/home/user/m/milias/work/software/siesta/git_cloned/siesta_dev/External/Lua-Engine/flook
 
@@ -112,9 +105,7 @@ echo -e "\n\n launching CMake configuration command : "
 # 
 #FC=ifort CC=icc MPIFC=mpiifort  cmake -S. -B$BUILD   -DCMAKE_BUILD_TYPE=Debug  -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=OFF  -DSCALAPACK_LIBRARY="/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_scalapack_lp64.so;/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_blacs_intelmpi_lp64.so" -DSIESTA_WITH_FLOOK=OFF  -DCMAKE_PREFIX_PATH="/lustre/home/user/m/milias/work/software/libxc"
 
-#FC=gfortran CC=gcc MPIFC=mpif90  cmake -S. -B$BUILD   -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=OFF  -DSIESTA_WITH_FLOOK=OFF  -DCMAKE_PREFIX_PATH="/lustre/home/user/m/milias/work/software/libxc"  -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR
-
-FC=gfortran CC=gcc MPIFC=mpif90  cmake -S. -B$BUILD   -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=OFF  -DSIESTA_WITH_FLOOK=OFF  -DSIESTA_WITH_LIBXC=OFF  -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR
+FC=ifort CC=icc  cmake -S. -B$BUILD   -DCMAKE_BUILD_TYPE=Check  -DSIESTA_WITH_MPI=OFF -DSIESTA_WITH_OPENMP=ON -DSIESTA_WITH_ELPA=OFF  -DSCALAPACK_LIBRARY="/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_scalapack_lp64.so;/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_blacs_intelmpi_lp64.so" -DSIESTA_WITH_FLOOK=OFF  -DCMAKE_PREFIX_PATH="/lustre/home/user/m/milias/work/software/libxc"  -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR
 
 cd $BUILD
 echo -e "\nI am in the directory $SIESTA/$BUILD , check via pwd :";pwd
@@ -122,7 +113,8 @@ echo -e "\nI am in the directory $SIESTA/$BUILD , check via pwd :";pwd
 echo -e "\n\n Going to run make "
 make
 
-echo -e "\n\n Going to run ctest "
+OMP_NUM_THREADS=$SLURM_CPUS_ON_NODE
+echo -e "\n\n Going to run ctest, with OMP_NUM_THREADS=$OMP_NUM_THREADS"
 ctest
 
 echo -e "\n\n Going to run make install into INSTALL_DIR=$INSTALL_DIR : "

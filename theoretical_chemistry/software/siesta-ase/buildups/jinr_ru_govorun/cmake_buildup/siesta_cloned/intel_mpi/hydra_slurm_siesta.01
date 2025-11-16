@@ -1,17 +1,17 @@
 #!/bin/bash
 
-#SBATCH -J SIESTA
+#SBATCH -J Simpi
 
 ##  partition (queue)
 ##SBATCH -p cascade
-##SBATCH -p flnr-ice
-#SBATCH -p flnr-sod
+#SBATCH -p flnr-ice
+##SBATCH -p flnr-sod
 ##SBATCH -p knl
 
 
 ## max. execution time
 ##SBATCH -t 7-00:00:00
-#SBATCH -t 0-04:00:00
+#SBATCH -t 0-08:00:00
 
 #SBATCH --mem=32GB
 
@@ -46,12 +46,12 @@ module purge
 #module load openmpi/v2.1.2-2
 module add GVR/v1.0-1
 module add Python/v3.10.13
-#module add intel/oneapi
-#module add ELPA/v2025.01.002_oneapi
+module add intel/oneapi
+module add ELPA/v2025.01.002_oneapi
 module add CMake/v3.29.2
-module add openmpi/v5.0.7_gcc1230 
-module add LAPACK/v3.12.0_gcc1230
-module add ScaLAPACK/v2.2.2_openmpi507
+#module add openmpi/v5.0.7_gcc1230 
+#module add LAPACK/v3.12.0_gcc1230
+#module add ScaLAPACK/v2.2.2_openmpi507
 
 echo -e "\n\n loaded modules:"
 module list
@@ -60,7 +60,12 @@ module list
 echo -e "\n Python ? \c"; which Python; Python -V
 echo -e "\n CMake ? \c"; which cmake; cmake --version
 echo -e "\n pkg-config ? \c"; which pkg-config; pkg-config --version
-echo -e "\n mpif90 ? \c"; which mpif90; mpif90 --version
+#echo -e "\n gfortran ? \c"; which gfortran; gfortran --version
+echo -e "\n ifort ? \c"; which ifort; ifort -V
+#echo -e "\n gcc ? \c"; which gcc; gcc --version
+echo -e "\n icc ? \c"; which icc; icc -V
+#echo -e "\n mpif90 ? \c"; which mpif90; mpif90 --version
+echo -e "\n mpiifort ? \c"; which mpiifort; mpiifort -V
 echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
 
 # readline-devel lib
@@ -73,7 +78,8 @@ SIESTA_DIR=/lustre/home/user/m/milias/work/software/siesta/git_cloned
 SIESTA=$SIESTA_DIR/siesta_dev
 
 #BUILD=build_intelmpi_elpa
-BUILD=build_gnu_openmpi_lapack_scalapack
+#BUILD=build_gnu_openmpi_lapack_scalapack
+BUILD=build_intelmpi2021.4_mkl_check
 
 INSTALL_DIR=/lustre/home/user/m/milias/work/software/siesta/git_cloned/install_$BUILD
 cd $SIESTA_DIR
@@ -89,9 +95,9 @@ else
 fi
 echo -e "Checking install dir :"; ls -lt install_$BUILD
 
-
-
-
+#
+#
+#
 cd $SIESTA
 echo -e "\nI am in the directory SIESTA=$SIESTA; verify via pwd=";pwd
 
@@ -114,16 +120,18 @@ echo -e "\n\n launching CMake configuration command : "
 
 #FC=gfortran CC=gcc MPIFC=mpif90  cmake -S. -B$BUILD   -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=OFF  -DSIESTA_WITH_FLOOK=OFF  -DCMAKE_PREFIX_PATH="/lustre/home/user/m/milias/work/software/libxc"  -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR
 
-FC=gfortran CC=gcc MPIFC=mpif90  cmake -S. -B$BUILD   -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=OFF  -DSIESTA_WITH_FLOOK=OFF  -DSIESTA_WITH_LIBXC=OFF  -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR
+#FC=gfortran CC=gcc MPIFC=mpif90  cmake -S. -B$BUILD -DCMAKE_BUILD_TYPE=Check   -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=OFF  -DSIESTA_WITH_FLOOK=OFF  -DSIESTA_WITH_LIBXC=ON -DCMAKE_PREFIX_PATH="/lustre/home/user/m/milias/work/software/libxc/install_build_gnu12.3.0"  -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR
+
+FC=ifort CC=icc MPIFC=mpiifort  cmake -S. -B$BUILD -DCMAKE_BUILD_TYPE=Check   -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=OFF  -DSIESTA_WITH_FLOOK=OFF  -DSIESTA_WITH_LIBXC=ON -DSCALAPACK_LIBRARY="/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_scalapack_lp64.so;/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_blacs_intelmpi_lp64.so" -DCMAKE_PREFIX_PATH="/lustre/home/user/m/milias/work/software/libxc/install_build_intel2021.4"  -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR
 
 cd $BUILD
 echo -e "\nI am in the directory $SIESTA/$BUILD , check via pwd :";pwd
 
-echo -e "\n\n Going to run make "
+echo -e "\n\n Going to run make : "
 make
 
-echo -e "\n\n Going to run ctest "
-ctest
+echo -e "\n\n Going to run ctest : "
+ctest -VV
 
 echo -e "\n\n Going to run make install into INSTALL_DIR=$INSTALL_DIR : "
 make install

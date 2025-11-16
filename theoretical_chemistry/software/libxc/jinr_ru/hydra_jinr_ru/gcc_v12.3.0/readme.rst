@@ -18,3 +18,8 @@ installation
 https://libxc.gitlab.io/installation/
 
 module load ...
+
+check:  ls /lustre/home/user/m/milias/work/software/libxc/install_build_gnu12.3.0/lib64/.
+
+
+

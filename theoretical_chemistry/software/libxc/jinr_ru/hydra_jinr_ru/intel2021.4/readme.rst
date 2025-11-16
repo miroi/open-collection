@@ -18,3 +18,9 @@ installation
 https://libxc.gitlab.io/installation/
 
 module load intel/oneapi  CMake/v3.29.2
+
+check
+~~~~~
+milias@hydra.jinr.ru:~/work/software/libxc/install_build_intel2021.4/.ls
+bin/  include/  lib64/
+

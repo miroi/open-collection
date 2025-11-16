@@ -19,7 +19,7 @@
 #SBATCH --no-requeue
 #SBATCH --no-kill
 
-#SBATCH -N 1 -n 4
+#SBATCH -N 1 -n 6
 #SBATCH  --sockets-per-node=1
 
 #SBATCH -o log_slurm_job.%j.%N.std_out
@@ -69,7 +69,8 @@ find /usr/lib64 -name 'libreadline.so*'; find /usr/include -name readline.h
 SIESTA_DIR=/lustre/home/user/m/milias/work/software/siesta/git_cloned
 SIESTA=$SIESTA_DIR/siesta_dev
 
-BUILD=build_intelserial_mkl_openmp_check
+#BUILD=build_intelserial_mkl_openmp_check
+BUILD=build_intelserial_mkl_openmp_RelWithDebInfo
 
 INSTALL_DIR=/lustre/home/user/m/milias/work/software/siesta/git_cloned/install_$BUILD
 cd $SIESTA_DIR
@@ -105,7 +106,7 @@ echo -e "\n\n launchin CMake configuration command : "
 # 
 #FC=ifort CC=icc MPIFC=mpiifort  cmake -S. -B$BUILD   -DCMAKE_BUILD_TYPE=Debug  -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=OFF  -DSCALAPACK_LIBRARY="/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_scalapack_lp64.so;/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_blacs_intelmpi_lp64.so" -DSIESTA_WITH_FLOOK=OFF  -DCMAKE_PREFIX_PATH="/lustre/home/user/m/milias/work/software/libxc"
 
-FC=ifort CC=icc  cmake -S. -B$BUILD   -DCMAKE_BUILD_TYPE=Check  -DSIESTA_WITH_MPI=OFF -DSIESTA_WITH_OPENMP=ON -DSIESTA_WITH_ELPA=OFF  -DSCALAPACK_LIBRARY="/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_scalapack_lp64.so;/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_blacs_intelmpi_lp64.so" -DSIESTA_WITH_FLOOK=OFF  -DCMAKE_PREFIX_PATH="/lustre/home/user/m/milias/work/software/libxc"  -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR
+FC=ifort CC=icc  cmake -S. -B$BUILD   -DCMAKE_BUILD_TYPE=RelWithDebInfo  -DSIESTA_WITH_MPI=OFF -DSIESTA_WITH_OPENMP=ON -DSIESTA_WITH_ELPA=OFF  -DSCALAPACK_LIBRARY="/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_scalapack_lp64.so;/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_blacs_intelmpi_lp64.so" -DSIESTA_WITH_FLOOK=OFF  -DCMAKE_PREFIX_PATH="/lustre/home/user/m/milias/work/software/libxc"  -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR
 
 cd $BUILD
 echo -e "\nI am in the directory $SIESTA/$BUILD , check via pwd :";pwd

@@ -18,5 +18,11 @@ You can override this protection by adding the "overload-allowed"
 option to your binding directive.
 
 
+Avogadro2
+~~~~~~~~~
+
+see https://www.faccts.de/docs/orca/6.1/tutorials/spec/IR.html#plotting-the-ir-spectrum
+
+you can plot both IR and Raman spectrum
 
 

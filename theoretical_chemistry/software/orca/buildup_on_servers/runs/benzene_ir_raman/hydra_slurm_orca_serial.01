@@ -64,13 +64,15 @@ echo -e "\n"
 
 #
 module purge
-#module load openmpi/v2.1.2-2
 module add GVR/v1.0-1
 module add Python/v3.10.13
 #module add intel/oneapi 
+#module add openmpi/v4.1.6_gcc1230
 
 echo -e "\n\n loaded modules:"
 module list
+
+#echo -e "\n mpirun ? "; which mpirun; mpirun --version
 
 ulimit -s unlimited
 
@@ -88,8 +90,7 @@ echo -e "\n\n ldd $ORCADIR/orca :"
 ldd $ORCADIR/orca
 
 #project=hellowater
-#project=benzene_opt_freq
-project=benzene_opt_freqN4
+project=benzene_opt_freq
 
 echo -e "\n\n running: $ORCADIR/orca $project.inp  at \c"; date; echo
 $ORCADIR/orca $project.inp

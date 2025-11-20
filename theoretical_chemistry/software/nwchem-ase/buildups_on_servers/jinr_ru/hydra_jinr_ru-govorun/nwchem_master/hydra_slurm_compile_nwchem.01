@@ -117,7 +117,7 @@ module list
   #export BLASOPT="${MKLROOT}/lib/mic/libmkl_blas95_ilp64.a -L${MKLROOT}/lib/mic -lmkl_scalapack_ilp64 -lmkl_cdft_core -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread -lm -ldl"
   #export BLASOPT="-mkl -i8"
   #export BLASOPT="-L$MKLROOT/lib/intel64 -lmkl_intel_ilp64 -lmkl_core -lmkl_sequential -lmkl_core -liomp5 -lpthread -ldmapp -lm"
-  export BLASOPT="-L$MKLROOT/lib/intel64 -lmkl_intel_ilp64 -lmkl_core -lmkl_sequential -lmkl_core -liomp5 -lpthread -lm"
+  export BLASOPT="-L$MKLROOT/lib/intel64 -lmkl_intel_ilp64 -lmkl_core -lmkl_sequential -lmkl_core -liomp5 -lpthread -lm -lutil"
   #export BLASOPT="-mkl -qopenmp -lpthread -lm"
   echo -e "BLASOPT=$BLASOPT"
 
@@ -133,12 +133,14 @@ module list
   export SCALAPACK_SIZE=8
   echo -e "\n SCALAPACK_SIZE=$LAPACK_SIZE"
   #export SCALAPACK="-L$MKLROOT/lib/intel64 -lmkl_scalapack_ilp64 -lmkl_intel_ilp64 -lmkl_core -lmkl_sequential \  
-  export SCALAPACK="-mkl -qopenmp -lmkl_scalapack_ilp64 -lmkl_blacs_intelmpi_ilp64 -lpthread -lm -ldl"
+  export SCALAPACK="-qmkl -lmkl_scalapack_ilp64 -lmkl_blacs_intelmpi_ilp64 -lpthread -lm -ldl -lutil"
   #export SCALAPACK="-mkl -openmp -lmkl_scalapack_ilp64 -lmkl_blacs_intelmpi_ilp64"
   echo -e "using SCALAPACK=$SCALAPACK"
 
-  export BUILD_ELPA=1
-
+  #export BUILD_ELPA=1
+  export ELPA_SIZE=8
+  export ELPA="-lelpa"
+  echo -e "using ELPA=$ELPA"
 
 # https://nwchemgit.github.io/Compiling-NWChem.html#how-to-intel-xeon-phi
 #  export USE_KNL=1 
@@ -168,7 +170,7 @@ module list
   export NWCHEM_EXECUTABLE=$NWCHEM_TOP/bin/LINUX64/nwchem
   echo -e "NWCHEM_EXECUTABLE=$NWCHEM_EXECUTABLE"
 
-  export NWCHEM_BASIS_LIBRARY=$NWCHEM_TOP/src/basis/libraries.bse
+  export NWCHEM_BASIS_LIBRARY=$NWCHEM_TOP/src/basis/libraries:$NWCHEM_TOP/src/basis/libraries.bse
   echo -e "NWCHEM_BASIS_LIBRARY=$NWCHEM_BASIS_LIBRARY"
 
   echo -e "\nNWChem environmental variables were defined for hydra.jinr.ru - GOING TO COMPILE:"

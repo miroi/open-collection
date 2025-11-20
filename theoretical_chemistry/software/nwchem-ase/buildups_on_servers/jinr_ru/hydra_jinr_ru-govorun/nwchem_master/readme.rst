@@ -22,4 +22,6 @@ chchc curl -f -L https://www.chemie.uni-bonn.de/grimme/de/software/dft-d3//dftd3
 100  542k  100  542k    0     0   838k      0 --:--:-- --:--:-- --:--:--  837k
 patching file nwpwxc_vdw3a.F
 
-
+configure & compile
+~~~~~~~~~~~~~~~~~~~
+sbatch hydra_slurm_compile_nwchem.01

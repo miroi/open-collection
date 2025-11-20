@@ -28,6 +28,10 @@ Govorun run
 ~~~~~~~~~~~
 sbatch hydra_slurm_gamess-us.01
 
+visualization
+-------------
+gamess-us output in wxMacMolPlt
+
 timings (4threads)
 ------------------
 Win11,IntelMPI:  157.2s

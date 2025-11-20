@@ -81,12 +81,22 @@ module list
   echo -e "\n\n  ldd NWCHEM_EXECUTABLE = $NWCHEM_EXECUTABLE :"
   ldd  $NWCHEM_EXECUTABLE
 
-  echo -e "\n\n I am in the directory SLURM_SUBMIT_DIR=$SLURM_SUBMIT_DIR; pwd check"; pwd
+# create tmp directory
+  export TMPDIR=nwchem_job_dir.$SLURM_JOB_NAME.$SLURM_JOBID
+  mkdir $TMPDIR
+ 
+  cd $TMPDIR
+  echo -e "\n\n I am in the directory TMPDIR=$TMPDIR ; pwd check";pwd
+  echo -e "\n\n While launching directory SLURM_SUBMIT_DIR=$SLURM_SUBMIT_DIR"
 
   nw_inp=prop_ch3f
-  echo -e "\n\n Launching NWChem job 'mpirun -np $SLURM_CPUS_ON_NODE $NWCHEM_EXECUTABLE $nw_inp.nw' at \c";date
-  mpirun -np $SLURM_CPUS_ON_NODE $NWCHEM_EXECUTABLE $nw_inp.nw
+  echo -e "\n\n Launching NWChem job 'mpirun -np $SLURM_CPUS_ON_NODE $NWCHEM_EXECUTABLE $SLURM_SUBMIT_DIR/$nw_inp.nw' at \c";date
+  mpirun -np $SLURM_CPUS_ON_NODE $NWCHEM_EXECUTABLE $SLURM_SUBMIT_DIR/$nw_inp.nw
 
   echo -e "\n\n NWChem job finished at \c";date
+
+  echo -e "\n Remaining NWChem working files in scratch dir $TMPDIR:"
+  ls -lt $TMPDIR
+  du -h -s $TMPDIR
 
   exit 0

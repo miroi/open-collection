@@ -26,6 +26,12 @@ C:\Users\Public\gamess-64\rungms.bat   vit_c.geopt_b3lyp_6-31.inp   2023.R1.inte
 
 Govorun run
 ~~~~~~~~~~~
+sbatch hydra_slurm_gamess-us.01
+
+timings (4threads)
+------------------
+Win11,IntelMPI:  157.2s
+Linux64,ddi   :  478.5s
 
 
 

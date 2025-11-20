@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH -J NWbuild2
+#SBATCH -J NwQA
 
 ##  partition (queue)
 ##SBATCH -p cascade
@@ -23,7 +23,7 @@
 #SBATCH --no-requeue
 #SBATCH --no-kill
 
-#SBATCH -N 1 -n 8
+#SBATCH -N 1 -n 4
 #SBATCH  --sockets-per-node=1
 
 ## memory NO !!!
@@ -66,145 +66,46 @@ module add ELPA/v2025.01.002_oneapi
 #module unload openmpi/v1.8.8-1
 echo -e "\n\n loaded modules for NWChem compulation :"
 module list
+  # server's Intel compiler
+  echo -e "ifort ?"; which ifort; ifort --version
+  echo -e "icc ?"; which icc; icc --version
+  echo -e "mpiifort ?"; which mpiifort; mpiifort -V
+  echo -e "mpirun ?";  which mpirun; mpirun --version
+  echo -e "MKL library, MKLROOT=${MKLROOT}"
 
 #           NWChem on hydra.jinr.ru
-# /lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release
 # 
-  echo -e "\n\n*** hydra.jinr.ru setting for NWChem compilation:   ***"
+ # echo -e "\n\n*** hydra.jinr.ru setting for NWChem compilation:   ***"
 
   #export NWCHEM_TOP=/home/milias/Work/qch/software/nwchem_suite/nwchem-7.0.2
   #export NWCHEM_TOP=/lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release
   export NWCHEM_TOP=/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master
-
+  export NWCHEM_EXECUTABLE=$NWCHEM_TOP/bin/LINUX64/nwchem
   echo -e "\n NWCHEM_TOP=$NWCHEM_TOP"
 
-  export NWCHEM_TARGET="LINUX64"
-  echo -e "\n NWCHEM_TARGET=$NWCHEM_TARGET"
+  echo -e "\n\n  ldd NWCHEM_EXECUTABLE = $NWCHEM_EXECUTABLE :"
+  ldd  $NWCHEM_EXECUTABLE
 
-  export PYTHONVERSION=3.10
-  echo -e "\n Python version for NWChem : \c"; which python; python -V
+cd $NWCHEM_TOP/QA
+echo -e "\n\n I am in NWCHEM_TOP/QA=$NWCHEM_TOP/QA;  for control pwd:"; pwd
 
-  export USE_MPI=y
-  echo -e "\n USE_MPI=$USE_MPI"
+nproc=${SLURM_CPUS_ON_NODE}
+if [ "$1" != "" ] ; then
+  nproc=$1
+fi
+echo -e "nproc=$nproc"
+. ./domknwchemenv
+./domknwchemrc
+status=$?
+if [[ $status != 0 ]]; then
+  echo "ERROR: The script $NWCHEM_TOP/QA/domknwchemrc failed. Exiting."
+  exit $status
+fi
 
-  # server's Intel compiler
-  export FC=ifort
-  echo -e "\nFC=$FC"
-  echo -e "ifort ?"; which ifort; ifort --version
-  export CC=icc # try
-  echo -e "CC=$CC"
-  echo -e "icc ?"; which icc; icc --version
+echo -e "\n\n Launching NWChem QA ./doqmtests.mpi $nproc ... at \c";date
+#./doqmtests.mpi $nproc fast
+./doqmtests.mpi $nproc 
 
-  #export MPI_F90=mpif90
-  export MPI_F90=mpiifort
-  echo -e "\nMPI_F90=$MPI_F90"
-  echo -e "mpiifort ?"; which mpiifort; mpiifort -V
-  echo -e "mpirun ?";  which mpirun; mpirun --version
+echo -e "\n\n QA tests finished at \c";date
 
- # export MPI_CC=mpicc
- # export MPI_CXX=mpicxx
- ### based on "mpif90 -show"
- # export LIBMPI="-lmpi_usempif08 -lmpi_usempi_ignore_tkr -lmpi_mpifh -lmpi"
- # export MPI_LIB="/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib -Wl,-rpath  /home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib -Wl,--enable-new-dtags -L/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib"
- # export MPI_INCLUDE="/home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/include /home/milias/bin/openmpi-4.0.1_suites/openmpi-4.0.1_Intel14_GNU6.3g++/lib -Wl,-rpath -Wl"
-
-  echo -e "\n ===  We have the MKL library, MKLROOT=${MKLROOT}"
-
-  export BLAS_SIZE=8
-  echo -e "\n BLAS_SIZE=$BLAS_SIZE"
-
-  #export BLASOPT="-L/usr/lib -lblas"
-  #export BLASOPT="${MKLROOT}/lib/mic/libmkl_blas95_ilp64.a -L${MKLROOT}/lib/mic -lmkl_scalapack_ilp64 -lmkl_cdft_core -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread -lm -ldl"
-  #export BLASOPT="-mkl -i8"
-  #export BLASOPT="-L$MKLROOT/lib/intel64 -lmkl_intel_ilp64 -lmkl_core -lmkl_sequential -lmkl_core -liomp5 -lpthread -ldmapp -lm"
-  #export BLASOPT="-L$MKLROOT/lib/intel64 -lmkl_intel_ilp64 -lmkl_core -lmkl_sequential -lmkl_core -liomp5 -lpthread -lm -lutil"
-  export BLASOPT="-L$MKLROOT/lib/intel64 -lmkl_intel_ilp64 -lmkl_core -lmkl_sequential -lmkl_core -liomp5 -lpthread -lm"
-  #export BLASOPT="-mkl -qopenmp -lpthread -lm"
-  echo -e "BLASOPT=$BLASOPT"
-
-  export LAPACK_SIZE=8
-  echo -e "LAPACK_SIZE=$LAPACK_SIZE"
-
-  #export LAPACK_LIB="-L/usr/lib -llapack"
-  #export LAPACK_LIB="${MKLROOT}/lib/mic/libmkl_lapack95_ilp64.a -L${MKLROOT}/lib/mic -lmkl_scalapack_ilp64 -lmkl_cdft_core -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread -lm -ldl"
-  export LAPACK_LIB=$BLASOPT
-  echo -e "\n LAPACK_LIB=$LAPACK_LIB"
-
-  export USE_SCALAPACK=y
-  export SCALAPACK_SIZE=8
-  echo -e "\n SCALAPACK_SIZE=$SCALAPACK_SIZE"
-  export SCALAPACK="-L$MKLROOT/lib/intel64 -lmkl_scalapack_ilp64 -lmkl_intel_ilp64 -lmkl_core -lmkl_sequential -lmkl_blacs_intelmpi_ilp64 -lpthread -lm -ldl"  
-  #export SCALAPACK="-qmkl -lmkl_scalapack_ilp64 -lmkl_blacs_intelmpi_ilp64 -lpthread -lm -ldl -lutil"
-  #export SCALAPACK="-mkl -openmp -lmkl_scalapack_ilp64 -lmkl_blacs_intelmpi_ilp64"
-  echo -e "using SCALAPACK=$SCALAPACK"
-
-  #export BUILD_ELPA=1
-  export ELPA_SIZE=8
-  export ELPA="-lelpa"
-  echo -e "using ELPA=$ELPA"
-
-# https://nwchemgit.github.io/Compiling-NWChem.html#how-to-intel-xeon-phi
-#  export USE_KNL=1 
-#  export USE_OPENMP=1  
-#  export USE_F90_ALLOCATABLE=T  
-#  export USE_FASTMEM=T
-
-  export USE_64TO32="n" # see http://www.nwchem-sw.org/index.php/Special:AWCforum/sp/id7260
-  echo -e "USE_64TO32=$USE_64TO32"
-
-  export LARGE_FILES=1
-  echo -e "LARGE_FILES=$LARGE_FILES"
-
-  #export PYTHONVERSION=2.6
-  export USE_NOFSCHECK=TRUE
-  echo -e "USE_NOFSCHECK=$USE_NOFSCHECK"
-
-  export USE_NOIO=TRUE
-  echo -e "USE_NOIO=$USE_NOIO"
-
-  export NWCHEM_LONG_PATHS=1
-  echo -e "NWCHEM_LONG_PATHS=$NWCHEM_LONG_PATHS"
-
-  #export NWCHEM_MODULES="all python" 
-  export NWCHEM_MODULES="all" 
-  echo -e "NWCHEM_MODULES=$NWCHEM_MODULES"
-
-  export NWCHEM_EXECUTABLE=$NWCHEM_TOP/bin/LINUX64/nwchem
-  echo -e "NWCHEM_EXECUTABLE=$NWCHEM_EXECUTABLE"
-
-  export NWCHEM_BASIS_LIBRARY=$NWCHEM_TOP/src/basis/libraries:$NWCHEM_TOP/src/basis/libraries.bse
-  echo -e "NWCHEM_BASIS_LIBRARY=$NWCHEM_BASIS_LIBRARY"
-
-  echo -e "\nNWChem environmental variables were defined for hydra.jinr.ru - GOING TO COMPILE:"
-
-  cd $NWCHEM_TOP
-  echo "\n I am in NWCHEM_TOP=$NWCHEM_TOP ; check against pwd:";pwd
-
-  cd $NWCHEM_TOP/src
-  echo -e "\n I am in :\c";pwd;ls -lt
-
-  echo -e "\n  make nwchem_config: ";make nwchem_config 
-  echo -e "\  launching make -j$SLURM_CPUS_ON_NODE :"; make -j$SLURM_CPUS_ON_NODE
-
-  # build the version info
-   echo -e "\n build the version info :"
-   cd $NWCHEM_TOP/src/util
-   make version
-   make
-   cd $NWCHEM_TOP/src
-   make link
-
-  # https://nwchemgit.github.io/Compiling-NWChem.html#setting-the-default-memory-values
-  echo -e "\n launching : FC=ifort ../contrib/getmem.nwchem"
-   FC=ifort ../contrib/getmem.nwchem
-
-   echo -e "\n\n After the NWCHem compilation:"
-   echo -e "\n Execs:   ls -l $NWCHEM_TOP/bin/LINUX64: "
-   ls -l $NWCHEM_TOP/bin/LINUX64       
-   echo -e "\n Libraries  ls -l $NWCHEM_TOP/lib/LINUX64"
-   ls -l $NWCHEM_TOP/lib/LINUX64   
-
-   echo -e "\n\d   ldd NWCHEM_EXECUTABLE = $NWCHEM_EXECUTABLE :"
-   ldd  $NWCHEM_EXECUTABLE
-  
   exit 0

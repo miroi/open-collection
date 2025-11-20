@@ -66,6 +66,9 @@ module add ELPA/v2025.01.002_oneapi
 echo -e "\n\n loaded modules for NWChem compulation :"
 module list
 
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64
+echo -e "\n\n LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
+
 #           NWChem on hydra.jinr.ru
 # /lustre/home/user/m/milias/work/software/nwchem/nwchem-7.2.3-release
 # 
@@ -116,8 +119,8 @@ module list
   #export BLASOPT="${MKLROOT}/lib/mic/libmkl_blas95_ilp64.a -L${MKLROOT}/lib/mic -lmkl_scalapack_ilp64 -lmkl_cdft_core -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread -lm -ldl"
   #export BLASOPT="-mkl -i8"
   #export BLASOPT="-L$MKLROOT/lib/intel64 -lmkl_intel_ilp64 -lmkl_core -lmkl_sequential -lmkl_core -liomp5 -lpthread -ldmapp -lm"
-  #export BLASOPT="-L$MKLROOT/lib/intel64 -lmkl_intel_ilp64 -lmkl_core -lmkl_sequential -lmkl_core -liomp5 -lpthread -lm -lutil"
-  export BLASOPT="-L$MKLROOT/lib/intel64 -lmkl_intel_ilp64 -lmkl_core -lmkl_sequential -lmkl_core -liomp5 -lpthread -lm"
+  export BLASOPT="-L$MKLROOT/lib/intel64 -lmkl_intel_ilp64 -lmkl_core -lmkl_sequential -lmkl_core -liomp5 -lpthread -lm -lutil"
+  #export BLASOPT="-L$MKLROOT/lib/intel64 -lmkl_intel_ilp64 -lmkl_core -lmkl_sequential -lmkl_core -liomp5 -lpthread -lm"
   #export BLASOPT="-mkl -qopenmp -lpthread -lm"
   echo -e "BLASOPT=$BLASOPT"
 

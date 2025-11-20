@@ -24,4 +24,8 @@ todo: less printout, add more steps
 
 C:\Users\Public\gamess-64\rungms.bat   vit_c.geopt_b3lyp_6-31.inp   2023.R1.intel  4 >  vit_c.geopt_b3lyp_6-31.n4_out
 
+Govorun run
+~~~~~~~~~~~
+
+
 

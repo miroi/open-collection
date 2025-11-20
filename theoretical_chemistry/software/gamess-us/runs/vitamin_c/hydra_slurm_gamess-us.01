@@ -1,0 +1,68 @@
+#!/bin/bash
+
+#SBATCH -J gms
+
+##  partition (queue)
+##SBATCH -p cascade
+##SBATCH -p flnr-ice
+#SBATCH -p flnr-sod
+##SBATCH -p slo-ice
+
+## max. execution time
+##SBATCH -t 7-00:00:00
+#SBATCH -t 0-01:00:00
+
+#SBATCH --mem=32GB
+
+# do not restart in the case of nodefail!
+#SBATCH --no-requeue
+#SBATCH --no-kill
+
+#SBATCH -N 1 -n 4
+#SBATCH  --sockets-per-node=1
+
+#SBATCH -o log_slurm_job.%j.%N.std_out
+
+echo Job user is $SLURM_JOB_USER and his job $SLURM_JOB_NAME has assigned ID $SLURM_JOBID
+echo This job was submitted from the computer $SLURM_SUBMIT_HOST
+echo and from the home directory:
+echo $SLURM_SUBMIT_DIR
+echo
+echo It is running on the cluster compute node:
+echo $SLURM_CLUSTER_NAME
+echo and is employing $SLURM_JOB_NUM_NODES node/nodes:
+echo $SLURM_JOB_NODELIST
+echo
+echo -e "Job partition is $SLURM_JOB_PARTITION \n"
+echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
+
+#echo "modules at disposal:"
+#module avail
+#echo
+
+#
+module purge
+#module load openmpi/v2.1.2-2
+module add GVR/v1.0-1
+module add Python/v3.10.13
+module add intel/oneapi 
+
+echo -e "\n\n loaded modules:"
+module list
+
+ulimit -s unlimited
+
+GAMESSUS_DIR=/zfs/scratch/HybriLITWorkshop2025/milias/software/gamess-us/gamess
+
+echo -e "\n\n ldd $GAMESSUS_DIR/gamess.00.x :"
+ldd $GAMESSUS_DIR/gamess.00.x
+
+
+gms_inp=vit_c.geopt_b3lyp_6-31.inp
+
+echo -e "\n=n Running GAMESS-US job '$GAMESSUS_DIR/rungms  $gms_inp 00 $SLURM_CPUS_ON_NODE'"
+
+$GAMESSUS_DIR/rungms  $gms_inp 00 $SLURM_CPUS_ON_NODE 
+
+
+exit

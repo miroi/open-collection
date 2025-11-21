@@ -3,12 +3,21 @@ import os
 import numpy as np
 from ase import Atoms
 from ase.build import add_adsorbate
-from ase.calculators.lj import LennardJones
+#from ase.calculators.lj import LennardJones
 #from dftd4.ase import DFTD4
 from ase.optimize import BFGS
 from ase.constraints import FixAtoms
 from ase.io import write
 from ase.calculators.mixing import SumCalculator
+#
+# https://github.com/CederGroupHub/chgnet?tab=readme-ov-file#direct-inference-static-calculation
+#
+from chgnet.model.model import CHGNet
+from pymatgen.core import Structure
+from chgnet.model import StructOptimizer
+
+chgnet = CHGNet.load()
+
 
 # Create output directories
 os.makedirs('vasp_outputs', exist_ok=True)
@@ -128,7 +137,7 @@ def get_adsorption_sites(slab):
     return sites
 
 # ==============================================
-# 3. Screening with LJ + DFT-D4 
+# 3. Screening with CHGNet
 # ==============================================
 def screen_adsorption_sites(slab, sites):
     energies = {}
@@ -149,16 +158,19 @@ def screen_adsorption_sites(slab, sites):
         print(f"Hg atom index: {len(slab_with_hg)-1}, should be free to move")
         
         # Calculator setup
-        lj_params = {
-            'epsilon': 0.025,  # eV
-            'sigma': 2.75,     # Å
-            'rc': 10.0         # Cutoff radius
-        }
+       # lj_params = {
+       #     'epsilon': 0.025,  # eV
+       #     'sigma': 2.75,     # Å
+       #     'rc': 10.0         # Cutoff radius
+       # }
        # slab_with_hg.calc = SumCalculator([
        #     LennardJones(**lj_params),
        #     DFTD4(method="PBE") ])
-        slab_with_hg.calc = SumCalculator([LennardJones(**lj_params) ])
+       # slab_with_hg.calc = SumCalculator([LennardJones(**lj_params) ])
         
+        slab_with_hg.calc = SumCalculator( [StructOptimizer()] )
+                
+
         # Relax only Hg
         relax = BFGS(slab_with_hg, trajectory=f'traj_files/hg_{name}.traj')  # Moved to traj_files
         relax.run(fmax=0.05)

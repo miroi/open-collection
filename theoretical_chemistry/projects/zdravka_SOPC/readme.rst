@@ -13,4 +13,6 @@ also https://lipidbook.org/lipid/show/id/28.html
 problem: 	
 C44H86NO8P(pubchem) or C44H85NO8P (molview)
 
-
+MOPAC
+-----
+visualise aux file with frequencies in Avogadro2

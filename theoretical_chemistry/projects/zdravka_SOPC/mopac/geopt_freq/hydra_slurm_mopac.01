@@ -1,0 +1,101 @@
+#!/bin/bash
+
+#SBATCH -J MOPAC
+
+##  partition (queue)
+##SBATCH -p cascade
+##SBATCH -p knl
+##SBATCH -p flnr-ice
+#SBATCH -p flnr-sod
+##SBATCH -p slo-ice
+
+## max. execution time
+#SBATCH -t 3-00:00:00
+##SBATCH -t 0-01:00:00
+
+#SBATCH --mem=32GB
+
+# do not restart in the case of nodefail!
+#SBATCH --no-requeue
+#SBATCH --no-kill
+
+#SBATCH -N 1 -n 12
+#SBATCH  --sockets-per-node=1
+
+# logfile
+#SBATCH -o log_slurm_job.%j.%N.std_out
+
+## E-mail, modify for yourself
+##SBATCH --mail-user=milias@theor.jinr.ru
+#SBATCH --mail-type=ALL
+
+echo -e "\nRunning on host `hostname`"
+echo -e "Time is `date` \n"
+
+echo -e "\nJob user is SLURM_JOB_USER= $SLURM_JOB_USER"
+echo -e "User job SLURM_JOB_NAME=$SLURM_JOB_NAME has assigned ID SLURM_JOBID=$SLURM_JOBID"
+echo -e "This job was submitted from the computer SLURM_SUBMIT_HOST=$SLURM_SUBMIT_HOST"
+echo -e "and from the home directory SLURM_SUBMIT_DIR:"
+echo -e "$SLURM_SUBMIT_DIR"
+
+echo -e "Job is running on the cluster compute node: SLURM_CLUSTER_NAME=$SLURM_CLUSTER_NAME"
+echo -e "and is employing SLURM_JOB_NUM_NODES=$SLURM_JOB_NUM_NODES node/nodes:"
+echo -e "SLURM_JOB_NODELIST = $SLURM_JOB_NODELIST"
+echo -e "Job partition is SLURM_JOB_PARTITION=$SLURM_JOB_PARTITION \n"
+echo -e "Number of allocated CPUs on each single node, SLURM_CPUS_ON_NODE=$SLURM_CPUS_ON_NODE ."
+echo -e "Number of all reserved threads over ALL nodes, SLURM_NTASKS=$SLURM_NTASKS ."
+echo -e "Job has reserved memory per node, SLURM_MEM_PER_NODE=$SLURM_MEM_PER_NODE MB of memory"
+
+# CPU model, total numer of CPUs, number of allocated CPUs
+echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
+NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
+echo "BTW, this node has total $NPROCS CPUs available for an EXCLUSIVE job."
+echo "Based on reserved memory, this node got $SLURM_CPUS_ON_NODE CPUs allocated for SLURM calculations."
+echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
+
+
+echo -e "\n\n The total memory at the node (in GB)"
+free -t -g
+echo -e "\n"
+
+
+#echo "modules at disposal:"
+#module avail
+#echo
+
+#
+module purge
+#module load openmpi/v2.1.2-2
+module add GVR/v1.0-1
+#module add Python/v3.10.13
+module add intel/oneapi 
+
+echo -e "\n\n loaded modules:"
+module list
+
+ulimit -s unlimited
+
+cd $SLURM_SUBMIT_DIR
+
+#export TMPDIR=/lustre/home/user/m/milias/scratch
+#df -h /tmp; df -h $TMPDIR
+#NMPI=$SLURM_CPUS_ON_NODE
+
+MOPACDIR=/lustre/home/user/m/milias/work/software/mopac/git_cloned/install/bin
+export LD_LIBRARY_PATH=/lustre/home/user/m/milias/work/software/mopac/git_cloned/install/lib64:$LD_LIBRARY_PATH
+
+echo -e "\n\n Check of linked libraries, ldd $MOPACDIR/mopac :"
+ldd $MOPACDIR/mopac 
+
+#project=1IYT_scf_pm7water_addh
+#project=1IYT_scf_pm7water_geo-arc
+#project=1IYT_geopt_pm7water
+
+project=sopc.geomopt-freq_mp7
+
+echo -e "\n\n running: $MOPACDIR/mopac $project.mop  at \c"; date; echo
+$MOPACDIR/mopac $project.mop
+
+echo -e "\n\n Job finished at \c"; date
+
+exit

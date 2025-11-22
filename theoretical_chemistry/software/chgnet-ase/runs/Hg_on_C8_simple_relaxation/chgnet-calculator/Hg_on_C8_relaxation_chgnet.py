@@ -5,12 +5,21 @@ from ase.io import write
 from ase.optimize import BFGS
 from ase.calculators.mixing import SumCalculator
 
+#
+# https://github.com/CederGroupHub/chgnet?tab=readme-ov-file#direct-inference-static-calculation
+#
+from chgnet.model.model import CHGNet
+from pymatgen.core import Structure
+from chgnet.model import StructOptimizer
+
+
 import numpy as np
 import sys
 from ase.filters import UnitCellFilter 
 
 sys.stdout.flush()
 
+chgnet = CHGNet.load()
 # ==============================================
 # ASE full relxation (unitcell + atom) 
 # ==============================================
@@ -18,7 +27,7 @@ sys.stdout.flush()
 # ==============================================
 # 2. Atomic Structure 
 # ==============================================
-atoms = Atoms(
+structure = Atoms(
     symbols=['C']*8 + ['Hg']*1,
     positions=[
         [0.0000000000000000 , 0.0000470574867644,  7.4267968226954775],
@@ -41,58 +50,17 @@ atoms = Atoms(
 
 #
 # set up calculator
-#
-lj_params = {
-   'epsilon': 0.025,  # eV
-   'sigma': 2.75,     # Å
-    'rc': 10.0  }       # Cutoff radius
+# https://chgnet.lbl.gov/api#method-relax
 
-calc = SumCalculator([LennardJones(**lj_params) ])
-
-atoms.calc = calc
-
-
-# ==============================================
-# 4. Cell Relaxation
-# ==============================================
+relaxer = StructOptimizer()
 print("\nStarting cell relaxation by ASE", flush=True)
 
-# Create a trajectory file to store relaxation steps
-from ase.io.trajectory import Trajectory
-traj = Trajectory('relaxation.traj', 'w', atoms)
+#result = relaxer.relax(structure,save_path='relax_path.trj')
+result = relaxer.relax(structure)
 
-# Pass the Trajectory object to BFGS 
-opt = BFGS(atoms, trajectory=traj, logfile='relaxation.log')
+print("CHGNet relaxed structure", result["final_structure"])
+print("relaxed total energy in eV:", result['trajectory'].energies[-1])
 
-try:
-    opt.run(fmax=0.001) # Convergence criterion: max force < 0.001 eV/Å
-        
-    # Get final results
-    final_energy = atoms.get_potential_energy()
-    forces = opt.atoms.get_forces()
-    qe_style_forces = atoms.get_forces() 
-    stress = atoms.get_stress()
-     
-    # Analysis
-    force_norms = np.linalg.norm(forces, axis=1)  # Euclidean norms
-    max_force = np.max(force_norms)               # ASE-style max norm
-    max_qe_force = np.max(np.abs(qe_style_forces)) # Max component across all atoms/directions
-    pressure = -np.sum(stress[:3]) * 1602.1766208 / 3
-
-    # Print results
-    print("\nFinal results", flush=True)    
-    print(f"  Total Energy                  : {final_energy:>12.6f} eV", flush=True)
-    print(f"  ASE-style max force (norm)    : {max_force:>8.6f} eV/Å", flush=True)
-    print(f"  QE-style max force            : {max_qe_force:>8.6f} eV/Å", flush=True)
-    print(f"  Pressure                      : {pressure:>8.6f} kbar", flush=True)
-
-    # Save final structure
-    write('final_relaxed_structure.vasp', atoms, format='vasp', direct=False)
-    print("\nFinal relaxed structure saved to: final_relaxed_structure.vasp", flush=True)
-
-except Exception as e:
-    print(f"\nRelaxation failed: {str(e)}", flush=True)
-    print("Check output files for error details", flush=True)
-finally:
-    traj.close()
-    print("\nRelaxation complete", flush=True)
+# ==============================================
+#from ase.io.trajectory import Trajectory
+#traj = Trajectory('relaxation.traj', 'w', atoms)

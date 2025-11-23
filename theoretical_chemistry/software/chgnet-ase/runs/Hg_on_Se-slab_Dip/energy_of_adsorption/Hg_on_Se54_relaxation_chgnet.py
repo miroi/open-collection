@@ -24,8 +24,9 @@ chgnet = CHGNet.load()
 # ==============================================
 # 2. Atomic Structure 
 # ==============================================
-print("\n  Read in QE preoptimized structure HgSe54_QEoptimized.vasp ")
-structure = Structure.from_file('HgSe54_QEoptimized.vasp')
+inpfile='HgSe54_chgnet_startstruct.vasp'
+print("\n  Read in QE preoptimized structure, file=",inpfile)
+structure = Structure.from_file(inpfile)
 #
 # set up calculator
 # https://chgnet.lbl.gov/api#method-relax
@@ -33,15 +34,17 @@ structure = Structure.from_file('HgSe54_QEoptimized.vasp')
 relaxer = StructOptimizer()
 print("\nStarting cell relaxation by ASE", flush=True)
 
-#traj=TrajectoryObserver(structure)
-result = relaxer.relax(structure,save_path='relaxation_path.traj')
+# relax only geometry , 
+#result = relaxer.relax(structure,relax_cell=False,save_path='relaxation_path.traj')
+result = relaxer.relax(structure,relax_cell=False)
 #result = relaxer.relax(structure)
 
 #traj.save('path.trj')
 #print('traj.compute_energy :',traj.compute_energy() )
 
 # Convert to ASE Atoms object
-ase_atoms = AseAtomsAdaptor.get_atoms(structure)
+#ase_atoms = AseAtomsAdaptor.get_atoms(structure)
+ase_atoms = AseAtomsAdaptor.get_atoms(result["final_structure"])
 
 print("CHGNet relaxed structure", result["final_structure"])
 print("relaxed total energy in eV:", result['trajectory'].energies[-1])
@@ -51,4 +54,4 @@ write('final_relaxed_structure.vasp', ase_atoms, format='vasp', direct=False)
 print("\nFinal relaxed structure saved to: final_relaxed_structure.vasp", flush=True)
 
 # ==============================================
-traj = Trajectory('relaxation.traj', 'w', structure)
+#traj = Trajectory('relaxation.traj', 'w', structure)

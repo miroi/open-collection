@@ -9,7 +9,8 @@ from ase.io.trajectory import Trajectory
 from chgnet.model.model import CHGNet
 from pymatgen.core import Structure
 from chgnet.model import StructOptimizer
-from chgnet.model.dynamics import TrajectoryObserver
+from pymatgen.io.ase import AseAtomsAdaptor
+#from chgnet.model.dynamics import TrajectoryObserver
 
 
 import numpy as np
@@ -39,11 +40,14 @@ result = relaxer.relax(structure,save_path='relaxation_path.traj')
 #traj.save('path.trj')
 #print('traj.compute_energy :',traj.compute_energy() )
 
+# Convert to ASE Atoms object
+ase_atoms = AseAtomsAdaptor.get_atoms(structure)
+
 print("CHGNet relaxed structure", result["final_structure"])
 print("relaxed total energy in eV:", result['trajectory'].energies[-1])
 
 # Save final structure
-write('final_relaxed_structure.vasp', structure, format='vasp', direct=False)
+write('final_relaxed_structure.vasp', ase_atoms, format='vasp', direct=False)
 print("\nFinal relaxed structure saved to: final_relaxed_structure.vasp", flush=True)
 
 # ==============================================

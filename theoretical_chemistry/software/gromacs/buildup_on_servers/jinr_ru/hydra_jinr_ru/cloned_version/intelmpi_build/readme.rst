@@ -4,6 +4,10 @@ GROMACS cloned
 
 https://gitlab.com/gromacs/gromacs
 
+https://manual.gromacs.org/documentation/2025.4/install-guide/index.html#compiler :
+The Intel classic compiler (icc/icpc) is no longer supported in GROMACS. Use Intel's newer clang-based compiler from oneAPI, or gcc.
+
+
 clone
 ~~~~~
 

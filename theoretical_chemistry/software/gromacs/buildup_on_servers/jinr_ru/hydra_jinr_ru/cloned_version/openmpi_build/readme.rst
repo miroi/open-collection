@@ -1,0 +1,5 @@
+=============
+GROMACS build
+=============
+
+with OpenMPI...

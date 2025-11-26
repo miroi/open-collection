@@ -94,12 +94,20 @@ module list
   echo -e "New, empty directory '$BUILD' created..."
 
   cd $BUILD
-  echo -e "\n I am in $GROMACS/$BUILD:\c";pwd;ls -lt
+  echo -e "\n I am in the directory $GROMACS/$BUILD:\c";pwd;ls -lt
 
   echo -e "\n\n running cmake configuration : "
   cmake .. -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=mpicxx  -DGMX_MPI=on  -DGMX_FFT_LIBRARY=fftw3  -DGMX_OPENMP=ON
 
   echo -e "\n\n running make -j $SLURM_CPUS_ON_NODE : "
   make -j $SLURM_CPUS_ON_NODE
+
+  echo -e "\n\n ls -lt bin :"
+  ls -lt bin
+  echo -e " ldd bin/gmx_mpi :"
+  ldd bin/gmx_mpi
+
+  echo -e "\n\n make check :"
+  make check
    
   exit 0

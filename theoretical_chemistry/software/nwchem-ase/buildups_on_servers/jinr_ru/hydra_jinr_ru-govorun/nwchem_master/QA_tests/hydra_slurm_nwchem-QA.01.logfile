@@ -1,0 +1,4314 @@
+
+ Job user is milias and his job NwQA has assigned ID 14935882
+This job was submitted from the computer space02.hydra.local
+and from the home directory:
+/zfs/scratch/HybriLITWorkshop2025/milias/projects/open-collection/theoretical_chemistry/software/nwchem-ase/buildups_on_servers/jinr_ru/hydra_jinr_ru-govorun/nwchem_master/QA_tests
+
+It is running on the cluster compute node:
+gvr
+and is employing 1 node/nodes:
+n02p050
+
+Job partition is flnr-sod 
+
+The job requests 4 CPU per task.
+
+
+ loaded modules for NWChem compulation :
+Currently Loaded Modulefiles:
+  1) GVR/v1.0-1                 4) Python/v3.10.13
+  2) intel/oneapi               5) ELPA/v2025.01.002_oneapi
+  3) BASE/1.0
+ifort ?
+/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/compiler/latest/linux/bin/intel64/ifort
+ifort (IFORT) 2021.4.0 20210910
+Copyright (C) 1985-2021 Intel Corporation.  All rights reserved.
+
+icc ?
+/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/compiler/latest/linux/bin/intel64/icc
+icc (ICC) 2021.4.0 20210910
+Copyright (C) 1985-2021 Intel Corporation.  All rights reserved.
+
+mpiifort ?
+/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mpi/latest/bin/mpiifort
+Intel(R) Fortran Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.4.0 Build 20210910_000000
+Copyright (C) 1985-2021 Intel Corporation.  All rights reserved.
+
+mpirun ?
+/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mpi/latest/bin/mpirun
+Intel(R) MPI Library for Linux* OS, Version 2021.4 Build 20210831 (id: 758087adf)
+Copyright 2003-2021, Intel Corporation.
+MKL library, MKLROOT=/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest
+
+ NWCHEM_TOP=/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master
+
+
+  ldd NWCHEM_EXECUTABLE = /zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem :
+	linux-vdso.so.1 =>  (0x00007ffd00030000)
+	libelpa.so.19 => /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/ELPA/v2025.01.002_oneapi/lib/libelpa.so.19 (0x00002b6fe536c000)
+	libmkl_scalapack_ilp64.so.1 => /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_scalapack_ilp64.so.1 (0x00002b6fe5b83000)
+	libmkl_intel_ilp64.so.1 => /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_intel_ilp64.so.1 (0x00002b6fe62b7000)
+	libmkl_core.so.1 => /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_core.so.1 (0x00002b6fe6db9000)
+	libmkl_sequential.so.1 => /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_sequential.so.1 (0x00002b6feb227000)
+	libmkl_blacs_intelmpi_ilp64.so.1 => /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_blacs_intelmpi_ilp64.so.1 (0x00002b6fe516e000)
+	libpthread.so.0 => /lib64/libpthread.so.0 (0x00002b6fecc3e000)
+	libm.so.6 => /lib64/libm.so.6 (0x00002b6fece5a000)
+	libdl.so.2 => /lib64/libdl.so.2 (0x00002b6fed15c000)
+	libiomp5.so => /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin/libiomp5.so (0x00002b6fed360000)
+	libmpifort.so.12 => /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mpi/latest/lib/libmpifort.so.12 (0x00002b6fed780000)
+	libmpi.so.12 => /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mpi/latest/lib/release/libmpi.so.12 (0x00002b6fedb34000)
+	librt.so.1 => /lib64/librt.so.1 (0x00002b6fef204000)
+	libmkl_intel_thread.so.1 => /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_intel_thread.so.1 (0x00002b6fef40c000)
+	libc.so.6 => /lib64/libc.so.6 (0x00002b6ff2b5b000)
+	/lib64/ld-linux-x86-64.so.2 (0x00002b6fe5148000)
+	libgcc_s.so.1 => /lib64/libgcc_s.so.1 (0x00002b6ff2f29000)
+	libmkl_scalapack_lp64.so.1 => /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_scalapack_lp64.so.1 (0x00002b6ff313f000)
+	libmkl_intel_lp64.so.1 => /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_intel_lp64.so.1 (0x00002b6ff386c000)
+	libmkl_blacs_intelmpi_lp64.so.1 => /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_blacs_intelmpi_lp64.so.1 (0x00002b6fe51f8000)
+	libstdc++.so.6 => /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/gcc/v12.3.0/lib/../lib64/libstdc++.so.6 (0x00002b6ff440b000)
+	libifport.so.5 => /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin/libifport.so.5 (0x00002b6ff4823000)
+	libifcoremt.so.5 => /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin/libifcoremt.so.5 (0x00002b6ff4a51000)
+	libimf.so => /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin/libimf.so (0x00002b6ff4be6000)
+	libintlc.so.5 => /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin/libintlc.so.5 (0x00002b6ff5274000)
+	libsvml.so => /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin/libsvml.so (0x00002b6ff54ec000)
+
+
+ I am in NWCHEM_TOP/QA=/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/QA;  for control pwd:
+/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/QA
+nproc=4
+INFO: The NWChem configuration file ~/.nwchemrc exists and is writable 
+INFO: The domknwchemrc script will overwrite it to run the tests cases
+INFO: in: /zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/QA
+
+
+ Launching NWChem QA ./doqmtests.mpi 4 ... at Thu Nov 20 18:28:44 MSK 2025
+
+ ======================================================
+ QM: Running all tests (including some really big ones)
+ ======================================================
+
+
+ 
+ Running tests/h2o_opt/h2o_opt 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/c2h4/c2h4 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/auh2o/auh2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/autosym/autosym 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/dft_he2+/dft_he2+ 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/h2mp2/h2mp2 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/h2o/h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/hess_h2o/hess_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/prop_h2o/prop_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/pyqa3/pyqa3 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     NWChem execution failed
+ 
+ 
+                                NWChem Input Module
+                                -------------------
+ 
+ 
+  library name resolved from: environment
+  library file name is: <
+ /zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/Q
+ A/../src/basis/libraries/>
+  
+                      Basis "ao basis" -> "" (cartesian)
+                      -----
+  h (Hydrogen)
+  ------------
+            Exponent  Coefficients 
+       -------------- ---------------------------------------------------------
+  1 S  5.44717800E+00  0.156285
+  1 S  8.24547000E-01  0.904691
+ 
+  2 S  1.83192000E-01  1.000000
+ 
+
+
+ Summary of "ao basis" -> "" (cartesian)
+ ------------------------------------------------------------------------------
+       Tag                 Description            Shells   Functions and Types
+ ---------------- ------------------------------  ------  ---------------------
+ h                           3-21g                   2        2   2s
+
+
+ ------------------------------------------------------------------------
+ python_input is not in this build of NWChem                   0
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+  current input line : 
+    14: python
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+ A feature requested has not yet been implemented
+ 
+ ------------------------------------------------------------------------
+ For more information see the NWChem manual at https://nwchemgit.github.io
+
+
+ For further details see manual section: 
+                                                                                
+                                                                                
+                                                                                
+                   
+0:python_input is not in this build of NWChem:Received an Error in Communication
+Abort(-1) on node 0 (rank 0 in comm 496): application called MPI_Abort(comm=0x84000003, -1) - process 0
+ 
+Failed
+
+ 
+ Running tests/geom_zmatrix/geom_zmatrix 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/rimp2_ne/rimp2_ne 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/rimp2_he/rimp2_he 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/scf_feco5/scf_feco5 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/small_intchk/small_intchk 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/tagcheck/tagcheck 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/testtab/testtab 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o_dk/h2o_dk 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/u_sodft/u_sodft 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/cosmo_h2o/cosmo_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/ch5n_nbo/ch5n_nbo 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/h2s_finite/h2s_finite 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/startag/startag 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/cosmo_na/cosmo_na 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/cosmo_cl/cosmo_cl 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/cosmo_nacl/cosmo_nacl 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/cosmo_h2o_dft/cosmo_h2o_dft 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/cosmo_h2o_bq/cosmo_h2o_bq 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/be/be 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/dft_s12gh/dft_s12gh 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/cosmo_trichloroethene/cosmo_trichloroethene 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/esp/esp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... ESP charges match
+
+ 
+ Running tests/esp_uhf/esp_uhf 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... ESP charges match
+
+ 
+OK
+
+ 
+ Running tests/dft_bsse/dft_bsse 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/dft_bsse_d3/dft_bsse_d3 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/dft_bsse_d3_opt/dft_bsse_d3_opt 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/bsse_dft_trimer/bsse_dft_trimer 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/bsse_tce_mult/bsse_tce_mult 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_hess_start/dft_hess_start 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/dft_hess_rest/dft_hess_rest 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/c4h4_wfn/c4h4_wfn 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     NWChem execution failed
+ 
+ 
+                                   WFX file creator
+                                -------------------
+ 
+  using vec 
+  using vec 
+ /zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/Q
+ A/scratchdir/c4h4.movecs                                                       
+                                                                                
+                   @@
+  using vec 
+ /zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/Q
+ A/scratchdir/c4h4.movecs                                                       
+                                                                                
+                   @@
+  using vec 
+ /zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/Q
+ A/scratchdir/c4h4.movecs                                                       
+                                                                                
+                   @@
+ /zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/Q
+ A/scratchdir/c4h4.movecs                                                       
+                                                                                
+                   @@
+              Total Energy E =   -153.597881291359     
+            Kinetic Energy V =    153.514877367752     
+          Potential Energy T =   -307.112758659112     
+             Virial ABS(V/T) =    2.00054068976916     
+    Name of Final wnf-file  
+ /zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/Q
+ A
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 1 PID 317603 RUNNING AT n02p050
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 2 PID 317604 RUNNING AT n02p050
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 3 PID 317605 RUNNING AT n02p050
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+forrtl: Is a directory
+forrtl: severe (30): open failure, unit 38, file /zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/QA
+Image              PC                Routine            Line        Source             
+nwchem             0000000004C46F78  for__io_return        Unknown  Unknown
+nwchem             0000000004C67802  for_open              Unknown  Unknown
+nwchem             000000000104E051  Unknown               Unknown  Unknown
+nwchem             00000000010490D5  Unknown               Unknown  Unknown
+nwchem             0000000001016EC7  Unknown               Unknown  Unknown
+nwchem             0000000000426D88  Unknown               Unknown  Unknown
+nwchem             0000000000422031  Unknown               Unknown  Unknown
+nwchem             0000000000419B2A  Unknown               Unknown  Unknown
+nwchem             0000000000419562  Unknown               Unknown  Unknown
+libc-2.17.so       00002AD2C1079555  __libc_start_main     Unknown  Unknown
+nwchem             0000000000419469  Unknown               Unknown  Unknown
+ 
+Failed
+
+ 
+ Running tests/disp_dimer_ch4/disp_dimer_ch4 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/disp_dimer_ch4_cgmin/disp_dimer_ch4_cgmin 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/h2o-b3lyp-disp/h2o-b3lyp-disp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/cosmo_h2cco2/cosmo_h2cco2 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/cosmo_h2cco2mg/cosmo_h2cco2mg 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/cosmo_h2cco2mg_ecp/cosmo_h2cco2mg_ecp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/cosmo_h3co/cosmo_h3co 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/cosmo_h3co_ecp/cosmo_h3co_ecp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/cosmo_h2cco2na/cosmo_h2cco2na 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/cosmo_h3co_gp/cosmo_h3co_gp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dplot/dplot 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_meta/dft_meta 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/dft_mpwb1khf/dft_mpwb1khf 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/dft_m05nh2ch3/dft_m05nh2ch3 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/prop_uhf_h2o/prop_uhf_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/et_zn_dimer/et_zn_dimer 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/vectors_rotate/vectors_rotate 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     NWChem execution failed
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+  current input line : 
+     0: 
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+ There is an error in the input file
+ ------------------------------------------------------------------------
+ For more information see the NWChem manual at https://nwchemgit.github.io
+ util_file_name_resolve: filename too small                 100
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+  current input line : 
+     0: 
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+ There is an error in the input file
+ ------------------------------------------------------------------------
+ For more information see the NWChem manual at https://nwchemgit.github.io
+
+
+ For further details see manual section: 
+                                                                                
+                                                                                
+                                                                                
+                   
+
+
+ For further details see manual section: 
+                                                                                
+                                                                                
+                                                                                
+                   
+ util_file_name_resolve: filename too small                 100
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+  current input line : 
+     0: 
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+ There is an error in the input file
+ ------------------------------------------------------------------------
+ For more information see the NWChem manual at https://nwchemgit.github.io
+
+
+ For further details see manual section: 
+                                                                                
+                                                                                
+                                                                                
+                   
+0:util_file_name_resolve: filename too small:Received an Error in Communication
+Abort(100) on node 0 (rank 0 in comm 496): application called MPI_Abort(comm=0x84000003, 100) - process 0
+2:util_file_name_resolve: filename too small:Received an Error in Communication
+Abort(100) on node 2 (rank 2 in comm 496): application called MPI_Abort(comm=0x84000002, 100) - process 2
+3:util_file_name_resolve: filename too small:Received an Error in Communication
+Abort(100) on node 3 (rank 3 in comm 496): application called MPI_Abort(comm=0x84000002, 100) - process 3
+1:util_file_name_resolve: filename too small:Received an Error in Communication
+Abort(100) on node 1 (rank 1 in comm 496): application called MPI_Abort(comm=0x84000002, 100) - process 1
+ 
+ Running tests/sad_ch3hf/sad_ch3hf 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+Failed
+
+ 
+ Running tests/h2o_diag_to_cg/h2o_diag_to_cg 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/h2o_cg_to_diag/h2o_cg_to_diag 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o_diag_opt/h2o_diag_opt 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/h2o_cg_opt/h2o_cg_opt 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/h2o_diag_opt_ub3lyp/h2o_diag_opt_ub3lyp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/h2o_cg_opt_ub3lyp/h2o_cg_opt_ub3lyp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/h2o_cg_opt_rob3lyp/h2o_cg_opt_rob3lyp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o_diag_to_cg_ub3lyp/h2o_diag_to_cg_ub3lyp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/h2o_cg_to_diag_ub3lyp/h2o_cg_to_diag_ub3lyp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o_cg_opt_cosmo/h2o_cg_opt_cosmo 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+ 
+The oh2 test is testing the perl parsing script and SHOULD fail
+
+ 
+ Running tests/oh2/oh2 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... failed
+@@@     Comparison of Output Files
+@@ -1,4 +1,4 @@
+ Effective nuclear repulsion energy (a.u.) 9.20
+-Total SCF energy = -67.01054
++Total SCF energy = -76.01054
+    Atoms             Coordinates:
+           O      0.000      0.000      0.221
+ 
+Failed
+
+ 
+ Running tests/PhoWat_SMD_HF/PhoWat_SMD_HF 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/CH3OH2pWat_SMD_M062X/CH3OH2pWat_SMD_M062X 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/CH3OH2pWat_SMD_M062X_opt/CH3OH2pWat_SMD_M062X_opt 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_feco5/dft_feco5 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_siosi3/dft_siosi3 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/adft_siosi3/adft_siosi3 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_cr2/dft_cr2 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_x/dft_x 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_mpw1k/dft_mpw1k 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/dft_li2freq/dft_li2freq 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/grad_ozone/grad_ozone 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_ozone/dft_ozone 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/hess_c6h6/hess_c6h6 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/hess_nh3_ub3lyp/hess_nh3_ub3lyp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/intchk/intchk 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+The intermediate values for this test may cause some differences.
+Please check the final values for the last optimized structure.
+
+ 
+ Running tests/sadsmall/sadsmall 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/br2_dk/br2_dk 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/uo2_sodft/uo2_sodft 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/uo2_sodft_grad/uo2_sodft_grad 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/si2cl6_gc/si2cl6_gc 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pspw/pspw 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pspw_SiC/pspw_SiC 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pspw_blyp_h2o/pspw_blyp_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pspw_revpbe_h2o/pspw_revpbe_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pspw_pbesol_h2o/pspw_pbesol_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pspw_tpss03_h2o/pspw_tpss03_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pspw_acm_h2o/pspw_acm_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pspw_becke97_h2o/pspw_becke97_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pspw_becke98_h2o/pspw_becke98_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pspw_hcth120_h2o/pspw_hcth120_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pspw_hcth147_h2o/pspw_hcth147_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pspw_hcth407_h2o/pspw_hcth407_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pspw_hcth_h2o/pspw_hcth_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pspw_mpw1k_h2o/pspw_mpw1k_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pspw_sogga_h2o/pspw_sogga_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pspw_sogga11-x_h2o/pspw_sogga11-x_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pspw_beef_h2o/pspw_beef_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pspw_b3lyp_h2o/pspw_b3lyp_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pspw_pbe0_h2o/pspw_pbe0_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pspw_hse_h2o/pspw_hse_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pspw_md/pspw_md 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/paw/paw 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... failed
+@@@     Comparison of Output Files
+@@ -2,6 +2,6 @@
+ Total PSPW energy : -16.38760
+ Total PAW energy : -75.80490
+-Total PAW energy : -75.80490
++Total PAW energy : nan
+ Effective nuclear repulsion energy (a.u.) 8.73
+-Total PAW energy : -75.80488
+-Total PAW energy : -75.80490
++Total PAW energy : nan
++Total PAW energy : nan
+ 
+Failed
+
+ 
+ Running tests/pspw_polarizability/pspw_polarizability 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pspw_stress/pspw_stress 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/band/band 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/tddft_h2o/tddft_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/tddft_h2o_uhf/tddft_h2o_uhf 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/tddft_h2o_mxvc20/tddft_h2o_mxvc20 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/tddft_h2o_uhf_mxvc20/tddft_h2o_uhf_mxvc20 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/tddft_n2+/tddft_n2+ 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/tddft_ac_co/tddft_ac_co 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_xdm1/dft_xdm1 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/natom_iorb/natom_iorb 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/tce_h2o/tce_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/tce_ccsd_t_h2o/tce_ccsd_t_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/tce_h2o_dipole/tce_h2o_dipole 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/tce_h2o_eomcc/tce_h2o_eomcc 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/tce_uhf_uccsd/tce_uhf_uccsd 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/tce_cr_eom_t_ch_rohf/tce_cr_eom_t_ch_rohf 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/tce_cr_eom_t_ozone/tce_cr_eom_t_ozone 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/tce_lr_ccsd_t/tce_lr_ccsd_t 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/tce_lr_ccsd_tq/tce_lr_ccsd_tq 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/tce_ozone_2eorb/tce_ozone_2eorb 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/tce_polar_ccsd_small/tce_polar_ccsd_small 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/tce_hyperpolar_ccsd_small/tce_hyperpolar_ccsd_small 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/tce_eomsd_eomsol1/tce_eomsd_eomsol1 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/tce_cc2_c2/tce_cc2_c2 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/ducc_be/ducc_be 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/n2_ccsdtoks/n2_ccsdtoks 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/oniom1/oniom1 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/oniom2/oniom2 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/oniom3/oniom3 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/oniom4/oniom4 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/c60_ecp/c60_ecp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/hi_zora_sf/hi_zora_sf 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/xe_zora_sf/xe_zora_sf 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/o2_zora_so/o2_zora_so 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... failed
+@@@     Comparison of Output Files
+@@ -62,3 +62,3 @@
+           O      0.000      0.000     -0.001
+ Zero-Point correction to Energy = 2.316
+-P.Frequency         0          0          0          0          0       1621 
++P.Frequency         0          0          0          0          0       1620 
+ 
+Failed
+
+ 
+ Running tests/hi_zora_so/hi_zora_so 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/au-sarc-zora-mp/au-sarc-zora-mp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/au2-sarc-zora-mp/au2-sarc-zora-mp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/au2-sarc-zora-spinspin/au2-sarc-zora-spinspin 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/ch3radical_rot_mp/ch3radical_rot_mp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/ch3radical_unrot_mp/ch3radical_unrot_mp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/cs-ano-uncontr-so/cs-ano-uncontr-so 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/cs-ano-uncontr/cs-ano-uncontr 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/xe-zora-mp-so/xe-zora-mp-so 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/xe-zora-mp/xe-zora-mp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/qmmm_grad0/qmmm_grad0 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/lys_qmmm/lys_qmmm 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/ethane_qmmm/ethane_qmmm 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+qmmm frequency  test  may  fail
+
+ 
+ Running tests/qmmm_freq/qmmm_freq 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/prop_ch3f/prop_ch3f 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/prop_uhf_ch3f/prop_uhf_ch3f 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/ch3f_rot/ch3f_rot 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/ch3f_unrot/ch3f_unrot 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/ch3f_trans/ch3f_trans 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/ch3f_trans_cosmo/ch3f_trans_cosmo 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/ch3f_trans_cam_nmr/ch3f_trans_cam_nmr 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/ch3f_notrans_cosmo/ch3f_notrans_cosmo 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/ch3f-lc-wpbe/ch3f-lc-wpbe 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/ch3f-lc-wpbeh/ch3f-lc-wpbeh 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/ch3f_zora_shielding/ch3f_zora_shielding 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/ch2_props4_bp/ch2_props4_bp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/ch3radical_rot/ch3radical_rot 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/ch3radical_unrot/ch3radical_unrot 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/cho_bp_props/cho_bp_props 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/prop_cg_nh3_b3lyp/prop_cg_nh3_b3lyp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/localize-ibo-aa/localize-ibo-aa 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/localize-ibo-allyl/localize-ibo-allyl 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/localize-pm-allyl/localize-pm-allyl 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/localize-pm-aa/localize-pm-aa 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/acr-camb3lyp-cdfit/acr-camb3lyp-cdfit 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/acr-camb3lyp-direct/acr-camb3lyp-direct 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/acr_lcblyp/acr_lcblyp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2_bnl/h2_bnl 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o_bnl/h2o_bnl 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o-camb3lyp-pol-cdfit/h2o-camb3lyp-pol-cdfit 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o-camb3lyp-pol/h2o-camb3lyp-pol 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o-cambeckehh/h2o-cambeckehh 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o-campbe0/h2o-campbe0 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o-lcpbe/h2o-lcpbe 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/o2_bnl/o2_bnl 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/o2_hfattn/o2_hfattn 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/n2_rodft_lrc/n2_rodft_lrc 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o-hse/h2o-hse 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/cdft_jarv1/cdft_jarv1 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/m11_ch3/m11_ch3 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/m11_h2o/m11_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/m11-l_ch3/m11-l_ch3 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/m11-l_h2o/m11-l_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/m08hx_ch3/m08hx_ch3 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/m08hx_h2o/m08hx_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/m08so_ch3/m08so_ch3 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/m08so_h2o/m08so_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/ch3_m06-hf/ch3_m06-hf 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/cnh5_m06-2x/cnh5_m06-2x 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/cu2_m06-l/cu2_m06-l 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_ch3ochch32/dft_ch3ochch32 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/fh_m06/fh_m06 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_m05nh2ch3/dft_m05nh2ch3 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/disp_dimer_ch4/disp_dimer_ch4 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o-b3lyp-disp/h2o-b3lyp-disp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/Ne_scf-mp2_cc-vqz/Ne_scf-mp2_cc-vqz 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/He_scf-mp2_cc-vqz/He_scf-mp2_cc-vqz 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/Ar_scf-mp2_cc-vqz/Ar_scf-mp2_cc-vqz 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/Ne_b2plyp_cc-vqz/Ne_b2plyp_cc-vqz 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/He_b2plyp_cc-vqz/He_b2plyp_cc-vqz 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/Ar_b2plyp_cc-vqz/Ar_b2plyp_cc-vqz 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/Ne_scs-mp2_cc-vqz/Ne_scs-mp2_cc-vqz 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/He_scs-mp2_cc-vqz/He_scs-mp2_cc-vqz 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/Ar_scs-mp2_cc-vqz/Ar_scs-mp2_cc-vqz 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o_dftmp2_cgmin/h2o_dftmp2_cgmin 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/h2o_udftmp2_cgmin/h2o_udftmp2_cgmin 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dmo_tddft_cd/dmo_tddft_cd 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dmo_tddft_cd_velocity/dmo_tddft_cd_velocity 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/ptatom/ptatom 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o-ssb-d/h2o-ssb-d 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o-ssb-d-opt/h2o-ssb-d-opt 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o-noscf/h2o-noscf 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o-response/h2o-response 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o2-response/h2o2-response 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o2-response-uhf/h2o2-response-uhf 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o2-response-uhf-damping/h2o2-response-uhf-damping 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pkzb/pkzb 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/k6h2o/k6h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying nwout ...... skipped
+     verifying test ....... skipped
+     verifying topology ... completed 
+ 
+OK
+
+ 
+ Running tests/mcscf_ch2/mcscf_ch2 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/mcscf_ozone/mcscf_ozone 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o_raman_3/h2o_raman_3 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o_raman_4/h2o_raman_4 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/tropt-ch3nh2/tropt-ch3nh2 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h3tr1/h3tr1 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/h3_dirdyvtst/h3_dirdyvtst 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/geom_load_xyz/geom_load_xyz 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_sicperth2o/dft_sicperth2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o_hcons/h2o_hcons 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/etf_hcons/etf_hcons 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o2-prop-notrans/h2o2-prop-notrans 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/cnh5_m06-2x/cnh5_m06-2x 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/bq_nio/bq_nio 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/hess_ch4/hess_ch4 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o_frozemb/h2o_frozemb 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/cho_bp_zora_finite/cho_bp_zora_finite 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o-ssb-d-b3lyp/h2o-ssb-d-b3lyp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/cu2_m06-l/cu2_m06-l 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/ch3_m06-hf/ch3_m06-hf 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_ch3_h2o_revm06/dft_ch3_h2o_revm06 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/5h2o_core/5h2o_core 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o_core/h2o_core 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/co_core/co_core 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/carbon_fon/carbon_fon 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/tpss/tpss 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/tpssh/tpssh 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/spin_ecps_heh_grad/spin_ecps_heh_grad 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/spin_ecps_o_hess/spin_ecps_o_hess 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o2_fde/h2o2_fde 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/tddftgrad_co_cis/tddftgrad_co_cis 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/tddftgrad_n2/tddftgrad_n2 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/tddftgrad_co/tddftgrad_co 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/tddftgrad_n2_uks/tddftgrad_n2_uks 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/tddftgrad_ch2o/tddftgrad_ch2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/tddftgrad_h2o_cis_lda/tddftgrad_h2o_cis_lda 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_rscan/dft_rscan 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_scan/dft_scan 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/rt_tddft_dimer_charge/rt_tddft_dimer_charge 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/rt_tddft_mocap/rt_tddft_mocap 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/rt_tddft_cytosine_cam_cdfit/rt_tddft_cytosine_cam_cdfit 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/rt_tddft_tcne_spinkick/rt_tddft_tcne_spinkick 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/rt_tddft_water_abs_spec/rt_tddft_water_abs_spec 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_ne_n12/dft_ne_n12 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_mfm_ch3/dft_mfm_ch3 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ =======================================================
+ QM: Running tests for the libxc interface
+ =======================================================
+
+not running libxc QAs since USE_LIBXC is not defined
+
+ 
+ Running tests/ritddft_co/ritddft_co 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/ritddft_h2o/ritddft_h2o 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/ritddft_pyridine/ritddft_pyridine 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/gw_closedshell/gw_closedshell 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/gw_openshell/gw_openshell 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/gw_symmetry/gw_symmetry 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/bse_ethene/bse_ethene 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/x2c-h2se/x2c-h2se 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/hgh-hfc-x2c-gnuc/hgh-hfc-x2c-gnuc 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/hgh-hfc-x2c-pnuc/hgh-hfc-x2c-pnuc 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/hg-1e-hfc-x2c/hg-1e-hfc-x2c 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o_ccca/h2o_ccca 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+ Running tests/o2_ccca/o2_ccca 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dftd3_c6cn/dftd3_c6cn 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/bare_ecps/bare_ecps 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_formaldehyde_mom/dft_formaldehyde_mom 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_boron_imom/dft_boron_imom 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_scanl/dft_scanl 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_he2p_wb97/dft_he2p_wb97 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_ne2p_wb97x/dft_ne2p_wb97x 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_ar2p_wb97/dft_ar2p_wb97 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_waterdimer_wb97d3/dft_waterdimer_wb97d3 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_s66x8_waterdimer/dft_s66x8_waterdimer 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_c2br6_vdw4/dft_c2br6_vdw4 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_r2scan0/dft_r2scan0 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/scf_dftguess/scf_dftguess 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/back_to_atguess/back_to_atguess 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/chem_library_h4_sto6g_0.000/chem_library_h4_sto6g_0.000 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_pt13_spinsetf/dft_pt13_spinsetf 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/ch4-scf-dft-prop/ch4-scf-dft-prop 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/ch4-dft-scf-prop/ch4-dft-scf-prop 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_tennessine/dft_tennessine 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/ecp_freq/ecp_freq 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/ccsdt_ompt_w3pvdz/ccsdt_ompt_w3pvdz 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/ccsdt_w3pvdz/ccsdt_w3pvdz 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/aump2/aump2 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/n2_ccsd/n2_ccsd 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/benzene_ccsd/benzene_ccsd 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/uoverlap/uoverlap 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/grad_nh3_trimer/grad_nh3_trimer 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/hess_nh3/hess_nh3 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/hess_nh3_dimer/hess_nh3_dimer 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/hess_actlist/hess_actlist 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/mp2_si2h6/mp2_si2h6 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/pbo_nesc1e/pbo_nesc1e 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... failed
+@@@     Comparison of Output Files
+@@ -1,3 +1,3 @@
+ Effective nuclear repulsion energy (a.u.) 182.71
+ Total SCF energy = -20940.06826
+-Total SCF energy = -20962.25058
++Total SCF energy = -20962.25059
+ 
+Failed
+
+ 
+ Running tests/bf_cis/bf_cis 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/oniom3/oniom3 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/cytosine_ccsd/cytosine_ccsd 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/tce_active_ccsdt/tce_active_ccsdt 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/tce_uracil_creomact/tce_uracil_creomact 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/tce_eomsd_eomsol2/tce_eomsd_eomsol2 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/tce_eomccsd_gradient/tce_eomccsd_gradient 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/tddftgrad_pyridine_opt/tddftgrad_pyridine_opt 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/tddftgrad_phenoxy_radical/tddftgrad_phenoxy_radical 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/qmd_props/qmd_props 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+This test requires 16 processors to run quickly
+
+ 
+ Running tests/tce_polar_ccsd_big/tce_polar_ccsd_big 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/hess_biph/hess_biph 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+misc tests
+
+ 
+ Running tests/ch3oh-transden/ch3oh-transden 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/cho_cs_analytic_trans/cho_cs_analytic_trans 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/h2o-td/h2o-td 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/o2minus-td/o2minus-td 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/udft_aoresp/udft_aoresp 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/water/water_md 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying nwout ...... skipped
+     verifying test ....... completed
+ 
+OK
+
+ 
+ Running tests/water/water_pme 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying nwout ...... skipped
+     verifying test ....... completed
+ 
+OK
+
+ 
+ Running tests/ethanol/ethanol_md 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying nwout ...... skipped
+     verifying test ....... completed
+ 
+OK
+
+ 
+ Running tests/ethanol/ethanol_ti 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying nwout ...... skipped
+     verifying test ....... completed
+ 
+OK
+
+ 
+ Running tests/prep/aal 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     NWChem execution failed
+ Created restart                       aal_em.rst
+
+
+ Task  times  cpu:        1.1s     wall:        1.1s
+ 
+ 
+                                NWChem Input Module
+                                -------------------
+ 
+ 
+                                  Prepare Module
+                                  --------------
+
+ Force field                           amber
+
+
+ Directories used for fragment and segment files
+
+                                       /zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/QA/../src/data/amber_s/
+                                       /zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/QA/../src/data/amber_x/
+                                       ./
+
+ Parameter files used to resolve force field parameters
+
+                                       /zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/QA/../src/data/amber_s/amber.par
+                                       /zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/QA/../src/data/amber_x/amber.par
+                                       ./amber.par
+ Using existing topology               aal.top
+ Topology                              aal.top
+
+ Restart generation using command file directives
+
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 1 PID 35119 RUNNING AT n02p050
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 2 PID 35120 RUNNING AT n02p050
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 3 PID 35121 RUNNING AT n02p050
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+cat: /zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/QA/testoutputs/aal.err: No such file or directory
+ 
+Failed
+
+ 
+ Running tests/prep/bpx 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying nwout ...... skipped
+     verifying test ....... skipped
+     verifying topology ... completed 
+ 
+OK
+
+ 
+ Running tests/prep/caa 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying nwout ...... skipped
+     verifying test ....... skipped
+     verifying topology ... completed 
+ 
+OK
+
+ 
+ Running tests/prep/fsc 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying nwout ...... skipped
+     verifying test ....... skipped
+     verifying topology ... completed 
+ 
+OK
+
+ 
+ Running tests/trypsin/trypsin_md 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying nwout ...... skipped
+     verifying test ....... completed
+ 
+OK
+The following  tests require few processors but a lot of time
+
+ 
+ Running tests/ch4cl_zts/ch4cl_zts 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/cui_hiraobs/cui_hiraobs 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+[mpiexec@n02p050] check_exit_codes (../../../../../src/pm/i_hydra/libhydra/demux/hydra_demux_poll.c:117): unable to run bstrap_proxy on n02p050 (pid 38854, exit code 256)
+[mpiexec@n02p050] poll_for_event (../../../../../src/pm/i_hydra/libhydra/demux/hydra_demux_poll.c:159): check exit codes error
+[mpiexec@n02p050] HYD_dmx_poll_wait_for_proxy_event (../../../../../src/pm/i_hydra/libhydra/demux/hydra_demux_poll.c:212): poll for event error
+[mpiexec@n02p050] HYD_bstrap_setup (../../../../../src/pm/i_hydra/libhydra/bstrap/src/intel/i_hydra_bstrap.c:1062): error waiting for event
+[mpiexec@n02p050] HYD_print_bstrap_setup_error_message (../../../../../src/pm/i_hydra/mpiexec/intel/i_mpiexec.c:1015): error setting up the bootstrap proxies
+[mpiexec@n02p050] Possible reasons:
+[mpiexec@n02p050] 1. Host is unavailable. Please check that all hosts are available.
+[mpiexec@n02p050] 2. Cannot launch hydra_bstrap_proxy or it crashed on one of the hosts. Make sure hydra_bstrap_proxy is available on all hosts and it has right permissions.
+[mpiexec@n02p050] 3. Firewall refused connection. Check that enough ports are allowed in the firewall and specify them with the I_MPI_PORT_RANGE variable.
+[mpiexec@n02p050] 4. slurm bootstrap cannot launch processes on remote host. You may try using -bootstrap option to select alternative launcher.
+ Mpirun number of processors option is assumed to be:
+   -np 
+ If this is not the case then please do:
+ setenv MPIRUN_NPOPT <nproc_opt> 
+ where <nproc_opt> is the number of processors option for
+ your mpirun.
+ 
+ Running tests/mep-test/mep-test 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/ActnAcntrl_VEMExc_TDB3LYP/ActnAcntrl_VEMExc_TDB3LYP 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/H2COMetnl_VEMExcSSP_TDB3LYP-2/H2COMetnl_VEMExcSSP_TDB3LYP-2 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/H2COMetnl_VEMExcSSP_TDB3LYP/H2COMetnl_VEMExcSSP_TDB3LYP 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/H2COWat_VEMExc_CISHF/H2COWat_VEMExc_CISHF 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/p2ta-vem-ri/p2ta-vem-ri 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     NWChem execution failed
+ For more information see the NWChem manual at https://nwchemgit.github.io
+
+
+ For further details see manual section: 
+                                                                                
+                                                                                
+                                                                                
+                   
+ tddft_grad_compute_g:           could not create g_rhs_xc                 555
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+  current input line : 
+     0: 
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+ For more information see the NWChem manual at https://nwchemgit.github.io
+
+
+ For further details see manual section: 
+                                                                                
+                                                                                
+                                                                                
+                   
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+ For more information see the NWChem manual at https://nwchemgit.github.io
+
+
+ For further details see manual section: 
+                                                                                
+                                                                                
+                                                                                
+                   
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+  current input line : 
+   145: task tddft gradient
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+ For more information see the NWChem manual at https://nwchemgit.github.io
+
+
+ For further details see manual section: 
+                                                                                
+                                                                                
+                                                                                
+                   
+1:tddft_grad_compute_g:           could not create g_rhs_xc:Received an Error in Communication
+Abort(555) on node 1 (rank 1 in comm 496): application called MPI_Abort(comm=0x84000002, 555) - process 1
+2:tddft_grad_compute_g:           could not create g_rhs_xc:Received an Error in Communication
+Abort(555) on node 2 (rank 2 in comm 496): application called MPI_Abort(comm=0x84000002, 555) - process 2
+3:tddft_grad_compute_g:           could not create g_rhs_xc:Received an Error in Communication
+Abort(555) on node 3 (rank 3 in comm 496): application called MPI_Abort(comm=0x84000002, 555) - process 3
+0:tddft_grad_compute_g:           could not create g_rhs_xc:Received an Error in Communication
+Abort(555) on node 0 (rank 0 in comm 496): application called MPI_Abort(comm=0x84000003, 555) - process 0
+ 
+Failed
+
+ 
+ Running tests/bsse_sodft/bsse_sodft 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/dft_nio_r2scan/dft_nio_r2scan 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     NWChem execution failed
+ [dldf      ],
+ [srhfexch  ],
+ [hse03     ],
+ [s12g      ],
+ [s12h      ],
+ [cam-s12g  ],
+ [cam-s12h  ],
+ [becke86b  ],
+ [xperdew86 ],
+ [xmvs15    ],
+ [cvpbe09   ],
+ [mvs       ],
+ [hle16     ],
+ [scan      ],
+ [scanl     ],
+ [scan0     ],
+ [lb94      ],
+ [rscan     ],
+ [xncap     ],
+ [ncap      ],
+ [r2scan    ],
+ [r2scanl   ],
+ [xscan     ],
+ [cscan     ],
+ [hcth147@tz],
+ [wb97      ],
+ [wb97x     ],
+ [wb97x-d3  ],
+ [xr2scan   ],
+ [cr2scan   ],
+ [r2scan0   ],
+ [ncapr     ],
+ ------------------------------------------------------------------------
+ xc_input: invalid format                   0
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+  current input line : 
+   102:  xc mgga_c_r2scan 1.0 mgga_x_r2scan 1.0
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+ There is an error in the input file
+ ------------------------------------------------------------------------
+ For more information see the NWChem manual at https://nwchemgit.github.io
+
+
+ For further details see manual section: 
+                                                                                
+                                                                                
+                                                                                
+                   
+0:xc_input: invalid format:Received an Error in Communication
+Abort(-1) on node 0 (rank 0 in comm 496): application called MPI_Abort(comm=0x84000003, -1) - process 0
+ 
+Failed
+
+ 
+ Running tests/cosmo_h2cco2_opt/cosmo_h2cco2_opt 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+ 
+ Running tests/rt_tddft_dplot/rt_tddft_dplot 
+ 
+     cleaning scratch
+     copying input and verified output files
+     running nwchem (/zfs/scratch/HybriLITWorkshop2025/milias/software/nwchem/cloned/nwchem_master/bin/LINUX64/nwchem)  with 4 processors 
+ 
+     verifying output ... OK
+ 
+OK
+
+the number of failed tests is 10
+
+
+
+ QA tests finished at Mon Nov 24 03:30:47 MSK 2025

@@ -15,4 +15,20 @@ Using cuda device
 
 
 
+run
+~~~
+
+(myenv) miroi@MIRO:~/work/projects/open-collection/computer_science/pytorch/buildup_on_servers/wsl_notebookVictus/tests/build_nn/.python build_nn.py
+Using cuda device
+NeuralNetwork(
+  (flatten): Flatten(start_dim=1, end_dim=-1)
+  (linear_relu_stack): Sequential(
+    (0): Linear(in_features=784, out_features=512, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=512, out_features=512, bias=True)
+    (3): ReLU()
+    (4): Linear(in_features=512, out_features=10, bias=True)
+  )
+)
+Predicted class: tensor([9], device='cuda:0')
 

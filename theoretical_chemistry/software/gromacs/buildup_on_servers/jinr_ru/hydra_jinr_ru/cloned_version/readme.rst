@@ -28,12 +28,7 @@ configure
 ~~~~~~~~~
 https://manual.gromacs.org/documentation/2025.4/index.html
 
-milias@hydra.jinr.ru:/zfs/scratch/HybriLITWorkshop2025/milias/software/gromacs/git_cloned/gromacs/.mkdir build_intelmpi
-
-cd build_intelmpi
-rd * 
-
-milias@hydra.jinr.ru:/zfs/scratch/HybriLITWorkshop2025/milias/software/gromacs/git_cloned/gromacs/build_intelmpi/.cmake .. -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=mpiicpc  -DGMX_MPI=on  -DGMX_FFT_LIBRARY=mkl  -DGMX_OPENMP=OFF
+sbatch hydra_slurm_compile_gromacs.01
 
 
 

@@ -8,42 +8,12 @@ https://www.rcsb.org/structure/1AKI
 
 ..visualize the structure using a viewing program such as VMD, Chimera, PyMOL, etc.
 
-..strip out the crystal waters:
-grep -v HOH 1aki.pdb > 1AKI_clean.pdb
-
-gmx pdb2gmx -f 1AKI_clean.pdb -o 1AKI_processed.gro -water spce ... this is crashing with OpenMPI
-
-
-WSL2
-----
-milias@DESKTOP-7OTLCGO:~/work/git-projects/open-collection/theoretical_chemistry/software/gromacs/runs/Lysozyme_Tutorial/.gmx pdb2gmx -f 1AKI_clean.pdb -o 1AKI_processed.gro -water spce
-
-define the box
-~~~~~~~~~~~~~~~
-gmx editconf -f 1AKI_processed.gro -o 1AKI_newbox.gro -c -d 1.0 -bt cubic
-
-solvation
-~~~~~~~~~
-milias@DESKTOP-7OTLCGO:~/work/git-projects/open-collection/theoretical_chemistry/software/gromacs/runs/Lysozyme_Tutorial/.gmx solvate -cp 1AKI_newbox.gro -cs spc216.gro -o 1AKI_solv.gro -p topol.top
-
-
-
-
-
-
-
-
-
-
-
-
-==========
-On Govorun
-==========
-
 modules
 ~~~~~~~
+module add GROMACS/v2024.3
+
 module list
+
 Currently Loaded Modulefiles:
   1) GVR/v1.0-1               3) gcc/v12.3.0              5) cuda/v12.1               7) GROMACS/v2024.3
   2) BASE/1.0                 4) openmpi/v5.0.3_gcc1230   6) Python/v3.10.13
@@ -51,9 +21,30 @@ Currently Loaded Modulefiles:
 
 gmx_mpi pdb2gmx -f 1AKI_clean.pdb -o 1AKI_processed.gro -water tip3p   > 1AKI_processed.gro_logfile 2>&1
 
-gmx_mpi editconf -f 1AKI_processed.gro -o 1AKI_newbox.gro -c -d 1.2 -bt cubic > 1AKI_newbox.gro_logfile  2>&1
 
-gmx_mpi solvate -cp 1AKI_newbox.gro -cs spc216.gro -o 1AKI_solv.gro -p topol.top > 1AKI_solv.gro_logfile  2>&1
+removing water molecules
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+..strip out the crystal waters:
+
+grep -v HOH 1AKI.pdb > 1AKI_clean.pdb 
+
+process gromacs
+~~~~~~~~~~~~~~~
+gmx_mpi pdb2gmx -f 1AKI_clean.pdb -o 1AKI_processed.gro -water tip3p 
+
+picked 9 ... all-atom CHARMM36 force field,
+
+saved into pdb2gmx.logfile
+
+define the box
+~~~~~~~~~~~~~~~
+gmx_mpi editconf -f 1AKI_processed.gro -o 1AKI_newbox.gro -c -d 1.0 -bt cubic
+
+solvation
+~~~~~~~~~
+gmx_mpi pdb2gmx -f 1AKI_clean.pdb -o 1AKI_processed.gro -water tip3p   > 1AKI_processed.gro_logfile 2>&1
+
 
 download ions
 ~~~~~~~~~~~~~

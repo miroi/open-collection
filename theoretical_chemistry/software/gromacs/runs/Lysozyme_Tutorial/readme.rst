@@ -1,13 +1,8 @@
-================
-Gromacs test run
-LYSOZYME Tutorial
-================
+==================================
+Gromacs test run LYSOZYME Tutorial
+==================================
 
-umb.sk:
---------
-/home/milias/Work/qch/software/gromacs/gromacs_master/build_openmpi-4.0.1_gnu6.3/bin
-
-see http://www.mdtutorials.com/gmx/lysozyme/01_pdb2gmx.html
+http://www.mdtutorials.com/gmx/lysozyme/01_pdb2gmx.html
 
 https://www.rcsb.org/structure/1AKI
 
@@ -19,7 +14,7 @@ grep -v HOH 1aki.pdb > 1AKI_clean.pdb
 gmx pdb2gmx -f 1AKI_clean.pdb -o 1AKI_processed.gro -water spce ... this is crashing with OpenMPI
 
 
-WSL
+WSL2
 ----
 milias@DESKTOP-7OTLCGO:~/work/git-projects/open-collection/theoretical_chemistry/software/gromacs/runs/Lysozyme_Tutorial/.gmx pdb2gmx -f 1AKI_clean.pdb -o 1AKI_processed.gro -water spce
 

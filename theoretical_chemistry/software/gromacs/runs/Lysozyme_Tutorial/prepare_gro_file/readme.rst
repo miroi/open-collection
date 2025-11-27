@@ -35,6 +35,12 @@ gmx_mpi pdb2gmx -f 1AKI_clean.pdb -o 1AKI_processed.gro -water tip3p
 
 picked 9 ... all-atom CHARMM36 force field,
 
+rather picked 2 ... 2: AMBER94 force field (Cornell et al., JACS 117, 5179-5197, 1995)
+
+generates topol.top file
+
+
+
 saved into pdb2gmx.logfile
 
 define the box
@@ -45,11 +51,23 @@ solvation
 ~~~~~~~~~
 gmx_mpi solvate -cp 1AKI_newbox.gro -cs spc216.gro -o 1AKI_solv.gro -p topol.top > 1AKI_solv.gro_logfile 2>&1
 
+adding ions
+~~~~~~~~~~~
 
-download ions
-~~~~~~~~~~~~~
-wget http://www.mdtutorials.com/gmx/lysozyme/Files/ions.mdp
+GMXLIB/share/gromacs/top
+export GMXLIB=/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/GROMACS/v2024.3
+export PATH=$GMXLIB/share/gromacs/top:$PATH
+less /cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/GROMACS/v2024.3/share/gromacs/top/gromos43a1.ff/tip3p.itp
+echo $GMXLIB
+less $GMXLIB/share/gromacs/top/gromos43a1.ff/tip3p.itp
+ln -sf $GMXLIB/share/gromacs/top/gromos43a1.ff .
 
+download ions: wget http://www.mdtutorials.com/gmx/lysozyme/Files/ions.mdp
 
+gmx_mpi grompp -f ions.mdp -c 1AKI_solv.gro -p topol.top -o ions.tpr > ions.tpr_logfile 2>&1
 
+ERROR 1 [file tip3p.itp, line 8]:
+  Atomtype HW not found ... FIX: use amber94 force field
+
+gmx_mpi  genion -s ions.tpr -o 1AKI_solv_ions.gro -p topol.top -pname NA -nname CL -neutral > 1AKI_solv_ions.gro_logfile   2>&1
 

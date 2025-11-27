@@ -119,7 +119,10 @@ echo -e "\n\n launching CMake configuration command : "
 
 #FC=gfortran CC=gcc MPIFC=mpif90  cmake -S. -B$BUILD   -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=OFF  -DSIESTA_WITH_FLOOK=OFF  -DCMAKE_PREFIX_PATH="/lustre/home/user/m/milias/work/software/libxc"  -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR
 
-FC=gfortran CC=gcc MPIFC=mpif90  cmake -S. -B$BUILD -DCMAKE_BUILD_TYPE=Check   -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=OFF  -DSIESTA_WITH_FLOOK=OFF  -DSIESTA_WITH_LIBXC=ON -DCMAKE_PREFIX_PATH="/lustre/home/user/m/milias/work/software/libxc/install_build_gnu12.3.0"  -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR
+#FC=gfortran CC=gcc MPIFC=mpif90  cmake -S. -B$BUILD -DCMAKE_BUILD_TYPE=Check   -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=OFF  -DSIESTA_WITH_FLOOK=OFF  -DSIESTA_WITH_LIBXC=ON -DCMAKE_PREFIX_PATH="/lustre/home/user/m/milias/work/software/libxc/install_build_gnu12.3.0"  -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR
+
+FC=gfortran CC=gcc MPIFC=mpif90  cmake -S. -B$BUILD -DCMAKE_BUILD_TYPE=Check   -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=OFF  -DSIESTA_WITH_FLOOK=OFF  -DSIESTA_WITH_LIBXC=ON -DCMAKE_PREFIX_PATH="/lustre/home/user/m/milias/work/software/libxc/install_build_gnu12.3.0"  -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR -DSIESTA_TESTS_MPI_NUMPROCS=1
+
 
 cd $BUILD
 echo -e "\nI am in the directory $SIESTA/$BUILD , check via pwd :";pwd
@@ -136,7 +139,7 @@ make install
 echo -e "\n\n Check of content of the INSTALL_DIR=$INSTALL_DIR :"
 ls -lt $INSTALL_DIR
 ls -lt $INSTALL_DIR/bin
-echo -e "\n ldd $INSTALL_DIR/bin/siesta  :"
+echo -e "\n\n ldd $INSTALL_DIR/bin/siesta  :"
 ldd $INSTALL_DIR/bin/siesta
 
 exit

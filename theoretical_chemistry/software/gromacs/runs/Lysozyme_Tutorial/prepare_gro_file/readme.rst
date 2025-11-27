@@ -71,3 +71,4 @@ ERROR 1 [file tip3p.itp, line 8]:
 
 gmx_mpi  genion -s ions.tpr -o 1AKI_solv_ions.gro -p topol.top -pname NA -nname CL -neutral > 1AKI_solv_ions.gro_logfile   2>&1
 
+

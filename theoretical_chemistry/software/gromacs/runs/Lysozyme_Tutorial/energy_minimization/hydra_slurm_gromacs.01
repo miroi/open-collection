@@ -1,12 +1,12 @@
 #!/bin/bash
 
-#SBATCH -J GMXintel
+#SBATCH -J GMXem
 
 ##  partition (queue)
 ##SBATCH -p cascade
 ##SBATCH -p knl
-##SBATCH -p flnr-ice
-#SBATCH -p flnr-sod
+#SBATCH -p flnr-ice
+##SBATCH -p flnr-sod
 
 ## max. execution time
 ##SBATCH -t 7-00:00:00
@@ -69,22 +69,21 @@ echo -e "\n\n loaded modules :"
 module list
 
 # 
-  echo -e "\n\n*** hydra.jinr.ru setting for compilation:   ***"
-
-  export GROMACS=/zfs/scratch/HybriLITWorkshop2025/milias/software/gromacs/git_cloned/gromacs
-  export BUILD=build_intelmpi
-
-  echo -e "\n GROMACS=$GROMACS"
-
+  echo -e "\n\n*** hydra.jinr.ru setting for GROMACS run:   ***"
   #echo -e "ifort ?"; which ifort; ifort --version
   echo -e "clang ?"; which clang; clang --version
   echo -e "clang++ ?"; which clang++ ; clang++ --version
   echo -e "icc ?"; which icc; icc --version
- # echo -e "mpiifort ?"; which mpiifort; mpiifort -V
   echo -e "mpirun ?";  which mpirun; mpirun --version
   echo -e "MKL library, MKLROOT=${MKLROOT}"
 
+  export GROMACS=/zfs/scratch/HybriLITWorkshop2025/milias/software/gromacs/git_cloned/gromacs
+  export BUILD=build_intelmpi
 
+  #export I_MPI_PMI_LIBRARY=/path/to/slurm/lib/libpmi2.so
+
+
+  echo -e "\n GROMACS=$GROMACS"
   echo -e "\n\n ldd $GROMACS/$BUILD/bin/gmx_mpi :"
   ldd $GROMACS/$BUILD/bin/gmx_mpi
 

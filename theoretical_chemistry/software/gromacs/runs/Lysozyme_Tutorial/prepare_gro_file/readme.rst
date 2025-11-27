@@ -39,11 +39,11 @@ saved into pdb2gmx.logfile
 
 define the box
 ~~~~~~~~~~~~~~~
-gmx_mpi editconf -f 1AKI_processed.gro -o 1AKI_newbox.gro -c -d 1.0 -bt cubic
+gmx_mpi editconf -f 1AKI_processed.gro -o 1AKI_newbox.gro -c -d 1.0 -bt cubic  > 1AKI_newbox.gro_logfile 2>&1
 
 solvation
 ~~~~~~~~~
-gmx_mpi pdb2gmx -f 1AKI_clean.pdb -o 1AKI_processed.gro -water tip3p   > 1AKI_processed.gro_logfile 2>&1
+gmx_mpi solvate -cp 1AKI_newbox.gro -cs spc216.gro -o 1AKI_solv.gro -p topol.top > 1AKI_solv.gro_logfile 2>&1
 
 
 download ions

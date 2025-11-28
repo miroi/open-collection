@@ -13,3 +13,9 @@ try:
 #SBATCH -N 1 -n 4
 ##SBATCH  --sockets-per-node=1
 
+does not help
+
+try: - does not help...
+#SBATCH -N 1 -n 4
+#SBATCH --oversubscribe
+

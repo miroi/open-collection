@@ -95,27 +95,49 @@ echo -e "\n The variable PATH=$PATH\n"
 
 #OMPI=/lustre/home/user/m/milias/work/software/openmpi/openmpi-5.0.5-intel_v2021.1-i8/openmpi-5.0.5
 #OMPI=/lustre/home/user/m/milias/work/software/openmpi/openmpi-5.0.7-intel_v2021.1/openmpi-5.0.7
+
 OMPI=/lustre/home/user/m/milias/work/software/openmpi/openmpi-5.0.7-inteloneapi/openmpi-5.0.7
+INSTALLPATH=/lustre/home/user/m/milias/work/software/openmpi/openmpi-5.0.7-inteloneapi
+INSTALLDIR=install_openmpi-5.0.7-inteloneapi
+
+cd $INSTALLPATH
+echo -e "\nI am in the directory $INSTALLPATH; verify via pwd: ";pwd
+
+if [ -d "$INSTALLDIR" ]; then
+  echo -e "\nPREVIOUS directory '$INSTALLDIR' exists. Removing it.After recreating it again by mkdir."
+  rm -rf $INSTALLDIR
+  mkdir $INSTALLDIR
+else
+  echo -e "\nPREVIOUS directory '$INSTALLDIR' does not exist - will be created by mkdir."
+  mkdir $INSTALLDIR
+fi
+echo -e "Checking presence of install dir, ls -lt . :"; ls -lt .
+
+prefixdir=$INSTALLPATH/$INSTALLDIR
+echo -e "\n Checking presence of full path install dir, ls -lt :"; ls -lt $INSTALLPATH/$INSTALLDIR
 
 cd $OMPI
-echo -e "\n I am  in :\c"; pwd
+echo -e "\n\n I am in OMPI=$OMPI , checking with pwd :"; pwd
 echo -e "\n Checking configure --help :"
 configure --help
 
 
 echo -e "\n\n Going to do the the configure :"
 #./configure --prefix=$PWD F77=ifort FC=ifort FFLAGS=-i8 FCFLAGS=-i8 CXX=icpc CC=icc
-./configure --prefix=$PWD F77=ifort FC=ifort  CXX=icpc CC=icc \
+./configure --prefix=$prefixdir  F77=ifort FC=ifort  CXX=icpc CC=icc \
 --enable-mpi-fortran=usempi  --enable-mpi1-compatibility
  
 echo -e "\n\n Going to do make -j $SLURM_CPUS_ON_NODE :"
 make -j $SLURM_CPUS_ON_NODE 
-echo -e "\n\n Going to do make all install :"
+
+echo -e "\n\n Going to do make check :"
+make check
+
+echo -e "\n\n Going to do make all install to given dir, $prefixdir :"
 make all install
 
-echo -e "\n after the compilation, check OpenMPI binaries and libs:"
-ls 
-ls -lt $PWD/bin/*
-ls -lt $PWD/lib/*
+echo -e "\n\n after the installation, check OpenMPI binaries and libs:"
+ls -lt $prefixdir/bin/*
+ls -lt $prefixdir/lib/*
 
 exit

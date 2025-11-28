@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH -J SIESTA
+#SBATCH -J CHARMM
 
 ##  partition (queue)
 ##SBATCH -p cascade
@@ -52,6 +52,7 @@ module add CMake/v3.29.2
 module add openmpi/v5.0.7_gcc1230 
 module add LAPACK/v3.12.0_gcc1230
 module add ScaLAPACK/v2.2.2_openmpi507
+module add fftw/v3.3.10_gcc1120
 
 echo -e "\n\n loaded modules:"
 module list
@@ -66,83 +67,51 @@ echo -e "\n mpif90 ? \c"; which mpif90; mpif90 --version
 echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
 
 # readline-devel lib
-echo -e "\n readline-devel library ? \c"; rpm -q readline-devel
-find /usr/lib64 -name 'libreadline.so*'; find /usr/include -name readline.h
+#echo -e "\n readline-devel library ? \c"; rpm -q readline-devel
+#find /usr/lib64 -name 'libreadline.so*'; find /usr/include -name readline.h
 
-#SIESTA=/lustre/home/user/m/milias/work/software/siesta/downloaded_package/siesta-5.4.1
+CHARMM_DIR=/zfs/scratch/HybriLITWorkshop2025/milias/software/charmm/c50b1
+CHARMM=$CHARMM_DIR/charmm_c50b1
 
-SIESTA_DIR=/lustre/home/user/m/milias/work/software/siesta/git_cloned
-SIESTA=$SIESTA_DIR/siesta_dev
-
-#BUILD=build_intelmpi_elpa
-#BUILD=build_gnu_openmpi_lapack_scalapack
-BUILD=build_gnu1_openmpi_lapack_scalapack_check
-
-INSTALL_DIR=/lustre/home/user/m/milias/work/software/siesta/git_cloned/install_$BUILD
+INSTALLED_CHARMM=installed_charmm_c50b1_openmpi_lapack
+INSTALL_DIR=$CHARMM_DIR/$INSTALLED_CHARMM
 
 
-cd $SIESTA_DIR
-echo -e "\nI am in the directory SIESTA_DIR=$SIESTA_DIR; verify via pwd=";pwd
+cd $CHARMM_DIR
+echo -e "\nI am in the directory CHARMM_DIR=$CHARMM_DIR; verify via pwd=";pwd
 
-if [ -d "install_$BUILD" ]; then
-  echo -e "\nPREVIOUS directory 'install_$BUILD' exists. Removing it.After recreating it again by mkdir."
-  rm -rf install_$BUILD
-  mkdir install_$BUILD
+if [ -d "$INSTALLED_CHARMM" ]; then
+  echo -e "\nPREVIOUS directory '$INSTALLED_CHARMM' exists. Removing it.After recreating it again by mkdir."
+  rm -rf $INSTALLED_CHARMM
+  mkdir $INSTALLED_CHARMM
 else
-  echo -e "\nPREVIOUS directory 'install_$BUILD' does not exist - will be created by mkdir."
-  mkdir install_$BUILD
+  echo -e "\nPREVIOUS directory '$INSTALLED_CHARMM' does not exist - will be created by mkdir."
+  mkdir $INSTALLED_CHARMM
 fi
-echo -e "Checking presence of install dir :"; ls -lt  $SIESTA_DIR 
+echo -e "Checking presence of install dir, ls -lt $INSTALLED_CHARMM :"; ls -lt $INSTALLED_CHARMM
 
 #
 #
 #
-cd $SIESTA
-echo -e "\nI am in the directory SIESTA=$SIESTA; verify via pwd=";pwd
+cd $CHARMM
+echo -e "\nI am in the directory CHARMM=$CHARMM; verify via pwd= ";pwd
 
-if [ -d "$BUILD" ]; then
-  echo -e "\nDirectory '$BUILD' exists. Removing it..."
-  rm -rf "$BUILD"
-else
-  echo -e "\nDirectory '$BUILD' does not exist - will be created by CMake."
-fi
+echo -e "\n\n verify configure : "
+./configure --help
 
-
-echo -e "\n\n launching CMake configuration command : "
-
-#cmake -S. -B$BUILD -DCMAKE_INSTALL_PREFIX=/lustre/home/user/m/milias/work/software/siesta/downloaded_package  -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=ON  -DSCALAPACK_LIBRARY="/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_scalapack_lp64.so;/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_blacs_intelmpi_lp64.so" -DFLOOK_ROOT=/lustre/home/user/m/milias/work/software/siesta/git_cloned/siesta_dev/External/Lua-Engine/flook
-
-#cmake -S. -B$BUILD -DCMAKE_INSTALL_PREFIX=/lustre/home/user/m/milias/work/software/siesta/downloaded_package  -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=ON  -DSCALAPACK_LIBRARY="/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_scalapack_lp64.so;/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_blacs_intelmpi_lp64.so" -DSIESTA_WITH_FLOOK=OFF
-
-# 
-#FC=ifort CC=icc MPIFC=mpiifort  cmake -S. -B$BUILD   -DCMAKE_BUILD_TYPE=Debug  -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=OFF  -DSCALAPACK_LIBRARY="/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_scalapack_lp64.so;/cvmfs/hybrilit.jinr.ru/sw/slc7_x86-64/intel/oneapi/mkl/latest/lib/intel64/libmkl_blacs_intelmpi_lp64.so" -DSIESTA_WITH_FLOOK=OFF  -DCMAKE_PREFIX_PATH="/lustre/home/user/m/milias/work/software/libxc"
-
-#FC=gfortran CC=gcc MPIFC=mpif90  cmake -S. -B$BUILD   -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=OFF  -DSIESTA_WITH_FLOOK=OFF  -DCMAKE_PREFIX_PATH="/lustre/home/user/m/milias/work/software/libxc"  -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR
-
-#FC=gfortran CC=gcc MPIFC=mpif90  cmake -S. -B$BUILD -DCMAKE_BUILD_TYPE=Check   -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=OFF  -DSIESTA_WITH_FLOOK=OFF  -DSIESTA_WITH_LIBXC=ON -DCMAKE_PREFIX_PATH="/lustre/home/user/m/milias/work/software/libxc/install_build_gnu12.3.0"  -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR
-
-# does not help 
-#FC=gfortran CC=gcc MPIFC=mpif90  cmake -S. -B$BUILD -DCMAKE_BUILD_TYPE=Check   -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=OFF  -DSIESTA_WITH_FLOOK=OFF  -DSIESTA_WITH_LIBXC=ON -DCMAKE_PREFIX_PATH="/lustre/home/user/m/milias/work/software/libxc/install_build_gnu12.3.0"  -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR -DSIESTA_TESTS_MPI_NUMPROCS=1
-
-FC=gfortran CC=gcc MPIFC=mpif90  cmake -S. -B$BUILD -DCMAKE_BUILD_TYPE=Check   -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=OFF  -DSIESTA_WITH_FLOOK=OFF  -DSIESTA_WITH_LIBXC=ON -DCMAKE_PREFIX_PATH="/lustre/home/user/m/milias/work/software/libxc/install_build_gnu12.3.0"  -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR -DSIESTA_TESTS_MPI_NUMPROCS=1
-
-
-cd $BUILD
-echo -e "\nI am in the directory $SIESTA/$BUILD , check via pwd :";pwd
+echo -e "\n\n launching ./configure ...  command : "
+./configure --prefix=$INSTALL_DIR
 
 echo -e "\n\n Going to run make: "
-make
+make -C build/cmake install
 
-echo -e "\n\n Going to run ctest: "
-ctest -VV
+#echo -e "\n\n Going to run ctest: "
+#ctest -VV
 
-echo -e "\n\n Going to run make install into INSTALL_DIR=$INSTALL_DIR : "
-make install
-
-echo -e "\n\n Check of content of the INSTALL_DIR=$INSTALL_DIR :"
-ls -lt $INSTALL_DIR
-ls -lt $INSTALL_DIR/bin
-echo -e "\n\n ldd $INSTALL_DIR/bin/siesta  :"
-ldd $INSTALL_DIR/bin/siesta
+#echo -e "\n\n Check of content of the INSTALL_DIR=$INSTALL_DIR :"
+#ls -lt $INSTALL_DIR
+#ls -lt $INSTALL_DIR/bin
+#echo -e "\n\n ldd $INSTALL_DIR/bin/siesta  :"
+#ldd $INSTALL_DIR/bin/siesta
 
 exit

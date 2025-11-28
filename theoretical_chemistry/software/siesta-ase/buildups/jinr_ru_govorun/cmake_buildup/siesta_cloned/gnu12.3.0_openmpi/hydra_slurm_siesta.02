@@ -20,7 +20,7 @@
 #SBATCH --no-kill
 
 #SBATCH -N 1 -n 4
-#SBATCH  --sockets-per-node=1
+##SBATCH  --sockets-per-node=1
 
 #SBATCH -o log_slurm_job.%j.%N.std_out
 
@@ -124,7 +124,7 @@ echo -e "\n\n launching CMake configuration command : "
 # does not help 
 #FC=gfortran CC=gcc MPIFC=mpif90  cmake -S. -B$BUILD -DCMAKE_BUILD_TYPE=Check   -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=OFF  -DSIESTA_WITH_FLOOK=OFF  -DSIESTA_WITH_LIBXC=ON -DCMAKE_PREFIX_PATH="/lustre/home/user/m/milias/work/software/libxc/install_build_gnu12.3.0"  -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR -DSIESTA_TESTS_MPI_NUMPROCS=1
 
-FC=gfortran CC=gcc MPIFC=mpif90  cmake -S. -B$BUILD -DCMAKE_BUILD_TYPE=Check   -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=OFF  -DSIESTA_WITH_FLOOK=OFF  -DSIESTA_WITH_LIBXC=ON -DCMAKE_PREFIX_PATH="/lustre/home/user/m/milias/work/software/libxc/install_build_gnu12.3.0"  -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR -DSIESTA_TESTS_MPI_NUMPROCS=1
+FC=gfortran CC=gcc MPIFC=mpif90  cmake -S. -B$BUILD -DCMAKE_BUILD_TYPE=Check   -DSIESTA_WITH_MPI=ON -DSIESTA_WITH_ELPA=OFF  -DSIESTA_WITH_FLOOK=OFF  -DSIESTA_WITH_LIBXC=ON -DCMAKE_PREFIX_PATH="/lustre/home/user/m/milias/work/software/libxc/install_build_gnu12.3.0"  -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR 
 
 
 cd $BUILD

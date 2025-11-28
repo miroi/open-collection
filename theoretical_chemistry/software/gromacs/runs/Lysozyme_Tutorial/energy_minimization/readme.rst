@@ -36,3 +36,4 @@ Potential Energy  = -5.2640431e+05
 Maximum force     =  8.8038019e+02 on atom 1958
 Norm of force     =  2.0546556e+01
 
+

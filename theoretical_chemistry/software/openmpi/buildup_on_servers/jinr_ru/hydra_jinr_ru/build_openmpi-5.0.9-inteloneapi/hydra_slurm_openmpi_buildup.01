@@ -96,9 +96,9 @@ echo -e "\n The variable PATH=$PATH\n"
 #OMPI=/lustre/home/user/m/milias/work/software/openmpi/openmpi-5.0.5-intel_v2021.1-i8/openmpi-5.0.5
 #OMPI=/lustre/home/user/m/milias/work/software/openmpi/openmpi-5.0.7-intel_v2021.1/openmpi-5.0.7
 
-OMPI=/lustre/home/user/m/milias/work/software/openmpi/openmpi-5.0.7-inteloneapi/openmpi-5.0.7
-INSTALLPATH=/lustre/home/user/m/milias/work/software/openmpi/openmpi-5.0.7-inteloneapi
-INSTALLDIR=install_openmpi-5.0.7-inteloneapi
+OMPI=/lustre/home/user/m/milias/work/software/openmpi/openmpi-5.0.9-inteloneapi/openmpi-5.0.7
+INSTALLPATH=/lustre/home/user/m/milias/work/software/openmpi/openmpi-5.0.9-inteloneapi
+INSTALLDIR=install_openmpi-5.0.9-inteloneapi
 
 cd $INSTALLPATH
 echo -e "\nI am in the directory $INSTALLPATH; verify via pwd: ";pwd
@@ -124,7 +124,7 @@ configure --help
 
 echo -e "\n\n Going to do the the configure :"
 #./configure --prefix=$PWD F77=ifort FC=ifort FFLAGS=-i8 FCFLAGS=-i8 CXX=icpc CC=icc
-./configure --prefix=$prefixdir  F77=ifort FC=ifort  CXX=icpc CC=icc \
+./configure --prefix=$prefixdir  FC=ifort  CXX=icpc CC=icc \
 --enable-mpi-fortran=usempi  --enable-mpi1-compatibility
  
 echo -e "\n\n Going to do make -j $SLURM_CPUS_ON_NODE :"

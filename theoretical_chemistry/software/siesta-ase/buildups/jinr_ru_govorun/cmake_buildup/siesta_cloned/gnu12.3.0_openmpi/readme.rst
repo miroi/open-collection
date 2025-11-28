@@ -19,3 +19,5 @@ try: - does not help...
 #SBATCH -N 1 -n 4
 #SBATCH --oversubscribe
 
+try: 01
+-DSIESTA_TESTS_MPI_MAX_NUMPROCS=1

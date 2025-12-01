@@ -2,6 +2,8 @@
 Hg@C8 with CHGNet
 =================
 
+Computing adsorption energy of the Hg atom on a 8-carbon piece of graphene.
+
 CHGNet run
 ----------
 (myenv) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/chgnet-ase/runs/Hg_on_C8_simple_relaxation/chgnet-calculator/.python Hg_on_C8_relaxation_chgnet.py  > Hg_on_C8_relaxation_chgnet.py_logfile

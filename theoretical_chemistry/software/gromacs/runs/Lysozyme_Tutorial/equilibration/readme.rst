@@ -10,8 +10,10 @@ cp ../prepare_gro_file/posre.itp .
 
 wget http://www.mdtutorials.com/gmx/lysozyme/Files/nvt.mdp
 
+run
+---
 sbatch hydra_slurm_gromacs.01
 
-
+new files:
 
 

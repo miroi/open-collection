@@ -91,7 +91,7 @@ module list
   $GROMACS/$BUILD/bin/gmx_mpi -h
 
   echo -e "\n\n GROMACS grompp  :"
-  $GROMACS/$BUILD/bin/gmx_mpi -f nvt.mdp -c em.gro -r em.gro -p topol.top -o nvt.tpr
+  $GROMACS/$BUILD/bin/gmx_mpi grompp  -f nvt.mdp -c em.gro -r em.gro -p topol.top -o nvt.tpr
 
   echo -e "\n\n GROMACS mdrun  :"
   $GROMACS/$BUILD/bin/gmx_mpi mdrun -v -deffnm nvt

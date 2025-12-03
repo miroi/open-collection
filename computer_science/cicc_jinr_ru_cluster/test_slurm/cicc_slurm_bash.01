@@ -9,8 +9,8 @@
 ##SBATCH -p flnr-ice
 ##SBATCH -p slo-ice
 ##SBATCH -p grid
-##SBATCH -p ccic
-#SBATCH -p tier2
+#SBATCH -p ccic
+##SBATCH -p tier2
 
 ##SBATCH --qos=dirac
 
@@ -44,6 +44,7 @@
 
 echo -e "\nRunning on host `hostname`"
 echo -e "Time is `date` \n"
+echo -e "  Start date: `date` (`hostname`)"
 
 echo -e "\nJob user is SLURM_JOB_USER= $SLURM_JOB_USER"
 echo -e "User job SLURM_JOB_NAME=$SLURM_JOB_NAME has assigned ID SLURM_JOBID=$SLURM_JOBID"
@@ -124,6 +125,13 @@ echo " It has the disk space of (df -h) :"
 df -h .
 echo
 
+echo -e " TMPDIR=$TMPDIR "
+df -h $TMPDIR
+cd $TMPDIR
+mkdir milias_test
+pwd
+
+
 # https://community.intel.com/t5/Intel-MPI-Library/Unable-to-run-bstrap-proxy-error-with-intel-oneapi-mpi-2021-8/m-p/1538989/highlight/true#M11093
 #export I_MPI_HYDRA_IFACE="ib0"
 
@@ -144,4 +152,6 @@ out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SL
 #mpirun -f $MACHINEFILE -np $SLURM_NTASKS  $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
 
 echo -e "\n\n slurm job finished on : \c";date
+echo -e "  End date: `date`"
+
 exit

@@ -4,13 +4,11 @@
 #SBATCH -J test
 
 ##  partition (queue)
-##SBATCH -p cascade
-##SBATCH -p knl
-##SBATCH -p flnr-ice
-##SBATCH -p slo-ice
 ##SBATCH -p grid
-#SBATCH -p ccic
+##SBATCH -p ccic
 ##SBATCH -p tier2
+##SBATCH -p sl7
+#SBATCH -p ib
 
 ##SBATCH --qos=dirac
 
@@ -33,7 +31,6 @@
 #
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=4
-
 
 ## stdout/stderr output file
 #SBATCH -o log_slurm_job.%j.%N.std_out_err

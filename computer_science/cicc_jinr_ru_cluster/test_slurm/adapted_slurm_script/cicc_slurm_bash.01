@@ -13,8 +13,10 @@
 ##SBATCH --mem=1000mb # Job memory request
 #SBATCH --mem=4GB # Job memory request
 
-#SBATCH --time=1-00:00:00 # Time limit days-hrs:min:sec
+#SBATCH --time=4-00:00:00 # Time limit days-hrs:min:sec
+
 #SBATCH --tmp=1G
+
 #SBATCH --propagate=NONE
 ##SBATCH --array=1-5 # array of 5 jobs
 
@@ -66,8 +68,13 @@ echo -e "\n\n Kicking on modules:"
 source /cvmfs/bmn.jinr.ru/config/x86_64-alma9/cluster_config.sh >> $log
 module avail >> $log
 
-# own application ...
+# run own application ...
+QE=/scr/u/milias/software/quantum-espresso/q-e_develop
+echo -e "\n Software QE=$QE" >> $log
+ls -lt $QE/.  >> $log
 
-echo -e " Job end date: `date` "        >> $log
+
+
+echo -e "\n\n Job end date: `date` "        >> $log
 
 exit 

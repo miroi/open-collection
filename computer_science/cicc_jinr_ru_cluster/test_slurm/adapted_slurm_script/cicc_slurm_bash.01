@@ -15,7 +15,7 @@
 
 #SBATCH --time=4-00:00:00 # Time limit days-hrs:min:sec
 
-#SBATCH --tmp=1G
+#SBATCH --tmp=50G
 
 #SBATCH --propagate=NONE
 ##SBATCH --array=1-5 # array of 5 jobs
@@ -26,7 +26,7 @@
 ##SBATCH --partition=ib
 
 # define the unified slurm logfile
-log=slurm_job.oe_logfile-$SLURM_CLUSTER_NAME-$SLURM_JOB_PARTITION-N$SLURM_NTASKS-n$SLURM_CPUS_ON_NODE-jid$SLURM_JOB_ID
+log=slurm_job_std-err-out.log-$SLURM_CLUSTER_NAME-$SLURM_JOB_PARTITION-N$SLURM_NTASKS-n$SLURM_CPUS_ON_NODE-jid$SLURM_JOB_ID
 
 echo -e "=== Started SLURM job on the CICC cluster ==="  > $log 2>&1
 
@@ -71,16 +71,18 @@ ls -lt /  >> $log 2>&1
 df -h /tmp  >> $log 2>&1
 df -h $SLURM_SUBMIT_DIR  >> $log 2>&1
 echo -e "variable TMPDIR=$TMPDIR" >> $log 2>&1
+ls -lt /scr/u  >> $log 2>&1
+df -h $TMPDIR >> $log 2>&1
 
 # modules
-echo -e "\n\n Kicking on modules:"
+echo -e "\n\n Kicking on modules:"   >> $log 2>&1
 source /cvmfs/bmn.jinr.ru/config/x86_64-alma9/cluster_config.sh >> $log 2>&1
 echo -e "module avail ?" >> $log 2>&1
 module avail >> $log  2>&1
 
 # run own application ...
 QE=/scr/u/milias/software/quantum-espresso/q-e_develop
-echo -e "\n\n\n Application software QE=$QE" >> $log 2>&1
+echo -e "\n\n Application software QE=$QE" >> $log 2>&1
 ls -lt $QE/.  >> $log  2>&1
 
 

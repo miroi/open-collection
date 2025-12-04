@@ -22,11 +22,11 @@
 
 #SBATCH --output=NONE
 
-##SBATCH --partition=sl7 
-#SBATCH --partition=ib
+#SBATCH --partition=sl7 
+##SBATCH --partition=ib
 
 # define the unified slurm logfile
-log=slurm_job.oe_logfile_$SLURM_CLUSTER_NAME.part_$SLURM_JOB_PARTITION.N$SLURM_NTASKS.n$SLURM_CPUS_ON_NODE.jid$SLURM_JOB_ID
+log=slurm_job.oe_logfile-$SLURM_CLUSTER_NAME-$SLURM_JOB_PARTITION-N$SLURM_NTASKS-n$SLURM_CPUS_ON_NODE-jid$SLURM_JOB_ID
 
 echo -e "=== Started SLURM job on the CICC cluster ==="  > $log 2>&1
 
@@ -69,7 +69,8 @@ free -t -g  >> $log 2>&1
 echo -e "\n\n Disk system on the computing node `hostname`  :"   >> $log 2>&1
 ls -lt /  >> $log 2>&1
 df -h /tmp  >> $log 2>&1
-
+df -h $SLURM_SUBMIT_DIR  >> $log 2>&1
+echo -e "variable TMPDIR=$TMPDIR" >> $log 2>&1
 
 # modules
 echo -e "\n\n Kicking on modules:"

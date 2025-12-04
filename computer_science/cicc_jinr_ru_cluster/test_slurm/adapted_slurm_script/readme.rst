@@ -7,7 +7,9 @@ https://bmn.jinr.int/jinr-cicc-complex/
 
 partitions
 ----------
-sl7
+sl7, ib
+
+
 
 
 

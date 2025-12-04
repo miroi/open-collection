@@ -27,3 +27,10 @@ MIRO Notebook Victus
 
 16 0
 
+visualisation
+~~~~~~~~~~~~~
+xmgrace temperature.xvg
+
+see http://www.mdtutorials.com/gmx/lysozyme/Images/plot_lyso_nvt_temperature.png
+
+

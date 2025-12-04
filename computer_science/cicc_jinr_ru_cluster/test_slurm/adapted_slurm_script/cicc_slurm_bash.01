@@ -24,57 +24,57 @@
 
 #SBATCH --partition=sl7 # allocate SL7 node only
 
-#log=log_slurm_job.%j.%N.std_out_err
-log=slurm_job.logfile_$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NODELIST.n$SLURM_NTASKS
+# define the unified slurm logfile
+log=slurm_job.logfile_$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_NTASKS.n$SLURM_CPUS_ON_NODE
 
+echo -e "=== Started SLURM job on the CICC cluster ==="  > $log 2>&1
 
-echo -e "\nRunning on host `hostname`" >> $log
-echo -e " Job start date: `date` "        >> $log
+echo -e "\nRunning on host `hostname`" >> $log  2>&1
+echo -e " Job start date: `date` "        >> $log  2>&1
 
-echo -e "\nJob user is SLURM_JOB_USER= $SLURM_JOB_USER"  >> $log
-echo -e "User job SLURM_JOB_NAME=$SLURM_JOB_NAME has assigned ID SLURM_JOBID=$SLURM_JOBID" >> $log
-echo -e "This job was submitted from the computer SLURM_SUBMIT_HOST=$SLURM_SUBMIT_HOST" >> $log
-echo -e "and from the home directory SLURM_SUBMIT_DIR:" >> $log
-echo -e "SLURM_SUBMIT_DIR = $SLURM_SUBMIT_DIR" >> $log
+echo -e "\nJob user is SLURM_JOB_USER= $SLURM_JOB_USER"  >> $log  2>&1
+echo -e "User job SLURM_JOB_NAME=$SLURM_JOB_NAME has assigned ID SLURM_JOBID=$SLURM_JOBID" >> $log 2>&1
+echo -e "This job was submitted from the computer SLURM_SUBMIT_HOST=$SLURM_SUBMIT_HOST" >> $log  2>&1
+echo -e "and from the home directory SLURM_SUBMIT_DIR:" >> $log  2>&1
+echo -e "SLURM_SUBMIT_DIR = $SLURM_SUBMIT_DIR" >> $log  2>&1
 
-echo -e "Job is running on the cluster compute node: SLURM_CLUSTER_NAME=$SLURM_CLUSTER_NAME"  >> $log
-echo -e "and is employing SLURM_JOB_NUM_NODES=$SLURM_JOB_NUM_NODES node/nodes:"  >> $log
-echo -e "SLURM_JOB_NODELIST = $SLURM_JOB_NODELIST"   >> $log
-echo -e "Job partition is SLURM_JOB_PARTITION=$SLURM_JOB_PARTITION \n"  >> $log
-echo -e "Number of allocated CPUs on each single node, SLURM_CPUS_ON_NODE=$SLURM_CPUS_ON_NODE ."  >> $log
-echo -e "Number of all reserved threads over ALL nodes, SLURM_NTASKS=$SLURM_NTASKS ."   >> $log
-echo -e "Job has reserved memory per node, SLURM_MEM_PER_NODE=$SLURM_MEM_PER_NODE MB of memory"  >> $log
+echo -e "Job is running on the cluster compute node: SLURM_CLUSTER_NAME=$SLURM_CLUSTER_NAME"  >> $log 2>&1
+echo -e "and is employing SLURM_JOB_NUM_NODES=$SLURM_JOB_NUM_NODES node/nodes:"  >> $log  2>&1
+echo -e "SLURM_JOB_NODELIST = $SLURM_JOB_NODELIST"   >> $log  2>&1
+echo -e "Job partition is SLURM_JOB_PARTITION=$SLURM_JOB_PARTITION \n"  >> $log 2>&1
+echo -e "Number of allocated CPUs on each single node, SLURM_CPUS_ON_NODE=$SLURM_CPUS_ON_NODE ."  >> $log 2>&1
+echo -e "Number of all reserved threads over ALL nodes, SLURM_NTASKS=$SLURM_NTASKS ."   >> $log 2>&1
+echo -e "Job has reserved memory per node, SLURM_MEM_PER_NODE=$SLURM_MEM_PER_NODE MB of memory"  >> $log  2>&1
 
 # CPU model, total numer of CPUs, number of allocated CPUs
-echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq   >> $log
-NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`   >> $log
-echo "BTW, this node has total $NPROCS CPUs available for an EXCLUSIVE job."  >> $log
-echo "Based on reserved memory, this node got $SLURM_CPUS_ON_NODE CPUs allocated for SLURM calculations." >> $log
-echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "  >> $log
+echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq   >> $log  2>&1
+NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`   >> $log  2>&1
+echo "BTW, this node has total $NPROCS CPUs available for an EXCLUSIVE job."  >> $log 2>&1
+echo "Based on reserved memory, this node got $SLURM_CPUS_ON_NODE CPUs allocated for SLURM calculations." >> $log 2>&1
+echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "  >> $log 2>&1
 
 # Generate Machinefile for mpi such that hosts are in the same
 # order as if run via srun
 MACHINEFILE="nodes.$SLURM_JOB_PARTITION.$SLURM_JOB_ID"
 srun -l /bin/hostname | sort -n | awk '{print $2}' > $MACHINEFILE
-echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; echo "containing:"; cat $MACHINEFILE >> $log
+echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; echo "containing:"; cat $MACHINEFILE >> $log 2>&1
 
 
-echo -e "\n\n The total memory at the running node (in GB)"  >> $log
-free -t -g  >> $log
+echo -e "\n\n The total memory at the running node (in GB)"  >> $log 2>&1
+free -t -g  >> $log 2>&1
 
 
 # modules
 echo -e "\n\n Kicking on modules:"
-source /cvmfs/bmn.jinr.ru/config/x86_64-alma9/cluster_config.sh >> $log
-module avail >> $log
+source /cvmfs/bmn.jinr.ru/config/x86_64-alma9/cluster_config.sh >> $log 2>&1
+module avail >> $log  2>&1
 
 # run own application ...
 QE=/scr/u/milias/software/quantum-espresso/q-e_develop
-echo -e "\n Software QE=$QE" >> $log
-ls -lt $QE/.  >> $log
+echo -e "\n Software QE=$QE" >> $log 2>&1
+ls -lt $QE/.  >> $log  2>&1
 
 
-
-echo -e "\n\n Job end date: `date` "        >> $log
+echo -e "\n\n Job end date: `date` "        >> $log 2>&1
 
 exit 

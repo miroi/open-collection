@@ -22,7 +22,8 @@
 
 #SBATCH --output=NONE
 
-#SBATCH --partition=sl7 
+##SBATCH --partition=sl7 
+#SBATCH --partition=ib
 
 # define the unified slurm logfile
 log=slurm_job.oe_logfile_$SLURM_CLUSTER_NAME.part_$SLURM_JOB_PARTITION.N$SLURM_NTASKS.n$SLURM_CPUS_ON_NODE.jid$SLURM_JOB_ID
@@ -73,6 +74,7 @@ df -h /tmp  >> $log 2>&1
 # modules
 echo -e "\n\n Kicking on modules:"
 source /cvmfs/bmn.jinr.ru/config/x86_64-alma9/cluster_config.sh >> $log 2>&1
+echo -e "module avail ?" >> $log 2>&1
 module avail >> $log  2>&1
 
 # run own application ...

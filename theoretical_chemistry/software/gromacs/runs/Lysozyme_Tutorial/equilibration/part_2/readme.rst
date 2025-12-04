@@ -19,10 +19,19 @@ remote: warning: File theoretical_chemistry/software/gromacs/runs/Lysozyme_Tutor
 
 pressure progression analysis
 -----------------------------
-
 miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/gromacs/runs/Lysozyme_Tutorial/equilibration/part_2/.~/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi energy -f npt.edr -o pressure.xvg
 18 0
 
 output harvested into  pressure.xvg_logfile
 
 
+density progression analysis
+----------------------------
+miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/gromacs/runs/Lysozyme_Tutorial/equilibration/part_2/.~/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi energy -f npt.edr -o density.xvg
+24 0
+
+output harvested into density.xvg_logfile
+
+xmgrace density.xvg
+
+see http://www.mdtutorials.com/gmx/lysozyme/Images/plot_lyso_npt_density.png

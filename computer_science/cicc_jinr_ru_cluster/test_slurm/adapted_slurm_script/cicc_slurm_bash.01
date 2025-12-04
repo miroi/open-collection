@@ -22,7 +22,7 @@
 
 #SBATCH --output=NONE
 
-#SBATCH --partition=sl7 # allocate SL7 node only
+##SBATCH --partition=sl7 # 
 
 # define the unified slurm logfile
 log=slurm_job.logfile_$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_NTASKS.n$SLURM_CPUS_ON_NODE
@@ -62,6 +62,12 @@ echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFIL
 
 echo -e "\n\n The total memory at the running node (in GB)"  >> $log 2>&1
 free -t -g  >> $log 2>&1
+
+
+# disk space 
+echo -e "\n\n Disk system on the computing node `hostname`  :"   >> $log 2>&1
+ls -lt /  >> $log 2>&1
+df -h /tmp  >> $log 2>&1
 
 
 # modules

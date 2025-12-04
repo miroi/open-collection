@@ -71,7 +71,10 @@ ls -lt /  >> $log 2>&1
 df -h /tmp  >> $log 2>&1
 df -h $SLURM_SUBMIT_DIR  >> $log 2>&1
 echo -e "variable TMPDIR=$TMPDIR" >> $log 2>&1
+echo -e "ls -lt /scr/u ?" >> $log 2>&1
 ls -lt /scr/u  >> $log 2>&1
+echo -e "ls -lt /scr ?" >> $log 2>&1
+ls -lt /scr  >> $log 2>&1
 df -h $TMPDIR >> $log 2>&1
 
 # modules
@@ -79,6 +82,17 @@ echo -e "\n\n Kicking on modules:"   >> $log 2>&1
 source /cvmfs/bmn.jinr.ru/config/x86_64-alma9/cluster_config.sh >> $log 2>&1
 echo -e "module avail ?" >> $log 2>&1
 module avail >> $log  2>&1
+
+
+# basic utility software
+echo -e "\n\n Checking presence of software:" >> $log 2>&1
+echo -e "Python ?"  >> $log 2>&1
+Python -V >> $log 2>&1
+echo -e "gfortran ?"  >> $log 2>&1
+gfortran --version >> $log 2>&1
+echo -e "mpirun ?"  >> $log 2>&1
+mpirun --version >> $log 2>&1
+
 
 # run own application ...
 QE=/scr/u/milias/software/quantum-espresso/q-e_develop

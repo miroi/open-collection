@@ -15,14 +15,24 @@
 #SBATCH --propagate=NONE
 ##SBATCH --array=1-5 # array of 5 jobs
 
-##SBATCH --output=job_log
 #SBATCH --output=NONE
 
 #SBATCH --partition=sl7 # allocate SL7 node only
 
-#$HOME/slurm/test-job-new.sh
-#./test-job-new.sh
+log=log_slurm_job.%j.%N.std_out_err
 
 echo -e "\n Hello from SLURM !" > job_log
+echo -e "\n Hello from SLURM !" > $log
+
+echo -e "\nRunning on host `hostname`" >> $log
+echo -e "  Start date: `date` "        >> $log
+
+echo -e "\nJob user is SLURM_JOB_USER= $SLURM_JOB_USER"  >> $log
+echo -e "User job SLURM_JOB_NAME=$SLURM_JOB_NAME has assigned ID SLURM_JOBID=$SLURM_JOBID" >> $log
+echo -e "This job was submitted from the computer SLURM_SUBMIT_HOST=$SLURM_SUBMIT_HOST" >> $log
+echo -e "and from the home directory SLURM_SUBMIT_DIR:" >> $log
+echo -e "SLURM_SUBMIT_DIR = $SLURM_SUBMIT_DIR" >> $log
+
+
 
 exit 

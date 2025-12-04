@@ -14,6 +14,16 @@ run
 ---
 sbatch hydra_slurm_gromacs.01
 
-new files:
+new files:  nvt.edr, ...
 
+temperature progression
+-----------------------
+
+MIRO Notebook Victus
+~~~~~~~~~~~~~~~~~~~~
+~/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi  -h
+
+~/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi  energy -f nvt.edr -o temperature.xvg
+
+16 0
 

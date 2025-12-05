@@ -415,3 +415,41 @@ miroi@MIRO:~/work/software/gromacs/gromacs_cloned/build_gpu/.ldd bin/gmx_mpi
         libffi.so.8 => /lib/x86_64-linux-gnu/libffi.so.8 (0x0000787577f17000)
 miroi@MIRO:~/work/software/gromacs/gromacs_cloned/build_gpu/.
 
+miroi@MIRO:~/work/software/gromacs/gromacs_cloned/build_gpu/.make tests
+.
+.
+miroi@MIRO:~/work/software/gromacs/gromacs_cloned/build_gpu/.ls bin/
+analysisdata-test*                    gmxapi-mpi-test*                         mdrun-multisim-replex-test*         nblib-integrator-test*       random-test*
+applied_forces-test*                  gmxapi-test*                             mdrun-multisim-test*                nblib-listed-forces-test*    restraintpotential-test*
+argon-forces-integration*             gmxpreprocess-test*                      mdrun-non-integrator-test*          nblib-setup-test*            selection-test*
+awh-test*                             gpu_utils-mpi-test*                      mdrun-output-test*                  nblib-tpr-test*              serialization-test*
+colvars_applied_forces-test*          gpu_utils-test*                          mdrun-pull-test*                    nblib-util-test*             simd-test*
+commandline-test*                     h5md-test*                               mdrun-rotation-test*                nbnxm-gpu-test*              table-test*
+compat-test*                          hardware-test*                           mdrun-simulator-comparison-test*    nbnxm-test*                  taskassignment-test*
+coordinateio-test*                    listed_forces-test*                      mdrun-single-rank-algorithms-test*  nnpot_applied_forces-test*   testutils-mpi-test*
+correlations-test*                    math-test*                               mdrun-test*                         nonbonded-fep-test*          testutils-test*
+density_fitting_applied_forces-test*  mdlib-test*                              mdrun-tpi-test*                     onlinehelp-test*             timing-test*
+domdec-mpi-test*                      mdrun-coordination-basic-test*           mdrun-vsites-test*                  options-test*                tool-test*
+domdec-test*                          mdrun-coordination-constraints-test*     mdrunutility-mpi-test*              pbcutil-test*                tool-test-with-leaks*
+energyanalysis-test*                  mdrun-coordination-coupling-test*        mdrunutility-test*                  pdb2gmx1-test*               topology-test*
+ewald-test*                           mdrun-fep-test*                          mdspan-test*                        pdb2gmx2-test*               trajectoryanalysis-test*
+fft-test*                             mdrun-io-test*                           mdtypes-test*                       pdb2gmx3-test*               utility-mpi-test*
+fileio-test*                          mdrun-modules-test*                      methane-water-integration*          plumed_applied_forces-test*  utility-test*
+fmm-interface-tests*                  mdrun-mpi-pme-test*                      minimize-test*                      plumed_md-test*              workflow-details-mpi-test*
+gmx_mpi*                              mdrun-mpi-test*                          mpicomm-test*                       pull-test*                   workflow-details-test*
+gmxana-test*                          mdrun-multisim-replex-equivalence-test*  nblib-integration-test*             qmmm_applied_forces-test*
+miroi@MIRO:~/work/software/gromacs/gromacs_cloned/build_gpu/.ctest -j4
+.
+.
+100% tests passed, 0 tests failed out of 100
+
+Label Time Summary:
+GTest              = 718.39 sec*proc (98 tests)
+IntegrationTest    = 419.12 sec*proc (32 tests)
+MpiTest            = 501.09 sec*proc (26 tests)
+QuickGpuTest       = 141.23 sec*proc (24 tests)
+SlowGpuTest        = 508.53 sec*proc (15 tests)
+SlowTest           = 261.38 sec*proc (14 tests)
+UnitTest           =  37.89 sec*proc (52 tests)
+
+Total Test time (real) = 181.86 sec

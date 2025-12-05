@@ -76,5 +76,8 @@ miroi@MIRO:~/work/software/gromacs/gromacs_cloned/build_gpu/.make -j4
 miroi@MIRO:~/work/software/gromacs/gromacs_cloned/build_gnu/.ldd bin/gmx
 
 
+FIX 
+---
+see   cmake_buildup_mpi-gpu-x86real.log  !!!
 
 

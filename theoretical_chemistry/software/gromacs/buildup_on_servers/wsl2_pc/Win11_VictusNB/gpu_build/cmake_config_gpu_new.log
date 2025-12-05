@@ -1,4 +1,4 @@
-miroi@MIRO:~/work/software/gromacs/gromacs_cloned/build_gpu/.cmake -DGMX_MPI=on -DCMAKE_CUDA_ARCHITECTURES=86-real ..
+miroi@MIRO:~/work/software/gromacs/gromacs_cloned/build_gpu/.cmake -DGMX_MPI=on   -DGMX_GPU=CUDA  -DCMAKE_CUDA_ARCHITECTURES=86-real ..
 -- The C compiler identification is GNU 13.3.0
 -- The CXX compiler identification is GNU 13.3.0
 -- Detecting C compiler ABI info
@@ -13,6 +13,7 @@ miroi@MIRO:~/work/software/gromacs/gromacs_cloned/build_gpu/.cmake -DGMX_MPI=on 
 -- Detecting CXX compile features - done
 -- Found Python3: /usr/bin/python3.12 (found suitable version "3.12.3", minimum required is "3.9") found components: Interpreter Development Development.Module Development.Embed
 -- Found Git: /usr/bin/git (found version "2.43.0")
+-- Selected GPU FFT library - cuFFT
 -- Found OpenMP_CXX: -fopenmp (found version "4.5")
 -- Found OpenMP: TRUE (found version "4.5") found components: CXX
 -- Performing Test CFLAGS_WARN
@@ -173,6 +174,34 @@ miroi@MIRO:~/work/software/gromacs/gromacs_cloned/build_gpu/.cmake -DGMX_MPI=on 
 -- Performing Test _callconv___regcall - Failed
 -- Performing Test _callconv_
 -- Performing Test _callconv_  - Success
+-- Found CUDAToolkit: /usr/local/cuda/include (found suitable version "13.1.80", minimum required is "12.1")
+-- The CUDA compiler identification is NVIDIA 13.1.80 with host compiler GNU 13.3.0
+-- Detecting CUDA compiler ABI info
+-- Detecting CUDA compiler ABI info - done
+-- Check for working CUDA compiler: /usr/local/cuda/bin/nvcc - skipped
+-- Detecting CUDA compile features
+-- Detecting CUDA compile features - done
+-- Compiling GROMACS for CUDA architectures: 86-real
+-- Found OpenMP_CXX: -fopenmp (found version "4.5")
+-- Found OpenMP_CUDA: -fopenmp (found version "4.5")
+-- Found OpenMP: TRUE (found version "4.5") found components: CXX CUDA
+-- Adding work-around for issue compiling CUDA code with glibc 2.23 string.h
+-- Performing Test NVCC_HAS_USE_FAST_MATH
+-- Performing Test NVCC_HAS_USE_FAST_MATH - Success
+-- Performing Test NVCC_HAS_STATIC_GLOBAL_TEMPLATE_STUB_FALSE
+-- Performing Test NVCC_HAS_STATIC_GLOBAL_TEMPLATE_STUB_FALSE - Success
+-- Performing Test NVCC_HAS_PTXAS_WARN_DOUBLE_USAGE
+-- Performing Test NVCC_HAS_PTXAS_WARN_DOUBLE_USAGE - Success
+-- Performing Test NVCC_HAS_PTXAS_WERROR
+-- Performing Test NVCC_HAS_PTXAS_WERROR - Success
+-- Performing Test NVCC_HAS_DIAG_SUPPRESS_177
+-- Performing Test NVCC_HAS_DIAG_SUPPRESS_177 - Success
+-- Checking for mpi-ext.h header
+-- Performing Test HAVE_MPI_EXT
+-- Performing Test HAVE_MPI_EXT - Success
+-- Performing Test MPI_SUPPORTS_CUDA_AWARE_DETECTION
+-- Performing Test MPI_SUPPORTS_CUDA_AWARE_DETECTION - Success
+-- Checking for MPI_SUPPORTS_CUDA_AWARE_DETECTION - yes
 -- Torch not found. Neural network potential support will be disabled.
 -- Detected build CPU vendor - Intel
 -- Detected build CPU family - 6
@@ -243,6 +272,146 @@ miroi@MIRO:~/work/software/gromacs/gromacs_cloned/build_gpu/.cmake -DGMX_MPI=on 
 -- Performing Test COMPILER_HAS_DEPRECATED_ATTR - Success
 -- Could NOT find Sphinx (missing: SPHINX_EXECUTABLE) (Required is at least version "4.0.0")
 -- Could NOT find LATEX (missing: LATEX_COMPILER)
--- Configuring done (40.9s)
+-- Configuring done (83.5s)
 -- Generating done (0.6s)
 -- Build files have been written to: /home/miroi/work/software/gromacs/gromacs_cloned/build_gpu
+
+miroi@MIRO:~/work/software/gromacs/gromacs_cloned/build_gpu/.m -j4
+.
+.
+[ 95%] Building CXX object api/nblib/CMakeFiles/nblib.dir/box.cpp.o
+[ 95%] Building CXX object api/nblib/CMakeFiles/nblib.dir/gmxcalculatorcpu.cpp.o
+[ 95%] Built target gmx
+[ 95%] Building CXX object api/gmxapi/CMakeFiles/gmxapi.dir/cpp/context.cpp.o
+[ 95%] Building CXX object src/testutils/CMakeFiles/testutils.dir/conftest.cpp.o
+[ 95%] Building CXX object api/gmxapi/CMakeFiles/gmxapi.dir/cpp/exceptions.cpp.o
+[ 95%] Building CXX object api/gmxapi/CMakeFiles/gmxapi.dir/cpp/gmxapi.cpp.o
+[ 95%] Building CXX object api/nblib/CMakeFiles/nblib.dir/integrator.cpp.o
+[ 95%] Building CXX object api/nblib/CMakeFiles/nblib.dir/interactions.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/filematchers.cpp.o
+[ 96%] Building CXX object api/gmxapi/CMakeFiles/gmxapi.dir/cpp/md.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/interactivetest.cpp.o
+[ 96%] Building CXX object api/nblib/CMakeFiles/nblib.dir/molecules.cpp.o
+[ 96%] Building CXX object api/gmxapi/CMakeFiles/gmxapi.dir/cpp/mdmodule.cpp.o
+[ 96%] Building CXX object api/gmxapi/CMakeFiles/gmxapi.dir/cpp/mdsignals.cpp.o
+[ 96%] Building CXX object api/nblib/CMakeFiles/nblib.dir/nbnxmsetuphelpers.cpp.o
+[ 96%] Building CXX object api/gmxapi/CMakeFiles/gmxapi.dir/cpp/session.cpp.o
+[ 96%] Building CXX object api/nblib/CMakeFiles/nblib.dir/particlesequencer.cpp.o
+[ 96%] Building CXX object api/gmxapi/CMakeFiles/gmxapi.dir/cpp/status.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/loggertest.cpp.o
+[ 96%] Building CXX object api/gmxapi/CMakeFiles/gmxapi.dir/cpp/system.cpp.o
+[ 96%] Building CXX object api/gmxapi/CMakeFiles/gmxapi.dir/cpp/version.cpp.o
+[ 96%] Building CXX object api/gmxapi/CMakeFiles/gmxapi.dir/cpp/workflow.cpp.o
+[ 96%] Building CXX object api/nblib/CMakeFiles/nblib.dir/particletype.cpp.o
+[ 96%] Building CXX object api/gmxapi/CMakeFiles/gmxapi.dir/cpp/tpr.cpp.o
+[ 96%] Building CXX object api/nblib/CMakeFiles/nblib.dir/simulationstate.cpp.o
+[ 96%] Building CXX object api/nblib/CMakeFiles/nblib.dir/topologyhelpers.cpp.o
+[ 96%] Building CXX object api/nblib/CMakeFiles/nblib.dir/topology.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/mpi_printer.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/mpitest.cpp.o
+[ 96%] Building CXX object api/nblib/CMakeFiles/nblib.dir/tpr.cpp.o
+[ 96%] Linking CXX shared library ../../lib/libgmxapi_mpi.so
+[ 96%] Built target gmxapi
+[ 96%] Building CXX object api/nblib/CMakeFiles/nblib.dir/virials.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/posixmemstream.cpp.o
+[ 96%] Building CXX object api/nblib/CMakeFiles/nblib.dir/listed_forces/calculator.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/refdata.cpp.o
+[ 96%] Building CXX object api/nblib/CMakeFiles/nblib.dir/listed_forces/transformations.cpp.o
+[ 96%] Building CXX object api/nblib/CMakeFiles/nblib.dir/listed_forces/conversions.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/refdata_xml.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/setenv.cpp.o
+[ 96%] Building CXX object src/testutils/CMakeFiles/testutils.dir/simulationdatabase.cpp.o
+[ 98%] Building CXX object api/nblib/CMakeFiles/nblib.dir/listed_forces/convertGmxToNblib.cpp.o
+[ 98%] Building CXX object src/testutils/CMakeFiles/testutils.dir/stdiohelper.cpp.o
+[ 98%] Building CXX object api/nblib/CMakeFiles/nblib.dir/util/setup.cpp.o
+[ 98%] Building CXX object src/testutils/CMakeFiles/testutils.dir/stringtest.cpp.o
+[ 98%] Building CXX object src/testutils/CMakeFiles/testutils.dir/testasserts.cpp.o
+[ 98%] Building CXX object src/testutils/CMakeFiles/testutils.dir/testfilemanager.cpp.o
+[ 98%] Building CXX object src/testutils/CMakeFiles/testutils.dir/testfileredirector.cpp.o
+[ 98%] Building CXX object src/testutils/CMakeFiles/testutils.dir/test_device.cpp.o
+[ 98%] Building CXX object src/testutils/CMakeFiles/testutils.dir/test_hardware_environment.cpp.o
+[ 98%] Building CXX object src/testutils/CMakeFiles/testutils.dir/testinit.cpp.o
+[ 98%] Linking CXX shared library ../../lib/libnblib_gmx.so
+[100%] Building CXX object src/testutils/CMakeFiles/testutils.dir/testmatchers.cpp.o
+[100%] Built target nblib
+[100%] Building CXX object src/testutils/CMakeFiles/testutils.dir/testoptions.cpp.o
+[100%] Building CXX object src/testutils/CMakeFiles/testutils.dir/textblockmatchers.cpp.o
+[100%] Building CXX object src/testutils/CMakeFiles/testutils.dir/topologyhelpers.cpp.o
+[100%] Building CXX object src/testutils/CMakeFiles/testutils.dir/tprfilegenerator.cpp.o
+[100%] Building CXX object src/testutils/CMakeFiles/testutils.dir/trajectoryreader.cpp.o
+[100%] Building CXX object src/testutils/CMakeFiles/testutils.dir/xvgtest.cpp.o
+[100%] Building CXX object src/testutils/CMakeFiles/testutils.dir/__/external/tinyxml2/tinyxml2.cpp.o
+[100%] Building CXX object api/nblib/samples/CMakeFiles/argon-forces-integration.dir/argon-forces-integration.cpp.o
+[100%] Building CXX object api/nblib/samples/CMakeFiles/methane-water-integration.dir/methane-water-integration.cpp.o
+[100%] Linking CXX shared library ../../lib/libtestutils.so
+[100%] Built target testutils
+[100%] Linking CXX executable ../../../bin/argon-forces-integration
+[100%] Built target argon-forces-integration
+[100%] Linking CXX executable ../../../bin/methane-water-integration
+[100%] Built target methane-water-integration
+
+
+
+miroi@MIRO:~/work/software/gromacs/gromacs_cloned/build_gpu/.ldd bin/gmx_mpi
+        linux-vdso.so.1 (0x00007ffd4896c000)
+        libgromacs_mpi.so.11 => /home/miroi/work/software/gromacs/gromacs_cloned/build_gpu/bin/../lib/libgromacs_mpi.so.11 (0x0000787594600000)
+        libmpi.so.40 => /lib/x86_64-linux-gnu/libmpi.so.40 (0x0000787596700000)
+        libstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x0000787594200000)
+        libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007875966d2000)
+        libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x0000787593e00000)
+        libcufft.so.12 => /usr/local/cuda-13.1/targets/x86_64-linux/lib/libcufft.so.12 (0x0000787581800000)
+        libmpi_cxx.so.40 => /lib/x86_64-linux-gnu/libmpi_cxx.so.40 (0x00007875966b7000)
+        libfftw3f.so.3 => /lib/x86_64-linux-gnu/libfftw3f.so.3 (0x0000787581400000)
+        libmkl_intel_lp64.so => /lib/x86_64-linux-gnu/libmkl_intel_lp64.so (0x0000787580600000)
+        libmkl_intel_thread.so => /lib/x86_64-linux-gnu/libmkl_intel_thread.so (0x000078757cc00000)
+        libmkl_core.so => /lib/x86_64-linux-gnu/libmkl_core.so (0x0000787578400000)
+        libomp.so.5 => /lib/x86_64-linux-gnu/libomp.so.5 (0x00007875944d3000)
+        libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x0000787594117000)
+        libhdf5_serial.so.103 => /lib/x86_64-linux-gnu/libhdf5_serial.so.103 (0x0000787578000000)
+        libmuparser.so.2 => /home/miroi/work/software/gromacs/gromacs_cloned/build_gpu/bin/../lib/../lib/libmuparser.so.2 (0x00007875940b8000)
+        /lib64/ld-linux-x86-64.so.2 (0x0000787596866000)
+        libopen-rte.so.40 => /lib/x86_64-linux-gnu/libopen-rte.so.40 (0x0000787581744000)
+        libopen-pal.so.40 => /lib/x86_64-linux-gnu/libopen-pal.so.40 (0x0000787581690000)
+        libhwloc.so.15 => /lib/x86_64-linux-gnu/libhwloc.so.15 (0x0000787594057000)
+        libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007875966ae000)
+        libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007875966a9000)
+        librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00007875966a2000)
+        libcrypto.so.3 => /lib/x86_64-linux-gnu/libcrypto.so.3 (0x0000787577a00000)
+        libcurl.so.4 => /lib/x86_64-linux-gnu/libcurl.so.4 (0x000078758133f000)
+        libsz.so.2 => /lib/x86_64-linux-gnu/libsz.so.2 (0x000078759669d000)
+        libz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x00007875944b7000)
+        libgomp.so.1 => /lib/x86_64-linux-gnu/libgomp.so.1 (0x000078758163a000)
+        libevent_core-2.1.so.7 => /lib/x86_64-linux-gnu/libevent_core-2.1.so.7 (0x0000787594482000)
+        libevent_pthreads-2.1.so.7 => /lib/x86_64-linux-gnu/libevent_pthreads-2.1.so.7 (0x0000787596696000)
+        libudev.so.1 => /lib/x86_64-linux-gnu/libudev.so.1 (0x0000787594024000)
+        libnghttp2.so.14 => /lib/x86_64-linux-gnu/libnghttp2.so.14 (0x00007875805d5000)
+        libidn2.so.0 => /lib/x86_64-linux-gnu/libidn2.so.0 (0x00007875805b3000)
+        librtmp.so.1 => /lib/x86_64-linux-gnu/librtmp.so.1 (0x0000787581321000)
+        libssh.so.4 => /lib/x86_64-linux-gnu/libssh.so.4 (0x0000787580542000)
+        libpsl.so.5 => /lib/x86_64-linux-gnu/libpsl.so.5 (0x000078758052e000)
+        libssl.so.3 => /lib/x86_64-linux-gnu/libssl.so.3 (0x000078757cb56000)
+        libgssapi_krb5.so.2 => /lib/x86_64-linux-gnu/libgssapi_krb5.so.2 (0x000078757cb02000)
+        libldap.so.2 => /lib/x86_64-linux-gnu/libldap.so.2 (0x000078757caa4000)
+        liblber.so.2 => /lib/x86_64-linux-gnu/liblber.so.2 (0x0000787594014000)
+        libzstd.so.1 => /lib/x86_64-linux-gnu/libzstd.so.1 (0x0000787577f46000)
+        libbrotlidec.so.1 => /lib/x86_64-linux-gnu/libbrotlidec.so.1 (0x0000787593df2000)
+        libaec.so.0 => /lib/x86_64-linux-gnu/libaec.so.0 (0x0000787596689000)
+        libcap.so.2 => /lib/x86_64-linux-gnu/libcap.so.2 (0x0000787580521000)
+        libunistring.so.5 => /lib/x86_64-linux-gnu/libunistring.so.5 (0x0000787577853000)
+        libgnutls.so.30 => /lib/x86_64-linux-gnu/libgnutls.so.30 (0x0000787577659000)
+        libhogweed.so.6 => /lib/x86_64-linux-gnu/libhogweed.so.6 (0x000078757ca5c000)
+        libnettle.so.8 => /lib/x86_64-linux-gnu/libnettle.so.8 (0x00007875783ab000)
+        libgmp.so.10 => /lib/x86_64-linux-gnu/libgmp.so.10 (0x00007875775d5000)
+        libkrb5.so.3 => /lib/x86_64-linux-gnu/libkrb5.so.3 (0x000078757750c000)
+        libk5crypto.so.3 => /lib/x86_64-linux-gnu/libk5crypto.so.3 (0x00007875804f5000)
+        libcom_err.so.2 => /lib/x86_64-linux-gnu/libcom_err.so.2 (0x00007875804ef000)
+        libkrb5support.so.0 => /lib/x86_64-linux-gnu/libkrb5support.so.0 (0x000078757ca4f000)
+        libsasl2.so.2 => /lib/x86_64-linux-gnu/libsasl2.so.2 (0x0000787578391000)
+        libbrotlicommon.so.1 => /lib/x86_64-linux-gnu/libbrotlicommon.so.1 (0x0000787577f23000)
+        libp11-kit.so.0 => /lib/x86_64-linux-gnu/libp11-kit.so.0 (0x0000787577368000)
+        libtasn1.so.6 => /lib/x86_64-linux-gnu/libtasn1.so.6 (0x000078757837b000)
+        libkeyutils.so.1 => /lib/x86_64-linux-gnu/libkeyutils.so.1 (0x000078757ca48000)
+        libresolv.so.2 => /lib/x86_64-linux-gnu/libresolv.so.2 (0x0000787577355000)
+        libffi.so.8 => /lib/x86_64-linux-gnu/libffi.so.8 (0x0000787577f17000)
+miroi@MIRO:~/work/software/gromacs/gromacs_cloned/build_gpu/.
+

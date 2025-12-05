@@ -123,3 +123,51 @@ miroi@MIRO:~/work/software/gromacs/gromacs_cloned/build_gnu/bin/.ldd gmx_mpi
         libresolv.so.2 => /lib/x86_64-linux-gnu/libresolv.so.2 (0x000078fb7ce0d000)
         libffi.so.8 => /lib/x86_64-linux-gnu/libffi.so.8 (0x000078fb7ce01000)
 
+Tests
+------
+make -j4 tests
+
+miroi@MIRO:~/work/software/gromacs/gromacs_cloned/build_gnu/.ls bin/
+analysisdata-test*                    gmxana-test*                          mdrun-multisim-replex-equivalence-test*  nblib-integration-test*      qmmm_applied_forces-test*
+applied_forces-test*                  gmxapi-mpi-test*                      mdrun-multisim-replex-test*              nblib-integrator-test*       random-test*
+argon-forces-integration*             gmxapi-test*                          mdrun-multisim-test*                     nblib-listed-forces-test*    restraintpotential-test*
+awh-test*                             gmxpreprocess-test*                   mdrun-non-integrator-test*               nblib-setup-test*            selection-test*
+colvars_applied_forces-test*          gpu_utils-mpi-test*                   mdrun-output-test*                       nblib-tpr-test*              serialization-test*
+commandline-test*                     gpu_utils-test*                       mdrun-pull-test*                         nblib-util-test*             simd-test*
+compat-test*                          h5md-test*                            mdrun-rotation-test*                     nbnxm-gpu-test*              table-test*
+coordinateio-test*                    hardware-test*                        mdrun-simulator-comparison-test*         nbnxm-test*                  taskassignment-test*
+correlations-test*                    listed_forces-test*                   mdrun-single-rank-algorithms-test*       nnpot_applied_forces-test*   testutils-mpi-test*
+density_fitting_applied_forces-test*  math-test*                            mdrun-test*                              nonbonded-fep-test*          testutils-test*
+domdec-mpi-test*                      mdlib-test*                           mdrun-tpi-test*                          onlinehelp-test*             timing-test*
+domdec-test*                          mdrun-coordination-basic-test*        mdrun-vsites-test*                       options-test*                tool-test*
+energyanalysis-test*                  mdrun-coordination-constraints-test*  mdrunutility-mpi-test*                   pbcutil-test*                tool-test-with-leaks*
+ewald-test*                           mdrun-coordination-coupling-test*     mdrunutility-test*                       pdb2gmx1-test*               topology-test*
+fft-test*                             mdrun-fep-test*                       mdspan-test*                             pdb2gmx2-test*               trajectoryanalysis-test*
+fileio-test*                          mdrun-io-test*                        mdtypes-test*                            pdb2gmx3-test*               utility-mpi-test*
+fmm-interface-tests*                  mdrun-modules-test*                   methane-water-integration*               plumed_applied_forces-test*  utility-test*
+gmx*                                  mdrun-mpi-pme-test*                   minimize-test*                           plumed_md-test*              workflow-details-mpi-test*
+gmx_mpi*                              mdrun-mpi-test*                       mpicomm-test*        
+
+ctest  -j4 
+.
+.
+ 99/100 Test  #88: MdrunMpi2RankPmeTests .....................   Passed    1.45 sec
+        Start  89: MdrunMpi4RankPmeTests
+100/100 Test  #89: MdrunMpi4RankPmeTests .....................   Passed    1.36 sec
+
+100% tests passed, 0 tests failed out of 100
+
+Label Time Summary:
+GTest              = 212.74 sec*proc (98 tests)
+IntegrationTest    = 110.32 sec*proc (32 tests)
+MpiTest            = 128.79 sec*proc (26 tests)
+QuickGpuTest       =  38.07 sec*proc (24 tests)
+SlowGpuTest        = 120.08 sec*proc (15 tests)
+SlowTest           =  70.22 sec*proc (14 tests)
+UnitTest           =  32.21 sec*proc (52 tests)
+
+Total Test time (real) =  59.50 sec
+miroi@MIRO:~/work/software/gromacs/gromacs_cloned/build_gnu/.
+
+
+

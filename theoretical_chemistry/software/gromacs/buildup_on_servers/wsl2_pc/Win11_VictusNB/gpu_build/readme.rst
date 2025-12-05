@@ -66,6 +66,13 @@ CMake Error at cmake/gmxManageNNPot.cmake:57 (message):
 Call Stack (most recent call first):
   CMakeLists.txt:843 (include)
 
+
+try
+miroi@MIRO:~/work/software/gromacs/gromacs_cloned/build_gpu/.cmake -DGMX_MPI=on  -DGMX_GPU=CUDA -DCMAKE_CUDA_ARCHITECTURES=all .. > cmake_config_gpu.log
+miroi@MIRO:~/work/software/gromacs/gromacs_cloned/build_gpu/.make -j4
+.
+.
+
 miroi@MIRO:~/work/software/gromacs/gromacs_cloned/build_gnu/.ldd bin/gmx
 
 

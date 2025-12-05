@@ -57,6 +57,14 @@ make[2]: *** Waiting for unfinished jobs....
 make[1]: *** [CMakeFiles/Makefile2:5762: src/gromacs/CMakeFiles/libgromacs.dir/all] Error 2
 make: *** [Makefile:166: all] Error 2
 
+FIX: cmake -DGMX_MPI=on  -DGMX_GPU=CUDA -DCMAKE_CUDA_ARCHITECTURES=native ..
+
+miroi@MIRO:~/work/software/gromacs/gromacs_cloned/build_gpu/.cmake -DGMX_MPI=on  -DGMX_GPU=CUDA -DCMAKE_CUDA_ARCHITECTURES=native .. > cmake_config_gpu.log
+
+CMake Error at cmake/gmxManageNNPot.cmake:57 (message):
+  Unknown CUDA architecture: native
+Call Stack (most recent call first):
+  CMakeLists.txt:843 (include)
 
 miroi@MIRO:~/work/software/gromacs/gromacs_cloned/build_gnu/.ldd bin/gmx
 

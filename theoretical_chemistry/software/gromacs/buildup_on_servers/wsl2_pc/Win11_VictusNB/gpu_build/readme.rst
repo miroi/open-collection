@@ -13,6 +13,15 @@ sudo dpkg -i cuda-keyring_1.1-1_all.deb
 sudo apt update
 sudo apt install cuda -y
 
+sudo dpkg --configure -a
+sudo apt-get upgrade
+sudo apt-get autoremove
+
+dpkg -s nvidia-cuda-toolkit | grep Version
+Version: 12.0.140~12.0.1-4build4
+
+windows are falling... try install newest cuda again ... 
+
 installation
 ------------
 miroi@MIRO:~/work/software/gromacs/gromacs_cloned/build_gpu/.cmake -DGMX_MPI=on  -DGMX_GPU=CUDA ..

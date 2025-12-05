@@ -16,3 +16,13 @@ CMake Error at CMakeLists.txt:34 (cmake_minimum_required):
 Ubuntu 24.04  milias@DESKTOP-7OTLCGO:~/work/software/gromacs/cloned/gromacs/.cmake --version
 cmake version 3.28.3
 
+milias@DESKTOP-7OTLCGO:~/work/software/gromacs/cloned/gromacs/build_gnu/.cmake -DGMX_MPI=ON .. > cmake.logile
+
+
+
+
+
+
+
+
+

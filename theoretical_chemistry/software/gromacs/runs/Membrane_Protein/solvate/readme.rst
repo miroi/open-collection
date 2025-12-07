@@ -24,3 +24,11 @@ orient
 /home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi editconf -f ../prepare_the_topology/KALP-15_processed.gro -o KALP_newbox.gro -c -box 6.41840 6.44350 6.59650
 
 output harvested into KALP_newbox.gro_logfile
+
+
+... this we do not apply :
+/home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi  editconf -f KALP_newbox.gro  -o  KALP_newbox_centered.gro -box 6.41840 6.44350 6.59650  -center x y z
+
+2. Pack the lipids around the protein
+-------------------------------------
+... seems obsolete ...

@@ -26,7 +26,7 @@ miroi@MIRO:~/work/software/gromacs/gromacs_cloned/share/top/.cp -R gromos53a6.ff
 
 modify  gromos53a6_lipid.ff/ffnonbonded.itp
 
-modify more ...
+modify topol.top
 
 solvate
 -------
@@ -37,27 +37,3 @@ run on WSL Notebook
 ~~~~~~~~~~~~~~~~~~~
 /home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi  grompp -f minim.mdp -c dppc128.pdb -p topol_dppc.top -o dppc.tpr
 
-./home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi  grompp -f minim.mdp -c dppc128.pdb -p topol_dppc.top -o dppc.tpr
-          :-) GROMACS - gmx grompp, 2027.0-dev-20251202-15e0cf6836 (-:
-
-Executable:   /home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi
-Data prefix:  /home/miroi/work/software/gromacs/gromacs_cloned (source tree)
-Working dir:  /home/miroi/work/projects/open-collection/theoretical_chemistry/software/gromacs/runs/Membrane_Protein/prepare_the_topology/modify_the_topology
-Command line:
-  gmx_mpi grompp -f minim.mdp -c dppc128.pdb -p topol_dppc.top -o dppc.tpr
-
-Ignoring obsolete mdp entry 'ns_type'
-Setting the LD random seed to 1878859761
-
-Generated 915 of the 2346 non-bonded parameter combinations
-
-ERROR 1 [file dppc.itp, line 112]:
-  No default LJ-14 types for interaction
-  '1     6     1'.
-
-
-ERROR 2 [file dppc.itp, line 113]:
-  No default LJ-14 types for interaction
-  '2     6     1'.
-
-... getting error ! needs further modifications

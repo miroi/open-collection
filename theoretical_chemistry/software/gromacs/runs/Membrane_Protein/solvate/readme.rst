@@ -17,3 +17,10 @@ trjconv to remove periodicity
 /home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi trjconv -s dppc.tpr -f ../prepare_the_topology/modify_the_topology/dppc128.pdb -o dppc128_whole.gro -pbc mol -ur compact
 
 ..output harvested into  dppc128_whole.gro_logfile
+
+
+orient
+------
+/home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi editconf -f ../prepare_the_topology/KALP-15_processed.gro -o KALP_newbox.gro -c -box 6.41840 6.44350 6.59650
+
+output harvested into KALP_newbox.gro_logfile

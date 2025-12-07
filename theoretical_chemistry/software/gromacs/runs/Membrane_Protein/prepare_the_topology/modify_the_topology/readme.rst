@@ -15,7 +15,7 @@ dppc128.pdb - the structure of a 128-lipid DPPC bilayer
 dppc.itp - the [moleculetype] definition for DPPC
 lipid.itp - Berger lipid parameters
 
-try solution:
+solution:
 https://github.com/fuentesdt/MembraneProtein
 
 wget https://raw.githubusercontent.com/fuentesdt/MembraneProtein/refs/heads/master/dppc128.pdb
@@ -27,13 +27,4 @@ miroi@MIRO:~/work/software/gromacs/gromacs_cloned/share/top/.cp -R gromos53a6.ff
 modify  gromos53a6_lipid.ff/ffnonbonded.itp
 
 modify topol.top
-
-solvate
--------
-wget http://www.mdtutorials.com/gmx/membrane_protein/Files/minim.mdp
-wget http://www.mdtutorials.com/gmx/membrane_protein/Files/topol_dppc.top
-
-run on WSL Notebook
-~~~~~~~~~~~~~~~~~~~
-/home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi  grompp -f minim.mdp -c dppc128.pdb -p topol_dppc.top -o dppc.tpr
 

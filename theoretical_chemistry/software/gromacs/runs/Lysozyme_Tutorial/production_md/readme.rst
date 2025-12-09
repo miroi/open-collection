@@ -43,6 +43,8 @@ Changing nstlist from 10 to 50, rlist from 1 to 1.107
 
 Using 1 MPI process
 Using 20 OpenMP threads
+.
+.
 
 
 

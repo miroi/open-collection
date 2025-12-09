@@ -63,11 +63,23 @@ Test project /home/milias/work/software/gromacs/cloned/gromacs/build_gnu
 .
 .
 .
+ 99/101 Test  #99: MdrunRotationTests ........................   Passed    0.51 sec
+        Start 100: MdrunSimulatorComparison
+100/101 Test #100: MdrunSimulatorComparison ..................   Passed    0.30 sec
+        Start 101: MdrunVirtualSiteTests
+101/101 Test #101: MdrunVirtualSiteTests .....................   Passed    0.65 sec
 
+100% tests passed, 0 tests failed out of 101
 
+Label Time Summary:
+GTest              = 137.63 sec*proc (99 tests)
+IntegrationTest    =  70.95 sec*proc (32 tests)
+MpiTest            =  88.00 sec*proc (26 tests)
+QuickGpuTest       =  25.61 sec*proc (25 tests)
+SlowGpuTest        =  76.48 sec*proc (15 tests)
+SlowTest           =  44.97 sec*proc (14 tests)
+UnitTest           =  21.71 sec*proc (53 tests)
 
-
-
-
+Total Test time (real) =  77.65 sec
 
 

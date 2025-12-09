@@ -2,7 +2,7 @@
 
 from ase import Atoms
 from ase.calculators.espresso import Espresso, EspressoProfile
-from ase.io import write
+from ase.io import write, read
 from ase.optimize import BFGS
 import numpy as np
 import sys

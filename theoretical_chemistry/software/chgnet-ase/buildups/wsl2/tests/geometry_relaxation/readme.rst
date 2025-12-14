@@ -2,6 +2,8 @@
 CHGNet test
 ===========
 
+PC Desktop BLTP JINR
+--------------------
 (myenv) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/chgnet-ase/buildups/wsl2/tests/relaxation/.python struct_optim.py
 CHGNet v0.3.0 initialized with 412,525 parameters
 CHGNet will run on cuda
@@ -29,3 +31,18 @@ Sites (8)
   6  O2-   0.5  0    0.901487  0.0386221
   7  O2-   0    0.5  0.639176  0.0441358
 relaxed total energy in eV: -58.9415283203125
+
+MiroPhenomII-X6 old Desktop PC
+------------------------------
+(venv) miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/chgnet-ase/buildups/wsl2/tests/geometry_relaxation/.python struct_optim.py
+CHGNet v0.3.0 initialized with 412,525 parameters
+/home/miroi/software/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:182: UserWarning: CUDA initialization: The NVIDIA driver on your system is too old (found version 11040). Please update your GPU driver by downloading and installing a new version from the URL: http://www.nvidia.com/Download/index.aspx Alternatively, go to: https://pytorch.org to install a PyTorch version that has been compiled with your version of the CUDA driver. (Triggered internally at /pytorch/c10/cuda/CUDAFunctions.cpp:119.)
+  return torch._C._cuda_getDeviceCount() > 0
+CHGNet will run on cpu
+CHGNet v0.3.0 initialized with 412,525 parameters
+CHGNet will run on cpu
+Floating point exception (core dumped)
+
+
+
+

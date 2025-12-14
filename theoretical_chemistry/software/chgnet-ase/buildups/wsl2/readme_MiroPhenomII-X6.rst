@@ -34,4 +34,24 @@ Requires: matplotlib, numpy, scipy
 Required-by: chgnet
 
 
+miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/chgnet-ase/buildups/wsl2/tests/geometry_relaxation/.nvidia-smi
+Sun Dec 14 22:02:43 2025
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 470.57.01    Driver Version: 471.41       CUDA Version: 11.4     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
+|===============================+======================+======================|
+|   0  NVIDIA GeForce ...  Off  | 00000000:01:00.0 N/A |                  N/A |
+|ERR!    0C    P8    N/A /  N/A |    530MiB /  2048MiB |     N/A      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
 
++-----------------------------------------------------------------------------+
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|        ID   ID                                                   Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+

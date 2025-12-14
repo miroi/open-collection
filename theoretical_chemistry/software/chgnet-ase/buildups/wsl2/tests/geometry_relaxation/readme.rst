@@ -44,5 +44,5 @@ CHGNet will run on cpu
 Floating point exception (core dumped)
 
 
-
+see https://github.com/CederGroupHub/chgnet/issues/248
 

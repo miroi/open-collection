@@ -32,4 +32,6 @@ sudo apt install ghostscript netcdf-bin
 Using Asap-optimized Verlet algorithm
 The output is in the NetCDF file TrajectoryMD-output.traj
 
+see https://gitlab.com/asap/asap/-/issues/80
+
 

@@ -17,3 +17,17 @@ WSL(Win2) milias@pc7321b
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 the same
+
+miroi@MiroPhenomII-X6
+---------------------
+
+(venv) miroi@MiroPhenomII-X6:~/work/git-projects/collection/open-collection/theoretical_chemistry/software/asap3-ase/runs/trajectory_md/.python TrajectoryMD.py
+/home/miroi/work/git-projects/collection/open-collection/theoretical_chemistry/software/asap3-ase/runs/trajectory_md/TrajectoryMD.py:21: FutureWarning: Please use atoms.calc = calc
+  atoms.set_calculator(EMT())
+Using Asap-optimized Verlet algorithm
+The output is in the ASE Trajectory file TrajectoryMD-output.traj
+
+(venv) miroi@MiroPhenomII-X6:~/work/git-projects/collection/open-collection/theoretical_chemistry/software/asap3-ase/runs/trajectory_md/.ase gui TrajectoryMD-output.traj
+
+
+

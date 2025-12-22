@@ -3,6 +3,8 @@
 from pymatgen.core import Lattice, Structure
 import matgl
 
+matgl.clear_cache()
+
 model = matgl.load_model("MEGNet-MP-2018.6.1-Eform")
 
 # This is the structure obtained from the Materials Project.

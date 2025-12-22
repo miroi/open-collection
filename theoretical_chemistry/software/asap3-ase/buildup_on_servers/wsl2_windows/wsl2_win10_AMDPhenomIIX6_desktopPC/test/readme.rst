@@ -36,6 +36,17 @@ Internal tests
 --------------
 are fine: https://gitlab.com/asap/asap/-/issues/79#note_2969348827
 
+(venv) miroi@MiroPhenomII-X6:~/work/git-projects/collection/open-collection/theoretical_chemistry/software/asap3-ase/buildup_on_servers/wsl2_windows/wsl2_win10_AMDPhenomIIX6_desktopPC/test/.mpirun -np 4 pytest --pyargs asap3 -m core
+.
+.
+======================================================================= 24 passed, 65 skipped, 107 deselected in 12.23s
+
+(venv) miroi@MiroPhenomII-X6:~/work/git-projects/collection/open-collection/theoretical_chemistry/software/asap3-ase/buildup_on_servers/wsl2_windows/wsl2_win10_AMDPhenomIIX6_desktopPC/test/.pytest --pyargs asap3 -m core
+.
+.
+.
+
+
 
 simple MD test
 --------------

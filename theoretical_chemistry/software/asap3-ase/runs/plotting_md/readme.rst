@@ -26,12 +26,14 @@ miroi@MiroPhenomII-X6
 ---------------------
 sudo apt install ghostscript netcdf-bin
 
+fixed, see https://gitlab.com/asap/asap/-/issues/80
+
 (venv) miroi@MiroPhenomII-X6:~/work/git-projects/collection/open-collection/theoretical_chemistry/software/asap3-ase/runs/plotting_md/.python PlottingMD.py
 /home/miroi/work/git-projects/collection/open-collection/theoretical_chemistry/software/asap3-ase/runs/plotting_md/PlottingMD.py:22: FutureWarning: Please use atoms.calc = calc
   atoms.set_calculator(EMT())
 Using Asap-optimized Verlet algorithm
-The output is in the NetCDF file TrajectoryMD-output.traj
+The output is in the ASE Trajectory file TrajectoryMD-output.traj
+(venv) miroi@MiroPhenomII-X6:~/work/git-projects/collection/open-collection/theoretical_chemistry/software/asap3-ase/runs/plotting_md/.
 
-see https://gitlab.com/asap/asap/-/issues/80
 
 

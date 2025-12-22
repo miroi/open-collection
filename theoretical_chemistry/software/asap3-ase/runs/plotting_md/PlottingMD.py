@@ -7,7 +7,7 @@ performed.
 """
 
 from numpy import *
-from asap3 import Atoms, EMT, units
+from asap3 import Atoms, EMT, units, Trajectory
 from asap3.visualize.primiplotter import *
 from ase.lattice.cubic import FaceCenteredCubic
 from asap3.md.verlet import VelocityVerlet
@@ -35,6 +35,16 @@ plotter.set_output(PngFile("a"))  # Save as PNG files
 # timestep is made.
 dyn.attach(plotter.plot, interval=25)
 
+# Make a trajectory writing output
+trajectory = Trajectory("TrajectoryMD-output.traj", "w", atoms)
+
+dyn.attach(trajectory, interval=25)
+
 # Now do 1000 timesteps.
 dyn.run(1000)
-print("The output is in the NetCDF file TrajectoryMD-output.traj")
+
+print("The output is in the ASE Trajectory file TrajectoryMD-output.traj")
+
+
+
+#print("The output is in the NetCDF file TrajectoryMD-output.traj")

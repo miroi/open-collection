@@ -46,3 +46,11 @@ Mon Dec 22 22:25:54 2025
 |  No running processes found                                                 |
 +-----------------------------------------------------------------------------+
 
+(venv) miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/matgl/buildups/wsl2/wsl2_win10_MiroPhenomII_DesktopPC/tests/.python
+Python 3.12.3 (main, Nov  6 2025, 13:44:16) [GCC 13.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import torch; torch.cuda.is_available()
+/home/miroi/software/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:182: UserWarning: CUDA initialization: The NVIDIA driver on your system is too old (found version 11040). Please update your GPU driver by downloading and installing a new version from the URL: http://www.nvidia.com/Download/index.aspx Alternatively, go to: https://pytorch.org to install a PyTorch version that has been compiled with your version of the CUDA driver. (Triggered internally at /pytorch/c10/cuda/CUDAFunctions.cpp:109.)
+  return torch._C._cuda_getDeviceCount() > 0
+False
+>>>

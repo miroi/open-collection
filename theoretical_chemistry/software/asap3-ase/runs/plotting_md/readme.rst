@@ -35,5 +35,7 @@ Using Asap-optimized Verlet algorithm
 The output is in the ASE Trajectory file TrajectoryMD-output.traj
 (venv) miroi@MiroPhenomII-X6:~/work/git-projects/collection/open-collection/theoretical_chemistry/software/asap3-ase/runs/plotting_md/.
 
-
+display trajectory
+~~~~~~~~~~~~~~~~~~
+ase gui TrajectoryMD-output.traj 
 

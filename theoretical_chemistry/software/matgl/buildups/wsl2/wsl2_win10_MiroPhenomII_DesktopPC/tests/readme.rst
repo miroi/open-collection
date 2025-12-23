@@ -3,6 +3,11 @@ Simple test
 
 https://github.com/materialyzeai/matgl#code
 
+error: https://github.com/materialyzeai/matgl/issues/699
+
+also  https://discuss.pytorch.org/t/userwarning-cuda-initialization-the-nvidia-driver-on-your-system-is-too-old-found-version-10010/141547/18?u=miroslav_ilias
+
+
 (venv) miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/matgl/buildups/wsl2/wsl2_win10_MiroPhenomII_DesktopPC/tests/.python formation_energy_CsCl.py
 
 miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/matgl/buildups/wsl2/wsl2_win10_MiroPhenomII_DesktopPC/tests/.python formation_energy_CsCl.py

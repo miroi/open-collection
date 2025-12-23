@@ -41,6 +41,6 @@ Eads = E(Hg@C8)-E(C8)-E(Hg)
 Eads =  -5827.982600 -( -1311.600966)-(-4516.127513)
 Eads = -.254121 eV
 
-Good AI:  Mercury's adsorption energy on pristine graphene is low (around -0.220 eV), indicating physisorption
+Google AI:  Mercury's adsorption energy on pristine graphene is low (around -0.220 eV), indicating physisorption
 
 

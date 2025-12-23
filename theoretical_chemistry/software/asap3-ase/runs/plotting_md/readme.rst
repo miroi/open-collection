@@ -1,5 +1,6 @@
-asap3-ase
-=========
+=============================================
+asap3-ase :Plotting while the simulation runs
+=============================================
 
 https://asap3.readthedocs.io/en/latest/examples/Plotting_while_the_simulation_runs.html
 
@@ -21,4 +22,20 @@ a0001.png      a0006.png  a0011.png  a0016.png  a0021.png  a0026.png  a0031.png 
 a0002.png      a0007.png  a0012.png  a0017.png  a0022.png  a0027.png  a0032.png  a0037.png
 a0003.png      a0008.png  a0013.png  a0018.png  a0023.png  a0028.png  a0033.png  a0038.png
 
+miroi@MiroPhenomII-X6
+---------------------
+sudo apt install ghostscript netcdf-bin
+
+fixed, see https://gitlab.com/asap/asap/-/issues/80
+
+(venv) miroi@MiroPhenomII-X6:~/work/git-projects/collection/open-collection/theoretical_chemistry/software/asap3-ase/runs/plotting_md/.python PlottingMD.py
+/home/miroi/work/git-projects/collection/open-collection/theoretical_chemistry/software/asap3-ase/runs/plotting_md/PlottingMD.py:22: FutureWarning: Please use atoms.calc = calc
+  atoms.set_calculator(EMT())
+Using Asap-optimized Verlet algorithm
+The output is in the ASE Trajectory file TrajectoryMD-output.traj
+(venv) miroi@MiroPhenomII-X6:~/work/git-projects/collection/open-collection/theoretical_chemistry/software/asap3-ase/runs/plotting_md/.
+
+display trajectory
+~~~~~~~~~~~~~~~~~~
+ase gui TrajectoryMD-output.traj 
 

@@ -75,10 +75,12 @@ module list
   echo -e "\n\n*** hydra.jinr.ru setting for compilation:   ***"
 
   export GROMACS=/zfs/scratch/HybriLITWorkshop2025/milias/software/gromacs/git_cloned/gromacs
+  export REGTESTS=/zfs/scratch/HybriLITWorkshop2025/milias/software/gromacs/git_cloned/gromacs-regressiontests
   #export BUILD=build_openmpi
   export BUILD=build_openmpi_gnu
 
   echo -e "\n GROMACS=$GROMACS"
+  echo -e "\n GROMACS REGRESSION TESTS=$REGTESTS"
 
   echo -e "gcc ?"; which gcc; gcc --version
   echo -e "g++ ?"; which g++; g++ --version
@@ -101,7 +103,7 @@ module list
   echo -e "\n I am in the directory $GROMACS/$BUILD:\c";pwd;ls -lt
 
   echo -e "\n\n running cmake configuration : "
-  cmake .. -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=mpicxx  -DGMX_MPI=on  -DGMX_FFT_LIBRARY=fftw3  -DGMX_OPENMP=ON
+  cmake .. -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=mpicxx  -DGMX_MPI=ON  -DGMX_FFT_LIBRARY=fftw3  -DGMX_OPENMP=ON -DREGRESSIONTEST_DOWNLOAD=OFF -DREGRESSIONTEST_PATH=$REGTESTS
 
   echo -e "\n\n running make -j $SLURM_CPUS_ON_NODE : "
   make -j $SLURM_CPUS_ON_NODE

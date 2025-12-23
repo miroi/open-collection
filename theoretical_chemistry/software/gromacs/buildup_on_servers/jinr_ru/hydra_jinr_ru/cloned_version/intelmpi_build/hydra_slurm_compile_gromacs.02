@@ -72,9 +72,11 @@ module list
   echo -e "\n\n*** hydra.jinr.ru setting for compilation:   ***"
 
   export GROMACS=/zfs/scratch/HybriLITWorkshop2025/milias/software/gromacs/git_cloned/gromacs
+  export REGTESTS=/zfs/scratch/HybriLITWorkshop2025/milias/software/gromacs/git_cloned/gromacs-regressiontests
   export BUILD=build_intelmpi_mkl
 
   echo -e "\n GROMACS=$GROMACS"
+  echo -e "\n GROMACS REGRESSION TESTS=$REGTESTS"
 
   #echo -e "ifort ?"; which ifort; ifort --version
   echo -e "clang ?"; which clang; clang --version
@@ -102,7 +104,7 @@ module list
 # The Intel classic compiler (icc/icpc) is no longer supported in GROMACS. Use Intel’s newer clang-based compiler from oneAPI, or gcc.
   echo -e "\n\n running cmake configuration : "
   #cmake .. -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=mpiicpc  -DGMX_MPI=on  -DGMX_FFT_LIBRARY=mkl  -DGMX_OPENMP=OFF
-  cmake .. -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++  -DGMX_MPI=on  -DGMX_FFT_LIBRARY=mkl  -DGMX_OPENMP=OFF
+  cmake .. -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++  -DGMX_MPI=on  -DGMX_FFT_LIBRARY=mkl  -DGMX_OPENMP=OFF -DREGRESSIONTEST_DOWNLOAD=OFF -DREGRESSIONTEST_PATH=$REGTESTS
 
   echo -e "\n\n running make -j $SLURM_CPUS_ON_NODE : "
   make -j $SLURM_CPUS_ON_NODE

@@ -63,5 +63,6 @@ clean-runall-files.bat
 
 C:\Users\Public\gamess-64>python tests\runtest.py --version=2023.R1.intel --folder=travis-ci\parallel -n 2
 
-
+C:\Users\Public\gamess-64\tests>python checkgms.py
+... all Passed
 

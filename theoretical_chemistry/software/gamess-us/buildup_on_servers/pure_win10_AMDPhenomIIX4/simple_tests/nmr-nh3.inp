@@ -1,0 +1,30 @@
+!   Test of NMR shielding computation on NH3, 6-31+G(d,p) has 34 AOs.
+!
+!   The isotropic shieldings of the atoms are
+!       276.1334, 32.0936, 32.0934, 32.0936
+!   The anisotropies of the atoms are
+!        21.0335, 16.7927, 16.7925, 16.7927
+!   The diamagnetic part of the isotropic shielding is
+!       318.4443, 30.9837, 30.9747, 30.9449
+!   The paramagnetic part of the isotropic shielding is
+!       -42.3109,  1.1099,  1.1187,  1.1487
+!
+!   This run takes 22 seconds on 2.66 GHz Cloverton (30 Apr 2015)
+!   results have not changed significantly since at least 2008
+!
+ $contrl scftyp=rhf runtyp=nmr $end
+ $system mwords=8 $end
+ $basis  gbasis=n31 ngauss=6 ndfunc=1 npfunc=1 diffsp=.t. $end
+ $nmr    pdia=.t. ppara=.t. pevec=.t. $end
+ $data
+NMR properties of NH3
+C1
+N    7.0    .0110709098   -.0362907377    .0231777668
+H    1.0   -.0728879764    .1227754949   -.9603512303
+H    1.0    .4473851757    .7591869086    .4433501451
+H    1.0    .5885869209   -.8386228857    .1728958883
+ $end
+
+
+! TRAVIS-CI SMALL
+

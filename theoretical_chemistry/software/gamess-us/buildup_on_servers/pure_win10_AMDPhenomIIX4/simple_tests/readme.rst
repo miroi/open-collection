@@ -17,7 +17,7 @@ nmr-nh3
 -------
 from C:\Users\Public\gamess-64\tests\spectra
 
-only serial run possible 
+only serial run is possible 
 
 C:\Users\Miro Ilias\Desktop\git-projects\open-collection\theoretical_chemistry\software\gamess-us\buildup_on_servers\pure_win10_AMDPhenomIIX4\simple_tests>C:\Users\Public\gamess-64\rungms.bat nmr-nh3.inp  2023.R1.intel 1 > nmr-nh3.logfile
 

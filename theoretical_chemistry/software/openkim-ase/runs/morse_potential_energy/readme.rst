@@ -19,3 +19,30 @@ Collecting lammps
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 81.9/81.9 MB 33.5 MB/s eta 0:00:00
 Installing collected packages: lammps
 Successfully installed lammps-2023.8.2.3.1
+
+
+MiroPhenomII-X6
+---------------
+(venv) miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/openkim-ase/runs/morse_potential_energy/.python morse.py
+Potential energy of FCC Ar: -0.37120682093323026 eV
+
+venv) miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/openkim-ase/runs/morse_potential_energy/.python au_fcc_lammps.py
+Traceback (most recent call last):
+  File "/home/miroi/work/git-projects/open-collection/theoretical_chemistry/software/openkim-ase/runs/morse_potential_energy/au_fcc_lammps.py", line 11, in <module>
+    energy = atoms.get_potential_energy()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miroi/software/venv/lib/python3.12/site-packages/ase/atoms.py", line 1950, in get_potential_energy
+    energy = self._calc.get_potential_energy(self)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miroi/software/venv/lib/python3.12/site-packages/ase/calculators/abc.py", line 26, in get_potential_energy
+    return self.get_property(name, atoms)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miroi/software/venv/lib/python3.12/site-packages/ase/calculators/calculator.py", line 519, in get_property
+    self.calculate(atoms, [name], system_changes)
+  File "/home/miroi/software/venv/lib/python3.12/site-packages/ase/calculators/lammpslib.py", line 384, in calculate
+    self.propagate(atoms, properties, system_changes, 0)
+  File "/home/miroi/software/venv/lib/python3.12/site-packages/ase/calculators/lammpslib.py", line 403, in propagate
+    self.start_lammps()
+  File "/home/miroi/software/venv/lib/python3.12/site-packages/ase/calculators/lammpslib.py", line 661, in start_lammps
+    from lammps import LMP_STYLE_ATOM, LMP_TYPE_VECTOR, lammps
+ModuleNotFoundError: No module named 'lammps'

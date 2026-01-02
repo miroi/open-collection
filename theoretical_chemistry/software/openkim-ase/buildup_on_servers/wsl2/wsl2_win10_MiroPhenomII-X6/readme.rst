@@ -31,6 +31,9 @@ miroi@MiroPhenomII-X6:~/software/kim-api/.tar Jxvf kim-api-2.4.1.txz
 
 installation
 ------------
+
+see https://openkim.org/doc/usage/obtaining-models/#source_install
+
 miroi@MiroPhenomII-X6:~/software/kim-api/kim-api-2.4.1/.mkdir build
 miroi@MiroPhenomII-X6:~/software/kim-api/kim-api-2.4.1/.cd build/
 miroi@MiroPhenomII-X6:~/software/kim-api/kim-api-2.4.1/build/.cmake .. -DCMAKE_BUILD_TYPE=Release
@@ -453,18 +456,30 @@ miroi@MiroPhenomII-X6:~/software/kim-api/kim-api-2.4.1/build/.sudo ldconfig
 /sbin/ldconfig.real: /usr/lib/wsl/lib/libcuda.so.1 is not a symbolic link
 
 
+Installing KIM Models
+---------------------
 
+https://openkim.org/doc/usage/obtaining-models/#installing_models
 
+miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/openkim-ase/buildup_on_servers/wsl2/wsl2_win10_MiroPhenomII-X6/.kim-api-collections-management install user SW_StillingerWeber_1985_Si__MO_405512056662_005
+Downloading.............. SW_StillingerWeber_1985_Si__MO_405512056662_005
+This item needs its driver 'SW__MD_335816936951_004', but it is not currently installed.
+Trying to find it at openkim.org.
+Downloading.............. SW__MD_335816936951_004
+[100%] Built target SW__MD_335816936951_004
+Install the project...
+-- Install configuration: "Release"
+-- Installing: /home/miroi/.kim-api/2.4.1+GNU.GNU.GNU.2026-01-02-19-24-56/model-drivers-dir/SW__MD_335816936951_004/libkim-api-model-driver.so
+-- Set non-toolchain portion of runtime path of "/home/miroi/.kim-api/2.4.1+GNU.GNU.GNU.2026-01-02-19-24-56/model-drivers-dir/SW__MD_335816936951_004/libkim-api-model-driver.so" to ""
+[100%] Built target SW_StillingerWeber_1985_Si__MO_405512056662_005
+Install the project...
+-- Install configuration: "Release"
+-- Installing: /home/miroi/.kim-api/2.4.1+GNU.GNU.GNU.2026-01-02-19-24-56/portable-models-dir/SW_StillingerWeber_1985_Si__MO_405512056662_005/libkim-api-portable-model.so
+-- Set non-toolchain portion of runtime path of "/home/miroi/.kim-api/2.4.1+GNU.GNU.GNU.2026-01-02-19-24-56/portable-models-dir/SW_StillingerWeber_1985_Si__MO_405512056662_005/libkim-api-portable-model.so" to ""
 
+Success!
+miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/openkim-ase/buildup_on_servers/wsl2/wsl2_win10_MiroPhenomII-X6/.
 
-
-
-
-
-
-
-
-
-
+miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/openkim-ase/buildup_on_servers/wsl2/wsl2_win10_MiroPhenomII-X6/.kim-api-collections-management list > kim-api-collections-management-list.log_SAVED
 
 

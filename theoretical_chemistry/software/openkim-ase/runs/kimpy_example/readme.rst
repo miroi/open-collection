@@ -18,3 +18,27 @@ milias@Miro:/mnt/c/Users/miroi/OneDrive/Desktop/Work/projekty/open-collection/th
   5.0000000000e+00  -1.1762679400e-01
   5.5000000000e+00  -5.0038462875e-03
   6.0000000000e+00   0.0000000000e+00
+
+MiroPhenomII-X6
+---------------
+miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/openkim-ase/runs/kimpy_example/.source ~/software/venv/bin/activate
+(venv) miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/openkim-ase/runs/kimpy_example/.python kimpy_example.py
+Traceback (most recent call last):
+  File "/home/miroi/work/git-projects/open-collection/theoretical_chemistry/software/openkim-ase/runs/kimpy_example/kimpy_example.py", line 4, in <module>
+    import kimpy
+ModuleNotFoundError: No module named 'kimpy'
+(venv) miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/openkim-ase/runs/kimpy_example/.pip install kimpy
+Collecting kimpy
+  Using cached kimpy-2.1.3.tar.gz (49 kB)
+.
+.
+
+(venv) miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/openkim-ase/runs/kimpy_example/.python kimpy_example.py
+Traceback (most recent call last):
+  File "/home/miroi/work/git-projects/open-collection/theoretical_chemistry/software/openkim-ase/runs/kimpy_example/kimpy_example.py", line 37, in <module>
+    units_accepted, kim_model = kimpy.model.create(
+                                ^^^^^^^^^^^^^^^^^^^
+RuntimeError: Unable to create a new KIM-API Model object!
+
+
+

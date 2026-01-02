@@ -1,76 +1,33 @@
-====================
-OpenKIM on WSL-Win11
-====================
+=======
+kim api
+=======
 
-uninstall Ubuntu packages
--------------------------
+download
+---------
+miroi@MiroPhenomII-X6:~/software/kim-api/.wget https://s3.openkim.org/kim-api/kim-api-2.4.1.txz
+miroi@MiroPhenomII-X6:~/software/kim-api/.wget  https://s3.openkim.org/kim-api/kim-api-2.4.1.txz.asc
 
-https://openkim.org/doc/usage/obtaining-models/#ubuntu_linux
+miroi@MiroPhenomII-X6:~/software/kim-api/.wget https://z.umn.edu/relliott_asc
 
-sudo add-apt-repository ppa:openkim/latest
-sudo apt-get update
-sudo apt-get install libkim-api-dev openkim-models
 
-https://matsci.org/t/multiple-kim-installations-or-cannot-find-libkim-api-so/55164/3
+miroi@MiroPhenomII-X6:~/software/kim-api/.gpg --import relliott_asc
+gpg: /home/miroi/.gnupg/trustdb.gpg: trustdb created
+gpg: key 576D4997C4D51D92: public key "Ryan S. Elliott <relliott@umn.edu>" imported
+gpg: Total number processed: 1
+gpg:               imported: 1
 
-sudo apt install pkgconf
-pkg-config  libkim-api-dev openkim-models
 
-(venv) miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/openkim-ase/buildup_on_servers/wsl2/wsl2_win10_MiroPhenomII-X6/.sudo add-apt-repository --remove  ppa:openkim/latest
-
-(venv) miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/openkim-ase/buildup_on_servers/wsl2/wsl2_win10_MiroPhenomII-X6/.sudo apt-get remove libkim-api-dev openkim-models
-
-(venv) miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/openkim-ase/buildup_on_servers/wsl2/wsl2_win10_MiroPhenomII-X6/.sudo apt autoremove
-
-switch to conda
----------------
-(venv) miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/openkim-ase/buildup_on_servers/wsl2/wsl2_win10_MiroPhenomII-X6/.wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-(venv) miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/openkim-ase/buildup_on_servers/wsl2/wsl2_win10_MiroPhenomII-X6/.bash Miniconda3-latest-Linux-x86_64.sh
-
-(base) miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/openkim-ase/buildup_on_servers/wsl2/wsl2_win10_MiroPhenomII-X6/.conda create -n kim-env -c conda-forge kim-api
-# To activate this environment, use
-#     $ conda activate kim-env
-# To deactivate an active environment, use
-#     $ conda deactivate
+miroi@MiroPhenomII-X6:~/software/kim-api/.gpg --verify kim-api-2.4.1.txz.asc kim-api-2.4.1.txz
+gpg: Signature made Tue Apr 15 21:28:42 2025 CEST
+gpg:                using RSA key DECADD04C80028FCA210F824576D4997C4D51D92
+gpg:                issuer "relliott@umn.edu"
+gpg: Good signature from "Ryan S. Elliott <relliott@umn.edu>" [unknown]
+gpg: WARNING: The key's User ID is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: DECA DD04 C800 28FC A210  F824 576D 4997 C4D5 1D92
+miroi@MiroPhenomII-X6:~/software/kim-api/.
 
 
 
-kimpy, kim-querry
-------------------
-https://pypi.org/project/kimpy/
-https://pypi.org/project/kim-query/
-
-pip install kimpy
-
-.
-.
-Successfully built kimpy
-Installing collected packages: kimpy
-Successfully installed kimpy-2.1.1
-
-pip install kim-query
-.
-.
-Installing collected packages: kim-query
-Successfully installed kim-query-3.0.0
-
-
-miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/openkim-ase/buildup_on_servers/wsl2/wsl2_win10_MiroPhenomII-X6/.source ~/software/venv/bin/activate
-(venv) miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/openkim-ase/buildup_on_servers/wsl2/wsl2_win10_MiroPhenomII-X6/.pip install kimpy kim-query
-
-
-
-kim-api-collections
-~~~~~~~~~~~~~~~~~~~
-kim-api-collections-management  list > kim-api-collections-management_list.log
-
-
-ls /lib/x86_64-linux-gnu/kim-api/
-mod/  model-drivers/  portable-models/  simulator-models/
-
-tests
------
-milias@Miro:/mnt/c/Users/miroi/OneDrive/Desktop/Work/projekty/open-collection/theoretical_chemistry/software/openkim/buildup_on_servers/wsl_win11_VictusNB/.python3 ase-kim-test.py
-Potential energy: -0.37120682093323026 eV
 
 

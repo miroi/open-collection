@@ -1,0 +1,80 @@
+====================
+OpenKIM on WSL-Win11
+====================
+
+uninstall Ubuntu packages
+-------------------------
+
+https://openkim.org/doc/usage/obtaining-models/#ubuntu_linux
+
+sudo add-apt-repository ppa:openkim/latest
+sudo apt-get update
+sudo apt-get install libkim-api-dev openkim-models
+
+https://matsci.org/t/multiple-kim-installations-or-cannot-find-libkim-api-so/55164/3
+
+sudo apt install pkgconf
+pkg-config  libkim-api-dev openkim-models
+
+(venv) miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/openkim-ase/buildup_on_servers/wsl2/wsl2_win10_MiroPhenomII-X6/.sudo add-apt-repository --remove  ppa:openkim/latest
+
+(venv) miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/openkim-ase/buildup_on_servers/wsl2/wsl2_win10_MiroPhenomII-X6/.sudo apt-get remove libkim-api-dev openkim-models
+
+(venv) miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/openkim-ase/buildup_on_servers/wsl2/wsl2_win10_MiroPhenomII-X6/.sudo apt autoremove
+
+switch to conda
+---------------
+(venv) miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/openkim-ase/buildup_on_servers/wsl2/wsl2_win10_MiroPhenomII-X6/.wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+(venv) miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/openkim-ase/buildup_on_servers/wsl2/wsl2_win10_MiroPhenomII-X6/.bash Miniconda3-latest-Linux-x86_64.sh
+
+(base) miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/openkim-ase/buildup_on_servers/wsl2/wsl2_win10_MiroPhenomII-X6/.conda create -n kim-env -c conda-forge kim-api
+# To activate this environment, use
+#     $ conda activate kim-env
+# To deactivate an active environment, use
+#     $ conda deactivate
+
+(kim-env) miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/openkim-ase/buildup_on_servers/wsl2/wsl2_win10_MiroPhenomII-X6/.kim-api-collections-management list > kim-api-collections-management-list.log
+
+Installing KIM Models
+~~~~~~~~~~~~~~~~~~~~~
+
+
+kimpy, kim-querry
+------------------
+https://pypi.org/project/kimpy/
+https://pypi.org/project/kim-query/
+
+pip install kimpy
+
+.
+.
+Successfully built kimpy
+Installing collected packages: kimpy
+Successfully installed kimpy-2.1.1
+
+pip install kim-query
+.
+.
+Installing collected packages: kim-query
+Successfully installed kim-query-3.0.0
+
+
+miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/openkim-ase/buildup_on_servers/wsl2/wsl2_win10_MiroPhenomII-X6/.source ~/software/venv/bin/activate
+(venv) miroi@MiroPhenomII-X6:~/work/git-projects/open-collection/theoretical_chemistry/software/openkim-ase/buildup_on_servers/wsl2/wsl2_win10_MiroPhenomII-X6/.pip install kimpy kim-query
+
+
+
+kim-api-collections
+~~~~~~~~~~~~~~~~~~~
+kim-api-collections-management  list > kim-api-collections-management_list.log
+
+
+ls /lib/x86_64-linux-gnu/kim-api/
+mod/  model-drivers/  portable-models/  simulator-models/
+
+tests
+-----
+milias@Miro:/mnt/c/Users/miroi/OneDrive/Desktop/Work/projekty/open-collection/theoretical_chemistry/software/openkim/buildup_on_servers/wsl_win11_VictusNB/.python3 ase-kim-test.py
+Potential energy: -0.37120682093323026 eV
+
+

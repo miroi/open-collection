@@ -143,6 +143,9 @@ miroi@MiroPhenomII-X6:~/software/kim-api/kim-api-2.4.1/build/.make -j4
 [100%] Linking CXX shared module libkim-api-model-driver.so
 [100%] Built target LennardJones612__MD_414112407348_003
 
+ctest
+~~~~~
+
 miroi@MiroPhenomII-X6:~/software/kim-api/kim-api-2.4.1/build/.ctest -j4
 Test project /home/miroi/software/kim-api/kim-api-2.4.1/build
       Start  1: shared_library_test_ex_model_driver_P_LJ

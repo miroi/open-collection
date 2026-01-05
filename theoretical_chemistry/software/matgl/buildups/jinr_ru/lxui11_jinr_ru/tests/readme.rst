@@ -34,3 +34,12 @@ Location: /scr/u/milias/venv/lib/python3.9/site-packages
 Requires: networkx, numpy, psutil, requests, scipy, torchdata, tqdm
 Required-by: matgl
 
+(venv) milias@lxui11.jinr.ru:/scr/u/milias/open-collection/theoretical_chemistry/software/matgl/buildups/jinr_ru/lxui11_jinr_ru/tests/.python formation_energy_CsCl.py
+DGL backend not selected or invalid.  Assuming PyTorch for now.
+Setting the default backend to "pytorch". You can change it in the ~/.dgl/config.json file or export the DGLBACKEND environment variable.  Valid options are: pytorch, mxnet, tensorflow (all lowercase)
+/scr/u/milias/venv/lib64/python3.9/site-packages/networkx/utils/backends.py:135: RuntimeWarning: networkx backend defined more than once: nx-loopback
+  backends.update(_get_backends("networkx.backends"))
+/scr/u/milias/open-collection/theoretical_chemistry/software/matgl/buildups/jinr_ru/lxui11_jinr_ru/tests/formation_energy_CsCl.py:14: DeprecationWarning: Conversion of an array with ndim > 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+  print(f"The predicted formation energy for CsCl is {float(eform.numpy()):.3f} eV/atom.")
+The predicted formation energy for CsCl is -2.220 eV/atom.
+

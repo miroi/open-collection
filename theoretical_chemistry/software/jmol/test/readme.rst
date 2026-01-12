@@ -35,8 +35,6 @@ MMFF Step 62   E =  39.275150    dE = 0.000000
 
     MMFF STEEPEST DESCENT HAS CONVERGED: E = 39.27515 kJ/mol after 62 steps
 
+in console:  write  C:\Users\miroi\Desktop\git-projects\open-collection\theoretical_chemistry\software\jmol\test\alkane3Dopt.mol
 
-
-
-File - Save a Copy ... saved as  C:\Users\miroi\Desktop\git-projects\open-collection\theoretical_chemistry\software\jmol\test\alkane3Doptim.mol
 

@@ -2,9 +2,9 @@
 Open science software data collection
 =======================================
 
-Personal collection (or storage) of various scientific and educational software inputs and some outputs.
+This is personal collection (storage) of inputs, selected outpus of various scientific and educational software.
 
-My areas of interest are theoretical chemistry, air pollution modeling and computer science. 
+My areas of interest are mainly theoretical chemistry, but you may find air pollution modeling and computer science. 
 
 This collection is open and serves mainly for teaching purposes.
 

@@ -1,0 +1,118 @@
+cmake -DCMAKE_Fortran_COMPILER=mpiifx -DEXTRA_FCFLAGS="''" -DCMAKE_C_COMPILER=mpiicx -DEXTRA_CFLAGS="''" -DCMAKE_CXX_COMPILER=mpiicpx -DEXTRA_CXXFLAGS="''" -DPREPROCESSOR_DEFINITIONS="''" -DPYTHON_INTERPRETER="''" -DENABLE_BLAS=auto -DENABLE_LAPACK=auto -DMKL_FLAG=off -DMATH_LIB_SEARCH_ORDER="MKL;ESSL;OPENBLAS;ATLAS;ACML;SYSTEM_NATIVE" -DBLAS_LANG=Fortran -DLAPACK_LANG=Fortran -DENABLE_MPI=True -DENABLE_OPENMP=True -DENABLE_CODE_COVERAGE=False -DENABLE_STATIC_LINKING=False -DENABLE_PROFILING=False -DENABLE_RUNTIMECHECK=False -DENABLE_64BIT_INTEGERS=True -DEXPLICIT_LIBS="off" -DENABLE_EXATENSOR=ON -DENABLE_PCMSOLVER=OFF -DENABLE_PELIB=ON -DPCMSOLVER_ROOT='' -DENABLE_STIELTJES=OFF -DCMAKE_BUILD_TYPE=release -G"Unix Makefiles" -D ENABLE_PELIB=OFF -H/home/miroi/work/software/dirac/trunk_cloned -Bbuild_intelmpi_mkl_ilp64
+
+-- The Fortran compiler identification is IntelLLVM 2025.3.2
+-- The C compiler identification is IntelLLVM 2025.3.2
+-- The CXX compiler identification is IntelLLVM 2025.3.2
+-- Detecting Fortran compiler ABI info
+-- Detecting Fortran compiler ABI info - done
+-- Check for working Fortran compiler: /opt/intel/oneapi/2025.3/bin/mpiifx - skipped
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /opt/intel/oneapi/2025.3/bin/mpiicx - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /opt/intel/oneapi/2025.3/bin/mpiicpx - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found Python: /usr/bin/python3.12 (found version "3.12.3") found components: Interpreter
+-- BLAS will be searched for based on MKLROOT=/opt/intel/oneapi/2025.3
+-- Searching for BLAS using search order MKL;ESSL;OPENBLAS;ATLAS;ACML;SYSTEM_NATIVE
+-- Setting -DHAVE_MKL_BLAS
+-- Found BLAS: MKL (-Wl,--start-group;/opt/intel/oneapi/2025.3/lib/intel64/libmkl_intel_ilp64.so;/opt/intel/oneapi/2025.3/lib/intel64/libmkl_intel_thread.so;/opt/intel/oneapi/2025.3/lib/intel64/libmkl_core.so;/usr/lib/x86_64-linux-gnu/libpthread.a;/usr/lib/x86_64-linux-gnu/libm.so;-qopenmp;-Wl,--end-group)
+-- LAPACK will be searched for based on MKLROOT=/opt/intel/oneapi/2025.3
+-- Searching for LAPACK using search order MKL;ESSL;OPENBLAS;ATLAS;ACML;SYSTEM_NATIVE
+-- Setting -DHAVE_MKL_LAPACK
+-- Found LAPACK: MKL (-Wl,--start-group;/opt/intel/oneapi/2025.3/lib/intel64/libmkl_lapack95_ilp64.a;/opt/intel/oneapi/2025.3/lib/intel64/libmkl_intel_ilp64.so;-qopenmp;-Wl,--end-group)
+-- MATH_LIB_SEARCH_ORDER set to MKL;ESSL;OPENBLAS;ATLAS;ACML;SYSTEM_NATIVE
+-- Found MPI_C: /opt/intel/oneapi/2025.3/bin/mpiicx (found version "4.1")
+-- Found MPI_CXX: /opt/intel/oneapi/2025.3/bin/mpiicpx (found version "4.1")
+-- Found MPI_Fortran: /opt/intel/oneapi/2025.3/bin/mpiifx (found version "4.1")
+-- Found MPI: TRUE (found version "4.1")
+-- Found OpenMP_C: -fiopenmp (found version "5.1")
+-- Found OpenMP_CXX: -fiopenmp (found version "5.1")
+-- Found OpenMP_Fortran: -fiopenmp (found version "5.2")
+-- Found OpenMP: TRUE (found version "5.1")
+-- Enable profiling: False
+-- Enable run-time checking: False
+-- Configure-time Linked math libs integer compatibility test ENABLED
+-- Performing compile and run test of blas integer size (can deactivate with -D ENABLE_MATH_INT_TEST=OFF) 
+-- Performing Test blas_test_compiled ...
+-- Performing Test blas_test_compiled - Success
+-- Performing Test blas_test_run
+-- Performing Test blas_test_run - Failed
+-- Test of blas integer size SUCCESS .. blas is integer*8 
+-- We have BLAS-integer*8
+-- Found HDF5: /usr/lib/x86_64-linux-gnu/hdf5/serial/libhdf5.so;/usr/lib/x86_64-linux-gnu/libcrypto.so;/usr/lib/x86_64-linux-gnu/libcurl.so;/usr/lib/x86_64-linux-gnu/libpthread.a;/usr/lib/x86_64-linux-gnu/libsz.so;/usr/lib/x86_64-linux-gnu/libz.so;/usr/lib/x86_64-linux-gnu/libdl.a;/usr/lib/x86_64-linux-gnu/libm.so (found version "1.10.10") found components: C
+-- HFD5 found, enabling HDF5 interface 
+-- HDF5 include directory location: /usr/include/hdf5/serial 
+-- MPI package type: INTEL
+-- Compiling /home/miroi/work/software/dirac/trunk_cloned/cmake/custom/test-MPI-compiler-compatibility.F90 ...
+-- Performing Test MPI_COMPILER_MATCHES ...
+-- Performing Test MPI_COMPILER_MATCHES - Success
+-- mpi.mod matches the current MPI compiler, employing 'use mpi' and setting -DUSE_MPI_MOD_F90
+-- Compiling /home/miroi/work/software/dirac/trunk_cloned/cmake/custom/test-MPI-itype-compatibility.F90 ...
+-- Performing Test MPI_ITYPE_MATCHES ...
+-- Performing Test MPI_ITYPE_MATCHES - Success
+-- Well, program got compiled with 64-bit integers, but the internal MPI integer compatibility test will be performed inside dirac.x.
+-- Set CDash default timeout for single test set to 1500 seconds. Overwritten by test's TIMEOUT property label and, ultimatively, by pam timeout setting.
+-- Test's 'basis_input_scripted' timeout set to 3600 seconds. Can be overwritten by pam's timeout setting.
+-- Polarizable Continuum Model via PCMSolver DISABLED
+-- ExaTensor library cannot work with 64 bit integers, switched off
+-- Enable ExaTENSOR library: OFF
+-- NOTE: tests for the (e)amfX2C 2e-scalar and spin-orbit picture-change correction module require h5py in your python env!
+-- (e)amfX2C 2e-scalar and spin-orbit picture-change correction module: ON
+-- The XCFun submodule ENABLED
+-- ESR property module: ON
+-- src/reladc/polprp_cousat.F: assigned -O2 optimization flag to fix the compilation with Intel
+-- Stieltjes external module DISABLED
+-- KRCC module: ON
+-- Enable compilation of standalone relccsd.x: OFF
+-- OpenRSP library: OFF
+-- LAO properties without connection matrices: ON
+-- Spinfree MCSCF module: ON
+-- srDFT module: ON
+-- Specialized tutorial tests DISABLED
+-- Unit control tests DISABLED
+-- Found HDF5: /usr/lib/x86_64-linux-gnu/hdf5/serial/libhdf5.so;/usr/lib/x86_64-linux-gnu/libcrypto.so;/usr/lib/x86_64-linux-gnu/libcurl.so;/usr/lib/x86_64-linux-gnu/libpthread.a;/usr/lib/x86_64-linux-gnu/libsz.so;/usr/lib/x86_64-linux-gnu/libz.so;/usr/lib/x86_64-linux-gnu/libdl.a;/usr/lib/x86_64-linux-gnu/libm.so (found version "1.10.10") found components: C HL
+-- User name: miroi
+-- Host name: MIRO
+-- Operating system: Linux-6.6.87.2-microsoft-standard-WSL2
+-- CMake version: 4.2.0-rc4
+-- CMake generator: Unix Makefiles
+-- CMake build type: release
+-- Configuration time: 2026-01-30 23:23:53.148880+00:00
+-- Fortran compiler ID: IntelLLVM
+-- Fortran compiler: /opt/intel/oneapi/2025.3/bin/mpiifx
+-- Fortran compiler version: IntelLLVM 2025.3.2
+-- Fortran compiler flags:  -w -assume byterecl -g -traceback -DVAR_IFX  -fiopenmp -i8
+-- C compiler ID: IntelLLVM
+-- C compiler: /opt/intel/oneapi/2025.3/bin/mpiicx
+-- C compiler version: IntelLLVM 2025.3.2
+-- C compiler flags:  -g  -fiopenmp
+-- CXX compiler ID: IntelLLVM
+-- CXX compiler: /opt/intel/oneapi/2025.3/bin/mpiicpx
+-- CXX compiler version: IntelLLVM 2025.3.2
+-- CXX compiler flags:  -Wno-unknown-pragmas  -fiopenmp
+-- Static linking: False
+-- 64-bit integers: True
+-- MPI parallelization: True
+-- MPI launcher: /opt/intel/oneapi/2025.3/bin/mpiexec
+-- Math libraries: -Wl,--start-group;/opt/intel/oneapi/2025.3/lib/intel64/libmkl_lapack95_ilp64.a;/opt/intel/oneapi/2025.3/lib/intel64/libmkl_intel_ilp64.so;-qopenmp;-Wl,--end-group;-Wl,--start-group;/opt/intel/oneapi/2025.3/lib/intel64/libmkl_intel_ilp64.so;/opt/intel/oneapi/2025.3/lib/intel64/libmkl_intel_thread.so;/opt/intel/oneapi/2025.3/lib/intel64/libmkl_core.so;/usr/lib/x86_64-linux-gnu/libpthread.a;/usr/lib/x86_64-linux-gnu/libm.so;-qopenmp;-Wl,--end-group
+-- Compile definitions: HAVE_MKL_BLAS;HAVE_MKL_LAPACK;HAVE_MPI;HAVE_OPENMP;VAR_MPI;VAR_MPI2;USE_MPI_MOD_F90;SYS_LINUX;PRG_DIRAC;INT_STAR8;INSTALL_WRKMEM=64000000;BUILD_GEN1INT;MOD_LAO_REARRANGED;MOD_MCSCF_spinfree;MOD_XAMFI;MOD_ESR;MOD_KRCC;MOD_SRDFT
+-- Exacorr module enabled : OFF
+-- For checking, linked libraries to dirac.x: diracobj;xcfun_fortran_bindings;/home/miroi/work/software/dirac/trunk_cloned/build_intelmpi_mkl_ilp64/external/xcfun-build/src/libxcfun.a;gen1int_interface;-Wl,--start-group;/opt/intel/oneapi/2025.3/lib/intel64/libmkl_lapack95_ilp64.a;/opt/intel/oneapi/2025.3/lib/intel64/libmkl_intel_ilp64.so;-qopenmp;-Wl,--end-group;-Wl,--start-group;/opt/intel/oneapi/2025.3/lib/intel64/libmkl_intel_ilp64.so;/opt/intel/oneapi/2025.3/lib/intel64/libmkl_intel_thread.so;/opt/intel/oneapi/2025.3/lib/intel64/libmkl_core.so;/usr/lib/x86_64-linux-gnu/libpthread.a;/usr/lib/x86_64-linux-gnu/libm.so;-qopenmp;-Wl,--end-group;laplace;laplace-minimax;qcorr;HDF5::HDF5 
+-- Could NOT find Sphinx (missing: SPHINX_EXECUTABLE) 
+-- Copied DIRAC basis set directories into the build directory
+-- Copied data schema and python utilities into the build directory
+-- Set CDash default timeout for single test set to 1500 seconds. Overwritten by test's TIMEOUT property label and, ultimatively, by pam timeout setting.
+-- Test's 'basis_input_scripted' timeout set to 3600 seconds. Can be overwritten by pam's timeout setting.
+-- Configuring done (14.6s)
+-- Generating done (0.2s)
+-- Build files have been written to: /home/miroi/work/software/dirac/trunk_cloned/build_intelmpi_mkl_ilp64
+
+   configure step is done
+   now you need to compile the sources:
+   $ cd build_intelmpi_mkl_ilp64
+   $ make

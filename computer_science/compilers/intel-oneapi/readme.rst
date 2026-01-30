@@ -103,4 +103,12 @@ ifx (IFX) 2025.3.2 20260112
 miroi@MIRO:~/work/software/intel/.icx --version
 Intel(R) oneAPI DPC++/C++ Compiler 2025.3.2 (2025.3.2.20260112)
 
+clean the space
+---------------
+miroi@MIRO:~/work/software/intel/.ls
+intel-fortran-compiler-2025.3.2.25_offline.sh*  intel-oneapi-base-toolkit-2025.3.1.36_offline.sh*
+miroi@MIRO:~/work/software/intel/.du -h -s .
+3.3G    .
+
+
 

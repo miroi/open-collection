@@ -159,5 +159,10 @@ miroi@MIRO:~/work/software/dirac/trunk_cloned/build_intelmpi_mkl_ilp64/.ctest -L
 Test project /home/miroi/work/software/dirac/trunk_cloned/build_intelmpi_mkl_ilp64
 .
 .
-
+96% tests passed, 4 tests failed out of 90
+The following tests FAILED:
+        121 - ecp (Failed)                                      ecp short
+        177 - tools (Failed)                                    gen1int short
+        178 - basic (Failed)                                    gen1int short
+        182 - delta (Failed)                                    gen1int short
 

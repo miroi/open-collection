@@ -32,18 +32,10 @@ configure & compile & test runs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 https://manual.gromacs.org/documentation/2025.4/index.html
 
-sbatch hydra_slurm_compile_gromacs.01
+sbatch hydra_slurm_compile_gromacs.02
 
 
-100% tests passed, 0 tests failed out of 95
 
-Label Time Summary:
-GTest              = 210.75 sec*proc (93 tests)
-IntegrationTest    = 128.12 sec*proc (32 tests)
-MpiTest            =  89.50 sec*proc (20 tests)
-QuickGpuTest       =  52.72 sec*proc (23 tests)
-SlowGpuTest        =  68.13 sec*proc (11 tests)
-SlowTest           =  32.00 sec*proc (8 tests)
-UnitTest           =  50.63 sec*proc (53 tests)
+see also https://gromacs.bioexcel.eu/t/regressiontests-complex-tests-fail-with-intelmpi/13054
 
 

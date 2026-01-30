@@ -1,0 +1,34 @@
+!   ROHF test with BOP functional, including ECPs.  This is a
+!   test to be sure energy descends all the way through the run.
+!
+!   NSERCH:   0  E=      -25.6810793833  R.M.S.=  0.0121963
+!   NSERCH:   1  E=      -25.6889072449  R.M.S.=  0.0012868
+!   NSERCH:   2  E=      -25.6894948494  R.M.S.=  0.0011343
+!     ...
+!   NSERCH:  13  E=      -25.6911037796  R.M.S.=  0.0000142
+!   NSERCH:  14  E=      -25.6911037989  R.M.S.=  0.0000043
+!   NSERCH:  15  E=      -25.6911038030  R.M.S.=  0.0000009
+!
+!   This run takes 171 seconds on a 2.66 GHz Cloverton (31 Mar 2015)
+!   results have not changed since 2008.
+!
+ $CONTRL SCFTYP=ROHF dfttyp=bop runtyp=optimize MULT=2 nzvar=33 pp=SBKJC $end
+ $SYSTEM Mwords=6 $END
+!             note: grid density is not good enough for this tight OPTTOL
+ $dft    nrad=96 nleb=302 $end
+ $STATPT NSTEP=25 opttol=1d-5 $END
+ $ZMAT   DLC=.T. AUTO=.T. $END
+ $BASIS  GBASIS=SBKJC $END
+ $GUESS  GUESS=huckel $END
+ $DATA
+Trimethyllead radical / SBJKC 
+Cnv 3
+
+Pb 82.0    .0000000000    .0000000000    .2826293705
+C  6.0   -1.9911380710    .0000000000   1.2767013418
+H  1.0   -2.5560802151   -.8942722105   1.0367278931
+H  1.0   -1.7206604152    .0000000000   2.3330015423
+ $END
+
+! TRAVIS-CI SMALL
+

@@ -5,6 +5,7 @@ from ase import Atoms
 from ase.calculators.lj import LennardJones
 from ase.optimize import BFGS
 from ase.constraints import FixAtoms, FixInternals
+#from ase.utils.abc import Optimizable
 from ase.io import write
 
 # Create output directories
@@ -340,9 +341,23 @@ def screen_adsorption_sites(slab, sites):
             energy = system.get_potential_energy()
             n_steps = relax.get_number_of_steps()
             energies[config_name] = energy
+
+            # Calculate forces (returns N x 3 array in eV/A)
+            forces = system.get_forces()
+            #print("Forces:\n", forces)
+            # Calculate the Norm (L2 norm of all force components)
+            # Equivalent to RMS force across all atoms
+            gradient_norm = np.linalg.norm(forces) / np.sqrt(len(forces))
+            print(f"Gradient Norm (RMS Force): {gradient_norm:.4f} eV/Å")
             
+            #print("system vars :",vars(system))
+            #print("relax vars :",vars(relax))
+
             # Check convergence using ASE's built-in method
-            if relax.converged():
+            #if relax.converged(forces):
+            #if relax.converged():
+            #if relax.converged(relax.gradient):
+            if relax.converged(gradient_norm):
                 convergence_info[config_name] = f"Converged ({n_steps} steps)"
             else:
                 convergence_info[config_name] = f"Not converged ({n_steps} steps)"

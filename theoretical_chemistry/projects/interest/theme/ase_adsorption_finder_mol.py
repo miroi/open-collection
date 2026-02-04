@@ -354,10 +354,10 @@ def screen_adsorption_sites(slab, sites):
             #print("relax vars :",vars(relax))
 
             # Check convergence using ASE's built-in method
-            #if relax.converged(forces):
+            if relax.converged(forces):
             #if relax.converged():
             #if relax.converged(relax.gradient):
-            if relax.converged(gradient_norm):
+            #if relax.converged(gradient_norm):
                 convergence_info[config_name] = f"Converged ({n_steps} steps)"
             else:
                 convergence_info[config_name] = f"Not converged ({n_steps} steps)"

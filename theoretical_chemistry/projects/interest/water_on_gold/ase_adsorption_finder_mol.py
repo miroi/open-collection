@@ -1,4 +1,11 @@
 #!/usr/bin/env python
+
+#
+#
+# Code by Dip Sen (BLTP JINR). Further adapted by Miro Ilias (BLTP JINR).
+#
+#
+
 import os
 import numpy as np
 from ase import Atoms

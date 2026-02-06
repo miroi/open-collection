@@ -12,8 +12,8 @@ lj_sigma = 2.5
 calculator = LennardJones(epsilon=lj_epsilon, sigma=lj_sigma, rc=10.0)
 
 def get_opt_energy(atoms, fmax=0.001, opt_mode: str = "normal"):
-    #atoms.set_calculator(calculator)
     atoms.calc = calculator
+    print("get_opt_energy: opt_mode=",opt_mode)
     if opt_mode == "scale":
         opt1 = LBFGS(StrainFilter(atoms, mask=[1, 1, 1, 0, 0, 0]))
     elif opt_mode == "all":
@@ -70,12 +70,4 @@ print(f"E_adsorp {E_adsorp}, E_slab_mol {E_slab_mol}, E_slab {E_slab}, E_mol {E_
 
 # visualize
 # ...
-
-
-
-
-
-
-
-
 

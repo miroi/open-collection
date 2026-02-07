@@ -27,7 +27,7 @@ atoms.get_potential_energy()
 print(symb, 'fcc crystal energy:',atoms.get_potential_energy(), ' a=',a)
 
 n = 3;
-atoms = fcc111(symb, (1, 1, n), a=a)
+atoms = fcc111(symb, (6, 6, n), a=a)
 atoms.calc=EMT()
 atoms.get_forces()
 en_slab = atoms.get_potential_energy()

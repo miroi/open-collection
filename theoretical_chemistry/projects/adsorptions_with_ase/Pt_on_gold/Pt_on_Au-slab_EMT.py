@@ -35,7 +35,7 @@ print('energy of the Au slab =',en_slab)
 
 
 add_atom='Pt'
-#add_atom='C' # this is veryfied with program (-3.547)
+
 a1=Atoms(add_atom)
 a1.calc = EMT()
 en_atom=a1.get_potential_energy()

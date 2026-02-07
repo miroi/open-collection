@@ -27,7 +27,7 @@ atoms.get_potential_energy()
 print(symb, 'fcc crystal energy:',atoms.get_potential_energy(), ' a=',a)
 
 n = 3;
-atoms = fcc111(symb, (6, 6, n), a=a)
+atoms = fcc111(symb, (5, 5, n), a=a)
 atoms.calc=EMT()
 atoms.get_forces()
 en_slab = atoms.get_potential_energy()
@@ -48,7 +48,8 @@ atoms.constraints = [FixAtoms(indices=fixed)]
 
 atoms.calc = EMT()
 #opt = BFGS(atoms, logfile=None)
-opt = BFGS(atoms, logfile='Pt_on_Au-slab.BFGS_logfile', trajectory ='Pt_on_Au-slab.traj')
+#opt = BFGS(atoms, logfile='Pt_on_Au-slab.BFGS_logfile', trajectory ='Pt_on_Au-slabEMT.traj')
+opt = BFGS(atoms, trajectory ='Pt_on_Au-slabEMT.traj')
 opt.run(fmax=0.01)
 en_atom_on_surface=atoms.get_potential_energy()
 

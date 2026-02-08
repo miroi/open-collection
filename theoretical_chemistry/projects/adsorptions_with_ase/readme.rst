@@ -1,8 +1,8 @@
 =====================
-Projects for INTEREST
+Adsorption with ASE
 =====================
 
-Interatomic potentials based computations of atomic adsorption energies on gold surfaces
+Interatomic potentials based computations of atomic adsorption energies on gold surfaces.
 
 Gold surface is beeing used as detector cover in experimental  synthesis of superheavy elements.
 

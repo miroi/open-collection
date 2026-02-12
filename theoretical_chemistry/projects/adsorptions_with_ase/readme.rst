@@ -2,9 +2,10 @@
 Adsorption with ASE
 ===================
 
-Interatomic potentials based computations of some chemical systemts adsorption energies on gold and other surfaces.
+Some examples of adsorptions of chemical systems on some surfaces.
+Among them, gold is beeing used as detector cover in experimental synthesis of superheavy elements.
 
-Gold surface is beeing used as detector cover in experimental  synthesis of superheavy elements.
+Simple atomistic modeling with "Atomic Simulation Environment" (ASE) can estimate adsorption energies and even adsorption enthalpies of ane adsorbate.
 
-Simple atomistic modeling with Atomic Similulation Environment (ASE) can predict estimations of adsorption energies and even adsorption enthalpies of atoms.
+ASE atomistic computations are based upon simple interatomic potentials like Lennard-Jonnes (LJ), but also on machine learnt interatomic potentials (MLIP).
 

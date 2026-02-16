@@ -9,11 +9,12 @@ from ase.io import write
 
 import itertools
 
-def analyze_methane_geometry(atoms, keyword):
+def analyze_methane_geometry():
     """Prints all bond lengths and angles for a methane molecule."""
     # Initialize methane: Carbon is index 0, Hydrogens are 1-4
+    atoms = molecule('CH4')
     
-    print("\n --- Methane Geometry Analysis: ", keyword)
+    print("--- Methane Geometry Analysis ---")
 
     # 1. Print all C-H Bond Lengths
     print("\n[Bond Lengths]")
@@ -27,12 +28,27 @@ def analyze_methane_geometry(atoms, keyword):
     # Get all unique combinations of two hydrogens around the central Carbon
     for h1, h2 in itertools.combinations(h_indices, 2):
         angle = atoms.get_angle(h1, 0, h2)
-        print(f"H{h1}-C-H{h2} angle: {angle:.4f}°")
+        print(f"H{h1}-C-H{h2} angle: {angle:.2f}°")
 
 # 1. Create a molecule (Methane)
 atoms = molecule('CH4')
 write('CH4_nonoptimized.xyz', atoms)
-analyze_methane_geometry(atoms, 'nonoptimized geometry')
+
+# Iterate to see all unique bond lengths
+for i in range(1, 5):
+    print(f"Nonptimized C-H{i} bond length: {atoms.get_distance(0, i):.3f} Å")
+
+# Get ALL unique bond angles (H-C-H angles)
+# Methane has 6 unique H-C-H angles (combinations of 4 hydrogens around central C)
+h_indices = [1, 2, 3, 4]
+h_combinations = list(itertools.combinations(h_indices, 2))
+
+print("\nAll H-C-H Bond Angles (°):")
+for h1, h2 in h_combinations:
+    # get_angle(index1, vertex_index, index2)
+    angle = atoms.get_angle(h1, 0, h2)
+    print(f" Nonoptimized H{h1}-C-H{h2}: {angle:.2f}")
+
 
 # 2. Set a calculator (Effective Medium Theory - fast for simple systems)
 atoms.calc = EMT()
@@ -47,8 +63,6 @@ dyn.run(fmax=0.05)  # Optimize until forces are small
 # 4. Final results
 print(f"Final energy: {atoms.get_total_energy():.4f} eV")
 print("Optimization complete.")
-
-analyze_methane_geometry(atoms, 'optimized geometry')
 
 write('CH4_optimized.xyz', atoms)
 

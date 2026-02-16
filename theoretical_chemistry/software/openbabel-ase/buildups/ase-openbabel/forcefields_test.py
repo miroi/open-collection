@@ -82,6 +82,7 @@ ase_mol = pybel_to_ase(mol)
 # Display
 # This opens a separate GUI window (ase-gui)
 view(ase_mol)
+mol.write("xyz", "water_opt.xyz", overwrite=True)
 
 #if ff.Setup(obmol):
     # Perform energy minimization

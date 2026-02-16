@@ -2,10 +2,10 @@ from ase.build import molecule
 from ase.optimize import BFGS
 from ase.calculators.emt import EMT
 from ase.visualize import view
+from ase.data.pubchem import pubchem_atoms_search
 
 # 1. Define Vitamin C (Ascorbic Acid)
-# Note: 'Ascorbic_acid' is the internal name in ASE's g2 database
-atoms = molecule('Ascorbic_acid')
+atoms = pubchem_atoms_search(name='ascorbic acid')
 
 # 2. Attach a Calculator (using EMT for a fast, simple example)
 atoms.calc = EMT()

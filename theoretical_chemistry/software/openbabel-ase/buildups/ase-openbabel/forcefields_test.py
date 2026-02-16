@@ -6,6 +6,9 @@
 from openbabel import openbabel as ob
 from openbabel import pybel
 
+from ase import Atoms
+from ase.visualize import view
+
 # List available force fields
 print("\n pybel FFs :",pybel.forcefields)
 
@@ -21,14 +24,32 @@ mol.addh()
 mol.make3D()
 
 mol.write("xyz", "water.xyz", overwrite=True)
+
+#mol.makefields("mmff94")
+# This calculates energy without moving atoms
+mol.localopt(forcefield="mmff94", steps=0)
+
+print(f"Energy: {mol.energy} kJ/mol")
+
+ff = pybel._forcefields["mmff94"]
+success = ff.Setup(mol.OBMol)
+if success:
+    print(f"success Energy: {ff.Energy()} kJ/mol")
+
 print(f"Energy before optimization: {mol.energy:.4f} kJ/mol")
 
-# some prints 
+# 2. Initialize the force field (e.g., mmff94, uff, gaff)
+#mol.makefields("mmff94")
+
+# 3. Access the energy property (result is in kJ/mol)
+print(f"Total Energy: {mol.energy:.4f} kJ/mol")
+# some prints a
+
 print(mol.atoms[0].type)
 print(pybel.informats.keys())
 
 print(mol.atoms[0].coords)
-mol.localopt(forcefield="gaff", steps=500)
+mol.localopt(forcefield="mmff94", steps=500)
 print(mol.atoms[0].coords)
 
 
@@ -37,19 +58,30 @@ print(mol.atoms[0].coords)
 # 3. Setup the force field (e.g., "mmff94", "uff", or "gaff")
 # This initializes the force field for this specific molecule
 
-mol.localopt(forcefield="gaff", steps=500)
+mol.localopt(forcefield="mmff94", steps=500)
 print(f"Energy after optimization: {mol.energy:.4f} kJ/mol")
 
-#success = mol.makefields("mmff94")
-success = mol.make3D("uff", steps=50)
-
+success = ff.Setup(mol.OBMol)
 if success:
-    # 4. Calculate and print energy (typically in kJ/mol)
-    print(f"Total Energy: {mol.energy:.4f} kJ/mol")
-else:
-    print("Force field setup failed. Check if the molecule has valid 3D coordinates.")
+    print(f"success 2 Energy: {ff.Energy()} kJ/mol")
 
+#mol = pybel.readstring("smi", "C1=NC2=C(N1)C(=NC=N2)N") # Adenine
+mol.draw(show=True, filename=None)
 
+def pybel_to_ase(mol):
+    # 1. Get atomic numbers
+    numbers = [a.atomicnum for a in mol.atoms]
+    # 2. Get 3D coordinates
+    coords = [a.coords for a in mol.atoms]
+    # 3. Create ASE Atoms object
+    return Atoms(numbers=numbers, positions=coords)
+
+# Convert
+ase_mol = pybel_to_ase(mol)
+
+# Display
+# This opens a separate GUI window (ase-gui)
+view(ase_mol)
 
 #if ff.Setup(obmol):
     # Perform energy minimization

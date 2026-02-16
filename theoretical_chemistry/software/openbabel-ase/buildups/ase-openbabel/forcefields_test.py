@@ -18,10 +18,10 @@ print("\n pybel FFs :",pybel.forcefields)
 
 mol = pybel.readstring("smi", "O")
 mol.addh()
-
 mol.make3D()
 
 mol.write("xyz", "water.xyz", overwrite=True)
+print(f"Energy before optimization: {mol.energy:.4f} kJ/mol")
 
 # some prints 
 print(mol.atoms[0].type)

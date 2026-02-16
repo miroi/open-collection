@@ -1,4 +1,4 @@
-#
+# from Google AI, modified by MI
 #
 
 from ase import Atoms

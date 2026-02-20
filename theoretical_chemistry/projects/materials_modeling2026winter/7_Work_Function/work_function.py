@@ -36,7 +36,7 @@ base_input_data = {
         'ibrav': 0,
         'nat': 2,
         'ntyp': 1,
-        'assume_isolated': '2D'
+       # 'assume_isolated': '2D'
     },
     'electrons': {
         'conv_thr': 1.0e-10
@@ -64,14 +64,16 @@ atoms = Atoms(
 # 3. Calculator Configuration
 # ==============================================
 # Set QE bin directory
-qe_bin = "/home/dsen/work/bin/qe-7.4.1"
+#qe_bin = "/home/dsen/work/bin/qe-7.4.1"
+qe_bin = "/opt/espresso/7.5"
 
 # Main QE calculation 
-pw_command = f'mpirun -np 4 {qe_bin}/bin/pw.x'
+#pw_command = f'mpirun -np 4 {qe_bin}/bin/pw.x'
+pw_command = f'mpirun -np 4 {qe_bin}/pw.x'
 
 # Post-processing commands
-pp_command = f"{qe_bin}/bin/pp.x < pp.in > pp.out 2>&1"
-average_command = f"{qe_bin}/bin/average.x < average.in > average.out 2>&1"
+pp_command = f"{qe_bin}/pp.x < pp.in > pp.out 2>&1"
+average_command = f"{qe_bin}/average.x < average.in > average.out 2>&1"
 
 profile = EspressoProfile(
     command=pw_command,

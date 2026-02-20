@@ -2,6 +2,6 @@
 N2 molecule on gold surface
 ===========================
 
-simple demonstration example, inspired with 
+simple demonstration example, inspired with ASE tutorial
 
 

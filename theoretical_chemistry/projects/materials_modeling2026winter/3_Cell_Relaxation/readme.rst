@@ -22,6 +22,9 @@ Cut off  Total Energy  Total Force
 
 ASE driven QE run
 -----------------
-..
+python cell_relaxation_si.py > python cell_relaxation_si.py_logfile
+
+
+
 
 

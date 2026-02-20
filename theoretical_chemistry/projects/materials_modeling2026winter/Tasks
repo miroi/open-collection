@@ -1,0 +1,112 @@
+---------------------------------------------------------------------------------------------
+TASK 1: Calculate Total Energy  (QE and ASE)
+
+Step 1.1: Run the SCF Calculation directly in QE
+/path/to/qe/bin/pw.x < Si.in > Si.out
+(if using a parallel version, invoke it by mpirun -np N /path/to/qe/bin/pw.x < Si.in > Si.out)
+
+Verify if the calculation converged successfully:
+grep "JOB DONE." Si.out       
+grep "convergence has been achieved" Si.out  
+To get the final total energy (in Ry):
+grep ! Si.out
+
+Step 1.2: Run the SCF Calculation in QE by ASE. Only one modification is required in the ASE script: Replace the QE executable path with your local pw.x location.
+python3 si_ase.py > si_ase.out
+Inspect ASE generated QE input files and repeat all the previous steps.
+---------------------------------------------------------------------------------------------
+TASK 2: Automated Cutoff and K-points Convergence Test (ASE)
+
+In convergence testing, we systematically increase two key parameters separately (not simultaneously): (1) Plane-wave cutoff energy (ecutwfc) (2) K-points grid density (K_POINTS). The goal is to find the point where the total energy stabilizes (saturates) with respect to further changes in these parameters. It can be done manually by running multiple SCF calculations (as in TASK 1) and comparing energies at each step. However the current task uses a ASE python script (convergence_test_si.py) to automate the process. All necessary parameters are already pre-configured in the script, including: (1) QE SCF input parameters (2) Atomic structure of silicon (3) Convergence test logic. Only one modification is required: Replace the QE executable path with your local pw.x location in the script.
+
+The convergence script uses three parameters to automate testing:
+(1) ecutwfc_values = np.arange(20, 120, 5) Tests cutoffs from 20 to 120 Ry in steps of 5 Ry. 
+(2) kpoints_values = [(k,k,k) for k in range(2, 25)]  Tests k-grids from (2×2×2) to (25×25×25)
+(3) energy_tol = 0.01 # Sets the convergence threshold (0.01 meV/atom). The script stops when energy changes between steps are smaller than this tolerance.
+
+Adjust ranges (e.g., np.arange(20, 80, 10)), and higher tolerance (e.g. 0.05) for quicker testing.
+
+Step 2.1: Run the ASE job
+python3 convergence_test_si.py > convergence_test_si.out
+
+Note: When performing a series of calculations, ASE automatically overwrites the Quantum ESPRESSO output (.pwo) and input (.pwi) files after each step. How many different SCF calculations did ASE run to converge cutoff energy / K-points grid in this task?
+
+TASK 2.2: Run a final QE SCF calculation with your converged ecutwfc and kpoints (similar to TASK 1), along with tstress = .true. and tprnfor = .true. in the input file (under &CONTROL) to compute stress and atomic forces and inspect the output.
+/path/to/qebin/pw.x < Si_force_stress.in > Si_force_stress.out
+---------------------------------------------------------------------------------------------
+TASK 3: Cell relaxation (QE and ASE)
+
+In this task, we will relax the silicon experimental unit cell to determine its ground state structure, allowing both lattice parameters and atomic positions to adjust freely. Given that we're starting from a well-defined experimental structure, only minor changes are expected during the relaxation process. We will perform this using two distinct methods: direct relaxation through QE and by ASE using QE as calculator.
+
+Step 3.1: Direct QE
+/path/to/qe/bin/qe-7.4.1/bin/pw.x < cell_relaxation_si.in > cell_relaxation_si.out
+
+Step 3.2: ASE
+ASE: python3 cell_relaxation_si.py > cell_relaxation_si.out (Replace the QE executable path with your local pw.x location in the script)
+
+When using QE directly, the calculation type must be set to 'vc-relax', requiring both the &IONS and &CELL NAMELISTs in the input file. QE's relaxation convergence is controlled by thresholds like etot_conv_thr and forc_conv_thr in the &CONTROL NAMELIST, which default to specific values if not specified (in this example we did not, so check the pw.x manual what those values are and if they are same or different for both jobs). In direct QE relaxations, the final co-ordinates are after "Begin final coordinates" line in the output. 
+ASE, on the other hand, employs QE as a calculator to perform a series of SCF calculations, using the calculated energies and forces to optimize the structure through its own BFGS implementation. While both methods utilize the BFGS algorithm, slight differences may appear in the final structures due to variations in their implementations (such as minimizing max force vs norm) and different threshold values. After completing both relaxations, carefully compare the resulting forces, pressure, energy, lattice parameters, and atomic coordinates in both jobs. For a well-relaxed structure, the stress should remain within ±50 kbar and forces should be negligible, how are your results?
+
+Note: When performing a series of calculations, ASE automatically overwrites the Quantum ESPRESSO output (.pwo) and input (.pwi) files after each step.
+Note: ASE automatically saves the complete relaxation history in the trajectory file (relaxation.traj). You can visualize the step-by-step structural evolution using ASE's GUI by loading this trajectory file. To view it, simply run: ase gui relaxation.traj 
+---------------------------------------------------------------------------------------------
+TASK 4: Electronic properties: Si (Charge and DOS, ASE)
+In this task, we'll calculate a few key electronic properties — (1) 3D charge density (using post-processing tool pp.x), (2) Löwdin partial charges (using projwfc.x), (3) total DOS (using dos.x), and (4) projected DOS (using projwfc.x) — through a streamlined ASE workflow combining SCF and NSCF calculations. The SCF calculation generates the charge density and Löwdin charges, while a subsequent NSCF calculation (with calculation='nscf' in the CONTROL namelist and matching outdir/prefix to read the SCF charge density) produces the DOS data using a denser k-grid. Each post-processing tool requires its specific input format (detailed in accompanying notes), but ASE automates the execution sequence.
+   
+First, copy your relaxed atomic structure into the provided ASE script (electronic_a_si.py) and update the Quantum ESPRESSO executable path to your local pw.x location.
+
+Step 4.1: 
+python3 electronic_properties_si.py > electronic_properties_si.out
+
+Inspect electronic_properties_si.out to verify all steps have completed successfully. Also inspect the individual pp, dos and projwfc input and output files. 
+Open the generated charge_density.cube file in VESTA to visualize the 3D electron density. For the total density of states (TDOS), plot the first two columns (E (eV) and dos(E)) from total_dos.dat using any plotting tool (e.g., Grace, matplotlib), then shift the x-axis by subtracting the Fermi energy (found in the QE output, grep Fermi *.pwo) to align the Fermi energy to 0 eV (in Grace: Data > Transformation > Evaluate Expression: x=x-<Fermi Energy>). Repeat this process for the projected DOS (PDOS) by plotting the first two columns from the first Si atom's s and p orbital files, again offsetting by Fermi energy. Finally, examine lowdin.out and check the computed Löwdin partial charges for each Si atom. 
+Compare your computed DOS with silicon's experimental band gap- does your match? Why? Why not?
+
+Note: To verify the quality of the projections, two key checks are necessary: (1) ensure the spilling parameter is low enough, and (2) confirm that the summed PDOS (from .pdos_tot) closely matches the total DOS, at least below the Fermi level. While the script automatically reports both metrics, it's strongly recommended to manually plot and compare the .pdos_tot and total_dos.dat files and visually validate it.
+
+Note: SCF (Self-Consistent Field) calculations iteratively solve the Kohn-Sham equations to find the ground-state electron density and total energy by converging the charge density. NSCF (Non-Self-Consistent Field) calculations use the pre-converged charge density from SCF but compute eigenvalues on a denser k-point grid without re-converging the density. For DOS (Density of States), NSCF is essential because it provides higher-resolution sampling of the Brillouin zone, capturing fine electronic structure details that the coarser SCF grid would miss, while avoiding the computational cost of fully re-converging at each k-point. This ensures accurate and smooth DOS plots without redundant SCF iterations.
+---------------------------------------------------------------------------------------------
+TASK 5: Electronic properties: Al (Charge and DOS, ASE)
+
+For this task, we will perform a quick electronic properties calculation of aluminum (Al), a metal with a cubic Fm̅3m crystal structure. Instead of following the full production workflow — which would involve obtaining an experimental structure from a database like the ICSD or CCDC, performing convergence tests, and conducting cell relaxation — we will, for simplicity, use a standard structure from the Materials Project and run single-shot density of states (DOS) and band structure calculations. First symmetrize the Al structure using the SeekPath tool.
+
+Step 5.1:
+Copy the TASK 4: Electronic properties: A script into your working directory. In the "Electronic properties: A" script, update the necessary parameters—including the pseudopotential, prefix, nat fields, and atoms object to match your Al system.
+Run the calculation
+python3 electronic_properties_al.py > electronic_properties_al.out
+(update the Quantum ESPRESSO executable path to your local pw.x location.)
+
+Visualize the DOS plots and compare with Si.
+---------------------------------------------------------------------------------------------
+TASK 6: Surfaces and 2D materials (ASE)
+
+This task focuses on analyzing the electronic properties of surfaces and 2D materials, using graphene as an example. Begin by inspecting the graphite structure, select two atoms with identical z-coordinates, and then manually increase the c lattice parameter to a large arbitrary value (e.g., 15 Å) while adjusting the z-coordinates of the selected two atoms to half that value (e.g., 7.5 Å) to create a well-separated, single-layer graphene structure. After visualizing this new structure, copy the TASK 2 convergence test script and edit it: (1) update it with the graphene structure and carbon pseudopotential (2) 2D material specific changes: 'assume_isolated': '2D' (3) change the k-points grid from cubic to a 2D grid divisible by three (e.g., 3k, 3k, 1) to ensure proper sampling of the Dirac point at (1/3, 1/3, 0). For a 2D material, electronic dispersion is flat in the z-direction, so only one k-point is needed to sample it accurately. 
+
+Step 6.1: 
+Run the convergence test
+python3 convergence_test_graphene.py > convergence_test_graphene.out
+
+Step 6.2
+Copy the TASK 3: Cell relaxation script to the working directory and update it for graphene by moving from a full, unconstrained relaxation to a constrained one. This means using a mask in the UnitCellFilter—a boolean list [xx, yy, zz, yz, xz, xy]—to only relax the in-plane lattice vectors (xx, yy) while keeping the out-of-plane vector (zz) and all cell angles (yz, xz, xy) fixed. This is the equivalent of setting up a constrained relaxation with QE's in-built cell_dofree tag (xy or 2Dxy).
+Then run the relaxation:
+python3 cell_relaxation_graphene.py > cell_relaxation_graphene.out
+
+Step 6.3 
+Copy the TASK 4: Electronic properties: Si  script, and update it with the relaxed graphene structure and all other relevant parameters. Then run the calculation:
+python3 electronic_properties_graphene.py > electronic_properties_graphene.out
+
+Inspect all the obtained results similar to the previous analysis. Finally examine the calculated projected DOS for a carbon atom's p orbitals. This file contains five columns where the first two were already covered in TASK 4; columns 3-5 describes the orbital projections onto pz, px, and py orbitals (in that specific order. For the exact orbital orderings for different cases (e.g. spin-orbit, spin polarized etc.), consult the PROJWFC manual. Plot the contributions from pz, px, and py. The expected nature for graphene is that near the Fermi level, the electronic states are formed primarily by the out-of-plane pz orbitals, which create the characteristic Dirac cones. Determine if your results show this same behavior. Now plot the same for Si p orbital, what differences do you see? Why?
+---------------------------------------------------------------------------------------------
+TASK 7: Work function (ASE)
+
+The work function is defined as the minimum energy required to extract an electron from a solid to a point immediately outside its surface. It is not a bulk material property but rather a surface-specific characteristic that we will calculate for our graphene slab example. the work flow consists of first performing an SCF calculation, then using pp.x to extract the electrostatic potential (plot number 11), followed by planar and macroscopic averaging along the vacuum direction with average.x, from which the finally the work function can be estimated. As usual, we will use ASE to automate the execution sequence.
+
+Step 7.1:
+python3 work_function.py > work_function.out
+(update the Quantum ESPRESSO executable path to your local pw.x location.)
+
+Inspect the potential.out file, and the individual SCF, pp.x, and average.x input and output files to ensure proper execution. Then plot the potential profile from potential_results/avg.dat alongside the Fermi level obtained from the SCF calculation. The vacuum level is identified as the flat region of the electrostatic potential outside the slab surface, then compute the work function as Work Function = Vacuum Level - Fermi Level. Finally compare your obtained values with standard reported values of graphene.
+
+Note: 
+The 'assume_isolated': '2D' setting introduces artificial image charges that distort the electrostatic potential at the cell boundaries (notice the unphysical peaks at the start and end of your plot), though it is necessary to maintain accuracy of forces and energies, especially for asymmetric slabs requiring dipole correction. Now remove this flag, rerun the example, and inspect the resulting potential profile to observe a more physically meaningful potential profile.
+---------------------------------------------------------------------------------------------

@@ -1,0 +1,48 @@
+
+Running SCF calculation...
+  Total energy: -327.840655 eV
+
+[Phase A.] Extracting charge density and Löwdin charges from SCF calculation...
+
+1. Calculating charge density from SCF...
+  pp.x completed successfully
+
+2. Running projwfc.x on SCF...
+  projwfc.x completed successfully
+
+3. Extracting Löwdin charges from SCF (projwfc.out)...
+  Löwdin charges saved to lowdin.out
+  Spilling parameter value: 0.010900
+  Excellent (<0.05)
+
+Cleaning up SCF files and preparing for NSCF calculation...
+  Moved all SCF-related files to scf_files directory
+
+Running NSCF calculation for DOS with k-grid (66, 66, 1)...
+  NSCF completed, wavefunctions generated for DOS
+
+[Phase B.] Calculating DOS and PDOS from NSCF calculation...
+
+4. Calculating TDOS from NSCF...
+  dos.x completed successfully
+
+5. Calculating PDOS from NSCF...
+  projwfc.x completed successfully
+
+6. Organizing PDOS files from NSCF...
+  PDOS files moved to pdos_results directory
+
+7. Verifying TDOS vs summed PDOS (ONLY below Fermi level)...
+  Fermi level from NSCF calculation: -4.2408 eV
+    Integrated TDOS: 6.8057 states
+    Integrated sum of PDOS: 6.7393 states
+  Relative difference in integrated DOS: 0.97%
+  Maximum pointwise difference: 2.19%
+  Excellent agreement (<5% integral difference)
+
+=== Electronic Structure Analysis Complete ===
+Generated files:
+- Charge density (from SCF): charge_density.cube
+- Löwdin Charges (from SCF): lowdin.out
+- Total DOS (from NSCF): total_dos.dat
+- PDOS files (from NSCF): pdos_results/

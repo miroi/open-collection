@@ -55,7 +55,7 @@ qe_bin = "/opt/espresso/7.5"
 # Parallel calculation 
 #pw_command = f'{qe_bin}/bin/pw.x'
 #pw_command = f'mpirun -np 4 {qe_bin}/bin/pw.x'
-pw_command = f'mpirun -np 4 {qe_bin}/pw.x'
+pw_command = f'mpirun -np 2 {qe_bin}/pw.x'
 
 pw_profile = EspressoProfile(
     command=pw_command,

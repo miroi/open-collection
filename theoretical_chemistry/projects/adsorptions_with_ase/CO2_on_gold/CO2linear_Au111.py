@@ -58,6 +58,7 @@ print("running CO2@Au(111) geometry optimization:")
 with BFGS(slab, trajectory='relaxation.traj' ) as dyn:
       dyn.run(fmax=0.05)
 
+# check that O-C-O bond distances are kept frozen
 assert abs(slab.get_distance(-3, -2, mic=1) - d0) < 1e-9
 assert abs(slab.get_distance(-3, -1, mic=1) - d1) < 1e-9
 assert abs(slab.get_distance(-2, -1, mic=1) - d2) < 1e-9

@@ -13,6 +13,7 @@ from ase.optimize import QuasiNewton
 h = 1.85
 d = 1.10
 
+# construct the gold slab
 slab = fcc111('Au', size=(6, 6, 4), vacuum=15.0)
 
 slab.calc = EMT()
@@ -24,7 +25,7 @@ e_N2 = molecule.get_potential_energy()
 
 add_adsorbate(slab, molecule, h, 'ontop')
 
-# freeze the gold slab
+# freeze the whole gold slab
 constraint = FixAtoms(mask=[a.symbol != 'N' for a in slab])
 slab.set_constraint(constraint)
 
@@ -38,6 +39,4 @@ print('\n Adsorption energy of N2 molecule on gold slab:', e_slab + e_N2 - slab.
 
 #  \(N_{2}\) on small gold clusters (\(Au_{n},n=1–6\)) exhibits adsorption energies in the \(0.2–0.9\text{\ eV}\) range.
 print('FYI:  N2 on small gold clusters Au_{n},n=1–6 exhibits adsorption energies in the 0.2–0.9 eV range')
-
-
 

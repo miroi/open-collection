@@ -29,7 +29,9 @@ free -g -t -h
 
 export DIRAC_TMPDIR=/tmp # working directory
 #export DIRAC=/home/miroi/work/software/dirac/trunk/build_gnu_mkl_lp64
-export DIRAC=/home/miroi/work/software/dirac/trunk/build_gnu_mkl_ilp64
+export DIRAC=/home/miroi/work/software/dirac/trunk_cloned/build_intelmpi_mkl_ilp64
+
+source /opt/intel/oneapi/setvars.sh
 
 echo -e "\n DIRAC=$DIRAC"
 
@@ -38,7 +40,11 @@ ldd $DIRAC/dirac.x
 
 echo -e "\n\n running $DIRAC/pam : \n"
 #$DIRAC/pam  --noarch --mpi=2   --get="DFCOEF PAMXVC" --inp=$inpfile  --mol=$molfile   
-$DIRAC/pam  --noarch --mpi=2   --get="DFPCMO PAMXVC" --inp=$inpfile  --mol=$molfile   
+#$DIRAC/pam  --noarch --mpi=2   --get="DFPCMO PAMXVC" --inp=$inpfile  --mol=$molfile   
+#$DIRAC/pam  --noarch --mpi=2    --inp=$inpfile  --mol=$molfile   --get="CHECKPOINT.h5 PAMXVC RESPONSE.h5"
+
+# https://diracprogram.org/doc/master/tutorials/visual/general/tutorial.html#getting-the-unperturbed-and-perturbed-wave-function-example-molecule-benzene
+$DIRAC/pam  --noarch --mpi=2    --inp=$inpfile  --mol=$molfile  --get="CHECKPOINT.h5 PAMXVC RESPONSE.h5"
 
 echo -e "\n End Time is `date` "
 

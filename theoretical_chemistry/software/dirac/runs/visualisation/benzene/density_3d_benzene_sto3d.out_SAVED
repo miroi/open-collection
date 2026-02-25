@@ -1,12 +1,12 @@
   ** interface to 64-bit integer MPI enabled **
 
 DIRAC master    (MIRO) starts by allocating       64000000 r*8 words (   0.477 GB) of memory
-DIRAC nodes 1 to 1 starts by allocating            64000000 r*8 words (   0.477 GB) of memory
 DIRAC master    (MIRO) to allocate at most      2147483648 r*8 words (  16.000 GB) of memory
-DIRAC nodes 1 to 1 to allocate at most           2147483648 r*8 words (  16.000 GB) of memory
  
 Note: maximum allocatable memory for master+nodes can be set by -aw (MW)/-ag (GB) flags in pam
  
+DIRAC nodes 1 to 1 starts by allocating            64000000 r*8 words (   0.477 GB) of memory
+DIRAC nodes 1 to 1 to allocate at most           2147483648 r*8 words (  16.000 GB) of memory
  *******************************************************************************
  *                                                                             *
  *                                O U T P U T                                  *
@@ -84,15 +84,17 @@ Note: maximum allocatable memory for master+nodes can be set by -aw (MW)/-ag (GB
  *                                                                             *
  *    Written by:                                                              *
  *                                                                             *
+ *    Andre S. P. Gomes        CNRS/Universite de Lille          France        *
  *    Trond Saue               Universite Toulouse III           France        *
  *    Lucas Visscher           Vrije Universiteit Amsterdam      Netherlands   *
  *    Hans Joergen Aa. Jensen  University of Southern Denmark    Denmark       *
  *    Radovan Bast             UiT The Arctic University of      Norway        *
- *    Andre S. P. Gomes        CNRS/Universite de Lille          France        *
  *                                                                             *
  *    with contributions from:                                                 *
  *                                                                             *
+ *    Minori Abe               Tokyo Uni. of Agriculture & Tech. Japan         *
  *    Ignacio Agustin Aucar    CONICET/Northeastern University   Argentina     *
+ *    Juan Jose Aucar          CONICET/Northeastern University   Argentina     *
  *    Vebjoern Bakken          University of Oslo                Norway        *
  *    Jan Brandejs             Universite Toulouse III           France        *
  *    Chima Chibueze           Vrije Universiteit Amsterdam      Netherlands   *
@@ -101,6 +103,7 @@ Note: maximum allocatable memory for master+nodes can be set by -aw (MW)/-ag (GB
  *    Sebastien Dubillard      University of Strasbourg          France        *
  *    Ulf Ekstroem             University of Oslo                Norway        *
  *    Ephraim Eliav            University of Tel Aviv            Israel        *
+ *    Gabriele Fabbro          Universite Toulouse III           France        *
  *    Thomas Enevoldsen        University of Southern Denmark    Denmark       *
  *    Elke Fasshauer           University of Tubingen            Germany       *
  *    Timo Fleig               Universite Toulouse III           France        *
@@ -113,6 +116,7 @@ Note: maximum allocatable memory for master+nodes can be set by -aw (MW)/-ag (GB
  *    Johan Henriksson         Linkoeping University             Sweden        *
  *    Martin van Horn          Universite Toulouse III           France        *
  *    Miroslav Ilias           Matej Bel University              Slovakia      *
+ *    Sumika Iwamuro           NTT Data Group Corp.              Japan         *
  *    Christoph R. Jacob       TU Braunschweig                   Germany       *
  *    Stefan Knecht            Algorithmiq Ltd / ETH Zuerich     Finland/CH    *
  *    Stanislav Komorovsky     Slovak Academy of Sciences        Slovakia      *
@@ -120,10 +124,14 @@ Note: maximum allocatable memory for master+nodes can be set by -aw (MW)/-ag (GB
  *    Jon K. Laerdahl          University of Oslo                Norway        *
  *    Christoffer V. Larsen    University of Southern Denmark    Denmark       *
  *    Ernst D. Larsson         University of Southern Denmark    Denmark       *
+ *    Maxime Le                Universite de Lille               France        *
  *    Yoon Sup Lee             KAIST, Daejeon                    South Korea   *
+ *    Thomas Lejeune           Universite Paris Saclay           France        *
  *    Nanna Holmgaard List     Stockholm Inst. of Technology     Sweden        *
+ *    Yasuto Masuda            Hiroshima University              Japan         *
  *    Huliyar S. Nataraj       BME/Budapest Univ. Tech. & Econ.  Hungary       *
  *    Malaya Kumar Nayak       Bhabha Atomic Research Centre     India         *
+ *    Kohei Noda               Saver Corp.                       Japan         *
  *    Patrick Norman           Stockholm Inst. of Technology     Sweden        *
  *    Andreas Nyvang           Aarhus University                 Denmark       *
  *    Malgorzata Olejniczak    University of Warsaw              Poland        *
@@ -134,8 +142,8 @@ Note: maximum allocatable memory for master+nodes can be set by -aw (MW)/-ag (GB
  *    Jesper K. Pedersen       University of Southern Denmark    Denmark       *
  *    Markus Pernpointner      University of Heidelberg          Germany       *
  *    Johann V. Pototschnig    Technical University Graz         Austria       *
- *    Roberto Di Remigio       EuroCC National Competence Centre Sweden        *
- *    Michal Repisky           UiT The Arctic University of      Norway        *
+ *    Roberto Di Remigio Eikas Algorithmiq Ltd                   Finland       *
+ *    Michal Repisky           UiT & Comenius University         Norway/SK     *
  *    Carlos M. R. Rocha       Netherlands eScience Center       Netherlands   *
  *    Kenneth Ruud             UiT The Arctic University of      Norway        *
  *    Pawel Salek              Stockholm Inst. of Technology     Sweden        *
@@ -150,6 +158,7 @@ Note: maximum allocatable memory for master+nodes can be set by -aw (MW)/-ag (GB
  *    Marta L. Vidal           Cardiff University                UK            *
  *    Sebastien Villaume       Linkoeping University             Sweden        *
  *    Olivier Visser           University of Groningen           Netherlands   *
+ *    Lasse K. Sorensen        University of Southern Denmark    Denmark       *
  *    Toke Winther             University of Southern Denmark    Denmark       *
  *    Shigeyoshi Yamamoto      Chukyo University                 Japan         *
  *    Xiang Yuan               Universite de Lille               France        *
@@ -167,21 +176,22 @@ Note: maximum allocatable memory for master+nodes can be set by -aw (MW)/-ag (GB
  *    appropriate citation would be:                                           *
  *                                                                             *
  *    DIRAC, a relativistic ab initio electronic structure program,            *
- *    Release DIRAC25 (2025), written by                                       *
- *    T. Saue, L. Visscher, H. J. Aa. Jensen, R. Bast and A. S. P. Gomes       *
- *    with contributions from I. A. Aucar, V. Bakken, J. Brandejs, C. Chibueze,*
- *    J. Creutzberg, K. G. Dyall, S. Dubillard, U. Ekstroem, E. Eliav,         *
- *    T. Enevoldsen, E. Fasshauer, T. Fleig, O. Fossgaard, K. J. Gaul,         *
- *    L. Halbert, E. D. Hedegaard, T. Helgaker, J. Henriksson, M. van Horn,    *
- *    M. Ilias, Ch. R. Jacob, S. Knecht, S. Komorovsky, O. Kullie,             *
- *    J. K. Laerdahl, C. V. Larsen, Y. S. Lee, N. H. List, H. S. Nataraj,      *
- *    M. K. Nayak, P. Norman, A. Nyvang, M. Olejniczak, J. Olsen,              *
- *    J. M. H. Olsen, A. Papadopoulos, Y. C. Park, J. K. Pedersen,             *
- *    M. Pernpointner, J. V. Pototschnig, R. Di Remigio, M. Repisky,           *
- *    C. M. R. Rocha, K. Ruud, P. Salek, B. Schimmelpfennig, B. Senjean,       *
- *    A. Shee, J. Sikkema, A. Sunaga, A. J. Thorvaldsen, J. Thyssen,           *
- *    J. N. P. van Stralen, M. L. Vidal, S. Villaume, O. Visser, T. Winther,   *
- *    S. Yamamoto and X. Yuan                                                  *
+ *    Release DIRAC26 (2026), written by                                       *
+ *    A. S. P. Gomes, T. Saue, L. Visscher, H. J. Aa. Jensen, and R. Bast      *
+ *    with contributions from M. Abe, I. A. Aucar, J. J. Aucar, V. Bakken,     *
+ *    J. Brandejs, C. Chibueze, J. Creutzberg, K. G. Dyall, S. Dubillard,      *
+ *    U. Ekstroem, E. Eliav, T. Enevoldsen, G. Fabbro, E. Fasshauer, T. Fleig, *
+ *    O. Fossgaard, K. J. Gaul, L. Halbert, E. D. Hedegaard, T. Helgaker,      *
+ *    B. Helmich-Paris, J. Henriksson, M. van Horn, M. Ilias, S. Iwamuro,      *
+ *    Ch. R. Jacob, S. Knecht, S. Komorovsky, O. Kullie, J. K. Laerdahl,       *
+ *    C. V. Larsen, E.D Laersson, M. Le, Y. S. Lee, T. Lejeune, N. H. List,    *
+ *    Y. Masuda, H. S. Nataraj, M. K. Nayak, K. Noda, P. Norman, A. Nyvang,    *
+ *    M. Olejniczak, J. Olsen, J. M. H. Olsen, A. Papadopoulos, Y. C. Park,    *
+ *    J. K. Pedersen, M. Pernpointner, J. V. Pototschnig, R. Di Remigio Eikas, *
+ *    M. Repisky, C. M. R. Rocha, K. Ruud, P. Salek, B. Schimmelpfennig,       *
+ *    B. Senjean, A. Shee, J. Sikkema, A. Sunaga, A. J. Thorvaldsen,           *
+ *    J. Thyssen, J. N. P. van Stralen, M. L. Vidal, S. Villaume,              *
+ *    O. Visser, L. K. Sorensen, T. Winther, S. Yamamoto and X. Yuan           *
  *    (see http://diracprogram.org).                                           *
  *                                                                             *
  *    as well as our reference paper: J. Chem. Phys. 152 (2020) 204104         *
@@ -194,9 +204,9 @@ Version information
 -------------------
 
 Branch        | master
-Commit hash   | 1bb982352
+Commit hash   | 32787b278
 Commit author | Lucas Visscher
-Commit date   | Thu Jun 12 14:26:00 2025 +0200
+Commit date   | Wed Feb 18 08:25:19 2026 +0100
 
 
 Configuration and build information
@@ -204,29 +214,29 @@ Configuration and build information
 
 Who compiled             | miroi
 Compiled on server       | MIRO
-Operating system         | Linux-6.6.87.1-microsoft-standard-WSL2
-CMake version            | 3.22.1
+Operating system         | Linux-6.6.87.2-microsoft-standard-WSL2
+CMake version            | 4.2.0-rc4
 CMake generator          | Unix Makefiles
 CMake build type         | release
-Configuration time       | 2025-06-14 11:36:01.009284+00:00
-Fortran compiler         | /usr/bin/mpif90
-Fortran compiler version | 11.4.0
-Fortran compiler flags   |  -g -fcray-pointer -fbacktrace -fno-range-check -DVAR_GFORTRAN -DVAR_MFDS -fallow-argument-mismatch  -fopenmp -fdefault-integer-8 -fno-lto
-C compiler               | /usr/bin/mpicc
-C compiler version       | 11.4.0
-C compiler flags         |  -g  -fopenmp -fno-lto
-C++ compiler             | /usr/bin/mpicxx
-C++ compiler version     | 11.4.0
-C++ compiler flags       |  -g -Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused  -fopenmp -fno-lto
+Configuration time       | 2026-02-25 16:31:06.971349+00:00
+Fortran compiler         | /opt/intel/oneapi/2025.3/bin/mpiifx
+Fortran compiler version | 2025.3.2
+Fortran compiler flags   |  -w -assume byterecl -g -traceback -DVAR_IFX  -fiopenmp -i8 -w -assume byterecl -g -traceback -DVAR_IFX  -fiopenmp -i8
+C compiler               | /opt/intel/oneapi/2025.3/bin/mpiicx
+C compiler version       | 2025.3.2
+C compiler flags         |  -g  -fiopenmp -g  -fiopenmp
+C++ compiler             | /opt/intel/oneapi/2025.3/bin/mpiicpx
+C++ compiler version     | 2025.3.2
+C++ compiler flags       |  -Wno-unknown-pragmas  -fiopenmp -Wno-unknown-pragmas  -fiopenmp
 Static linking           | False
 64-bit integers          | True
 MPI parallelization      | True
-MPI launcher             | /usr/bin/mpiexec
-Math libraries           | -Wl,--start-group;/usr/lib/x86_64-linux-gnu/libmkl_lapack95_ilp64.a;/usr/lib/x86_64-linux-gnu/libmkl_gf_ilp64.so;-fopenmp;-Wl,--end-group;-Wl,--start-group;/usr/lib/x86_64-linux-gnu/libmkl_gf_ilp64.so;/usr/lib/x86_64-linux-gnu/libmkl_gnu_thread.so;/usr/lib/x86_64-linux-gnu/libmkl_core.so;/usr/lib/x86_64-linux-gnu/libpthread.a;/usr/lib/x86_64-linux-gnu/libm.so;-fopenmp;-Wl,--end-group
+MPI launcher             | /opt/intel/oneapi/2025.3/bin/mpiexec
+Math libraries           | -Wl,--start-group;/opt/intel/oneapi/2025.3/lib/intel64/libmkl_lapack95_ilp64.a;/opt/intel/oneapi/2025.3/lib/intel64/libmkl_intel_ilp64.so;-qopenmp;-Wl,--end-group;-Wl,--start-group;/opt/intel/oneapi/2025.3/lib/intel64/libmkl_intel_ilp64.so;/opt/intel/oneapi/2025.3/lib/intel64/libmkl_intel_thread.so;/opt/intel/oneapi/2025.3/lib/intel64/libmkl_core.so;/usr/lib/x86_64-linux-gnu/libpthread.a;/usr/lib/x86_64-linux-gnu/libm.so;-qopenmp;-Wl,--end-group
 Builtin BLAS library     | OFF
 Builtin LAPACK library   | OFF
 Explicit libraries       | unknown
-Compile definitions      | HAVE_MKL_BLAS;HAVE_MKL_LAPACK;HAVE_MPI;HAVE_OPENMP;VAR_MPI;VAR_MPI2;SYS_LINUX;PRG_DIRAC;INT_STAR8;INSTALL_WRKMEM=64000000;BUILD_GEN1INT;MOD_LAO_REARRANGED;MOD_MCSCF_spinfree;MOD_XAMFI;MOD_ESR;MOD_KRCC;MOD_SRDFT
+Compile definitions      | HAVE_MPI;HAVE_OPENMP;VAR_MPI;VAR_MPI2;USE_MPI_MOD_F90;SYS_LINUX;PRG_DIRAC;INT_STAR8;INSTALL_WRKMEM=64000000;BUILD_GEN1INT;MOD_LAO_REARRANGED;MOD_MCSCF_spinfree;MOD_XAMFI;MOD_ESR;MOD_KRCC;MOD_SRDFT
 
 EXACORR dependencies
 --------------------
@@ -237,16 +247,18 @@ Exatensor configuration  | unknown
 
  LAPACK integer*4/8 selftest passed
  Selftest of ISO_C_BINDING Fortran - C/C++ interoperability PASSED
+ MPI selftest passed with MPI_INTEGER of the size 8 bytes
 
 Execution time and host
 -----------------------
 
  
-     Date and time (Linux)  : Sat Jun 14 16:49:40 2025
+     Date and time (Linux)  : Thu Feb 26 00:43:10 2026
      Host name              : MIRO                                    
 
  * Opening checkpoint file 
-    - New checkpoint file created
+    - Existing hdf5 checkpoint file: check contents
+    - Checkpoint file is valid, will be used for restart
 
 
 Contents of the input file
@@ -266,10 +278,12 @@ Contents of the input file
 .LVCORR                                                                                             
 .URKBAL                                                                                             
 **VISUAL                                                                                            
-.DENSITY                                                                                            
- DFCOEF                                                                                             
-.3D                                                                                                 
- 80 80 80                                                                                           
+.GRIDS                                                                                              
+1                                                                                                   
+id=1 input=create typ=1 npoints=[80,80,80] margin=4.0                                               
+.GRIDFUNCTIONS                                                                                      
+1                                                                                                   
+name=ed id_grid=1 purpose=visualization export=cube file_out=ed.cube                                
 **WAVE FUNCTION                                                                                     
 .SCF                                                                                                
 **PROPERTIES                                                                                        
@@ -330,7 +344,7 @@ FINISH
 
    CODATA Recommended Values of the Fundamental Physical Constants: 2022  
      Peter J. Mohr, Eite Tiesinga, David B. Newell and Barry N. Taylor    
-        https://physics.nist.gov/constants (Accessed March 6, 2025)       
+         Reviews of Modern Physics, Vol. 97, 025002 (2025)                
  * The speed of light :        137.035999177
  * Running in four-component mode
  * Parallel run with 1 slaves.
@@ -623,7 +637,7 @@ Represented as: D2h
   ----------------------------------------------
 
    12
-
+ 
 H      0.0000000000   2.1415800000   1.2364400000
 H      0.0000000000  -2.1415800000   1.2364400000
 H      0.0000000000   2.1415800000  -1.2364400000
@@ -793,8 +807,8 @@ C      0.0000000000   0.0000000000  -1.3910160000
                        * Natural abundance:  93.495 %
 
 
-* Center-of-mass coordinates (a.u.):       0.000000000000000   0.000000000000000   0.000000000000000
-* Center-of-mass coordinates (A)   :       0.000000000000000   0.000000000000000   0.000000000000000
+* Center-of-mass coordinates (a.u.):       0.000000000000000  -0.000000000000000   0.000000000000000
+* Center-of-mass coordinates (A)   :       0.000000000000000  -0.000000000000000   0.000000000000000
 
 
                                 GETLAB: AO-labels
@@ -1041,6 +1055,7 @@ C      0.0000000000   0.0000000000  -1.3910160000
  * RKB pre-projection in scalar basis
   without removing unphysical solutions for no external field
   This gives extended kinetic balance and is  only recommended for CONTRACTED LC basis sets
+ VISUAL: 3d grid will be created according to .GRID options
 
 
     **************************************************************************
@@ -1141,21 +1156,36 @@ C      0.0000000000   0.0000000000  -1.3910160000
 No. of electronic orbitals (NESH):    54      54     108
 No. of positronic orbitals (NPSH):   135     135     270
 Total no. of orbitals      (NORB):   189     189     378
-===========================================================================
-* PCMOIN: Coefficients read from formatted DFPCMO 
-          and written to CHECKPOINT
-===========================================================================
+  
 
-  *** Visualisation module ***
- --------------------------------------------------------------------------------------
- Visualization in 3d done with the following settings:
- Number of points in x, y, z direction:                    80                   80                   80
- Space around the cube file is    4.0000000000000000     
- Gauge origin is    0.0000000000000000        0.0000000000000000        0.0000000000000000     
- --------------------------------------------------------------------------------------
-  Visualisation : CHECKPOINT file read
- >>>> time used in plot:   2.91 seconds
- >>>> time used in integration:   0.00 seconds
+  *** Visualization module ***
+  
+ WARNING: no hamiltonian on CHECKPOINT. Assuming Dirac-Coulomb.
+Setting up grid #  1
+  Grid points are generated to span a 3D rectilinear cube, defined in the user input (.3D or .3D_INT): 
+    * Cube parameters: 
+      * "x" direction: 
+        nr points:       80
+        spacing:        0.1013
+        extend from:       -4.0000 to        4.0000 on x axis
+      * "y" direction: 
+        nr points:       80
+        spacing:        0.2037
+        extend from:       -8.0470 to        8.0470 on y axis
+      * "z" direction: 
+        nr points:       80
+        spacing:        0.2196
+        extend from:       -8.6731 to        8.6731 on z axis
+    * Total number of points:   512000
+ 
+Setting up grid function #  1
+  Grid function is a tensor field of order        0
+  Grid function will be calculated in vertices of grid       1
+  Grid function depends on the unperturbed electron density
+  Grid function will be exported; export format: cube
+  Grid function will be exported to file: ed.cube
+ 
+ Elapsed walltime in run_visual:   -2.07001000000000     
 
  * Closing HDF5 checkpoint file 
     - Checkpoint file contains all required data, can be used for restarts
@@ -1167,32 +1197,32 @@ Total no. of orbitals      (NORB):   189     189     378
 
 
  
-     Date and time (Linux)  : Sat Jun 14 16:49:43 2025
+     Date and time (Linux)  : Thu Feb 26 00:43:13 2026
      Host name              : MIRO                                    
 
->>>> Node 0, utime: 2, stime: 0, minflt: 13536, majflt: 0, nvcsw: 1118, nivcsw: 6, maxrss: 81004
+>>>> Node 0, utime: 2, stime: 0, minflt: 20869, majflt: 23, nvcsw: 1041, nivcsw: 15, maxrss: 144652
 >>>> Total WALL time used in DIRAC: 3s
   
   Dynamical Memory Usage Summary for Master
   
-  Mean allocation size (Mb) :       115.06
+  Mean allocation size (Mb) :       115.12
   
-  Largest                   10  allocations
+  Largest                    10  allocations
   
-      488.28 Mb at subroutine __allocator_track_if_MOD_allocator_registe for WORK in PAMSET - 2                        
-      488.28 Mb at subroutine __allocator_track_if_MOD_allocator_registe for WORK in GMOTRA                            
-      488.28 Mb at subroutine __allocator_track_if_MOD_allocator_registe for WORK in PAMSET - 1                        
-      488.28 Mb at subroutine __allocator_track_if_MOD_allocator_registe for test allocation of work array in DIRAC mai
-        1.20 Mb at subroutine __allocator_track_if_MOD_allocator_registe for buf in butobs                             
-        0.76 Mb at subroutine __allocator_track_if_MOD_allocator_registe for PAMINP WORK array                         
-        0.60 Mb at subroutine __allocator_track_if_MOD_allocator_registe for unnamed variable                          
-        0.03 Mb at subroutine __allocator_track_if_MOD_allocator_registe for INTADR in XPLDEF                          
-        0.03 Mb at subroutine __allocator_track_if_MOD_allocator_registe for INTREP in XPLDEF                          
-        0.03 Mb at subroutine __allocator_track_if_MOD_allocator_registe for INTADR in XPLDEF                          
+      488.28 Mb at subroutine pamset_+0x281                              for WORK in PAMSET - 2                        
+      488.28 Mb at subroutine gmotra_+0x20c                              for WORK in GMOTRA                            
+      488.28 Mb at subroutine pamset_+0x79                               for WORK in PAMSET - 1                        
+      488.28 Mb at subroutine MAIN__+0xc7a                               for test allocation of work array in DIRAC mai
+        1.20 Mb at subroutine butobs_no_work_+0x97                       for buf in butobs                             
+        0.76 Mb at subroutine paminp_+0xa9                               for PAMINP WORK array                         
+        0.60 Mb at subroutine gtovlx_+0x7f                               for unnamed variable                          
+        0.29 Mb at subroutine qtrans90_+0x18e                            for QTRANS90-buffer-space                     
+        0.29 Mb at subroutine qtrans90_+0x18e                            for QTRANS90-buffer-space                     
+        0.03 Mb at subroutine xpldef_+0x193                              for INTADR in XPLDEF                          
   
   Peak memory usage:       489.48 MB
   Peak memory usage:        0.478 GB
-       reached at subroutine : __allocator_track_if_MOD_allocator_registe
+       reached at subroutine : butobs_no_work_+0x97                      
               for variable   : buf in butobs                             
   
  MEMGET high-water mark:    0.00 MB

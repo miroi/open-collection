@@ -34,7 +34,8 @@ e_atom = get_optimized_energy(atom_hg)
 
 # 5. Adsorption: Hg on Au Slab
 # Testing the 'hollow' site as it is often most stable for metal-on-metal
-add_adsorbate(slab, 'Hg', height=2.5, position='hollow')
+#add_adsorbate(slab, 'Hg', height=2.5, position='hollow')
+add_adsorbate(slab, 'Hg', height=2.5, position='bridge')
 print("Optimizing Hg + Au System...")
 e_total = get_optimized_energy(slab)
 

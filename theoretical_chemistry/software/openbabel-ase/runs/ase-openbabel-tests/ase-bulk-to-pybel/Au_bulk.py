@@ -6,9 +6,15 @@ import io
 from ase.build import bulk
 from ase.io import write
 from openbabel import pybel
+from ase.visualize import view
 
 # 1. Create the bulk structure
 atoms = bulk('Au', 'fcc', a=4.08, cubic=True)
+
+atoms = atoms.repeat((2, 2, 2))
+print(f"Total atoms after 2x2x2 repeat: {len(atoms)}")
+
+view(atoms)
 
 # 2. Convert to CIF using a BytesIO buffer
 # ASE's CIF writer requires a binary file-like object
@@ -22,10 +28,10 @@ mol = pybel.readstring("cif", cif_string)
 
 # 4. Verify PBC / Unit Cell and Atoms
 if mol.unitcell:
-    print("Success: Unit Cell and PBC preserved.")
+    print("\nSuccess: Unit Cell and PBC preserved.")
     print(f"Lattice a: {mol.unitcell.GetA():.2f} Å")
     print(f"Total Atoms: {len(mol.atoms)}")
 
 # 5. Optional: View with Pybel's 2D engine (if GUI available)
-# mol.draw(show=True)
+mol.draw(show=True) 
 

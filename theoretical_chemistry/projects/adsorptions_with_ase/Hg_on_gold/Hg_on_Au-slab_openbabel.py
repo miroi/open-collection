@@ -2,6 +2,8 @@
 # try to calculate adsorption energy of Hg on Au slab
 #
 #
+import io
+from ase.io import write
 from ase import Atoms
 from ase.build import bulk
 #from ase.calculators.emt import EMT
@@ -17,8 +19,28 @@ from openbabel import pybel, openbabel
 #for symb in ['Al', 'Ni', 'Cu', 'Pd', 'Ag', 'Pt', 'Au']:
 symb='Au'
 #  https://en.wikipedia.org/wiki/Cubic_crystal_system
-atoms = bulk(symb,'fcc')
-atoms.calc = openbabel(forcefield='uff')
+#atoms = bulk(symb,'fcc')
+ase_bulk = bulk(symb,'fcc',cubic=True)
+
+cif_buffer = io.BytesIO()
+write(cif_buffer, ase_bulk, format='cif')
+
+# 3. Retrieve the string and read into Pybel
+# We decode the bytes to a string for pybel.readstring
+cif_string = cif_buffer.getvalue().decode('utf-8')
+atoms = pybel.readstring("cif", cif_string)
+
+# 4. Verify PBC / Unit Cell and Atoms
+if atoms.unitcell:
+    print("\nSuccess: Unit Cell and PBC preserved.")
+    print(f"Lattice a: {atoms.unitcell.GetA():.2f} Å")
+    print(f"Total Atoms: {len(atoms.atoms)}")
+
+#atoms.calc = openbabel(forcefield='uff')
+atoms.localopt(forcefield="mmff94", steps=0)
+
+print(f"Energy: {atoms.energy} kJ/mol")
+
 eos = calculate_eos(atoms)
 v, e, B = eos.fit()  # find minimum
 

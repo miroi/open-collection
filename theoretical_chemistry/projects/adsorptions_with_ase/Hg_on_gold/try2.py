@@ -1,8 +1,9 @@
 from openbabel import openbabel
+from openbabel import openbabel
 from openbabel import pybel
 import numpy as np
 
-def calculate_hg_au_adsorption(slab_file, height=2.5):
+def calculate_hg_au_adsorption(slab_file, height=1.0):
     # 1. Load the Gold Slab
     try:
         slab = next(pybel.readfile("xyz", slab_file))
@@ -11,6 +12,7 @@ def calculate_hg_au_adsorption(slab_file, height=2.5):
 
     # 2. Setup Force Field (UFF)
     ff = pybel._forcefields["uff"]
+    #ff = pybel._forcefields["mmff94"]
     
     # --- Calculate Slab Energy ---
     if not ff.Setup(slab.OBMol):

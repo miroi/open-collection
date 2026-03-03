@@ -4,7 +4,7 @@ Screening adsorption sites
 
 Hg@Au48 with LJ
 
-TODO: set LJ parameters Hg-Au
+TODO: set LJ parameters Hg-Au, insert better calculator
 
 running
 ~~~~~~~

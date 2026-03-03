@@ -40,7 +40,7 @@ def compute_surface_energy(miller, n_layers=4):
     return gamma
 
 # 3. Test various indices
-surfaces = [(1,1,1), (1,0,0), (1,1,0), (2,1,1), (3,2,1)]
+surfaces = [(0,2,0),(1,1,1), (1,0,0), (1,1,0), (2,1,1), (3,2,1), (2,0,0),(0,2,2),(0,1,1),(0,0,1),(0,1,0),(0,0,2)]
 
 print(f"{'Miller':<10} | {'γ (eV/Å²)':<10}")
 print("-" * 25)
@@ -48,7 +48,7 @@ print("-" * 25)
 for m in surfaces:
     try:
         g = compute_surface_energy(m)
-        print(f"{str(m):<10} | {g:.6f}")
+        print(f"{str(m):<10} | {g:.10f}")
     except Exception as e:
         print(f"Failed {m}: {e}")
 

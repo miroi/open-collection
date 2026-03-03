@@ -9,7 +9,7 @@ from ase.calculators.emt import EMT
 from ase.eos import calculate_eos
 from ase.db import connect
 from ase.build import fcc111, add_adsorbate
-from ase.constraints import FixAtoms
+#from ase.constraints import FixAtoms
 from ase.optimize import BFGS
 
 #for symb in ['Al', 'Ni', 'Cu', 'Pd', 'Ag', 'Pt', 'Au']:
@@ -42,14 +42,11 @@ en_atom=a1.get_potential_energy()
 print(a1.symbols,'single atom pot.energy =',en_atom)
 
 add_adsorbate(atoms, add_atom, height=1.0, position='fcc')
-# Constrain all gold atoms except the adsorbate:
-fixed = list(range(len(atoms) - 1))
-atoms.constraints = [FixAtoms(indices=fixed)]
 
 atoms.calc = EMT()
 #opt = BFGS(atoms, logfile=None)
 #opt = BFGS(atoms, logfile='Pt_on_Au-slab.BFGS_logfile', trajectory ='Pt_on_Au-slabEMT.traj')
-opt = BFGS(atoms, trajectory ='Pt_on_Au-slabEMT.traj')
+opt = BFGS(atoms, trajectory ='Pt_on_Au-slabEMTrelaxed.traj')
 opt.run(fmax=0.01)
 en_atom_on_surface=atoms.get_potential_energy()
 

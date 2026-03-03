@@ -19,7 +19,8 @@ e_slab = slab.get_potential_energy()
 # 3. Combined system (Pt adsorbed on Au)
 # Note: add_adsorbate modifies the slab object in place
 add_adsorbate(slab, 'Pt', height=2.0, position='ontop')
-BFGS(slab, logfile=None).run(fmax=0.05)
+#BFGS(slab, logfile=None).run(fmax=0.05)
+BFGS(slab, trajectory ='Pt_on_Au-slabEMT_2.traj').run(fmax=0.05)
 e_total = slab.get_potential_energy()
 
 # 4. Adsorption Energy

@@ -92,7 +92,8 @@ hollow_cutoff_max = 4.0
 hollow_height = 1.8
     
 # Specify adsorbate 
-adsorbate_symbol = 'O'  
+#adsorbate_symbol = 'O'  
+adsorbate_symbol = 'Hg'  
 
 # LJ parameters 
 lj_epsilon = 0.03        # Adjust depending on your system

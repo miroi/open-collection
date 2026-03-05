@@ -32,8 +32,8 @@ for name, build_func in surface_funcs.items():
     dyn.run(fmax=0.05)
 
     # Export structures using ASE's write
-    #write(f'saved_slab{name}.vasp',slab,format='vasp', direct=True)
-    write(f'saved_slab{build_func}.vasp',slab,format='vasp', direct=True)
+    name_s=name.replace('(', '').replace(')', '') # first clean the name
+    write(f'saved_slab{name_s}.vasp',slab,format='vasp', direct=True)
     
     # Calculate Area (Area = |a x b| for the unit cell vectors)
     cell = slab.get_cell()

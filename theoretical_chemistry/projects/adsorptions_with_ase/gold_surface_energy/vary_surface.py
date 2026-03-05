@@ -2,6 +2,7 @@ import numpy as np
 from ase.build import bulk, fcc111, fcc100, fcc110
 from ase.calculators.emt import EMT
 from ase.optimize import BFGS
+from ase.io import write
 
 # 1. Reference: Bulk Energy per atom
 a_lattice = 4.08  # Experimental lattice constant for Au
@@ -29,6 +30,10 @@ for name, build_func in surface_funcs.items():
     # Relax internal atom positions
     dyn = BFGS(slab, logfile=None)
     dyn.run(fmax=0.05)
+
+    # Export structures using ASE's write
+    #write(f'saved_slab{name}.vasp',slab,format='vasp', direct=True)
+    write(f'saved_slab{build_func}.vasp',slab,format='vasp', direct=True)
     
     # Calculate Area (Area = |a x b| for the unit cell vectors)
     cell = slab.get_cell()

@@ -24,6 +24,8 @@ to ~/work/software/gromacs/gromacs_cloned/share/top/charmm36.ff/forcefield.doc :
 
 BUT, error : https://github.com/Lemkul-Lab/gmx_tutorials_jpcb/issues/2
 
+  1UBQ.pdb is the same in web database
+
 Prepare the Protein Topology
 ----------------------------
 
@@ -36,7 +38,13 @@ gmx pdb2gmx -f 1UBQ.pdb -o ubiquitin.gro > gmx_pdb2gmx.logfile 2>&1
 1
 
 better:
+~~~~~~~
 gmx pdb2gmx -f 1UBQ.pdb -o ubiquitin.gro -ter -missing
+9: CHARMM36 all-atom force field, charmm36-feb2026_cgenff-5.0.ff
+1
+
+NH3+ start, COO- end terminus
+
 
 
 Upon completion of pdb2gmx, the user will have the following files in the working directory:

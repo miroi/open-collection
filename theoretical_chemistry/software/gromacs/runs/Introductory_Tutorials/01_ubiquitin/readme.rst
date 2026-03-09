@@ -38,7 +38,7 @@ gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname NA -nname CL -conc 0
 
 rewrapp unit cell
 ~~~~~~~~~~~~~~~~~
-gmx grompp -f inputs/ions.mdp -c solv_ions.gro -p topol.top -o wrap.tpr > gmx_grompp.logfile 2>&1
+gmx grompp -f inputs/ions.mdp -c solv_ions.gro -p topol.top -o wrap.tpr > gmx_grompp2.logfile 2>&1
 
 gmx trjconv -s wrap.tpr -f solve_ions.gro -o rewrap.gro -pbc mol -ur compact > gmx_trjconv.logfile 2>&1
 

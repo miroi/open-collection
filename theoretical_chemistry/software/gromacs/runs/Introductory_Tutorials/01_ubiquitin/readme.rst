@@ -61,6 +61,20 @@ gmx editconf -f ubiquitin.gro -o box.gro -c -d 1.2 -bt dodecahedron > gmx_editco
 gmx solvate -cp box.gro -cs spc216.gro -o solv.gro -p topol.top 
 gmx solvate -cp box.gro -cs spc216.gro -o solv.gro -p topol.top > gms_solvate.logfile  2>&1
 
+
+Program:     gmx grompp, version 2026.0-dev-20251031-ee5fdd7dba
+Source file: src/gromacs/gmxpreprocess/grompp.cpp (line 750)
+
+Fatal error:
+number of coordinates in coordinate file (solv.gro, 21998)
+             does not match topology (topol.top, 22114)
+
+For more information and tips for troubleshooting, please check the GROMACS
+website at https://manual.gromacs.org/current/user-guide/run-time-errors.html
+
+see:
+https://manual.gromacs.org/current/user-guide/run-time-errors.html#number-of-coordinates-in-coordinate-file-does-not-match-topology
+
 add ions (100 mM NaCl)
 ~~~~~~~~~~~~~~~~~~~~~~
 gmx grompp -f inputs/ions.mdp  -c solv.gro  -p topol.top -o ions.tpr 

@@ -4,6 +4,11 @@ Exercise 1: Protein in Water
 
 following https://pubs.acs.org/doi/10.1021/acs.jpcb.4c04901 
 
+add charmm36 ff
+~~~~~~~~~~~~~~~
+https://mackerell.umaryland.edu/charmm_ff.shtml#gromacs
+miroi@MIRO:~/work/software/gromacs/gromacs_cloned/share/top/.mv /mnt/c/Users/miroi/Downloads/charmm36-feb2026_cgenff-5.0.ff .
+
 Prepare the Protein Topology
 ----------------------------
 

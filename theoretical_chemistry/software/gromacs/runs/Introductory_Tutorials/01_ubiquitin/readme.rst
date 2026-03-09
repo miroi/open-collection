@@ -7,23 +7,13 @@ following https://pubs.acs.org/doi/10.1021/acs.jpcb.4c04901
 Prepare the Protein Topology
 ----------------------------
 
-miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/gromacs/runs/Introductory_Tutorials/inputs/01_ubiquitin/.gmx pdb2gmx -f 1UBQ.pdb -o ubiquitin.gro
+export PATH=/home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin:$PATH
 
-8: CHARMM27 all-atom force field (CHARM22 plus CMAP for proteins)
+gmx pdb2gmx -f 1UBQ.pdb -o ubiquitin.gro
 
- 1: TIP3P   TIP 3-point, recommended
-
-
-You have successfully generated a topology from: 1UBQ.pdb.
-
-The Charmm27 force field and the tip3p water model are used.
-
-miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/gromacs/runs/Introductory_Tutorials/inputs/01_ubiquitin/.ls
-1UBQ.pdb  free_ener_plot/  inputs/  posre.itp  readme.rst  topol.top  ubiquitin.gro
-
-        posre.itp
-        topol.top
-        ubiquitin.gro
+gmx pdb2gmx -f 1UBQ.pdb -o ubiquitin.gro > gmx_pdb2gmx.logfile 2>&1
+8
+1
 
 Upon completion of pdb2gmx, the user will have the following files in the working directory:
 1.	ubiquitin.gro: a force field-compliant structure that is protonated according to the assumptions described above.
@@ -33,21 +23,27 @@ Upon completion of pdb2gmx, the user will have the following files in the workin
 Define the Periodic Cell and Add Solvent
 ----------------------------------------
 
-miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/gromacs/runs/Introductory_Tutorials/inputs/01_ubiquitin/.gmx editconf -f ubiquitin.gro -o box.gro -c -d 1.2 -bt dodecahedron > gmx_editconf.logfile 2>&1
+gmx editconf -f ubiquitin.gro -o box.gro -c -d 1.2 -bt dodecahedron > gmx_editconf.logfile 2>&1
 
-miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/gromacs/runs/Introductory_Tutorials/inputs/01_ubiquitin/.gmx solvate -cp box.gro -casxx spc216.gro -o solv.gro -p topol.top > gms_solvate.logfile  2>&1
+gmx solvate -cp box.gro -cs spc216.gro -o solv.gro -p topol.top > gms_solvate.logfile  2>&1
 
 add ions (100 mM NaCl)
 ~~~~~~~~~~~~~~~~~~~~~~
-miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/gromacs/runs/Introductory_Tutorials/inputs/01_ubiquitin/.gmx grompp -f inputs/ions.mdp  -c solv.gro  -p topol.top -o ions.tpr > gmx_grompp.logfile 2>&1  FIX ERROR...
+gmx grompp -f inputs/ions.mdp  -c solv.gro  -p topol.top -o ions.tpr > gmx_grompp.logfile 2>&1  
 
 choose group 13 (SQL) to replace water molecules with ions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/gromacs/runs/Introductory_Tutorials/inputs/01_ubiquitin/.gmx genion -s ions.trp -o solv_ions.gro -p topol.tio -pname NA -nname CL -conc 0.1 > gmx_genion.logfile 2>&1
+gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname NA -nname CL -conc 0.1 > gmx_genion.logfile 2>&1
+13
+
+rewrapp unit cell
+~~~~~~~~~~~~~~~~~
+gmx grompp -f inputs/ions.mdp -c solv_ions.gro -p topol.top -o wrap.tpr > gmx_grompp.logfile 2>&1
+
+gmx trjconv -s wrap.tpr -f solve_ions.gro -o rewrap.gro -pbc mol -ur compact > gmx_trjconv.logfile 2>&1
 
 
-
-
-
+Perform Energy Minimization
+---------------------------
 
 

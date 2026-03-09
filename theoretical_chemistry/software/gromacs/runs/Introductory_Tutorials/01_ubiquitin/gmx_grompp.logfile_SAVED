@@ -1,32 +1,27 @@
-          :-) GROMACS - gmx grompp, 2023.3-Ubuntu_2023.3_1ubuntu3 (-:
+          :-) GROMACS - gmx grompp, 2026.0-dev-20251031-ee5fdd7dba (-:
 
-Executable:   /usr/bin/gmx
-Data prefix:  /usr
-Working dir:  /home/miroi/work/projects/open-collection/theoretical_chemistry/software/gromacs/runs/Introductory_Tutorials/inputs/01_ubiquitin
+Executable:   /home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx
+Data prefix:  /home/miroi/work/software/gromacs/gromacs_cloned (source tree)
+Working dir:  /home/miroi/work/projects/open-collection/theoretical_chemistry/software/gromacs/runs/Introductory_Tutorials/01_ubiquitin
 Command line:
   gmx grompp -f inputs/ions.mdp -c solv.gro -p topol.top -o ions.tpr
 
 Ignoring obsolete mdp entry 'ns_type'
+Generating 1-4 interactions: fudge = 1
+Number of degrees of freedom in T-Coupling group rest is 46194.00
+The integrator does not provide a ensemble temperature, there is no system ensemble temperature
 
 NOTE 1 [file inputs/ions.mdp]:
-  With Verlet lists the optimal nstlist is >= 10, with GPUs >= 20. Note
-  that with the Verlet scheme, nstlist has no effect on the accuracy of
-  your simulation.
+  You are using a plain Coulomb cut-off, which might produce artifacts.
+  You might want to consider using PME electrostatics.
 
-Generating 1-4 interactions: fudge = 1
 
--------------------------------------------------------
-Program:     gmx grompp, version 2023.3-Ubuntu_2023.3_1ubuntu3
-Source file: src/gromacs/gmxpreprocess/grompp.cpp (line 706)
 
-Fatal error:
-number of coordinates in coordinate file (solv.gro, 22483)
-             does not match topology (topol.top, 43561)
+There was 1 NOTE
 
-For more information and tips for troubleshooting, please check the GROMACS
-website at http://www.gromacs.org/Documentation/Errors
--------------------------------------------------------
-Setting the LD random seed to -341051393
+GROMACS reminds you: "She Says She Can't Go Home Without a Chaperone" (E. Costello)
+
+Setting the LD random seed to -16777289
 
 Generated 20503 of the 20503 non-bonded parameter combinations
 
@@ -37,5 +32,9 @@ Excluding 3 bonded neighbours molecule type 'Protein_chain_A'
 Excluding 2 bonded neighbours molecule type 'SOL'
 
 Excluding 2 bonded neighbours molecule type 'SOL'
+Analysing residue names:
+There are:    76    Protein residues
+There are:  7084      Water residues
+Analysing Protein...
 
-Excluding 2 bonded neighbours molecule type 'SOL'
+This run will generate roughly 2 Mb of data

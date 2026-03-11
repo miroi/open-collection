@@ -24,8 +24,7 @@ def get_relaxed_energy(atoms, label):
 
 # Load Model
 model = CHGNet.load()
-calc = CHGNetCalculator(model=model, use_device="gpu")
-#calc = CHGNetCalculator(model=model, use_device="cpu")
+calc = CHGNetCalculator(model=model)
 
 atoms = bulk('Au', 'fcc', a=4.0, cubic=True)
 atoms.calc = calc

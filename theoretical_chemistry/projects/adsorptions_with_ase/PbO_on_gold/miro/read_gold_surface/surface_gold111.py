@@ -76,4 +76,12 @@ slab = Atoms(
     pbc=[True, True, True]
 )
 
+# Write to XYZ format
+write('Au48_fcc111.xyz', slab)
+
+# Write to VASP format (POSCAR)
+# Note: 'vasp' or 'poscar' suffix works; vasp_v5=True uses modern format with element symbols
+write('Au48_fcc111', slab, format='vasp', vasp_v5=True)
+
+
 

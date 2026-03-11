@@ -77,11 +77,11 @@ slab = Atoms(
 )
 
 # Write to XYZ format
-write('Au48_fcc111.xyz', slab)
+write('Au48_slab.xyz', slab)
 
 # Write to VASP format (POSCAR)
 # Note: 'vasp' or 'poscar' suffix works; vasp_v5=True uses modern format with element symbols
-write('Au48_fcc111', slab, format='vasp', vasp_v5=True)
+write('Au48_slab', slab, format='vasp')
 
 
 

@@ -29,7 +29,7 @@ def run_adsorption(site, orientation):
     from ase.constraints import FixAtoms
     # Fix bottom two layers (tags 3 and 4)
     c = FixAtoms(indices=[atom.index for atom in slab if atom.tag > 2])
-    slab.set_constraints(c)
+    slab.set_constraint(c)
 
     # 4. Optimize
     dyn = BFGS(slab, logfile=None)

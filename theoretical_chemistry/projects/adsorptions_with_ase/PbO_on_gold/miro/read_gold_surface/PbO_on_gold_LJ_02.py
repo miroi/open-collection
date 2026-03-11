@@ -68,9 +68,10 @@ for name, pos in sites.items():
     # Apply Multi-element LJ Calculator
     working_system.calc = LennardJones(pair_params=all_pair_params, rc=10.0)
     
-    # Fix bottom two layers (Z < 9.0 A) to keep slab stable
-    mask = [atom.position[2] < 9.0 for atom in working_system]
-    working_system.set_constraint(FixAtoms(mask=mask))
+    # NEW: Fix ALL 48 atoms of the gold slab
+    # Only the 2 atoms of the PbO molecule will be allowed to move
+    slab_indices = list(range(len(slab))) 
+    working_system.set_constraint(FixAtoms(indices=slab_indices))
     
     # Setup Trajectory
     traj_name = f'relax_{name}.traj'

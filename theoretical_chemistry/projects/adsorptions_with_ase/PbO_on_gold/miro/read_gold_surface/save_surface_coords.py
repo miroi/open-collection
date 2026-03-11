@@ -5,15 +5,15 @@ from ase.optimize import BFGS
 from ase.constraints import FixAtoms
 from ase.filters import UnitCellFilter  
 from ase.io import write
-from chgnet.model.model import CHGNet
-from chgnet.model.dynamics import CHGNetCalculator
+#from chgnet.model.model import CHGNet
+#from chgnet.model.dynamics import CHGNetCalculator
 import warnings
 warnings.filterwarnings("ignore", message="Skipping unhashable information")
 
 # Load Model
-model = CHGNet.load()
+#model = CHGNet.load()
 #calc = CHGNetCalculator(model=model, use_device="gpu")
-calc = CHGNetCalculator(model=model, use_device="cpu")
+#calc = CHGNetCalculator(model=model, use_device="cpu")
 
 
 slab = Atoms(
@@ -81,7 +81,7 @@ write('Au48_slab.xyz', slab)
 
 # Write to VASP format (POSCAR)
 # Note: 'vasp' or 'poscar' suffix works; vasp_v5=True uses modern format with element symbols
-write('Au48_slab', slab, format='vasp')
+write('Au48_slab.vasp', slab, format='vasp')
 
 
 

@@ -26,7 +26,11 @@ calculators = {"CHGNet": CHGNetCalculator()}
 
 if HAS_MACE:
     # mace_mp loads the universal Materials Project foundation model
-    calculators["MACE"] = mace_mp(model="medium", device='cuda', default_dtype="float32")
+    #calculators["MACE"] = mace_mp(model="medium", device='cuda', default_dtype="float32")
+
+    # Change this line:
+    calculators["MACE"] = mace_mp(model="medium", device='cpu', default_dtype="float32")
+
 
 def get_pbo_molecule(orientation='Pb-down'):
     """

@@ -8,32 +8,18 @@ from ase.io import read
 # Load the Gold slab from the XYZ file
 slab = read('Au48_slab.xyz')
 
-# 1. Define LJ Parameters (example values in eV and Angstrom)
-# Note: In a real study, these should be fitted to DFT or experimental data.
-refs = {
-    ('Au', 'Au'): {'epsilon': 0.039, 'sigma': 2.90},
-    ('Pb', 'Pb'): {'epsilon': 0.045, 'sigma': 3.20},
-    ('O', 'O'):   {'epsilon': 0.010, 'sigma': 3.00},
-}
+# Define symbols for your system
+symbols = ['Au', 'Pb', 'O']
 
-# Mixing rules (Lorentz-Berthelot) for cross-interactions
-def get_mix(a, b):
-    eps = np.sqrt(refs[(a, a)]['epsilon'] * refs[(b, b)]['epsilon'])
-    sig = (refs[(a, a)]['sigma'] + refs[(b, b)]['sigma']) / 2.0
-    return eps, sig
+# Define epsilon and sigma for each element in the same order
+# (Using your reference values)
+epsilons = [0.039, 0.045, 0.010]  # Au, Pb, O
+sigmas = [2.90, 3.20, 3.00]      # Au, Pb, O
 
-# 2. Setup the LJ Calculator
-# We must define interactions for all unique pairs in the system
-pairs = [('Au', 'Au'), ('Pb', 'Pb'), ('O', 'O'), ('Au', 'Pb'), ('Au', 'O'), ('Pb', 'O')]
-lj_params = {}
-for p1, p2 in pairs:
-    if (p1, p2) in refs:
-        e, s = refs[(p1, p2)]['epsilon'], refs[(p1, p2)]['sigma']
-    else:
-        e, s = get_mix(p1, p2)
-    lj_params[f'{p1}-{p2}'] = (e, s)
+# Initialize the calculator
+# ASE will automatically apply Lorentz-Berthelot mixing rules
+calc_lj = LennardJones(epsilon=epsilons, sigma=sigmas)
 
-calc_lj = LennardJones(parameters=lj_params)
 
 # 3. Calculate Reference Energies
 # Energy of isolated slab

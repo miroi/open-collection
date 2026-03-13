@@ -1,0 +1,62 @@
+#!/bin/bash
+
+#SBATCH -J DIR
+
+##  partition (queue)
+#SBATCH -p cascade
+##SBATCH -p knl
+##SBATCH -p long
+##SBATCH -p flnr-ice
+
+## max. execution time
+#SBATCH -t 0-04:00:00
+
+##SBATCH --exclusive
+
+##SBATCH --mem=128GB
+##SBATCH --mem=264GB
+#SBATCH --mem=24GB
+
+# do not restart in the case of nodefail!
+#SBATCH --no-requeue
+#SBATCH --no-kill
+
+#SBATCH -N 1 -n 4
+##SBATCH --ntasks-per-node=12
+
+##SBATCH  --sockets-per-node=1
+
+## memory NO !!!
+##SBATCH --mem-per-cpu=28G
+
+## stdout/stderr output file
+##SBATCH -o log_slurm_job.%j.%N.std_out_err
+##SBATCH -o log_slurm_job.%j.%N.std_out
+
+## mail
+##SBATCH --mail-user=siuraksh@jinr.ru
+#SBATCH --mail-user=milias@jinr.ru
+#SBATCH --mail-type=ALL
+
+free -t -g
+ 
+module purge
+#module add GVR/v1.0-1
+module add Python/v3.12.13
+module add CMake/v4.2.3
+module add  intel/v2025.3.1
+#module add openmpi/v5.0.3_gcc1230
+#module add LAPACK/v3.12.0_gcc1230
+module list
+
+#echo -e "\n python ? :\c"; which python; python -V
+#echo -e "  cmake ? :\c";  which cmake; cmake --version
+#echo -e "  mpiifort ? :\c"; which mpiifort; mpiifort -V
+#echo -e "  mpiicc ? :\c"; which mpiicc; mpiicc -V
+#echo -e "  mpiicc ? :\c"; which mpiicpc; mpiicpc  -V
+#echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"; ls -lt  $MKLROOT/lib/intel64
+
+#echo -e "\n The variable PATH=$PATH\n"
+
+
+exit

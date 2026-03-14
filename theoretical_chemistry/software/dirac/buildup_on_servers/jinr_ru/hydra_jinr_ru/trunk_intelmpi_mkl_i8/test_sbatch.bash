@@ -3,8 +3,8 @@
 #SBATCH -J DIR
 
 ##  partition (queue)
-##SBATCH -p cascade
-#SBATCH -p bltp
+#SBATCH -p cascade
+##SBATCH -p bltp
 ##SBATCH -p long
 ##SBATCH -p flnr-ice
 
@@ -30,13 +30,12 @@
 ##SBATCH --mem-per-cpu=28G
 
 ## stdout/stderr output file
-##SBATCH -o log_slurm_job.%j.%N.std_out_err
+#SBATCH -oe log_slurm_job.%j.%N.std_out_err
 ##SBATCH -o log_slurm_job.%j.%N.std_out
 
 ## mail
-##SBATCH --mail-user=siuraksh@jinr.ru
-##SBATCH --mail-user=milias@jinr.ru
-##SBATCH --mail-type=ALL
+#SBATCH --mail-user=milias@jinr.ru
+#SBATCH --mail-type=ALL
 
 free -t -g
  
@@ -49,14 +48,14 @@ module add  intel/v2025.3.1
 #module add LAPACK/v3.12.0_gcc1230
 module list
 
-#echo -e "\n python ? :\c"; which python; python -V
-#echo -e "  cmake ? :\c";  which cmake; cmake --version
-#echo -e "  mpiifort ? :\c"; which mpiifort; mpiifort -V
-#echo -e "  mpiicc ? :\c"; which mpiicc; mpiicc -V
-#echo -e "  mpiicc ? :\c"; which mpiicpc; mpiicpc  -V
-#echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"; ls -lt  $MKLROOT/lib/intel64
+echo -e "\n python ? :\c"; which python; python -V
+echo -e "  cmake ? :\c";  which cmake; cmake --version
+echo -e "  mpiifort ? :\c"; which mpiifort; mpiifort -V
+echo -e "  mpiicc ? :\c"; which mpiicc; mpiicc -V
+echo -e "  mpiicc ? :\c"; which mpiicpc; mpiicpc  -V
+echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"; ls -lt  $MKLROOT/lib/intel64
 
-#echo -e "\n The variable PATH=$PATH\n"
+echo -e "\n The variable PATH=$PATH\n"
 
 
 exit

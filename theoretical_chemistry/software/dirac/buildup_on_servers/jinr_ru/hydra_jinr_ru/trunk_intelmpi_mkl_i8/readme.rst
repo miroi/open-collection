@@ -2,17 +2,23 @@
 DIRAC with IntelMPI+MKL+int8
 ============================
 
-interactie build
-----------------
+interactive buildup
+-------------------
 
+modules
+~~~~~~~
 milias@hydra.jinr.ru:/lustre/projects/m/milias/work/software/dirac/trunk_cloned/build_intelmpi2023_mkl_i8/.module list
 
 Currently Loaded Modules:
   1) CMake/v4.2.3   2) intel/v2023.1.0   3) Python/v3.12.13
 
-
+setup
+~~~~~
 milias@hydra.jinr.ru:/lustre/projects/m/milias/work/software/dirac/trunk_cloned/build_intelmpi2023_mkl_i8/../setup --mpi --exatensor=OFF --pcmsolver=OFF  --pelib=OFF  --fc=mpiifort --cc=mpiicc --cxx=mpiicpc  build_intelmpi2023_mkl_i8
 
+compilation
+~~~~~~~~~~~
+milias@hydra.jinr.ru:/lustre/projects/m/milias/work/software/dirac/trunk_cloned/build_intelmpi2023_mkl_i8/.mke -j6
 [100%] Linking Fortran executable test_allocator.x
 [100%] Built target mx2fit.x
 [100%] Built target vibcal.x
@@ -40,6 +46,9 @@ milias@hydra.jinr.ru:/lustre/projects/m/milias/work/software/dirac/trunk_cloned/
         librt.so.1 => /lib64/librt.so.1 (0x00007fde79253000)
         libintlc.so.5 => /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/compiler/2023.1.0/linux/compiler/lib/intel64_lin/libintlc.so.5 (0x00007fde77f89000)
 milias@hydra.jinr.ru:/lustre/projects/m/milias/work/software/dirac/trunk_cloned/build_intelmpi2023_mkl_i8/.
+
+ctests
+~~~~~~
 
 milias@hydra.jinr.ru:/lustre/projects/m/milias/work/software/dirac/trunk_cloned/build_intelmpi2023_mkl_i8/.export DIRAC_MPI_COMMAND="mpirun -np 2"
 

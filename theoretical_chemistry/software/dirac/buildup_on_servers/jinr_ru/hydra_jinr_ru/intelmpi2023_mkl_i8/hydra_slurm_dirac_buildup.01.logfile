@@ -1,0 +1,1523 @@
+
+Running on host n05p027.gvr.local
+Time is Mon Mar 16 14:51:55 MSK 2026 
+
+
+ The total memory at the node (in GB)
+               total        used        free      shared  buff/cache   available
+Mem:            1991          16        1976           0           5        1974
+Swap:              3           0           3
+Total:          1995          16        1980
+
+
+Job user is milias and his job DIRAC has assigned ID 21836
+This job was submitted from the computer space02.hydra.local
+and from the home directory:
+/lustre/projects/m/milias/work/git-projects/open-collection/theoretical_chemistry/software/dirac/buildup_on_servers/jinr_ru/hydra_jinr_ru/intelmpi2023_mkl_i8
+
+It is running on the cluster compute node:
+gvr
+and is employing 1 node/nodes:
+n05p027
+
+Job partition is bltp 
+
+The job requests 4 CPU per task.
+The node's CPU model name	: Intel(R) Xeon(R) Platinum 8368Q CPU @ 2.60GHz
+This node has total NPROCS=152 CPUs available for an EXCLUSIVE job.
+Based on reserved memory, this node got SLURM_CPUS_ON_NODE=4 CPUs allocated for SLURM calculations.
+This job wants SLURM_NTASKS=4 threads . 
+
+ Allocated working nodes:
+n05p027.gvr.local
+n05p027.gvr.local
+n05p027.gvr.local
+n05p027.gvr.local
+
+
+ loaded modules:
+
+Currently Loaded Modules:
+  1) Python/v3.12.13   2) CMake/v4.2.3   3) intel/v2023.1.0
+
+ 
+
+
+ python ? :/cvmfs/hlit.jinr.ru/alma9/Python/v3.12.13/bin/python
+Python 3.12.13
+  cmake ? :/cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/bin/cmake
+cmake version 4.2.3
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
+  mpiifort ? :/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin/mpiifort
+Intel(R) Fortran Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.9.0 Build 20230302_000000
+Copyright (C) 1985-2023 Intel Corporation.  All rights reserved.
+
+  mpiicc ? :/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin/mpiicc
+Intel(R) C Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.9.0 Build 20230302_000000
+Copyright (C) 1985-2023 Intel Corporation.  All rights reserved.
+
+  mpiicc ? :/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin/mpiicpc
+Intel(R) C++ Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.9.0 Build 20230302_000000
+Copyright (C) 1985-2023 Intel Corporation.  All rights reserved.
+
+
+ Intel MKL library ? MKLROOT=/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0
+total 3166444
+lrwxrwxrwx. 1 cvmfs cvmfs        19 Mar  7 12:30 libmkl_gf_lp64.so -> libmkl_gf_lp64.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        31 Mar  7 12:30 libmkl_blacs_openmpi_ilp64.so -> libmkl_blacs_openmpi_ilp64.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        21 Mar  7 12:30 libmkl_cdft_core.so -> libmkl_cdft_core.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        20 Mar  7 12:30 libmkl_gf_ilp64.so -> libmkl_gf_ilp64.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        23 Mar  7 12:30 libmkl_intel_ilp64.so -> libmkl_intel_ilp64.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        27 Mar  7 12:30 libmkl_scalapack_ilp64.so -> libmkl_scalapack_ilp64.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        26 Mar  7 12:30 libmkl_scalapack_lp64.so -> libmkl_scalapack_lp64.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        22 Mar  7 12:30 libmkl_sequential.so -> libmkl_sequential.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        32 Mar  7 12:30 libmkl_blacs_intelmpi_ilp64.so -> libmkl_blacs_intelmpi_ilp64.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        31 Mar  7 12:30 libmkl_blacs_intelmpi_lp64.so -> libmkl_blacs_intelmpi_lp64.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        14 Mar  7 12:30 libmkl_rt.so -> libmkl_rt.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        22 Mar  7 12:30 libmkl_tbb_thread.so -> libmkl_tbb_thread.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        22 Mar  7 12:30 libmkl_pgi_thread.so -> libmkl_pgi_thread.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        30 Mar  7 12:30 libmkl_blacs_openmpi_lp64.so -> libmkl_blacs_openmpi_lp64.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        22 Mar  7 12:30 libmkl_intel_lp64.so -> libmkl_intel_lp64.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        22 Mar  7 12:30 libmkl_gnu_thread.so -> libmkl_gnu_thread.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        16 Mar  7 12:30 libmkl_core.so -> libmkl_core.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        24 Mar  7 12:30 libmkl_intel_thread.so -> libmkl_intel_thread.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        16 Mar  7 12:30 libmkl_sycl.so -> libmkl_sycl.so.3
+drwxr-xr-x. 3 cvmfs cvmfs        27 Mar  7 01:57 locale
+-rw-r--r--. 1 cvmfs cvmfs 780201170 Mar  7  2023 libmkl_sycl.a
+-rwxr-xr-x. 1 cvmfs cvmfs 571212592 Mar  7  2023 libmkl_sycl.so.3
+-rw-r--r--. 1 cvmfs cvmfs 111971140 Mar  7  2023 libmkl_tbb_thread.a
+-rwxr-xr-x. 1 cvmfs cvmfs  40912736 Mar  7  2023 libmkl_tbb_thread.so.2
+-rwxr-xr-x. 1 cvmfs cvmfs  15901448 Mar  7  2023 libmkl_vml_avx.so.2
+-rwxr-xr-x. 1 cvmfs cvmfs  15061464 Mar  7  2023 libmkl_vml_avx2.so.2
+-rwxr-xr-x. 1 cvmfs cvmfs  14399048 Mar  7  2023 libmkl_vml_avx512.so.2
+-rwxr-xr-x. 1 cvmfs cvmfs   7768984 Mar  7  2023 libmkl_vml_cmpt.so.2
+-rwxr-xr-x. 1 cvmfs cvmfs   8775320 Mar  7  2023 libmkl_vml_def.so.2
+-rwxr-xr-x. 1 cvmfs cvmfs  14817000 Mar  7  2023 libmkl_vml_mc.so.2
+-rwxr-xr-x. 1 cvmfs cvmfs  14673648 Mar  7  2023 libmkl_vml_mc3.so.2
+-rwxr-xr-x. 1 cvmfs cvmfs  38024800 Mar  7  2023 libmkl_pgi_thread.so.2
+-rwxr-xr-x. 1 cvmfs cvmfs  14576472 Mar  7  2023 libmkl_rt.so.2
+-rw-r--r--. 1 cvmfs cvmfs  12244638 Mar  7  2023 libmkl_scalapack_ilp64.a
+-rwxr-xr-x. 1 cvmfs cvmfs   7718648 Mar  7  2023 libmkl_scalapack_ilp64.so.2
+-rw-r--r--. 1 cvmfs cvmfs  12334132 Mar  7  2023 libmkl_scalapack_lp64.a
+-rwxr-xr-x. 1 cvmfs cvmfs   7736496 Mar  7  2023 libmkl_scalapack_lp64.so.2
+-rw-r--r--. 1 cvmfs cvmfs  38549768 Mar  7  2023 libmkl_sequential.a
+-rwxr-xr-x. 1 cvmfs cvmfs  28957160 Mar  7  2023 libmkl_sequential.so.2
+-rw-r--r--. 1 cvmfs cvmfs 578987600 Mar  7  2023 libmkl_core.a
+-rwxr-xr-x. 1 cvmfs cvmfs  74236072 Mar  7  2023 libmkl_core.so.2
+-rwxr-xr-x. 1 cvmfs cvmfs  42499424 Mar  7  2023 libmkl_def.so.2
+-rw-r--r--. 1 cvmfs cvmfs  29221140 Mar  7  2023 libmkl_gf_ilp64.a
+-rwxr-xr-x. 1 cvmfs cvmfs  13968264 Mar  7  2023 libmkl_gf_ilp64.so.2
+-rw-r--r--. 1 cvmfs cvmfs  35298018 Mar  7  2023 libmkl_gf_lp64.a
+-rwxr-xr-x. 1 cvmfs cvmfs  17771392 Mar  7  2023 libmkl_gf_lp64.so.2
+-rw-r--r--. 1 cvmfs cvmfs  44206940 Mar  7  2023 libmkl_gnu_thread.a
+-rwxr-xr-x. 1 cvmfs cvmfs  31027776 Mar  7  2023 libmkl_gnu_thread.so.2
+-rw-r--r--. 1 cvmfs cvmfs  37957242 Mar  7  2023 libmkl_intel_ilp64.a
+-rwxr-xr-x. 1 cvmfs cvmfs  17491312 Mar  7  2023 libmkl_intel_ilp64.so.2
+-rw-r--r--. 1 cvmfs cvmfs  44044364 Mar  7  2023 libmkl_intel_lp64.a
+-rwxr-xr-x. 1 cvmfs cvmfs  21282360 Mar  7  2023 libmkl_intel_lp64.so.2
+-rw-r--r--. 1 cvmfs cvmfs  90541890 Mar  7  2023 libmkl_intel_thread.a
+-rwxr-xr-x. 1 cvmfs cvmfs  64880544 Mar  7  2023 libmkl_intel_thread.so.2
+-rw-r--r--. 1 cvmfs cvmfs   7489080 Mar  7  2023 libmkl_lapack95_ilp64.a
+-rw-r--r--. 1 cvmfs cvmfs   7417664 Mar  7  2023 libmkl_lapack95_lp64.a
+-rwxr-xr-x. 1 cvmfs cvmfs  48825624 Mar  7  2023 libmkl_mc.so.2
+-rwxr-xr-x. 1 cvmfs cvmfs  50396464 Mar  7  2023 libmkl_mc3.so.2
+-rw-r--r--. 1 cvmfs cvmfs  51417466 Mar  7  2023 libmkl_pgi_thread.a
+-rwxr-xr-x. 1 cvmfs cvmfs  53122080 Mar  7  2023 libmkl_avx.so.2
+-rwxr-xr-x. 1 cvmfs cvmfs  50232944 Mar  7  2023 libmkl_avx2.so.2
+-rwxr-xr-x. 1 cvmfs cvmfs  66762040 Mar  7  2023 libmkl_avx512.so.2
+-rw-r--r--. 1 cvmfs cvmfs   1274092 Mar  7  2023 libmkl_blacs_intelmpi_ilp64.a
+-rwxr-xr-x. 1 cvmfs cvmfs    523832 Mar  7  2023 libmkl_blacs_intelmpi_ilp64.so.2
+-rw-r--r--. 1 cvmfs cvmfs    754854 Mar  7  2023 libmkl_blacs_intelmpi_lp64.a
+-rwxr-xr-x. 1 cvmfs cvmfs    320648 Mar  7  2023 libmkl_blacs_intelmpi_lp64.so.2
+-rw-r--r--. 1 cvmfs cvmfs   1293308 Mar  7  2023 libmkl_blacs_openmpi_ilp64.a
+-rwxr-xr-x. 1 cvmfs cvmfs    533024 Mar  7  2023 libmkl_blacs_openmpi_ilp64.so.2
+-rw-r--r--. 1 cvmfs cvmfs    774070 Mar  7  2023 libmkl_blacs_openmpi_lp64.a
+-rwxr-xr-x. 1 cvmfs cvmfs    321680 Mar  7  2023 libmkl_blacs_openmpi_lp64.so.2
+-rw-r--r--. 1 cvmfs cvmfs    658964 Mar  7  2023 libmkl_blas95_ilp64.a
+-rw-r--r--. 1 cvmfs cvmfs    657516 Mar  7  2023 libmkl_blas95_lp64.a
+-rw-r--r--. 1 cvmfs cvmfs    217882 Mar  7  2023 libmkl_cdft_core.a
+-rwxr-xr-x. 1 cvmfs cvmfs    168912 Mar  7  2023 libmkl_cdft_core.so.2
+
+ The variable PATH=/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/vtune/2023.1.0/bin64:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/libfabric/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/bin/intel64:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/itac/2021.9.0/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/inspector/2023.1.0/bin64:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/dpcpp-ct/2023.1.0/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/dev-utilities/2021.9.0/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/debugger/2023.1.0/gdb/intel64/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/compiler/2023.1.0/linux/lib/oclfpga/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/compiler/2023.1.0/linux/bin/intel64:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/compiler/2023.1.0/linux/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/clck/2021.7.3/bin/intel64:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/advisor/2023.1.0/bin64:/cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/bin:/cvmfs/hlit.jinr.ru/alma9/Python/v3.12.13/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/puppetlabs/bin:.
+
+/lustre/projects/m/milias/work/software/dirac/trunk_cloned
+
+ DIRAC build directory, BUILD=build_intelmpi2023_mkl_i8
+Directory BUILD exists. Going to delete it !
+Directory BUILD deleted. It will be created again by setup.
+CMake Warning (dev) at cmake/downloaded/autocmake_python_interpreter.cmake:27 (find_package):
+  Policy CMP0144 is not set: find_package uses upper-case <PACKAGENAME>_ROOT
+  variables.  Run "cmake --help-policy CMP0144" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  Environment variable PYTHON_ROOT is set to:
+
+    /cvmfs/hlit.jinr.ru/alma9/Python/v3.12.13
+
+  For compatibility, find_package is ignoring the variable, but code in a
+  .cmake module might still use it.
+Call Stack (most recent call first):
+  CMakeLists.txt:82 (include)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    ENABLE_TBLIS
+    TENSOR_EXECUTOR
+
+
+cmake -DCMAKE_Fortran_COMPILER=mpiifort -DEXTRA_FCFLAGS="''" -DCMAKE_C_COMPILER=mpiicc -DEXTRA_CFLAGS="''" -DCMAKE_CXX_COMPILER=mpiicpc -DEXTRA_CXXFLAGS="''" -DPREPROCESSOR_DEFINITIONS="''" -DPYTHON_INTERPRETER="''" -DENABLE_BLAS=auto -DENABLE_LAPACK=auto -DMKL_FLAG=off -DMATH_LIB_SEARCH_ORDER="MKL;ESSL;OPENBLAS;ATLAS;ACML;SYSTEM_NATIVE" -DBLAS_LANG=Fortran -DLAPACK_LANG=Fortran -DENABLE_MPI=True -DENABLE_OPENMP=True -DENABLE_CODE_COVERAGE=False -DENABLE_STATIC_LINKING=False -DENABLE_PROFILING=False -DENABLE_RUNTIMECHECK=False -DENABLE_64BIT_INTEGERS=True -DEXPLICIT_LIBS="off" -DENABLE_TBLIS=ON -DENABLE_EXATENSOR=OFF -DTENSOR_EXECUTOR=1 -DENABLE_PCMSOLVER=OFF -DENABLE_PELIB=OFF -DPCMSOLVER_ROOT='' -DENABLE_STIELTJES=OFF -DCMAKE_BUILD_TYPE=release -G"Unix Makefiles" -H/lustre/projects/m/milias/work/software/dirac/trunk_cloned -Bbuild_intelmpi2023_mkl_i8
+
+-- The Fortran compiler identification is Intel 2021.9.0.20230302
+-- The C compiler identification is Intel 2021.9.0.20230302
+-- The CXX compiler identification is Intel 2021.9.0.20230302
+-- Detecting Fortran compiler ABI info
+-- Detecting Fortran compiler ABI info - done
+-- Check for working Fortran compiler: /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin/mpiifort - skipped
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin/mpiicc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin/mpiicpc - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found Python: /cvmfs/hlit.jinr.ru/alma9/Python/v3.12.13/bin/python3.12 (found version "3.12.13") found components: Interpreter
+-- BLAS will be searched for based on MKLROOT=/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0
+-- Searching for BLAS using search order MKL;ESSL;OPENBLAS;ATLAS;ACML;SYSTEM_NATIVE
+-- Setting -DHAVE_MKL_BLAS
+-- Found BLAS: MKL (-Wl,--start-group;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_intel_ilp64.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_intel_thread.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_core.so;/usr/lib64/libpthread.a;/usr/lib64/libm.so;-qopenmp;-Wl,--end-group)
+-- LAPACK will be searched for based on MKLROOT=/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0
+-- Searching for LAPACK using search order MKL;ESSL;OPENBLAS;ATLAS;ACML;SYSTEM_NATIVE
+-- Setting -DHAVE_MKL_LAPACK
+-- Found LAPACK: MKL (-Wl,--start-group;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_lapack95_ilp64.a;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_intel_ilp64.so;-qopenmp;-Wl,--end-group)
+-- MATH_LIB_SEARCH_ORDER set to MKL;ESSL;OPENBLAS;ATLAS;ACML;SYSTEM_NATIVE
+-- Found MPI_C: /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin/mpiicc (found version "3.1")
+-- Found MPI_CXX: /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin/mpiicpc (found version "3.1")
+-- Found MPI_Fortran: /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin/mpiifort (found version "3.1")
+-- Found MPI: TRUE (found version "3.1")
+-- Found OpenMP_C: -qopenmp (found version "5.0")
+-- Found OpenMP_CXX: -qopenmp (found version "5.0")
+-- Found OpenMP_Fortran: -qopenmp (found version "5.0")
+-- Found OpenMP: TRUE (found version "5.0")
+-- Enable profiling: False
+-- Enable run-time checking: False
+-- Configure-time Linked math libs integer compatibility test ENABLED
+-- Performing compile and run test of blas integer size (can deactivate with -D ENABLE_MATH_INT_TEST=OFF) 
+-- Performing Test blas_test_compiled ...
+-- Performing Test blas_test_compiled - Success
+-- Performing Test blas_test_run
+-- Performing Test blas_test_run - Failed
+-- Test of blas integer size SUCCESS .. blas is integer*8 
+-- We have BLAS-integer*8
+-- Could NOT find HDF5 (missing: HDF5_LIBRARIES HDF5_INCLUDE_DIRS C) 
+-- HDF5 interface can not be used, no HDF5 installation found
+-- MPI package type: INTEL
+-- Compiling /lustre/projects/m/milias/work/software/dirac/trunk_cloned/cmake/custom/test-MPI-compiler-compatibility.F90 ...
+-- Performing Test MPI_COMPILER_MATCHES ...
+-- Performing Test MPI_COMPILER_MATCHES - Success
+-- mpi.mod matches the current MPI compiler, employing 'use mpi' and setting -DUSE_MPI_MOD_F90
+-- Compiling /lustre/projects/m/milias/work/software/dirac/trunk_cloned/cmake/custom/test-MPI-itype-compatibility.F90 ...
+-- Performing Test MPI_ITYPE_MATCHES ...
+-- Performing Test MPI_ITYPE_MATCHES - Success
+-- Well, program got compiled with 64-bit integers, but the internal MPI integer compatibility test will be performed inside dirac.x.
+-- Set CDash default timeout for single test set to 1500 seconds. Overwritten by test's TIMEOUT property label and, ultimatively, by pam timeout setting.
+-- Test's 'basis_input_scripted' timeout set to 3600 seconds. Can be overwritten by pam's timeout setting.
+-- Polarizable Continuum Model via PCMSolver DISABLED
+-- Enable ExaTENSOR library: OFF
+-- X-AMFI, the (e)amf 2-electron scalar and spin-orbit picture-change correction module requires a working HDF5 library
+-- (e)amfX2C 2e-scalar and spin-orbit picture-change correction module: OFF
+-- The XCFun submodule ENABLED
+-- ESR property module: ON
+-- src/reladc/polprp_cousat.F: assigned -O2 optimization flag to fix the compilation with Intel
+-- Stieltjes external module DISABLED
+-- KRCC module: ON
+-- Enable compilation of standalone relccsd.x: OFF
+-- OpenRSP library: OFF
+-- LAO properties without connection matrices: ON
+-- Spinfree MCSCF module: ON
+-- srDFT module: ON
+-- Specialized tutorial tests DISABLED
+-- Unit control tests DISABLED
+-- Could NOT find HDF5 (missing: HDF5_LIBRARIES HDF5_INCLUDE_DIRS HDF5_HL_LIBRARIES C HL) 
+-- User name: milias
+-- Host name: n05p027.gvr.local
+-- Operating system: Linux-5.14.0-570.62.1.el9_6.x86_64
+-- CMake version: 4.2.3
+-- CMake generator: Unix Makefiles
+-- CMake build type: release
+-- Configuration time: 2026-03-16 11:52:15.258815+00:00
+-- Fortran compiler ID: Intel
+-- Fortran compiler: /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin/mpiifort
+-- Fortran compiler version: Intel 2021.9.0
+-- Fortran compiler flags:  -w -assume byterecl -g -traceback -DVAR_IFX  -qopenmp -i8
+-- C compiler ID: Intel
+-- C compiler: /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin/mpiicc
+-- C compiler version: Intel 2021.9.0
+-- C compiler flags:  -g  -qopenmp
+-- CXX compiler ID: Intel
+-- CXX compiler: /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin/mpiicpc
+-- CXX compiler version: Intel 2021.9.0
+-- CXX compiler flags:  -Wno-unknown-pragmas  -qopenmp
+-- Static linking: False
+-- 64-bit integers: True
+-- MPI parallelization: True
+-- MPI launcher: /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin/mpiexec
+-- Math libraries: -Wl,--start-group;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_lapack95_ilp64.a;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_intel_ilp64.so;-qopenmp;-Wl,--end-group;-Wl,--start-group;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_intel_ilp64.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_intel_thread.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_core.so;/usr/lib64/libpthread.a;/usr/lib64/libm.so;-qopenmp;-Wl,--end-group
+-- Compile definitions: HAVE_MKL_BLAS;HAVE_MKL_LAPACK;HAVE_MPI;HAVE_OPENMP;VAR_MPI;VAR_MPI2;USE_MPI_MOD_F90;SYS_LINUX;PRG_DIRAC;INT_STAR8;INSTALL_WRKMEM=64000000;BUILD_GEN1INT;MOD_LAO_REARRANGED;MOD_MCSCF_spinfree;MOD_ESR;MOD_KRCC;MOD_SRDFT
+-- Exacorr module enabled : OFF
+-- For checking, linked libraries to dirac.x: diracobj;xcfun_fortran_bindings;/lustre/projects/m/milias/work/software/dirac/trunk_cloned/build_intelmpi2023_mkl_i8/external/xcfun-build/src/libxcfun.a;gen1int_interface;-Wl,--start-group;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_lapack95_ilp64.a;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_intel_ilp64.so;-qopenmp;-Wl,--end-group;-Wl,--start-group;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_intel_ilp64.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_intel_thread.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_core.so;/usr/lib64/libpthread.a;/usr/lib64/libm.so;-qopenmp;-Wl,--end-group;laplace;laplace-minimax;qcorr 
+-- Could NOT find Sphinx (missing: SPHINX_EXECUTABLE) 
+-- Copied DIRAC basis set directories into the build directory
+-- Copied data schema and python utilities into the build directory
+-- Set CDash default timeout for single test set to 1500 seconds. Overwritten by test's TIMEOUT property label and, ultimatively, by pam timeout setting.
+-- Test's 'basis_input_scripted' timeout set to 3600 seconds. Can be overwritten by pam's timeout setting.
+-- Configuring done (17.5s)
+-- Generating done (2.9s)
+-- Build files have been written to: /lustre/projects/m/milias/work/software/dirac/trunk_cloned/build_intelmpi2023_mkl_i8
+
+   configure step is done
+   now you need to compile the sources:
+   $ cd build_intelmpi2023_mkl_i8
+   $ make
+
+ I am in : /lustre/projects/m/milias/work/software/dirac/trunk_cloned/build_intelmpi2023_mkl_i8
+CMake Warning (dev) at cmake/downloaded/autocmake_python_interpreter.cmake:27 (find_package):
+  Policy CMP0144 is not set: find_package uses upper-case <PACKAGENAME>_ROOT
+  variables.  Run "cmake --help-policy CMP0144" for policy details.  Use the
+  cmake_policy command to set the policy and suppress this warning.
+
+  Environment variable PYTHON_ROOT is set to:
+
+    /cvmfs/hlit.jinr.ru/alma9/Python/v3.12.13
+
+  For compatibility, find_package is ignoring the variable, but code in a
+  .cmake module might still use it.
+Call Stack (most recent call first):
+  CMakeLists.txt:82 (include)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- MATH_LIB_SEARCH_ORDER set to MKL;ESSL;OPENBLAS;ATLAS;ACML;SYSTEM_NATIVE
+-- Enable profiling: False
+-- Enable run-time checking: False
+-- Configure-time Linked math libs integer compatibility test ENABLED
+-- Performing compile and run test of blas integer size (can deactivate with -D ENABLE_MATH_INT_TEST=OFF) 
+-- Test of blas integer size SUCCESS .. blas is integer*8 
+-- We have BLAS-integer*8
+-- Could NOT find HDF5 (missing: HDF5_LIBRARIES HDF5_INCLUDE_DIRS C) 
+-- HDF5 interface can not be used, no HDF5 installation found
+-- MPI package type: INTEL
+-- Compiling /lustre/projects/m/milias/work/software/dirac/trunk_cloned/cmake/custom/test-MPI-compiler-compatibility.F90 ...
+-- mpi.mod matches the current MPI compiler, employing 'use mpi' and setting -DUSE_MPI_MOD_F90
+-- Compiling /lustre/projects/m/milias/work/software/dirac/trunk_cloned/cmake/custom/test-MPI-itype-compatibility.F90 ...
+-- Well, program got compiled with 64-bit integers, but the internal MPI integer compatibility test will be performed inside dirac.x.
+-- Set CDash default timeout for single test set to 1500 seconds. Overwritten by test's TIMEOUT property label and, ultimatively, by pam timeout setting.
+-- Test's 'basis_input_scripted' timeout set to 3600 seconds. Can be overwritten by pam's timeout setting.
+-- Polarizable Continuum Model via PCMSolver DISABLED
+-- Enable ExaTENSOR library: OFF
+-- X-AMFI, the (e)amf 2-electron scalar and spin-orbit picture-change correction module requires a working HDF5 library
+-- (e)amfX2C 2e-scalar and spin-orbit picture-change correction module: OFF
+-- The XCFun submodule ENABLED
+-- ESR property module: ON
+-- src/reladc/polprp_cousat.F: assigned -O2 optimization flag to fix the compilation with Intel
+-- Stieltjes external module DISABLED
+-- KRCC module: ON
+-- Enable compilation of standalone relccsd.x: OFF
+-- OpenRSP library: OFF
+-- LAO properties without connection matrices: ON
+-- Spinfree MCSCF module: ON
+-- srDFT module: ON
+-- Specialized tutorial tests DISABLED
+-- Unit control tests DISABLED
+-- Could NOT find HDF5 (missing: HDF5_LIBRARIES HDF5_INCLUDE_DIRS HDF5_HL_LIBRARIES C HL) 
+-- User name: milias
+-- Host name: n05p027.gvr.local
+-- Operating system: Linux-5.14.0-570.62.1.el9_6.x86_64
+-- CMake version: 4.2.3
+-- CMake generator: Unix Makefiles
+-- CMake build type: release
+-- Configuration time: 2026-03-16 11:52:28.217573+00:00
+-- Fortran compiler ID: Intel
+-- Fortran compiler: /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin/mpiifort
+-- Fortran compiler version: Intel 2021.9.0
+-- Fortran compiler flags:  -w -assume byterecl -g -traceback -DVAR_IFX  -qopenmp -i8 -w -assume byterecl -g -traceback -DVAR_IFX  -qopenmp -i8
+-- C compiler ID: Intel
+-- C compiler: /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin/mpiicc
+-- C compiler version: Intel 2021.9.0
+-- C compiler flags:  -g  -qopenmp -g  -qopenmp
+-- CXX compiler ID: Intel
+-- CXX compiler: /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin/mpiicpc
+-- CXX compiler version: Intel 2021.9.0
+-- CXX compiler flags:  -Wno-unknown-pragmas  -qopenmp -Wno-unknown-pragmas  -qopenmp
+-- Static linking: False
+-- 64-bit integers: True
+-- MPI parallelization: True
+-- MPI launcher: /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin/mpiexec
+-- Math libraries: -Wl,--start-group;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_lapack95_ilp64.a;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_intel_ilp64.so;-qopenmp;-Wl,--end-group;-Wl,--start-group;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_intel_ilp64.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_intel_thread.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_core.so;/usr/lib64/libpthread.a;/usr/lib64/libm.so;-qopenmp;-Wl,--end-group
+-- Compile definitions: HAVE_MPI;HAVE_OPENMP;VAR_MPI;VAR_MPI2;USE_MPI_MOD_F90;SYS_LINUX;PRG_DIRAC;INT_STAR8;INSTALL_WRKMEM=64000000;BUILD_GEN1INT;MOD_LAO_REARRANGED;MOD_MCSCF_spinfree;MOD_ESR;MOD_KRCC;MOD_SRDFT
+-- Exacorr module enabled : OFF
+-- For checking, linked libraries to dirac.x: diracobj;xcfun_fortran_bindings;/lustre/projects/m/milias/work/software/dirac/trunk_cloned/build_intelmpi2023_mkl_i8/external/xcfun-build/src/libxcfun.a;gen1int_interface;-Wl,--start-group;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_lapack95_ilp64.a;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_intel_ilp64.so;-qopenmp;-Wl,--end-group;-Wl,--start-group;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_intel_ilp64.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_intel_thread.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_core.so;/usr/lib64/libpthread.a;/usr/lib64/libm.so;-qopenmp;-Wl,--end-group;laplace;laplace-minimax;qcorr 
+-- Could NOT find Sphinx (missing: SPHINX_EXECUTABLE) 
+-- Copied DIRAC basis set directories into the build directory
+-- Copied data schema and python utilities into the build directory
+-- Set CDash default timeout for single test set to 1500 seconds. Overwritten by test's TIMEOUT property label and, ultimatively, by pam timeout setting.
+-- Test's 'basis_input_scripted' timeout set to 3600 seconds. Can be overwritten by pam's timeout setting.
+-- Configuring done (4.6s)
+-- Generating done (2.4s)
+-- Build files have been written to: /lustre/projects/m/milias/work/software/dirac/trunk_cloned/build_intelmpi2023_mkl_i8
+Going to compile...  make -j 4 :
+[  0%] Built target build_info
+[  0%] Generating git_info.h, ALL
+[  0%] Building Fortran object src/interface_mpi/CMakeFiles/interface_mpi.dir/integer_kind_mpilib.F90.o
+[  0%] Building Fortran object src/interest/CMakeFiles/interest.dir/module_interest_interface.F90.o
+[  0%] Building Fortran object src/interface_mpi/CMakeFiles/interface_mpi.dir/integer_model.F90.o
+[  0%] Built target git_info
+[  1%] Building Fortran object src/interest/CMakeFiles/interest.dir/src/module_interest_hrr.f90.o
+[  1%] Building Fortran object src/interface_mpi/CMakeFiles/interface_mpi.dir/interface_to_mpi.F90.o
+[  2%] Building Fortran object src/pdpack/CMakeFiles/pdpack.dir/arhpack.F.o
+[  2%] Building Fortran object src/interest/CMakeFiles/interest.dir/src/module_interest_osr.f90.o
+[  2%] Building Fortran object src/pdpack/CMakeFiles/pdpack.dir/dge.F.o
+[  2%] Building Fortran object src/pdpack/CMakeFiles/pdpack.dir/dlamch.F.o
+[  2%] Building Fortran object src/pdpack/CMakeFiles/pdpack.dir/dsp.F.o
+[  2%] Building Fortran object src/interface_mpi/CMakeFiles/interface_mpi.dir/interface_to_mpi_f77.F.o
+[  2%] Building Fortran object src/pdpack/CMakeFiles/pdpack.dir/eispack.F.o
+[  3%] Linking Fortran static library libinterface_mpi.a
+[  3%] Built target interface_mpi
+[  3%] Building Fortran object src/laplace-minimax/CMakeFiles/laplace-minimax.dir/src/dd128_arithmetics.F90.o
+[  3%] Building Fortran object src/laplace-minimax/CMakeFiles/laplace-minimax.dir/src/dd128_linalg.F90.o
+[  3%] Building Fortran object src/laplace-minimax/CMakeFiles/laplace-minimax.dir/src/lap_rderror.F90.o
+[  3%] Building Fortran object src/laplace-minimax/CMakeFiles/laplace-minimax.dir/src/lap_rddata.F90.o
+[  3%] Building Fortran object src/laplace-minimax/CMakeFiles/laplace-minimax.dir/src/lap_paraopt.F90.o
+[  4%] Building Fortran object src/laplace-minimax/CMakeFiles/laplace-minimax.dir/src/lap_maehly.F90.o
+[  4%] Building Fortran object src/laplace-minimax/CMakeFiles/laplace-minimax.dir/src/lap_rmsd.F90.o
+[  4%] Building Fortran object src/laplace-minimax/CMakeFiles/laplace-minimax.dir/src/lap_numlap.F90.o
+[  4%] Building Fortran object src/laplace-minimax/CMakeFiles/laplace-minimax.dir/src/laplace_minimax.F90.o
+[  4%] Linking Fortran static library liblaplace-minimax.a
+[  4%] Built target laplace-minimax
+[  5%] Creating directories for 'xcfun'
+[  5%] No download step for 'xcfun'
+[  5%] No update step for 'xcfun'
+[  5%] No patch step for 'xcfun'
+[  5%] Performing configure step for 'xcfun'
+-- The CXX compiler identification is Intel 2021.9.0.20230302
+-- The C compiler identification is Intel 2021.9.0.20230302
+-- The Fortran compiler identification is Intel 2021.9.0.20230302
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin/mpiicpc - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin/mpiicc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting Fortran compiler ABI info
+-- Detecting Fortran compiler ABI info - done
+-- Check for working Fortran compiler: /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin/mpiifort - skipped
+xcfun DOXYGEN_FOUND ?  NO
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:742 (message):
+  system runtime library file does not exist: 'NOT-FOUND/libchkp.so'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:742 (message):
+  system runtime library file does not exist: 'NOT-FOUND/libcilkrts.so'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:742 (message):
+  system runtime library file does not exist: 'NOT-FOUND/libcilkrts.so.5'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:742 (message):
+  system runtime library file does not exist: 'NOT-FOUND/libimf.so'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:742 (message):
+  system runtime library file does not exist: 'NOT-FOUND/libintlc.so'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:742 (message):
+  system runtime library file does not exist: 'NOT-FOUND/libintlc.so.5'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:742 (message):
+  system runtime library file does not exist: 'NOT-FOUND/libirc.so'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:742 (message):
+  system runtime library file does not exist: 'NOT-FOUND/libpdbx.so'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:742 (message):
+  system runtime library file does not exist: 'NOT-FOUND/libpdbx.so.5'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:742 (message):
+  system runtime library file does not exist: 'NOT-FOUND/libsvml.so'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:742 (message):
+  system runtime library file does not exist: 'NOT-FOUND/libirng.so'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:742 (message):
+  system runtime library file does not exist: 'NOT-FOUND/liboffload.so'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:742 (message):
+  system runtime library file does not exist: 'NOT-FOUND/liboffload.so.5'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:742 (message):
+  system runtime library file does not exist: 'NOT-FOUND/cilk_db.so'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:742 (message):
+  system runtime library file does not exist: 'NOT-FOUND/libistrconv.so'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:742 (message):
+  system runtime library file does not exist: 'NOT-FOUND/libgfxoffload.so'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:742 (message):
+  system runtime library file does not exist: 'NOT-FOUND/libioffload_host.so'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:742 (message):
+  system runtime library file does not exist:
+  'NOT-FOUND/libioffload_host.so.5'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:742 (message):
+  system runtime library file does not exist:
+  'NOT-FOUND/libioffload_target.so'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:742 (message):
+  system runtime library file does not exist:
+  'NOT-FOUND/libioffload_target.so.5'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:742 (message):
+  system runtime library file does not exist: 'NOT-FOUND/libmpx.so'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:742 (message):
+  system runtime library file does not exist: 'NOT-FOUND/offload_main'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:742 (message):
+  system runtime library file does not exist: 'NOT-FOUND/libicaf.so'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:742 (message):
+  system runtime library file does not exist: 'NOT-FOUND/libifcore.so'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:742 (message):
+  system runtime library file does not exist: 'NOT-FOUND/libifcore.so.5'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:742 (message):
+  system runtime library file does not exist: 'NOT-FOUND/libifcoremt.so'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:742 (message):
+  system runtime library file does not exist: 'NOT-FOUND/libifcoremt.so.5'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:742 (message):
+  system runtime library file does not exist: 'NOT-FOUND/libifport.so'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:742 (message):
+  system runtime library file does not exist: 'NOT-FOUND/libifport.so.5'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+CMake Warning at /cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/share/cmake-4.2/Modules/InstallRequiredSystemLibraries.cmake:752 (message):
+  system runtime library file does not exist: 'NOT-FOUND/irml'
+Call Stack (most recent call first):
+  CMakeLists.txt:163 (include)
+
+
+-- Configuring done (2.3s)
+-- Generating done (0.2s)
+-- Build files have been written to: /lustre/projects/m/milias/work/software/dirac/trunk_cloned/build_intelmpi2023_mkl_i8/external/xcfun-build
+[  5%] Performing build step for 'xcfun'
+[  1%] Building CXX object src/CMakeFiles/xcfun.dir/xcfun.cpp.o
+[  3%] Building CXX object src/CMakeFiles/xcfun.dir/evaluators.cpp.o
+[  5%] Building Fortran object src/gp/CMakeFiles/quaternion_algebra.dir/quaternion_algebra.F90.o
+[  5%] Linking Fortran static library libquaternion_algebra.a
+[  5%] Built target quaternion_algebra
+[  5%] Building Fortran object src/mfsolver/CMakeFiles/mfsolver.dir/mfsolver_cfg.F90.o
+[  5%] Building Fortran object src/mfsolver/CMakeFiles/mfsolver.dir/mfsolver_dirac_input.F90.o
+[  5%] Linking Fortran static library libmfsolver.a
+[  5%] Built target mfsolver
+[  5%] Building Fortran object src/ecp/CMakeFiles/ecp.dir/recp_chk.F90.o
+[  5%] Building Fortran object src/ecp/CMakeFiles/ecp.dir/recp_output.F90.o
+[  5%] Building Fortran object src/ecp/CMakeFiles/ecp.dir/recp_function2.F90.o
+[  6%] Building Fortran object src/ecp/CMakeFiles/ecp.dir/recp_ntr.F90.o
+[  6%] Building Fortran object src/ecp/CMakeFiles/ecp.dir/recp_lnk.F.o
+[  6%] Building Fortran object src/ecp/CMakeFiles/ecp.dir/recp_ipt.F90.o
+[  6%] Building Fortran object src/ecp/CMakeFiles/ecp.dir/recp_cso_ang.F90.o
+[  6%] Building Fortran object src/ecp/CMakeFiles/ecp.dir/recp_cso_rad.F90.o
+[  6%] Building Fortran object src/ecp/CMakeFiles/ecp.dir/recp_function1.F90.o
+[  6%] Building Fortran object src/ecp/CMakeFiles/ecp.dir/recp_cso_sub.F90.o
+[  6%] Building Fortran object src/ecp/CMakeFiles/ecp.dir/recp_one_sub.F90.o
+[  7%] Building Fortran object src/ecp/CMakeFiles/ecp.dir/recp_cso_table.F90.o
+[  7%] Building Fortran object src/ecp/CMakeFiles/ecp.dir/recp_inp_orb.F90.o
+[  7%] Building Fortran object src/ecp/CMakeFiles/ecp.dir/recp_inp_read.F90.o
+[  7%] Building Fortran object src/pdpack/CMakeFiles/pdpack.dir/gp_auxlapack.F.o
+[  7%] Building Fortran object src/pdpack/CMakeFiles/pdpack.dir/gp_dlapack.F.o
+[  7%] Building Fortran object src/pdpack/CMakeFiles/pdpack.dir/gp_zlapack.F.o
+[  7%] Building Fortran object src/ecp/CMakeFiles/ecp.dir/recp_write.F90.o
+[  8%] Building Fortran object src/pdpack/CMakeFiles/pdpack.dir/gpblas.F.o
+[  8%] Building Fortran object src/pdpack/CMakeFiles/pdpack.dir/linextra.F.o
+[  8%] Building Fortran object src/ecp/CMakeFiles/ecp.dir/recp_cso_ps.F90.o
+[  8%] Building Fortran object src/pdpack/CMakeFiles/pdpack.dir/printpkg.F.o
+[  8%] Building Fortran object src/ecp/CMakeFiles/ecp.dir/recp_socfpd.F90.o
+[  8%] Building Fortran object src/ecp/CMakeFiles/ecp.dir/recp_inp_print.F90.o
+[  8%] Building Fortran object src/ecp/CMakeFiles/ecp.dir/recp_cso.F90.o
+[  8%] Building Fortran object src/pdpack/CMakeFiles/pdpack.dir/gp_zlinpack.F.o
+[  8%] Building Fortran object src/ecp/CMakeFiles/ecp.dir/recp_inp.F90.o
+[  8%] Linking Fortran static library libpdpack.a
+[  8%] Built target pdpack
+[  8%] Building Fortran object src/ecp/CMakeFiles/ecp.dir/recp_one_stvcz.F90.o
+[  9%] Building Fortran object src/cfun/CMakeFiles/cfun.dir/dftsetcam.F.o
+[  9%] Building Fortran object src/cfun/CMakeFiles/cfun.dir/fortran_io.F90.o
+[  9%] Building Fortran object src/ecp/CMakeFiles/ecp.dir/recp_one.F90.o
+[  9%] Building C object src/cfun/CMakeFiles/cfun.dir/emb-functional.c.o
+[  5%] Building CXX object src/CMakeFiles/xcfun.dir/functional.cpp.o
+[  9%] Building C object src/cfun/CMakeFiles/cfun.dir/fun-becke.c.o
+[ 10%] Building Fortran object src/ecp/CMakeFiles/ecp.dir/recp1.F.o
+[ 10%] Building C object src/cfun/CMakeFiles/cfun.dir/fun-cam.c.o
+[  7%] Building CXX object src/CMakeFiles/xcfun.dir/parameters.cpp.o
+[ 10%] Building Fortran object src/interest/CMakeFiles/interest.dir/src/git_revision_info.f90.o
+[ 10%] Building Fortran object src/interest/CMakeFiles/interest.dir/src/module_interest_one.f90.o
+[ 10%] Building Fortran object src/interest/CMakeFiles/interest.dir/src/module_interest_eri.f90.o
+[ 10%] Building C object src/cfun/CMakeFiles/cfun.dir/fun-gga.c.o
+[  9%] Building CXX object src/CMakeFiles/xcfun.dir/potential.cpp.o
+[ 10%] Building C object src/cfun/CMakeFiles/cfun.dir/fun-gllb_hole.c.o
+[ 10%] Linking Fortran static library libinterest.a
+[ 10%] Linking Fortran static library libecp.a
+[ 10%] Building C object src/cfun/CMakeFiles/cfun.dir/fun-hjsx.c.o
+[ 10%] Built target interest
+[ 11%] Building C object src/CMakeFiles/xcfun.dir/fortran.c.o
+[ 10%] Built target ecp
+[ 13%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/beckex.cpp.o
+[ 10%] Building Fortran object src/amfi/CMakeFiles/amfi.dir/amfi.F.o
+[ 10%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/xkind.F90.o
+[ 11%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/error_stop.F90.o
+[ 11%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/basic/next_permutation.F90.o
+[ 11%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/london_ao.F90.o
+[ 11%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/tools/str_decode.F90.o
+[ 11%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/dump_info.F90.o
+[ 11%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/xtimer.F90.o
+[ 11%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/tools/norm_contr_cgto.F90.o
+[ 11%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/tools/norm_contr_sgto.F90.o
+[ 11%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/tools/reorder_ints.F90.o
+[ 11%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/tools/trace_ints.F90.o
+[ 12%] Building C object src/cfun/CMakeFiles/cfun.dir/fun-kin_pw91k.c.o
+[ 12%] Building C object src/cfun/CMakeFiles/cfun.dir/fun-kin_tf.c.o
+[ 12%] Building C object src/cfun/CMakeFiles/cfun.dir/fun-kin_vw.c.o
+[ 12%] Building C object src/cfun/CMakeFiles/cfun.dir/fun-kt.c.o
+[ 12%] Building C object src/cfun/CMakeFiles/cfun.dir/fun-lb94.c.o
+[ 12%] Building C object src/cfun/CMakeFiles/cfun.dir/fun-lbalpha.c.o
+[ 12%] Building C object src/cfun/CMakeFiles/cfun.dir/fun-lyp.c.o
+[ 12%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/tools/get_address_list.F90.o
+[ 12%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/basic/binom_coeff.F90.o
+[ 12%] Building C object src/cfun/CMakeFiles/cfun.dir/fun-optx.c.o
+[ 13%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/basic/const_contr_ints.F90.o
+[ 14%] Building C object src/cfun/CMakeFiles/cfun.dir/fun-p86c.c.o
+[ 14%] Building C object src/cfun/CMakeFiles/cfun.dir/fun-pbec.c.o
+[ 14%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/basic/hgto_to_cgto.F90.o
+[ 14%] Building C object src/cfun/CMakeFiles/cfun.dir/fun-pbex.c.o
+[ 14%] Building C object src/cfun/CMakeFiles/cfun.dir/fun-pw86x.c.o
+[ 14%] Building C object src/cfun/CMakeFiles/cfun.dir/fun-pw91c.c.o
+[ 14%] Building C object src/cfun/CMakeFiles/cfun.dir/fun-pw91x.c.o
+[ 14%] Building C object src/cfun/CMakeFiles/cfun.dir/fun-pz81.c.o
+[ 14%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/basic/hgto_to_sgto.F90.o
+[ 14%] Building C object src/cfun/CMakeFiles/cfun.dir/fun-revpbex.c.o
+[ 15%] Building C object src/cfun/CMakeFiles/cfun.dir/fun-rpbex.c.o
+[ 15%] Building C object src/cfun/CMakeFiles/cfun.dir/fun-slater.c.o
+[ 15%] Building C object src/cfun/CMakeFiles/cfun.dir/fun-srpbec.c.o
+[ 15%] Building C object src/cfun/CMakeFiles/cfun.dir/fun-srvwn5.c.o
+[ 15%] Building C object src/cfun/CMakeFiles/cfun.dir/fun-vwn.c.o
+[ 15%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/basic/shell_scatter.F90.o
+[ 15%] Building C object src/cfun/CMakeFiles/cfun.dir/functionals.c.o
+[ 15%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/basic/sort_cents.F90.o
+[ 15%] Building C object src/cfun/CMakeFiles/cfun.dir/general.c.o
+[ 15%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/auxfun/aux_boys_vec.F90.o
+[ 15%] Linking Fortran static library libcfun.a
+[ 15%] Built target cfun
+[ 15%] Building Fortran object src/amfi/CMakeFiles/amfi.dir/amfi1.F.o
+[ 15%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/geom/geom_total.F90.o
+[ 16%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/geom/geom_part_zero.F90.o
+[ 16%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/geom/geom_part_one.F90.o
+[ 16%] Building Fortran object src/amfi/CMakeFiles/amfi.dir/amfi2.F.o
+[ 15%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/ktx.cpp.o
+[ 17%] Building Fortran object src/amfi/CMakeFiles/amfi.dir/amfi3.F.o
+[ 17%] Building Fortran object src/amfi/CMakeFiles/amfi.dir/relscf.F.o
+[ 17%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/mag/hgto_to_lcgto.F90.o
+[ 17%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/ldaerfc.cpp.o
+[ 19%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/ldaerfc_jt.cpp.o
+[ 17%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/mag/london_mom_hgto.F90.o
+[ 17%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/carmom/carmom_deriv.F90.o
+[ 17%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/carmom/carmom_hbra.F90.o
+[ 17%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/carmom/carmom_hrr_ket.F90.o
+[ 21%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/ldaerfx.cpp.o
+[ 17%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/carmom/carmom_moment.F90.o
+[ 23%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/list_of_functionals.cpp.o
+[ 25%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/lypc.cpp.o
+[ 17%] Linking Fortran static library libamfi.a
+[ 17%] Built target amfi
+[ 17%] Building Fortran object src/laplace/CMakeFiles/laplace.dir/type_laplace.F90.o
+[ 18%] Building Fortran object src/laplace/CMakeFiles/laplace.dir/pamlaplce.F90.o
+[ 18%] Building Fortran object src/laplace/CMakeFiles/laplace.dir/lap_driver.F90.o
+[ 27%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/m05c.cpp.o
+[ 18%] Linking Fortran static library liblaplace.a
+[ 18%] Built target laplace
+[ 18%] Building Fortran object utils/CMakeFiles/labread.x.dir/labread.F90.o
+[ 18%] Linking Fortran executable ../labread.x
+[ 18%] Built target labread.x
+[ 18%] Building Fortran object src/gp/CMakeFiles/gp.dir/basis_datatypes.F90.o
+[ 18%] Building Fortran object src/gp/CMakeFiles/gp.dir/hdf5_util/mh5_nohdf5.F90.o
+[ 18%] Building Fortran object src/gp/CMakeFiles/gp.dir/codata.F90.o
+[ 18%] Building Fortran object src/gp/CMakeFiles/gp.dir/debug_mem_alloc.F90.o
+[ 18%] Building Fortran object src/gp/CMakeFiles/gp.dir/dirac_cfg.F90.o
+[ 19%] Building Fortran object src/gp/CMakeFiles/gp.dir/dirac_mocoefficients.F90.o
+[ 19%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/carmom/prim_hgto_carmom.F90.o
+[ 19%] Building Fortran object src/gp/CMakeFiles/gp.dir/dynamic_string.F90.o
+[ 20%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/carmom/contr_cgto_carmom.F90.o
+[ 20%] Building Fortran object src/gp/CMakeFiles/gp.dir/memory_parameters.F90.o
+[ 20%] Building Fortran object src/gp/CMakeFiles/gp.dir/memory_legacy_dirac.F90.o
+[ 20%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/carmom/contr_sgto_carmom.F90.o
+[ 20%] Building Fortran object src/gp/CMakeFiles/gp.dir/f77_work_interface.F90.o
+[ 20%] Building Fortran object src/gp/CMakeFiles/gp.dir/file_handler.F90.o
+[ 20%] Building Fortran object src/gp/CMakeFiles/gp.dir/include_h_modules.F90.o
+[ 20%] Building Fortran object src/gp/CMakeFiles/gp.dir/machine_parameters.F90.o
+[ 20%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/carmom/contr_csgto_carmom.F90.o
+[ 20%] Building Fortran object src/gp/CMakeFiles/gp.dir/gpsk.F90.o
+[ 29%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/m05x.cpp.o
+[ 20%] Building Fortran object src/gp/CMakeFiles/gp.dir/kinds.F90.o
+[ 20%] Building Fortran object src/gp/CMakeFiles/gp.dir/moltra_labeling.F90.o
+[ 20%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/delta/delta_geom.F90.o
+[ 20%] Building Fortran object src/gp/CMakeFiles/gp.dir/num_der.F90.o
+[ 20%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/delta/delta_hket.F90.o
+[ 20%] Building Fortran object src/gp/CMakeFiles/gp.dir/orbital_rotation_indices.F90.o
+[ 31%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/m05x2c.cpp.o
+[ 20%] Building Fortran object src/gp/CMakeFiles/gp.dir/osutils.F90.o
+[ 20%] Building Fortran object src/gp/CMakeFiles/gp.dir/picture_change_operations.F90.o
+[ 20%] Building Fortran object src/gp/CMakeFiles/gp.dir/quaternion_algebra.F90.o
+[ 21%] Building Fortran object src/gp/CMakeFiles/gp.dir/string_manipulations.f90.o
+[ 21%] Building Fortran object src/gp/CMakeFiles/gp.dir/unit_testing.F90.o
+[ 21%] Building Fortran object src/gp/CMakeFiles/gp.dir/vector_functions.F90.o
+[ 21%] Building Fortran object src/gp/CMakeFiles/gp.dir/xml/xml_file.F90.o
+[ 21%] Building Fortran object src/gp/CMakeFiles/gp.dir/xml/xml_structure.F90.o
+[ 21%] Building Fortran object src/gp/CMakeFiles/gp.dir/xmlout.F90.o
+[ 33%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/m05x2x.cpp.o
+[ 21%] Building Fortran object src/gp/CMakeFiles/gp.dir/global_file.F.o
+[ 21%] Building Fortran object src/gp/CMakeFiles/gp.dir/gphjj.F.o
+[ 35%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/m06c.cpp.o
+[ 21%] Building Fortran object src/gp/CMakeFiles/gp.dir/gpjeppe.F.o
+[ 37%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/m06hfx.cpp.o
+[ 21%] Building Fortran object src/gp/CMakeFiles/gp.dir/gpjth.F.o
+[ 22%] Building Fortran object src/gp/CMakeFiles/gp.dir/gplupar.F.o
+[ 39%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/m06lc.cpp.o
+[ 22%] Building Fortran object src/gp/CMakeFiles/gp.dir/gpluuk.F.o
+[ 41%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/m06lx.cpp.o
+[ 22%] Building Fortran object src/gp/CMakeFiles/gp.dir/gptrygve.F.o
+[ 22%] Building Fortran object src/gp/CMakeFiles/gp.dir/gpulfek.F.o
+[ 22%] Building Fortran object src/gp/CMakeFiles/gp.dir/graphic.F.o
+[ 22%] Building Fortran object src/gp/CMakeFiles/gp.dir/io.F.o
+[ 22%] Building Fortran object src/gp/CMakeFiles/gp.dir/matexport.F.o
+[ 23%] Building Fortran object src/gp/CMakeFiles/gp.dir/math.F.o
+[ 23%] Building Fortran object src/gp/CMakeFiles/gp.dir/mempkg.F.o
+[ 23%] Building Fortran object src/gp/CMakeFiles/gp.dir/mpi2macro.F.o
+[ 23%] Building Fortran object src/gp/CMakeFiles/gp.dir/mxmpack.F.o
+[ 23%] Building Fortran object src/gp/CMakeFiles/gp.dir/order2.F.o
+[ 43%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/m06x.cpp.o
+[ 23%] Building Fortran object src/gp/CMakeFiles/gp.dir/qpack.F.o
+[ 23%] Building Fortran object src/gp/CMakeFiles/gp.dir/spline.F.o
+[ 24%] Building Fortran object src/gp/CMakeFiles/gp.dir/time.F.o
+[ 24%] Building Fortran object src/gp/CMakeFiles/gp.dir/gplucia_io.F.o
+[ 45%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/m06x2c.cpp.o
+[ 24%] Building Fortran object src/gp/CMakeFiles/gp.dir/gplucia.F.o
+[ 47%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/m06x2x.cpp.o
+[ 24%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/delta/delta_moment.F90.o
+[ 49%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/optx.cpp.o
+[ 24%] Building Fortran object src/gp/CMakeFiles/gp.dir/exception_handling.F90.o
+[ 25%] Building Fortran object src/gp/CMakeFiles/gp.dir/heapsort.F90.o
+[ 50%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/p86c.cpp.o
+[ 25%] Building Fortran object src/gp/CMakeFiles/gp.dir/selftests.F90.o
+[ 25%] Building C object src/gp/CMakeFiles/gp.dir/execinfo_bsd.c.o
+[ 25%] Building C object src/gp/CMakeFiles/gp.dir/gpc.c.o
+[ 25%] Building C object src/gp/CMakeFiles/gp.dir/memory_sys_if.c.o
+[ 25%] Building C object src/gp/CMakeFiles/gp.dir/print_info.c.o
+[ 25%] Building C object src/gp/CMakeFiles/gp.dir/selftest_fortran_c_interoperability.c.o
+[ 25%] Building C object src/gp/CMakeFiles/gp.dir/stacktraverse_bsd.c.o
+[ 26%] Building C object src/gp/CMakeFiles/gp.dir/trace.c.o
+[ 27%] Building Fortran object src/gp/CMakeFiles/gp.dir/labeled_storage.F90.o
+[ 27%] Building Fortran object src/gp/CMakeFiles/gp.dir/memory_control.F90.o
+[ 28%] Building Fortran object src/gp/CMakeFiles/gp.dir/memory_tracker.F90.o
+[ 28%] Building Fortran object src/gp/CMakeFiles/gp.dir/memory_internal_init.F90.o
+[ 28%] Building Fortran object src/gp/CMakeFiles/gp.dir/gp_q_diag.F90.o
+[ 52%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/pbec.cpp.o
+[ 28%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/delta/prim_hgto_delta.F90.o
+[ 28%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/delta/contr_cgto_delta.F90.o
+[ 29%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/delta/contr_sgto_delta.F90.o
+[ 29%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/nucpot/nucpot_geom.F90.o
+[ 29%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/nucpot/nucpot_hket.F90.o
+[ 54%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/pbex.cpp.o
+[ 29%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/nucpot/nucpot_hbra.F90.o
+[ 29%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/nucpot/prim_hgto_nucpot.F90.o
+[ 29%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/nucpot/contr_cgto_nucpot.F90.o
+[ 29%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/nucpot/contr_sgto_nucpot.F90.o
+[ 29%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/gaupot/gaupot_geom.F90.o
+[ 30%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/gaupot/prim_hgto_gaupot.F90.o
+[ 30%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/gaupot/contr_cgto_gaupot.F90.o
+[ 30%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/gaupot/contr_sgto_gaupot.F90.o
+[ 30%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/odist/prim_hgto_odist.F90.o
+[ 56%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/pw86x.cpp.o
+[ 30%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/odist/contr_cgto_odist.F90.o
+[ 30%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/odist/contr_sgto_odist.F90.o
+[ 30%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/value/prim_hgto_value.F90.o
+[ 30%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/value/const_contr_gto.F90.o
+[ 58%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/pw91k.cpp.o
+[ 31%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/value/contr_cgto_value.F90.o
+[ 31%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/value/contr_sgto_value.F90.o
+[ 31%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/gen1int_geom.F90.o
+[ 31%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/gen1int_carmom.F90.o
+[ 60%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/pw91x.cpp.o
+[ 31%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/gen1int_gaupot.F90.o
+[ 31%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/gen1int_nucpot.F90.o
+[ 31%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/gen1int_onehamil.F90.o
+[ 32%] Building Fortran object src/gen1int/subtree/CMakeFiles/gen1int.dir/src/gen1int.F90.o
+[ 32%] Linking Fortran static library libgen1int.a
+[ 32%] Built target gen1int
+[ 32%] Building Fortran object src/gen1int/CMakeFiles/gen1int_interface.dir/interface/gen1int_matrix.F90.o
+[ 32%] Building Fortran object src/gp/CMakeFiles/gp.dir/unit_test_generator.f90.o
+[ 32%] Building Fortran object src/gen1int/CMakeFiles/gen1int_interface.dir/interface/gen1int_cube.F90.o
+[ 62%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/pw92c.cpp.o
+[ 32%] Building Fortran object src/gen1int/CMakeFiles/gen1int_interface.dir/interface/gen1int_shell.F90.o
+[ 32%] Building Fortran object src/gp/CMakeFiles/gp.dir/xml/xml_parser.F90.o
+[ 32%] Building Fortran object src/gp/CMakeFiles/gp.dir/checkpoint.F90.o
+[ 64%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/revpbex.cpp.o
+[ 32%] Building Fortran object src/gp/CMakeFiles/gp.dir/memory_track_if.F90.o
+[ 32%] Building Fortran object src/gp/CMakeFiles/gp.dir/dircmo.F90.o
+[ 32%] Building Fortran object src/gp/CMakeFiles/gp.dir/memory_errorhandler.F90.o
+[ 33%] Building Fortran object src/gp/CMakeFiles/gp.dir/memory_internal_ada_1d.F90.o
+[ 33%] Building Fortran object src/gp/CMakeFiles/gp.dir/memory_internal_special_i8.F90.o
+[ 33%] Building Fortran object src/gp/CMakeFiles/gp.dir/memory_internal_ada_2d.F90.o
+[ 33%] Building Fortran object src/gen1int/CMakeFiles/gen1int_interface.dir/interface/gen1int_api.F90.o
+[ 33%] Building Fortran object src/gp/CMakeFiles/gp.dir/memory_internal_ada_3d.F90.o
+[ 33%] Building Fortran object src/gen1int/CMakeFiles/gen1int_interface.dir/interface/gen1int_host.F90.o
+[ 33%] Building Fortran object src/gp/CMakeFiles/gp.dir/memory_internal_ada_4d.F90.o
+[ 34%] Linking Fortran static library libgen1int_interface.a
+[ 34%] Building Fortran object src/gp/CMakeFiles/gp.dir/memory_allocator.F90.o
+[ 34%] Built target gen1int_interface
+[ 34%] Building Fortran object src/gp/CMakeFiles/gp.dir/electrostatic_potential.F90.o
+[ 34%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/recur/recur_carmom.F90.o
+[ 35%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/recur/recur_delta.F90.o
+[ 35%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/recur/recur_hgto.F90.o
+[ 35%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/recur/recur_mag.F90.o
+[ 35%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/recur/recur_nucpot.F90.o
+[ 35%] Building Fortran object src/gp/CMakeFiles/gp.dir/luci_wrkspc.F90.o
+[ 35%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/tools/html_log.F90.o
+[ 35%] Building Fortran object src/gp/CMakeFiles/gp.dir/finesort_scheme6.F.o
+[ 66%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/revtpssc.cpp.o
+[ 35%] Building Fortran object src/gp/CMakeFiles/gp.dir/gpkrmc.F.o
+[ 35%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/tools/int_to_str.F90.o
+[ 35%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/check_difference.F90.o
+[ 35%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/xyz_function.F90.o
+[ 35%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/tools/test_norm_contr_gto.F90.o
+[ 35%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/tools/test_reorder_ints.F90.o
+[ 35%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/tools/test_trace_ints.F90.o
+[ 35%] Building Fortran object src/gp/CMakeFiles/gp.dir/gpsaue.F.o
+[ 35%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/basic/test_binom_coeff.F90.o
+[ 68%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/revtpssx.cpp.o
+[ 35%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/basic/test_const_contr_ints.F90.o
+[ 35%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/basic/test_hgto_to_cgto.F90.o
+[ 36%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/basic/test_next_permutation.F90.o
+[ 36%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/basic/test_shell_scatter.F90.o
+[ 36%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/basic/test_sort_cents.F90.o
+[ 36%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/auxfun/test_aux_boys_vec.F90.o
+[ 70%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/rpbex.cpp.o
+[ 36%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/geom/test_geom_total.F90.o
+[ 36%] Building Fortran object src/gp/CMakeFiles/gp.dir/qalgebra.F.o
+[ 36%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/geom/test_geom_part_zero.F90.o
+[ 36%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/geom/test_geom_part_one.F90.o
+[ 72%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/slaterx.cpp.o
+[ 74%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/spbec.cpp.o
+[ 36%] Linking Fortran static library libgp.a
+[ 36%] Built target gp
+[ 36%] Building Fortran object src/dirrci/CMakeFiles/dirrci.dir/cidirr.F.o
+[ 36%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/mag/test_hgto_to_lcgto.F90.o
+[ 37%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/mag/test_london_mom_hgto.F90.o
+[ 37%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/carmom/test_carmom_deriv.F90.o
+[ 37%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/carmom/test_carmom_hbra.F90.o
+[ 37%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/carmom/test_carmom_hrr_ket.F90.o
+[ 37%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/carmom/test_carmom_moment.F90.o
+[ 37%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/carmom/test_prim_hgto_carmom.F90.o
+[ 37%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/carmom/test_contr_cgto_carmom.F90.o
+[ 37%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/carmom/test_contr_sgto_carmom.F90.o
+[ 38%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/carmom/test_contr_csgto_carmom.F90.o
+[ 38%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/carmom/test_contr_sgto_kinene.F90.o
+[ 38%] Building Fortran object src/dirrci/CMakeFiles/dirrci.dir/cigenp.F.o
+[ 38%] Building Fortran object src/dirrci/CMakeFiles/dirrci.dir/cigosc.F.o
+[ 38%] Building Fortran object src/localization/CMakeFiles/localization.dir/func_PipekMezey.F90.o
+[ 38%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/carmom/test_contr_csgto_kinene.F90.o
+[ 38%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/delta/test_delta_geom.F90.o
+[ 38%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/delta/test_delta_hket.F90.o
+[ 38%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/delta/test_delta_moment.F90.o
+[ 38%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/delta/test_prim_hgto_delta.F90.o
+[ 38%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/delta/test_contr_cgto_delta.F90.o
+[ 38%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/delta/test_contr_sgto_delta.F90.o
+[ 39%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/nucpot/test_nucpot_geom.F90.o
+[ 39%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/nucpot/test_nucpot_hket.F90.o
+[ 39%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/nucpot/test_nucpot_hbra.F90.o
+[ 39%] Linking Fortran static library libdirrci.a
+[ 39%] Built target dirrci
+[ 39%] Building Fortran object src/localization/CMakeFiles/localization.dir/localization_interface.F90.o
+[ 39%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/nucpot/test_prim_hgto_nucpot.F90.o
+[ 39%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/nucpot/test_contr_cgto_nucpot.F90.o
+[ 39%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/nucpot/test_contr_sgto_nucpot.F90.o
+[ 39%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/gaupot/test_gaupot_geom.F90.o
+[ 39%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/odist/test_prim_hgto_odist.F90.o
+[ 40%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/value/test_prim_hgto_value.F90.o
+[ 40%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/test_gen1int.F90.o
+[ 40%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/f90mod/test_f90mod_sgto_kinene.F90.o
+[ 40%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/f90mod/test_f90mod_sgto_carmom.F90.o
+[ 40%] Building Fortran object src/gen1int/subtree/CMakeFiles/test_gen1int.dir/test_f90/f90mod/test_f90mod_sgto_sphmom.F90.o
+[ 40%] Linking Fortran executable test_gen1int
+[ 40%] Building Fortran object src/localization/CMakeFiles/localization.dir/second_order_minimization.f90.o
+[ 40%] Building Fortran object src/luciarel/CMakeFiles/luciarel.dir/krci_cfg.F90.o
+[ 40%] Building Fortran object src/luciarel/CMakeFiles/luciarel.dir/krci_prop.F90.o
+[ 40%] Building Fortran object src/luciarel/CMakeFiles/luciarel.dir/mospinor_info.F90.o
+[ 40%] Built target test_gen1int
+[ 76%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/tfk.cpp.o
+[ 40%] Building Fortran object src/luciarel/CMakeFiles/luciarel.dir/string_info.F90.o
+[ 40%] Building Fortran object src/luciarel/CMakeFiles/luciarel.dir/symmetry_setup.F90.o
+[ 40%] Building Fortran object src/luciarel/CMakeFiles/luciarel.dir/io_r.F.o
+[ 78%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/tpssc.cpp.o
+[ 41%] Linking Fortran static library liblocalization.a
+[ 41%] Built target localization
+[ 41%] Building Fortran object src/luciarel/CMakeFiles/luciarel.dir/par_lushmem_r.F.o
+[ 41%] Building Fortran object src/reladc/CMakeFiles/reladc.dir/adc_cfg.F90.o
+[ 41%] Building Fortran object src/luciarel/CMakeFiles/luciarel.dir/par_solver_r.F.o
+[ 41%] Building Fortran object src/reladc/CMakeFiles/reladc.dir/adc_fano_exchange.F90.o
+[ 41%] Building Fortran object src/reladc/CMakeFiles/reladc.dir/adc_mat.F90.o
+[ 41%] Building Fortran object src/reladc/CMakeFiles/reladc.dir/polprp_cfg.F90.o
+[ 41%] Building Fortran object src/reladc/CMakeFiles/reladc.dir/polprp_qstackm.F90.o
+[ 41%] Building Fortran object src/reladc/CMakeFiles/reladc.dir/adcsort.F.o
+[ 41%] Building Fortran object src/reladc/CMakeFiles/reladc.dir/polprp_mpimaster.F.o
+[ 80%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/tpssx.cpp.o
+[ 42%] Building Fortran object src/luciarel/CMakeFiles/luciarel.dir/diagonalize_r.F.o
+[ 43%] Building Fortran object src/reladc/CMakeFiles/reladc.dir/polprp_mpiserver.F.o
+[ 43%] Building Fortran object src/reladc/CMakeFiles/reladc.dir/polprp_mainblk.F.o
+[ 82%] Building CXX object src/CMakeFiles/xcfun.dir/functionals/vwn5c.cpp.o
+[ 43%] Building Fortran object src/luciarel/CMakeFiles/luciarel.dir/memory_r.F.o
+[ 43%] Building C object src/reladc/CMakeFiles/reladc.dir/polprp_qstack.c.o
+[ 43%] Building Fortran object src/luciarel/CMakeFiles/luciarel.dir/io_ttss_r.F90.o
+[ 43%] Building Fortran object src/reladc/CMakeFiles/reladc.dir/adc_fano_real_routines.F90.o
+[ 43%] Building Fortran object src/reladc/CMakeFiles/reladc.dir/adc_fano_routines.F90.o
+[ 43%] Building Fortran object src/luciarel/CMakeFiles/luciarel.dir/utils_r.F.o
+[ 43%] Building Fortran object src/reladc/CMakeFiles/reladc.dir/adcutil.F90.o
+[ 43%] Building Fortran object src/reladc/CMakeFiles/reladc.dir/polprp_blockdav.F90.o
+[ 43%] Building Fortran object src/luciarel/CMakeFiles/luciarel.dir/vecmat_r.F.o
+[ 43%] Building Fortran object src/luciarel/CMakeFiles/luciarel.dir/par_lucia_r.F.o
+[ 44%] Building Fortran object src/reladc/CMakeFiles/reladc.dir/polprp_blockdav_c.F90.o
+[ 44%] Building Fortran object src/reladc/CMakeFiles/reladc.dir/adcdble.F.o
+[ 44%] Building Fortran object src/reladc/CMakeFiles/reladc.dir/polprp_buildtm.F.o
+[ 44%] Building Fortran object src/luciarel/CMakeFiles/luciarel.dir/property_r.F.o
+[ 44%] Building Fortran object src/luciarel/CMakeFiles/luciarel.dir/diagonal_r.F.o
+[ 44%] Building Fortran object src/luciarel/CMakeFiles/luciarel.dir/gasci_main_driver_r.F.o
+[ 44%] Building Fortran object src/reladc/CMakeFiles/reladc.dir/polprp_cousat.F.o
+[ 44%] Building Fortran object src/luciarel/CMakeFiles/luciarel.dir/strings_r.F.o
+[ 44%] Building Fortran object src/reladc/CMakeFiles/reladc.dir/polprp_driver.F.o
+[ 44%] Building Fortran object src/reladc/CMakeFiles/reladc.dir/polprp_helpers.F.o
+[ 44%] Building Fortran object src/luciarel/CMakeFiles/luciarel.dir/ciinfo_r.F.o
+[ 44%] Building Fortran object src/reladc/CMakeFiles/reladc.dir/polprp_prpint.F.o
+[ 84%] Linking CXX static library libxcfun.a
+[ 45%] Building Fortran object src/reladc/CMakeFiles/reladc.dir/adc_fano_complex_routines.F90.o
+[ 45%] Building Fortran object src/luciarel/CMakeFiles/luciarel.dir/sigden_r.F.o
+[ 84%] Built target xcfun
+[ 86%] Building Fortran object fortran/CMakeFiles/example_fortran.dir/xcfun_autogen.F90.o
+[ 88%] Building Fortran object fortran/CMakeFiles/example_fortran.dir/xcfun_module.F90.o
+[ 90%] Building Fortran object fortran/CMakeFiles/example_fortran.dir/example.F90.o
+[ 45%] Building Fortran object src/reladc/CMakeFiles/reladc.dir/adc_fano_diag.F90.o
+[ 92%] Linking Fortran executable example_fortran
+[ 94%] Building C object test/CMakeFiles/funeval.dir/funeval.c.o
+[ 96%] Linking CXX executable funeval
+[ 96%] Built target example_fortran
+[ 98%] Building C object test/CMakeFiles/testall.dir/testall.c.o
+[100%] Linking CXX executable testall
+[100%] Built target funeval
+[ 45%] Building Fortran object src/reladc/CMakeFiles/reladc.dir/adc_fano_matmul.F90.o
+[100%] Built target testall
+[ 45%] Performing install step for 'xcfun'
+[ 84%] Built target xcfun
+[ 92%] Built target example_fortran
+[ 45%] Building Fortran object src/luciarel/CMakeFiles/luciarel.dir/interface_r.F.o
+[ 96%] Built target funeval
+[100%] Built target testall
+Install the project...
+-- Install configuration: "release"
+-- Installing: /lustre/projects/m/milias/work/software/dirac/trunk_cloned/build_intelmpi2023_mkl_i8/external/lib/libxcfun.a
+[ 45%] Completed 'xcfun'
+[ 45%] Built target xcfun
+[ 45%] Building Fortran object src/krcc/CMakeFiles/krcc.dir/krcc_inp.F90.o
+[ 45%] Building Fortran object src/krcc/CMakeFiles/krcc.dir/cc_vec_fnc2.F.o
+[ 45%] Building Fortran object src/krcc/CMakeFiles/krcc.dir/optimization.F.o
+[ 45%] Building Fortran object src/krcc/CMakeFiles/krcc.dir/cc_vec_fnc.F.o
+[ 45%] Building Fortran object src/krcc/CMakeFiles/krcc.dir/op_t_occ_r.F.o
+[ 45%] Building Fortran object src/krcc/CMakeFiles/krcc.dir/integrals.F.o
+[ 45%] Building Fortran object src/krcc/CMakeFiles/krcc.dir/contraction_analyze.F.o
+[ 46%] Building Fortran object src/krcc/CMakeFiles/krcc.dir/len_for_tf_r.F.o
+[ 46%] Building Fortran object src/krcc/CMakeFiles/krcc.dir/dim_t1t2_to_t12_map_r.F.o
+[ 46%] Building Fortran object src/krcc/CMakeFiles/krcc.dir/krcc_exc_e.F.o
+[ 47%] Building Fortran object src/luciarel/CMakeFiles/luciarel.dir/resolution_utils_r.F.o
+[ 47%] Building Fortran object src/reladc/CMakeFiles/reladc.dir/adcdiag.F.o
+[ 47%] Building Fortran object src/krcc/CMakeFiles/krcc.dir/contraction_performer.F.o
+[ 47%] Building Fortran object src/krcc/CMakeFiles/krcc.dir/diagonal.F.o
+[ 47%] Linking Fortran static library libluciarel.a
+[ 47%] Built target luciarel
+[ 48%] Building Fortran object src/prp/esr/CMakeFiles/esr.dir/pamesr.F.o
+[ 48%] Building Fortran object src/krcc/CMakeFiles/krcc.dir/krcc_memory.F.o
+[ 48%] Building Fortran object src/krcc/CMakeFiles/krcc.dir/program.F.o
+[ 48%] Building Fortran object src/krcc/CMakeFiles/krcc.dir/contraction_solver.F.o
+[ 49%] Building Fortran object src/krcc/CMakeFiles/krcc.dir/io.F.o
+[ 49%] Building Fortran object src/krcc/CMakeFiles/krcc.dir/analyze.F.o
+[ 49%] Building Fortran object src/reladc/CMakeFiles/reladc.dir/adc_fano.F90.o
+[ 49%] Building Fortran object src/reladc/CMakeFiles/reladc.dir/adccore.F.o
+[ 49%] Building Fortran object src/prp/esr/CMakeFiles/esr.dir/pamesrci.F.o
+[ 49%] Building Fortran object src/krcc/CMakeFiles/krcc.dir/krcc_wrt.F.o
+[ 49%] Building Fortran object src/krcc/CMakeFiles/krcc.dir/dim_t1t2_to_t12_s_r.F.o
+[ 49%] Building Fortran object src/krcc/CMakeFiles/krcc.dir/interface.F.o
+[ 49%] Linking Fortran static library libesr.a
+[ 49%] Built target esr
+[ 49%] Building Fortran object src/krcc/CMakeFiles/krcc.dir/ccinfo.F.o
+[ 49%] Building Fortran object src/krcc/CMakeFiles/krcc.dir/strings_cc.F.o
+[ 49%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/module_error.F90.o
+[ 50%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/module_sort_swap.F90.o
+[ 50%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/module_blas.F90.o
+[ 50%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/module_cmo_variables.F90.o
+[ 50%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/module_dict.F90.o
+[ 50%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/module_global_variables.F90.o
+[ 50%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/module_essential_input.F90.o
+[ 50%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/module_index_utils.F90.o
+[ 50%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/module_mpi.F90.o
+[ 50%] Building Fortran object src/krcc/CMakeFiles/krcc.dir/fock.F.o
+[ 51%] Building Fortran object src/krcc/CMakeFiles/krcc.dir/h_exp_t_mem_r.F.o
+[ 51%] Building Fortran object src/krcc/CMakeFiles/krcc.dir/utils.F.o
+[ 51%] Building Fortran object src/krcc/CMakeFiles/krcc.dir/get_int.F.o
+[ 51%] Building Fortran object src/krcc/CMakeFiles/krcc.dir/inum_for_occ2_r.F.o
+[ 51%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/takekr.F90.o
+[ 51%] Linking Fortran static library libkrcc.a
+[ 51%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/module_hdf5_cmo_handler.F90.o
+[ 51%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/module_time.F90.o
+[ 51%] Built target krcc
+[ 51%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/module_validation.F90.o
+[ 51%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/ras_det_check.F90.o
+[ 51%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/ulambda_s_half.F90.o
+[ 51%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/cutoff.F90.o
+[ 51%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/density_matrix.F90.o
+[ 51%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/diag.F90.o
+[ 52%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/get_filename.F90.o
+[ 52%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/mem.F90.o
+[ 52%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/one_e_exct.F90.o
+[ 52%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/print_head.F90.o
+[ 53%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/print_head_ivo.F90.o
+[ 53%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/checkdgc.F90.o
+[ 53%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/print_head_casci.F90.o
+[ 53%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/print_head_caspt2.F90.o
+[ 53%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/pam_relcaspt2.F90.o
+[ 53%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/casmat.F90.o
+[ 54%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/search_cas_configuration.F90.o
+[ 54%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/fock_matrix_of_hf.F90.o
+[ 54%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/fockcasci.F90.o
+[ 55%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/sdet.F90.o
+[ 55%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/read_input_module.F90.o
+[ 55%] Building Fortran object src/CMakeFiles/xcfun_fortran_bindings.dir/xcfun/fortran/xcfun_autogen.F90.o
+[ 55%] Building Fortran object src/qcorr/CMakeFiles/qcorr.dir/qcorr_cfg.F90.o
+[ 55%] Building Fortran object src/CMakeFiles/xcfun_fortran_bindings.dir/xcfun/fortran/xcfun_module.F90.o
+[ 55%] Building Fortran object src/qcorr/CMakeFiles/qcorr.dir/qcorr_common_block_interface.F90.o
+[ 55%] Linking Fortran static library libxcfun_fortran_bindings.a
+[ 55%] Built target xcfun_fortran_bindings
+[ 55%] Building Fortran object src/qcorr/CMakeFiles/qcorr.dir/qcorr_main.F90.o
+[ 55%] Building Fortran object src/xcint/CMakeFiles/xcint.dir/file_units.F90.o
+[ 55%] Building Fortran object src/xcint/CMakeFiles/xcint.dir/sigma_prefactor_setting.F90.o
+[ 55%] Linking Fortran static library libreladc.a
+[ 55%] Building Fortran object src/xcint/CMakeFiles/xcint.dir/xc_mpi.F90.o
+[ 55%] Built target reladc
+[ 55%] Building Fortran object src/xcint/CMakeFiles/xcint.dir/xc_max_block_length.F90.o
+[ 55%] Building Fortran object src/xcint/CMakeFiles/xcint.dir/interface_file_io.F90.o
+[ 55%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/module_file_manager.F90.o
+[ 55%] Building Fortran object src/xcint/CMakeFiles/xcint.dir/interface_grid.F90.o
+[ 55%] Building Fortran object src/xcint/CMakeFiles/xcint.dir/interface_ao.F90.o
+[ 55%] Building Fortran object src/xcint/CMakeFiles/xcint.dir/interface_mo.F90.o
+[ 55%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/module_realonly.F90.o
+[ 55%] Building Fortran object src/xcint/CMakeFiles/xcint.dir/dft_cfg.F90.o
+[ 55%] Building Fortran object src/xcint/CMakeFiles/xcint.dir/interface_mo_specific.F90.o
+[ 56%] Linking Fortran static library libqcorr.a
+[ 57%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/module_ivo_consistency_check.F90.o
+[ 57%] Built target qcorr
+[ 57%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/module_restart_file.F90.o
+[ 57%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/read_mrconee.F90.o
+[ 57%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/trac.F90.o
+[ 58%] Building Fortran object src/lucita/CMakeFiles/lucita.dir/doubledir.F.o
+[ 58%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/create_newmdcint.F90.o
+[ 58%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/dcaspt2_deallocate.F90.o
+[ 58%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/dcaspt2_run_subprograms.F90.o
+[ 58%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/e0test.F90.o
+[ 58%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/read_cidata.F90.o
+[ 58%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/tramo.F90.o
+[ 58%] Building Fortran object src/lucita/CMakeFiles/lucita.dir/fock.F.o
+[ 58%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/fockivo.F90.o
+[ 59%] Building Fortran object src/xcint/CMakeFiles/xcint.dir/xc_derv.F90.o
+[ 59%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/calce0.F90.o
+[ 59%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/casci.F90.o
+[ 59%] Building Fortran object src/lucita/CMakeFiles/lucita.dir/io.F.o
+[ 59%] Building Fortran object src/xcint/CMakeFiles/xcint.dir/overlap_diagnostic.F90.o
+[ 59%] Building Fortran object src/lucita/CMakeFiles/lucita.dir/lucia_cc.F.o
+[ 59%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/divide_2_elec_integral_into_subspaces.F90.o
+[ 59%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/e0after_tra.F90.o
+[ 59%] Building Fortran object src/xcint/CMakeFiles/xcint.dir/dirac_ao_eval_sub.F90.o
+[ 59%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/fockdiag.F90.o
+[ 59%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/solve_A_subspace.F90.o
+[ 59%] Building Fortran object src/lucita/CMakeFiles/lucita.dir/lucia_icci.F.o
+[ 59%] Building Fortran object src/lucita/CMakeFiles/lucita.dir/property.F.o
+[ 59%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/solve_B_subspace.F90.o
+[ 59%] Building Fortran object src/lucita/CMakeFiles/lucita.dir/transform.F.o
+[ 59%] Building Fortran object src/lucita/CMakeFiles/lucita.dir/vecmat.F.o
+[ 59%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/solve_C_subspace.F90.o
+[ 59%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/solve_D_subspace.F90.o
+[ 60%] Building Fortran object src/lucita/CMakeFiles/lucita.dir/lucita_diagonalize.F.o
+[ 60%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/solve_E_subspace.F90.o
+[ 60%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/solve_F_subspace.F90.o
+[ 60%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/solve_G_subspace.F90.o
+[ 60%] Building Fortran object src/lucita/CMakeFiles/lucita.dir/density.F.o
+[ 61%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/solve_H_subspace.F90.o
+[ 61%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/prtoutfock.F90.o
+[ 61%] Building Fortran object src/lucita/CMakeFiles/lucita.dir/sigma.F.o
+[ 62%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/module_2integrals.F90.o
+[ 62%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/module_intra.F90.o
+[ 62%] Building Fortran object src/lucita/CMakeFiles/lucita.dir/diagonal.F.o
+[ 62%] Building Fortran object src/lucita/CMakeFiles/lucita.dir/strings.F.o
+[ 62%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/r4divo.F90.o
+[ 62%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/r4dcasci.F90.o
+[ 62%] Building Fortran object src/caspt2/CMakeFiles/caspt2.dir/r4dcaspt2_tra.F90.o
+[ 62%] Building Fortran object src/lucita/CMakeFiles/lucita.dir/ciinfo.F.o
+[ 62%] Linking Fortran static library libcaspt2.a
+[ 62%] Built target caspt2
+[ 62%] Building Fortran object src/lucita/CMakeFiles/lucita.dir/interface.F.o
+[ 62%] Building Fortran object src/lucita/CMakeFiles/lucita.dir/memory.F.o
+[ 63%] Building Fortran object src/lucita/CMakeFiles/lucita.dir/program.F.o
+[ 63%] Building Fortran object src/lucita/CMakeFiles/lucita.dir/utils.F.o
+[ 63%] Building Fortran object src/lucita/CMakeFiles/lucita.dir/par_lucia.F.o
+[ 63%] Building Fortran object src/lucita/CMakeFiles/lucita.dir/par_solver.F.o
+[ 63%] Building Fortran object src/xcint/CMakeFiles/xcint.dir/extra.F90.o
+[ 63%] Building Fortran object src/xcint/CMakeFiles/xcint.dir/interface_ao_specific.F90.o
+[ 64%] Building Fortran object src/xcint/CMakeFiles/xcint.dir/interface_functional_read.F90.o
+[ 64%] Building Fortran object src/xcint/CMakeFiles/xcint.dir/xc_ac.F90.o
+[ 64%] Building Fortran object src/xcint/CMakeFiles/xcint.dir/xc_blas3.F90.o
+[ 64%] Linking Fortran static library liblucita.a
+[ 64%] Built target lucita
+[ 65%] Building Fortran object src/xcint/CMakeFiles/xcint.dir/dirac_ao_eval.F90.o
+[ 65%] Building Fortran object src/xcint/CMakeFiles/xcint.dir/density_eval.F90.o
+[ 65%] Building Fortran object src/xcint/CMakeFiles/xcint.dir/xc_geometric.F90.o
+[ 65%] Building Fortran object src/xcint/CMakeFiles/xcint.dir/numerical_operators.F90.o
+[ 65%] Building Fortran object src/xcint/CMakeFiles/xcint.dir/xc_london_c1.F90.o
+[ 65%] Building Fortran object src/xcint/CMakeFiles/xcint.dir/xc_response.F90.o
+[ 65%] Building Fortran object src/xcint/CMakeFiles/xcint.dir/xcint_main.F90.o
+[ 65%] Building Fortran object src/xcint/CMakeFiles/xcint.dir/interface_fortran.F90.o
+[ 66%] Linking Fortran static library libxcint.a
+[ 66%] Built target xcint
+[ 66%] Building Fortran object src/fde/CMakeFiles/fde.dir/emb_mpi.F90.o
+[ 66%] Building Fortran object src/fde/CMakeFiles/fde.dir/emb_mag_cfg.F90.o
+[ 66%] Building Fortran object src/fde/CMakeFiles/fde.dir/emb_max_block_length.F90.o
+[ 66%] Building Fortran object src/grid/CMakeFiles/grid.dir/num_grid_cfg.F90.o
+[ 66%] Building Fortran object src/fde/CMakeFiles/fde.dir/get_vemb_mat.F.o
+[ 66%] Building Fortran object src/fde/CMakeFiles/fde.dir/emb_quit.F.o
+[ 66%] Building Fortran object src/grid/CMakeFiles/grid.dir/num_grid_gen.F90.o
+[ 66%] Building Fortran object src/fde/CMakeFiles/fde.dir/emb_gtdoav.F.o
+[ 66%] Building Fortran object src/grid/CMakeFiles/grid.dir/grtest.F.o
+[ 66%] Building Fortran object src/grid/CMakeFiles/grid.dir/Lebedev-Laikov.F.o
+[ 66%] Building Fortran object src/fde/CMakeFiles/fde.dir/emb_cfg.F90.o
+[ 66%] Building Fortran object src/fde/CMakeFiles/fde.dir/emb_xcfun_interface.F90.o
+[ 66%] Building Fortran object src/fde/CMakeFiles/fde.dir/emb_io.F90.o
+[ 66%] Building Fortran object src/fde/CMakeFiles/fde.dir/emb_types.F90.o
+[ 67%] Building Fortran object src/fde/CMakeFiles/fde.dir/emb_nadd_derv.F90.o
+[ 67%] Building Fortran object src/fde/CMakeFiles/fde.dir/emb_data.F90.o
+[ 67%] Building Fortran object src/grid/CMakeFiles/grid.dir/dftgrd.F.o
+[ 68%] Building Fortran object src/fde/CMakeFiles/fde.dir/emb_dirac_integration.F90.o
+[ 69%] Linking Fortran static library libgrid.a
+[ 69%] Built target grid
+[ 69%] Building Fortran object src/srdft/CMakeFiles/srdft.dir/srdft_cfg.F90.o
+[ 69%] Building Fortran object src/srdft/CMakeFiles/srdft.dir/srdft.F90.o
+[ 70%] Building Fortran object src/matrix_operations/CMakeFiles/matrix_operations.dir/matrix_module.F90.o
+[ 70%] Building Fortran object src/matrix_operations/CMakeFiles/matrix_operations.dir/matrix_stat.F90.o
+[ 70%] Linking Fortran static library libsrdft.a
+[ 70%] Building Fortran object src/matrix_operations/CMakeFiles/matrix_operations.dir/matrix_operations.F90.o
+[ 70%] Built target srdft
+[ 70%] Building Fortran object src/matrix_operations/CMakeFiles/matrix_operations.dir/matrix_genop.F90.o
+[ 70%] Building Fortran object src/matrix_operations/CMakeFiles/matrix_operations.dir/matrix_defop.F90.o
+[ 70%] Building Fortran object src/matrix_operations/CMakeFiles/matrix_operations.dir/dirac_interface.F90.o
+[ 70%] Building Fortran object src/matrix_operations/CMakeFiles/matrix_operations.dir/memory_bouncer.F90.o
+[ 70%] Linking Fortran static library libmatrix_operations.a
+[ 70%] Built target matrix_operations
+[ 71%] Building Fortran object src/visual/CMakeFiles/visual.dir/dirac_dmat_factory.F90.o
+[ 71%] Building Fortran object src/visual/CMakeFiles/visual.dir/__/prp/dirac_rsp_utils.F90.o
+[ 71%] Building Fortran object src/visual/CMakeFiles/visual.dir/__/prp/dirac_conmat_lao_utils.F90.o
+[ 71%] Building Fortran object src/visual/CMakeFiles/visual.dir/visual_datatypes.F90.o
+[ 71%] Building Fortran object src/visual/CMakeFiles/visual.dir/visual_mpi.F90.o
+[ 71%] Building Fortran object src/visual/CMakeFiles/visual.dir/visual_utils.F90.o
+[ 71%] Building Fortran object src/visual/CMakeFiles/visual.dir/visual_labeled_storage.F90.o
+[ 71%] Building Fortran object src/visual/CMakeFiles/visual.dir/visual_cfg.F90.o
+[ 71%] Building Fortran object src/visual/CMakeFiles/visual.dir/visual_txt_storage.F90.o
+[ 71%] Building Fortran object src/visual/CMakeFiles/visual.dir/visual_dirac.F90.o
+[ 71%] Building Fortran object src/visual/CMakeFiles/visual.dir/visual_io.F90.o
+[ 72%] Building Fortran object src/visual/CMakeFiles/visual.dir/visual_grids.F90.o
+[ 72%] Building Fortran object src/visual/CMakeFiles/visual.dir/visual_grid_functions.F90.o
+[ 72%] Building Fortran object src/visual/CMakeFiles/visual.dir/visual_in_point.F90.o
+[ 72%] Building Fortran object src/visual/CMakeFiles/visual.dir/visual.F90.o
+[ 72%] Linking Fortran static library libvisual.a
+[ 72%] Built target visual
+[ 72%] Building Fortran object src/fde/CMakeFiles/fde.dir/emb_dirac_evaluators.F90.o
+[ 72%] Building Fortran object src/fde/CMakeFiles/fde.dir/emb_input.F90.o
+[ 72%] Building Fortran object src/fde/CMakeFiles/fde.dir/emb_export.F90.o
+[ 72%] Building Fortran object src/fde/CMakeFiles/fde.dir/emb_dirac_input.F90.o
+[ 72%] Building Fortran object src/fde/CMakeFiles/fde.dir/emb_main.F90.o
+[ 72%] Linking Fortran static library libfde.a
+[ 72%] Built target fde
+[ 72%] Building Fortran object src/main/CMakeFiles/dirac_main.dir/logo.F90.o
+[ 72%] Building Fortran object src/main/CMakeFiles/dirac_main.dir/dirac.F.o
+[ 72%] Building Fortran object src/main/CMakeFiles/dirac_main.dir/mpi_framework.F90.o
+[ 73%] Linking Fortran static library libdirac_main.a
+[ 73%] Built target dirac_main
+[ 73%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/aobasis_collector.F90.o
+[ 73%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/carsph.F90.o
+[ 73%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/filemodule.F90.o
+[ 73%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/gab_settings.F90.o
+[ 73%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/abadip.F.o
+[ 73%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/abalnr.F.o
+[ 73%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/abamolden.F.o
+[ 73%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/abanuc.F.o
+[ 73%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/abaop2.F.o
+[ 73%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/abaortvec.F.o
+[ 73%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/abarint.F.o
+[ 74%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/abatro.F.o
+[ 74%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/abavib.F.o
+[ 74%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/abavrml.F.o
+[ 74%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/abawalk.F.o
+[ 74%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/her1ave.F.o
+[ 74%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/her1car.F.o
+[ 74%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/her1cat.F.o
+[ 74%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/her1drv.F.o
+[ 75%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/her1int.F.o
+[ 75%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/her1odc.F.o
+[ 75%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/her1out.F.o
+[ 75%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/her1pro.F.o
+[ 75%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/her1sym.F.o
+[ 75%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/her2ave.F.o
+[ 75%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/her2dir.F.o
+[ 75%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/her2drv.F.o
+[ 76%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/her2el1.F.o
+[ 76%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/her2el2.F.o
+[ 76%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/her2fck.F.o
+[ 76%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/her2her.F.o
+[ 76%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/her2odc.F.o
+[ 76%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/her2out.F.o
+[ 76%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/her2sym.F.o
+[ 76%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/herdirect.F.o
+[ 76%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/herdrv.F.o
+[ 76%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/hergam.F.o
+[ 76%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/hergeo.F.o
+[ 76%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/hergp.F.o
+[ 76%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/hergroup.F.o
+[ 76%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/hermem.F.o
+[ 76%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/herrdn_dirac.F.o
+[ 76%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/hersol.F.o
+[ 76%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/hersym.F.o
+[ 76%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/hertst.F.o
+[ 76%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/vibnor.F.o
+[ 76%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/herpar.F.o
+[ 77%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/hermodules.F90.o
+[ 77%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/her2gab.F.o
+[ 78%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/herbas.F.o
+[ 78%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/abaopt.F.o
+[ 79%] Building Fortran object src/abacus/CMakeFiles/abacus.dir/herrdn.F.o
+[ 79%] Linking Fortran static library libabacus.a
+[ 79%] Built target abacus
+[ 79%] Building Fortran object src/x2c/CMakeFiles/x2c.dir/fragment_x2c_cfg.F90.o
+[ 79%] Building Fortran object src/x2c/CMakeFiles/x2c.dir/x2c_cfg.F90.o
+[ 79%] Building Fortran object src/x2c/CMakeFiles/x2c.dir/x2c_renew_AOMOMAT.F90.o
+[ 79%] Building Fortran object src/x2c/CMakeFiles/x2c.dir/x2c_io_interface.F90.o
+[ 79%] Building Fortran object src/x2c/CMakeFiles/x2c.dir/x2c_common_block_interface.F90.o
+[ 79%] Building Fortran object src/x2c/CMakeFiles/x2c.dir/x2c_utility_routines.F90.o
+[ 79%] Building Fortran object src/x2c/CMakeFiles/x2c.dir/x2c_2e_soc_interface.F90.o
+[ 79%] Building Fortran object src/x2c/CMakeFiles/x2c.dir/x2c_construct_decoupling_matrices_onmo.F90.o
+[ 79%] Building Fortran object src/x2c/CMakeFiles/x2c.dir/x2c_import_export_C1_matrices_ao.F90.o
+[ 79%] Building Fortran object src/x2c/CMakeFiles/x2c.dir/x2c_picture_change_transform_operator_ao.F90.o
+[ 79%] Building Fortran object src/x2c/CMakeFiles/x2c.dir/x2c_transform_h1_inf_2c_matrix_onmo2ao.F90.o
+[ 79%] Building Fortran object src/x2c/CMakeFiles/x2c.dir/x2c_picture_change_transform_mo_coefficients_ao.F90.o
+[ 79%] Building Fortran object src/x2c/CMakeFiles/x2c.dir/x2c_construct_h1_inf_2c_matrix_onmo.F90.o
+[ 80%] Building Fortran object src/x2c/CMakeFiles/x2c.dir/x2c_setup_defining_h1_4c_matrix_ao2onmo.F90.o
+[ 80%] Building Fortran object src/x2c/CMakeFiles/x2c.dir/x2c_fragment_x2c_interface.F90.o
+[ 80%] Building Fortran object src/x2c/CMakeFiles/x2c.dir/x2c_setup_basic_h1_4c_matrix_ao2onmo.F90.o
+[ 81%] Building Fortran object src/x2c/CMakeFiles/x2c.dir/x2c_driver.F90.o
+[ 81%] Built target x2c
+[ 81%] Building Fortran object src/dirac/CMakeFiles/dirac.dir/__/relccsd/relcc_cfg.F90.o
+[ 81%] Building Fortran object src/dirac/CMakeFiles/dirac.dir/atom2molecule_utils.F.o
+[ 81%] Building Fortran object src/dirac/CMakeFiles/dirac.dir/dirana.F.o
+[ 81%] Building Fortran object src/dirac/CMakeFiles/dirac.dir/diraos.F.o
+[ 81%] Building Fortran object src/dirac/CMakeFiles/dirac.dir/dirbss.F.o
+[ 81%] Building Fortran object src/dirac/CMakeFiles/dirac.dir/dircnv.F.o
+[ 81%] Building Fortran object src/dirac/CMakeFiles/dirac.dir/dirden.F.o
+[ 82%] Building Fortran object src/dirac/CMakeFiles/dirac.dir/dir_effQED.F.o
+[ 82%] Building Fortran object src/dirac/CMakeFiles/dirac.dir/dirgeo.F.o
+[ 82%] Building Fortran object src/dirac/CMakeFiles/dirac.dir/dirgp.F.o
+[ 82%] Building Fortran object src/dirac/CMakeFiles/dirac.dir/dirgrd.F.o
+[ 82%] Building Fortran object src/dirac/CMakeFiles/dirac.dir/dirone.F.o
+[ 82%] Building Fortran object src/dirac/CMakeFiles/dirac.dir/diropen.F.o
+[ 82%] Building Fortran object src/dirac/CMakeFiles/dirac.dir/dirout.F.o
+[ 82%] Building Fortran object src/dirac/CMakeFiles/dirac.dir/dirscf.F.o
+[ 82%] Building Fortran object src/dirac/CMakeFiles/dirac.dir/dirset.F.o
+[ 82%] Building Fortran object src/dirac/CMakeFiles/dirac.dir/dirsol.F.o
+[ 82%] Building Fortran object src/dirac/CMakeFiles/dirac.dir/dirspf.F.o
+[ 82%] Building Fortran object src/dirac/CMakeFiles/dirac.dir/dirtra.F.o
+[ 82%] Building Fortran object src/dirac/CMakeFiles/dirac.dir/dirtwo.F.o
+[ 82%] Building Fortran object src/dirac/CMakeFiles/dirac.dir/dirv1c.F.o
+[ 82%] Building Fortran object src/dirac/CMakeFiles/dirac.dir/huckel.F.o
+[ 83%] Building Fortran object src/dirac/CMakeFiles/dirac.dir/dirimpmos.F90.o
+[ 83%] Building Fortran object src/dirac/CMakeFiles/dirac.dir/dirmp2no.F.o
+[ 84%] Building Fortran object src/dirac/CMakeFiles/dirac.dir/dirrdn.F.o
+[ 84%] Linking Fortran static library libdirac.a
+[ 84%] Built target dirac
+[ 84%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/auto_offset.F90.o
+[ 84%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/projectors.F90.o
+[ 84%] Building Fortran object src/moltra/CMakeFiles/moltra.dir/dcbtra_h.F90.o
+[ 85%] Building Fortran object src/moltra/CMakeFiles/moltra.dir/tradr3.F90.o
+[ 85%] Building Fortran object src/krmc/CMakeFiles/krmc.dir/mc_energies.F90.o
+[ 85%] Building Fortran object src/moltra/CMakeFiles/moltra.dir/tradr5.F90.o
+[ 85%] Building Fortran object src/krmc/CMakeFiles/krmc.dir/mcscf_routines.F90.o
+[ 85%] Building Fortran object src/moltra/CMakeFiles/moltra.dir/tradr1.F.o
+[ 85%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/spinor_indexing.F90.o
+[ 85%] Building Fortran object src/moltra/CMakeFiles/moltra.dir/tradr2.F.o
+[ 85%] Building Fortran object src/moltra/CMakeFiles/moltra.dir/tradr4.F.o
+[ 86%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/ccsort.F90.o
+[ 86%] Building Fortran object src/krmc/CMakeFiles/krmc.dir/krmc_gradient.F.o
+[ 86%] Building Fortran object src/moltra/CMakeFiles/moltra.dir/tradr6.F.o
+[ 86%] Building Fortran object src/krmc/CMakeFiles/krmc.dir/krmccan.F.o
+[ 86%] Building Fortran object src/moltra/CMakeFiles/moltra.dir/traone.F.o
+[ 87%] Building Fortran object src/moltra/CMakeFiles/moltra.dir/traout.F.o
+[ 87%] Building Fortran object src/krmc/CMakeFiles/krmc.dir/krmcgascip.F.o
+[ 87%] Building Fortran object src/moltra/CMakeFiles/moltra.dir/trapam.F.o
+[ 87%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/cceqn_diis.F.o
+[ 87%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/cceqn_driver_amplitudes.F.o
+[ 87%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/cceqn_driver_initialization.F.o
+[ 87%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/cceqn_mp2_amplitudes.F.o
+[ 88%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/cceqn_t1_amplitudes.F.o
+[ 88%] Building Fortran object src/moltra/CMakeFiles/moltra.dir/traprp.F.o
+[ 88%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/cceqn_t1_utils.F.o
+[ 88%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/cceqn_t2_amplitudes.F.o
+[ 88%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/cceqn_t3_energy_correction.F.o
+[ 88%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/ccfspc.F.o
+[ 88%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/ccgenp.F.o
+[ 88%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/ccgetv.F.o
+[ 89%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/ccintm.F.o
+[ 89%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/ccpam.F.o
+[ 89%] Building Fortran object src/moltra/CMakeFiles/moltra.dir/trainp.F.o
+[ 89%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/ccrpa.F.o
+[ 89%] Linking Fortran static library libmoltra.a
+[ 89%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/ccxblas.F.o
+[ 89%] Built target moltra
+[ 89%] Building Fortran object src/krmc/CMakeFiles/krmc.dir/krmcgp.F.o
+[ 89%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/waio.F.o
+[ 89%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/cceqn_utils.F.o
+[ 89%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/ccints.F.o
+[ 89%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/ccsort_exp.F90.o
+[ 90%] Building Fortran object src/krmc/CMakeFiles/krmc.dir/krmcinp.F.o
+[ 90%] Building Fortran object src/krmc/CMakeFiles/krmc.dir/krmcmlf.F.o
+[ 90%] Building Fortran object src/krmc/CMakeFiles/krmc.dir/krmcsav.F.o
+[ 90%] Building Fortran object src/krmc/CMakeFiles/krmc.dir/krmcvec.F.o
+[ 90%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/wrapper_sorting.F90.o
+[ 91%] Building Fortran object src/krmc/CMakeFiles/krmc.dir/krci_ctl.F.o
+[ 91%] Building C object src/krmc/CMakeFiles/krmc.dir/gendet.c.o
+[ 91%] Building Fortran object src/krmc/CMakeFiles/krmc.dir/krmcopt.F.o
+[ 91%] Building Fortran object src/krmc/CMakeFiles/krmc.dir/krmcout.F.o
+[ 91%] Building Fortran object src/krmc/CMakeFiles/krmc.dir/krmctra.F.o
+[ 91%] Building Fortran object src/krmc/CMakeFiles/krmc.dir/krmcluci.F.o
+[ 91%] Linking Fortran static library libkrmc.a
+[ 91%] Built target krmc
+[ 91%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/contraction.F90.o
+[ 91%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/density.F90.o
+[ 91%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/intermediates.F90.o
+[ 92%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/ccgrad.F.o
+[ 92%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/lambda_equation.F90.o
+[ 92%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/sigma_eom.F90.o
+[ 92%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/cceqn_driver_lambda.F.o
+[ 92%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/davidson/davidson.F90.o
+[ 93%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/trial_vectors_eom.F90.o
+[ 93%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/eom_driver.F90.o
+[ 93%] Building Fortran object src/relccsd/CMakeFiles/relccsd.dir/ccdriv.F.o
+[ 93%] Linking Fortran static library librelccsd.a
+[ 93%] Built target relccsd
+[ 93%] Building Fortran object src/input/CMakeFiles/input.dir/input_reader.F90.o
+[ 93%] Building Fortran object src/input/CMakeFiles/input.dir/input_reader_sections.F90.o
+[ 93%] Building Fortran object src/input/CMakeFiles/input.dir/parse_input.F90.o
+[ 93%] Building Fortran object src/prp/CMakeFiles/prp.dir/bed_tm.F.o
+[ 93%] Building Fortran object src/prp/CMakeFiles/prp.dir/conf_parameters.F90.o
+[ 93%] Building Fortran object src/prp/CMakeFiles/prp.dir/dirac_conmat_lao_utils.F90.o
+[ 93%] Building Fortran object src/prp/CMakeFiles/prp.dir/dirac_rsp_utils.F90.o
+[ 93%] Building Fortran object src/prp/CMakeFiles/prp.dir/london_direct.F90.o
+[ 93%] Linking Fortran static library libinput.a
+[ 93%] Built target input
+[ 94%] Building Fortran object src/prp/CMakeFiles/prp.dir/london_helper.F90.o
+[ 94%] Building Fortran object src/prp/CMakeFiles/prp.dir/london_utils.F90.o
+[ 94%] Building Fortran object src/prp/CMakeFiles/prp.dir/pamxqr.F90.o
+[ 95%] Building Fortran object src/prp/CMakeFiles/prp.dir/excprp.F.o
+[ 95%] Building Fortran object src/prp/CMakeFiles/prp.dir/mp2lag.F.o
+[ 95%] Building Fortran object src/prp/CMakeFiles/prp.dir/pamexp.F.o
+[ 95%] Building Fortran object src/prp/CMakeFiles/prp.dir/pamfck.F.o
+[ 95%] Building Fortran object src/prp/CMakeFiles/prp.dir/pamgrd.F.o
+[ 95%] Building Fortran object src/prp/CMakeFiles/prp.dir/pamogrd.F.o
+[ 96%] Building Fortran object src/prp/CMakeFiles/prp.dir/pamrsp.F.o
+[ 96%] Building Fortran object src/prp/CMakeFiles/prp.dir/pamstex.F.o
+[ 96%] Building Fortran object src/prp/CMakeFiles/prp.dir/pamnqcc.F.o
+[ 96%] Building Fortran object src/prp/CMakeFiles/prp.dir/pamtpa.F.o
+[ 96%] Building Fortran object src/prp/CMakeFiles/prp.dir/pamxpp.F.o
+[ 97%] Building Fortran object src/prp/CMakeFiles/prp.dir/rspmpg.F.o
+[ 97%] Building Fortran object src/prp/CMakeFiles/prp.dir/van_der_waals.F.o
+[ 97%] Building Fortran object src/prp/CMakeFiles/prp.dir/bed_osc.F90.o
+[ 97%] Building Fortran object src/prp/CMakeFiles/prp.dir/paminp.F90.o
+[ 97%] Building Fortran object src/prp/CMakeFiles/prp.dir/pammag.F.o
+[ 97%] Building Fortran object src/prp/CMakeFiles/prp.dir/pamprp.F.o
+[ 97%] Building Fortran object src/prp/CMakeFiles/prp.dir/pamrvc.F.o
+[ 97%] Building Fortran object src/prp/CMakeFiles/prp.dir/pamset.F.o
+[ 97%] Building Fortran object src/prp/CMakeFiles/prp.dir/london_reorth.F90.o
+[ 97%] Building Fortran object src/prp/CMakeFiles/prp.dir/pamxlr.F.o
+[ 97%] Linking Fortran static library libprp.a
+[ 97%] Built target prp
+[ 97%] Linking Fortran static library libdiracobj.a
+[ 97%] Built target diracobj
+[ 97%] Building Fortran object CMakeFiles/twofit.x.dir/utils/twofit.F90.o
+[ 97%] Building Fortran object CMakeFiles/rspread.x.dir/utils/rspread.F90.o
+[ 97%] Building Fortran object CMakeFiles/dirac_mointegral_export.x.dir/utils/dirac_mointegral_export.F90.o
+[ 97%] Building Fortran object CMakeFiles/dirac.x.dir/src/main/main.F90.o
+[ 97%] Linking Fortran executable dirac.x
+[ 97%] Linking Fortran executable rspread.x
+[ 97%] Linking Fortran executable twofit.x
+[ 97%] Linking Fortran executable dirac_mointegral_export.x
+[ 97%] Built target rspread.x
+[ 97%] Building Fortran object CMakeFiles/cfread.x.dir/utils/cfread.F90.o
+[ 97%] Linking Fortran executable cfread.x
+[ 97%] Built target twofit.x
+[ 97%] Building Fortran object CMakeFiles/cf_addlabels.x.dir/utils/cf_addlabels.F90.o
+[ 97%] Linking Fortran executable cf_addlabels.x
+[ 97%] Built target dirac_mointegral_export.x
+[ 97%] Building Fortran object CMakeFiles/pcmo_addlabels.x.dir/utils/pcmo_addlabels.F90.o
+[ 97%] Linking Fortran executable pcmo_addlabels.x
+INFO:basis set directories, basis*, synchronized into current installation directory
+[ 97%] Built target cfread.x
+[ 98%] Building Fortran object CMakeFiles/vibcal.x.dir/utils/vibcal.F90.o
+[ 98%] Built target cf_addlabels.x
+[ 98%] Building Fortran object CMakeFiles/polfit.x.dir/utils/polfit.F90.o
+[ 98%] Built target pcmo_addlabels.x
+[ 98%] Building Fortran object CMakeFiles/mx2fit.x.dir/utils/mx2fit.F90.o
+[ 98%] Linking Fortran executable polfit.x
+[ 98%] Linking Fortran executable vibcal.x
+[ 98%] Linking Fortran executable mx2fit.x
+[ 98%] Built target polfit.x
+[ 99%] Building Fortran object CMakeFiles/diag.x.dir/utils/diag.F90.o
+[ 99%] Linking Fortran executable diag.x
+[ 99%] Built target vibcal.x
+[ 99%] Building Fortran object CMakeFiles/test_allocator.x.dir/utils/test_allocator.F90.o
+[ 99%] Built target mx2fit.x
+[100%] Linking Fortran executable test_allocator.x
+[100%] Built target test_allocator.x
+[100%] Built target dirac.x
+[100%] Built target diag.x
+
+ after the compilation, perform ldd dirac.x:
+	linux-vdso.so.1 (0x00007ffd5e9d2000)
+	libmkl_intel_ilp64.so.2 => /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_intel_ilp64.so.2 (0x0000149872a00000)
+	libmkl_intel_thread.so.2 => /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_intel_thread.so.2 (0x000014986f200000)
+	libmkl_core.so.2 => /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_core.so.2 (0x000014986ae00000)
+	libm.so.6 => /lib64/libm.so.6 (0x000014987395c000)
+	libmpifort.so.12 => /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/lib/libmpifort.so.12 (0x000014986aa00000)
+	libmpi.so.12 => /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/lib/release/libmpi.so.12 (0x0000149869000000)
+	libirng.so => /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/compiler/2023.1.0/linux/compiler/lib/intel64_lin/libirng.so (0x0000149868c00000)
+	libstdc++.so.6 => /lib64/libstdc++.so.6 (0x0000149868800000)
+	libmpi_ilp64.so => /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/lib/release/libmpi_ilp64.so (0x0000149868400000)
+	libiomp5.so => /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/compiler/2023.1.0/linux/compiler/lib/intel64_lin/libiomp5.so (0x0000149867e00000)
+	libc.so.6 => /lib64/libc.so.6 (0x0000149867a00000)
+	libgcc_s.so.1 => /lib64/libgcc_s.so.1 (0x0000149873940000)
+	libdl.so.2 => /lib64/libdl.so.2 (0x000014987393b000)
+	libpthread.so.0 => /lib64/libpthread.so.0 (0x0000149873934000)
+	/lib64/ld-linux-x86-64.so.2 (0x0000149873a45000)
+	librt.so.1 => /lib64/librt.so.1 (0x000014987392f000)
+	libintlc.so.5 => /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/compiler/2023.1.0/linux/compiler/lib/intel64_lin/libintlc.so.5 (0x0000149872989000)

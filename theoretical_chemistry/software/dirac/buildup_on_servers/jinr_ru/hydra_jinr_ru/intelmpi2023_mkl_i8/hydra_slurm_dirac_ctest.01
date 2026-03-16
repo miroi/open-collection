@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH -J DIRAC
+#SBATCH -J ctest
 
 ##  partition (queue)
 ##SBATCH -p cascade
@@ -13,13 +13,13 @@
 
 ##SBATCH --mem=128GB
 ##SBATCH --mem=264GB
-#SBATCH --mem=24GB
+#SBATCH --mem=32GB
 
 # do not restart in the case of nodefail!
 #SBATCH --no-requeue
 #SBATCH --no-kill
 
-#SBATCH -N 1 -n 4
+#SBATCH -N 1 -n 8
 ##SBATCH --ntasks-per-node=12
 
 ##SBATCH  --sockets-per-node=1
@@ -98,27 +98,24 @@ echo -e "\n The variable PATH=$PATH\n"
 DIRAC=/lustre/projects/m/milias/work/software/dirac/trunk_cloned
 
 cd $DIRAC
-pwd
-
 #BUILD=build_intelmpi2025_mkl_i8
 BUILD=build_intelmpi2023_mkl_i8
-echo -e "\n DIRAC build directory, BUILD=$BUILD"
-if [ -d $BUILD ]; then
-  echo "Directory BUILD exists. Going to delete it !"
-  /bin/rm -rf $BUILD
-  echo "Directory BUILD deleted. It will be created again by setup."
-fi
-
-
-./setup --mpi --exatensor=OFF --pcmsolver=OFF  --pelib=OFF  --fc=mpiifort --cc=mpiicc --cxx=mpiicpc --int64 $BUILD
 
 cd $BUILD
-echo -e "\n I am in : \c "; pwd
-cmake ..
-echo -e "Going to compile...  make -j $SLURM_CPUS_ON_NODE :"
-make -j $SLURM_CPUS_ON_NODE
 
-echo -e "\n after the compilation, perform ldd dirac.x:"
+echo -e "\n      I am in pwd=\c";pwd
+echo -e "This is DIRAC/BUILD=$DIRAC/$BUILD"
+
+echo -e "\n ldd dirac.x:"
 ldd dirac.x
+
+export DIRAC_MPIRUN="mpirun -np 2"
+echo -e "\n Set DIRAC_MPIRUN=$DIRAC_MPIRUN"
+
+echo -e "\n\n running ctest -j$SLURM_NTASKS :"
+
+ctest -j$SLURM_NTASKS
+
+
 
 exit

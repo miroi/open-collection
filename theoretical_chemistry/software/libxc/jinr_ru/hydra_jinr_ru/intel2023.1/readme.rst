@@ -1,3 +1,4 @@
+=====
 LibXC
 =====
 
@@ -9,7 +10,7 @@ libxc-7.0.0.tar.bz2
 
 unpack
 ~~~~~~
-milias@hydra.jinr.ru:~/work/software/libxc/.tar -xjf libxc-7.0.0.tar.bz2
+tar -xjf libxc-7.0.0.tar.bz2
 
 
 installation

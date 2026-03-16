@@ -4,9 +4,9 @@
 #SBATCH -J libXCi
 
 ##  partition (queue)
-##SBATCH -p cascade
+#SBATCH -p cascade
 ##SBATCH -p knl
-#SBATCH -p flnr-ice
+##SBATCH -p flnr-ice
 ##SBATCH -p slo-ice
 ##SBATCH -p ampere
 
@@ -84,11 +84,12 @@ source /cvmfs/nica.jinr.ru/sw/os/login.sh
 #echo -e "\n all modules, including /cvmfs/nica.jinr.ru/sw/os/login.sh"; module avail
 
 module purge
-module load GVR/v1.0-1
-module load Python/v3.10.13
-module load intel/oneapi 
+#module load GVR/v1.0-1
+module load  Python/v3.12.13
+#module load intel/oneapi 
+module load intel/v2023.1.0
 #module load gcc/v12.3.0
-module load CMake/v3.29.2
+module load   CMake/v3.26.5
 
 echo -e "\n\n All loaded modules:"
 module list
@@ -113,10 +114,11 @@ echo -e "\n"
 echo -e "\n\n My PATH=$PATH\n"
 echo -e "\n My LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
 
-LIBXC_DIR=/lustre/home/user/m/milias/work/software/libxc
+#LIBXC_DIR=/lustre/home/user/m/milias/work/software/libxc
+LIBXC_DIR=/lustre/projects/m/milias/work/software/libxc
 LIBXC=$LIBXC_DIR/libxc-7.0.0
 
-BUILD=build_intel2021.4
+BUILD=build_intel2023.1
 INSTALL_DIR=$LIBXC_DIR/install_$BUILD
 
 cd $LIBXC_DIR

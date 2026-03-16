@@ -33,7 +33,7 @@
 #SBATCH -o log_slurm_job.%j.%N.std_out_err
 
 ## E-mail
-#SBATCH --mail-user=milias@theor.jinr.ru
+#SBATCH --mail-user=milias@jinr.ru
 #SBATCH --mail-type=ALL
 
 echo -e "\nRunning on host `hostname`"
@@ -110,7 +110,8 @@ echo -e "\n git ? \c"; which git; git --version
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e
 QE=/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e
 
-BUILD=build_intelmpi2023_mkl_scalapack
+#BUILD=build_intelmpi2023_mkl_scalapack
+BUILD=build_intelmpi2023_mkl_scalapack_libxc
 
 echo -e "\n\n QE=$QE"
 echo -e "ls $QE/"
@@ -148,7 +149,10 @@ echo -e "\n\n\n Running cmake :"
 
 #cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DCMAKE_Fortran_COMPILER=mpiifort -DCMAKE_Fortran_FLAGS="-g -traceback" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON -DQE_ENABLE_HDF5=ON  .. 
 
-cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DCMAKE_Fortran_COMPILER=mpiifort -DCMAKE_Fortran_FLAGS="-g -traceback" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=OFF -DQE_ENABLE_HDF5=OFF  .. 
+#cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DCMAKE_Fortran_COMPILER=mpiifort -DCMAKE_Fortran_FLAGS="-g -traceback" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=OFF -DQE_ENABLE_HDF5=OFF  .. 
+
+LIBXC_DIR=/lustre/projects/m/milias/work/software/libxc/install_build_intel2023.1
+cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DCMAKE_Fortran_COMPILER=mpiifort -DCMAKE_Fortran_FLAGS="-g -traceback" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_ELPA=OFF -DQE_ENABLE_LIBXC=ON -DLIBXC_ROOT=$LIBXC_DIR   -DQE_ENABLE_HDF5=OFF  ..
 
 echo -e "\n\n Running make -j $SLURM_CPUS_ON_NODE :"
 make -j $SLURM_CPUS_ON_NODE
@@ -160,7 +164,7 @@ echo -e "\n\n ldd $QE/$BUILD/bin/pw.x :"
 ldd $QE/$BUILD/bin/pw.x
 
 echo -e "\n\n running ctest -j  $SLURM_CPUS_ON_NODE :"
-ctest -j  $SLURM_CPUS_ON_NODE
+ctest -VV  -j  $SLURM_CPUS_ON_NODE
 
 echo -e "\n\n End of script. Date & Time is `date` \n"
 

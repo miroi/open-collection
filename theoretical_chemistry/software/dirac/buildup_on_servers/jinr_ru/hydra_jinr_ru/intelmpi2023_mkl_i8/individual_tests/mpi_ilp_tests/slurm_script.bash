@@ -17,13 +17,20 @@ module list
 which mpirun; mpirun --version
 
 which mpiicc; mpiicc --version
-mpiicc -ilp64  mpi_test.c -o mpi_test.x
+echo "C i8"
+mpiicc -ilp64  mpi_test.c -o mpi_test_ilp64.x
+mpirun -np  $SLURM_NTASKS ./mpi_test_ilp64.x
+
+echo "C i4"
+mpiicc  mpi_test.c -o mpi_test.x
 mpirun -np  $SLURM_NTASKS ./mpi_test.x
 
 which mpiifort; mpiifort --version
+echo -e "Fortran i8"
 mpiifort -i8 check_ilp64.f90 -o check_ilp64.x
 mpirun -np  $SLURM_NTASKS ./check_ilp64.x
 
+echo -e "Fortran i4"
 mpiifort  check_ilp64.f90 -o check_ilp64_i4.x
 mpirun -np  $SLURM_NTASKS ./check_ilp64_i4.x
 

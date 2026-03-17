@@ -62,13 +62,13 @@ echo "Based on reserved memory, this node got SLURM_CPUS_ON_NODE=$SLURM_CPUS_ON_
 echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
 
 
-#MACHINEFILE="nodes.$SLURM_JOB_PARTITION.$SLURM_JOB_ID"
+MACHINEFILE="nodes.$SLURM_JOB_PARTITION.$SLURM_JOB_ID"
 # Generate Machinefile for mpi such that hosts are in the same
 # order as if run via srun
-#srun -l /bin/hostname | sort -n | awk '{print $2}' > $MACHINEFILE
+srun -l /bin/hostname | sort -n | awk '{print $2}' > $MACHINEFILE
 echo -e "\n Allocated working nodes:"
 srun -l /bin/hostname | sort -n | awk '{print $2}' 
-#echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; echo "containing:"; cat $MACHINEFILE
+echo -e "\n generated the machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; echo "containing:"; cat $MACHINEFILE
 
 echo -e "\n\n loaded modules:"
 module purge
@@ -86,7 +86,7 @@ echo -e "  cmake ? :\c";  which cmake; cmake --version
 echo -e "  mpiifort ? :\c"; which mpiifort; mpiifort -V
 echo -e "  mpiicc ? :\c"; which mpiicc; mpiicc -V
 echo -e "  mpiicpc ? :\c"; which mpiicpc; mpiicpc  -V
-echo -e "  mpirun ? :\c"; which mpirun; mpirun --version
+echo -e "  mpirun ? :\c"; which mpirun; mpirun --version; mpirun --help
 echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"; ls -lt  $MKLROOT/lib/intel64
 
 echo -e "\n The variable PATH=$PATH\n"
@@ -121,8 +121,8 @@ testdir=cc_essential
 inpf=ccsd.small.inp
 molf=H2O.mol
 
-echo -e "\n\nRunning job from DIRAC test directory: $DIRAC/test/$testdir"
-echo -e "DIRAC input file=$inpf ; DIRAC mol file=$molf"
+echo -e "\n\nRunning job from DIRAC test directory $DIRAC/test/$testdir  :"
+echo -e "with DIRAC input file=$inpf and with DIRAC mol file=$molf"
 echo -e "suffix for the DIRAC output file = $out_suffix\n\n"
 
 #$DIRAC/$BUILD/pam --noarch --inp=$DIRAC/test/benchmark_cc/cc.inp --mol=$DIRAC/test/benchmark_cc/C2H4Cl2_ec1_c2.mol --suffix=$out_suffix

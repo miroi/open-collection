@@ -3,8 +3,10 @@
 #SBATCH -J ctest
 
 ##  partition (queue)
-##SBATCH -p cascade
-#SBATCH -p bltp
+#SBATCH --account=bltp
+#SBATCH --partition=bltp
+#SBATCH --constraint=cascade
+#SBATCH --qos=medium
 
 ## max. execution time
 #SBATCH -t 0-04:00:00

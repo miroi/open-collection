@@ -1,25 +1,23 @@
 #!/bin/bash
 
-#SBATCH -J ctest
+#SBATCH -J DIRtest
 
 ##  partition (queue)
-##SBATCH -p cascade
-#SBATCH -p bltp
-
+#SBATCH --account=bltp
+#SBATCH --partition=bltp
+#SBATCH --constraint=cascade
+#SBATCH --qos=short
 ## max. execution time
 #SBATCH -t 0-04:00:00
 
-##SBATCH --exclusive
-
 ##SBATCH --mem=128GB
-##SBATCH --mem=264GB
 #SBATCH --mem=32GB
 
 # do not restart in the case of nodefail!
 #SBATCH --no-requeue
 #SBATCH --no-kill
 
-#SBATCH -N 1 -n 8
+#SBATCH -N 1 -n 4
 ##SBATCH --ntasks-per-node=12
 
 ##SBATCH  --sockets-per-node=1
@@ -100,28 +98,35 @@ cat $HOME/.diracrc
 #DIRAC=/lustre/home/user/m/milias/work/software/dirac/trunk
 #DIRAC=/zfs/store5.hydra.local/user/m/milias/work/software/dirac/trunk_cloned
 DIRAC=/lustre/projects/m/milias/work/software/dirac/trunk_cloned
-
-cd $DIRAC
 #BUILD=build_intelmpi2025_mkl_i8
 BUILD=build_intelmpi2023_mkl_i8
-
-cd $BUILD
-
-echo -e "\n      I am in pwd=\c";pwd
-echo -e "This is DIRAC/BUILD=$DIRAC/$BUILD"
 
 echo -e "\n ldd $DIRAC/$BUILD/dirac.x:"
 ldd $DIRAC/$BUILD/dirac.x
 
+echo -e "\n checking pam script, $DIRAC/$BUILD/pam --help  :"
+$DIRAC/$BUILD/pam --help
+
 export DIRAC_TMPDIR=/lustre/projects/m/milias/DIRAC_scratch
 echo -e "\n DIRAC_TMPDIR=$DIRAC_TMPDIR"
 
-export DIRAC_MPIRUN="mpirun -np 2"
-echo -e "\n DIRAC_MPIRUN=$DIRAC_MPIRUN"
+echo -e "\n\n         I am in pwd=\c";pwd
+echo -e "This is SLURM_SUBMIT_DIR=$SLURM_SUBMIT_DIR"
 
-echo -e "\n\n running ctest -j4 :"
+export DIRAC_MPI_COMMAND="mpirun -f $SLURM_SUBMIT_DIR/$MACHINEFILE -np $SLURM_NTASKS"
+echo -e "\n DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
+out_suffix=out.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out
 
-ctest -VV  -j4
+testdir=cc_essential
+inpf=ccsd.small.inp
+molf=H2O.mol
+
+echo -e "\n\nRunning job from DIRAC test directory: $DIRAC/test/$testdir"
+echo -e "DIRAC input file=$inpf ; DIRAC mol file=$molf"
+echo -e "suffix for the DIRAC output file = $out_suffix\n\n"
+
+#$DIRAC/$BUILD/pam --noarch --inp=$DIRAC/test/benchmark_cc/cc.inp --mol=$DIRAC/test/benchmark_cc/C2H4Cl2_ec1_c2.mol --suffix=$out_suffix
+$DIRAC/$BUILD/pam --noarch --mw=64 --aw=130 --inp=$DIRAC/test/$testdir/$inpf --mol=$DIRAC/test/$testdir/$molf --suffix=$out_suffix
 
 
 exit

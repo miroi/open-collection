@@ -4,10 +4,10 @@
 #SBATCH -J QEbuild
 
 ##  partition (queue)
-##SBATCH -p cascade
-#SBATCH -p bltp
-
-##SBATCH --qos=dirac
+#SBATCH --account=bltp
+#SBATCH --partition=bltp
+#SBATCH --constraint=cascade
+#SBATCH --qos=medium
 
 ## max. execution time
 ##SBATCH -t 3-00:00:00
@@ -26,7 +26,7 @@
 
 #
 #SBATCH -N 1
-#SBATCH --ntasks-per-node=6
+#SBATCH --ntasks-per-node=8
 
 
 ## stdout/stderr output file
@@ -77,7 +77,7 @@ echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
 
 module purge
 #module load GVR/v1.0-1 gcc/v11.2.0 fftw/v3.3.10_gcc1120 LAPACK/v3.9.0 openmpi/v4.1.1_gcc1120
-module load   Python/v3.12.13   intel/v2023.1.0    CMake/v4.2.3
+module load   Python/v3.12.13   intel/v2025.3.1   CMake/v4.2.3
 
 #echo -e "\n adding git module from source /cvmfs/nica.jinr.ru/sw/os/login.sh :"
 #source /cvmfs/nica.jinr.ru/sw/os/login.sh
@@ -95,10 +95,10 @@ free -t -g
 
 echo -e "\n\n My PATH=$PATH\n"
 echo -e "\n My LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
-echo -e "\n python ? ; python -v :\c"; which python; python -V
-echo -e "\n ifort ? ; ifort -V: \c"; which ifort; ifort -V
-echo -e "\n mpiifort ? ;  mpiifort -V: \c";which mpiifort;  mpiifort -V
-echo -e "\n icc ? ; icc -V: \c"; which icc;  icc -V
+echo -e "\n python ? ; python -V :\c"; which python; python -V
+echo -e "\n ifx ? ; ifx -V: \c"; which ifx; ifx -V
+echo -e "\n mpiifx ? ;  mpiifx -V: \c";which mpiifx; mpiifx -V
+echo -e "\n icx ? ; icx -V: \c"; which icx;  icx -V
 echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"
 echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
 echo -e "\n cmake ? \c"; which cmake; cmake --version
@@ -110,7 +110,7 @@ echo -e "\n git ? \c"; which git; git --version
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e
 QE=/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e
 
-BUILD=build_intelmpi2023_mkl_scalapack
+BUILD=build_intelmpi2025.3.1_libxc_mkl_scalapack
 
 echo -e "\n\n QE=$QE"
 echo -e "ls $QE/"
@@ -148,7 +148,9 @@ echo -e "\n\n\n Running cmake :"
 
 #cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DCMAKE_Fortran_COMPILER=mpiifort -DCMAKE_Fortran_FLAGS="-g -traceback" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON -DQE_ENABLE_HDF5=ON  .. 
 
-cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DCMAKE_Fortran_COMPILER=mpiifort -DCMAKE_Fortran_FLAGS="-g -traceback" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=OFF -DQE_ENABLE_HDF5=OFF  .. 
+#LIBXC_DIR=/lustre/projects/m/milias/work/software/libxc/install_build_intel2023.1
+LIBXC_DIR=/lustre/projects/m/milias/work/software/libxc/install_build_intel2025.3.1
+cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_Fortran_COMPILER=mpiifx -DCMAKE_Fortran_FLAGS="-g -traceback" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=$LIBXC_DIR -DQE_ENABLE_HDF5=OFF  .. 
 
 echo -e "\n\n Running make -j $SLURM_CPUS_ON_NODE :"
 make -j $SLURM_CPUS_ON_NODE
@@ -159,7 +161,7 @@ ls -lt $QE/$BUILD/bin
 echo -e "\n\n ldd $QE/$BUILD/bin/pw.x :"
 ldd $QE/$BUILD/bin/pw.x
 
-echo -e "\n\n running ctest -j  $SLURM_CPUS_ON_NODE :"
+echo -e "\n\n running ctest -j $SLURM_CPUS_ON_NODE :"
 ctest -j  $SLURM_CPUS_ON_NODE
 
 echo -e "\n\n End of script. Date & Time is `date` \n"

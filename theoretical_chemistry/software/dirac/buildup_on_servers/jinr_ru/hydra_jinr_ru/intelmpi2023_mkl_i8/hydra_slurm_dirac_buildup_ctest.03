@@ -55,7 +55,8 @@ echo and is employing $SLURM_JOB_NUM_NODES node/nodes:
 echo $SLURM_JOB_NODELIST
 echo
 echo -e "Job partition is $SLURM_JOB_PARTITION \n"
-echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
+echo -e "Job constraint is $SLURM_JOB_CONSTRAINTS  \n"
+echo -e The job requests $SLURM_CPUS_ON_NODE CPU per task.
 
 # CPU model, total numer of CPUs, number of allocated CPUs
 echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
@@ -122,6 +123,9 @@ make -j $SLURM_CPUS_ON_NODE
 
 echo -e "\n after the compilation, perform ldd dirac.x:"
 ldd dirac.x
+
+export DIRAC_TMPDIR=/lustre/projects/m/milias/DIRAC_scratch
+echo -e "\n scratch, DIRAC_TMPDIR=$DIRAC_TMPDIR"
 
 export DIRAC_MPIRUN="mpiexec -ilp64 -np 2"
 echo -e "\n\n DIRAC_MPIRUN=$DIRAC_MPIRUN"

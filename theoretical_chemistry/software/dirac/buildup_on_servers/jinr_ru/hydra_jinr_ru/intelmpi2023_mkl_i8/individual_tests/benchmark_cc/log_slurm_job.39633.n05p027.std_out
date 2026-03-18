@@ -1,0 +1,534 @@
+
+Running on host n05p027.gvr.local
+Time is Wed Mar 18 09:55:11 MSK 2026 
+
+
+ The total memory at the node (in GB)
+               total        used        free      shared  buff/cache   available
+Mem:            1991         243        1750           0           3        1747
+Swap:              3           0           3
+Total:          1995         243        1754
+
+
+Job user is milias and his job DIRtest has assigned ID 39633
+This job was submitted from the computer space01.hydra.local
+and from the home directory:
+/lustre/projects/m/milias/work/git-projects/open-collection/theoretical_chemistry/software/dirac/buildup_on_servers/jinr_ru/hydra_jinr_ru/intelmpi2023_mkl_i8/individual_tests/benchmark_cc
+
+It is running on the cluster compute node:
+gvr
+and is employing 1 node/nodes:
+n05p027
+
+Job partition is bltp 
+
+The job requests 6 CPU per task.
+The node's CPU model name	: Intel(R) Xeon(R) Platinum 8368Q CPU @ 2.60GHz
+This node has total NPROCS=152 CPUs available for an EXCLUSIVE job.
+Based on reserved memory, this node got SLURM_CPUS_ON_NODE=6 CPUs allocated for SLURM calculations.
+This job wants SLURM_NTASKS=6 threads . 
+
+ Allocated working nodes:
+n05p027.gvr.local
+n05p027.gvr.local
+n05p027.gvr.local
+n05p027.gvr.local
+n05p027.gvr.local
+n05p027.gvr.local
+
+ generated the machinefile for MPI, nodes.bltp.39633
+-rw-r--r--. 1 milias hybrilit 108 Mar 18 09:55 /lustre/projects/m/milias/work/git-projects/open-collection/theoretical_chemistry/software/dirac/buildup_on_servers/jinr_ru/hydra_jinr_ru/intelmpi2023_mkl_i8/individual_tests/benchmark_cc/nodes.bltp.39633
+containing:
+n05p027.gvr.local
+n05p027.gvr.local
+n05p027.gvr.local
+n05p027.gvr.local
+n05p027.gvr.local
+n05p027.gvr.local
+
+
+ loaded modules:
+
+Currently Loaded Modules:
+  1) Python/v3.12.13   2) CMake/v4.2.3   3) intel/v2023.1.0
+
+ 
+
+
+ python ? :/cvmfs/hlit.jinr.ru/alma9/Python/v3.12.13/bin/python
+Python 3.12.13
+  cmake ? :/cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/bin/cmake
+cmake version 4.2.3
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
+  mpiifort ? :/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin/mpiifort
+Intel(R) Fortran Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.9.0 Build 20230302_000000
+Copyright (C) 1985-2023 Intel Corporation.  All rights reserved.
+
+  mpiicc ? :/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin/mpiicc
+Intel(R) C Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.9.0 Build 20230302_000000
+Copyright (C) 1985-2023 Intel Corporation.  All rights reserved.
+
+  mpiicpc ? :/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin/mpiicpc
+Intel(R) C++ Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.9.0 Build 20230302_000000
+Copyright (C) 1985-2023 Intel Corporation.  All rights reserved.
+
+  mpirun ? :/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin/mpirun
+Intel(R) MPI Library for Linux* OS, Version 2021.9 Build 20230307 (id: d82b3071db)
+Copyright 2003-2023, Intel Corporation.
+
+Usage: ./mpiexec [global opts] [local opts for exec1] [exec1] [exec1 args] : [local opts for exec2] [exec2] [exec2 args] : ...
+
+Global options (passed to all executables):
+
+  Global environment options:
+    -genv {name} {value}             environment variable name and value
+    -genvlist {env1,env2,...}        environment variable list to pass
+    -genvnone                        do not pass any environment variables
+    -genvall                         pass all environment variables not managed
+                                          by the launcher (default)
+
+  Other global options:
+    -f {name}                        file containing the host names
+    -hosts {host list}               comma separated host list
+
+
+Local options (passed to individual executables):
+
+  Other local options:
+    -n/-np {value}                   number of processes
+    {exec_name} {args}               executable name and arguments
+
+
+Hydra specific options (treated as global):
+
+  Launch options:
+    -launcher                        launcher to use (ssh slurm rsh ll sge pbs pbsdsh pdsh srun lsf blaunch qrsh fork)
+    -launcher-exec                   executable to use to launch processes
+    -enable-x/-disable-x             enable or disable X forwarding
+
+  Resource management kernel options:
+    -rmk                             resource management kernel to use (slurm ll lsf sge pbs cobalt)
+
+  Processor topology options:
+    -bind-to                         process binding
+    -map-by                          process mapping
+    -membind                         memory binding policy
+
+  Other Hydra options:
+    -verbose                         verbose mode
+    -info                            build information
+    -print-all-exitcodes             print exit codes of all processes
+    -ppn                             processes per node
+    -prepend-rank                    prepend rank to output
+    -prepend-pattern                 prepend pattern to output
+    -outfile-pattern                 direct stdout to file
+    -errfile-pattern                 direct stderr to file
+    -nameserver                      name server information (host:port format)
+    -disable-auto-cleanup            don't cleanup processes on error
+    -disable-hostname-propagation    let MPICH auto-detect the hostname
+    -localhost                       local hostname for the launching node
+    -usize                           universe size (SYSTEM, INFINITE, <value>)
+
+Intel(R) MPI Library specific options:
+
+  <option> -help                     show help message for the specific option
+
+  Global options:
+    -aps                             Intel(R) Application Performance Snapshot profile
+    -mps                             Intel(R) Application Performance Snapshot profile (MPI, OpenMP only)
+    -gtool                           tool and rank set
+    -gtoolfile                       file containing tool and rank set
+    -hosts-group {groups of hosts}   allows to set node ranges (like in Slurm* Workload Manager)
+
+  Other Hydra options:
+    -iface                           network interface to use
+    -s <spec>                        redirect stdin to all or 1,2 or 2-4,6 MPI processes (0 by default)
+    -silent-abort                    do not print abort warning message
+    -nolocal                         avoid running the application processes on the node where mpiexec.hydra started
+    -tune {binary file}              defines the name of binary tuning file
+    -print-rank-map                  print rank mapping
+    -prepend-timestamp               prepend time stamp to stdout
+    -prot                            print the communication protocol between each host and process pin status
+
+Intel(R) MPI Library, Version 2021.9  Build 20230307 (id: d82b3071db)
+Copyright 2003-2023 Intel Corporation.
+
+ Intel MKL library ? MKLROOT=/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0
+total 3166444
+lrwxrwxrwx. 1 cvmfs cvmfs        19 Mar  7 12:30 libmkl_gf_lp64.so -> libmkl_gf_lp64.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        31 Mar  7 12:30 libmkl_blacs_openmpi_ilp64.so -> libmkl_blacs_openmpi_ilp64.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        21 Mar  7 12:30 libmkl_cdft_core.so -> libmkl_cdft_core.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        20 Mar  7 12:30 libmkl_gf_ilp64.so -> libmkl_gf_ilp64.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        23 Mar  7 12:30 libmkl_intel_ilp64.so -> libmkl_intel_ilp64.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        27 Mar  7 12:30 libmkl_scalapack_ilp64.so -> libmkl_scalapack_ilp64.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        26 Mar  7 12:30 libmkl_scalapack_lp64.so -> libmkl_scalapack_lp64.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        22 Mar  7 12:30 libmkl_sequential.so -> libmkl_sequential.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        32 Mar  7 12:30 libmkl_blacs_intelmpi_ilp64.so -> libmkl_blacs_intelmpi_ilp64.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        31 Mar  7 12:30 libmkl_blacs_intelmpi_lp64.so -> libmkl_blacs_intelmpi_lp64.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        14 Mar  7 12:30 libmkl_rt.so -> libmkl_rt.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        22 Mar  7 12:30 libmkl_tbb_thread.so -> libmkl_tbb_thread.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        22 Mar  7 12:30 libmkl_pgi_thread.so -> libmkl_pgi_thread.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        30 Mar  7 12:30 libmkl_blacs_openmpi_lp64.so -> libmkl_blacs_openmpi_lp64.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        22 Mar  7 12:30 libmkl_intel_lp64.so -> libmkl_intel_lp64.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        22 Mar  7 12:30 libmkl_gnu_thread.so -> libmkl_gnu_thread.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        16 Mar  7 12:30 libmkl_core.so -> libmkl_core.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        24 Mar  7 12:30 libmkl_intel_thread.so -> libmkl_intel_thread.so.2
+lrwxrwxrwx. 1 cvmfs cvmfs        16 Mar  7 12:30 libmkl_sycl.so -> libmkl_sycl.so.3
+drwxr-xr-x. 3 cvmfs cvmfs        27 Mar  7 01:57 locale
+-rw-r--r--. 1 cvmfs cvmfs 780201170 Mar  7  2023 libmkl_sycl.a
+-rwxr-xr-x. 1 cvmfs cvmfs 571212592 Mar  7  2023 libmkl_sycl.so.3
+-rw-r--r--. 1 cvmfs cvmfs 111971140 Mar  7  2023 libmkl_tbb_thread.a
+-rwxr-xr-x. 1 cvmfs cvmfs  40912736 Mar  7  2023 libmkl_tbb_thread.so.2
+-rwxr-xr-x. 1 cvmfs cvmfs  15901448 Mar  7  2023 libmkl_vml_avx.so.2
+-rwxr-xr-x. 1 cvmfs cvmfs  15061464 Mar  7  2023 libmkl_vml_avx2.so.2
+-rwxr-xr-x. 1 cvmfs cvmfs  14399048 Mar  7  2023 libmkl_vml_avx512.so.2
+-rwxr-xr-x. 1 cvmfs cvmfs   7768984 Mar  7  2023 libmkl_vml_cmpt.so.2
+-rwxr-xr-x. 1 cvmfs cvmfs   8775320 Mar  7  2023 libmkl_vml_def.so.2
+-rwxr-xr-x. 1 cvmfs cvmfs  14817000 Mar  7  2023 libmkl_vml_mc.so.2
+-rwxr-xr-x. 1 cvmfs cvmfs  14673648 Mar  7  2023 libmkl_vml_mc3.so.2
+-rwxr-xr-x. 1 cvmfs cvmfs  38024800 Mar  7  2023 libmkl_pgi_thread.so.2
+-rwxr-xr-x. 1 cvmfs cvmfs  14576472 Mar  7  2023 libmkl_rt.so.2
+-rw-r--r--. 1 cvmfs cvmfs  12244638 Mar  7  2023 libmkl_scalapack_ilp64.a
+-rwxr-xr-x. 1 cvmfs cvmfs   7718648 Mar  7  2023 libmkl_scalapack_ilp64.so.2
+-rw-r--r--. 1 cvmfs cvmfs  12334132 Mar  7  2023 libmkl_scalapack_lp64.a
+-rwxr-xr-x. 1 cvmfs cvmfs   7736496 Mar  7  2023 libmkl_scalapack_lp64.so.2
+-rw-r--r--. 1 cvmfs cvmfs  38549768 Mar  7  2023 libmkl_sequential.a
+-rwxr-xr-x. 1 cvmfs cvmfs  28957160 Mar  7  2023 libmkl_sequential.so.2
+-rw-r--r--. 1 cvmfs cvmfs 578987600 Mar  7  2023 libmkl_core.a
+-rwxr-xr-x. 1 cvmfs cvmfs  74236072 Mar  7  2023 libmkl_core.so.2
+-rwxr-xr-x. 1 cvmfs cvmfs  42499424 Mar  7  2023 libmkl_def.so.2
+-rw-r--r--. 1 cvmfs cvmfs  29221140 Mar  7  2023 libmkl_gf_ilp64.a
+-rwxr-xr-x. 1 cvmfs cvmfs  13968264 Mar  7  2023 libmkl_gf_ilp64.so.2
+-rw-r--r--. 1 cvmfs cvmfs  35298018 Mar  7  2023 libmkl_gf_lp64.a
+-rwxr-xr-x. 1 cvmfs cvmfs  17771392 Mar  7  2023 libmkl_gf_lp64.so.2
+-rw-r--r--. 1 cvmfs cvmfs  44206940 Mar  7  2023 libmkl_gnu_thread.a
+-rwxr-xr-x. 1 cvmfs cvmfs  31027776 Mar  7  2023 libmkl_gnu_thread.so.2
+-rw-r--r--. 1 cvmfs cvmfs  37957242 Mar  7  2023 libmkl_intel_ilp64.a
+-rwxr-xr-x. 1 cvmfs cvmfs  17491312 Mar  7  2023 libmkl_intel_ilp64.so.2
+-rw-r--r--. 1 cvmfs cvmfs  44044364 Mar  7  2023 libmkl_intel_lp64.a
+-rwxr-xr-x. 1 cvmfs cvmfs  21282360 Mar  7  2023 libmkl_intel_lp64.so.2
+-rw-r--r--. 1 cvmfs cvmfs  90541890 Mar  7  2023 libmkl_intel_thread.a
+-rwxr-xr-x. 1 cvmfs cvmfs  64880544 Mar  7  2023 libmkl_intel_thread.so.2
+-rw-r--r--. 1 cvmfs cvmfs   7489080 Mar  7  2023 libmkl_lapack95_ilp64.a
+-rw-r--r--. 1 cvmfs cvmfs   7417664 Mar  7  2023 libmkl_lapack95_lp64.a
+-rwxr-xr-x. 1 cvmfs cvmfs  48825624 Mar  7  2023 libmkl_mc.so.2
+-rwxr-xr-x. 1 cvmfs cvmfs  50396464 Mar  7  2023 libmkl_mc3.so.2
+-rw-r--r--. 1 cvmfs cvmfs  51417466 Mar  7  2023 libmkl_pgi_thread.a
+-rwxr-xr-x. 1 cvmfs cvmfs  53122080 Mar  7  2023 libmkl_avx.so.2
+-rwxr-xr-x. 1 cvmfs cvmfs  50232944 Mar  7  2023 libmkl_avx2.so.2
+-rwxr-xr-x. 1 cvmfs cvmfs  66762040 Mar  7  2023 libmkl_avx512.so.2
+-rw-r--r--. 1 cvmfs cvmfs   1274092 Mar  7  2023 libmkl_blacs_intelmpi_ilp64.a
+-rwxr-xr-x. 1 cvmfs cvmfs    523832 Mar  7  2023 libmkl_blacs_intelmpi_ilp64.so.2
+-rw-r--r--. 1 cvmfs cvmfs    754854 Mar  7  2023 libmkl_blacs_intelmpi_lp64.a
+-rwxr-xr-x. 1 cvmfs cvmfs    320648 Mar  7  2023 libmkl_blacs_intelmpi_lp64.so.2
+-rw-r--r--. 1 cvmfs cvmfs   1293308 Mar  7  2023 libmkl_blacs_openmpi_ilp64.a
+-rwxr-xr-x. 1 cvmfs cvmfs    533024 Mar  7  2023 libmkl_blacs_openmpi_ilp64.so.2
+-rw-r--r--. 1 cvmfs cvmfs    774070 Mar  7  2023 libmkl_blacs_openmpi_lp64.a
+-rwxr-xr-x. 1 cvmfs cvmfs    321680 Mar  7  2023 libmkl_blacs_openmpi_lp64.so.2
+-rw-r--r--. 1 cvmfs cvmfs    658964 Mar  7  2023 libmkl_blas95_ilp64.a
+-rw-r--r--. 1 cvmfs cvmfs    657516 Mar  7  2023 libmkl_blas95_lp64.a
+-rw-r--r--. 1 cvmfs cvmfs    217882 Mar  7  2023 libmkl_cdft_core.a
+-rwxr-xr-x. 1 cvmfs cvmfs    168912 Mar  7  2023 libmkl_cdft_core.so.2
+
+ The variable PATH=/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/vtune/2023.1.0/bin64:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/libfabric/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/bin/intel64:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/itac/2021.9.0/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/inspector/2023.1.0/bin64:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/dpcpp-ct/2023.1.0/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/dev-utilities/2021.9.0/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/debugger/2023.1.0/gdb/intel64/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/compiler/2023.1.0/linux/lib/oclfpga/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/compiler/2023.1.0/linux/bin/intel64:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/compiler/2023.1.0/linux/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/clck/2021.7.3/bin/intel64:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/advisor/2023.1.0/bin64:/cvmfs/hlit.jinr.ru/alma9/CMake/v4.2.3/bin:/cvmfs/hlit.jinr.ru/alma9/Python/v3.12.13/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/puppetlabs/bin:.
+
+
+ The variable HOME=/zfs/store5.hydra.local/user/m/milias
+
+
+ ldd /lustre/projects/m/milias/work/software/dirac/trunk_cloned/build_intelmpi2023_mkl_i8_opt/dirac.x:
+	linux-vdso.so.1 (0x00007ffc50b4a000)
+	libmkl_intel_ilp64.so.2 => /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_intel_ilp64.so.2 (0x00001492f9a00000)
+	libmkl_intel_thread.so.2 => /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_intel_thread.so.2 (0x00001492f6200000)
+	libmkl_core.so.2 => /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_core.so.2 (0x00001492f1e00000)
+	libm.so.6 => /lib64/libm.so.6 (0x00001492fa8fb000)
+	libmpifort.so.12 => /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/lib/libmpifort.so.12 (0x00001492f1a00000)
+	libmpi.so.12 => /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/lib/release/libmpi.so.12 (0x00001492f0000000)
+	libirng.so => /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/compiler/2023.1.0/linux/compiler/lib/intel64_lin/libirng.so (0x00001492efc00000)
+	libstdc++.so.6 => /lib64/libstdc++.so.6 (0x00001492ef800000)
+	libmpi_ilp64.so => /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/lib/release/libmpi_ilp64.so (0x00001492ef400000)
+	libiomp5.so => /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/compiler/2023.1.0/linux/compiler/lib/intel64_lin/libiomp5.so (0x00001492eee00000)
+	libc.so.6 => /lib64/libc.so.6 (0x00001492eea00000)
+	libgcc_s.so.1 => /lib64/libgcc_s.so.1 (0x00001492fa8df000)
+	libdl.so.2 => /lib64/libdl.so.2 (0x00001492fa8da000)
+	libpthread.so.0 => /lib64/libpthread.so.0 (0x00001492fa8d3000)
+	/lib64/ld-linux-x86-64.so.2 (0x00001492fa9e4000)
+	librt.so.1 => /lib64/librt.so.1 (0x00001492fa8ce000)
+	libintlc.so.5 => /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/compiler/2023.1.0/linux/compiler/lib/intel64_lin/libintlc.so.5 (0x00001492f9989000)
+
+ checking pam script, /lustre/projects/m/milias/work/software/dirac/trunk_cloned/build_intelmpi2023_mkl_i8_opt/pam --help  :
+Usage: pam [options] --inp=*.inp --mol=*.mol [--pcm=*.pcm] [--pot=*.pot]
+   or: pam [options] --inp=*.inp --mol=*.xyz [--pcm=*.pcm] [--pot=*.pot]
+   or: pam [options] --fullrestart=ARCHIVE.tgz [--inp=*.inp] [--mol=*.mol | --mol=*.xyz] [--pcm=*.pcm] [--pot=*.pot]
+Options are also read from ~/.diracrc
+
+Options:
+  -h, --help            show this help message and exit
+
+  Input files - mandatory specifications:
+    --inp=INP_FILE      Dirac input file containing the job directives [*.inp]
+    --mol=MOL_FILE      file containing the basis set and geometry
+                        specifications [*.mol or *.xyz]
+    --pcm=PCM_FILE      PCMSolver input file [*.pcm]
+    --pot=POT_FILE      file containing the polarizable embedding potential
+                        parameters [*.pot]
+    --fullrestart=ARCHIVE.tgz
+                        restart from files within ARCHIVE.tgz;
+                        old input files from ARCHIVE.tgz are reused unless new
+                        input files are provided with one or more of "--inp",
+                        "--mol", "--pcm", and "--pot".
+
+  Output files:
+    --suffix=STRING     file suffix for output [default: out]
+    --rsh=STRING        Remote shell program, typically rsh or ssh [default:
+                        ssh or taken from .dirarc]
+    --rcp=STRING        Remote shell program, typically rcp or scp [default:
+                        scp or taken from .dirarc]
+    --noh5              do not create a h5 acheckpoint file [default: create
+                        it]
+    --noarch            do not create a tgz archive [default: create it]
+    --nobackup          do not backup old outputs [default: back them up]
+
+  Memory specification:
+    --mw=INTEGER        set max memory (in megawords) for WORK array
+                        for the master (for each MPI thread) [default: 64]
+    --mb=INTEGER        set max memory (in MB) for WORK array
+                        for the master (for each MPI thread) [default: none]
+    --gb=FLOAT          set max memory (in GB) for WORK array
+                        for the master (for each MPI thread) [default: none]
+    --nw=INTEGER        set max memory (in megawords) for WORK array
+                        for the co-workers (for each MPI thread) [default:
+                        --mw set value]
+    --aw=INTEGER        set max dynamically allocatable memory (in megawords)
+                        (for each MPI thread) [default: 0]
+    --ag=FLOAT          set max dynamically allocatable memory (in gigabytes)
+                        (for each MPI thread) [default: 0]
+
+  MPI settings:
+    --mpi=INTEGER       set number of MPI processes in parallel run [default:
+                        1]
+    --mpirun=STRING     set the MPI run command, can have own arguments
+                        [default: see "pam --show" output]
+    --mpiarg=STRING     additonal options passed on to the MPI launcher;
+                        useful arguments could be:
+                        -envall (for MPICH2, Intel MPI)
+                        -x "PATH LD_LIBRARY_PATH" (for Open MPI)
+                        which will allow the user to pass the present
+                        environment settings from the head node to the scratch
+                        nodes.
+    --mpi-workdir-argument=STRING
+                        option to explicitly pass the scratch directory name
+                        on to the slaves
+                        ("wd" for MPICH2/Intel MPI, "wdir" for Open MPI).
+    --machfile=STRING   specify a machinefile for a parallel run [default:
+                        none]
+
+  Managing data/file transfer:
+    --put="file1 file2 my_file* ...", --copy="file1 file2 my_file* ..."
+                        copy files to scratch directory
+    --distribute="file1 file2 my_file*..."
+                        copy selected files to scratch directories of working
+                        nodes in parallel run
+    --get="file1 file2 my_file*..."
+                        get files from scratch directory
+    --env="env_var1=value1 env_var2=value2 ..."
+                        set environment variables
+    --replace=NAME=VALUE
+                        replace NAME by VALUE in the mol and inp files
+    --incmo             copy CHECKPOINT to scratch directory [default: False]
+    --outcmo            get CHECKPOINT from scratch directory [default: False]
+    --inkrmc            copy KRMCSCF to scratch directory as KRMCOLD [default:
+                        False]
+    --outkrmc           get KRMCSCF and KRMCOLD from scratch directory
+                        [default: False]
+    --outqforce         get qforce.*.log from scratch directory [default:
+                        False]
+    --keep_scratch      keep the scratch directory after calculation [default:
+                        delete it]
+
+  Modify default paths and settings:
+    --scratch=FULL_PATH
+                        full path to scratch directory (DIRAC will append a
+                        subdirectory to make it unique) [default read from
+                        ~/.diracrc]
+    --scratchfull=FULL_PATH
+                        full path to scratch directory (DIRAC will not append
+                        anything to this path; do NOT choose your /home/user
+                        as scratchfull) [default: script defined full path
+                        upon ~/.diracrc]
+    --basis=FULL_PATH   basis set directory [default: .:/lustre/projects/m/mil
+                        ias/work/software/dirac/trunk_cloned/build_intelmpi202
+                        3_mkl_i8_opt/basis:/lustre/projects/m/milias/work/soft
+                        ware/dirac/trunk_cloned/build_intelmpi2023_mkl_i8_opt/
+                        basis_dalton:/lustre/projects/m/milias/work/software/d
+                        irac/trunk_cloned/build_intelmpi2023_mkl_i8_opt/basis_
+                        ecp]
+    --dirac=FULL_PATH   dirac executable [default: /lustre/projects/m/milias/w
+                        ork/software/dirac/trunk_cloned/build_intelmpi2023_mkl
+                        _i8_opt/dirac.x]
+
+  Advanced options for programming and debugging:
+    --show              print current settings (including those from .diracrc)
+                        and exit
+    --silent            run pam silent with minimal output
+    --debug             run in debugger [default: False]
+    --summit            run with summits jsrun [default: False]
+    --debugger=FULL_PATH
+                        set full path to debugger [default: in .diracrc]
+    --valgrind          run with valgrind [default: False]
+    --profile           perform profiling [default: False]
+    --profiler=FULL_PATH
+                        set full path to profiler [default: none]
+    --timeout=TIME_STRING
+                        limit dirac.x execution time (in #d#h#m#s, or in pure
+                        seconds-integer) [default: no limit; reads env.var.
+                        DIRTIMEOUT]
+
+ DIRAC_TMPDIR=/lustre/projects/m/milias/DIRAC_scratch
+
+
+         I am in pwd=/lustre/projects/m/milias/work/git-projects/open-collection/theoretical_chemistry/software/dirac/buildup_on_servers/jinr_ru/hydra_jinr_ru/intelmpi2023_mkl_i8/individual_tests/benchmark_cc
+This is SLURM_SUBMIT_DIR=/lustre/projects/m/milias/work/git-projects/open-collection/theoretical_chemistry/software/dirac/buildup_on_servers/jinr_ru/hydra_jinr_ru/intelmpi2023_mkl_i8/individual_tests/benchmark_cc
+
+ DIRAC_MPI_COMMAND=mpiexec -ilp64 -np 6
+
+
+Running job from DIRAC test directory /lustre/projects/m/milias/work/software/dirac/trunk_cloned/test/benchmark_cc_linear  :
+with DIRAC input file=cc.inp and with DIRAC mol file=N2.ccpV5Z.mol
+suffix for the DIRAC output file = out.gvr.bltp.N1.n6.jid39633.out
+
+
+
+  DIRAC pam script running:
+
+  user           : milias
+  machine        : n05p027.gvr.local
+  date and time  : 2026-03-18 09:55:13.596116
+  input dir      : /lustre/projects/m/milias/work/git-projects/open-collection/theoretical_chemistry/software/dirac/buildup_on_servers/jinr_ru/hydra_jinr_ru/intelmpi2023_mkl_i8/individual_tests/benchmark_cc
+  pam command    : /lustre/projects/m/milias/work/software/dirac/trunk_cloned/build_intelmpi2023_mkl_i8_opt/pam
+  all pam args   : ['--noarch', '--mw=280', '--aw=300', '--inp=/lustre/projects/m/milias/work/software/dirac/trunk_cloned/test/benchmark_cc_linear/cc.inp', '--mol=/lustre/projects/m/milias/work/software/dirac/trunk_cloned/test/benchmark_cc_linear/N2.ccpV5Z.mol', '--suffix=out.gvr.bltp.N1.n6.jid39633.out']
+  executable     : /lustre/projects/m/milias/work/software/dirac/trunk_cloned/build_intelmpi2023_mkl_i8_opt/dirac.x
+  scratch dir    : /lustre/projects/m/milias/DIRAC_scratch/milias/DIRAC_cc_N2.ccpV5Z_359322 (availspace=2143807.895[GB])
+  output file    : cc_N2.ccpV5Z.out.gvr.bltp.N1.n6.jid39633.out
+  DIRAC run      : parallel (launcher: /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin/mpirun)
+  local disks    : False
+  rsh/rcp        : ssh / scp
+  machine file   : None
+
+  Setting MKL and OPENMP environment to default values (if not set already)
+   MKL_NUM_THREADS = 1
+   MKL_DYNAMIC = "FALSE"
+   OMP_NUM_THREADS = 1
+   OMP_DYNAMIC="FALSE"
+  Setting environment variables (as specified explicitly or in .diracrc)
+
+  Creating the scratch directory.
+  Copying /lustre/projects/m/milias/work/software/dirac/trunk_cloned/build_intelmpi2023_mkl_i8_opt/dirac.x to /lustre/projects/m/milias/DIRAC_scratch/milias/DIRAC_cc_N2.ccpV5Z_359322/dirac.x
+  Copying /lustre/projects/m/milias/work/software/dirac/trunk_cloned/test/benchmark_cc_linear/N2.ccpV5Z.mol to /lustre/projects/m/milias/DIRAC_scratch/milias/DIRAC_cc_N2.ccpV5Z_359322/MOLECULE.MOL
+  Copying /lustre/projects/m/milias/work/software/dirac/trunk_cloned/test/benchmark_cc_linear/cc.inp to /lustre/projects/m/milias/DIRAC_scratch/milias/DIRAC_cc_N2.ccpV5Z_359322/DIRAC.INP
+  Basis set libraries (default)    : /lustre/projects/m/milias/work/git-projects/open-collection/theoretical_chemistry/software/dirac/buildup_on_servers/jinr_ru/hydra_jinr_ru/intelmpi2023_mkl_i8/individual_tests/benchmark_cc
+                        /lustre/projects/m/milias/work/software/dirac/trunk_cloned/build_intelmpi2023_mkl_i8_opt/basis
+                        /lustre/projects/m/milias/work/software/dirac/trunk_cloned/build_intelmpi2023_mkl_i8_opt/basis_dalton
+                        /lustre/projects/m/milias/work/software/dirac/trunk_cloned/build_intelmpi2023_mkl_i8_opt/basis_ecp
+  DIRAC command  : mpiexec -ilp64 -np 6 /lustre/projects/m/milias/DIRAC_scratch/milias/DIRAC_cc_N2.ccpV5Z_359322/dirac.x (PID=359323)
+  content of the (master) scratch directory
+  ------------------------------------------------------------------------------
+                     name    size (MB)    last accessed
+  ------------------------------------------------------------------------------
+             interface_mo      0.000   03/18/2026 09:55:20 AM
+                   ft45.0     13.120   03/18/2026 10:02:34 AM
+                 AOPROPER      0.000   03/18/2026 09:55:20 AM
+               MDCINXXXX3      0.000   03/18/2026 10:00:41 AM
+                   ft46.3    196.384   03/18/2026 10:02:34 AM
+                   ft41.2      0.032   03/18/2026 10:02:34 AM
+             MOLECULE.XYZ      0.000   03/18/2026 09:55:14 AM
+                   ft40.5      0.128   03/18/2026 10:02:22 AM
+                 MCCRES.2      1.272   03/18/2026 10:02:36 AM
+                   DFFCK1      6.161   03/18/2026 09:57:47 AM
+                   ft42.1      0.096   03/18/2026 10:02:34 AM
+                   ft43.1      1.248   03/18/2026 10:02:34 AM
+                   ft41.5      0.032   03/18/2026 10:02:34 AM
+                   ft40.2      0.128   03/18/2026 10:02:22 AM
+                 MCCRES.5      1.272   03/18/2026 10:02:36 AM
+                   ft46.4    196.480   03/18/2026 10:02:34 AM
+                   ft44.0      5.472   03/18/2026 10:02:34 AM
+            RELCCSD.OUT.1      0.010   03/18/2026 10:00:41 AM
+               MDCINXXXX4      0.000   03/18/2026 10:00:41 AM
+                   DFCMOS      0.518   03/18/2026 09:57:35 AM
+                dirac.xml      0.017   03/18/2026 09:55:14 AM
+                   DFEVEC      4.658   03/18/2026 09:57:23 AM
+                DIRAC.INP      0.000   03/18/2026 10:00:41 AM
+                   DFFCKT      6.161   03/18/2026 09:55:20 AM
+                   ft46.0    196.256   03/18/2026 10:02:34 AM
+                   MDCINT   4045.034   03/18/2026 10:02:21 AM
+            RELCCSD.OUT.5      0.010   03/18/2026 10:00:41 AM
+                   ft44.4      5.472   03/18/2026 10:02:34 AM
+                   ft45.3     13.120   03/18/2026 10:02:34 AM
+                   ft42.2      0.096   03/18/2026 10:02:34 AM
+                   DFFCK2      6.161   03/18/2026 09:57:33 AM
+                   DFDENS      6.161   03/18/2026 09:57:33 AM
+                   ft43.5      1.248   03/18/2026 10:02:34 AM
+                 MCCRES.1      1.272   03/18/2026 10:02:36 AM
+                   ft41.1      0.032   03/18/2026 10:02:34 AM
+                   ft40.1      0.128   03/18/2026 10:02:22 AM
+                   ft42.5      0.096   03/18/2026 10:02:34 AM
+                   ft43.2      1.248   03/18/2026 10:02:34 AM
+            RELCCSD.OUT.2      0.010   03/18/2026 10:00:41 AM
+                   ft44.3      5.472   03/18/2026 10:02:34 AM
+                   ft45.4     13.120   03/18/2026 10:02:34 AM
+           OPERATORS.noh5      0.011   03/18/2026 09:55:14 AM
+                  LOWDMAT      2.227   03/18/2026 09:55:19 AM
+                   DFCYCL      0.001   03/18/2026 09:57:35 AM
+                   DFFOCK      4.658   03/18/2026 09:57:35 AM
+                   MCCRES      1.272   03/18/2026 10:02:36 AM
+                  MNF.INP      0.001   03/18/2026 09:55:14 AM
+                   ft43.0      1.248   03/18/2026 10:02:34 AM
+                  MRCONEE      1.936   03/18/2026 10:02:22 AM
+                 MCCRES.4      1.272   03/18/2026 10:02:36 AM
+                   ft40.3      0.128   03/18/2026 10:02:22 AM
+                   ft41.4      0.032   03/18/2026 10:02:34 AM
+                   ft46.5    196.576   03/18/2026 10:02:34 AM
+               MDCINXXXX5      0.000   03/18/2026 10:00:41 AM
+                   ft44.1      5.472   03/18/2026 10:02:34 AM
+               MDCINXXXX2      0.000   03/18/2026 10:00:41 AM
+                   ft45.1     13.120   03/18/2026 10:02:34 AM
+                   ft46.2    196.288   03/18/2026 10:02:34 AM
+                 MCCRES.3      1.272   03/18/2026 10:02:36 AM
+                   ft40.4      0.128   03/18/2026 10:02:22 AM
+                   ft41.3      0.032   03/18/2026 10:02:34 AM
+                   ft42.0      0.096   03/18/2026 10:02:34 AM
+        schema_labels.txt      0.017   03/18/2026 09:55:14 AM
+             MOLECULE.MOL      0.000   03/18/2026 09:55:23 AM
+          CHECKPOINT.noh5      0.011   03/18/2026 09:55:14 AM
+                  AOMOMAT      2.526   03/18/2026 09:57:35 AM
+             interface_ao      0.010   03/18/2026 09:55:20 AM
+                   ft40.0      0.128   03/18/2026 10:02:22 AM
+                   ft43.3      1.248   03/18/2026 10:02:34 AM
+                   ft42.4      0.096   03/18/2026 10:02:34 AM
+                   ft45.5     13.120   03/18/2026 10:02:34 AM
+                   ft44.2      5.472   03/18/2026 10:02:34 AM
+            RELCCSD.OUT.3      0.010   03/18/2026 10:00:41 AM
+                   ft46.1    196.256   03/18/2026 10:02:34 AM
+                   ft45.2     13.120   03/18/2026 10:02:34 AM
+                   ft44.5      5.472   03/18/2026 10:02:34 AM
+               MDCINXXXX1      0.000   03/18/2026 10:00:41 AM
+            RELCCSD.OUT.4      0.010   03/18/2026 10:00:41 AM
+                  AOMOSLR      1.263   03/18/2026 09:55:20 AM
+                   ft43.4      1.248   03/18/2026 10:02:34 AM
+                   MDPROP      5.677   03/18/2026 09:57:36 AM
+                   ft42.3      0.096   03/18/2026 10:02:34 AM
+                   ft41.0      0.032   03/18/2026 10:02:34 AM
+                  dirac.x     77.924   03/18/2026 09:55:13 AM
+                   DFDIIS      0.001   03/18/2026 09:55:47 AM
+  ------------------------------------------------------------------------------
+      Total size of all files :    5477.631  MB 
+      Disk info:  used    available   capacity [GB]
+              59364.417 2143802.576   2203166.993 
+
+  Could not construct hdf5 checkpoint file, h5py is not installed
+  going to delete the scratch directory ... done
+
+  exit date      : 2026-03-18 10:02:39.230810
+  elapsed time   : 00h07m25s
+  exit           : normal

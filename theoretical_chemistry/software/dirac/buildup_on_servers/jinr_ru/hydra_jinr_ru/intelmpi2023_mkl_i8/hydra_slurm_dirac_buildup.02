@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH -J ctest
+#SBATCH -J DIRAC
 
 ##  partition (queue)
 #SBATCH --account=bltp
@@ -9,19 +9,19 @@
 #SBATCH --qos=medium
 
 ## max. execution time
-#SBATCH -t 0-04:00:00
+#SBATCH -t 0-05:00:00
 
 ##SBATCH --exclusive
 
 ##SBATCH --mem=128GB
 ##SBATCH --mem=264GB
-#SBATCH --mem=32GB
+#SBATCH --mem=24GB
 
 # do not restart in the case of nodefail!
 #SBATCH --no-requeue
 #SBATCH --no-kill
 
-#SBATCH -N 1 -n 8
+#SBATCH -N 1 -n 4
 ##SBATCH --ntasks-per-node=12
 
 ##SBATCH  --sockets-per-node=1
@@ -94,36 +94,33 @@ echo -e "  mpirun ? :\c"; which mpirun; mpirun --version
 echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"; ls -lt  $MKLROOT/lib/intel64
 
 echo -e "\n The variable PATH=$PATH\n"
-echo -e "\n The variable HOME=$HOME\n"
-
-echo -e "\n content of $HOME/.diracrc :"
-cat $HOME/.diracrc
 
 #DIRAC=/lustre/home/user/m/milias/work/software/dirac/trunk
 #DIRAC=/zfs/store5.hydra.local/user/m/milias/work/software/dirac/trunk_cloned
 DIRAC=/lustre/projects/m/milias/work/software/dirac/trunk_cloned
 
 cd $DIRAC
+pwd
+
 #BUILD=build_intelmpi2025_mkl_i8
-BUILD=build_intelmpi2023_mkl_i8
+BUILD=build_intelmpi2023_mkl_i8_opt
+echo -e "\n DIRAC build directory, BUILD=$BUILD"
+if [ -d $BUILD ]; then
+  echo "Directory BUILD exists. Going to delete it !"
+  /bin/rm -rf $BUILD
+  echo "Directory BUILD deleted. It will be created again by setup."
+fi
+
+
+./setup --mpi --exatensor=OFF --pcmsolver=OFF  --pelib=OFF  --fc=mpiifort   --extra-fc-flags="-O2 -ilp64" --cc=mpiicc --cxx=mpiicpc --int64 $BUILD
 
 cd $BUILD
+echo -e "\n I am in : \c "; pwd
+cmake ..
+echo -e "Going to compile...  make -j $SLURM_CPUS_ON_NODE :"
+make -j $SLURM_CPUS_ON_NODE
 
-echo -e "\n      I am in pwd=\c";pwd
-echo -e "This is DIRAC/BUILD=$DIRAC/$BUILD"
-
-echo -e "\n ldd $DIRAC/$BUILD/dirac.x:"
-ldd $DIRAC/$BUILD/dirac.x
-
-export DIRAC_TMPDIR=/lustre/projects/m/milias/DIRAC_scratch
-echo -e "\n DIRAC_TMPDIR=$DIRAC_TMPDIR"
-
-export DIRAC_MPIRUN="mpirun -np 2"
-echo -e "\n DIRAC_MPIRUN=$DIRAC_MPIRUN"
-
-echo -e "\n\n running ctest -j4 :"
-
-ctest -VV  -j4
-
+echo -e "\n after the compilation, perform ldd dirac.x:"
+ldd dirac.x
 
 exit

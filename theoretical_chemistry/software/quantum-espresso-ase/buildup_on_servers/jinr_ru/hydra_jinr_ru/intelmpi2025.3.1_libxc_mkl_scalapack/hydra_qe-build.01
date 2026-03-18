@@ -152,7 +152,7 @@ echo -e "\n\n\n Running cmake :"
 #LIBXC_DIR=/lustre/projects/m/milias/work/software/libxc/install_build_intel2023.1
 LIBXC_DIR=/lustre/projects/m/milias/work/software/libxc/install_build_intel2025.3.1
 LIBXC_INC=$LIBXC_DIR/include
-cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_Fortran_COMPILER=mpiifx -DCMAKE_Fortran_FLAGS="-g -traceback" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  DLIBXC_INCLUDE_DIR=$LIBXC_INC  -DQE_ENABLE_HDF5=OFF  .. 
+cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_Fortran_COMPILER=mpiifx -DCMAKE_Fortran_FLAGS="-g -traceback" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLIBXC_INCLUDE_DIR=$LIBXC_INC  -DQE_ENABLE_HDF5=OFF  .. 
 
 echo -e "\n\n Running make -j $SLURM_CPUS_ON_NODE :"
 make -j $SLURM_CPUS_ON_NODE

@@ -16,5 +16,7 @@ https://www.intel.com/content/www/us/en/developer/tools/oneapi/hpc-toolkit-downl
 
 install as user
 ---------------
+milias@hydra.jinr.ru:/lustre/projects/m/milias/work/intel_compilers/.chmod u+x intel-oneapi-hpc-toolkit-2025.3.1.55_offline.sh
+milias@hydra.jinr.ru:/lustre/projects/m/milias/work/intel_compilers/../intel-oneapi-hpc-toolkit-2025.3.1.55_offline.sh
 
-milias@hydra.jinr.ru:/lustre/projects/m/milias/work/intel_compilers/.. ./intel-oneapi-hpc-toolkit-2025.3.1.55_offline.sh
+

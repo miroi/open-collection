@@ -92,14 +92,15 @@ echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"; ls -lt  $MKLROOT/lib/intel64
 echo -e "\n The variable PATH=$PATH\n"
 echo -e "\n The variable HOME=$HOME\n"
 
-echo -e "\n content of $HOME/.diracrc :"
-cat $HOME/.diracrc
+#echo -e "\n content of $HOME/.diracrc :"
+#cat $HOME/.diracrc
 
 #DIRAC=/lustre/home/user/m/milias/work/software/dirac/trunk
 #DIRAC=/zfs/store5.hydra.local/user/m/milias/work/software/dirac/trunk_cloned
 DIRAC=/lustre/projects/m/milias/work/software/dirac/trunk_cloned
+
 #BUILD=build_intelmpi2025_mkl_i8
-BUILD=build_intelmpi2023_mkl_i8
+BUILD=build_intelmpi2023_mkl_i8_opt
 
 echo -e "\n ldd $DIRAC/$BUILD/dirac.x:"
 ldd $DIRAC/$BUILD/dirac.x
@@ -114,7 +115,7 @@ echo -e "\n\n         I am in pwd=\c";pwd
 echo -e "This is SLURM_SUBMIT_DIR=$SLURM_SUBMIT_DIR"
 
 #export DIRAC_MPI_COMMAND="mpirun -f $SLURM_SUBMIT_DIR/$MACHINEFILE -np $SLURM_NTASKS"
-export DIRAC_MPI_COMMAND="mpirun -np $SLURM_NTASKS"
+export DIRAC_MPI_COMMAND="mpiexec -np $SLURM_NTASKS"
 echo -e "\n DIRAC_MPI_COMMAND=$DIRAC_MPI_COMMAND"
 out_suffix=out.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out
 

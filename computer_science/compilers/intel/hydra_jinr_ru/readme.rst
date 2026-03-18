@@ -11,6 +11,10 @@ https://www.intel.com/content/www/us/en/developer/tools/oneapi/fortran-compiler-
 
 HPC toolkit
 ~~~~~~~~~~~
-https://www.intel.com/content/www/us/en/developer/tools/oneapi/hpc-toolkit-download.html?packages=hpc-toolkit&hpc-toolkit-os=windows&hpc-toolkit-win=offline
 
+https://www.intel.com/content/www/us/en/developer/tools/oneapi/hpc-toolkit-download.html?packages=hpc-toolkit&hpc-toolkit-os=linux&hpc-toolkit-lin=offline
 
+install as user
+---------------
+
+milias@hydra.jinr.ru:/lustre/projects/m/milias/work/intel_compilers/.. ./intel-oneapi-hpc-toolkit-2025.3.1.55_offline.sh

@@ -1,0 +1,252 @@
+
+Running on host n02p060.gvr.local
+Date & Time is Wed Mar 18 22:50:13 MSK 2026 
+
+
+Job user is SLURM_JOB_USER= milias
+User job SLURM_JOB_NAME=QEbuild has assigned ID SLURM_JOBID=40137
+This job was submitted from the computer SLURM_SUBMIT_HOST=space01.hydra.local
+and from the home directory SLURM_SUBMIT_DIR:
+/lustre/projects/m/milias/work/git-projects/open-collection/theoretical_chemistry/software/quantum-espresso-ase/buildup_on_servers/jinr_ru/hydra_jinr_ru/intelmpi2025.3.1_libxc_mkl_scalapack
+Job is running on the cluster compute node: SLURM_CLUSTER_NAME=gvr
+and is employing SLURM_JOB_NUM_NODES=1 node/nodes:
+SLURM_JOB_NODELIST = n02p060
+Job partition is SLURM_JOB_PARTITION=bltp 
+
+Number of allocated CPUs on each single node, SLURM_CPUS_ON_NODE=8 .
+Number of all reserved threads over ALL nodes, SLURM_NTASKS=8 .
+Job has reserved memory per node, SLURM_MEM_PER_NODE=65536 MB of memory
+
+generated machinefile for MPI, nodes.bltp.40137
+-rw-r--r-- 1 milias hybrilit 144 Mar 18 22:50 /lustre/projects/m/milias/work/git-projects/open-collection/theoretical_chemistry/software/quantum-espresso-ase/buildup_on_servers/jinr_ru/hydra_jinr_ru/intelmpi2025.3.1_libxc_mkl_scalapack/nodes.bltp.40137
+containing:
+n02p060.gvr.local
+n02p060.gvr.local
+n02p060.gvr.local
+n02p060.gvr.local
+n02p060.gvr.local
+n02p060.gvr.local
+n02p060.gvr.local
+n02p060.gvr.local
+The node's CPU model name	: Intel(R) Xeon(R) Platinum 8268 CPU @ 2.90GHz
+BTW, this node has total 96 CPUs available for an EXCLUSIVE job.
+Based on reserved memory, this node got 8 CPUs allocated for SLURM calculations.
+This job wants SLURM_NTASKS=8 threads . 
+
+
+ loaded modules:
+
+Currently Loaded Modules:
+  1) Python/v3.12.13   2) intel/v2025.3.1   3) CMake/v3.26.5
+
+ 
+
+
+Running on host n02p060.gvr.local
+Time is Wed Mar 18 22:50:14 MSK 2026 
+
+
+ The total memory at the node (in GB)
+               total        used        free      shared  buff/cache   available
+Mem:             187           3         182           0           2         183
+Swap:              3           0           3
+Total:           191           3         186
+
+
+ My PATH=/cvmfs/hlit.jinr.ru/alma9/CMake/v3.26.5/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/vtune/2025.8/bin64:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mpi/2021.17/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mkl/2025.3/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/ishmem/1.5/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/dpcpp-ct/2025.3/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/dev-utilities/2025.3/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/debugger/2025.3/opt/debugger/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/compiler/2025.3/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/advisor/2025.4/bin64:/cvmfs/hlit.jinr.ru/alma9/Python/v3.12.13/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/puppetlabs/bin:.
+
+
+ My LD_LIBRARY_PATH=/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/tcm/1.4/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/umf/1.0/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/tbb/2022.3/env/../lib/intel64/gcc4.8:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mpi/2021.17/opt/mpi/libfabric/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mpi/2021.17/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mkl/2025.3/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/ishmem/1.5/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/ippcp/2025.3/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/ipp/2022.3/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/dnnl/2025.3/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/debugger/2025.3/opt/debugger/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/dal/2025.10/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/compiler/2025.3/opt/compiler/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/compiler/2025.3/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/ccl/2021.17/lib:/cvmfs/hlit.jinr.ru/alma9/Python/v3.12.13/lib 
+
+ python ? ; python -V :/cvmfs/hlit.jinr.ru/alma9/Python/v3.12.13/bin/python
+Python 3.12.13
+
+ ifx ? ; ifx -V: /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/compiler/2025.3/bin/ifx
+Intel(R) Fortran Compiler for applications running on Intel(R) 64, Version 2025.3.2 Build 20260112
+Copyright (C) 1985-2026 Intel Corporation. All rights reserved.
+
+
+ mpiifx ? ;  mpiifx -V: /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mpi/2021.17/bin/mpiifx
+mpiifx for the Intel(R) MPI Library 2021.17 for Linux*
+Copyright Intel Corporation.
+Intel(R) Fortran Compiler for applications running on Intel(R) 64, Version 2025.3.2 Build 20260112
+Copyright (C) 1985-2026 Intel Corporation. All rights reserved.
+
+
+ icx ? ; icx -V: /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/compiler/2025.3/bin/icx
+Intel(R) oneAPI DPC++/C++ Compiler for applications running on Intel(R) 64, Version 2025.3.2 Build 20260112
+Copyright (C) 1985-2026 Intel Corporation. All rights reserved.
+
+
+ icpx ? ; icpx -V: /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/compiler/2025.3/bin/icpx
+Intel(R) oneAPI DPC++/C++ Compiler for applications running on Intel(R) 64, Version 2025.3.2 Build 20260112
+Copyright (C) 1985-2026 Intel Corporation. All rights reserved.
+
+
+ Intel MKL library ? MKLROOT=/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mkl/2025.3
+
+ mpirun ? /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mpi/2021.17/bin/mpirun
+Intel(R) MPI Library for Linux* OS, Version 2021.17 Build 20251215 (id: 2ac2f63)
+Copyright 2003-2025, Intel Corporation.
+
+ cmake ? /cvmfs/hlit.jinr.ru/alma9/CMake/v3.26.5/bin/cmake
+cmake version 3.26.5
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
+
+ git ? /usr/bin/git
+git version 2.47.3
+
+
+ QE=/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e
+ls /lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/
+CMakeLists.txt
+CONTRIBUTING.md
+COUPLE
+CPV
+Doc
+EPW
+FFTXlib
+GUI
+GWW
+HP
+KCW
+KS_Solvers
+LAXlib
+LR_Modules
+License
+Makefile
+Modules
+NEB
+PHonon
+PIOUD
+PP
+PW
+PWCOND
+QEHeat
+README.md
+README_GPU.md
+TDDFPT
+UtilXlib
+XClib
+XSpectra
+archive
+atomic
+build_intelmpi2023_mkl_scalapack
+build_intelmpi2025.3.1_libxc_mkl_scalapack
+build_intelmpi2025.3.1_mkl_scalapack
+cmake
+configure
+dev-tools
+dft-d3
+environment_variables
+external
+include
+install
+logo.jpg
+pseudo
+test-suite
+upflib
+
+ I am in QE=/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e
+
+ The directory /lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/build_intelmpi2025.3.1_libxc_mkl_scalapack does exist.
+Its old content :
+total 58
+-rw-r--r-- 1 milias hybrilit 30078 Mar 18 22:37 CMakeCache.txt
+drwxr-xr-x 6 milias hybrilit 11776 Mar 18 22:37 CMakeFiles
+drwxr-xr-x 3 milias hybrilit 11776 Mar 18 22:37 Testing
+Deleting it and re-creating again.
+
+ Current directory where this SLURM job is running /lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/build_intelmpi2025.3.1_libxc_mkl_scalapack
+ Current directory  QE/BUILD=/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/build_intelmpi2025.3.1_libxc_mkl_scalapack 
+ It has the disk space of (df -h) :
+Filesystem                                                                         Size  Used Avail Use% Mounted on
+10.220.25.75@o2ib,10.220.25.76@o2ib:10.220.25.79@o2ib,10.220.25.80@o2ib:/projects  2.2P   61T  2.1P   3% /lustre/projects
+
+ ls -lt /lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/build_intelmpi2025.3.1_libxc_mkl_scalapack
+total 0
+
+
+
+ Running cmake :
+-- The Fortran compiler identification is IntelLLVM 2025.3.2
+-- The C compiler identification is IntelLLVM 2025.3.2
+-- Detecting Fortran compiler ABI info
+-- Detecting Fortran compiler ABI info - done
+-- Check for working Fortran compiler: /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mpi/2021.17/bin/mpiifx - skipped
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/compiler/2025.3/bin/icx - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Setting build type to 'Release' as none was specified
+-- Enable sanitizer QE_ENABLE_SANITIZER=none
+-- C preprocessor used by qe_preprocess_source in qeHelpers.cmake: /usr/bin/cpp
+-- Performing Test Fortran_ISYSTEM_SUPPORTED
+-- Performing Test Fortran_ISYSTEM_SUPPORTED - Success
+-- Found MPI_Fortran: /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mpi/2021.17/bin/mpiifx (found version "4.1") 
+-- Found MPI: TRUE (found version "4.1") found components: Fortran 
+-- Selected the Fortran 'mpi' module. QE_ENABLE_MPI_MODULE=ON
+-- MPI settings used by CTest
+     MPIEXEC_EXECUTABLE : /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mpi/2021.17/bin/mpiexec
+     MPIEXEC_NUMPROC_FLAG : -n
+     MPIEXEC_PREFLAGS : 
+   Tests run as : /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mpi/2021.17/bin/mpiexec -n <NUM_PROCS>  <EXECUTABLE>
+-- Found Git: /usr/bin/git (found suitable version "2.47.3", minimum required is "2.13") 
+-- Source files are cloned from a git repository.
+   sed supports -E
+   Git branch: develop
+   Git commit hash: bb621d811bbef11dcd036ee7349a746b66ca6ae1
+-- Trying to find LAPACK from Intel MKL
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Looking for Fortran sgemm
+-- Looking for Fortran sgemm - found
+-- Found BLAS: /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mkl/2025.3/lib/libmkl_intel_lp64.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mkl/2025.3/lib/libmkl_sequential.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mkl/2025.3/lib/libmkl_core.so;-lm;-ldl  
+-- Looking for Fortran cheev
+-- Looking for Fortran cheev - found
+-- Found LAPACK: /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mkl/2025.3/lib/libmkl_intel_lp64.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mkl/2025.3/lib/libmkl_sequential.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mkl/2025.3/lib/libmkl_core.so;-lm;-ldl;-lm;-ldl  
+-- Looking for Fortran zhpev
+-- Looking for Fortran zhpev - found
+-- Looking for Fortran pdgemm
+-- Looking for Fortran pdgemm - not found
+-- Looking for Fortran pdgemm
+-- Looking for Fortran pdgemm - not found
+-- Looking for Fortran pdgemm
+-- Looking for Fortran pdgemm - found
+-- Found SCALAPACK: /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mkl/2025.3/lib/libmkl_scalapack_lp64.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mkl/2025.3/lib/libmkl_blacs_intelmpi_lp64.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mkl/2025.3/lib/libmkl_intel_lp64.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mkl/2025.3/lib/libmkl_sequential.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mkl/2025.3/lib/libmkl_core.so;-lm;-ldl;
+-- Found PkgConfig: /usr/bin/pkg-config (found version "1.7.3") 
+-- Checking for one of the modules 'libxc>='
+-- Found Libxc: /lustre/projects/m/milias/work/software/libxc/install_build_intel2025.3.1/lib64/libxc.a  
+CMake Error at CMakeLists.txt:591 (if):
+  if given arguments:
+
+    "VERSION_GREATER_EQUAL" "5.1.2"
+
+  Unknown arguments specified
+
+
+-- Configuring incomplete, errors occurred!
+
+
+ Running make -j 8 :
+make: *** No targets specified and no makefile found.  Stop.
+
+
+ content of /lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/build_intelmpi2025.3.1_libxc_mkl_scalapack/bin  :
+ls: cannot access '/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/build_intelmpi2025.3.1_libxc_mkl_scalapack/bin': No such file or directory
+
+
+ ldd /lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/build_intelmpi2025.3.1_libxc_mkl_scalapack/bin/pw.x :
+ldd: /lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/build_intelmpi2025.3.1_libxc_mkl_scalapack/bin/pw.x: No such file or directory
+
+
+ running ctest -j 8 :
+Test project /lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/build_intelmpi2025.3.1_libxc_mkl_scalapack
+No tests were found!!!
+
+
+ End of script. Date & Time is Wed Mar 18 22:50:20 MSK 2026 
+

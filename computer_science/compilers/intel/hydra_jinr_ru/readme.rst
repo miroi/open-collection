@@ -19,4 +19,6 @@ install as user
 milias@hydra.jinr.ru:/lustre/projects/m/milias/work/intel_compilers/.chmod u+x intel-oneapi-hpc-toolkit-2025.3.1.55_offline.sh
 milias@hydra.jinr.ru:/lustre/projects/m/milias/work/intel_compilers/../intel-oneapi-hpc-toolkit-2025.3.1.55_offline.sh
 
+without GUI, silent and with destination directory change:
 
+sh ./intel-oneapi-hpc-toolkit-2025.3.1.55_offline.sh -s -a -d /path/to/custom/dir

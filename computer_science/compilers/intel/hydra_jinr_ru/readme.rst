@@ -81,3 +81,7 @@ Copyright Intel Corporation.
 Intel(R) oneAPI DPC++/C++ Compiler for applications running on Intel(R) 64, Version 2025.3.2 Build 20260112
 Copyright (C) 1985-2026 Intel Corporation. All rights reserved.
 
+milias@hydra.jinr.ru:/lustre/projects/m/milias/work/software/dirac/trunk_cloned/.emkl
+Intel MKL library ? MKLROOT=/lustre/projects/m/milias/intel/oneapi/mkl/2025.3
+
+milias@hydra.jinr.ru:/lustre/projects/m/milias/work/software/dirac/trunk_cloned/./lustre/projects/m/milias/intel/oneapi/mkl/2025.3/bin/mkl_link_tool

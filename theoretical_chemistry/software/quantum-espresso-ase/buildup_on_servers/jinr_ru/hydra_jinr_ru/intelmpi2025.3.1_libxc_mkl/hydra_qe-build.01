@@ -112,7 +112,7 @@ echo -e "\n git ? \c"; which git; git --version
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e
 QE=/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e
 
-BUILD=build_intelmpi2025.3.1_libxc_mkl_scalapack
+BUILD=build_intelmpi2025.3.1_libxc_mkl
 
 echo -e "\n\n QE=$QE"
 echo -e "ls $QE/"
@@ -155,7 +155,9 @@ LIBXC_INC=$LIBXC_DIR/include
 #cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_Fortran_COMPILER=mpiifx -DCMAKE_Fortran_FLAGS="-g -traceback" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLIBXC_INCLUDE_DIR=$LIBXC_INC  -DQE_ENABLE_HDF5=OFF  .. 
 
 # see https://gitlab.com/QEF/q-e/-/work_items/844
-cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_Fortran_COMPILER=mpiifx -DCMAKE_Fortran_FLAGS="-g -traceback" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=OFF  .. 
+#cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_Fortran_COMPILER=mpiifx -DCMAKE_Fortran_FLAGS="-g -traceback" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=OFF  .. 
+
+cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_Fortran_COMPILER=mpiifx -DCMAKE_Fortran_FLAGS="-g -traceback" -DQE_ENABLE_SCALAPACK=OFF -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=OFF  .. 
 
 echo -e "\n\n Running make -j $SLURM_CPUS_ON_NODE :"
 make -j $SLURM_CPUS_ON_NODE

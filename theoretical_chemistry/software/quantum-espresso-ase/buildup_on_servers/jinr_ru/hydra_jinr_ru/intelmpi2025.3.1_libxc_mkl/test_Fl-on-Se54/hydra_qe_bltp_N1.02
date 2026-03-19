@@ -17,7 +17,7 @@
 ##SBATCH --exclusive
 
 ##SBATCH --mem=640GB
-#SBATCH --mem=200GB
+#SBATCH --mem=240GB
 ##SBATCH --mem=16GB
 
 ##SBATCH --mem-per-cpu=10GB
@@ -28,7 +28,7 @@
 
 #
 #SBATCH -N 1
-#SBATCH --ntasks-per-node=30
+#SBATCH --ntasks-per-node=20
 
 
 ## stdout/stderr output file
@@ -97,7 +97,8 @@ echo -e "\n"
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_intelmpimkl_dbg
 
 #BUILD=build_intelmpi2023_mkl_scalapack
-BUILD=build_intelmpi2025.3.1_libxc_mkl_scalapack
+#BUILD=build_intelmpi2025.3.1_libxc_mkl_scalapack
+BUILD=build_intelmpi2025.3.1_libxc_mkl
 QE=/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/$BUILD
 
 echo -e "\n ldd  $QE/bin/pw.x :"

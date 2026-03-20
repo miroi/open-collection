@@ -3,8 +3,10 @@
 #SBATCH -J elpa
 
 ##  partition (queue)
-##SBATCH -p cascade
-#SBATCH -p bltp
+#SBATCH --account=bltp
+#SBATCH --partition=bltp
+#SBATCH --constraint=cascade
+#SBATCH --qos=short
 
 ## max. execution time
 #SBATCH -t 0-04:00:00

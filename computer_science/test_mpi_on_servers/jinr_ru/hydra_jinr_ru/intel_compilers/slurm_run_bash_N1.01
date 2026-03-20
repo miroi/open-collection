@@ -82,7 +82,8 @@ echo -e "\n check executable, ldd pi_mpi.x :"
 ldd pi_mpi.x
 
 echo -e "\n running mpirun -np $SLURM_NTASKS ./pi_mpi.x :"
-mpirun -np $SLURM_NTASKS ./pi_mpi.x
+#mpirun -np $SLURM_NTASKS ./pi_mpi.x
+mpirun  -f $MACHINEFILE  -np $SLURM_NTASKS -npool $SLURM_JOB_NUM_NODES ./pi_mpi.x
 
 
 

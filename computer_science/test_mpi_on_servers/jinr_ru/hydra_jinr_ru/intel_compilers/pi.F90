@@ -54,7 +54,7 @@ program main
 !   ... read the input file...
        Open (lu,file="pi_input",status="old",form="formatted")
        read(lu,*) n
-       write(*,'("from pi_input read parameter n=",i10)') n
+       write(*,'("from pi_input file -  read parameter n=",i10)') n
        close(lu,status="keep")
 
 !      write(6,98)

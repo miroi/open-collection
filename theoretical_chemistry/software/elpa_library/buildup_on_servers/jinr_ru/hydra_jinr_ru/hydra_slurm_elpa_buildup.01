@@ -77,8 +77,8 @@ srun -l /bin/hostname | sort -n | awk '{print $2}'
 echo -e "\n\n loaded modules:"
 module purge
 
-export MODULEPATH=/cvmfs/nica.jinr.ru/sw/202309/MODULES/slc9_x86-64:$MODULEPATH
-module add autotools
+#export MODULEPATH=/cvmfs/nica.jinr.ru/sw/202309/MODULES/slc9_x86-64:$MODULEPATH
+#module add autotools
 
 module add Python/v3.12.13
 module add CMake/v3.26.5
@@ -91,6 +91,7 @@ module list
 echo -e "\n python ? :\c"; which python; python -V
 echo -e "  cmake ? :\c";  which cmake; cmake --version
 echo -e "  ifx ? :\c"; which ifx; ifx -V
+echo -e "  ifx ? :\c"; which mpuiifx; mpiifx -V
 echo -e "  icx ? :\c"; which icx; icx -V
 echo -e "  icpx ? :\c"; which icpc; icpc  -V
 #echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"; ls -lt  $MKLROOT/lib/intel64
@@ -116,14 +117,16 @@ mkdir install_$BUILD
 
 cd $ELPA
 echo -e "\n I am  in :\c"; pwd
+
+#echo -e "\n\n Going to do autoreconf -f -i :"
+#autoreconf -f -i
+
 echo -e "\n Checking configure --help :"
 configure --help
 
-echo -e "\n\n Going to do autoreconf -f -i :"
-autoreconf -f -i
-
 echo -e "\n\n Going to do the own configure :"
-./configure --prefix=$INSTALL_DIR F77=ifort FC=ifort CXX=icpc CC=icc
+#./configure --prefix=$INSTALL_DIR  --enable-mpi-module  --enable-ifx-compiler --with-mpi=yes  F77=ifx FC=ifx CXX=icpx CC=icx
+./configure --prefix=$INSTALL_DIR  --enable-mpi-module  --enable-ifx-compiler --with-mpi=yes  F77=mpiifx FC=mpiifx CXX=mpiicpx CC=mpiicx
 
  
 echo -e "\n\n Going to do make -j $SLURM_CPUS_ON_NODE :"

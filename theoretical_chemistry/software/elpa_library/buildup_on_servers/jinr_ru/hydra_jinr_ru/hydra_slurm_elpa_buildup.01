@@ -74,18 +74,23 @@ srun -l /bin/hostname | sort -n | awk '{print $2}'
 
 echo -e "\n\n loaded modules:"
 module purge
+
+export MODULEPATH=/cvmfs/nica.jinr.ru/sw/202309/MODULES/slc9_x86-64:$MODULEPATH
+module add autotools
+
 module add Python/v3.12.13
 module add CMake/v3.26.5
-module add intel/v2023.1.0
+#module add intel/v2023.1.0
+module add intel/v2025.3.1
 #module add openmpi/v5.0.3_gcc1230
 #module add LAPACK/v3.12.0_gcc1230
 module list
 
 echo -e "\n python ? :\c"; which python; python -V
 echo -e "  cmake ? :\c";  which cmake; cmake --version
-echo -e "  ifort ? :\c"; which ifort; ifort -V
-echo -e "  icc ? :\c"; which icc; icc -V
-echo -e "  icpc ? :\c"; which icpc; icpc  -V
+echo -e "  ifx ? :\c"; which ifx; ifx -V
+echo -e "  icx ? :\c"; which icx; icx -V
+echo -e "  icpx ? :\c"; which icpc; icpc  -V
 #echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"; ls -lt  $MKLROOT/lib/intel64
 
 echo -e "\n The variable PATH=$PATH\n"
@@ -93,7 +98,7 @@ echo -e "\n The variable PATH=$PATH\n"
 ELPA_DIR=/lustre/projects/m/milias/work/software/elpa/elpa-2025.01.002
 ELPA=$ELPA_DIR/elpa-2025.01.002
 
-BUILD=build_intel2023.1
+BUILD=build_intel2025.3.1
 INSTALL_DIR=$ELPA_DIR/install_$BUILD
 
 cd $ELPA_DIR

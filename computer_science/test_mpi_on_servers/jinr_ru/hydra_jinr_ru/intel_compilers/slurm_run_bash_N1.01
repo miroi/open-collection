@@ -12,6 +12,14 @@
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=4
 
+## stdout/stderr output file
+#SBATCH -o log_slurm_job.%j.%N.std_out_err
+
+## E-mail
+#SBATCH --mail-user=milias@jinr.ru
+#SBATCH --mail-type=ALL
+
+
 echo -e "\nRunning on host `hostname`"
 echo -e "Time is `date` \n"
 
@@ -29,7 +37,7 @@ echo -e "Number of allocated CPUs on each single node, SLURM_CPUS_ON_NODE=$SLURM
 echo -e "Number of all reserved threads over ALL nodes, SLURM_NTASKS=$SLURM_NTASKS ."
 echo -e "Job has reserved memory per node, SLURM_MEM_PER_NODE=$SLURM_MEM_PER_NODE MB of memory"
 
-MACHINEFILE="nodes.$SLURM_JOB_PARTITION.$SLURM_JOB_ID"# Generate Machinefile for mpi such that hosts are in the same
+MACHINEFILE="nodes.$SLURM_JOB_PARTITION.$SLURM_JOB_ID" # Generate Machinefile for mpi such that hosts are in the same
 # order as if run via srun
 srun -l /bin/hostname | sort -n | awk '{print $2}' > $MACHINEFILE
 echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; echo "containing:"; cat $MACHINEFILE
@@ -47,7 +55,7 @@ srun -l /bin/hostname | sort -n | awk '{print $2}' > $MACHINEFILE
 echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; echo "containing:"; cat $MACHINEFILE
 
 module purge
-module load    intel/v2025.3.1  
+module load   intel/v2025.3.1  
 echo -e "\n\n loaded modules:"
 module list
 
@@ -65,11 +73,13 @@ echo
 echo -e "\n\n My PATH=$PATH\n"
 echo -e "\nMy LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
 echo -e "\n ifx ?  \c"; which ifx; ifx -V
-echo -e " mpiifx ? \c"; whichmpiifx;  mpiifx -V
+echo -e " mpiifx ? \c"; which mpiifx;  mpiifx -V
 echo -e " mpirun ? \c"; which mpirun; mpirun --version
 
 echo -e "\n compiling mpifx pi.F90 -o pi_mpi.x :"
-mpifx pi.F90 -o pi_mpi.x
+mpiifx pi.F90 -o pi_mpi.x
+echo -e "\n check executable, ldd pi_mpi.x :"
+ldd pi_mpi.x
 
 echo -e "\n running mpirun -np $SLURM_NTASKS ./pi_mpi.x :"
 mpirun -np $SLURM_NTASKS ./pi_mpi.x

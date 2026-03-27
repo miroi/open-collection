@@ -55,7 +55,8 @@ srun -l /bin/hostname | sort -n | awk '{print $2}' > $MACHINEFILE
 echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; echo "containing:"; cat $MACHINEFILE
 
 module purge
-module load   intel/v2025.3.1  
+#module load   intel/v2025.3.1  
+module load openmpi/v4.1.8_gcc1230
 echo -e "\n\n loaded modules:"
 module list
 
@@ -69,21 +70,23 @@ echo " It has the disk space of (df -h) :"
 df -h .
 echo
 
-
 echo -e "\n\n My PATH=$PATH\n"
 echo -e "\nMy LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
-echo -e "\n ifx ?  \c"; which ifx; ifx -V
-echo -e " mpiifx ? \c"; which mpiifx;  mpiifx -V
+#echo -e "\n ifx ?  \c"; which ifx; ifx -V
+echo -e "\n gfortran ?  \c"; which gfortran; gfortran --version
+#echo -e " mpiifx ? \c"; which mpiifx;  mpiifx -V
+echo -e " mpif90 ? \c"; which mpif90;  mpif90 --version
 echo -e " mpirun ? \c"; which mpirun; mpirun --version
 
-echo -e "\n compiling mpifx pi.F90 -o pi_mpi.x :"
-mpiifx pi.F90 -o pi_mpi.x
+echo -e "\n compiling mpif90 pi.F90 -o pi_mpi.x :"
+mpif90 pi.F90 -o pi_mpi.x
 echo -e "\n check executable, ldd pi_mpi.x :"
 ldd pi_mpi.x
 
 echo -e "\n running mpirun -np $SLURM_NTASKS ./pi_mpi.x :"
 #mpirun -np $SLURM_NTASKS ./pi_mpi.x
-mpirun  -f $MACHINEFILE  -np $SLURM_NTASKS ./pi_mpi.x
+#mpirun  -f $MACHINEFILE  -np $SLURM_NTASKS ./pi_mpi.x
+mpirun  -machinefile $MACHINEFILE -np $SLURM_NTASKS ./pi_mpi.x
 
 
 

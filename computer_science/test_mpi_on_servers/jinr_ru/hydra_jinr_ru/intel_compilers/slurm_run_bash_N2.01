@@ -10,7 +10,7 @@
 #SBATCH --mem=4GB
 
 #SBATCH -N 2
-#SBATCH --ntasks-per-node=3
+#SBATCH --ntasks-per-node=4
 
 ## stdout/stderr output file
 #SBATCH -o log_slurm_job.%j.%N.std_out_err
@@ -81,7 +81,7 @@ mpiifx pi.F90 -o pi_mpi.x
 echo -e "\n check executable, ldd pi_mpi.x :"
 ldd pi_mpi.x
 
-echo -e "\n running mpirun -np $SLURM_NTASKS ./pi_mpi.x :"
+echo -e "\n running mpirun  -f $MACHINEFILE -np $SLURM_NTASKS ./pi_mpi.x :"
 #mpirun -np $SLURM_NTASKS ./pi_mpi.x
 mpirun  -f $MACHINEFILE  -np $SLURM_NTASKS ./pi_mpi.x
 

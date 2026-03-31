@@ -112,21 +112,39 @@ export LD_LIBRARY_PATH=$prefixdir/lib:$LD_LIBRARY_PATH
 echo -e "\n The variable PATH=$PATH\n"
 echo -e "\n The variable LD_LIBRARY_PATH=$LD_LIBRARY_PATH \n"
 
-echo -e "\n\nmpif90 ? \c"; which mpif90; mpif90 -V
+echo -e "\n\n mpif90 ? \c"; which mpif90; mpif90 -V
 echo -e "mpicc ? \c"; which mpicc; mpicc -V
+echo -e "mpicxx ? \c"; which mpicxx; mpicxx -V
 echo -e "mpirun ? \c"; which mpirun; mpirun --version
 echo -e "ompi_info ?\c"; which ompi_info; ompi_info
 
+OMPI_EX=/lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/openmpi-5.0.9/examples
+cd $OMPI_EX
+echo -e "\n\n I am in OMPI_EX=$OMPI_EX"
+pwd
+make all
+ls -lt
+echo -e "running few examples :"
+mpirun --bind-to core:overload-allowed -np $SLURM_NTASKS connectivity_c
+mpirun --bind-to core:overload-allowed -np $SLURM_NTASKS hello_c
+mpirun --bind-to core:overload-allowed -np $SLURM_NTASKS hello_usempi
+mpirun --bind-to core:overload-allowed -np $SLURM_NTASKS ring_c
+mpirun --bind-to core:overload-allowed -np $SLURM_NTASKS spc_example
+
+
+cd $SLURM_SUBMIT_DIR
+echo -e "\n I am in SLURM_SUBMIT_DIR=$SLURM_SUBMIT_DIR ";
+echo -e "             check with pwd=";pwd
 
 echo -e "\n\n mpirun -np $SLURM_NTASKS  hostname "
-mpirun -np $SLURM_NTASKS  hostname
-mpirun -np $SLURM_NTASKS --report-bindings hostname
+mpirun --bind-to core:overload-allowed -np $SLURM_NTASKS  hostname
+mpirun --bind-to core:overload-allowed -np $SLURM_NTASKS --report-bindings hostname
 
 
 echo -e "\n\n hello_mpi.c : compilation and run"
 mpicc hello_mpi.c -o hello_mpi
 
-mpirun -np  $SLURM_NTASKS ./hello_mpi
+mpirun  --bind-to core:overload-allowed   -np  $SLURM_NTASKS ./hello_mpi
 
 
 exit

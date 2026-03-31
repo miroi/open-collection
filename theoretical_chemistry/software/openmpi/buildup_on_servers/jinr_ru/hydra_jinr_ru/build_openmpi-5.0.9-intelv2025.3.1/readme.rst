@@ -6,3 +6,8 @@ software in /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv
 
 sbatch hydra_slurm_openmpi_buildup.01
 
+
+Test installation
+-----------------
+
+

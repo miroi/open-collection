@@ -117,14 +117,14 @@ prefixdir=$INSTALLPATH/$INSTALLDIR
 echo -e "\n Checking presence of full path install dir, ls -lt :"; ls -lt $INSTALLPATH/$INSTALLDIR
 
 cd $OMPI
-echo -e "\n\n I am in OMPI=$OMPI , checking with pwd :"; pwd
-echo -e "\n Checking configure --help :"
-configure --help
+echo -e "\n\n I am in directory OMPI=$OMPI"
+echo -e "            checking with pwd=\c"; pwd
+echo -e "\n Checking configure --help :"; configure --help
 
 
 echo -e "\n\n Going to do the the configure :"
 #./configure --prefix=$PWD F77=ifort FC=ifort FFLAGS=-i8 FCFLAGS=-i8 CXX=icpc CC=icc
-./configure --prefix=$prefixdir  FC=ifort  CXX=icpc CC=icc \
+./configure --prefix=$prefixdir  FC=ifx  CXX=icpx CC=icx \
 --enable-mpi-fortran=usempi  --enable-mpi1-compatibility
  
 echo -e "\n\n Going to do make -j $SLURM_CPUS_ON_NODE :"

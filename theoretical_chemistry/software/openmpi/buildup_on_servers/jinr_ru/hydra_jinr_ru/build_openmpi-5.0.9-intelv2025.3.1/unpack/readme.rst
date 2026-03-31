@@ -1,11 +1,13 @@
-===================================
-openmpi-5.0.7-inteloneapi buildup
-===================================
+====================
+openmpi-5.0.9 unpack
+====================
 
-milias@hydra.jinr.ru:~/work/software/openmpi/openmpi-5.0.7-inteloneapi/
-openmpi-5.0.7.tar.gz
 
-sbatch hydra_slurm_openmpi_buildup.01
+/lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/openmpi-5.0.9.tar.gz
+
+
+
+
 
 
 

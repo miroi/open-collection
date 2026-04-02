@@ -12,14 +12,8 @@ import pubchempy as pcp
 atoms_ase = read('nitrobenzene.sdf')
 
 # write out
-#for atom in atoms:
-#    print(f"Index {atom.index}: {atom.symbol}  Position: {atom.position}")
-
-# 2. Convert to a Pymatgen Structure
-# Note: Since SDFs are molecules, this creates a Structure with a dummy 
-# vacuum box if no unit cell is defined.
-#structure = AseAtomsAdaptor.get_structure(atoms)
-#print(structure)
+for atom in atoms_ase:
+    print(f"Index {atom.index}: {atom.symbol}  Position: {atom.position}")
 
 # 2. Load the pretrained CHGNet model
 # By default, this loads the latest version (e.g., v0.3.0)
@@ -28,23 +22,33 @@ model = CHGNet.load()
 # 3. Attach the CHGNet Calculator to the atoms object
 #atoms.calc = CHGNetCalculator(model)
 
-#structure = Structure.from_file('nitrobenzene.sdf')
-
 # Load as a Molecule instead of a Structure
 molecule = Molecule.from_file('nitrobenzene.sdf')
-print(molecule)
+print("Molecule.from_file :",molecule)
 
 ##CHGNet can optimize non-periodic molecules. To do so, you must convert the molecule into a boxed Structure with a large amount of vacuum 
 # box) to satisfy the model's requirement for a periodic lattice.
 # 2. Convert to a Structure by adding a large lattice (e.g., 20x20x20 Angstroms)
+
 structure = molecule.get_boxed_structure(20, 20, 20)
+
 
 relaxer = StructOptimizer()
 result = relaxer.relax(structure,fmax=0.05)
 
 # 5. Extract the optimized molecule
-print("CHGNet relaxed structure", result["final_structure"])
+print("CHGNet relaxed structure: \n", result["final_structure"])
 
+
+relaxed_struct = result["final_structure"]
+
+relaxed_mol = Molecule.from_sites(relaxed_struct.sites)
+
+relaxed_mol = relaxed_mol.get_centered_molecule()
+
+print("relaxed_mol:\n",relaxed_mol)
+
+relaxed_mol.to(filename="nitrobenzene_optimized.sdf")
 
 print("relaxed total energy in eV:", result['trajectory'].energies[-1])
 

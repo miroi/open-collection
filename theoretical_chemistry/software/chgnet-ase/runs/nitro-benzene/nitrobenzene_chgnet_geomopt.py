@@ -1,11 +1,12 @@
-from ase.build import molecule
 from ase.optimize import BFGS
 from chgnet.model.dynamics import CHGNetCalculator
 from chgnet.model.model import CHGNet
+from ase.io import read
+import pubchempy as pcp
 
-# 1. Initialize the nitrobenzene molecule (C6H5NO2)
-# ASE contains a database of common molecules
-atoms = molecule('C6H5NO2')
+# Downloads the 3D conformer from PubChem
+pcp.download('SDF', 'nitrobenzene.sdf', 'nitrobenzene', record_type='3d')
+atoms = read('nitrobenzene.sdf')
 
 # 2. Load the pretrained CHGNet model
 # By default, this loads the latest version (e.g., v0.3.0)

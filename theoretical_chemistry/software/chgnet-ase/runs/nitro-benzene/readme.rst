@@ -15,4 +15,4 @@ python -m pip install rdkit
 
 
 
-
+python nitrobenzene_chgnet_geomopt.py >  nitrobenzene_chgnet_geomopt.py_logfile

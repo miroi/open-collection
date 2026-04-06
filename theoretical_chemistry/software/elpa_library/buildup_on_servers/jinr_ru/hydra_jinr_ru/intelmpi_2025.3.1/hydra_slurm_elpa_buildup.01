@@ -147,15 +147,16 @@ echo -e "\n\n Going to do the own configure :"
 
 #./configure --prefix=$INSTALL_DIR    --enable-mpi-module  --enable-ifx-compiler --with-mpi=yes --with-mkl=yes  SCALAPACK_LDFLAGS="-L${MKLROOT}/lib.intel64 -lmkl_scalapack_lp64 -Wl,--start-group -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_lp64 -Wl,--end-group -liomp5 -lpthread -lm -ldl"   LDFLAGS="-L$MKLROOT/lib/intel64" FCFLAGS="-I$MKLROOT/include -O3 -xHost" CCFLAGS="-O3 -xHost -mmmx -msse -msse2 -msse3 -mssse3 -msse4.1 -msse4.2 -maes -mavx -mfma -mavx2 -mavx512f -mavx512cd -mavx512vl -mavx512bw -mavx512dq"  F77=mpiifx FC=mpiifx CXX=mpiicpx CC=mpiicx
 
-./configure --prefix=$INSTALL_DIR    --enable-mpi-module  --enable-ifx-compiler --with-mpi=yes --with-test-programs=cpu  SCALAPACK_LDFLAGS="-L${MKLROOT}/lib.intel64 -lmkl_scalapack_lp64 -Wl,--start-group -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_lp64 -Wl,--end-group -liomp5 -lpthread -lm -ldl"   LDFLAGS="-L$MKLROOT/lib/intel64" FCFLAGS="-I$MKLROOT/include -O3 -xHost" CCFLAGS="-O3 -xHost"  F77=mpiifx FC=mpiifx CXX=icpx CC=icx
+./configure --prefix=$INSTALL_DIR --disable-avx-kernels --disable-avx2-kernels --disable-avx512-kernels    --enable-mpi-module  --enable-ifx-compiler --with-mpi=yes --with-test-programs=cpu  SCALAPACK_LDFLAGS="-L${MKLROOT}/lib.intel64 -lmkl_scalapack_lp64 -Wl,--start-group -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_lp64 -Wl,--end-group -liomp5 -lpthread -lm -ldl"   LDFLAGS="-L$MKLROOT/lib/intel64" FCFLAGS="-I$MKLROOT/include -O3 -xHost" CCFLAGS="-O3 -xHost  -mmmx -msse -msse2 -msse3 -mssse3 -msse4.1 -msse4.2 -maes -mavx -mfma -mavx2 -mavx512f -mavx512cd -mavx512vl -mavx512bw -mavx512dq"  F77=mpiifx FC=mpiifx CXX=icpx CC=icx
  
 echo -e "\n\n make help:"; make help
 
 echo -e "\n\n First cleaning:  make -j $SLURM_CPUS_ON_NODE clean"
 make -j $SLURM_CPUS_ON_NODE clean
 
-echo -e "\n\n Going to compil :  make -j $SLURM_CPUS_ON_NODE :"
+echo -e "\n\n Going to compile :  make -j $SLURM_CPUS_ON_NODE :"
 make -j $SLURM_CPUS_ON_NODE 
+
 echo -e "\n\n Going to do make all install :"
 make all install
 

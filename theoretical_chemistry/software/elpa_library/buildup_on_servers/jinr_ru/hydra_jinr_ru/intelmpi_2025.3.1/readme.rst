@@ -68,3 +68,7 @@ Makefile.am:1270: warning: eval $(call require_elpa_lib,$o: non-POSIX variable n
 Makefile.am:1270: (probably a GNU make extension)
 Makefile.am: installing './depcomp'
 
+
+  --disable-avx-kernels   do not build AVX kernels, default: enabled
+  --disable-avx2-kernels  do not build AVX2 kernels, default: enabled
+  --disable-avx512-kernels

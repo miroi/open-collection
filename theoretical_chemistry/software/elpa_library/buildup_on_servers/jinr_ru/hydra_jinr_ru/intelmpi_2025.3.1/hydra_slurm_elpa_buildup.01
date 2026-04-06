@@ -80,6 +80,7 @@ module purge
 #export MODULEPATH=/cvmfs/nica.jinr.ru/sw/202309/MODULES/slc9_x86-64:$MODULEPATH
 #module add autotools
 
+module add Autoconf/v2.73
 module add Python/v3.12.13
 module add CMake/v3.26.5
 #module add intel/v2023.1.0
@@ -95,11 +96,13 @@ echo -e "  mpiifx ? :\c"; which mpiifx; mpiifx -V
 echo -e "  icx ? :\c"; which icx; icx -V
 echo -e "  mpiicx ? :\c"; which mpiicx; mpiicx -V
 echo -e "  icpx ? :\c"; which icpx; icpx  -V
+echo -e "  mpiicpx ? :\c"; which mpiicpx; mpiicpx -V
 echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"; ls -lt  $MKLROOT/lib/intel64
 
 echo -e "\n The variable PATH=$PATH\n"
+echo -e "\n The variable LD_LIBRARY_PATH=$LD_LIBRARY_PATH\n"
 
-ELPA_DIR=/lustre/projects/m/milias/work/software/elpa/elpa-2025.01.002
+ELPA_DIR=/lustre/projects/m/milias/work/software/elpa/elpa-2025.01.002/intelmpi2025.3.1
 ELPA=$ELPA_DIR/elpa-2025.01.002
 
 #BUILD=build_intel2025.3.1
@@ -138,7 +141,9 @@ echo -e "\n\n Going to do the own configure :"
 
 #./configure --prefix=$INSTALL_DIR --disable-sse-kernels  --disable-avx-kernels --disable-avx2-kernels --disable-avx512-kernels --enable-mpi-module  --enable-ifx-compiler --with-mpi=yes SCALAPACK_LDFLAGS="-L${MKLROOT}/lib.intel64 -lmkl_scalapack_lp64 -Wl,--start-group -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_lp64 -Wl,--end-group -liomp5 -lpthread -lm -ldl"   LDFLAGS="-L$MKLROOT/lib/intel64" FCFLAGS="-I$MKLROOT/include -O3 -xHost" CCFLAGS="-O3 -xHost"  F77=mpiifx FC=mpiifx CXX=mpiicpx CC=mpiicx
 
-./configure --prefix=$INSTALL_DIR   --disable-sse-kernels   --disable-avx-kernels --disable-avx2-kernels --disable-avx512-kernels --enable-mpi-module  --enable-ifx-compiler --with-mpi=yes SCALAPACK_LDFLAGS="-L${MKLROOT}/lib.intel64 -lmkl_scalapack_lp64 -Wl,--start-group -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_lp64 -Wl,--end-group -liomp5 -lpthread -lm -ldl"   LDFLAGS="-L$MKLROOT/lib/intel64" FCFLAGS="-I$MKLROOT/include -O3 -xHost" CCFLAGS="-O3 -xHost -msse3"  F77=mpiifx FC=mpiifx CXX=mpiicpx CC=mpiicx
+#./configure --prefix=$INSTALL_DIR   --disable-sse-kernels   --disable-avx-kernels --disable-avx2-kernels --disable-avx512-kernels --enable-mpi-module  --enable-ifx-compiler --with-mpi=yes SCALAPACK_LDFLAGS="-L${MKLROOT}/lib.intel64 -lmkl_scalapack_lp64 -Wl,--start-group -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_lp64 -Wl,--end-group -liomp5 -lpthread -lm -ldl"   LDFLAGS="-L$MKLROOT/lib/intel64" FCFLAGS="-I$MKLROOT/include -O3 -xHost" CCFLAGS="-O3 -xHost -msse3"  F77=mpiifx FC=mpiifx CXX=mpiicpx CC=mpiicx
+
+./configure --prefix=$INSTALL_DIR   --enable-mpi-module  --enable-ifx-compiler --with-mpi=yes SCALAPACK_LDFLAGS="-L${MKLROOT}/lib.intel64 -lmkl_scalapack_lp64 -Wl,--start-group -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_lp64 -Wl,--end-group -liomp5 -lpthread -lm -ldl"   LDFLAGS="-L$MKLROOT/lib/intel64" FCFLAGS="-I$MKLROOT/include -O3 -xHost" CCFLAGS="-O3 -xHost"  F77=mpiifx FC=mpiifx CXX=mpiicpx CC=mpiicx
  
 echo -e "\n\n Going to do make -j $SLURM_CPUS_ON_NODE :"
 make -j $SLURM_CPUS_ON_NODE 

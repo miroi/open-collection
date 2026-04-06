@@ -1,15 +1,15 @@
 #!/bin/bash
 
-#SBATCH -J elpa
+#SBATCH -J elpaUNPACK
 
 ##  partition (queue)
-##SBATCH -p cascade
-#SBATCH -p knl
-##SBATCH -p long
-##SBATCH -p flnr-ice
+#SBATCH --account=bltp
+#SBATCH --partition=bltp
+#SBATCH --constraint=cascade
+#SBATCH --qos=short
 
 ## max. execution time
-#SBATCH -t 0-04:00:00
+#SBATCH -t 0-01:00:00
 
 ##SBATCH --exclusive
 
@@ -34,7 +34,7 @@
 #SBATCH -o log_slurm_job.%j.%N.std_out
 
 ## mail
-##SBATCH --mail-user=siuraksh@jinr.ru
+#SBATCH --mail-user=milias@jinr.ru
 #SBATCH --mail-type=ALL
 
 echo -e "\nRunning on host `hostname`"
@@ -76,28 +76,35 @@ srun -l /bin/hostname | sort -n | awk '{print $2}'
 
 echo -e "\n\n loaded modules:"
 module purge
-module add GVR/v1.0-1
-module add Python/v3.10.2
-module add CMake/v3.29.2
-module add  intel/v2021.1
+
+#export MODULEPATH=/cvmfs/nica.jinr.ru/sw/202309/MODULES/slc9_x86-64:$MODULEPATH
+#module add autotools
+
+module add Python/v3.12.13
+#module add CMake/v3.26.5
+#module add intel/v2023.1.0
+#module add intel/v2025.3.1
 #module add openmpi/v5.0.3_gcc1230
 #module add LAPACK/v3.12.0_gcc1230
 module list
 
 echo -e "\n python ? :\c"; which python; python -V
-echo -e "  cmake ? :\c";  which cmake; cmake --version
-echo -e "  ifort ? :\c"; which ifort; ifort -V
-echo -e "  icc ? :\c"; which icc; icc -V
-echo -e "  icpc ? :\c"; which icpc; icpc  -V
-#echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"; ls -lt  $MKLROOT/lib/intel64
 
 echo -e "\n The variable PATH=$PATH\n"
 
-ELPA=/lustre/home/user/m/milias/work/software/elpa/elpa-2025.01.002
+ELPA_DIR=/lustre/projects/m/milias/work/software/elpa/elpa-2025.01.002
+ELPA=$ELPA_DIR/intelmpi2025.3.1
+
 cd $ELPA
+echo -e "\nI am in the directory ELPA=$ELPA; verify via pwd:";pwd
 
-echo -e "I am in \c";pwd; ls
+ls -lt
+ls -lt  elpa-2025.01.002.tar.gz
 
-tar xvzf elpa-2025.01.002.tar.gz
+which tar; tar -v
+tar xvzf  elpa-2025.01.002.tar.gz
+
+echo -e "\n upacking done"
+ls -lt
 
 exit

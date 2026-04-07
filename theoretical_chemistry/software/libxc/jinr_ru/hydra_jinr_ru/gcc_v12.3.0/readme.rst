@@ -3,13 +3,9 @@ LibXC
 
 https://libxc.gitlab.io/download/
 
-milias@hydra.jinr.ru:~/work/software/libxc/.ls
-libxc-7.0.0.tar.bz2
-
-
 unpack
 ~~~~~~
-milias@hydra.jinr.ru:~/work/software/libxc/.tar -xjf libxc-7.0.0.tar.bz2
+tar -xjf libxc-7.0.0.tar.bz2
 
 
 installation
@@ -17,9 +13,9 @@ installation
 
 https://libxc.gitlab.io/installation/
 
-module load ...
 
-check:  ls /lustre/home/user/m/milias/work/software/libxc/install_build_gnu12.3.0/lib64/.
 
+milias@hydra.jinr.ru:/lustre/projects/m/milias/work/software/libxc/.ls install_build_gnu12.3.0/lib64/
+cmake/  libxc.a  libxcf03.a  pkgconfig/
 
 

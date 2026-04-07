@@ -28,9 +28,10 @@
 
 # distribute over 2 nodes...
 #SBATCH -N 2
-#SBATCH -n 40 
 #SBATCH --ntasks-per-node=20
-#SBATCH --distribution=block:block
+
+##SBATCH --distribution=block:block
+#SBATCH --distribution=block
 
 ## stdout/stderr output file
 #SBATCH -o log_slurm_job.%j.%N.std_out_err
@@ -149,8 +150,8 @@ out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SL
 echo -e "\n Running QE pw.x with Intel2025-OpenMPI parallel job:"
 #  OpenMPI : #
 export OMPI_MCA_btl=^openib
-#mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --bind-to core:overload-allowed  $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
-mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE  $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
+mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --bind-to core:overload-allowed  $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
+#mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE  $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
 
 echo -e "\n\n QE finished on : \c";date
 exit

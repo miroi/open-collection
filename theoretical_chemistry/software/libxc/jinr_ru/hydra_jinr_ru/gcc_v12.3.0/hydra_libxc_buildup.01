@@ -4,13 +4,10 @@
 #SBATCH -J libXC
 
 ##  partition (queue)
-##SBATCH -p cascade
-##SBATCH -p knl
-#SBATCH -p flnr-ice
-##SBATCH -p slo-ice
-##SBATCH -p ampere
-
-##SBATCH --qos=dirac
+#SBATCH --account=bltp
+#SBATCH --partition=bltp
+#SBATCH --constraint=cascade
+#SBATCH --qos=medium
 
 ## max. execution time
 ##SBATCH -t 3-00:00:00
@@ -84,11 +81,10 @@ source /cvmfs/nica.jinr.ru/sw/os/login.sh
 #echo -e "\n all modules, including /cvmfs/nica.jinr.ru/sw/os/login.sh"; module avail
 
 module purge
-module load GVR/v1.0-1
-module load Python/v3.10.13
+module load  Python/v3.12.13
 #module load intel/oneapi 
 module load gcc/v12.3.0
-module load CMake/v3.29.2
+CMake/v3.26.5
 
 echo -e "\n\n All loaded modules:"
 module list
@@ -111,7 +107,8 @@ echo -e "\n"
 echo -e "\n\n My PATH=$PATH\n"
 echo -e "\n My LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
 
-LIBXC_DIR=/lustre/home/user/m/milias/work/software/libxc
+#LIBXC_DIR=/lustre/home/user/m/milias/work/software/libxc
+LIBXC_DIR=/lustre/projects/m/milias/work/software/libxc
 LIBXC=$LIBXC_DIR/libxc-7.0.0
 
 BUILD=build_gnu12.3.0
@@ -143,13 +140,16 @@ fi
 echo -e "\n Doing CMake buildup in LIBXC=$LIBXC :"
 # https://libxc.gitlab.io/installation/#building-with-cmake
 
-cmake -H. -B $BUILD -D CMAKE_C_COMPILER=gcc -D CMAKE_Fortran_COMPILER=gfortran -D ENABLE_FORTRAN=ON  -D CMAKE_INSTALL_PREFIX=$INSTALL_DIR
+cmake -H. -B $BUILD -DCMAKE_BUILD_TYPE=Release -D CMAKE_C_COMPILER=gcc -D CMAKE_Fortran_COMPILER=gfortran -D ENABLE_FORTRAN=ON  -D CMAKE_INSTALL_PREFIX=$INSTALL_DIR
 
 cd $BUILD
 echo -e "\n Im in directory BUILD=$BUILD; pwd=";pwd
 
 echo -e "\n running make"
 make
+
+echo -e "\n running make check"
+make check 
 
 echo -e "\n running make test"
 make test

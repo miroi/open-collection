@@ -77,7 +77,9 @@ echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
 
 module purge
 #module load GVR/v1.0-1 gcc/v11.2.0 fftw/v3.3.10_gcc1120 LAPACK/v3.9.0 openmpi/v4.1.1_gcc1120
-module load   Python/v3.12.13   intel/v2025.3.1  
+module load  Python/v3.12.13  
+module load  intel/v2025.3.1  
+module load  openmpi/v4.1.8_gcc1230
 module load  CMake/v3.26.5
 
 echo -e "\n\n loaded modules:"
@@ -89,23 +91,6 @@ echo -e "Time is `date` \n"
 echo -e "\n The total memory at the node (in GB)"
 free -t -g
 
-#
-# IntelMPI compiled OpenMPI
-#
-INSTALLPATH=/lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1
-INSTALLDIR=install_openmpi-5.0.9-intelv2025.3.1
-
-prefixdir=$INSTALLPATH/$INSTALLDIR
-echo -e "\n Checking presence of full path install dir, ls -lt :"; ls -lt $INSTALLPATH/$INSTALLDIR
-
-echo -e "\n\n  OpenMPI installed binaries and libs:"
-ls -lt $prefixdir/bin/*
-ls -lt $prefixdir/lib/*
-
-# extend environvariables
-export PATH=$prefixdir/bin:$PATH
-export LD_LIBRARY_PATH=$prefixdir/lib:$LD_LIBRARY_PATH
-
 echo -e "\n\n My PATH=$PATH\n"
 echo -e "\n My LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
 
@@ -114,15 +99,17 @@ echo -e "\n\n python ? ; python -V :\c"; which python; python -V
 echo -e "\n cmake ? \c"; which cmake; cmake --version
 #echo -e "\n git ? \c"; which git; git --version
 
-echo -e "\n ifx ? ; ifx -V: \c"; which ifx; ifx -V
+#echo -e "\n ifx ? ; ifx -V: \c"; which ifx; ifx -V
 #echo -e "\n mpiifx ? ;  mpiifx -V: \c";which mpiifx; mpiifx -V
-echo -e "\n mpif90 ? \c";which mpif90; mpif90 -V
-echo -e "\n icx ? ; icx -V: \c"; which icx; icx -V
+echo -e "\n mpif90 ? \c"; which mpif90; mpif90 --version
+echo -e "\n mpicc ? \c";  which mpicc; mpicc --version
+echo -e "\n mpicxx ? \c"; which mpicxx; mpicxx --version
+#echo -e "\n icx ? ; icx -V: \c"; which icx; icx -V
 #echo -e "\n mpicc ? : \c"; which mpicc; mpicc -V
 #echo -e "\n mpicxx ? : \c"; which mpicxx; mpicxx -V
-echo -e "\n icpx ? ; icpx -V: \c"; which icpx; icpx -V
+#echo -e "\n icpx ? ; icpx -V: \c"; which icpx; icpx -V
 echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"
-echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
+echo -e "\n mpirun ? \c"; which mpirun; mpirun --version; mpirun --help
 
 # for running jobs from your homedir, use ...
 #cd $SLURM_SUBMIT_DIR
@@ -130,7 +117,7 @@ echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e
 QE=/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e
 
-BUILD=build_intel2025.3.1-openmpi5.0.9_libxc_mkl_scalapack
+BUILD=build_openmpi4.1.8_gcc12.3.0_libcx_mkl2025.3.1_scalapack
 
 echo -e "\n\n QE=$QE"
 echo -e "ls $QE/"
@@ -167,11 +154,13 @@ echo -e "\n\n\n Running cmake :"
 #cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DCMAKE_Fortran_COMPILER=mpiifort -DCMAKE_Fortran_FLAGS="-g -Winline -diag-enable=all -qopt-report=4 -qopt-report-phase ipo"  .. 
 
 
-LIBXC_DIR=/lustre/projects/m/milias/work/software/libxc/install_build_intel2025.3.1
+#LIBXC_DIR=/lustre/projects/m/milias/work/software/libxc/install_build_intel2025.3.1
+LIBXC_DIR=/lustre/projects/m/milias/work/software/libxc/install_build_gnu12.3.0
 LIBXC_INC=$LIBXC_DIR/include
 echo -e "\n LIBXC_DIR=$LIBXC_DIR"; $LIBXC_DIR/bin/xc-info .
+echo -e "\n\n"
 
-cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_Fortran_COMPILER=mpif90 -DCMAKE_Fortran_FLAGS="-g -traceback" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLIBXC_INCLUDE_DIR=$LIBXC_INC  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=OFF  .. 
+cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=mpicc -DCMAKE_CXX_COMPILER=mpicxx -DCMAKE_Fortran_COMPILER=mpif90 -DCMAKE_Fortran_FLAGS="-g -traceback" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLIBXC_INCLUDE_DIR=$LIBXC_INC  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=OFF  .. 
 
 
 echo -e "\n\n Running make -j $SLURM_CPUS_ON_NODE :"

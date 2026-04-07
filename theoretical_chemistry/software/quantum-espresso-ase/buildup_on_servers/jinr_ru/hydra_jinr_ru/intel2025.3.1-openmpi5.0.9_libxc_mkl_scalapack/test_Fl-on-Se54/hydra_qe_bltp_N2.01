@@ -124,7 +124,7 @@ echo -e "\n\n My PATH=$PATH\n"
 echo -e "\nMy LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
 echo -e "Python ? :\c"; which python; python -V
 echo -e "\n mpif90 ?: \c"; which mpif90; mpif90 -V
-echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
+echo -e "\n mpirun ? \c"; which mpirun; mpirun --version; mpirun --help
 
 # for running jobs from your homedir, use ...
 cd $SLURM_SUBMIT_DIR
@@ -142,12 +142,13 @@ inp=$project.in
 
 #out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOBID.out$SLURM_CPUS_ON_NODE
 #out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.omp$OPENBLAS_NUM_THREADS.id$SLURM_JOBID.out
-out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION-$SBATCH_CONSTRAINT.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out
+out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out
+#out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION-$SBATCH_CONSTRAINT.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out
 
 echo -e "\n Running QE pw.x with Intel2025-OpenMPI parallel job:"
 #  OpenMPI : #
 export OMPI_MCA_btl=^openib
-mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE  $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
+mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --bind-to core:overload-allowed  $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
 
 echo -e "\n\n QE finished on : \c";date
 exit

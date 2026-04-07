@@ -111,7 +111,7 @@ echo -e "  ifx ? :\c"; which ifx; ifx -V
 echo -e "  mpif90 ? :\c"; which mpif90; mpif90 -V
 echo -e "  icx ? :\c"; which icx; icx -V
 #echo -e "  mpiicx ? :\c"; which mpiicx; mpiicx -V
-echo -e "  mpicc ? :\c"; which mpicc; mpicc -V
+echo -e "  mpicc ? :\c"; which mpicc; mpicc -V; mpicc --help
 echo -e "  icpx ? :\c"; which icpx; icpx  -V
 echo -e "  mpicxx ? :\c"; which mpicxx; mpicxx  -V
 echo -e "  mpirun ? :\c"; which mpirun; mpirun --version
@@ -161,7 +161,10 @@ echo -e "\n\n Going to do the own configure :"
 
 #./configure --prefix=$INSTALL_DIR --disable-sse-kernels  --disable-sse-assembly-kernels --enable-mpi-module  --enable-ifx-compiler --with-mpi=yes SCALAPACK_LDFLAGS="-L${MKLROOT}/lib.intel64 -lmkl_scalapack_lp64 -Wl,--start-group -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_lp64 -Wl,--end-group -liomp5 -lpthread -lm -ldl"   LDFLAGS="-L$MKLROOT/lib/intel64" FCFLAGS="-I$MKLROOT/include -O3 -xHost" CCFLAGS="-O3 -xHost"  F77=mpif90 FC=mpif90 CXX=mpicc CC=mpicxx
 
-./configure --prefix=$INSTALL_DIR --disable-sse-kernels --enable-mpi-module  --enable-ifx-compiler --with-mpi=yes SCALAPACK_LDFLAGS="-L${MKLROOT}/lib.intel64 -lmkl_scalapack_lp64 -Wl,--start-group -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_lp64 -Wl,--end-group -liomp5 -lpthread -lm -ldl"   LDFLAGS="-L$MKLROOT/lib/intel64" FCFLAGS="-I$MKLROOT/include -O3 -xHost" CCFLAGS="-O3 -xHost -mmmx -msse -msse2 -msse3 -mssse3 -msse4.1 -msse4.2 -maes -mavx -mfma -mavx2 -mavx512f -mavx512cd -mavx512vl -mavx512bw -mavx512dq"  F77=mpif90 FC=mpif90 CXX=mpicc CC=mpicxx
+##./configure --prefix=$INSTALL_DIR --disable-avx-kernels --disable-avx2-kernels --disable-avx512-kernels  --enable-mpi-module  --enable-ifx-compiler --with-mpi=yes SCALAPACK_LDFLAGS="-L${MKLROOT}/lib.intel64 -lmkl_scalapack_lp64 -Wl,--start-group -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_lp64 -Wl,--end-group -liomp5 -lpthread -lm -ldl"   LDFLAGS="-L$MKLROOT/lib/intel64" FCFLAGS="-I$MKLROOT/include -O3 -xHost" CCFLAGS="-O3 -xHost -mmmx -msse -msse2 -msse3 -mssse3 -msse4.1 -msse4.2 -maes -mavx -mfma -mavx2 -mavx512f -mavx512cd -mavx512vl -mavx512bw -mavx512dq"  F77=mpif90 FC=mpif90 CXX=mpicc CC=mpicxx
+
+./configure --prefix=$INSTALL_DIR --disable-avx-kernels --disable-avx2-kernels --disable-avx512-kernels  --enable-mpi-module  --enable-ifx-compiler --with-mpi=yes   --with-test-programs=cpu   --enable-scalapack-tests  SCALAPACK_LDFLAGS="-L${MKLROOT}/lib.intel64 -lmkl_scalapack_lp64 -Wl,--start-group -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_lp64 -Wl,--end-group -liomp5 -lpthread -lm -ldl"   LDFLAGS="-L$MKLROOT/lib/intel64" FCFLAGS="-I$MKLROOT/include -O3 -xHost" CCFLAGS="-O2 -mmmx -msse -msse2 -msse3 -mssse3 -msse4.1 -msse4.2 -maes -mavx -mfma -mavx2 -mavx512f -mavx512cd -mavx512vl -mavx512bw -mavx512dq  -fuse-complex-intrinsics --std=c99"  F77=mpif90 FC=mpif90 CXX=mpicc CC=mpicxx
+
  
 echo -e "\n\n make help: "; make help
 

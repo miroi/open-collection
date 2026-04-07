@@ -72,3 +72,11 @@ Makefile.am: installing './depcomp'
   --disable-avx-kernels   do not build AVX kernels, default: enabled
   --disable-avx2-kernels  do not build AVX2 kernels, default: enabled
   --disable-avx512-kernels
+
+
+In file included from src/elpa2/kernels/complex_sse_1hv_double_precision.c:54:
+src/elpa2/kernels/complex_128bit_256bit_512bit_BLOCK_template.c:2201:49: error: always_inline function '_mm_addsub_pd' requires target feature 'sse3', but would be inlined into function 'hh_trafo_complex_kernel_6_SSE_1hv_double' that is compiled without support for 'sse3'
+ 2201 |         x1 = _SIMD_ADD( ADDITIONAL_ARGUMENT x1, _ADDSUB( _SIMD_MUL( ADDITIONAL_ARGUMENT h1_real, q1), _SIMD_SHUFFLE(tmp1, tmp1, _SHUFFLE_VAL)));
+      |                                                 ^
+
+

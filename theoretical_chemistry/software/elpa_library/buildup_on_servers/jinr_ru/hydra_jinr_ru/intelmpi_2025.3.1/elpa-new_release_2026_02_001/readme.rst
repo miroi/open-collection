@@ -10,7 +10,7 @@ milias@hydra.jinr.ru:/lustre/projects/m/milias/work/software/elpa/elpa-new_relea
 Currently Loaded Modules:
   1) autotools/v1.7.0-1
 
-
+error : https://github.com/marekandreas/elpa/issues/70
 
 
 own  intel/v2025.3.1 autotools/v1.7.0-1 build of ELPA

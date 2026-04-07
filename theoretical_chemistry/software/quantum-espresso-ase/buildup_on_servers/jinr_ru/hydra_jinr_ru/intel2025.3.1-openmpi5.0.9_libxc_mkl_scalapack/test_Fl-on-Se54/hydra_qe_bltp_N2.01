@@ -41,6 +41,11 @@
 echo -e "\nRunning on host `hostname`"
 echo -e "Time is `date` \n"
 
+echo -e "\n The total memory at the node (in GB)"
+free -t -g
+echo -e "\n"
+
+
 echo -e "\nJob user is SLURM_JOB_USER= $SLURM_JOB_USER"
 echo -e "User job SLURM_JOB_NAME=$SLURM_JOB_NAME has assigned ID SLURM_JOBID=$SLURM_JOBID"
 echo -e "This job was submitted from the computer SLURM_SUBMIT_HOST=$SLURM_SUBMIT_HOST"
@@ -81,23 +86,35 @@ module purge
 #module load GVR/v1.0-1 gcc/v11.2.0 fftw/v3.3.10_gcc1120 LAPACK/v3.9.0 openmpi/v4.1.1_gcc1120
 #module load GVR/v1.0-1 intel/v2021.1 Python/v3.10.13
 module load     Python/v3.12.13   intel/v2025.3.1   CMake/v4.2.3
-
-
 echo -e "\n\n loaded modules:"
 module list
 
-echo -e "\nRunning on host `hostname`"
-echo -e "Time is `date` \n"
+#
+# IntelMPI compiled OpenMPI
+#
+INSTALLPATH=/lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1
+INSTALLDIR=install_openmpi-5.0.9-intelv2025.3.1
 
-echo -e "\n The total memory at the node (in GB)"
-free -t -g
-echo -e "\n"
+prefixdir=$INSTALLPATH/$INSTALLDIR
+echo -e "\n Checking presence of full path install dir, ls -lt :"; ls -lt $INSTALLPATH/$INSTALLDIR
+
+echo -e "\n\n  OpenMPI installed binaries and libs:"
+ls -lt $prefixdir/bin/*
+ls -lt $prefixdir/lib/*
+
+# extend environvariables
+export PATH=$prefixdir/bin:$PATH
+export LD_LIBRARY_PATH=$prefixdir/lib:$LD_LIBRARY_PATH
+
+echo -e "\n\n My PATH=$PATH\n"
+echo -e "\n My LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
 
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_intelmpi_mkl_xh
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_intelmpimkl_dbg
 
 #BUILD=build_intelmpi2023_mkl_scalapack
-BUILD=build_intelmpi2025.3.1_libxc_mkl_scalapack
+#BUILD=build_intelmpi2025.3.1_libxc_mkl_scalapack
+BUILD=build_intel2025.3.1-openmpi5.0.9_libxc_mkl_scalapack
 QE=/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/$BUILD
 
 echo -e "\n ldd  $QE/bin/pw.x :"
@@ -105,9 +122,8 @@ ldd  $QE/bin/pw.x
 
 echo -e "\n\n My PATH=$PATH\n"
 echo -e "\nMy LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
-echo -e "Python -v :\c"; python -V
-echo -e "\n ifort -V: \c"; ifort -V
-echo -e "\n mpiifort -V: \c"; mpiifort -V
+echo -e "Python ? :\c"; which python; python -V
+echo -e "\n mpif90 ?: \c"; which mpif90; mpif90 -V
 echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
 
 # for running jobs from your homedir, use ...
@@ -128,15 +144,10 @@ inp=$project.in
 #out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.omp$OPENBLAS_NUM_THREADS.id$SLURM_JOBID.out
 out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out
 
-#echo -e "\n Running QE pw.x OpenMPI parallel job:"
+echo -e "\n Running QE pw.x with Intel2025-OpenMPI parallel job:"
 #  OpenMPI : #
-#export OMPI_MCA_btl=^openib
-#mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE  $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
-
-# IntelMPI :
-echo -e "\n\n Running QE pw.x IntelMPI parallel job  on \c";date; echo
-export I_MPI_HYDRA_BOOTSTRAP=ssh
-mpirun -f $MACHINEFILE -np $SLURM_NTASKS  $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
+export OMPI_MCA_btl=^openib
+mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE  $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
 
 echo -e "\n\n QE finished on : \c";date
 exit

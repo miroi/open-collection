@@ -6,7 +6,7 @@
 ##
 ##-----------------------------------------Slurm settings-----------------------------------------------------
 ## jobname
-#SBATCH -J nad4_sol
+#SBATCH -J nacl
 
 ##  partition (queue)
 #SBATCH --account=bltp
@@ -16,7 +16,7 @@
 
 ## max. execution time
 ##SBATCH -t 4-00:00:00
-#SBATCH -t 0-08:00:00
+#SBATCH -t 0-03:00:00
 ##SBATCH -t 30-00:00:00
 
 ##SBATCH --exclusive
@@ -52,7 +52,7 @@
 #### QE ####
 module purge
 module load intel/v2025.3.1
-module load Python/v3.12.13
+#module load Python/v3.12.13
 #LOCAL_PYTHON="/lustre/projects/d/dsen/local_python/bin/python3"
 export qe_bin="/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/build_intelmpi2025.3.1_libxc_mkl_scalapack"
 
@@ -98,6 +98,11 @@ echo "Based on reserved memory, this node got $SLURM_CPUS_ON_NODE CPUs allocated
 echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
 
 
+## get venv
+echo -e "\n\n Actovating Python virtual environment: "
+source /lustre/projects/m/milias/work/software/myvenv/bin/activate
+pip show ase
+
 # IntelMPI compiled OpenMPI
 INSTALLPATH=/lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1
 INSTALLDIR=install_openmpi-5.0.9-intelv2025.3.1
@@ -130,6 +135,15 @@ echo " It has the disk space of (df -h) :"
 df -h .
 echo
 
+echo -e "\n\n Checking I_MPI_PMI_LIBRARY, I_MPI_ROOT ..."
+echo -e "I_MPI_PMI_LIBRARY=$I_MPI_PMI_LIBRARY"
+echo -e "I_MPI_ROOT=$I_MPI_ROOT"
+echo -e "Unsetting them !!!"
+unset I_MPI_PMI_LIBRARY
+unset I_MPI_ROOT
+
+# 
+#export I_MPI_PMI_LIBRARY=/lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi-5.0.9-intelv2025.3.1/lib/libmpix.so
 
 ##--------------------------------------------------------------------------------------------------------------
 ##
@@ -137,7 +151,7 @@ echo
 ##---------------------------------------------------Run job----------------------------------------------------
 ## Specify ASE script here
 echo -e "\nStarting ASE parallel job on \c";date; echo
-python nacl.py
+python nacl_ase_qe.py
 echo -e "\nASE finished on : \c";date
 exit
 ##--------------------------------------------------------------------------------------------------------------

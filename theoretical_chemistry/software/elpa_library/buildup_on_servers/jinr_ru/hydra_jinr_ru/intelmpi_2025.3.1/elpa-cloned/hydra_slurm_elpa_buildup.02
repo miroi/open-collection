@@ -94,7 +94,7 @@ echo -e "  cmake ? :\c";  which cmake; cmake --version
 echo -e "  ifx ? :\c"; which ifx; ifx -V
 echo -e "  mpiifx ? :\c"; which mpiifx; mpiifx -V
 echo -e "  icx ? :\c"; which icx; icx -V
-echo -e "  mpiicx ? :\c"; which mpiicx; mpiicx -V
+echo -e "  mpiicx ? :\c"; which mpiicx;  mpiicx -V;  mpiicx --help
 echo -e "  icpx ? :\c"; which icpx; icpx  -V
 echo -e "  mpiicpx ? :\c"; which mpiicpx; mpiicpx -V
 echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"; ls -lt  $MKLROOT/lib/intel64
@@ -159,7 +159,7 @@ echo -e "\n\n Going to do the own configure :"
 #./configure --prefix=$INSTALL_DIR   --disable-sse-kernels   --disable-avx-kernels --disable-avx2-kernels --disable-avx512-kernels   --enable-mpi-module  --enable-ifx-compiler --with-mpi=yes --with-test-programs=cpu   --enable-scalapack-tests  SCALAPACK_LDFLAGS="-L${MKLROOT}/lib.intel64 -lmkl_scalapack_lp64 -Wl,--start-group -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_lp64 -Wl,--end-group -liomp5 -lpthread -lm -ldl"   LDFLAGS="-L$MKLROOT/lib/intel64" FCFLAGS="-I$MKLROOT/include -O3 -xHost" CCFLAGS="-mmmx -msse -msse2 -msse3 -mssse3 -msse4.1 -msse4.2 -maes -mavx -mfma -mavx2 -mavx512f -mavx512cd -mavx512vl -mavx512bw -mavx512dq"  F77=mpiifx FC=mpiifx CXX=mpiicpx CC=mpiicx
 
 # needs --disable-avx* ...
-./configure --prefix=$INSTALL_DIR  --disable-avx-kernels --disable-avx2-kernels  --enable-mpi-module  --enable-ifx-compiler --with-mpi=yes --with-test-programs=cpu   --enable-scalapack-tests  SCALAPACK_LDFLAGS="-L${MKLROOT}/lib.intel64 -lmkl_scalapack_lp64 -Wl,--start-group -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_lp64 -Wl,--end-group -liomp5 -lpthread -lm -ldl"   LDFLAGS="-L$MKLROOT/lib/intel64" FCFLAGS="-I$MKLROOT/include -O3 -xHost" CCFLAGS="-O3 -xHost"  F77=mpiifx FC=mpiifx CXX=mpiicpx CC=mpiicx
+./configure -v --prefix=$INSTALL_DIR --disable-sse-kernels  --disable-avx-kernels --disable-avx2-kernels  --disable-avx512-kernels  --enable-mpi-module  --enable-ifx-compiler --with-mpi=yes --with-test-programs=cpu   --enable-scalapack-tests  SCALAPACK_LDFLAGS="-L${MKLROOT}/lib.intel64 -lmkl_scalapack_lp64 -Wl,--start-group -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_lp64 -Wl,--end-group -liomp5 -lpthread -lm -ldl"   LDFLAGS="-L$MKLROOT/lib/intel64" FCFLAGS="-I$MKLROOT/include -O3 -xHost" CCFLAGS="-O3 "  F77=mpiifx FC=mpiifx CXX=mpiicpx CC=mpiicx
 
 echo -e "\n\n make help:"; make help
 

@@ -13,5 +13,5 @@ Currently Loaded Modules:
 autoconf works...
 https://github.com/marekandreas/elpa/issues/70#issuecomment-4202676609
 
-
+autoreconf -f -i
 

@@ -81,3 +81,8 @@ milias@hydra.jinr.ru:/lustre/projects/m/milias/work/software/elpa/elpa_git_clone
 `configure' configures elpa 2026.02.001 to adapt to many kinds of systems.
 
 Usage: ./configure [OPTION]... [VAR=VALUE]...
+
+
+configure: error: Could not compile a test program with AVX512, adjust the C compiler or CFLAGS. Possibly (some of) the flags "  -mmmx -msse -msse2 -msse3 -mssse3 -msse4.1 -msse4.2 -maes -mavx -mfma -mavx2 -mavx512f -mavx512cd -mavx512vl -mavx512bw -mavx512dq " solve this issue
+
+

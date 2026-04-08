@@ -42,16 +42,14 @@
 #SBATCH --mail-user=milias@theor.jinr.ru
 #SBATCH --mail-type=ALL
 
-
-##------------------------------------------------------------------------------------------------------------
-##
-##
-##-----------------------------------------Builds with DFT-D4 patch-------------------------------------------
-#
-
 #### QE ####
 module purge
 module load intel/v2025.3.1   Python/v3.12.13
+
+echo -e "\n\n loaded modules:"
+module list
+
+
 export qe_bin="/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/build_intelmpi2025.3.1_libxc_mkl_scalapack"
 
 
@@ -131,17 +129,6 @@ echo " It has the disk space of (df -h) :"
 df -h .
 echo
 
-echo -e "\n\n Checking I_MPI_PMI_LIBRARY, I_MPI_ROOT ..."
-echo -e "I_MPI_PMI_LIBRARY=$I_MPI_PMI_LIBRARY"
-echo -e "I_MPI_ROOT=$I_MPI_ROOT"
-echo -e "Unsetting them !!!"
-unset I_MPI_PMI_LIBRARY
-unset I_MPI_ROOT
-
- 
-#export I_MPI_PMI_LIBRARY=/lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi-5.0.9-intelv2025.3.1/lib/libmpix.so
-
-
 #
 # own QE job
 #
@@ -151,7 +138,8 @@ out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SL
 echo -e "\n Running QE pw.x with Intel2025-OpenMPI5 parallel job:"
 #  OpenMPI : #
 export OMPI_MCA_btl=^openib
-mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --bind-to core:overload-allowed  $qe_bin/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
+#mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --bind-to core:overload-allowed  $qe_bin/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
+mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE  $qe_bin/bin/pw.x  < $inp > $out
 
 echo -e "\n\n QE finished on : \c";date
 exit

@@ -129,6 +129,12 @@ echo " It has the disk space of (df -h) :"
 df -h .
 echo
 
+export OMP_NUM_THREADS=1
+
+export OMPI_MCA_pml=ucx
+export OMPI_MCA_btl=self,vader,tcp
+
+
 #
 # own QE job
 #
@@ -137,9 +143,12 @@ inp=$project.in
 out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out
 echo -e "\n Running QE pw.x with Intel2025-OpenMPI5 parallel job:"
 #  OpenMPI : #
-export OMPI_MCA_btl=^openib
+#export OMPI_MCA_btl=^openib
 #mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --bind-to core:overload-allowed  $qe_bin/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
-mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE  $qe_bin/bin/pw.x  < $inp > $out
+#mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE  --bind-to core:overload-allowed  $qe_bin/bin/pw.x  < $inp > $out
+#mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE  --map-by core:OVERSUBSCRIBE --bind-to core:overload-allowed  $qe_bin/bin/pw.x  < $inp > $out
+
+mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE  --oversubscribe --mca pml ob1 --mca btl tcp,self  $qe_bin/bin/pw.x  < $inp > $out
 
 echo -e "\n\n QE finished on : \c";date
 exit

@@ -158,13 +158,3 @@ export OMPI_MCA_btl=^openib
 mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --bind-to core:overload-allowed  $qe_bin/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
 
 
-##--------------------------------------------------------------------------------------------------------------
-##
-##
-##---------------------------------------------------Run job----------------------------------------------------
-## Specify ASE script here
-echo -e "\nStarting ASE parallel job on \c";date; echo
-python nacl_ase_qe.py
-echo -e "\nASE finished on : \c";date
-exit
-##--------------------------------------------------------------------------------------------------------------

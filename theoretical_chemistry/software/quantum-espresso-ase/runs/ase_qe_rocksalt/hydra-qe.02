@@ -51,9 +51,7 @@
 
 #### QE ####
 module purge
-module load intel/v2025.3.1
-#module load Python/v3.12.13
-#LOCAL_PYTHON="/lustre/projects/d/dsen/local_python/bin/python3"
+module load intel/v2025.3.1   Python/v3.12.13
 export qe_bin="/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/build_intelmpi2025.3.1_libxc_mkl_scalapack"
 
 
@@ -121,8 +119,6 @@ echo -e "\n My LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
 echo -e "\nldd  $qe_bin/bin/pw.x :"
 ldd  $qe_bin/bin/pw.x
 
-echo -e "\n\n My PATH=$PATH\n"
-echo -e "\nMy LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
 echo -e "Python ? :\c"; which python; python -V
 echo -e "\n mpif90 ?: \c"; which mpif90; mpif90 -V
 echo -e "\n mpirun ? \c"; which mpirun; mpirun --version; mpirun --help
@@ -142,7 +138,7 @@ echo -e "Unsetting them !!!"
 unset I_MPI_PMI_LIBRARY
 unset I_MPI_ROOT
 
-# 
+ 
 #export I_MPI_PMI_LIBRARY=/lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi-5.0.9-intelv2025.3.1/lib/libmpix.so
 
 
@@ -152,9 +148,11 @@ unset I_MPI_ROOT
 project=NaCl_qe
 inp=$project.in
 out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out
-echo -e "\n Running QE pw.x with Intel2025-OpenMPI parallel job:"
+echo -e "\n Running QE pw.x with Intel2025-OpenMPI5 parallel job:"
 #  OpenMPI : #
 export OMPI_MCA_btl=^openib
 mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --bind-to core:overload-allowed  $qe_bin/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
 
+echo -e "\n\n QE finished on : \c";date
+exit
 

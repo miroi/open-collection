@@ -1,0 +1,2305 @@
+
+Running on host n02p046.gvr.local
+Date & Time is Fri Apr 10 14:53:34 MSK 2026 
+
+
+Job user is SLURM_JOB_USER= milias
+User job SLURM_JOB_NAME=QEbuild has assigned ID SLURM_JOBID=159041
+This job was submitted from the computer SLURM_SUBMIT_HOST=space06.hydra.local
+and from the home directory SLURM_SUBMIT_DIR:
+/lustre/projects/m/milias/work/git-projects/open-collection/theoretical_chemistry/software/quantum-espresso-ase/buildup_on_servers/jinr_ru/hydra_jinr_ru/intel2023_i8-openmpi4.1.8_libxc_mkl_scalapack
+Job is running on the cluster compute node: SLURM_CLUSTER_NAME=gvr
+and is employing SLURM_JOB_NUM_NODES=1 node/nodes:
+SLURM_JOB_NODELIST = n02p046
+Job partition is SLURM_JOB_PARTITION=bltp 
+
+Number of allocated CPUs on each single node, SLURM_CPUS_ON_NODE=8 .
+Number of all reserved threads over ALL nodes, SLURM_NTASKS=8 .
+Job has reserved memory per node, SLURM_MEM_PER_NODE=65536 MB of memory
+
+generated machinefile for MPI, nodes.bltp.159041
+-rw-r--r-- 1 milias hybrilit 144 Apr 10 14:53 /lustre/projects/m/milias/work/git-projects/open-collection/theoretical_chemistry/software/quantum-espresso-ase/buildup_on_servers/jinr_ru/hydra_jinr_ru/intel2023_i8-openmpi4.1.8_libxc_mkl_scalapack/nodes.bltp.159041
+containing:
+n02p046.gvr.local
+n02p046.gvr.local
+n02p046.gvr.local
+n02p046.gvr.local
+n02p046.gvr.local
+n02p046.gvr.local
+n02p046.gvr.local
+n02p046.gvr.local
+The node's CPU model name	: Intel(R) Xeon(R) Platinum 8268 CPU @ 2.90GHz
+BTW, this node has total 96 CPUs available for an EXCLUSIVE job.
+Based on reserved memory, this node got 8 CPUs allocated for SLURM calculations.
+This job wants SLURM_NTASKS=8 threads . 
+
+
+ loaded modules:
+
+Currently Loaded Modules:
+  1) Python/v3.12.13   3) java/v8u202     5) intel/v2023.1.0
+  2) OpenSSL/v3.5.5    4) CMake/v3.26.5   6) openmpi/v4.1.8_intel2023_i8
+
+ 
+
+
+Running on host n02p046.gvr.local
+Time is Fri Apr 10 14:53:39 MSK 2026 
+
+
+ The total memory at the node (in GB)
+               total        used        free      shared  buff/cache   available
+Mem:             187           5         172           1          12         181
+Swap:              3           0           3
+Total:           191           5         176
+
+
+ My PATH=/cvmfs/hlit.jinr.ru/alma9/openmpi/v4.1.8_intel2023_i8/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/vtune/2023.1.0/bin64:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/libfabric/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/bin/intel64:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/itac/2021.9.0/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/inspector/2023.1.0/bin64:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/dpcpp-ct/2023.1.0/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/dev-utilities/2021.9.0/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/debugger/2023.1.0/gdb/intel64/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/compiler/2023.1.0/linux/lib/oclfpga/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/compiler/2023.1.0/linux/bin/intel64:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/compiler/2023.1.0/linux/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/clck/2021.7.3/bin/intel64:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/advisor/2023.1.0/bin64:/cvmfs/hlit.jinr.ru/alma9/CMake/v3.26.5/bin:/cvmfs/hlit.jinr.ru/alma9/java/v8u202/bin:/cvmfs/hlit.jinr.ru/alma9/OpenSSL/v3.5.5/bin:/cvmfs/hlit.jinr.ru/alma9/miniconda/envs/Py3.12.13/bin:/cvmfs/hlit.jinr.ru/alma9/miniconda/condabin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/puppetlabs/bin:.
+
+
+ My LD_LIBRARY_PATH=/cvmfs/hlit.jinr.ru/alma9/openmpi/v4.1.8_intel2023_i8/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/tbb/2021.9.0/env/../lib/intel64/gcc4.8:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/libfabric/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/lib/release:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/itac/2021.9.0/slib:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/ippcp/2021.7.0/lib/intel64:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/ipp/2021.8.0/lib/intel64:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/dnnl/2023.1.0/cpu_dpcpp_gpu_dpcpp/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/debugger/2023.1.0/gdb/intel64/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/debugger/2023.1.0/libipt/intel64/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/debugger/2023.1.0/dep/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/dal/2023.1.0/lib/intel64:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/compiler/2023.1.0/linux/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/compiler/2023.1.0/linux/lib/x64:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/compiler/2023.1.0/linux/lib/oclfpga/host/linux64/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/compiler/2023.1.0/linux/compiler/lib/intel64_lin:/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/ccl/2021.9.0/lib/cpu_gpu_dpcpp:/cvmfs/hlit.jinr.ru/alma9/java/v8u202/lib:/cvmfs/hlit.jinr.ru/alma9/OpenSSL/v3.5.5/lib64 
+
+
+ python ? ; python -V :/cvmfs/hlit.jinr.ru/alma9/miniconda/envs/Py3.12.13/bin/python
+Python 3.12.13
+
+ cmake ? /cvmfs/hlit.jinr.ru/alma9/CMake/v3.26.5/bin/cmake
+cmake version 3.26.5
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
+
+ ifx ? ; ifx -V: /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/compiler/2023.1.0/linux/bin/ifx
+Intel(R) Fortran Compiler for applications running on Intel(R) 64, Version 2023.1.0 Build 20230320
+Copyright (C) 1985-2023 Intel Corporation. All rights reserved.
+
+
+ mpif90 ? /cvmfs/hlit.jinr.ru/alma9/openmpi/v4.1.8_intel2023_i8/bin/mpif90
+Intel(R) Fortran Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.9.0 Build 20230302_000000
+Copyright (C) 1985-2023 Intel Corporation.  All rights reserved.
+
+
+ icx ? ; icx -V: /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/compiler/2023.1.0/linux/bin/icx
+Intel(R) oneAPI DPC++/C++ Compiler for applications running on Intel(R) 64, Version 2023.1.0 Build 20230320
+Copyright (C) 1985-2023 Intel Corporation. All rights reserved.
+
+
+ icpx ? ; icpx -V: /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/compiler/2023.1.0/linux/bin/icpx
+Intel(R) oneAPI DPC++/C++ Compiler for applications running on Intel(R) 64, Version 2023.1.0 Build 20230320
+Copyright (C) 1985-2023 Intel Corporation. All rights reserved.
+
+
+ Intel MKL library ? MKLROOT=/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0
+
+ mpirun ? /cvmfs/hlit.jinr.ru/alma9/openmpi/v4.1.8_intel2023_i8/bin/mpirun
+mpirun (Open MPI) 4.1.8
+
+Report bugs to http://www.open-mpi.org/community/help/
+
+
+ QE=/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e
+ls /lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/
+=
+CMakeLists.txt
+CONTRIBUTING.md
+COUPLE
+CPV
+Doc
+EPW
+FFTXlib
+GUI
+GWW
+HP
+KCW
+KS_Solvers
+LAXlib
+LR_Modules
+License
+Makefile
+Modules
+NEB
+PHonon
+PIOUD
+PP
+PW
+PWCOND
+QEHeat
+README.md
+README_GPU.md
+TDDFPT
+UtilXlib
+XClib
+XSpectra
+archive
+atomic
+build_intel2025.3.1-openmpi5.0.9_libxc_mkl_scalapack
+build_intelmpi2023_mkl_scalapack
+build_intelmpi2025.3.1_libxc_mkl
+build_intelmpi2025.3.1_libxc_mkl_scalapack
+build_intelmpi2025.3.1_libxc_mkl_scalapack_elpa
+build_intelmpi2025.3.1_mkl_scalapack
+build_openmpi4.1.8_gcc12.3.0_libcx_mkl2025.3.1_scalapack
+cmake
+configure
+dev-tools
+dft-d3
+environment_variables
+external
+include
+install
+logo.jpg
+pseudo
+test-suite
+upflib
+
+ I am in QE=/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e
+
+ The directory  /lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/build_intel2023_i8-openmpi4.1.8_libxc_mkl_scalapack does not exist, creating it.
+
+ Current directory where this SLURM job is running /lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/build_intel2023_i8-openmpi4.1.8_libxc_mkl_scalapack
+ Current directory  QE/BUILD=/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/build_intel2023_i8-openmpi4.1.8_libxc_mkl_scalapack 
+ It has the disk space of (df -h) :
+Filesystem                                                                         Size  Used Avail Use% Mounted on
+10.220.25.75@o2ib,10.220.25.76@o2ib:10.220.25.79@o2ib,10.220.25.80@o2ib:/projects  2.2P  224T  1.9P  11% /lustre/projects
+
+ ls -lt /lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/build_intel2023_i8-openmpi4.1.8_libxc_mkl_scalapack
+total 0
+
+
+
+ Running cmake :
+
+ LIBXC_DIR=/lustre/projects/m/milias/work/software/libxc/install_build_intel2025.3.1
+libxc version 7.0.0
+S. Lehtola, C. Steigemann, M. J.T. Oliveira, and M. A.L. Marques.,  SoftwareX 7, 1–5 (2018)
+doi: 10.1016/j.softx.2017.11.002
+
+Functional '.' not found.
+-- The Fortran compiler identification is Intel 2021.9.0.20230302
+-- The C compiler identification is IntelLLVM 2023.1.0
+-- Detecting Fortran compiler ABI info
+-- Detecting Fortran compiler ABI info - done
+-- Check for working Fortran compiler: /cvmfs/hlit.jinr.ru/alma9/openmpi/v4.1.8_intel2023_i8/bin/mpif90 - skipped
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/compiler/2023.1.0/linux/bin/icx - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Setting build type to 'Release' as none was specified
+-- Enable sanitizer QE_ENABLE_SANITIZER=none
+-- C preprocessor used by qe_preprocess_source in qeHelpers.cmake: /usr/bin/cpp
+-- Performing Test Fortran_ISYSTEM_SUPPORTED
+-- Performing Test Fortran_ISYSTEM_SUPPORTED - Success
+-- Found MPI_Fortran: /cvmfs/hlit.jinr.ru/alma9/openmpi/v4.1.8_intel2023_i8/bin/mpif90 (found version "3.1") 
+-- Found MPI: TRUE (found version "3.1") found components: Fortran 
+-- Selected the Fortran 'mpi' module. QE_ENABLE_MPI_MODULE=ON
+-- MPI settings used by CTest
+     MPIEXEC_EXECUTABLE : /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin/mpiexec
+     MPIEXEC_NUMPROC_FLAG : -n
+     MPIEXEC_PREFLAGS : 
+   Tests run as : /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mpi/2021.9.0/bin/mpiexec -n <NUM_PROCS>  <EXECUTABLE>
+-- Found Git: /usr/bin/git (found suitable version "2.47.3", minimum required is "2.13") 
+-- Source files are cloned from a git repository.
+   sed supports -E
+   Git branch: develop
+   Git commit hash: 3e5a71a67d2fb1ae1be6b5fa85d1ffd600d0d4d8
+-- Trying to find LAPACK from Intel MKL
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Looking for Fortran sgemm
+-- Looking for Fortran sgemm - found
+-- Found BLAS: /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_intel_lp64.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_sequential.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_core.so;-lm;-ldl  
+-- Looking for Fortran cheev
+-- Looking for Fortran cheev - found
+-- Found LAPACK: /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_intel_lp64.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_sequential.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_core.so;-lm;-ldl;-lm;-ldl  
+-- Looking for Fortran zhpev
+-- Looking for Fortran zhpev - found
+-- Looking for Fortran pdgemm
+-- Looking for Fortran pdgemm - not found
+-- Looking for Fortran pdgemm
+-- Looking for Fortran pdgemm - found
+-- Found SCALAPACK: /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_scalapack_lp64.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_blacs_openmpi_lp64.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_intel_lp64.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_sequential.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_core.so;-lm;-ldl;
+-- Found PkgConfig: /usr/bin/pkg-config (found version "1.7.3") 
+-- Checking for one of the modules 'libxc>='
+-- Found Libxc: /lustre/projects/m/milias/work/software/libxc/install_build_intel2025.3.1/lib64/libxc.a  
+-- Libxc version 7.0.0 found.
+Project C_FLAGS:  -O3 -DNDEBUG
+Project Fortran_FLAGS: -g -traceback -O3
+Project INCLUDE_DIRECTORIES: /lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/include
+Project EXE_LINKER_FLAGS:  
+Project SHARED_LINKER_FLAGS:  
+-- Installing Wannier90 via submodule
+-- Installing MBD via submodule
+-- Found Git: /usr/bin/git (found version "2.47.3") 
+-- Setting version tag to 0.13.0-2-g89a3cc1 from Git
+-- Installing DeviceXlib via submodule
+-- Found VendorFFTW: /cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_intel_lp64.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_sequential.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_core.so;-lm;-ldl;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_intel_lp64.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_sequential.so;/cvmfs/hlit.jinr.ru/alma9/intel/v2023.1.0/mkl/2023.1.0/lib/intel64/libmkl_core.so;-lm;-ldl;-lm;-ldl  
+-- Looking for mallinfo
+-- Looking for mallinfo - found
+-- Enabling tests in test-suite
+
+Only pw and cp results from ctest are reliable, we are working on making the rest tests work reliably with ctest. To run non-pw/cp tests, make a softlink of the bin directory to the root of QE source tree and run tests in the test-suite directory under that root.
+
+-- generating tests in pw category
+-- generating tests in cp category
+-- Configuring done (151.4s)
+-- Generating done (75.8s)
+-- Build files have been written to: /lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/build_intel2023_i8-openmpi4.1.8_libxc_mkl_scalapack
+
+
+ make help :
+The following are some of the valid targets for this Makefile:
+... all (the default if no target is provided)
+... clean
+... depend
+... edit_cache
+... install
+... install/local
+... install/strip
+... list_install_components
+... rebuild_cache
+... test
+... all_currents
+... couple
+... cp
+... depgraph
+... epw
+... gitrev
+... gwl
+... hp
+... kcw
+... ld1
+... neb
+... ph
+... pioud
+... pp
+... pw
+... pwall
+... pwcond
+... qe_ks_headers
+... qe_lax_headers
+... tddfpt
+... upf
+... w90
+... xspectra
+... mbd
+... qe_atomic
+... qe_atomic_exe
+... qe_atomic_test_exe
+... qe_couple
+... qe_cpv
+... qe_cpv_cppp_exe
+... qe_cpv_exe
+... qe_cpv_manycp_exe
+... qe_cpv_wfdd_exe
+... qe_device_lapack
+... qe_devxlib
+... qe_dftd3
+... qe_epw
+... qe_epw_exe
+... qe_epw_nscf2supercond_exe
+... qe_fftx
+... qe_fftx_c
+... qe_fftx_test
+... qe_fftx_test_common
+... qe_gww
+... qe_gww_bse
+... qe_gww_bse_bse_main_exe
+... qe_gww_gww_exe
+... qe_gww_gww_fit_exe
+... qe_gww_head
+... qe_gww_head_exe
+... qe_gww_minpack
+... qe_gww_pw4gww
+... qe_gww_pw4gww_exe
+... qe_gww_simple
+... qe_gww_simple_bse_exe
+... qe_gww_simple_exe
+... qe_gww_simple_ip_exe
+... qe_gww_simplebse
+... qe_gww_simpleip
+... qe_gww_util_abcoefftoeps_exe
+... qe_gww_util_grap_exe
+... qe_gww_util_memorypw4gww_exe
+... qe_hp
+... qe_hp_exe
+... qe_kcw
+... qe_kcw_exe
+... qe_kcwpp
+... qe_kcwpp_interp_exe
+... qe_kcwpp_merge_wann_exe
+... qe_kcwpp_sh_exe
+... qe_kcwpp_ups_exe
+... qe_kssolver_cg
+... qe_kssolver_davidson
+... qe_kssolver_davidsonrci
+... qe_kssolver_dense
+... qe_kssolver_paro
+... qe_kssolver_rmmdiis
+... qe_lax
+... qe_lax_test
+... qe_libbeef
+... qe_lr_modules
+... qe_modules
+... qe_modules_c
+... qe_neb
+... qe_neb_exe
+... qe_neb_pathinterpolation_exe
+... qe_phonon_alpha2f_exe
+... qe_phonon_dvscf_q2r_exe
+... qe_phonon_dynmat_exe
+... qe_phonon_epa_exe
+... qe_phonon_fd
+... qe_phonon_fd_exe
+... qe_phonon_fdef_exe
+... qe_phonon_fdifc_exe
+... qe_phonon_fqha_exe
+... qe_phonon_gamma
+... qe_phonon_lambda_exe
+... qe_phonon_matdyn_exe
+... qe_phonon_ph
+... qe_phonon_ph_exe
+... qe_phonon_phaux
+... qe_phonon_phcg_exe
+... qe_phonon_postahc_exe
+... qe_phonon_q2qstar_exe
+... qe_phonon_q2r_exe
+... qe_pioud
+... qe_pioud_exe
+... qe_pp
+... qe_pp_average_exe
+... qe_pp_bands_exe
+... qe_pp_d3hess_exe
+... qe_pp_dos_exe
+... qe_pp_epsilon_exe
+... qe_pp_exe
+... qe_pp_fermiproj_exe
+... qe_pp_fermisurface_exe
+... qe_pp_fermivelocity_exe
+... qe_pp_initial_state_exe
+... qe_pp_molecularpdos_exe
+... qe_pp_opengrid_exe
+... qe_pp_pawplot_exe
+... qe_pp_planavg_exe
+... qe_pp_plotband_exe
+... qe_pp_plotproj_exe
+... qe_pp_plotrho_exe
+... qe_pp_pmw_exe
+... qe_pp_ppacf_exe
+... qe_pp_projwfc_exe
+... qe_pp_pw2bgw_exe
+... qe_pp_pw2critic_exe
+... qe_pp_pw2gt_exe
+... qe_pp_pw2gw_exe
+... qe_pp_pw2wannier90_exe
+... qe_pp_rism_exe
+... qe_pp_st_dos_exe
+... qe_pp_st_ef_exe
+... qe_pp_st_fermiint0_exe
+... qe_pp_st_fermiint1_exe
+... qe_pp_sumpdos_exe
+... qe_pp_wannier2pw_exe
+... qe_pp_wannierham_exe
+... qe_pp_wannierplot_exe
+... qe_pp_wfck2r_exe
+... qe_pw
+... qe_pw_exe
+... qe_pw_tools_cell2ibrav_exe
+... qe_pw_tools_ev_exe
+... qe_pw_tools_ibrav2cell_exe
+... qe_pw_tools_kpoints_exe
+... qe_pw_tools_pwi2xsf_exe
+... qe_pw_tools_scan_ibrav_exe
+... qe_pwcond_exe
+... qe_qeheat
+... qe_qeheat_exe
+... qe_tddfpt
+... qe_tddfpt_turbodavidson_exe
+... qe_tddfpt_turboeels_exe
+... qe_tddfpt_turbolanczos_exe
+... qe_tddfpt_turbomagnon_exe
+... qe_tddfpt_turbospectrum_exe
+... qe_upflib
+... qe_upflib_casino2upf_exe
+... qe_upflib_hgh2qe_exe
+... qe_upflib_upfconv_exe
+... qe_upflib_virtual_v2_exe
+... qe_utilx
+... qe_utilx_c
+... qe_utilx_tests
+... qe_w90chk2chk_exe
+... qe_wannier90
+... qe_wannier90_exe
+... qe_wannier90_postw90_exe
+... qe_xc_infos
+... qe_xclib
+... qe_xclib_test
+... qe_xml
+... qe_xspectra
+... qe_xspectra_exe
+... qe_xspectra_gipaw
+... qe_xspectra_molecularnexafs_exe
+... qe_xspectra_spectracorrection_exe
+... qe_zg_bands_unfold_exe
+... qe_zg_disca_exe
+... qe_zg_epsilon_Gaus_exe
+... qe_zg_exe
+... qe_zg_pp_disca_exe
+... qe_zg_pp_spctrlfn_exe
+... test_qe_fftx_fft_scalar_gpu
+... test_qe_fftx_fft_scatter_mod_gpu
+... test_qe_fftx_fwinv_gpu
+... test_qe_lax_lapack_zdotc
+... test_qe_utilx_mp_bcast_i1
+... test_qe_utilx_mp_bcast_im
+... test_qe_utilx_mp_bcast_it
+... test_qe_utilx_mp_bcast_iv
+... test_qe_utilx_mp_bcast_iv_buffer
+... test_qe_utilx_mp_bcast_lv_buffer
+... test_qe_utilx_mp_bcast_rv_buffer
+... test_qe_utilx_mp_count_nodes
+... test_qe_utilx_mp_max_iv_buffer
+... test_qe_utilx_mp_max_rv_buffer
+... test_qe_utilx_mp_min_iv_buffer
+... test_qe_utilx_mp_min_rv_buffer
+... test_qe_utilx_mp_sum_iv_buffer
+... test_qe_utilx_mp_sum_rv_buffer
+... test_qe_utilx_offload_macros
+
+
+ Running make -j 8 :
+[  0%] Building C object UtilXlib/CMakeFiles/qe_utilx_c.dir/cptimer.c.o
+[  0%] Building C object FFTXlib/src/CMakeFiles/qe_fftx_c.dir/fft_stick.c.o
+[  0%] Building Fortran object UtilXlib/CMakeFiles/qe_device_lapack.dir/device_helper.f90.o
+[  0%] Building Fortran object upflib/CMakeFiles/qe_xml.dir/dom.f90.o
+[  0%] Building C object UtilXlib/CMakeFiles/qe_utilx_c.dir/copy.c.o
+[  0%] Building Fortran object external/CMakeFiles/qe_devxlib.dir/devxlib/src/device_auxfunc_mod.f90.o
+[  0%] Building Fortran object external/mbd/src/CMakeFiles/mbd.dir/mbd_constants.f90.o
+[  0%] Building C object FFTXlib/src/CMakeFiles/qe_fftx_c.dir/fftw.c.o
+[  0%] Building Fortran object external/CMakeFiles/qe_wannier90.dir/wannier90/src/constants.F90.o
+[  0%] Building C object UtilXlib/CMakeFiles/qe_utilx_c.dir/c_mkdir.c.o
+[  0%] Building Fortran object external/mbd/src/CMakeFiles/mbd.dir/mbd_version.f90.o
+[  0%] Building C object FFTXlib/src/CMakeFiles/qe_fftx_c.dir/fftw_sp.c.o
+[  0%] Building Fortran object external/CMakeFiles/qe_devxlib.dir/devxlib/src/device_fbuff.f90.o
+[  0%] Linking Fortran static library ../lib/libqe_device_lapack.a
+[  0%] Built target gitrev
+[  0%] Building Fortran object upflib/CMakeFiles/qe_xml.dir/xmltools.f90.o
+[  0%] Building C object FFTXlib/src/CMakeFiles/qe_fftx_c.dir/fftw_dp.c.o
+[  1%] Building C object UtilXlib/CMakeFiles/qe_utilx_c.dir/eval_infix.c.o
+[  1%] Building C object UtilXlib/CMakeFiles/qe_utilx_c.dir/fletcher32.c.o
+[  1%] Building C object UtilXlib/CMakeFiles/qe_utilx_c.dir/md5.c.o
+[  1%] Building C object UtilXlib/CMakeFiles/qe_utilx_c.dir/md5_from_file.c.o
+[  1%] Building C object UtilXlib/CMakeFiles/qe_utilx_c.dir/memstat.c.o
+[  1%] Building C object UtilXlib/CMakeFiles/qe_utilx_c.dir/memusage.c.o
+[  1%] Building C object UtilXlib/CMakeFiles/qe_utilx_c.dir/ptrace.c.o
+[  1%] Building Fortran object external/mbd/src/CMakeFiles/mbd.dir/mbd_defaults.f90.o
+[  1%] Linking C static library ../lib/libqe_utilx_c.a
+[  1%] Building Fortran object external/mbd/src/CMakeFiles/mbd.dir/mbd_gradients.f90.o
+[  2%] Building Fortran object external/mbd/src/CMakeFiles/mbd.dir/mbd_linalg.F90.o
+[  2%] Built target qe_device_lapack
+[  2%] Building Fortran object external/CMakeFiles/qe_wannier90.dir/wannier90/src/io.F90.o
+[  2%] Built target qe_utilx_c
+[  2%] Building C object Modules/CMakeFiles/qe_modules_c.dir/customize_signals.c.o
+[  2%] Preprocessing /lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/LAXlib/laxlib.h
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/LAXlib/laxlib.h:4:52: warning: missing terminating ' character
+    4 | ! GNU General Public License. See the file `License'
+      |                                                    ^
+[  3%] Building C object Modules/CMakeFiles/qe_modules_c.dir/qmmm_aux.c.o
+[  3%] Building Fortran object external/CMakeFiles/qe_devxlib.dir/devxlib/src/device_memcpy_mod.f90.o
+[  3%] Preprocessing /lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/LAXlib/laxlib_hi.h
+[  3%] Building Fortran object external/CMakeFiles/qe_devxlib.dir/devxlib/src/timer_mod.f90.o
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/LAXlib/laxlib_hi.h:4:52: warning: missing terminating ' character
+    4 | ! GNU General Public License. See the file `License'
+      |                                                    ^
+[  3%] Preprocessing /lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/LAXlib/laxlib_kinds.h
+[  3%] Preprocessing /lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/LAXlib/laxlib_low.h
+[  3%] Building Fortran object upflib/CMakeFiles/qe_xml.dir/wxml.f90.o
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/LAXlib/laxlib_low.h:4:52: warning: missing terminating ' character
+    4 | ! GNU General Public License. See the file `License'
+      |                                                    ^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/LAXlib/laxlib_low.h:16:73: warning: missing terminating ' character
+   16 |     LOGICAL, INTENT(IN) :: do_distr_diag_inside_bgrp_  ! comme son nom l'indique
+      |                                                                         ^
+[  3%] Building Fortran object external/CMakeFiles/qe_devxlib.dir/devxlib/src/device_memcpy.f90.o
+[  3%] Preprocessing /lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/LAXlib/laxlib_mid.h
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/LAXlib/laxlib_mid.h:4:52: warning: missing terminating ' character
+    4 | ! GNU General Public License. See the file `License'
+      |                                                    ^
+[  3%] Building C object Modules/CMakeFiles/qe_modules_c.dir/sockets.c.o
+[  3%] Preprocessing /lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/LAXlib/laxlib_param.h
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/LAXlib/laxlib_param.h:4:52: warning: missing terminating ' character
+    4 | ! GNU General Public License. See the file `License'
+      |                                                    ^
+[  3%] Linking C static library ../lib/libqe_modules_c.a
+[  3%] Linking Fortran static library ../lib/libqe_xml.a
+[  3%] Building Fortran object external/mbd/src/CMakeFiles/mbd.dir/mbd_utils.F90.o
+[  3%] Built target qe_lax_headers
+[  3%] Building Fortran object external/CMakeFiles/qe_devxlib.dir/devxlib/src/device_auxfunc.f90.o
+[  3%] Building Fortran object external/CMakeFiles/qe_wannier90.dir/wannier90/src/comms.F90.o
+[  3%] Built target qe_modules_c
+[  3%] Building Fortran object external/CMakeFiles/qe_wannier90.dir/wannier90/src/utility.F90.o
+[  3%] Building C object external/CMakeFiles/qe_devxlib.dir/devxlib/src/timer.c.o
+[  3%] Building Fortran object external/mbd/src/CMakeFiles/mbd.dir/mbd_damping.F90.o
+[  3%] Built target qe_xml
+[  3%] Building C object XClib/CMakeFiles/qe_libbeef.dir/pbecor.c.o
+[  3%] Building C object XClib/CMakeFiles/qe_libbeef.dir/beefun.c.o
+[  3%] Building Fortran object external/mbd/src/CMakeFiles/mbd.dir/mbd_formulas.f90.o
+[  3%] Linking C static library ../../lib/libqe_fftx_c.a
+[  3%] Building Fortran object external/mbd/src/CMakeFiles/mbd.dir/mbd_lapack.f90.o
+[  3%] Building Fortran object external/mbd/src/CMakeFiles/mbd.dir/mbd_vdw_param.f90.o
+[  3%] Linking C static library ../lib/libqe_libbeef.a
+[  4%] Building Fortran object external/CMakeFiles/qe_wannier90.dir/wannier90/src/parameters.F90.o
+[  4%] Building Fortran object LAXlib/tests/CMakeFiles/test_qe_lax_lapack_zdotc.dir/test_lapack_zdotc.f90.o
+[  4%] Linking Fortran executable ../bin/test_qe_lax_lapack_zdotc.x
+[  4%] Built target qe_libbeef
+[  4%] Preprocessing /lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/KS_Solvers/ks_solver_interfaces.h
+[  4%] Building Fortran object upflib/CMakeFiles/qe_upflib_hgh2qe_exe.dir/hgh2qe.f90.o
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/KS_Solvers/ks_solver_interfaces.h:3:52: warning: missing terminating ' character
+    3 | ! GNU General Public License. See the file `License'
+      |                                                    ^
+[  4%] Built target qe_ks_headers
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/upflib/hgh2qe.f90(196): remark #8293: Recommended relationship between field width 'W', the number of fractional digits 'D' and the number of exponential digits 'E' in this edit descriptor is 'W>=D+E+5'.
+   52 format (a15,1pe22.15e3,a8,i5,a8,1pe23.15e3,a8,1pe22.15e3,a1)
+---------------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/upflib/hgh2qe.f90(196): remark #8293: Recommended relationship between field width 'W', the number of fractional digits 'D' and the number of exponential digits 'E' in this edit descriptor is 'W>=D+E+5'.
+   52 format (a15,1pe22.15e3,a8,i5,a8,1pe23.15e3,a8,1pe22.15e3,a1)
+-------------------------------------------------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/upflib/hgh2qe.f90(188): remark #8293: Recommended relationship between field width 'W', the number of fractional digits 'D' and the number of exponential digits 'E' in this edit descriptor is 'W>=D+E+5'.
+   51 format (a15,1pe22.15e3,a8,i4,a8,1pe23.15e3,a8,1pe22.15e3,a1)
+---------------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/upflib/hgh2qe.f90(188): remark #8293: Recommended relationship between field width 'W', the number of fractional digits 'D' and the number of exponential digits 'E' in this edit descriptor is 'W>=D+E+5'.
+   51 format (a15,1pe22.15e3,a8,i4,a8,1pe23.15e3,a8,1pe22.15e3,a1)
+-------------------------------------------------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/upflib/hgh2qe.f90(180): remark #8293: Recommended relationship between field width 'W', the number of fractional digits 'D' and the number of exponential digits 'E' in this edit descriptor is 'W>=D+E+5'.
+   50 format (a15,1pe22.15e3,a8,i3,a8,1pe23.15e3,a8,1pe22.15e3,a1)
+---------------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/upflib/hgh2qe.f90(180): remark #8293: Recommended relationship between field width 'W', the number of fractional digits 'D' and the number of exponential digits 'E' in this edit descriptor is 'W>=D+E+5'.
+   50 format (a15,1pe22.15e3,a8,i3,a8,1pe23.15e3,a8,1pe22.15e3,a1)
+-------------------------------------------------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/upflib/hgh2qe.f90(142): remark #8293: Recommended relationship between field width 'W', the number of fractional digits 'D' and the number of exponential digits 'E' in this edit descriptor is 'W>=D+E+5'.
+ write(6,'(a24,1pe22.15e3,a)')'             z_valence="',zion,'"'
+------------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/upflib/hgh2qe.f90(182): remark #8293: Recommended relationship between field width 'W', the number of fractional digits 'D' and the number of exponential digits 'E' in this edit descriptor is 'W>=D+E+5'.
+   write(6,'(a7,1pe22.15e3,a2)')'zmesh="',z,'">'
+-------------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/upflib/hgh2qe.f90(184): remark #8293: Recommended relationship between field width 'W', the number of fractional digits 'D' and the number of exponential digits 'E' in this edit descriptor is 'W>=D+E+5'.
+   write(6,'(4(1x,1pe22.15e3,1x))')rr
+---------------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/upflib/hgh2qe.f90(190): remark #8293: Recommended relationship between field width 'W', the number of fractional digits 'D' and the number of exponential digits 'E' in this edit descriptor is 'W>=D+E+5'.
+   write(6,'(a7,1pe22.15e3,a2)')'zmesh="',z,'">'
+-------------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/upflib/hgh2qe.f90(192): remark #8293: Recommended relationship between field width 'W', the number of fractional digits 'D' and the number of exponential digits 'E' in this edit descriptor is 'W>=D+E+5'.
+   write(6,'(4(1x,1pe22.15e3,1x))')rr
+---------------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/upflib/hgh2qe.f90(198): remark #8293: Recommended relationship between field width 'W', the number of fractional digits 'D' and the number of exponential digits 'E' in this edit descriptor is 'W>=D+E+5'.
+   write(6,'(a7,1pe22.15e3,a2)')'zmesh="',z,'">'
+-------------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/upflib/hgh2qe.f90(200): remark #8293: Recommended relationship between field width 'W', the number of fractional digits 'D' and the number of exponential digits 'E' in this edit descriptor is 'W>=D+E+5'.
+   write(6,'(4(1x,1pe22.15e3,1x))')rr
+---------------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/upflib/hgh2qe.f90(205): remark #8293: Recommended relationship between field width 'W', the number of fractional digits 'D' and the number of exponential digits 'E' in this edit descriptor is 'W>=D+E+5'.
+ write(6,'(4(1x,1pe22.15e3,1x))')rab
+-------------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/upflib/hgh2qe.f90(243): remark #8293: Recommended relationship between field width 'W', the number of fractional digits 'D' and the number of exponential digits 'E' in this edit descriptor is 'W>=D+E+5'.
+ write(6,'(4(1x,1pe22.15e3,1x))')rhoatom
+-------------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/upflib/hgh2qe.f90(289): remark #8293: Recommended relationship between field width 'W', the number of fractional digits 'D' and the number of exponential digits 'E' in this edit descriptor is 'W>=D+E+5'.
+ write(6,'(4(1x,1pe22.15e3,1x))')pot_nlcc
+-------------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/upflib/hgh2qe.f90(393): remark #8293: Recommended relationship between field width 'W', the number of fractional digits 'D' and the number of exponential digits 'E' in this edit descriptor is 'W>=D+E+5'.
+   write(6,'(a15,1pe22.15e3,a)')'cutoff_radius="',rcut(ikbeta),'" ultrasoft_cutoff_radius="0.000000000000000E+000">'
+--------------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/upflib/hgh2qe.f90(394): remark #8293: Recommended relationship between field width 'W', the number of fractional digits 'D' and the number of exponential digits 'E' in this edit descriptor is 'W>=D+E+5'.
+   write(6,'(4(1x,1pe22.15e3,1x))')proj(:,ikbeta)
+---------------------^
+[  4%] Building Fortran object external/mbd/src/CMakeFiles/mbd.dir/mbd_geom.F90.o
+[  4%] Linking Fortran executable ../bin/hgh2qe.x
+[  4%] Building Fortran object PP/CMakeFiles/qe_pp_sumpdos_exe.dir/src/sumpdos.f90.o
+[  4%] Building Fortran object external/mbd/src/CMakeFiles/mbd.dir/mbd_matrix.F90.o
+[  4%] Linking Fortran executable ../bin/sumpdos.x
+[  4%] Building Fortran object PP/CMakeFiles/qe_pp_st_ef_exe.dir/simple_transport/src/cryst_to_car.f90.o
+[  4%] Building Fortran object PP/CMakeFiles/qe_pp_st_ef_exe.dir/simple_transport/src/lint.f90.o
+[  4%] Built target qe_upflib_hgh2qe_exe
+[  4%] Built target test_qe_lax_lapack_zdotc
+[  4%] Building Fortran object PP/CMakeFiles/qe_pp_st_dos_exe.dir/simple_transport/src/smearing_mod.f90.o
+[  4%] Building Fortran object external/CMakeFiles/qe_devxlib.dir/devxlib/src/device_fbuff_mod.f90.o
+[  4%] Building Fortran object PP/CMakeFiles/qe_pp_st_fermiint0_exe.dir/simple_transport/src/cryst_to_car.f90.o
+[  4%] Building Fortran object PP/CMakeFiles/qe_pp_st_ef_exe.dir/simple_transport/src/ef.f90.o
+[  4%] Building Fortran object PP/CMakeFiles/qe_pp_st_fermiint0_exe.dir/simple_transport/src/lint.f90.o
+[  4%] Building Fortran object PP/CMakeFiles/qe_pp_st_dos_exe.dir/simple_transport/src/cryst_to_car.f90.o
+[  4%] Building Fortran object PP/CMakeFiles/qe_pp_st_fermiint0_exe.dir/simple_transport/src/vband_ibz.f90.o
+[  4%] Linking Fortran executable ../bin/ef.x
+[  4%] Building Fortran object PP/CMakeFiles/qe_pp_st_dos_exe.dir/simple_transport/src/lint.f90.o
+[  4%] Built target qe_fftx_c
+[  4%] Building Fortran object PP/CMakeFiles/qe_pp_st_fermiint0_exe.dir/simple_transport/src/fermi_int_0.f90.o
+[  4%] Built target qe_pp_sumpdos_exe
+[  4%] Building Fortran object PP/CMakeFiles/qe_pp_st_dos_exe.dir/simple_transport/src/vband_ibz.f90.o
+[  4%] Building Fortran object PP/CMakeFiles/qe_pp_st_fermiint1_exe.dir/simple_transport/src/cryst_to_car.f90.o
+[  4%] Building Fortran object external/mbd/src/CMakeFiles/mbd.dir/mbd_ts.F90.o
+[  4%] Building Fortran object PP/CMakeFiles/qe_pp_st_fermiint1_exe.dir/simple_transport/src/reducegrid.f90.o
+[  4%] Building Fortran object PP/CMakeFiles/qe_pp_st_fermiint1_exe.dir/simple_transport/src/lint.f90.o
+[  4%] Building Fortran object external/CMakeFiles/qe_devxlib.dir/devxlib/src/deviceXlib_mod.f90.o
+[  4%] Built target qe_pp_st_ef_exe
+[  4%] Building Fortran object PP/CMakeFiles/qe_pp_st_fermiint1_exe.dir/simple_transport/src/vband_ibz.f90.o
+[  4%] Building Fortran object GWW/CMakeFiles/qe_gww_util_grap_exe.dir/util/graph.f90.o
+[  4%] Building Fortran object GWW/CMakeFiles/qe_gww_util_abcoefftoeps_exe.dir/util/abcoeff_to_eps.f90.o
+[  4%] Linking Fortran executable ../bin/graph.x
+[  4%] Linking Fortran executable ../bin/abcoeff_to_eps.x
+[  4%] Linking Fortran static library ../lib/libqe_devxlib.a
+[  4%] Built target qe_gww_util_grap_exe
+[  4%] Building Fortran object external/mbd/src/CMakeFiles/mbd.dir/mbd_density.f90.o
+[  4%] Built target qe_gww_util_abcoefftoeps_exe
+[  4%] Building Fortran object GWW/CMakeFiles/qe_gww_util_memorypw4gww_exe.dir/util/memory_pw4gww.f90.o
+[  4%] Linking Fortran executable ../bin/memory_pw4gww.x
+[  4%] Built target qe_devxlib
+[  4%] Building Fortran object PP/CMakeFiles/qe_pp_st_fermiint1_exe.dir/simple_transport/src/fermi_int_1.f90.o
+[  4%] Building Fortran object KCW/PP/CMakeFiles/qe_kcwpp_merge_wann_exe.dir/merge_wann.f90.o
+[  4%] Built target qe_gww_util_memorypw4gww_exe
+[  4%] Linking Fortran executable ../../bin/merge_wann.x
+[  4%] Building Fortran object FFTXlib/src/CMakeFiles/qe_fftx.dir/fft_param.f90.o
+[  4%] Building Fortran object FFTXlib/src/CMakeFiles/qe_fftx.dir/fftw_interfaces.f90.o
+[  4%] Building Fortran object UtilXlib/CMakeFiles/qe_utilx.dir/parallel_include.f90.o
+[  4%] Building Fortran object external/mbd/src/CMakeFiles/mbd.dir/mbd_dipole.F90.o
+[  4%] Building Fortran object FFTXlib/src/CMakeFiles/qe_fftx.dir/fft_error.f90.o
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/FFTXlib/src/fft_error.f90(61): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_COMM_RANK]
+  CALL mpi_comm_rank(comm, my_rank, info)
+-------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/FFTXlib/src/fft_error.f90(78): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_BARRIER]
+  CALL mpi_barrier(MPI_COMM_WORLD, info)
+-------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/FFTXlib/src/fft_error.f90(79): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_ABORT]
+  CALL mpi_abort(MPI_COMM_WORLD, ierr, info)
+-------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/FFTXlib/src/fft_error.f90(124): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_ABORT]
+  CALL mpi_abort(MPI_COMM_WORLD, ierr, info)
+-------^
+[  4%] Building Fortran object UtilXlib/CMakeFiles/qe_utilx.dir/nvtx_wrapper.f90.o
+compilation aborted for /lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/FFTXlib/src/fft_error.f90 (code 1)
+make[2]: *** [FFTXlib/src/CMakeFiles/qe_fftx.dir/build.make:270: FFTXlib/src/CMakeFiles/qe_fftx.dir/fft_error.f90.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:1336: FFTXlib/src/CMakeFiles/qe_fftx.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+[  4%] Building Fortran object UtilXlib/CMakeFiles/qe_utilx.dir/find_free_unit.f90.o
+[  4%] Linking Fortran executable ../bin/fermi_int_0.x
+[  4%] Building Fortran object UtilXlib/CMakeFiles/qe_utilx.dir/mem_counter.f90.o
+[  4%] Linking Fortran executable ../bin/fermi_int_1.x
+[  4%] Built target qe_kcwpp_merge_wann_exe
+[  4%] Building Fortran object UtilXlib/CMakeFiles/qe_utilx.dir/util_param.f90.o
+[  4%] Building Fortran object PP/CMakeFiles/qe_pp_st_dos_exe.dir/simple_transport/src/dos.f90.o
+[  4%] Built target qe_pp_st_fermiint1_exe
+[  4%] Building Fortran object UtilXlib/CMakeFiles/qe_utilx.dir/clib_wrappers.f90.o
+[  4%] Building Fortran object UtilXlib/CMakeFiles/qe_utilx.dir/clocks_handler.f90.o
+[  5%] Building Fortran object UtilXlib/CMakeFiles/qe_utilx.dir/data_buffer.f90.o
+[  5%] Building Fortran object UtilXlib/CMakeFiles/qe_utilx.dir/mp.f90.o
+[  5%] Building Fortran object UtilXlib/CMakeFiles/qe_utilx.dir/fletcher32_mod.f90.o
+[  5%] Building Fortran object UtilXlib/CMakeFiles/qe_utilx.dir/thread_util.f90.o
+[  6%] Built target qe_pp_st_fermiint0_exe
+[  6%] Linking Fortran executable ../bin/dos_sp.x
+[  6%] Building Fortran object UtilXlib/CMakeFiles/qe_utilx.dir/print_mem.f90.o
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(191): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_GATHER]
+        CALL MPI_GATHER(mydata, 1, MPI_INTEGER, alldata, 1, MPI_INTEGER, root, group, IERR)
+-------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(216): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_GATHER]
+        CALL MPI_GATHER(mydata, msglen, MPI_INTEGER, alldata, msglen, MPI_INTEGER, root, group, IERR)
+-------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(244): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_COMM_RANK]
+        CALL mpi_comm_rank(group,taskid,ierr)
+-------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(246): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_COMM_SIZE]
+        CALL mpi_comm_size(group,numtask,ierr)
+-------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(288): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_COMM_RANK]
+        CALL mpi_comm_rank( groupid, taskid, ierr)
+-------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(312): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_COMM_GROUP]
+         CALL mpi_comm_group( comm, group, ierr )
+--------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(328): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_COMM_SPLIT]
+         CALL MPI_COMM_SPLIT( old_comm, color, key, new_comm, ierr )
+--------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(346): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_GROUP_INCL]
+        CALL mpi_group_incl( old_grp, group_size, group_list, new_grp, ierr )
+-------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(363): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_COMM_CREATE]
+        CALL mpi_comm_create( old_comm, new_grp, new_comm, ierr )
+-------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(377): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_GROUP_FREE]
+        CALL mpi_group_free( group, ierr )
+-------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(391): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_COMM_FREE]
+            CALL mpi_comm_free( comm, ierr )
+-----------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(412): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_WAITALL]
+        call MPI_Waitall(size(requests), requests, istatus, ierr)
+-------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(433): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_TESTALL]
+          call MPI_Testall(size(requests), requests, flag, istatus, ierr)
+---------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(869): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_SEND]
+             CALL MPI_SEND( msg_sour, msglen, MPI_INTEGER, dest, ip, group, ierr)
+------------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(873): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_RECV]
+             CALL MPI_RECV( msg_dest, msglen, MPI_INTEGER, sour, ip, group, istatus, IERR )
+------------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(875): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_GET_COUNT]
+             CALL MPI_GET_COUNT(istatus, MPI_INTEGER, nrcv, ierr)
+------------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(886): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_BARRIER]
+        CALL MPI_BARRIER(group, IERR)
+-------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(924): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_SEND]
+             CALL MPI_SEND( msg_sour, SIZE(msg_sour), MPI_INTEGER, dest, ip, group, ierr)
+------------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(927): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_RECV]
+             CALL MPI_RECV( msg_dest, SIZE(msg_dest), MPI_INTEGER, sour, ip, group, istatus, IERR )
+------------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(929): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_GET_COUNT]
+             CALL MPI_GET_COUNT(istatus, MPI_INTEGER, nrcv, ierr)
+------------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(939): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_BARRIER]
+        CALL MPI_BARRIER(group, IERR)
+-------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(973): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_SEND]
+             CALL MPI_SEND( msg_sour, msglen, MPI_DOUBLE_PRECISION, dest, ip, group, ierr)
+------------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(976): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_RECV]
+             CALL MPI_RECV( msg_dest, 1, MPI_DOUBLE_PRECISION, sour, ip, group, istatus, IERR )
+------------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(978): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_GET_COUNT]
+             CALL MPI_GET_COUNT(istatus, MPI_DOUBLE_PRECISION, nrcv, ierr)
+------------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(988): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_BARRIER]
+        CALL MPI_BARRIER(group, IERR)
+-------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(1024): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_SEND]
+             CALL MPI_SEND( msg_sour, SIZE(msg_sour), MPI_DOUBLE_PRECISION, dest, ip, group, ierr)
+------------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(1027): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_RECV]
+             CALL MPI_RECV( msg_dest, SIZE(msg_dest), MPI_DOUBLE_PRECISION, sour, ip, group, istatus, IERR )
+------------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(1029): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_GET_COUNT]
+             CALL MPI_GET_COUNT(istatus, MPI_DOUBLE_PRECISION, nrcv, ierr)
+------------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(1039): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_BARRIER]
+        CALL MPI_BARRIER(group, IERR)
+-------------^
+/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90(1074): error #6285: There is no matching specific subroutine for this generic subroutine call.   [MPI_SEND]
+             CALL MPI_SEND( msg_sour, SIZE(msg_sour), MPI_DOUBLE_PRECISION, dest, ip, group, ierr)
+------------------^
+/tmp/ifortMgLrCk.i90(3151): catastrophic error: Too many errors, exiting
+compilation aborted for /lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/UtilXlib/mp.f90 (code 1)
+make[2]: *** [UtilXlib/CMakeFiles/qe_utilx.dir/build.make:166: UtilXlib/CMakeFiles/qe_utilx.dir/mp.f90.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [CMakeFiles/Makefile2:1500: UtilXlib/CMakeFiles/qe_utilx.dir/all] Error 2
+[  6%] Building Fortran object external/CMakeFiles/qe_wannier90.dir/wannier90/src/kmesh.F90.o
+[  6%] Building Fortran object external/CMakeFiles/qe_wannier90.dir/wannier90/src/sitesym.F90.o
+[  6%] Building Fortran object external/CMakeFiles/qe_wannier90.dir/wannier90/src/hamiltonian.F90.o
+[  6%] Building Fortran object external/CMakeFiles/qe_wannier90.dir/wannier90/src/ws_distance.F90.o
+[  6%] Built target qe_pp_st_dos_exe
+[  6%] Building Fortran object external/CMakeFiles/qe_wannier90.dir/wannier90/src/postw90/postw90_common.F90.o
+[  6%] Building Fortran object external/CMakeFiles/qe_wannier90.dir/wannier90/src/disentangle.F90.o
+[  6%] Building Fortran object external/CMakeFiles/qe_wannier90.dir/wannier90/src/overlap.F90.o
+[  6%] Building Fortran object external/CMakeFiles/qe_wannier90.dir/wannier90/src/plot.F90.o
+[  6%] Building Fortran object external/CMakeFiles/qe_wannier90.dir/wannier90/src/transport.F90.o
+[  6%] Building Fortran object external/CMakeFiles/qe_wannier90.dir/wannier90/src/wannierise.F90.o
+[  6%] Building Fortran object external/CMakeFiles/qe_wannier90.dir/wannier90/src/postw90/get_oper.F90.o
+[  6%] Building Fortran object external/mbd/src/CMakeFiles/mbd.dir/mbd_hamiltonian.F90.o
+[  6%] Building Fortran object external/mbd/src/CMakeFiles/mbd.dir/mbd_scs.f90.o
+[  6%] Building Fortran object external/mbd/src/CMakeFiles/mbd.dir/mbd_rpa.F90.o
+[  6%] Building Fortran object external/mbd/src/CMakeFiles/mbd.dir/mbd_coulomb.f90.o
+[  6%] Building Fortran object external/CMakeFiles/qe_wannier90.dir/wannier90/src/postw90/spin.F90.o
+[  6%] Building Fortran object external/CMakeFiles/qe_wannier90.dir/wannier90/src/postw90/wan_ham.F90.o
+[  6%] Building Fortran object external/mbd/src/CMakeFiles/mbd.dir/mbd_methods.F90.o
+[  6%] Building Fortran object external/CMakeFiles/qe_wannier90.dir/wannier90/src/postw90/dos.F90.o
+[  6%] Building Fortran object external/CMakeFiles/qe_wannier90.dir/wannier90/src/postw90/geninterp.F90.o
+[  6%] Building Fortran object external/CMakeFiles/qe_wannier90.dir/wannier90/src/postw90/berry.F90.o
+[  6%] Building Fortran object external/CMakeFiles/qe_wannier90.dir/wannier90/src/wannier_lib.F90.o
+[  6%] Building Fortran object external/CMakeFiles/qe_wannier90.dir/wannier90/src/postw90/boltzwann.F90.o
+[  6%] Building Fortran object external/mbd/src/CMakeFiles/mbd.dir/mbd.F90.o
+[  6%] Linking Fortran static library ../../../lib/libmbd.a
+[  6%] Built target mbd
+[  6%] Building Fortran object external/CMakeFiles/qe_wannier90.dir/wannier90/src/postw90/kslice.F90.o
+[  6%] Building Fortran object external/CMakeFiles/qe_wannier90.dir/wannier90/src/postw90/kpath.F90.o
+[  6%] Building Fortran object external/CMakeFiles/qe_wannier90.dir/wannier90/src/postw90/gyrotropic.F90.o
+[  6%] Linking Fortran static library ../lib/libqe_wannier90.a
+[  6%] Built target qe_wannier90
+make: *** [Makefile:146: all] Error 2
+
+
+ content of /lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/build_intel2023_i8-openmpi4.1.8_libxc_mkl_scalapack/bin  :
+total 5
+-rwxr-xr-x 1 milias hybrilit 887368 Apr 10 14:57 dos_sp.x
+-rwxr-xr-x 1 milias hybrilit 895072 Apr 10 14:57 fermi_int_0.x
+-rwxr-xr-x 1 milias hybrilit 895136 Apr 10 14:57 fermi_int_1.x
+-rwxr-xr-x 1 milias hybrilit 759648 Apr 10 14:57 merge_wann.x
+-rwxr-xr-x 1 milias hybrilit 712448 Apr 10 14:57 memory_pw4gww.x
+-rwxr-xr-x 1 milias hybrilit 724168 Apr 10 14:57 abcoeff_to_eps.x
+-rwxr-xr-x 1 milias hybrilit 735608 Apr 10 14:57 graph.x
+-rwxr-xr-x 1 milias hybrilit 839384 Apr 10 14:57 ef.x
+-rwxr-xr-x 1 milias hybrilit 789744 Apr 10 14:57 sumpdos.x
+-rwxr-xr-x 1 milias hybrilit 975264 Apr 10 14:57 hgh2qe.x
+
+
+ ldd /lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/build_intel2023_i8-openmpi4.1.8_libxc_mkl_scalapack/bin/pw.x :
+ldd: /lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/build_intel2023_i8-openmpi4.1.8_libxc_mkl_scalapack/bin/pw.x: No such file or directory
+
+
+ running ctest -j 8 :
+Test project /lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/build_intel2023_i8-openmpi4.1.8_libxc_mkl_scalapack
+        Start 323: system--cp-pseudo
+        Start 370: system--pw_md--md_restart_verlet-init
+        Start  28: test_qe_xclib_gen_test
+        Start   1: test_qe_fftx-r1-t1
+        Start   2: test_qe_fftx-r3-t1
+        Start   3: test_qe_fftx_fft_scalar_gpu-r1-t1
+  1/370 Test   #3: test_qe_fftx_fft_scalar_gpu-r1-t1 .................................***Failed    0.18 sec
+        Start   5: test_qe_fftx_fft_scatter_mod_gpu-r1-t1
+  2/370 Test  #28: test_qe_xclib_gen_test ............................................***Failed    0.19 sec
+        Start   7: test_qe_fftx_fwinv_gpu-r1-t1
+  3/370 Test   #1: test_qe_fftx-r1-t1 ................................................***Failed    0.19 sec
+        Start   9: test_qe_utilx_offload_macros
+  4/370 Test   #2: test_qe_fftx-r3-t1 ................................................***Failed    0.19 sec
+        Start   4: test_qe_fftx_fft_scalar_gpu-r3-t1
+  5/370 Test #323: system--cp-pseudo .................................................   Passed    0.26 sec
+        Start  31: system--pw-pseudo
+  6/370 Test #370: system--pw_md--md_restart_verlet-init .............................   Passed    0.29 sec
+        Start 368: system--pw_md--preparation
+  7/370 Test #368: system--pw_md--preparation ........................................   Passed    0.01 sec
+        Start  10: test_qe_utilx_mp_count_nodes
+  8/370 Test   #4: test_qe_fftx_fft_scalar_gpu-r3-t1 .................................***Failed    0.18 sec
+        Start   6: test_qe_fftx_fft_scatter_mod_gpu-r3-t1
+  9/370 Test   #5: test_qe_fftx_fft_scatter_mod_gpu-r1-t1 ............................***Failed    0.19 sec
+        Start  11: test_qe_utilx_mp_bcast_i1
+ 10/370 Test   #7: test_qe_fftx_fwinv_gpu-r1-t1 ......................................***Failed    0.19 sec
+        Start  12: test_qe_utilx_mp_bcast_iv
+ 11/370 Test   #9: test_qe_utilx_offload_macros ......................................***Failed    0.19 sec
+        Start  13: test_qe_utilx_mp_bcast_im
+ 12/370 Test  #10: test_qe_utilx_mp_count_nodes ......................................***Failed    0.17 sec
+        Start  14: test_qe_utilx_mp_bcast_it
+ 13/370 Test   #6: test_qe_fftx_fft_scatter_mod_gpu-r3-t1 ............................***Failed    0.19 sec
+        Start   8: test_qe_fftx_fwinv_gpu-r3-t1
+ 14/370 Test  #11: test_qe_utilx_mp_bcast_i1 .........................................***Failed    0.19 sec
+        Start  15: test_qe_utilx_mp_bcast_iv_buffer
+ 15/370 Test  #12: test_qe_utilx_mp_bcast_iv .........................................***Failed    0.19 sec
+        Start  16: test_qe_utilx_mp_bcast_lv_buffer
+ 16/370 Test  #13: test_qe_utilx_mp_bcast_im .........................................***Failed    0.19 sec
+        Start  17: test_qe_utilx_mp_bcast_rv_buffer
+ 17/370 Test  #14: test_qe_utilx_mp_bcast_it .........................................***Failed    0.18 sec
+        Start  18: test_qe_utilx_mp_max_iv_buffer
+ 18/370 Test   #8: test_qe_fftx_fwinv_gpu-r3-t1 ......................................SIGPIPE***Exception:   0.15 sec
+        Start  19: test_qe_utilx_mp_max_rv_buffer
+        Start  20: test_qe_utilx_mp_min_iv_buffer
+        Start  21: test_qe_utilx_mp_min_rv_buffer
+ 19/370 Test  #15: test_qe_utilx_mp_bcast_iv_buffer ..................................***Failed    0.18 sec
+        Start  22: test_qe_utilx_mp_sum_iv_buffer
+ 20/370 Test  #16: test_qe_utilx_mp_bcast_lv_buffer ..................................***Failed    0.17 sec
+        Start  23: test_qe_utilx_mp_sum_rv_buffer
+ 21/370 Test  #17: test_qe_utilx_mp_bcast_rv_buffer ..................................***Failed    0.17 sec
+        Start  24: test_qe_lax-r1-t1
+ 22/370 Test  #18: test_qe_utilx_mp_max_iv_buffer ....................................***Failed    0.19 sec
+        Start  26: test_qe_lapack_zdotc
+ 23/370 Test  #19: test_qe_utilx_mp_max_rv_buffer ....................................***Failed    0.17 sec
+        Start  27: test_qe_xclib_exe_test
+ 24/370 Test  #20: test_qe_utilx_mp_min_iv_buffer ....................................***Failed    0.17 sec
+        Start  29: test_qe_xclib_test_all_terms
+ 25/370 Test  #22: test_qe_utilx_mp_sum_iv_buffer ....................................***Failed    0.15 sec
+        Start  30: test_qe_xclib_test_all_shorts
+ 26/370 Test  #21: test_qe_utilx_mp_min_rv_buffer ....................................***Failed    0.18 sec
+        Start 208: system--pw_plugins-correctness
+ 27/370 Test  #23: test_qe_utilx_mp_sum_rv_buffer ....................................***Failed    6.02 sec
+        Start 369: system--pw_md--md_restart_verlet-cleanup
+ 28/370 Test  #24: test_qe_lax-r1-t1 .................................................***Failed    6.02 sec
+ 29/370 Test  #26: test_qe_lapack_zdotc ..............................................   Passed    5.93 sec
+ 30/370 Test  #27: test_qe_xclib_exe_test ............................................***Failed    5.89 sec
+ 31/370 Test  #29: test_qe_xclib_test_all_terms ......................................***Failed    5.88 sec
+        Start 331: system--cp_h2o--h2o-mt-blyp-1
+ 32/370 Test  #30: test_qe_xclib_test_all_shorts .....................................***Failed    5.87 sec
+ 33/370 Test #369: system--pw_md--md_restart_verlet-cleanup ..........................   Passed    0.01 sec
+ 34/370 Test #331: system--cp_h2o--h2o-mt-blyp-1 .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+] 23.73 sec
+        Start 332: system--cp_h2o--h2o-mt-blyp-2
+ 35/370 Test #332: system--cp_h2o--h2o-mt-blyp-2 .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 349: system--cp_o2--o2-us-para-pbe-1
+ 36/370 Test #349: system--cp_o2--o2-us-para-pbe-1 ...................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 333: system--cp_h2o--h2o-mt-blyp-3
+ 37/370 Test #333: system--cp_h2o--h2o-mt-blyp-3 .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 350: system--cp_o2--o2-us-para-pbe-2
+ 38/370 Test #350: system--cp_o2--o2-us-para-pbe-2 ...................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 334: system--cp_h2o--h2o-mt-blyp-4
+ 39/370 Test #334: system--cp_h2o--h2o-mt-blyp-4 .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 351: system--cp_o2--o2-us-para-pbe-3
+ 40/370 Test #351: system--cp_o2--o2-us-para-pbe-3 ...................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 360: system--cp_sio2--sio2-us-lda-1
+ 41/370 Test #360: system--cp_sio2--sio2-us-lda-1 ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 335: system--cp_h2o--h2o-mt-blyp-5
+ 42/370 Test #335: system--cp_h2o--h2o-mt-blyp-5 .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 352: system--cp_o2--o2-us-para-pbe-4
+ 43/370 Test #352: system--cp_o2--o2-us-para-pbe-4 ...................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 356: system--cp_si--si-vbc-lda-1
+ 44/370 Test #356: system--cp_si--si-vbc-lda-1 .......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 361: system--cp_sio2--sio2-us-lda-2
+ 45/370 Test #361: system--cp_sio2--sio2-us-lda-2 ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.13 sec
+        Start 336: system--cp_h2o--h2o-mt-blyp-6
+ 46/370 Test #336: system--cp_h2o--h2o-mt-blyp-6 .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 353: system--cp_o2--o2-us-para-pbe-5
+ 47/370 Test #353: system--cp_o2--o2-us-para-pbe-5 ...................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 357: system--cp_si--si-vbc-lda-2
+ 48/370 Test #357: system--cp_si--si-vbc-lda-2 .......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 362: system--cp_sio2--sio2-us-lda-3
+ 49/370 Test #362: system--cp_sio2--sio2-us-lda-3 ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 365: system--cp_sio2--sio2-us-pbe-1
+ 50/370 Test #365: system--cp_sio2--sio2-us-pbe-1 ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.13 sec
+        Start 325: system--cp_al_edft--Al
+ 51/370 Test #325: system--cp_al_edft--Al ............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 326: system--cp_al_edft--Al.uspp
+ 52/370 Test #326: system--cp_al_edft--Al.uspp .......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 328: system--cp_cluster--cluster4
+        Start 324: system--cp_al_edft-correctness
+ 53/370 Test #328: system--cp_cluster--cluster4 ......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 329: system--cp_cluster--cluster6
+ 54/370 Test #329: system--cp_cluster--cluster6 ......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.13 sec
+        Start 337: system--cp_h2o--h2o-mt-blyp-7
+        Start 327: system--cp_cluster-correctness
+ 55/370 Test #337: system--cp_h2o--h2o-mt-blyp-7 .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 338: system--cp_h2o--h2o-mt-blyp-cg
+ 56/370 Test #338: system--cp_h2o--h2o-mt-blyp-cg ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 340: system--cp_h2o_exx--h2o-mt-b3lyp-1
+ 57/370 Test #340: system--cp_h2o_exx--h2o-mt-b3lyp-1 ................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 341: system--cp_h2o_exx--h2o-mt-exx_fraction
+ 58/370 Test #341: system--cp_h2o_exx--h2o-mt-exx_fraction ...........................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 343: system--cp_h2o_scan_libxc--nspin1
+ 59/370 Test #343: system--cp_h2o_scan_libxc--nspin1 .................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 344: system--cp_h2o_scan_libxc--nspin2
+ 60/370 Test #344: system--cp_h2o_scan_libxc--nspin2 .................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.13 sec
+        Start 346: system--cp_h2o_wf--h2o-nspin1
+ 61/370 Test #346: system--cp_h2o_wf--h2o-nspin1 .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.13 sec
+        Start 347: system--cp_h2o_wf--h2o-nspin2
+ 62/370 Test #347: system--cp_h2o_wf--h2o-nspin2 .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 354: system--cp_o2--o2-us-para-pbe-6
+ 63/370 Test #354: system--cp_o2--o2-us-para-pbe-6 ...................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 358: system--cp_si--si-vbc-lda-3
+ 64/370 Test #358: system--cp_si--si-vbc-lda-3 .......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 363: system--cp_sio2--sio2-us-lda-4
+ 65/370 Test #363: system--cp_sio2--sio2-us-lda-4 ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 364: system--cp_sio2--sio2-us-lda-cg
+ 66/370 Test #364: system--cp_sio2--sio2-us-lda-cg ...................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.13 sec
+        Start 366: system--cp_sio2--sio2-us-pbe-2
+ 67/370 Test #366: system--cp_sio2--sio2-us-pbe-2 ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 367: system--cp_sio2--sio2-us-pbe-cg
+ 68/370 Test #367: system--cp_sio2--sio2-us-pbe-cg ...................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start  25: test_qe_lax-r4-t1
+ 69/370 Test  #25: test_qe_lax-r4-t1 .................................................***Failed    0.12 sec
+        Start 330: system--cp_h2o-correctness
+        Start 339: system--cp_h2o_exx-correctness
+        Start 342: system--cp_h2o_scan_libxc-correctness
+        Start 345: system--cp_h2o_wf-correctness
+ 70/370 Test #208: system--pw_plugins-correctness ....................................***Failed   53.60 sec
+        Start 348: system--cp_o2-correctness
+ 71/370 Test #342: system--cp_h2o_scan_libxc-correctness .............................***Failed   19.32 sec
+        Start 355: system--cp_si-correctness
+ 72/370 Test #324: system--cp_al_edft-correctness ....................................***Failed   21.71 sec
+        Start 359: system--cp_sio2-correctness
+ 73/370 Test #327: system--cp_cluster-correctness ....................................***Failed   21.44 sec
+ 74/370 Test #339: system--cp_h2o_exx-correctness ....................................***Failed   19.32 sec
+ 75/370 Test #345: system--cp_h2o_wf-correctness .....................................***Failed   19.33 sec
+ 76/370 Test  #31: system--pw-pseudo .................................................   Passed   54.81 sec
+        Start  49: system--pw_berry--berry
+ 77/370 Test #355: system--cp_si-correctness .........................................***Failed    0.47 sec
+ 78/370 Test #330: system--cp_h2o-correctness ........................................***Failed   19.81 sec
+ 79/370 Test  #49: system--pw_berry--berry ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.22 sec
+        Start  75: system--pw_electric--electric
+ 80/370 Test #348: system--cp_o2-correctness .........................................***Failed    0.75 sec
+ 81/370 Test  #75: system--pw_electric--electric .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 173: system--pw_metaGGA--metaGGA
+ 82/370 Test #359: system--cp_sio2-correctness .......................................***Failed    0.75 sec
+        Start 180: system--pw_metal--metal-tetrahedra
+ 83/370 Test #173: system--pw_metaGGA--metaGGA .......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 193: system--pw_noncolin--noncolin
+ 84/370 Test #180: system--pw_metal--metal-tetrahedra ................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 230: system--pw_scf--scf-disk_io
+ 85/370 Test #193: system--pw_noncolin--noncolin .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 249: system--pw_scf--scf
+ 86/370 Test #230: system--pw_scf--scf-disk_io .......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start  47: system--pw_berry--berry-1
+ 87/370 Test #249: system--pw_scf--scf ...............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start  73: system--pw_electric--electric-1
+ 88/370 Test  #47: system--pw_berry--berry-1 .........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.13 sec
+        Start  78: system--pw_eval--eval_infix
+ 89/370 Test  #73: system--pw_electric--electric-1 ...................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 162: system--pw_lsda--lsda
+ 90/370 Test  #78: system--pw_eval--eval_infix .......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 170: system--pw_metaGGA--metaGGA-1
+ 91/370 Test #162: system--pw_lsda--lsda .............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 178: system--pw_metal--metal-tetrahedra-1
+ 92/370 Test #170: system--pw_metaGGA--metaGGA-1 .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 181: system--pw_metal--metal
+ 93/370 Test #178: system--pw_metal--metal-tetrahedra-1 ..............................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 183: system--pw_noncolin--noncolin-1
+ 94/370 Test #181: system--pw_metal--metal ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 223: system--pw_scf--scf-1
+ 95/370 Test #183: system--pw_noncolin--noncolin-1 ...................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 228: system--pw_scf--scf-disk_io-1
+ 96/370 Test #223: system--pw_scf--scf-1 .............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 255: system--pw_spinorbit--spinorbit
+ 97/370 Test #228: system--pw_scf--scf-disk_io-1 .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 275: system--pw_uspp--uspp
+ 98/370 Test #255: system--pw_spinorbit--spinorbit ...................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.14 sec
+        Start 301: system--pw_workflow_exx_nscf--ncpp-gamma-restart-1
+ 99/370 Test #275: system--pw_uspp--uspp .............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.29 sec
+        Start 303: system--pw_workflow_exx_nscf--ncpp-k-1
+100/370 Test #301: system--pw_workflow_exx_nscf--ncpp-gamma-restart-1 ................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 305: system--pw_workflow_exx_nscf--uspp-gamma-1
+101/370 Test #303: system--pw_workflow_exx_nscf--ncpp-k-1 ............................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 307: system--pw_workflow_exx_nscf--uspp-k-restart-1
+102/370 Test #307: system--pw_workflow_exx_nscf--uspp-k-restart-1 ....................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 309: system--pw_workflow_exx_nscf--uspp-k-smearing-1
+103/370 Test #305: system--pw_workflow_exx_nscf--uspp-gamma-1 ........................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 312: system--pw_workflow_relax_relax--relax-1
+104/370 Test #309: system--pw_workflow_exx_nscf--uspp-k-smearing-1 ...................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 315: system--pw_workflow_scf_dos--scf-dos-1
+105/370 Test #312: system--pw_workflow_relax_relax--relax-1 ..........................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 318: system--pw_workflow_vc-relax_dos--vc-relax-dos-1
+106/370 Test #318: system--pw_workflow_vc-relax_dos--vc-relax-dos-1 ..................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 321: system--pw_workflow_vc-relax_scf--vc-relax-scf-1
+107/370 Test #315: system--pw_workflow_scf_dos--scf-dos-1 ............................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start  33: system--pw_atom--atom-lsda
+108/370 Test #321: system--pw_workflow_vc-relax_scf--vc-relax-scf-1 ..................***Failed  Required regular expression not found. Regex=[Maximum number of iterations reached, stopping
+]  0.16 sec
+        Start  34: system--pw_atom--atom-occ1
+109/370 Test  #33: system--pw_atom--atom-lsda ........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start  35: system--pw_atom--atom-occ2
+110/370 Test  #34: system--pw_atom--atom-occ1 ........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start  36: system--pw_atom--atom-pbe
+111/370 Test  #35: system--pw_atom--atom-occ2 ........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start  37: system--pw_atom--atom-sigmapbe
+112/370 Test  #36: system--pw_atom--atom-pbe .........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.18 sec
+        Start  38: system--pw_atom--atom
+113/370 Test  #37: system--pw_atom--atom-sigmapbe ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.18 sec
+        Start  40: system--pw_b3lyp--b3lyp-O
+114/370 Test  #38: system--pw_atom--atom .............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start  41: system--pw_b3lyp--b3lyp-O_std
+115/370 Test  #40: system--pw_b3lyp--b3lyp-O .........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start  42: system--pw_b3lyp--b3lyp-h2o
+116/370 Test  #41: system--pw_b3lyp--b3lyp-O_std .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start  43: system--pw_b3lyp--b3lyp-h2o_std
+117/370 Test  #42: system--pw_b3lyp--b3lyp-h2o .......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start  44: system--pw_b3lyp--x3lyp-O
+118/370 Test  #44: system--pw_b3lyp--x3lyp-O .........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start  45: system--pw_b3lyp--x3lyp-h2o
+119/370 Test  #43: system--pw_b3lyp--b3lyp-h2o_std ...................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start  48: system--pw_berry--berry-2
+120/370 Test  #45: system--pw_b3lyp--x3lyp-h2o .......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start  51: system--pw_cluster--cluster1
+121/370 Test  #48: system--pw_berry--berry-2 .........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start  52: system--pw_cluster--cluster2
+122/370 Test  #52: system--pw_cluster--cluster2 ......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start  53: system--pw_cluster--cluster3
+123/370 Test  #51: system--pw_cluster--cluster1 ......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start  54: system--pw_cluster--cluster4
+124/370 Test  #54: system--pw_cluster--cluster4 ......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start  55: system--pw_cluster--cluster5
+125/370 Test  #53: system--pw_cluster--cluster3 ......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start  56: system--pw_cluster--cluster6
+126/370 Test  #56: system--pw_cluster--cluster6 ......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start  58: system--pw_dft--dft1
+127/370 Test  #55: system--pw_cluster--cluster5 ......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start  59: system--pw_dft--dft10
+128/370 Test  #58: system--pw_dft--dft1 ..............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start  60: system--pw_dft--dft11
+129/370 Test  #59: system--pw_dft--dft10 .............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start  61: system--pw_dft--dft2
+130/370 Test  #60: system--pw_dft--dft11 .............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start  62: system--pw_dft--dft3
+131/370 Test  #61: system--pw_dft--dft2 ..............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start  63: system--pw_dft--dft4
+132/370 Test  #62: system--pw_dft--dft3 ..............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start  64: system--pw_dft--dft5
+133/370 Test  #63: system--pw_dft--dft4 ..............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start  65: system--pw_dft--dft6
+134/370 Test  #64: system--pw_dft--dft5 ..............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.18 sec
+        Start  66: system--pw_dft--dft7
+135/370 Test  #65: system--pw_dft--dft6 ..............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.18 sec
+        Start  67: system--pw_dft--dft8
+136/370 Test  #66: system--pw_dft--dft7 ..............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start  68: system--pw_dft--dft9
+137/370 Test  #67: system--pw_dft--dft8 ..............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start  70: system--pw_dipole--2dcutoff
+138/370 Test  #70: system--pw_dipole--2dcutoff .......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start  71: system--pw_dipole--dipole
+139/370 Test  #68: system--pw_dft--dft9 ..............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start  74: system--pw_electric--electric-2
+140/370 Test  #71: system--pw_dipole--dipole .........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start  77: system--pw_eval--eval_infix-2
+141/370 Test  #74: system--pw_electric--electric-2 ...................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start  80: system--pw_gau-pbe--gau-pbe-si111
+142/370 Test  #80: system--pw_gau-pbe--gau-pbe-si111 .................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start  81: system--pw_gau-pbe--gau-pbe-si222
+143/370 Test  #77: system--pw_eval--eval_infix-2 .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start  82: system--pw_gau-pbe--gau-pbe-si444
+144/370 Test  #81: system--pw_gau-pbe--gau-pbe-si222 .................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start  84: system--pw_hse--hse-si111
+145/370 Test  #82: system--pw_gau-pbe--gau-pbe-si444 .................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start  85: system--pw_hse--hse-si222
+146/370 Test  #85: system--pw_hse--hse-si222 .........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start  86: system--pw_hse--hse-si444
+147/370 Test  #84: system--pw_hse--hse-si111 .........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start  87: system--pw_hse--hse-si444_std
+148/370 Test  #86: system--pw_hse--hse-si444 .........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start  89: system--pw_irrbz--scf
+149/370 Test  #87: system--pw_hse--hse-si444_std .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start  91: system--pw_lattice-ibrav--lattice-ibrav-12-kauto
+150/370 Test  #89: system--pw_irrbz--scf .............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start  92: system--pw_lattice-ibrav--lattice-ibrav-12
+151/370 Test  #91: system--pw_lattice-ibrav--lattice-ibrav-12-kauto ..................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start  93: system--pw_lattice-ibrav--lattice-ibrav-3-kauto
+152/370 Test  #92: system--pw_lattice-ibrav--lattice-ibrav-12 ........................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start  94: system--pw_lattice-ibrav--lattice-ibrav-3
+153/370 Test  #93: system--pw_lattice-ibrav--lattice-ibrav-3-kauto ...................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start  95: system--pw_lattice-ibrav--lattice-ibrav-5-kauto
+154/370 Test  #94: system--pw_lattice-ibrav--lattice-ibrav-3 .........................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start  96: system--pw_lattice-ibrav--lattice-ibrav-5
+155/370 Test  #95: system--pw_lattice-ibrav--lattice-ibrav-5-kauto ...................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start  97: system--pw_lattice-ibrav--lattice-ibrav0-cell_parameters+a
+156/370 Test  #96: system--pw_lattice-ibrav--lattice-ibrav-5 .........................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start  98: system--pw_lattice-ibrav--lattice-ibrav0-cell_parameters+celldm
+157/370 Test  #97: system--pw_lattice-ibrav--lattice-ibrav0-cell_parameters+a ........***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start  99: system--pw_lattice-ibrav--lattice-ibrav0-cell_parameters-ang
+158/370 Test  #98: system--pw_lattice-ibrav--lattice-ibrav0-cell_parameters+celldm ...***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 100: system--pw_lattice-ibrav--lattice-ibrav0-cell_parameters
+159/370 Test  #99: system--pw_lattice-ibrav--lattice-ibrav0-cell_parameters-ang ......***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 101: system--pw_lattice-ibrav--lattice-ibrav1-kauto
+160/370 Test #100: system--pw_lattice-ibrav--lattice-ibrav0-cell_parameters ..........***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 102: system--pw_lattice-ibrav--lattice-ibrav1
+161/370 Test #101: system--pw_lattice-ibrav--lattice-ibrav1-kauto ....................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 103: system--pw_lattice-ibrav--lattice-ibrav10-kauto
+162/370 Test #102: system--pw_lattice-ibrav--lattice-ibrav1 ..........................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 104: system--pw_lattice-ibrav--lattice-ibrav10
+163/370 Test #103: system--pw_lattice-ibrav--lattice-ibrav10-kauto ...................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 105: system--pw_lattice-ibrav--lattice-ibrav11-kauto
+164/370 Test #105: system--pw_lattice-ibrav--lattice-ibrav11-kauto ...................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 106: system--pw_lattice-ibrav--lattice-ibrav11
+165/370 Test #104: system--pw_lattice-ibrav--lattice-ibrav10 .........................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.32 sec
+        Start 107: system--pw_lattice-ibrav--lattice-ibrav12-kauto
+166/370 Test #107: system--pw_lattice-ibrav--lattice-ibrav12-kauto ...................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 108: system--pw_lattice-ibrav--lattice-ibrav12
+167/370 Test #106: system--pw_lattice-ibrav--lattice-ibrav11 .........................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.18 sec
+        Start 109: system--pw_lattice-ibrav--lattice-ibrav13-kauto
+168/370 Test #109: system--pw_lattice-ibrav--lattice-ibrav13-kauto ...................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 110: system--pw_lattice-ibrav--lattice-ibrav13
+169/370 Test #108: system--pw_lattice-ibrav--lattice-ibrav12 .........................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 111: system--pw_lattice-ibrav--lattice-ibrav14-kauto
+170/370 Test #110: system--pw_lattice-ibrav--lattice-ibrav13 .........................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 112: system--pw_lattice-ibrav--lattice-ibrav14
+171/370 Test #111: system--pw_lattice-ibrav--lattice-ibrav14-kauto ...................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 113: system--pw_lattice-ibrav--lattice-ibrav2-kauto
+172/370 Test #113: system--pw_lattice-ibrav--lattice-ibrav2-kauto ....................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 114: system--pw_lattice-ibrav--lattice-ibrav2
+173/370 Test #112: system--pw_lattice-ibrav--lattice-ibrav14 .........................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 115: system--pw_lattice-ibrav--lattice-ibrav3-kauto
+174/370 Test #115: system--pw_lattice-ibrav--lattice-ibrav3-kauto ....................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 116: system--pw_lattice-ibrav--lattice-ibrav3
+175/370 Test #114: system--pw_lattice-ibrav--lattice-ibrav2 ..........................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 117: system--pw_lattice-ibrav--lattice-ibrav4-kauto
+176/370 Test #116: system--pw_lattice-ibrav--lattice-ibrav3 ..........................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 118: system--pw_lattice-ibrav--lattice-ibrav4
+177/370 Test #117: system--pw_lattice-ibrav--lattice-ibrav4-kauto ....................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 119: system--pw_lattice-ibrav--lattice-ibrav5-kauto
+178/370 Test #118: system--pw_lattice-ibrav--lattice-ibrav4 ..........................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 120: system--pw_lattice-ibrav--lattice-ibrav5
+179/370 Test #119: system--pw_lattice-ibrav--lattice-ibrav5-kauto ....................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 121: system--pw_lattice-ibrav--lattice-ibrav6-kauto
+180/370 Test #121: system--pw_lattice-ibrav--lattice-ibrav6-kauto ....................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 122: system--pw_lattice-ibrav--lattice-ibrav6
+181/370 Test #120: system--pw_lattice-ibrav--lattice-ibrav5 ..........................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 123: system--pw_lattice-ibrav--lattice-ibrav7-kauto
+182/370 Test #123: system--pw_lattice-ibrav--lattice-ibrav7-kauto ....................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.18 sec
+        Start 124: system--pw_lattice-ibrav--lattice-ibrav7
+183/370 Test #122: system--pw_lattice-ibrav--lattice-ibrav6 ..........................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.18 sec
+        Start 125: system--pw_lattice-ibrav--lattice-ibrav8-kauto
+184/370 Test #124: system--pw_lattice-ibrav--lattice-ibrav7 ..........................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 126: system--pw_lattice-ibrav--lattice-ibrav8
+185/370 Test #125: system--pw_lattice-ibrav--lattice-ibrav8-kauto ....................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 127: system--pw_lattice-ibrav--lattice-ibrav9-kauto
+186/370 Test #127: system--pw_lattice-ibrav--lattice-ibrav9-kauto ....................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 128: system--pw_lattice-ibrav--lattice-ibrav9
+187/370 Test #126: system--pw_lattice-ibrav--lattice-ibrav8 ..........................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 129: system--pw_lattice-ibrav--lattice-wyckoff-sio2
+188/370 Test #128: system--pw_lattice-ibrav--lattice-ibrav9 ..........................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 131: system--pw_lda+U--lda+U+J0
+189/370 Test #129: system--pw_lattice-ibrav--lattice-wyckoff-sio2 ....................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 132: system--pw_lda+U--lda+U+V-user_ns
+190/370 Test #131: system--pw_lda+U--lda+U+J0 ........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 133: system--pw_lda+U--lda+U+V_background
+191/370 Test #132: system--pw_lda+U--lda+U+V-user_ns .................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 134: system--pw_lda+U--lda+U+V_force_stress_ortho
+192/370 Test #133: system--pw_lda+U--lda+U+V_background ..............................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 135: system--pw_lda+U--lda+U+V_noncol_ortho
+193/370 Test #134: system--pw_lda+U--lda+U+V_force_stress_ortho ......................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 136: system--pw_lda+U--lda+U-noU
+194/370 Test #136: system--pw_lda+U--lda+U-noU .......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 137: system--pw_lda+U--lda+U-user_ns
+195/370 Test #135: system--pw_lda+U--lda+U+V_noncol_ortho ............................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 138: system--pw_lda+U--lda+U
+196/370 Test #137: system--pw_lda+U--lda+U-user_ns ...................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 139: system--pw_lda+U--lda+U_background_one_channel
+197/370 Test #138: system--pw_lda+U--lda+U ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 140: system--pw_lda+U--lda+U_background_two_channels
+198/370 Test #140: system--pw_lda+U--lda+U_background_two_channels ...................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 141: system--pw_lda+U--lda+U_force
+199/370 Test #139: system--pw_lda+U--lda+U_background_one_channel ....................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 142: system--pw_lda+U--lda+U_force_stress_ortho
+200/370 Test #142: system--pw_lda+U--lda+U_force_stress_ortho ........................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 143: system--pw_lda+U--lda+U_gamma
+201/370 Test #141: system--pw_lda+U--lda+U_force .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 144: system--pw_lda+U--lda+U_kind1_collin
+202/370 Test #143: system--pw_lda+U--lda+U_gamma .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 145: system--pw_lda+U--lda+U_kind1_noncollin
+203/370 Test #144: system--pw_lda+U--lda+U_kind1_collin ..............................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 146: system--pw_lda+U--lda+U_noncol_ortho
+204/370 Test #146: system--pw_lda+U--lda+U_noncol_ortho ..............................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 147: system--pw_lda+U--lda+U_orbital_resolved
+205/370 Test #145: system--pw_lda+U--lda+U_kind1_noncollin ...........................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 148: system--pw_lda+U--lda+U_pseudo
+206/370 Test #147: system--pw_lda+U--lda+U_orbital_resolved ..........................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 150: system--pw_libxc--gga_unpol_atom-pbe
+207/370 Test #148: system--pw_lda+U--lda+U_pseudo ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 151: system--pw_libxc--hyb_gga_unpol_hse-si111
+208/370 Test #150: system--pw_libxc--gga_unpol_atom-pbe ..............................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 152: system--pw_libxc--lda_pol_atom-lsda
+209/370 Test #151: system--pw_libxc--hyb_gga_unpol_hse-si111 .........................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 153: system--pw_libxc--mgga_unpol_metaGGA
+210/370 Test #153: system--pw_libxc--mgga_unpol_metaGGA ..............................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 155: system--pw_lsda--lsda-2
+211/370 Test #152: system--pw_libxc--lda_pol_atom-lsda ...............................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 156: system--pw_lsda--lsda-cg
+212/370 Test #155: system--pw_lsda--lsda-2 ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 157: system--pw_lsda--lsda-mixing_TF
+213/370 Test #156: system--pw_lsda--lsda-cg ..........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 158: system--pw_lsda--lsda-mixing_localTF
+214/370 Test #157: system--pw_lsda--lsda-mixing_TF ...................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 159: system--pw_lsda--lsda-mixing_ndim
+215/370 Test #158: system--pw_lsda--lsda-mixing_localTF ..............................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 160: system--pw_lsda--lsda-nelup+neldw
+216/370 Test #160: system--pw_lsda--lsda-nelup+neldw .................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 161: system--pw_lsda--lsda-tot_magnetization
+217/370 Test #159: system--pw_lsda--lsda-mixing_ndim .................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 164: system--pw_md--md-pot_extrap1
+218/370 Test #161: system--pw_lsda--lsda-tot_magnetization ...........................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 165: system--pw_md--md-pot_extrap2
+219/370 Test #164: system--pw_md--md-pot_extrap1 .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 166: system--pw_md--md-wfc_extrap1
+220/370 Test #165: system--pw_md--md-pot_extrap2 .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 167: system--pw_md--md-wfc_extrap2
+221/370 Test #166: system--pw_md--md-wfc_extrap1 .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 168: system--pw_md--md
+222/370 Test #167: system--pw_md--md-wfc_extrap2 .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 171: system--pw_metaGGA--metaGGA-2
+223/370 Test #168: system--pw_md--md .................................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 172: system--pw_metaGGA--metaGGA-spin
+224/370 Test #171: system--pw_metaGGA--metaGGA-2 .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 175: system--pw_metal--metal-2
+225/370 Test #172: system--pw_metaGGA--metaGGA-spin ..................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 176: system--pw_metal--metal-fermi_dirac
+226/370 Test #175: system--pw_metal--metal-2 .........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 177: system--pw_metal--metal-gaussian
+227/370 Test #176: system--pw_metal--metal-fermi_dirac ...............................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 179: system--pw_metal--metal-tetrahedra-2
+228/370 Test #177: system--pw_metal--metal-gaussian ..................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 184: system--pw_noncolin--noncolin-2
+229/370 Test #179: system--pw_metal--metal-tetrahedra-2 ..............................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 185: system--pw_noncolin--noncolin-cg
+230/370 Test #185: system--pw_noncolin--noncolin-cg ..................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 186: system--pw_noncolin--noncolin-constrain_angle
+231/370 Test #184: system--pw_noncolin--noncolin-2 ...................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 187: system--pw_noncolin--noncolin-constrain_atomic
+232/370 Test #187: system--pw_noncolin--noncolin-constrain_atomic ....................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 188: system--pw_noncolin--noncolin-constrain_total
+233/370 Test #186: system--pw_noncolin--noncolin-constrain_angle .....................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 189: system--pw_noncolin--noncolin-hyb
+234/370 Test #189: system--pw_noncolin--noncolin-hyb .................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 190: system--pw_noncolin--noncolin-hyb_std
+235/370 Test #188: system--pw_noncolin--noncolin-constrain_total .....................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 191: system--pw_noncolin--noncolin-pbe
+236/370 Test #190: system--pw_noncolin--noncolin-hyb_std .............................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 192: system--pw_noncolin--noncolin-rmm
+237/370 Test #191: system--pw_noncolin--noncolin-pbe .................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 195: system--pw_pawatom--paw-atom
+238/370 Test #192: system--pw_noncolin--noncolin-rmm .................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 196: system--pw_pawatom--paw-atom_l=2
+239/370 Test #195: system--pw_pawatom--paw-atom ......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 197: system--pw_pawatom--paw-atom_lda
+240/370 Test #196: system--pw_pawatom--paw-atom_l=2 ..................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 198: system--pw_pawatom--paw-atom_spin
+241/370 Test #197: system--pw_pawatom--paw-atom_lda ..................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 199: system--pw_pawatom--paw-atom_spin_lda
+242/370 Test #199: system--pw_pawatom--paw-atom_spin_lda .............................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 200: system--pw_pawatom--paw-atom_tqr
+243/370 Test #198: system--pw_pawatom--paw-atom_spin .................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 201: system--pw_pawatom--paw-bfgs
+244/370 Test #200: system--pw_pawatom--paw-atom_tqr ..................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 202: system--pw_pawatom--paw-vcbfgs
+245/370 Test #201: system--pw_pawatom--paw-bfgs ......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 204: system--pw_pbe--pbe0-si111
+246/370 Test #204: system--pw_pbe--pbe0-si111 ........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 205: system--pw_pbe--pbe0-si222
+247/370 Test #202: system--pw_pawatom--paw-vcbfgs ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 206: system--pw_pbe--pbe0-si444
+248/370 Test #206: system--pw_pbe--pbe0-si444 ........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 207: system--pw_pbe--pbeq2d
+249/370 Test #205: system--pw_pbe--pbe0-si222 ........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 210: system--pw_realspace--cluster_gs
+250/370 Test #210: system--pw_realspace--cluster_gs ..................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 211: system--pw_realspace--cluster_gs50
+251/370 Test #207: system--pw_pbe--pbeq2d ............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 212: system--pw_realspace--cluster_rs
+252/370 Test #212: system--pw_realspace--cluster_rs ..................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 213: system--pw_realspace--cluster_rs50
+253/370 Test #211: system--pw_realspace--cluster_gs50 ................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 215: system--pw_relax--relax-damped
+254/370 Test #213: system--pw_realspace--cluster_rs50 ................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 216: system--pw_relax--relax-el
+255/370 Test #215: system--pw_relax--relax-damped ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 217: system--pw_relax--relax-extfor
+256/370 Test #216: system--pw_relax--relax-el ........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 218: system--pw_relax--relax-fire
+257/370 Test #217: system--pw_relax--relax-extfor ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 219: system--pw_relax--relax
+258/370 Test #218: system--pw_relax--relax-fire ......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 220: system--pw_relax--relax2-bfgs_ndim3
+259/370 Test #219: system--pw_relax--relax ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 221: system--pw_relax--relax2
+260/370 Test #221: system--pw_relax--relax2 ..........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 224: system--pw_scf--scf-2
+261/370 Test #220: system--pw_relax--relax2-bfgs_ndim3 ...............................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 225: system--pw_scf--scf-allfrac
+262/370 Test #224: system--pw_scf--scf-2 .............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 226: system--pw_scf--scf-cg-gamma
+263/370 Test #225: system--pw_scf--scf-allfrac .......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 227: system--pw_scf--scf-cg
+264/370 Test #226: system--pw_scf--scf-cg-gamma ......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 229: system--pw_scf--scf-disk_io-2
+265/370 Test #227: system--pw_scf--scf-cg ............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 231: system--pw_scf--scf-gamma
+266/370 Test #229: system--pw_scf--scf-disk_io-2 .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 232: system--pw_scf--scf-gth
+267/370 Test #231: system--pw_scf--scf-gamma .........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 233: system--pw_scf--scf-k0
+268/370 Test #233: system--pw_scf--scf-k0 ............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 234: system--pw_scf--scf-kauto
+269/370 Test #232: system--pw_scf--scf-gth ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 235: system--pw_scf--scf-kcrys
+270/370 Test #234: system--pw_scf--scf-kauto .........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 236: system--pw_scf--scf-mixing_TF
+271/370 Test #235: system--pw_scf--scf-kcrys .........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 237: system--pw_scf--scf-mixing_beta
+272/370 Test #236: system--pw_scf--scf-mixing_TF .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 238: system--pw_scf--scf-mixing_localTF
+273/370 Test #237: system--pw_scf--scf-mixing_beta ...................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 239: system--pw_scf--scf-mixing_ndim
+274/370 Test #238: system--pw_scf--scf-mixing_localTF ................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 240: system--pw_scf--scf-ncpp
+275/370 Test #239: system--pw_scf--scf-mixing_ndim ...................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 241: system--pw_scf--scf-nofrac
+276/370 Test #241: system--pw_scf--scf-nofrac ........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 242: system--pw_scf--scf-occ
+277/370 Test #240: system--pw_scf--scf-ncpp ..........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 243: system--pw_scf--scf-paro-gamma
+278/370 Test #242: system--pw_scf--scf-occ ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 244: system--pw_scf--scf-paro-k
+279/370 Test #243: system--pw_scf--scf-paro-gamma ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 245: system--pw_scf--scf-rmm-gamma
+280/370 Test #245: system--pw_scf--scf-rmm-gamma .....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 246: system--pw_scf--scf-rmm-k
+281/370 Test #244: system--pw_scf--scf-paro-k ........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 247: system--pw_scf--scf-rmm-paro-gamma
+282/370 Test #246: system--pw_scf--scf-rmm-k .........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 248: system--pw_scf--scf-rmm-paro-k
+283/370 Test #247: system--pw_scf--scf-rmm-paro-gamma ................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 251: system--pw_spinorbit--spinorbit-1
+284/370 Test #248: system--pw_scf--scf-rmm-paro-k ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 253: system--pw_spinorbit--spinorbit-paw
+285/370 Test #251: system--pw_spinorbit--spinorbit-1 .................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 252: system--pw_spinorbit--spinorbit-3
+286/370 Test #253: system--pw_spinorbit--spinorbit-paw ...............................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 254: system--pw_spinorbit--spinorbit-pbe
+287/370 Test #252: system--pw_spinorbit--spinorbit-3 .................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 257: system--pw_twochem--nscf_twochem
+288/370 Test #257: system--pw_twochem--nscf_twochem ..................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 258: system--pw_twochem--relax_twochem
+289/370 Test #254: system--pw_spinorbit--spinorbit-pbe ...............................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 259: system--pw_twochem--scf_twochem
+290/370 Test #258: system--pw_twochem--relax_twochem .................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 260: system--pw_twochem--vc-relax_twochem
+291/370 Test #259: system--pw_twochem--scf_twochem ...................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 262: system--pw_uspp--uspp-2
+292/370 Test #260: system--pw_twochem--vc-relax_twochem ..............................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 263: system--pw_uspp--uspp-cg-gamma
+293/370 Test #262: system--pw_uspp--uspp-2 ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 264: system--pw_uspp--uspp-cg
+294/370 Test #263: system--pw_uspp--uspp-cg-gamma ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 265: system--pw_uspp--uspp-hyb-g
+295/370 Test #264: system--pw_uspp--uspp-cg ..........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 266: system--pw_uspp--uspp-hyb-g_std
+296/370 Test #265: system--pw_uspp--uspp-hyb-g .......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 267: system--pw_uspp--uspp-hyb-k
+297/370 Test #266: system--pw_uspp--uspp-hyb-g_std ...................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 268: system--pw_uspp--uspp-hyb-k_std
+298/370 Test #268: system--pw_uspp--uspp-hyb-k_std ...................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 269: system--pw_uspp--uspp-mixing_TF
+299/370 Test #267: system--pw_uspp--uspp-hyb-k .......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 270: system--pw_uspp--uspp-mixing_localTF
+300/370 Test #269: system--pw_uspp--uspp-mixing_TF ...................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 271: system--pw_uspp--uspp-mixing_ndim
+301/370 Test #270: system--pw_uspp--uspp-mixing_localTF ..............................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 272: system--pw_uspp--uspp-paro-gamma
+302/370 Test #271: system--pw_uspp--uspp-mixing_ndim .................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 273: system--pw_uspp--uspp-paro-k
+303/370 Test #272: system--pw_uspp--uspp-paro-gamma ..................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 274: system--pw_uspp--uspp-singlegrid
+304/370 Test #273: system--pw_uspp--uspp-paro-k ......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 276: system--pw_uspp--uspp1-coulomb
+305/370 Test #274: system--pw_uspp--uspp-singlegrid ..................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 277: system--pw_uspp--uspp1
+306/370 Test #276: system--pw_uspp--uspp1-coulomb ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 278: system--pw_uspp--uspp2
+307/370 Test #277: system--pw_uspp--uspp1 ............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 280: system--pw_vc-relax--vc-md1
+308/370 Test #280: system--pw_vc-relax--vc-md1 .......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 281: system--pw_vc-relax--vc-md2
+309/370 Test #278: system--pw_uspp--uspp2 ............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 282: system--pw_vc-relax--vc-relax1
+310/370 Test #281: system--pw_vc-relax--vc-md2 .......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 283: system--pw_vc-relax--vc-relax2
+311/370 Test #282: system--pw_vc-relax--vc-relax1 ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 284: system--pw_vc-relax--vc-relax3
+312/370 Test #283: system--pw_vc-relax--vc-relax2 ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 285: system--pw_vc-relax--vc-relax4
+313/370 Test #284: system--pw_vc-relax--vc-relax3 ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 286: system--pw_vc-relax--vc-relax5
+314/370 Test #285: system--pw_vc-relax--vc-relax4 ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 287: system--pw_vc-relax--vc-relax6
+315/370 Test #286: system--pw_vc-relax--vc-relax5 ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 289: system--pw_vdw--beef-spin
+316/370 Test #287: system--pw_vc-relax--vc-relax6 ....................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 290: system--pw_vdw--beef
+317/370 Test #289: system--pw_vdw--beef-spin .........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 291: system--pw_vdw--rVV10
+318/370 Test #291: system--pw_vdw--rVV10 .............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 292: system--pw_vdw--vdW-DF3-opt1
+319/370 Test #290: system--pw_vdw--beef ..............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 293: system--pw_vdw--vdW-DF3-opt2
+320/370 Test #293: system--pw_vdw--vdW-DF3-opt2 ......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 294: system--pw_vdw--vdw-d2
+321/370 Test #292: system--pw_vdw--vdW-DF3-opt1 ......................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.17 sec
+        Start 295: system--pw_vdw--vdw-d3
+322/370 Test #295: system--pw_vdw--vdw-d3 ............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 296: system--pw_vdw--vdw-mbd-vc-relax
+323/370 Test #294: system--pw_vdw--vdw-d2 ............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 297: system--pw_vdw--vdw-mbd
+324/370 Test #296: system--pw_vdw--vdw-mbd-vc-relax ..................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 298: system--pw_vdw--vdw-ts
+325/370 Test #297: system--pw_vdw--vdw-mbd ...........................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 299: system--pw_vdw--xdm
+326/370 Test #298: system--pw_vdw--vdw-ts ............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 302: system--pw_workflow_exx_nscf--ncpp-gamma-restart-2
+327/370 Test #299: system--pw_vdw--xdm ...............................................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.15 sec
+        Start 304: system--pw_workflow_exx_nscf--ncpp-k-2
+328/370 Test #302: system--pw_workflow_exx_nscf--ncpp-gamma-restart-2 ................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 306: system--pw_workflow_exx_nscf--uspp-gamma-2
+329/370 Test #304: system--pw_workflow_exx_nscf--ncpp-k-2 ............................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 308: system--pw_workflow_exx_nscf--uspp-k-restart-2
+330/370 Test #306: system--pw_workflow_exx_nscf--uspp-gamma-2 ........................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 310: system--pw_workflow_exx_nscf--uspp-k-smearing-2
+331/370 Test #308: system--pw_workflow_exx_nscf--uspp-k-restart-2 ....................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 313: system--pw_workflow_relax_relax--relax-2
+332/370 Test #310: system--pw_workflow_exx_nscf--uspp-k-smearing-2 ...................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 316: system--pw_workflow_scf_dos--scf-dos-2
+333/370 Test #313: system--pw_workflow_relax_relax--relax-2 ..........................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 319: system--pw_workflow_vc-relax_dos--vc-relax-dos-2
+334/370 Test #316: system--pw_workflow_scf_dos--scf-dos-2 ............................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start 322: system--pw_workflow_vc-relax_scf--vc-relax-scf-2
+335/370 Test #319: system--pw_workflow_vc-relax_dos--vc-relax-dos-2 ..................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.16 sec
+        Start  32: system--pw_atom-correctness
+        Start  39: system--pw_b3lyp-correctness
+        Start  46: system--pw_berry-correctness
+        Start  50: system--pw_cluster-correctness
+336/370 Test #322: system--pw_workflow_vc-relax_scf--vc-relax-scf-2 ..................***Failed  Required regular expression not found. Regex=[JOB DONE
+]  0.20 sec
+        Start  57: system--pw_dft-correctness
+        Start  69: system--pw_dipole-correctness
+        Start  72: system--pw_electric-correctness
+        Start  76: system--pw_eval-correctness
+337/370 Test  #46: system--pw_berry-correctness ......................................***Failed    1.03 sec
+        Start  79: system--pw_gau-pbe-correctness
+338/370 Test  #76: system--pw_eval-correctness .......................................***Failed    0.85 sec
+        Start  83: system--pw_hse-correctness
+339/370 Test  #69: system--pw_dipole-correctness .....................................***Failed    0.87 sec
+        Start  88: system--pw_irrbz-correctness
+340/370 Test  #72: system--pw_electric-correctness ...................................***Failed    1.10 sec
+        Start  90: system--pw_lattice-ibrav-correctness
+341/370 Test  #88: system--pw_irrbz-correctness ......................................***Failed    0.52 sec
+        Start 130: system--pw_lda+U-correctness
+342/370 Test  #50: system--pw_cluster-correctness ....................................***Failed    1.85 sec
+        Start 149: system--pw_libxc-correctness
+343/370 Test  #32: system--pw_atom-correctness .......................................***Failed    1.86 sec
+        Start 154: system--pw_lsda-correctness
+344/370 Test  #39: system--pw_b3lyp-correctness ......................................***Failed    1.89 sec
+        Start 163: system--pw_md-correctness
+345/370 Test  #79: system--pw_gau-pbe-correctness ....................................***Failed    1.10 sec
+        Start 169: system--pw_metaGGA-correctness
+346/370 Test  #83: system--pw_hse-correctness ........................................***Failed    1.40 sec
+        Start 174: system--pw_metal-correctness
+347/370 Test #163: system--pw_md-correctness .........................................***Failed    1.11 sec
+        Start 182: system--pw_noncolin-correctness
+348/370 Test #149: system--pw_libxc-correctness ......................................***Failed    1.40 sec
+        Start 194: system--pw_pawatom-correctness
+349/370 Test  #57: system--pw_dft-correctness ........................................***Failed    3.34 sec
+        Start 203: system--pw_pbe-correctness
+350/370 Test #169: system--pw_metaGGA-correctness ....................................***Failed    1.46 sec
+        Start 209: system--pw_realspace-correctness
+351/370 Test #154: system--pw_lsda-correctness .......................................***Failed    2.54 sec
+        Start 214: system--pw_relax-correctness
+352/370 Test #174: system--pw_metal-correctness ......................................***Failed    2.27 sec
+        Start 222: system--pw_scf-correctness
+353/370 Test #203: system--pw_pbe-correctness ........................................***Failed    1.44 sec
+        Start 250: system--pw_spinorbit-correctness
+354/370 Test #209: system--pw_realspace-correctness ..................................***Failed    1.40 sec
+        Start 256: system--pw_twochem-correctness
+355/370 Test #194: system--pw_pawatom-correctness ....................................***Failed    2.54 sec
+        Start 261: system--pw_uspp-correctness
+356/370 Test #256: system--pw_twochem-correctness ....................................***Failed    1.43 sec
+        Start 279: system--pw_vc-relax-correctness
+357/370 Test #182: system--pw_noncolin-correctness ...................................***Failed    3.42 sec
+        Start 288: system--pw_vdw-correctness
+358/370 Test #214: system--pw_relax-correctness ......................................***Failed    2.27 sec
+        Start 300: system--pw_workflow_exx_nscf-correctness
+359/370 Test #250: system--pw_spinorbit-correctness ..................................***Failed    1.71 sec
+        Start 311: system--pw_workflow_relax_relax-correctness
+360/370 Test #130: system--pw_lda+U-correctness ......................................***Failed    5.39 sec
+        Start 314: system--pw_workflow_scf_dos-correctness
+361/370 Test #311: system--pw_workflow_relax_relax-correctness .......................***Failed    0.83 sec
+        Start 317: system--pw_workflow_vc-relax_dos-correctness
+362/370 Test #314: system--pw_workflow_scf_dos-correctness ...........................***Failed    0.82 sec
+        Start 320: system--pw_workflow_vc-relax_scf-correctness
+363/370 Test #317: system--pw_workflow_vc-relax_dos-correctness ......................***Failed    0.85 sec
+364/370 Test #320: system--pw_workflow_vc-relax_scf-correctness ......................***Failed    0.82 sec
+365/370 Test #279: system--pw_vc-relax-correctness ...................................***Failed    2.42 sec
+366/370 Test #300: system--pw_workflow_exx_nscf-correctness ..........................***Failed    2.74 sec
+367/370 Test #288: system--pw_vdw-correctness ........................................***Failed    3.02 sec
+368/370 Test #261: system--pw_uspp-correctness .......................................***Failed    4.14 sec
+369/370 Test  #90: system--pw_lattice-ibrav-correctness ..............................***Failed    9.29 sec
+370/370 Test #222: system--pw_scf-correctness ........................................***Failed    5.90 sec
+
+2% tests passed, 364 tests failed out of 370
+
+Label Time Summary:
+cp_al_edft                  =  22.84 sec*proc (3 tests)
+cp_cluster                  =  22.53 sec*proc (3 tests)
+cp_h2o                      = 118.72 sec*proc (9 tests)
+cp_h2o_exx                  =  20.42 sec*proc (3 tests)
+cp_h2o_scan_libxc           =  20.47 sec*proc (3 tests)
+cp_h2o_wf                   =  20.43 sec*proc (3 tests)
+cp_o2                       =   4.12 sec*proc (7 tests)
+cp_si                       =   2.20 sec*proc (4 tests)
+cp_sio2                     =   5.19 sec*proc (9 tests)
+pseudo                      =  55.07 sec*proc (2 tests)
+pw_atom                     =   5.91 sec*proc (7 tests)
+pw_b3lyp                    =   5.74 sec*proc (7 tests)
+pw_berry                    =   3.07 sec*proc (4 tests)
+pw_cluster                  =   5.82 sec*proc (7 tests)
+pw_dft                      =  10.52 sec*proc (12 tests)
+pw_dipole                   =   2.19 sec*proc (3 tests)
+pw_electric                 =   2.94 sec*proc (4 tests)
+pw_eval                     =   2.05 sec*proc (3 tests)
+pw_gau-pbe                  =   3.08 sec*proc (4 tests)
+pw_hse                      =   4.07 sec*proc (5 tests)
+pw_irrbz                    =   1.18 sec*proc (2 tests)
+pw_lattice-ibrav            =  35.23 sec*proc (40 tests)
+pw_lda+U                    =  16.82 sec*proc (19 tests)
+pw_libxc                    =   4.01 sec*proc (5 tests)
+pw_lsda                     =   7.67 sec*proc (9 tests)
+pw_md                       =   4.67 sec*proc (9 tests)
+pw_metaGGA                  =   3.94 sec*proc (5 tests)
+pw_metal                    =   6.55 sec*proc (8 tests)
+pw_noncolin                 =  10.28 sec*proc (12 tests)
+pw_pawatom                  =   7.59 sec*proc (9 tests)
+pw_pbe                      =   4.00 sec*proc (5 tests)
+pw_plugins                  =  53.60 sec*proc (1 test)
+pw_realspace                =   3.93 sec*proc (5 tests)
+pw_relax                    =   6.54 sec*proc (8 tests)
+pw_scf                      =  22.63 sec*proc (28 tests)
+pw_spinorbit                =   4.80 sec*proc (6 tests)
+pw_twochem                  =   3.95 sec*proc (5 tests)
+pw_uspp                     =  15.62 sec*proc (18 tests)
+pw_vc-relax                 =   7.70 sec*proc (9 tests)
+pw_vdw                      =  10.11 sec*proc (12 tests)
+pw_workflow_exx_nscf        =   9.15 sec*proc (11 tests)
+pw_workflow_relax_relax     =   2.09 sec*proc (3 tests)
+pw_workflow_scf_dos         =   2.09 sec*proc (3 tests)
+pw_workflow_vc-relax_dos    =   2.10 sec*proc (3 tests)
+pw_workflow_vc-relax_scf    =   2.26 sec*proc (3 tests)
+system--cp                  = 237.19 sec*proc (45 tests)
+system--pw                  = 348.72 sec*proc (295 tests)
+unit                        =  41.66 sec*proc (30 tests)
+
+Total Test time (real) =  86.92 sec
+
+The following tests FAILED:
+	  1 - test_qe_fftx-r1-t1 (Failed)
+	  2 - test_qe_fftx-r3-t1 (Failed)
+	  3 - test_qe_fftx_fft_scalar_gpu-r1-t1 (Failed)
+	  4 - test_qe_fftx_fft_scalar_gpu-r3-t1 (Failed)
+	  5 - test_qe_fftx_fft_scatter_mod_gpu-r1-t1 (Failed)
+	  6 - test_qe_fftx_fft_scatter_mod_gpu-r3-t1 (Failed)
+	  7 - test_qe_fftx_fwinv_gpu-r1-t1 (Failed)
+	  8 - test_qe_fftx_fwinv_gpu-r3-t1 (SIGPIPE)
+	  9 - test_qe_utilx_offload_macros (Failed)
+	 10 - test_qe_utilx_mp_count_nodes (Failed)
+	 11 - test_qe_utilx_mp_bcast_i1 (Failed)
+	 12 - test_qe_utilx_mp_bcast_iv (Failed)
+	 13 - test_qe_utilx_mp_bcast_im (Failed)
+	 14 - test_qe_utilx_mp_bcast_it (Failed)
+	 15 - test_qe_utilx_mp_bcast_iv_buffer (Failed)
+	 16 - test_qe_utilx_mp_bcast_lv_buffer (Failed)
+	 17 - test_qe_utilx_mp_bcast_rv_buffer (Failed)
+	 18 - test_qe_utilx_mp_max_iv_buffer (Failed)
+	 19 - test_qe_utilx_mp_max_rv_buffer (Failed)
+	 20 - test_qe_utilx_mp_min_iv_buffer (Failed)
+	 21 - test_qe_utilx_mp_min_rv_buffer (Failed)
+	 22 - test_qe_utilx_mp_sum_iv_buffer (Failed)
+	 23 - test_qe_utilx_mp_sum_rv_buffer (Failed)
+	 24 - test_qe_lax-r1-t1 (Failed)
+	 25 - test_qe_lax-r4-t1 (Failed)
+	 27 - test_qe_xclib_exe_test (Failed)
+	 28 - test_qe_xclib_gen_test (Failed)
+	 29 - test_qe_xclib_test_all_terms (Failed)
+	 30 - test_qe_xclib_test_all_shorts (Failed)
+	 32 - system--pw_atom-correctness (Failed)
+	 33 - system--pw_atom--atom-lsda (Failed)
+	 34 - system--pw_atom--atom-occ1 (Failed)
+	 35 - system--pw_atom--atom-occ2 (Failed)
+	 36 - system--pw_atom--atom-pbe (Failed)
+	 37 - system--pw_atom--atom-sigmapbe (Failed)
+	 38 - system--pw_atom--atom (Failed)
+	 39 - system--pw_b3lyp-correctness (Failed)
+	 40 - system--pw_b3lyp--b3lyp-O (Failed)
+	 41 - system--pw_b3lyp--b3lyp-O_std (Failed)
+	 42 - system--pw_b3lyp--b3lyp-h2o (Failed)
+	 43 - system--pw_b3lyp--b3lyp-h2o_std (Failed)
+	 44 - system--pw_b3lyp--x3lyp-O (Failed)
+	 45 - system--pw_b3lyp--x3lyp-h2o (Failed)
+	 46 - system--pw_berry-correctness (Failed)
+	 47 - system--pw_berry--berry-1 (Failed)
+	 48 - system--pw_berry--berry-2 (Failed)
+	 49 - system--pw_berry--berry (Failed)
+	 50 - system--pw_cluster-correctness (Failed)
+	 51 - system--pw_cluster--cluster1 (Failed)
+	 52 - system--pw_cluster--cluster2 (Failed)
+	 53 - system--pw_cluster--cluster3 (Failed)
+	 54 - system--pw_cluster--cluster4 (Failed)
+	 55 - system--pw_cluster--cluster5 (Failed)
+	 56 - system--pw_cluster--cluster6 (Failed)
+	 57 - system--pw_dft-correctness (Failed)
+	 58 - system--pw_dft--dft1 (Failed)
+	 59 - system--pw_dft--dft10 (Failed)
+	 60 - system--pw_dft--dft11 (Failed)
+	 61 - system--pw_dft--dft2 (Failed)
+	 62 - system--pw_dft--dft3 (Failed)
+	 63 - system--pw_dft--dft4 (Failed)
+	 64 - system--pw_dft--dft5 (Failed)
+	 65 - system--pw_dft--dft6 (Failed)
+	 66 - system--pw_dft--dft7 (Failed)
+	 67 - system--pw_dft--dft8 (Failed)
+	 68 - system--pw_dft--dft9 (Failed)
+	 69 - system--pw_dipole-correctness (Failed)
+	 70 - system--pw_dipole--2dcutoff (Failed)
+	 71 - system--pw_dipole--dipole (Failed)
+	 72 - system--pw_electric-correctness (Failed)
+	 73 - system--pw_electric--electric-1 (Failed)
+	 74 - system--pw_electric--electric-2 (Failed)
+	 75 - system--pw_electric--electric (Failed)
+	 76 - system--pw_eval-correctness (Failed)
+	 77 - system--pw_eval--eval_infix-2 (Failed)
+	 78 - system--pw_eval--eval_infix (Failed)
+	 79 - system--pw_gau-pbe-correctness (Failed)
+	 80 - system--pw_gau-pbe--gau-pbe-si111 (Failed)
+	 81 - system--pw_gau-pbe--gau-pbe-si222 (Failed)
+	 82 - system--pw_gau-pbe--gau-pbe-si444 (Failed)
+	 83 - system--pw_hse-correctness (Failed)
+	 84 - system--pw_hse--hse-si111 (Failed)
+	 85 - system--pw_hse--hse-si222 (Failed)
+	 86 - system--pw_hse--hse-si444 (Failed)
+	 87 - system--pw_hse--hse-si444_std (Failed)
+	 88 - system--pw_irrbz-correctness (Failed)
+	 89 - system--pw_irrbz--scf (Failed)
+	 90 - system--pw_lattice-ibrav-correctness (Failed)
+	 91 - system--pw_lattice-ibrav--lattice-ibrav-12-kauto (Failed)
+	 92 - system--pw_lattice-ibrav--lattice-ibrav-12 (Failed)
+	 93 - system--pw_lattice-ibrav--lattice-ibrav-3-kauto (Failed)
+	 94 - system--pw_lattice-ibrav--lattice-ibrav-3 (Failed)
+	 95 - system--pw_lattice-ibrav--lattice-ibrav-5-kauto (Failed)
+	 96 - system--pw_lattice-ibrav--lattice-ibrav-5 (Failed)
+	 97 - system--pw_lattice-ibrav--lattice-ibrav0-cell_parameters+a (Failed)
+	 98 - system--pw_lattice-ibrav--lattice-ibrav0-cell_parameters+celldm (Failed)
+	 99 - system--pw_lattice-ibrav--lattice-ibrav0-cell_parameters-ang (Failed)
+	100 - system--pw_lattice-ibrav--lattice-ibrav0-cell_parameters (Failed)
+	101 - system--pw_lattice-ibrav--lattice-ibrav1-kauto (Failed)
+	102 - system--pw_lattice-ibrav--lattice-ibrav1 (Failed)
+	103 - system--pw_lattice-ibrav--lattice-ibrav10-kauto (Failed)
+	104 - system--pw_lattice-ibrav--lattice-ibrav10 (Failed)
+	105 - system--pw_lattice-ibrav--lattice-ibrav11-kauto (Failed)
+	106 - system--pw_lattice-ibrav--lattice-ibrav11 (Failed)
+	107 - system--pw_lattice-ibrav--lattice-ibrav12-kauto (Failed)
+	108 - system--pw_lattice-ibrav--lattice-ibrav12 (Failed)
+	109 - system--pw_lattice-ibrav--lattice-ibrav13-kauto (Failed)
+	110 - system--pw_lattice-ibrav--lattice-ibrav13 (Failed)
+	111 - system--pw_lattice-ibrav--lattice-ibrav14-kauto (Failed)
+	112 - system--pw_lattice-ibrav--lattice-ibrav14 (Failed)
+	113 - system--pw_lattice-ibrav--lattice-ibrav2-kauto (Failed)
+	114 - system--pw_lattice-ibrav--lattice-ibrav2 (Failed)
+	115 - system--pw_lattice-ibrav--lattice-ibrav3-kauto (Failed)
+	116 - system--pw_lattice-ibrav--lattice-ibrav3 (Failed)
+	117 - system--pw_lattice-ibrav--lattice-ibrav4-kauto (Failed)
+	118 - system--pw_lattice-ibrav--lattice-ibrav4 (Failed)
+	119 - system--pw_lattice-ibrav--lattice-ibrav5-kauto (Failed)
+	120 - system--pw_lattice-ibrav--lattice-ibrav5 (Failed)
+	121 - system--pw_lattice-ibrav--lattice-ibrav6-kauto (Failed)
+	122 - system--pw_lattice-ibrav--lattice-ibrav6 (Failed)
+	123 - system--pw_lattice-ibrav--lattice-ibrav7-kauto (Failed)
+	124 - system--pw_lattice-ibrav--lattice-ibrav7 (Failed)
+	125 - system--pw_lattice-ibrav--lattice-ibrav8-kauto (Failed)
+	126 - system--pw_lattice-ibrav--lattice-ibrav8 (Failed)
+	127 - system--pw_lattice-ibrav--lattice-ibrav9-kauto (Failed)
+	128 - system--pw_lattice-ibrav--lattice-ibrav9 (Failed)
+	129 - system--pw_lattice-ibrav--lattice-wyckoff-sio2 (Failed)
+	130 - system--pw_lda+U-correctness (Failed)
+	131 - system--pw_lda+U--lda+U+J0 (Failed)
+	132 - system--pw_lda+U--lda+U+V-user_ns (Failed)
+	133 - system--pw_lda+U--lda+U+V_background (Failed)
+	134 - system--pw_lda+U--lda+U+V_force_stress_ortho (Failed)
+	135 - system--pw_lda+U--lda+U+V_noncol_ortho (Failed)
+	136 - system--pw_lda+U--lda+U-noU (Failed)
+	137 - system--pw_lda+U--lda+U-user_ns (Failed)
+	138 - system--pw_lda+U--lda+U (Failed)
+	139 - system--pw_lda+U--lda+U_background_one_channel (Failed)
+	140 - system--pw_lda+U--lda+U_background_two_channels (Failed)
+	141 - system--pw_lda+U--lda+U_force (Failed)
+	142 - system--pw_lda+U--lda+U_force_stress_ortho (Failed)
+	143 - system--pw_lda+U--lda+U_gamma (Failed)
+	144 - system--pw_lda+U--lda+U_kind1_collin (Failed)
+	145 - system--pw_lda+U--lda+U_kind1_noncollin (Failed)
+	146 - system--pw_lda+U--lda+U_noncol_ortho (Failed)
+	147 - system--pw_lda+U--lda+U_orbital_resolved (Failed)
+	148 - system--pw_lda+U--lda+U_pseudo (Failed)
+	149 - system--pw_libxc-correctness (Failed)
+	150 - system--pw_libxc--gga_unpol_atom-pbe (Failed)
+	151 - system--pw_libxc--hyb_gga_unpol_hse-si111 (Failed)
+	152 - system--pw_libxc--lda_pol_atom-lsda (Failed)
+	153 - system--pw_libxc--mgga_unpol_metaGGA (Failed)
+	154 - system--pw_lsda-correctness (Failed)
+	155 - system--pw_lsda--lsda-2 (Failed)
+	156 - system--pw_lsda--lsda-cg (Failed)
+	157 - system--pw_lsda--lsda-mixing_TF (Failed)
+	158 - system--pw_lsda--lsda-mixing_localTF (Failed)
+	159 - system--pw_lsda--lsda-mixing_ndim (Failed)
+	160 - system--pw_lsda--lsda-nelup+neldw (Failed)
+	161 - system--pw_lsda--lsda-tot_magnetization (Failed)
+	162 - system--pw_lsda--lsda (Failed)
+	163 - system--pw_md-correctness (Failed)
+	164 - system--pw_md--md-pot_extrap1 (Failed)
+	165 - system--pw_md--md-pot_extrap2 (Failed)
+	166 - system--pw_md--md-wfc_extrap1 (Failed)
+	167 - system--pw_md--md-wfc_extrap2 (Failed)
+	168 - system--pw_md--md (Failed)
+	169 - system--pw_metaGGA-correctness (Failed)
+	170 - system--pw_metaGGA--metaGGA-1 (Failed)
+	171 - system--pw_metaGGA--metaGGA-2 (Failed)
+	172 - system--pw_metaGGA--metaGGA-spin (Failed)
+	173 - system--pw_metaGGA--metaGGA (Failed)
+	174 - system--pw_metal-correctness (Failed)
+	175 - system--pw_metal--metal-2 (Failed)
+	176 - system--pw_metal--metal-fermi_dirac (Failed)
+	177 - system--pw_metal--metal-gaussian (Failed)
+	178 - system--pw_metal--metal-tetrahedra-1 (Failed)
+	179 - system--pw_metal--metal-tetrahedra-2 (Failed)
+	180 - system--pw_metal--metal-tetrahedra (Failed)
+	181 - system--pw_metal--metal (Failed)
+	182 - system--pw_noncolin-correctness (Failed)
+	183 - system--pw_noncolin--noncolin-1 (Failed)
+	184 - system--pw_noncolin--noncolin-2 (Failed)
+	185 - system--pw_noncolin--noncolin-cg (Failed)
+	186 - system--pw_noncolin--noncolin-constrain_angle (Failed)
+	187 - system--pw_noncolin--noncolin-constrain_atomic (Failed)
+	188 - system--pw_noncolin--noncolin-constrain_total (Failed)
+	189 - system--pw_noncolin--noncolin-hyb (Failed)
+	190 - system--pw_noncolin--noncolin-hyb_std (Failed)
+	191 - system--pw_noncolin--noncolin-pbe (Failed)
+	192 - system--pw_noncolin--noncolin-rmm (Failed)
+	193 - system--pw_noncolin--noncolin (Failed)
+	194 - system--pw_pawatom-correctness (Failed)
+	195 - system--pw_pawatom--paw-atom (Failed)
+	196 - system--pw_pawatom--paw-atom_l=2 (Failed)
+	197 - system--pw_pawatom--paw-atom_lda (Failed)
+	198 - system--pw_pawatom--paw-atom_spin (Failed)
+	199 - system--pw_pawatom--paw-atom_spin_lda (Failed)
+	200 - system--pw_pawatom--paw-atom_tqr (Failed)
+	201 - system--pw_pawatom--paw-bfgs (Failed)
+	202 - system--pw_pawatom--paw-vcbfgs (Failed)
+	203 - system--pw_pbe-correctness (Failed)
+	204 - system--pw_pbe--pbe0-si111 (Failed)
+	205 - system--pw_pbe--pbe0-si222 (Failed)
+	206 - system--pw_pbe--pbe0-si444 (Failed)
+	207 - system--pw_pbe--pbeq2d (Failed)
+	208 - system--pw_plugins-correctness (Failed)
+	209 - system--pw_realspace-correctness (Failed)
+	210 - system--pw_realspace--cluster_gs (Failed)
+	211 - system--pw_realspace--cluster_gs50 (Failed)
+	212 - system--pw_realspace--cluster_rs (Failed)
+	213 - system--pw_realspace--cluster_rs50 (Failed)
+	214 - system--pw_relax-correctness (Failed)
+	215 - system--pw_relax--relax-damped (Failed)
+	216 - system--pw_relax--relax-el (Failed)
+	217 - system--pw_relax--relax-extfor (Failed)
+	218 - system--pw_relax--relax-fire (Failed)
+	219 - system--pw_relax--relax (Failed)
+	220 - system--pw_relax--relax2-bfgs_ndim3 (Failed)
+	221 - system--pw_relax--relax2 (Failed)
+	222 - system--pw_scf-correctness (Failed)
+	223 - system--pw_scf--scf-1 (Failed)
+	224 - system--pw_scf--scf-2 (Failed)
+	225 - system--pw_scf--scf-allfrac (Failed)
+	226 - system--pw_scf--scf-cg-gamma (Failed)
+	227 - system--pw_scf--scf-cg (Failed)
+	228 - system--pw_scf--scf-disk_io-1 (Failed)
+	229 - system--pw_scf--scf-disk_io-2 (Failed)
+	230 - system--pw_scf--scf-disk_io (Failed)
+	231 - system--pw_scf--scf-gamma (Failed)
+	232 - system--pw_scf--scf-gth (Failed)
+	233 - system--pw_scf--scf-k0 (Failed)
+	234 - system--pw_scf--scf-kauto (Failed)
+	235 - system--pw_scf--scf-kcrys (Failed)
+	236 - system--pw_scf--scf-mixing_TF (Failed)
+	237 - system--pw_scf--scf-mixing_beta (Failed)
+	238 - system--pw_scf--scf-mixing_localTF (Failed)
+	239 - system--pw_scf--scf-mixing_ndim (Failed)
+	240 - system--pw_scf--scf-ncpp (Failed)
+	241 - system--pw_scf--scf-nofrac (Failed)
+	242 - system--pw_scf--scf-occ (Failed)
+	243 - system--pw_scf--scf-paro-gamma (Failed)
+	244 - system--pw_scf--scf-paro-k (Failed)
+	245 - system--pw_scf--scf-rmm-gamma (Failed)
+	246 - system--pw_scf--scf-rmm-k (Failed)
+	247 - system--pw_scf--scf-rmm-paro-gamma (Failed)
+	248 - system--pw_scf--scf-rmm-paro-k (Failed)
+	249 - system--pw_scf--scf (Failed)
+	250 - system--pw_spinorbit-correctness (Failed)
+	251 - system--pw_spinorbit--spinorbit-1 (Failed)
+	252 - system--pw_spinorbit--spinorbit-3 (Failed)
+	253 - system--pw_spinorbit--spinorbit-paw (Failed)
+	254 - system--pw_spinorbit--spinorbit-pbe (Failed)
+	255 - system--pw_spinorbit--spinorbit (Failed)
+	256 - system--pw_twochem-correctness (Failed)
+	257 - system--pw_twochem--nscf_twochem (Failed)
+	258 - system--pw_twochem--relax_twochem (Failed)
+	259 - system--pw_twochem--scf_twochem (Failed)
+	260 - system--pw_twochem--vc-relax_twochem (Failed)
+	261 - system--pw_uspp-correctness (Failed)
+	262 - system--pw_uspp--uspp-2 (Failed)
+	263 - system--pw_uspp--uspp-cg-gamma (Failed)
+	264 - system--pw_uspp--uspp-cg (Failed)
+	265 - system--pw_uspp--uspp-hyb-g (Failed)
+	266 - system--pw_uspp--uspp-hyb-g_std (Failed)
+	267 - system--pw_uspp--uspp-hyb-k (Failed)
+	268 - system--pw_uspp--uspp-hyb-k_std (Failed)
+	269 - system--pw_uspp--uspp-mixing_TF (Failed)
+	270 - system--pw_uspp--uspp-mixing_localTF (Failed)
+	271 - system--pw_uspp--uspp-mixing_ndim (Failed)
+	272 - system--pw_uspp--uspp-paro-gamma (Failed)
+	273 - system--pw_uspp--uspp-paro-k (Failed)
+	274 - system--pw_uspp--uspp-singlegrid (Failed)
+	275 - system--pw_uspp--uspp (Failed)
+	276 - system--pw_uspp--uspp1-coulomb (Failed)
+	277 - system--pw_uspp--uspp1 (Failed)
+	278 - system--pw_uspp--uspp2 (Failed)
+	279 - system--pw_vc-relax-correctness (Failed)
+	280 - system--pw_vc-relax--vc-md1 (Failed)
+	281 - system--pw_vc-relax--vc-md2 (Failed)
+	282 - system--pw_vc-relax--vc-relax1 (Failed)
+	283 - system--pw_vc-relax--vc-relax2 (Failed)
+	284 - system--pw_vc-relax--vc-relax3 (Failed)
+	285 - system--pw_vc-relax--vc-relax4 (Failed)
+	286 - system--pw_vc-relax--vc-relax5 (Failed)
+	287 - system--pw_vc-relax--vc-relax6 (Failed)
+	288 - system--pw_vdw-correctness (Failed)
+	289 - system--pw_vdw--beef-spin (Failed)
+	290 - system--pw_vdw--beef (Failed)
+	291 - system--pw_vdw--rVV10 (Failed)
+	292 - system--pw_vdw--vdW-DF3-opt1 (Failed)
+	293 - system--pw_vdw--vdW-DF3-opt2 (Failed)
+	294 - system--pw_vdw--vdw-d2 (Failed)
+	295 - system--pw_vdw--vdw-d3 (Failed)
+	296 - system--pw_vdw--vdw-mbd-vc-relax (Failed)
+	297 - system--pw_vdw--vdw-mbd (Failed)
+	298 - system--pw_vdw--vdw-ts (Failed)
+	299 - system--pw_vdw--xdm (Failed)
+	300 - system--pw_workflow_exx_nscf-correctness (Failed)
+	301 - system--pw_workflow_exx_nscf--ncpp-gamma-restart-1 (Failed)
+	302 - system--pw_workflow_exx_nscf--ncpp-gamma-restart-2 (Failed)
+	303 - system--pw_workflow_exx_nscf--ncpp-k-1 (Failed)
+	304 - system--pw_workflow_exx_nscf--ncpp-k-2 (Failed)
+	305 - system--pw_workflow_exx_nscf--uspp-gamma-1 (Failed)
+	306 - system--pw_workflow_exx_nscf--uspp-gamma-2 (Failed)
+	307 - system--pw_workflow_exx_nscf--uspp-k-restart-1 (Failed)
+	308 - system--pw_workflow_exx_nscf--uspp-k-restart-2 (Failed)
+	309 - system--pw_workflow_exx_nscf--uspp-k-smearing-1 (Failed)
+	310 - system--pw_workflow_exx_nscf--uspp-k-smearing-2 (Failed)
+	311 - system--pw_workflow_relax_relax-correctness (Failed)
+	312 - system--pw_workflow_relax_relax--relax-1 (Failed)
+	313 - system--pw_workflow_relax_relax--relax-2 (Failed)
+	314 - system--pw_workflow_scf_dos-correctness (Failed)
+	315 - system--pw_workflow_scf_dos--scf-dos-1 (Failed)
+	316 - system--pw_workflow_scf_dos--scf-dos-2 (Failed)
+	317 - system--pw_workflow_vc-relax_dos-correctness (Failed)
+	318 - system--pw_workflow_vc-relax_dos--vc-relax-dos-1 (Failed)
+	319 - system--pw_workflow_vc-relax_dos--vc-relax-dos-2 (Failed)
+	320 - system--pw_workflow_vc-relax_scf-correctness (Failed)
+	321 - system--pw_workflow_vc-relax_scf--vc-relax-scf-1 (Failed)
+	322 - system--pw_workflow_vc-relax_scf--vc-relax-scf-2 (Failed)
+	324 - system--cp_al_edft-correctness (Failed)
+	325 - system--cp_al_edft--Al (Failed)
+	326 - system--cp_al_edft--Al.uspp (Failed)
+	327 - system--cp_cluster-correctness (Failed)
+	328 - system--cp_cluster--cluster4 (Failed)
+	329 - system--cp_cluster--cluster6 (Failed)
+	330 - system--cp_h2o-correctness (Failed)
+	331 - system--cp_h2o--h2o-mt-blyp-1 (Failed)
+	332 - system--cp_h2o--h2o-mt-blyp-2 (Failed)
+	333 - system--cp_h2o--h2o-mt-blyp-3 (Failed)
+	334 - system--cp_h2o--h2o-mt-blyp-4 (Failed)
+	335 - system--cp_h2o--h2o-mt-blyp-5 (Failed)
+	336 - system--cp_h2o--h2o-mt-blyp-6 (Failed)
+	337 - system--cp_h2o--h2o-mt-blyp-7 (Failed)
+	338 - system--cp_h2o--h2o-mt-blyp-cg (Failed)
+	339 - system--cp_h2o_exx-correctness (Failed)
+	340 - system--cp_h2o_exx--h2o-mt-b3lyp-1 (Failed)
+	341 - system--cp_h2o_exx--h2o-mt-exx_fraction (Failed)
+	342 - system--cp_h2o_scan_libxc-correctness (Failed)
+	343 - system--cp_h2o_scan_libxc--nspin1 (Failed)
+	344 - system--cp_h2o_scan_libxc--nspin2 (Failed)
+	345 - system--cp_h2o_wf-correctness (Failed)
+	346 - system--cp_h2o_wf--h2o-nspin1 (Failed)
+	347 - system--cp_h2o_wf--h2o-nspin2 (Failed)
+	348 - system--cp_o2-correctness (Failed)
+	349 - system--cp_o2--o2-us-para-pbe-1 (Failed)
+	350 - system--cp_o2--o2-us-para-pbe-2 (Failed)
+	351 - system--cp_o2--o2-us-para-pbe-3 (Failed)
+	352 - system--cp_o2--o2-us-para-pbe-4 (Failed)
+	353 - system--cp_o2--o2-us-para-pbe-5 (Failed)
+	354 - system--cp_o2--o2-us-para-pbe-6 (Failed)
+	355 - system--cp_si-correctness (Failed)
+	356 - system--cp_si--si-vbc-lda-1 (Failed)
+	357 - system--cp_si--si-vbc-lda-2 (Failed)
+	358 - system--cp_si--si-vbc-lda-3 (Failed)
+	359 - system--cp_sio2-correctness (Failed)
+	360 - system--cp_sio2--sio2-us-lda-1 (Failed)
+	361 - system--cp_sio2--sio2-us-lda-2 (Failed)
+	362 - system--cp_sio2--sio2-us-lda-3 (Failed)
+	363 - system--cp_sio2--sio2-us-lda-4 (Failed)
+	364 - system--cp_sio2--sio2-us-lda-cg (Failed)
+	365 - system--cp_sio2--sio2-us-pbe-1 (Failed)
+	366 - system--cp_sio2--sio2-us-pbe-2 (Failed)
+	367 - system--cp_sio2--sio2-us-pbe-cg (Failed)
+Errors while running CTest
+Output from these tests are in: /lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/build_intel2023_i8-openmpi4.1.8_libxc_mkl_scalapack/Testing/Temporary/LastTest.log
+Use "--rerun-failed --output-on-failure" to re-run the failed cases verbosely.
+
+
+ End of script. Date & Time is Fri Apr 10 14:59:48 MSK 2026 
+

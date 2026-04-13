@@ -30,3 +30,16 @@ configure ...
                           for pmix and fall back to an internal version if one
                           is not found.
 
+
+*** Configuring PMIx
+configure: error: Building against an external PMIx with an internal Libevent or HWLOC is unsupported.  Cannot continue.
+
+
+How to Fix It
+You generally have two paths to resolve this: 
+Option 1: Use external versions for everything (Recommended)
+If you are pointing to an external PMIx, you should also point to the system-installed versions of HWLOC and Libevent. 
+bash
+./configure --with-pmix=/path/to/pmix \
+            --with-libevent=external \
+            --with-hwloc=external

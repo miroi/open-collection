@@ -126,7 +126,8 @@ echo -e "\n\n Going to do the the configure :"
 #./configure --prefix=$PWD F77=ifort FC=ifort FFLAGS=-i8 FCFLAGS=-i8 CXX=icpc CC=icc
 ./configure --prefix=$prefixdir  FC=ifx  CXX=icpx CC=icx \
 --enable-mpi-fortran=usempi  --enable-mpi1-compatibility \
---with-tests-examples  --with-slurm  --with-pmix=external 
+--with-tests-examples  --with-slurm  --with-pmix=external \
+                     -with-libevent=external  --with-hwloc=external
  
 echo -e "\n\n First make clean :"; make clean
 

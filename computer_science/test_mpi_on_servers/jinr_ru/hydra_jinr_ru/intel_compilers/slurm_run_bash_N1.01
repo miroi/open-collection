@@ -74,16 +74,25 @@ echo -e "\n\n My PATH=$PATH\n"
 echo -e "\nMy LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
 echo -e "\n ifx ?  \c"; which ifx; ifx -V
 echo -e " mpiifx ? \c"; which mpiifx;  mpiifx -V
-echo -e " mpirun ? \c"; which mpirun; mpirun --version
+echo -e " mpirun ? \c"; which mpirun; mpirun --version; mpirun --help
 
-echo -e "\n compiling mpifx pi.F90 -o pi_mpi.x :"
+echo -e "\n\n compiling mpifx pi.F90 -o pi_mpi.x :"
 mpiifx pi.F90 -o pi_mpi.x
 echo -e "\n check executable, ldd pi_mpi.x :"
 ldd pi_mpi.x
 
-echo -e "\n running mpirun -np $SLURM_NTASKS ./pi_mpi.x :"
+echo -e "\n\n running mpirun -f $MACHINEFILE -np $SLURM_NTASKS ./pi_mpi.x :"
 #mpirun -np $SLURM_NTASKS ./pi_mpi.x
 mpirun  -f $MACHINEFILE  -np $SLURM_NTASKS ./pi_mpi.x
+
+echo -e "\n\n running mpirun -bootstrap ssh -f $MACHINEFILE -np $SLURM_NTASKS ./pi_mpi.x :"
+#mpirun -np $SLURM_NTASKS ./pi_mpi.x
+ mpirun -bootstrap ssh -f $MACHINEFILE -np $SLURM_NTASKS ./pi_mpi.x
+
+
+echo -e "\n\n Finally, running mpirun -np $SLURM_NTASKS ./pi_mpi.x :"
+mpirun -np $SLURM_NTASKS ./pi_mpi.x
+#mpirun  -f $MACHINEFILE  -np $SLURM_NTASKS ./pi_mpi.x
 
 
 

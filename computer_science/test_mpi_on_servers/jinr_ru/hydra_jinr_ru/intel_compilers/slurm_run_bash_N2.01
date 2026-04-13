@@ -81,9 +81,10 @@ mpiifx pi.F90 -o pi_mpi.x
 echo -e "\n check executable, ldd pi_mpi.x :"
 ldd pi_mpi.x
 
-echo -e "\n running mpirun  -f $MACHINEFILE -np $SLURM_NTASKS ./pi_mpi.x :"
-#mpirun -np $SLURM_NTASKS ./pi_mpi.x
-mpirun  -f $MACHINEFILE  -np $SLURM_NTASKS ./pi_mpi.x
+echo -e "\n\n running mpirun  -f $MACHINEFILE -np $SLURM_NTASKS ./pi_mpi.x :"
+mpirun   -f $MACHINEFILE  -np $SLURM_NTASKS ./pi_mpi.x
 
+echo -e "\n\n Finally, running mpirun -bootstrap ssh -f $MACHINEFILE -np $SLURM_NTASKS ./pi_mpi.x :"
+mpirun -bootstrap ssh -f $MACHINEFILE -np $SLURM_NTASKS ./pi_mpi.x
 
 

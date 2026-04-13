@@ -1,16 +1,16 @@
 
-Running on host n02p072.gvr.local
-Time is Fri Mar 27 14:44:08 MSK 2026 
+Running on host n02p048.gvr.local
+Time is Mon Apr 13 16:09:53 MSK 2026 
 
 
 Job user is SLURM_JOB_USER= milias
-User job SLURM_JOB_NAME=slurm_run_bash_N2.01 has assigned ID SLURM_JOBID=116060
+User job SLURM_JOB_NAME=slurm_run_bash_N2.01 has assigned ID SLURM_JOBID=183188
 This job was submitted from the computer SLURM_SUBMIT_HOST=space06.hydra.local
 and from the home directory SLURM_SUBMIT_DIR:
 /lustre/projects/m/milias/work/git-projects/open-collection/computer_science/test_mpi_on_servers/jinr_ru/hydra_jinr_ru/intel_compilers
 Job is running on the cluster compute node: SLURM_CLUSTER_NAME=gvr
 and is employing SLURM_JOB_NUM_NODES=2 node/nodes:
-SLURM_JOB_NODELIST = n02p[072-073]
+SLURM_JOB_NODELIST = n02p[048-049]
 Job partition is SLURM_JOB_PARTITION=bltp 
 
 Number of allocated CPUs on each single node, SLURM_CPUS_ON_NODE=4 .
@@ -18,34 +18,34 @@ Number of all reserved threads over ALL nodes, SLURM_NTASKS=8 .
 Job has reserved memory per node, SLURM_MEM_PER_NODE=4096 MB of memory
 srun: warning: can't honor --ntasks-per-node set to 4 which doesn't match the requested tasks 8 and -mpack, which forces min number of nodes to 1
 
-generated machinefile for MPI, nodes.bltp.116060
--rw-r--r-- 1 milias hybrilit 144 Mar 27 14:44 /lustre/projects/m/milias/work/git-projects/open-collection/computer_science/test_mpi_on_servers/jinr_ru/hydra_jinr_ru/intel_compilers/nodes.bltp.116060
+generated machinefile for MPI, nodes.bltp.183188
+-rw-r--r-- 1 milias hybrilit 144 Apr 13 16:09 /lustre/projects/m/milias/work/git-projects/open-collection/computer_science/test_mpi_on_servers/jinr_ru/hydra_jinr_ru/intel_compilers/nodes.bltp.183188
 containing:
-n02p072.gvr.local
-n02p072.gvr.local
-n02p072.gvr.local
-n02p072.gvr.local
-n02p073.gvr.local
-n02p073.gvr.local
-n02p073.gvr.local
-n02p073.gvr.local
+n02p048.gvr.local
+n02p048.gvr.local
+n02p048.gvr.local
+n02p048.gvr.local
+n02p049.gvr.local
+n02p049.gvr.local
+n02p049.gvr.local
+n02p049.gvr.local
 The node's CPU model name	: Intel(R) Xeon(R) Platinum 8268 CPU @ 2.90GHz
 BTW, this node has total 96 CPUs available for an EXCLUSIVE job.
 Based on reserved memory, this node got 4 CPUs allocated for SLURM calculations.
 This job wants SLURM_NTASKS=8 threads . # Generate Machinefile for mpi such that hosts are in the same
 srun: warning: can't honor --ntasks-per-node set to 4 which doesn't match the requested tasks 8 and -mpack, which forces min number of nodes to 1
 
-generated machinefile for MPI, nodes.bltp.116060
--rw-r--r-- 1 milias hybrilit 144 Mar 27 14:44 /lustre/projects/m/milias/work/git-projects/open-collection/computer_science/test_mpi_on_servers/jinr_ru/hydra_jinr_ru/intel_compilers/nodes.bltp.116060
+generated machinefile for MPI, nodes.bltp.183188
+-rw-r--r-- 1 milias hybrilit 144 Apr 13 16:09 /lustre/projects/m/milias/work/git-projects/open-collection/computer_science/test_mpi_on_servers/jinr_ru/hydra_jinr_ru/intel_compilers/nodes.bltp.183188
 containing:
-n02p072.gvr.local
-n02p072.gvr.local
-n02p072.gvr.local
-n02p072.gvr.local
-n02p073.gvr.local
-n02p073.gvr.local
-n02p073.gvr.local
-n02p073.gvr.local
+n02p048.gvr.local
+n02p048.gvr.local
+n02p048.gvr.local
+n02p048.gvr.local
+n02p049.gvr.local
+n02p049.gvr.local
+n02p049.gvr.local
+n02p049.gvr.local
 
 
  loaded modules:
@@ -58,9 +58,9 @@ Currently Loaded Modules:
 
  The total memory at the node (in GB)
                total        used        free      shared  buff/cache   available
-Mem:             187           4         175           1           9         182
+Mem:             187          14         169           4           9         172
 Swap:              3           0           3
-Total:           191           4         179
+Total:           191          14         173
 
 
 
@@ -68,7 +68,7 @@ Total:           191           4         179
  Current directory SLURM_SUBMIT_DIR=/lustre/projects/m/milias/work/git-projects/open-collection/computer_science/test_mpi_on_servers/jinr_ru/hydra_jinr_ru/intel_compilers
  It has the disk space of (df -h) :
 Filesystem                                                                         Size  Used Avail Use% Mounted on
-10.220.25.75@o2ib,10.220.25.76@o2ib:10.220.25.79@o2ib,10.220.25.80@o2ib:/projects  2.2P  135T  2.0P   7% /lustre/projects
+10.220.25.75@o2ib,10.220.25.76@o2ib:10.220.25.79@o2ib,10.220.25.80@o2ib:/projects  2.2P  229T  1.9P  11% /lustre/projects
 
 
 
@@ -94,30 +94,56 @@ Copyright 2003-2025, Intel Corporation.
  compiling mpifx pi.F90 -o pi_mpi.x :
 
  check executable, ldd pi_mpi.x :
-	linux-vdso.so.1 (0x00007fff9737b000)
-	libmpifort.so.12 => /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mpi/2021.17/lib/libmpifort.so.12 (0x0000152640e00000)
-	libmpi.so.12 => /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mpi/2021.17/lib/libmpi.so.12 (0x0000152636c00000)
-	libimf.so => /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/compiler/2025.3/lib/libimf.so (0x0000152636600000)
-	libm.so.6 => /lib64/libm.so.6 (0x000015264127d000)
-	libc.so.6 => /lib64/libc.so.6 (0x0000152636200000)
-	libgcc_s.so.1 => /lib64/libgcc_s.so.1 (0x0000152641263000)
-	librt.so.1 => /lib64/librt.so.1 (0x000015264125e000)
-	libdl.so.2 => /lib64/libdl.so.2 (0x0000152641259000)
-	/lib64/ld-linux-x86-64.so.2 (0x0000152641366000)
-	libintlc.so.5 => /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/compiler/2025.3/lib/libintlc.so.5 (0x0000152640d9d000)
+	linux-vdso.so.1 (0x00007ffeaf1dc000)
+	libmpifort.so.12 => /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mpi/2021.17/lib/libmpifort.so.12 (0x0000152665400000)
+	libmpi.so.12 => /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mpi/2021.17/lib/libmpi.so.12 (0x000015265b200000)
+	libimf.so => /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/compiler/2025.3/lib/libimf.so (0x000015265ac00000)
+	libm.so.6 => /lib64/libm.so.6 (0x00001526658b2000)
+	libc.so.6 => /lib64/libc.so.6 (0x000015265a800000)
+	libgcc_s.so.1 => /lib64/libgcc_s.so.1 (0x0000152665898000)
+	librt.so.1 => /lib64/librt.so.1 (0x0000152665893000)
+	libdl.so.2 => /lib64/libdl.so.2 (0x000015266588e000)
+	/lib64/ld-linux-x86-64.so.2 (0x000015266599b000)
+	libintlc.so.5 => /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/compiler/2025.3/lib/libintlc.so.5 (0x0000152665829000)
 
- running mpirun  -f nodes.bltp.116060 -np 8 ./pi_mpi.x :
-[mpiexec@n02p072.gvr.local] Error: Unable to run bstrap_proxy (pid 320729, exit code 256)
-[mpiexec@n02p072.gvr.local] poll_for_event (../../../../../src/pm/i_hydra/libhydra/demux/hydra_demux_poll.c:157): check exit codes error
-[mpiexec@n02p072.gvr.local] HYD_dmx_poll_wait_for_proxy_event (../../../../../src/pm/i_hydra/libhydra/demux/hydra_demux_poll.c:206): poll for event error
-[mpiexec@n02p072.gvr.local] HYD_bstrap_setup (../../../../../src/pm/i_hydra/libhydra/bstrap/src/intel/i_hydra_bstrap.c:1063): error waiting for event
-[mpiexec@n02p072.gvr.local] Error setting up the bootstrap proxies
-[mpiexec@n02p072.gvr.local] Possible reasons:
-[mpiexec@n02p072.gvr.local] 1. Host is unavailable. Please check that all hosts are available.
-[mpiexec@n02p072.gvr.local] 2. Cannot launch hydra_bstrap_proxy or it crashed on one of the hosts.
-[mpiexec@n02p072.gvr.local]    Make sure hydra_bstrap_proxy is available on all hosts and it has right permissions.
-[mpiexec@n02p072.gvr.local] 3. Firewall refused connection.
-[mpiexec@n02p072.gvr.local]    Check that enough ports are allowed in the firewall and specify them with the I_MPI_PORT_RANGE variable.
-[mpiexec@n02p072.gvr.local] 4. slurm bootstrap cannot launch processes on remote host.
-[mpiexec@n02p072.gvr.local]    You may try using -bootstrap option to select alternative launcher.
-srun: error: Unable to create step for job 116060: Requested node configuration is not available
+
+ running mpirun  -f nodes.bltp.183188 -np 8 ./pi_mpi.x :
+[mpiexec@n02p048.gvr.local] Error: Unable to run bstrap_proxy (pid 307900, exit code 256)
+[mpiexec@n02p048.gvr.local] poll_for_event (../../../../../src/pm/i_hydra/libhydra/demux/hydra_demux_poll.c:157): check exit codes error
+[mpiexec@n02p048.gvr.local] HYD_dmx_poll_wait_for_proxy_event (../../../../../src/pm/i_hydra/libhydra/demux/hydra_demux_poll.c:206): poll for event error
+[mpiexec@n02p048.gvr.local] HYD_bstrap_setup (../../../../../src/pm/i_hydra/libhydra/bstrap/src/intel/i_hydra_bstrap.c:1063): error waiting for event
+[mpiexec@n02p048.gvr.local] Error setting up the bootstrap proxies
+[mpiexec@n02p048.gvr.local] Possible reasons:
+[mpiexec@n02p048.gvr.local] 1. Host is unavailable. Please check that all hosts are available.
+[mpiexec@n02p048.gvr.local] 2. Cannot launch hydra_bstrap_proxy or it crashed on one of the hosts.
+[mpiexec@n02p048.gvr.local]    Make sure hydra_bstrap_proxy is available on all hosts and it has right permissions.
+[mpiexec@n02p048.gvr.local] 3. Firewall refused connection.
+[mpiexec@n02p048.gvr.local]    Check that enough ports are allowed in the firewall and specify them with the I_MPI_PORT_RANGE variable.
+[mpiexec@n02p048.gvr.local] 4. slurm bootstrap cannot launch processes on remote host.
+[mpiexec@n02p048.gvr.local]    You may try using -bootstrap option to select alternative launcher.
+srun: error: Unable to create step for job 183188: Requested node configuration is not available
+
+
+ Finally, running mpirun -bootstrap ssh -f nodes.bltp.183188 -np 8 ./pi_mpi.x :
+[mpiexec@n02p048.gvr.local] Error: Unable to run bstrap_proxy on n02p049.gvr.local (pid 307909, exit code 65280)
+[mpiexec@n02p048.gvr.local] poll_for_event (../../../../../src/pm/i_hydra/libhydra/demux/hydra_demux_poll.c:157): check exit codes error
+[mpiexec@n02p048.gvr.local] HYD_dmx_poll_wait_for_proxy_event (../../../../../src/pm/i_hydra/libhydra/demux/hydra_demux_poll.c:206): poll for event error
+[mpiexec@n02p048.gvr.local] HYD_bstrap_setup (../../../../../src/pm/i_hydra/libhydra/bstrap/src/intel/i_hydra_bstrap.c:1063): error waiting for event
+[mpiexec@n02p048.gvr.local] Error setting up the bootstrap proxies
+[mpiexec@n02p048.gvr.local] Possible reasons:
+[mpiexec@n02p048.gvr.local] 1. Host is unavailable. Please check that all hosts are available.
+[mpiexec@n02p048.gvr.local] 2. Cannot launch hydra_bstrap_proxy or it crashed on one of the hosts.
+[mpiexec@n02p048.gvr.local]    Make sure hydra_bstrap_proxy is available on all hosts and it has right permissions.
+[mpiexec@n02p048.gvr.local] 3. Firewall refused connection.
+[mpiexec@n02p048.gvr.local]    Check that enough ports are allowed in the firewall and specify them with the I_MPI_PORT_RANGE variable.
+[mpiexec@n02p048.gvr.local] 4. Ssh bootstrap cannot launch processes on remote host.
+[mpiexec@n02p048.gvr.local]    Make sure that passwordless ssh connection is established across compute hosts.
+[mpiexec@n02p048.gvr.local]    You may try using -bootstrap option to select alternative launcher.
+unknown option -- -
+usage: ssh [-46AaCfGgKkMNnqsTtVvXxYy] [-B bind_interface]
+           [-b bind_address] [-c cipher_spec] [-D [bind_address:]port]
+           [-E log_file] [-e escape_char] [-F configfile] [-I pkcs11]
+           [-i identity_file] [-J [user@]host[:port]] [-L address]
+           [-l login_name] [-m mac_spec] [-O ctl_cmd] [-o option] [-p port]
+           [-Q query_option] [-R address] [-S ctl_path] [-W host:port]
+           [-w local_tun[:remote_tun]] destination [command]

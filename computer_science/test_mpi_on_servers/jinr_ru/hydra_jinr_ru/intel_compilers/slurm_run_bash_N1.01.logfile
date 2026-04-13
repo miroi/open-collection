@@ -1,41 +1,41 @@
 
-Running on host n02p065.gvr.local
-Time is Fri Mar 27 14:44:06 MSK 2026 
+Running on host n02p046.gvr.local
+Time is Mon Apr 13 16:01:02 MSK 2026 
 
 
 Job user is SLURM_JOB_USER= milias
-User job SLURM_JOB_NAME=slurm_run_bash_N1.01 has assigned ID SLURM_JOBID=116059
+User job SLURM_JOB_NAME=slurm_run_bash_N1.01 has assigned ID SLURM_JOBID=183170
 This job was submitted from the computer SLURM_SUBMIT_HOST=space06.hydra.local
 and from the home directory SLURM_SUBMIT_DIR:
 /lustre/projects/m/milias/work/git-projects/open-collection/computer_science/test_mpi_on_servers/jinr_ru/hydra_jinr_ru/intel_compilers
 Job is running on the cluster compute node: SLURM_CLUSTER_NAME=gvr
 and is employing SLURM_JOB_NUM_NODES=1 node/nodes:
-SLURM_JOB_NODELIST = n02p065
+SLURM_JOB_NODELIST = n02p046
 Job partition is SLURM_JOB_PARTITION=bltp 
 
 Number of allocated CPUs on each single node, SLURM_CPUS_ON_NODE=4 .
 Number of all reserved threads over ALL nodes, SLURM_NTASKS=4 .
 Job has reserved memory per node, SLURM_MEM_PER_NODE=4096 MB of memory
 
-generated machinefile for MPI, nodes.bltp.116059
--rw-r--r-- 1 12376 hybrilit 72 Mar 27 14:44 /lustre/projects/m/milias/work/git-projects/open-collection/computer_science/test_mpi_on_servers/jinr_ru/hydra_jinr_ru/intel_compilers/nodes.bltp.116059
+generated machinefile for MPI, nodes.bltp.183170
+-rw-r--r-- 1 milias hybrilit 72 Apr 13 16:01 /lustre/projects/m/milias/work/git-projects/open-collection/computer_science/test_mpi_on_servers/jinr_ru/hydra_jinr_ru/intel_compilers/nodes.bltp.183170
 containing:
-n02p065.gvr.local
-n02p065.gvr.local
-n02p065.gvr.local
-n02p065.gvr.local
+n02p046.gvr.local
+n02p046.gvr.local
+n02p046.gvr.local
+n02p046.gvr.local
 The node's CPU model name	: Intel(R) Xeon(R) Platinum 8268 CPU @ 2.90GHz
 BTW, this node has total 96 CPUs available for an EXCLUSIVE job.
 Based on reserved memory, this node got 4 CPUs allocated for SLURM calculations.
 This job wants SLURM_NTASKS=4 threads . # Generate Machinefile for mpi such that hosts are in the same
 
-generated machinefile for MPI, nodes.bltp.116059
--rw-r--r-- 1 12376 hybrilit 72 Mar 27 14:44 /lustre/projects/m/milias/work/git-projects/open-collection/computer_science/test_mpi_on_servers/jinr_ru/hydra_jinr_ru/intel_compilers/nodes.bltp.116059
+generated machinefile for MPI, nodes.bltp.183170
+-rw-r--r-- 1 milias hybrilit 72 Apr 13 16:01 /lustre/projects/m/milias/work/git-projects/open-collection/computer_science/test_mpi_on_servers/jinr_ru/hydra_jinr_ru/intel_compilers/nodes.bltp.183170
 containing:
-n02p065.gvr.local
-n02p065.gvr.local
-n02p065.gvr.local
-n02p065.gvr.local
+n02p046.gvr.local
+n02p046.gvr.local
+n02p046.gvr.local
+n02p046.gvr.local
 
 
  loaded modules:
@@ -48,9 +48,9 @@ Currently Loaded Modules:
 
  The total memory at the node (in GB)
                total        used        free      shared  buff/cache   available
-Mem:             187           2         184           0           0         184
+Mem:             187           5         171           1          13         181
 Swap:              3           0           3
-Total:           191           2         188
+Total:           191           5         175
 
 
 
@@ -58,7 +58,7 @@ Total:           191           2         188
  Current directory SLURM_SUBMIT_DIR=/lustre/projects/m/milias/work/git-projects/open-collection/computer_science/test_mpi_on_servers/jinr_ru/hydra_jinr_ru/intel_compilers
  It has the disk space of (df -h) :
 Filesystem                                                                         Size  Used Avail Use% Mounted on
-10.220.25.75@o2ib,10.220.25.76@o2ib:10.220.25.79@o2ib,10.220.25.80@o2ib:/projects  2.2P  135T  2.0P   7% /lustre/projects
+10.220.25.75@o2ib,10.220.25.76@o2ib:10.220.25.79@o2ib,10.220.25.80@o2ib:/projects  2.2P  229T  1.9P  11% /lustre/projects
 
 
 
@@ -78,38 +78,175 @@ Intel(R) Fortran Compiler for applications running on Intel(R) 64, Version 2025.
 Copyright (C) 1985-2026 Intel Corporation. All rights reserved.
 
  mpirun ? /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mpi/2021.17/bin/mpirun
-whoami: cannot find name for user ID 12376
 Intel(R) MPI Library for Linux* OS, Version 2021.17 Build 20251215 (id: 2ac2f63)
 Copyright 2003-2025, Intel Corporation.
+
+Usage: ./mpiexec [global opts] [local opts for exec1] [exec1] [exec1 args] : [local opts for exec2] [exec2] [exec2 args] : ...
+
+Global options (passed to all executables):
+
+  Global environment options:
+    -genv {name} {value}             environment variable name and value
+    -genvlist {env1,env2,...}        environment variable list to pass
+    -genvnone                        do not pass any environment variables
+    -genvall                         pass all environment variables not managed
+                                          by the launcher (default)
+
+  Other global options:
+    -f {name}                        file containing the host names
+    -hosts {host list}               comma separated host list
+
+
+Local options (passed to individual executables):
+
+  Other local options:
+    -n/-np {value}                   number of processes
+    {exec_name} {args}               executable name and arguments
+
+
+Hydra specific options (treated as global):
+
+  Launch options:
+    -launcher                        launcher to use (ssh slurm rsh ll sge pbs pbsdsh pdsh srun lsf blaunch qrsh fork)
+    -launcher-exec                   executable to use to launch processes
+    -enable-x/-disable-x             enable or disable X forwarding
+
+  Resource management kernel options:
+    -rmk                             resource management kernel to use (slurm ll lsf sge pbs cobalt)
+
+  Other Hydra options:
+    -verbose                         verbose mode
+    -info                            build information
+    -print-all-exitcodes             print exit codes of all processes
+    -ppn                             processes per node
+    -prepend-rank                    prepend rank to output
+    -prepend-pattern                 prepend pattern to output
+    -outfile-pattern                 direct stdout to file
+    -errfile-pattern                 direct stderr to file
+    -nameserver                      name server information (host:port format)
+    -disable-auto-cleanup            don't cleanup processes on error
+    -disable-hostname-propagation    let MPICH auto-detect the hostname
+    -localhost                       local hostname for the launching node
+    -usize                           universe size (SYSTEM, INFINITE, <value>)
+
+Intel(R) MPI Library specific options:
+
+  <option> -help                     show help message for the specific option
+
+  Global options:
+    -aps                             Intel(R) Application Performance Snapshot profile
+    -mps                             Intel(R) Application Performance Snapshot profile (MPI, OpenMP only)
+    -gdb                             Use this option to run an executable under the gdb.
+    -gdb-args                        Use this option to pass arguments to gdb.
+    -gtool                           tool and rank set
+    -gtoolfile                       file containing tool and rank set
+    -hosts-group {groups of hosts}   allows to set node ranges (like in Slurm* Workload Manager)
+
+  Other Hydra options:
+    -iface                           network interface to use
+    -s <spec>                        redirect stdin to all or 1,2 or 2-4,6 MPI processes (0 by default)
+    -silent-abort                    do not print abort warning message
+    -nolocal                         avoid running the application processes on the node where mpiexec.hydra started
+    -tune {binary file}              defines the name of binary tuning file
+    -print-rank-map                  print rank mapping
+    -prepend-timestamp               prepend time stamp to stdout
+    -prot                            print the communication protocol between each host and process pin status
+    -cpu-bind <cpu-binding>          Excplicitly set CPU binding for application. Default pinning is used when not set
+
+Intel(R) MPI Library, Version 2021.17  Build 20251215 (id: 2ac2f63)
+Copyright 2003-2025 Intel Corporation.
+
 
  compiling mpifx pi.F90 -o pi_mpi.x :
 
  check executable, ldd pi_mpi.x :
-	linux-vdso.so.1 (0x0000148eeb596000)
-	libmpifort.so.12 => /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mpi/2021.17/lib/libmpifort.so.12 (0x0000148eeb000000)
-	libmpi.so.12 => /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mpi/2021.17/lib/libmpi.so.12 (0x0000148ee0e00000)
-	libimf.so => /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/compiler/2025.3/lib/libimf.so (0x0000148ee0800000)
-	libm.so.6 => /lib64/libm.so.6 (0x0000148eeb4a9000)
-	libc.so.6 => /lib64/libc.so.6 (0x0000148ee0400000)
-	libgcc_s.so.1 => /lib64/libgcc_s.so.1 (0x0000148eeb48f000)
-	librt.so.1 => /lib64/librt.so.1 (0x0000148eeb48a000)
-	libdl.so.2 => /lib64/libdl.so.2 (0x0000148eeb485000)
-	/lib64/ld-linux-x86-64.so.2 (0x0000148eeb598000)
-	libintlc.so.5 => /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/compiler/2025.3/lib/libintlc.so.5 (0x0000148eeb420000)
+	linux-vdso.so.1 (0x00001472bf7ca000)
+	libmpifort.so.12 => /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mpi/2021.17/lib/libmpifort.so.12 (0x00001472bf200000)
+	libmpi.so.12 => /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mpi/2021.17/lib/libmpi.so.12 (0x00001472b5000000)
+	libimf.so => /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/compiler/2025.3/lib/libimf.so (0x00001472b4a00000)
+	libm.so.6 => /lib64/libm.so.6 (0x00001472bf6dd000)
+	libc.so.6 => /lib64/libc.so.6 (0x00001472b4600000)
+	libgcc_s.so.1 => /lib64/libgcc_s.so.1 (0x00001472bf6c3000)
+	librt.so.1 => /lib64/librt.so.1 (0x00001472bf6be000)
+	libdl.so.2 => /lib64/libdl.so.2 (0x00001472bf6b9000)
+	/lib64/ld-linux-x86-64.so.2 (0x00001472bf7cc000)
+	libintlc.so.5 => /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/compiler/2025.3/lib/libintlc.so.5 (0x00001472bf654000)
 
- running mpirun -np 4 ./pi_mpi.x :
-whoami: cannot find name for user ID 12376
-[mpiexec@n02p065.gvr.local] Error: Unable to run bstrap_proxy on n02p065.gvr.local (pid 11153, exit code 256)
-[mpiexec@n02p065.gvr.local] poll_for_event (../../../../../src/pm/i_hydra/libhydra/demux/hydra_demux_poll.c:157): check exit codes error
-[mpiexec@n02p065.gvr.local] HYD_dmx_poll_wait_for_proxy_event (../../../../../src/pm/i_hydra/libhydra/demux/hydra_demux_poll.c:206): poll for event error
-[mpiexec@n02p065.gvr.local] HYD_bstrap_setup (../../../../../src/pm/i_hydra/libhydra/bstrap/src/intel/i_hydra_bstrap.c:1063): error waiting for event
-[mpiexec@n02p065.gvr.local] Error setting up the bootstrap proxies
-[mpiexec@n02p065.gvr.local] Possible reasons:
-[mpiexec@n02p065.gvr.local] 1. Host is unavailable. Please check that all hosts are available.
-[mpiexec@n02p065.gvr.local] 2. Cannot launch hydra_bstrap_proxy or it crashed on one of the hosts.
-[mpiexec@n02p065.gvr.local]    Make sure hydra_bstrap_proxy is available on all hosts and it has right permissions.
-[mpiexec@n02p065.gvr.local] 3. Firewall refused connection.
-[mpiexec@n02p065.gvr.local]    Check that enough ports are allowed in the firewall and specify them with the I_MPI_PORT_RANGE variable.
-[mpiexec@n02p065.gvr.local] 4. slurm bootstrap cannot launch processes on remote host.
-[mpiexec@n02p065.gvr.local]    You may try using -bootstrap option to select alternative launcher.
-srun: error: Unable to create step for job 116059: Requested node configuration is not available
+
+ running mpirun -f nodes.bltp.183170 -np 4 ./pi_mpi.x :
+[mpiexec@n02p046.gvr.local] Error: Unable to run bstrap_proxy on n02p046.gvr.local (pid 1387306, exit code 256)
+[mpiexec@n02p046.gvr.local] poll_for_event (../../../../../src/pm/i_hydra/libhydra/demux/hydra_demux_poll.c:157): check exit codes error
+[mpiexec@n02p046.gvr.local] HYD_dmx_poll_wait_for_proxy_event (../../../../../src/pm/i_hydra/libhydra/demux/hydra_demux_poll.c:206): poll for event error
+[mpiexec@n02p046.gvr.local] HYD_bstrap_setup (../../../../../src/pm/i_hydra/libhydra/bstrap/src/intel/i_hydra_bstrap.c:1063): error waiting for event
+[mpiexec@n02p046.gvr.local] Error setting up the bootstrap proxies
+[mpiexec@n02p046.gvr.local] Possible reasons:
+[mpiexec@n02p046.gvr.local] 1. Host is unavailable. Please check that all hosts are available.
+[mpiexec@n02p046.gvr.local] 2. Cannot launch hydra_bstrap_proxy or it crashed on one of the hosts.
+[mpiexec@n02p046.gvr.local]    Make sure hydra_bstrap_proxy is available on all hosts and it has right permissions.
+[mpiexec@n02p046.gvr.local] 3. Firewall refused connection.
+[mpiexec@n02p046.gvr.local]    Check that enough ports are allowed in the firewall and specify them with the I_MPI_PORT_RANGE variable.
+[mpiexec@n02p046.gvr.local] 4. slurm bootstrap cannot launch processes on remote host.
+[mpiexec@n02p046.gvr.local]    You may try using -bootstrap option to select alternative launcher.
+srun: error: Unable to create step for job 183170: Requested node configuration is not available
+
+
+ running mpirun -bootstrap ssh -f nodes.bltp.183170 -np 4 ./pi_mpi.x :
+ MPI_INIT done, ierr=           0
+ MPI_INIT done, ierr=           0
+ MPI_INIT done, ierr=           0
+ Process            2  of            4  is alive
+ Process            3  of            4  is alive
+ Process            1  of            4  is alive
+ startime=   3276968.78584667     
+ startime=   3276964.51684268     
+ startime=   3276957.27718857     
+ MPI_INIT done, ierr=           0
+ Process            0  of            4  is alive
+from pi_input file -  read parameter n=       400
+ startime=   3276966.47442712     
+ endtime=   3276957.27945227     
+ endtime=   3276968.78810661     
+ endtime=   3276964.51910724     
+ endtime=   3276966.47469895     
+ for n=         400  the calculated pi is    3.14159317442313       Error is
+  5.208333337947124E-007
+ spent time is   2.718279138207436E-004  seconds
+ MPI_FINALIZE done, rc=           0
+ MPI_FINALIZE done, rc=           0
+ MPI_FINALIZE done, rc=           0
+ MPI_FINALIZE done, rc=           0
+program finished
+program finished
+program finished
+program finished
+
+
+ Finally, running mpirun -np 4 ./pi_mpi.x :
+ MPI_INIT done, ierr=           0
+ Process            1  of            4  is alive
+ startime=   3276956.63713326     
+ MPI_INIT done, ierr=           0
+ Process            3  of            4  is alive
+ startime=   3276971.96811734     
+ MPI_INIT done, ierr=           0
+ Process            2  of            4  is alive
+ startime=   3276962.67640988     
+ MPI_INIT done, ierr=           0
+ Process            0  of            4  is alive
+from pi_input file -  read parameter n=       400
+ startime=   3276973.95233425     
+ endtime=   3276956.63976397     
+ endtime=   3276962.67778801     
+ endtime=   3276971.96967986     
+ endtime=   3276973.95247483     
+ for n=         400  the calculated pi is    3.14159317442313       Error is
+  5.208333337947124E-007
+ spent time is   1.405766233801842E-004  seconds
+ MPI_FINALIZE done, rc=           0
+ MPI_FINALIZE done, rc=           0
+ MPI_FINALIZE done, rc=           0
+ MPI_FINALIZE done, rc=           0
+program finished
+program finished
+program finished
+program finished

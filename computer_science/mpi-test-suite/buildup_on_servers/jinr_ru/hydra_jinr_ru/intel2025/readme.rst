@@ -22,4 +22,18 @@ module add intel/v2025.3.1 Autoconf/v2.73
 
 see error https://github.com/open-mpi/mpi-test-suite/issues/24
 
+janko's autotools
+-----------------
+milias@hydra.jinr.ru:/lustre/projects/m/milias/work/software/openmpi/mpi-test-suite/mpi-test-suite_intel2025/.module purge
+milias@hydra.jinr.ru:/lustre/projects/m/milias/work/software/openmpi/mpi-test-suite/mpi-test-suite_intel2025/.export MODULEPATH=/cvmfs/nica.jinr.ru/sw/202309/MODULES/slc9_x86-64:$MODULEPATH
+milias@hydra.jinr.ru:/lustre/projects/m/milias/work/software/openmpi/mpi-test-suite/mpi-test-suite_intel2025/.module add autotools
+milias@hydra.jinr.ru:/lustre/projects/m/milias/work/software/openmpi/mpi-test-suite/mpi-test-suite_intel2025/.module list
+Currently Loaded Modules:
+  1) autotools/v1.7.0-1
+
+milias@hydra.jinr.ru:/lustre/projects/m/milias/work/software/openmpi/mpi-test-suite/mpi-test-suite_intel2025/../autogen.sh
+Can't locate File/Copy.pm in @INC (you may need to install the File::Copy module) (@INC contains: /cvmfs/nica.jinr.ru/sw/202309/slc9_x86-64/autotools/v1.7.0-1/share/autoconf /usr/local/lib64/perl5/5.32 /usr/local/share/perl5/5.32 /usr/lib64/perl5/vendor_perl /usr/share/perl5/vendor_perl /usr/lib64/perl5 /usr/share/perl5) at /cvmfs/nica.jinr.ru/sw/202309/slc9_x86-64/autotools/v1.7.0-1/bin/autoreconf line 49.
+BEGIN failed--compilation aborted at /cvmfs/nica.jinr.ru/sw/202309/slc9_x86-64/autotools/v1.7.0-1/bin/autoreconf line 49.
+
+
 

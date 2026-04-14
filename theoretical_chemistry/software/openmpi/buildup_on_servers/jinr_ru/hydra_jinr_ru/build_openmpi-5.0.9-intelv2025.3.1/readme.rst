@@ -43,3 +43,5 @@ bash
 ./configure --with-pmix=/path/to/pmix \
             --with-libevent=external \
             --with-hwloc=external
+
+problem:  configure: error: External libevent requested but not found. !!!

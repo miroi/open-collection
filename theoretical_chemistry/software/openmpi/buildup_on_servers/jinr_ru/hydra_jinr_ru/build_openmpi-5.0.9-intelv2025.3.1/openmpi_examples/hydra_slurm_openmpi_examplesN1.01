@@ -49,7 +49,7 @@ echo -e "\n"
  
 echo Job user is $SLURM_JOB_USER and his job $SLURM_JOB_NAME has assigned ID $SLURM_JOBID
 echo This job was submitted from the computer $SLURM_SUBMIT_HOST
-echo and from the home directory:
+echo and from the home directory SLURM_SUBMIT_DIR :
 echo $SLURM_SUBMIT_DIR
 echo
 echo It is running on the cluster compute node:
@@ -87,11 +87,6 @@ INSTALLDIR=install_openmpi5.0.9-intel2025.3.1_c
 prefixdir=$INSTALLPATH/$INSTALLDIR
 echo -e "\n Checking presence of full path install dir, ls -lt :"; ls -lt $INSTALLPATH/$INSTALLDIR
 
-cd $OMPI
-echo -e "\n\n I am in directory OMPI=$OMPI"
-echo -e "            checking with pwd=\c"; pwd
-echo -e "\n Checking configure --help :"; configure --help
-
 echo -e "\n\n Check OpenMPI binaries and libs in $prefixdir/:"
 ls -lt $prefixdir/bin/*
 ls -lt $prefixdir/lib/*
@@ -113,21 +108,26 @@ echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"; ls -lt  $MKLROOT/lib/intel64
 echo -e "\n\n mpirun ? \c"; which mpirun; mpirun --version; mpirun --help
 echo -e "\n\n ompi_info ? \c"; which ompi_info; ompi_info -all
 
-echo -e "\n\n Examples in $OMPI/examples :"; ls -lt $OMPI/examples/. 
+EXDIR=$OMPI/examples
+echo -e "\n\n Examples in $EXDIR :"; ls -lt  $EXDIR/.
 
-ldd $OMPI/examples/hello_c
-ldd $OMPI/examples/ring_usempi
-ldd $OMPI/examples/ring_mpifh
-ldd $OMPI/examples/spc_example
+echo -e "\n\n I am in SLURM_SUBMIT_DIR=$SLURM_SUBMIT_DIR "
+echo -e " ... for control               pwd=\c";pwd
 
-mpirun  --hostfile $MACHINEFILE  -np $SLURM_NTASKS $OMPI/examples/hello_c
-mpirun  --hostfile $MACHINEFILE  -np $SLURM_NTASKS $OMPI/examples/connectivity_c
-mpirun  --hostfile $MACHINEFILE -np $SLURM_NTASKS $OMPI/examples/hello_sessions_c
-mpirun  --hostfile $MACHINEFILE  -np $SLURM_NTASKS $OMPI/examples/hello_usempi
-mpirun  --hostfile $MACHINEFILE  -np $SLURM_NTASKS $OMPI/examples/ring_c
-mpirun  --hostfile $MACHINEFILE  -np $SLURM_NTASKS $OMPI/examples/ring_mpifh
-mpirun  --hostfile $MACHINEFILE  -np $SLURM_NTASKS $OMPI/examples/ring_usempi
-mpirun  --hostfile $MACHINEFILE   -np $SLURM_NTASKS $OMPI/examples/spc_example
+
+# Declare the array
+my_array=("hello_c" "ring_usempi" "ring_mpifh" "spc_example" "hello_sessions_c" "hello_usempi" "ring_c" "spc_example")
+
+# Iterate over values
+for item in "${my_array[@]}"; do
+    echo -e  "\n\n Current OpenMPI executable: $EXDIR/$item"
+    ldd $EXDIR/$item
+
+    echo -e "\n mpirun  --hostfile $MACHINEFILE  -np $SLURM_NTASKS  $EXDIR/$item :"
+    #mpirun  --hostfile $MACHINEFILE  -np $SLURM_NTASKS  $EXDIR/$item
+    mpirun --report-bindings  --hostfile $MACHINEFILE   $EXDIR/$item
+    
+done
 
 
 exit

@@ -35,5 +35,7 @@ milias@hydra.jinr.ru:/lustre/projects/m/milias/work/software/openmpi/mpi-test-su
 Can't locate File/Copy.pm in @INC (you may need to install the File::Copy module) (@INC contains: /cvmfs/nica.jinr.ru/sw/202309/slc9_x86-64/autotools/v1.7.0-1/share/autoconf /usr/local/lib64/perl5/5.32 /usr/local/share/perl5/5.32 /usr/lib64/perl5/vendor_perl /usr/share/perl5/vendor_perl /usr/lib64/perl5 /usr/share/perl5) at /cvmfs/nica.jinr.ru/sw/202309/slc9_x86-64/autotools/v1.7.0-1/bin/autoreconf line 49.
 BEGIN failed--compilation aborted at /cvmfs/nica.jinr.ru/sw/202309/slc9_x86-64/autotools/v1.7.0-1/bin/autoreconf line 49.
 
-
+works in script
+---------------
+but missing tool https://pm.jinr.ru/issues/10362
 

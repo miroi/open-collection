@@ -76,19 +76,25 @@ srun -l /bin/hostname | sort -n | awk '{print $2}'
 
 echo -e "\n\n loaded modules:"
 module purge
-module add  Python/v3.12.13
+#module add  Python/v3.12.13
 #module add  CMake/v4.2.3
 module add  intel/v2025.3.1
-module add  Autoconf/v2.73
+#module add  Autoconf/v2.73
 #module add openmpi/v5.0.3_gcc1230
 #module add LAPACK/v3.12.0_gcc1230
+
+source /cvmfs/nica.jinr.ru/sw/os/login.sh
+module add autotools
+which aclocal
+
 module list
 
-echo -e "\n python ? :\c"; which python; python -V
+#echo -e "\n python ? :\c"; which python; python -V
 echo -e "  aclocal ? :\c"; which aclocal; aclocal --version
 #echo -e "  cmake ? :\c";  which cmake; cmake --version
 echo -e "  ifx ? :\c"; which ifx; ifx -V
 echo -e "  icx ? :\c"; which icx; icx -V
+echo -e "  mpiicx ? :\c"; which mpiicx; mpiicx -V
 echo -e "  icpx ? :\c"; which icpx; icpx  -V
 echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"; ls -lt  $MKLROOT/lib/intel64
 
@@ -120,14 +126,16 @@ echo -e "\n Checking presence of full path install dir, ls -lt :"; ls -lt $INSTA
 cd $MPS
 echo -e "\n\n I am in directory MPS=$MPS"
 echo -e "            checking with pwd=\c"; pwd
-echo -e "\n Checking configure --help :"; configure --help
+#echo -e "\n Checking configure --help :"; configure --help
 
 
 ## autogen
-echo -e "\n ruuning ./autogen.sh"; ./autogen.sh
+echo -e "\n running ./autogen.sh"; ./autogen.sh
+
+echo -e "\n Checking configure --help :"; configure --help
 
 echo -e "\n\n Going to do the the configure :"
-./configure --prefix=$prefixdir   CC=mpiicx \
+./configure --prefix=$prefixdir   CC=mpiicx 
  
 echo -e "\n\n First make clean :"; make clean
 

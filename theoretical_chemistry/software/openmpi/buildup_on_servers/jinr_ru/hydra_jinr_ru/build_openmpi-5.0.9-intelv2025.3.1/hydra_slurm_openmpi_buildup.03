@@ -124,7 +124,7 @@ echo -e "\n Checking configure --help :"; configure --help
 
 echo -e "\n\n Going to do the the configure :"
 #./configure --prefix=$PWD F77=ifort FC=ifort FFLAGS=-i8 FCFLAGS=-i8 CXX=icpc CC=icc
-./configure --prefix=$prefixdir  FC=ifx  CXX=icpx CC=icx \
+./configure --prefix=$prefixdir  FC=ifx  CXX=icpx CC=icx  CFLAGS="-O3 -xHost -D_GNU_SOURCE" FCFLAGS="-O3 -xHost"  CXXFLAGS="-O3 -xHost"  \
 --enable-mpi-fortran=usempif08  --enable-mpi1-compatibility \
 --with-tests-examples  --with-slurm
 

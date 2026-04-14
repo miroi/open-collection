@@ -45,3 +45,8 @@ bash
             --with-hwloc=external
 
 problem:  configure: error: External libevent requested but not found. !!!
+
+
+make[4]: Entering directory '/lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/openmpi-5.0.9/3rd-party/openpmix/test/util' CC convert.o CC numa.o convert.c:50:5: error: call to undeclared function 'asprintf'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration] 50 | asprintf(&tmp, "%s.v1", argv[1]); | ^ 1 error generated. make[4]: *** [Makefile:667: convert.o] Error 1
+
+to fix ... export CFLAGS="-O3 -xHost -D_GNU_SOURCE"

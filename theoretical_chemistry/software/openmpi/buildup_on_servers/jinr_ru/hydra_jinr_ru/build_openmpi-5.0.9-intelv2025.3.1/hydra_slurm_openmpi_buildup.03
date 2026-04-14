@@ -125,8 +125,7 @@ echo -e "\n Checking configure --help :"; configure --help
 echo -e "\n\n Going to do the the configure :"
 #./configure --prefix=$PWD F77=ifort FC=ifort FFLAGS=-i8 FCFLAGS=-i8 CXX=icpc CC=icc
 ./configure --prefix=$prefixdir  FC=ifx  CXX=icpx CC=icx  CFLAGS="-O3 -xHost -D_GNU_SOURCE" FCFLAGS="-O3 -xHost"  CXXFLAGS="-O3 -xHost"  \
---enable-mpi-fortran=usempif08  --enable-mpi1-compatibility \
---with-tests-examples  --with-slurm
+ --enable-mpi1-compatibility  --with-tests-examples  --with-slurm
 
 #--with-tests-examples  --with-slurm  --with-pmix=external \
 #                     -with-libevent=external  --with-hwloc=external
@@ -142,8 +141,34 @@ make check
 echo -e "\n\n Going to do make all install to given dir, $prefixdir :"
 make all install
 
-echo -e "\n\n after the installation, check OpenMPI binaries and libs:"
+echo -e "\n\n after the installation, check OpenMPI binaries and libs in $prefixdir/:"
+ls -lt $prefixdir/.
 ls -lt $prefixdir/bin/*
 ls -lt $prefixdir/lib/*
+
+## make path
+export PATH=$prefixdir/bin:$PATH
+export LD_LIBRARY_PATH=$prefixdir/lib:$LD_LIBRARY_PATH
+echo -e "\n\n mpirun ? \c"; which mpirun; mpirun --version
+echo -e "\n\n mpif90 ? \c"; which mpif90; mpif90 --version
+echo -e "\n\n mpicc ? \c";  which mpicc; mpicc --version
+echo -e "\n\n mpicxx ? \c"; which mpicxx; mpicxx --version
+echo -e "\n\n ompi_info ? \c"; which ompi_info; ompi_info -all
+
+echo -e "\n\n Examples in $INSTALLPATH/examples :"; ls -lt $INSTALLPATH/examples/. 
+
+ldd $INSTALLPATH/examples/hello_c
+ldd $INSTALLPATH/examples/ring_usempi
+ldd $INSTALLPATH/examples/ring_mpifh
+
+mpirun -np $SLURM_NTASKS $INSTALLPATH/examples/hello_c
+mpirun -np $SLURM_NTASKS $INSTALLPATH/examples/connectivity_c
+mpirun -np $SLURM_NTASKS $INSTALLPATH/examples/hello_sessions_c
+mpirun -np $SLURM_NTASKS $INSTALLPATH/examples/hello_usempi
+mpirun -np $SLURM_NTASKS $INSTALLPATH/examples/ring_c
+mpirun -np $SLURM_NTASKS $INSTALLPATH/examples/ring_mpifh
+mpirun -np $SLURM_NTASKS $INSTALLPATH/examples/ring_usempi
+mpirun -np $SLURM_NTASKS $INSTALLPATH/examples/spc_example
+
 
 exit

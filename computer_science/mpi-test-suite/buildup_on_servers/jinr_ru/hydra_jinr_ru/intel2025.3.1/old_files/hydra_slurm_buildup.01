@@ -104,6 +104,24 @@ echo -e "\n The variable PATH=$PATH\n"
 #OMPI=/lustre/home/user/m/milias/work/software/openmpi/openmpi-5.0.7-intel_v2021.1/openmpi-5.0.7
 #OMPI=/lustre/home/user/m/milias/work/software/openmpi/openmpi-5.0.9-inteloneapi/openmpi-5.0.9
 MPS=/lustre/projects/m/milias/work/software/openmpi/mpi-test-suite/mpi-test-suite_intel2025
+INSTALLPATH=/lustre/projects/m/milias/work/software/openmpi/mpi-test-suite
+INSTALLDIR=install_intel2025.3.1
+
+cd $INSTALLPATH
+echo -e "\nI am in the directory $INSTALLPATH; verify via pwd: ";pwd
+
+if [ -d "$INSTALLDIR" ]; then
+  echo -e "\nPREVIOUS directory '$INSTALLDIR' exists. Removing it.After recreating it again by mkdir."
+  rm -rf $INSTALLDIR
+  mkdir $INSTALLDIR
+else
+  echo -e "\nPREVIOUS directory '$INSTALLDIR' does not exist - will be created by mkdir."
+  mkdir $INSTALLDIR
+fi
+echo -e "Checking presence of install dir, ls -lt . :"; ls -lt .
+
+prefixdir=$INSTALLPATH/$INSTALLDIR
+echo -e "\n Checking presence of full path install dir, ls -lt :"; ls -lt $INSTALLPATH/$INSTALLDIR
 
 cd $MPS
 echo -e "\n\n I am in directory MPS=$MPS"
@@ -127,14 +145,14 @@ make -j $SLURM_CPUS_ON_NODE
 echo -e "\n\n Going to do make check :"
 make check
 
-echo -e "\n\n check presence of binary mpi_test_suite :"
-ls -lt mpi_test_suite;  ldd  mpi_test_suite
+echo -e "\n\n Going to do make all install to given dir, $prefixdir :"
+make all install
 
-echo -e "\n\n Check mpirun -np 1 mpi_test_suite ... "
- mpirun -np 1 mpi_test_suite -h
- mpirun -np 1 mpi_test_suite -l
+echo -e "\n\n after the installation, check OpenMPI binaries and libs:"
+ls -lt $prefixdir/bin/*
+ls -lt $prefixdir/lib/*
 
-echo -e "\n\n Running mpi_test_suite tests on $SLURM_CPUS_ON_NODE CPUs :"
- mpirun -np $SLURM_CPUS_ON_NODE  mpi_test_suite
+echo -e "\n\n mpirun -np 1 $prefixdir/bin/mpi_test_suite -h "
+ mpirun -np 1 $prefixdir/bin/mpi_test_suite -h
 
 exit

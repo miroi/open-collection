@@ -21,7 +21,8 @@
 #SBATCH --no-requeue
 #SBATCH --no-kill
 
-#SBATCH -N 1 -n 6
+#SBATCH -N 1
+#SBATCH -n 4
 ##SBATCH --ntasks-per-node=12
 
 ##SBATCH  --sockets-per-node=1
@@ -79,62 +80,26 @@ module purge
 #module add  Python/v3.12.13
 #module add  CMake/v4.2.3
 module add  intel/v2025.3.1
-#module add  Autoconf/v2.73
-#module add openmpi/v5.0.3_gcc1230
-#module add LAPACK/v3.12.0_gcc1230
-
-source /cvmfs/nica.jinr.ru/sw/os/login.sh latest
-module add autotools gengetopt
-
 echo -e "\n loaded modules ?"
 module list
 
-#echo -e "\n python ? :\c"; which python; python -V
-echo -e "  aclocal ? :\c"; which aclocal; aclocal --version
-#echo -e "  cmake ? :\c";  which cmake; cmake --version
-echo -e "  ifx ? :\c"; which ifx; ifx -V
-echo -e "  icx ? :\c"; which icx; icx -V
 echo -e "  mpiicx ? :\c"; which mpiicx; mpiicx -V
-echo -e "  icpx ? :\c"; which icpx; icpx  -V
+echo -e "  mpirun ? :\c"; which mpirun; mpirun V
 echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"; ls -lt  $MKLROOT/lib/intel64
 
-echo -e "\n The variable PATH=$PATH\n"
+#echo -e "\n The variable PATH=$PATH\n"
 
-#OMPI=/lustre/home/user/m/milias/work/software/openmpi/openmpi-5.0.5-intel_v2021.1-i8/openmpi-5.0.5
-#OMPI=/lustre/home/user/m/milias/work/software/openmpi/openmpi-5.0.7-intel_v2021.1/openmpi-5.0.7
 #OMPI=/lustre/home/user/m/milias/work/software/openmpi/openmpi-5.0.9-inteloneapi/openmpi-5.0.9
 MPS=/lustre/projects/m/milias/work/software/openmpi/mpi-test-suite/mpi-test-suite_intel2025
 
-cd $MPS
-echo -e "\n\n I am in directory MPS=$MPS"
-echo -e "            checking with pwd=\c"; pwd
-#echo -e "\n Checking configure --help :"; configure --help
+echo -e "\n\n check presence of binary $MPS/mpi_test_suite :"
+ls -lt $MPS/mpi_test_suite;  ldd  $MPS/mpi_test_suite
 
-
-## autogen
-echo -e "\n running ./autogen.sh"; ./autogen.sh
-
-echo -e "\n Checking configure --help :"; configure --help
-
-echo -e "\n\n Going to do the the configure :"
-./configure --prefix=$prefixdir   CC=mpiicx 
- 
-echo -e "\n\n First make clean :"; make clean
-
-echo -e "\n\n Going to do make -j $SLURM_CPUS_ON_NODE :"
-make -j $SLURM_CPUS_ON_NODE 
-
-echo -e "\n\n Going to do make check :"
-make check
-
-echo -e "\n\n check presence of binary mpi_test_suite :"
-ls -lt mpi_test_suite;  ldd  mpi_test_suite
-
-echo -e "\n\n Check mpirun -np 1 mpi_test_suite ... "
- mpirun -np 1 mpi_test_suite -h
- mpirun -np 1 mpi_test_suite -l
+echo -e "\n\n Check $MPS/mpirun -np 1 mpi_test_suite ... "
+ mpirun -np 1 $MPS/mpi_test_suite -h
+ mpirun -np 1 $MPS/mpi_test_suite -l
 
 echo -e "\n\n Running mpi_test_suite tests on $SLURM_CPUS_ON_NODE CPUs :"
- mpirun -np $SLURM_CPUS_ON_NODE  mpi_test_suite
+ mpirun -np $SLURM_CPUS_ON_NODE $MPS/mpi_test_suite
 
 exit

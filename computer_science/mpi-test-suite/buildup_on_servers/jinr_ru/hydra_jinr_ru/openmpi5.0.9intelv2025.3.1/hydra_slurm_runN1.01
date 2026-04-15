@@ -118,6 +118,6 @@ echo -e "\n\n Check mpirun -np 1 mpi_test_suite ... "
  mpirun -np 1 $MPS/mpi_test_suite -l
 
 echo -e "\n\n Running mpi_test_suite tests   :"
- mpirun --report-bindings --bind-to core:overload-allowed  -np $SLURM_NTASKS  --hostfile $MACHINEFILE $MPS/mpi_test_suite
+ mpirun --report-bindings --bind-to core:overload-allowed  -np $SLURM_NTASKS  --hostfile $MACHINEFILE $MPS/mpi_test_suite -r "full"
 
 exit

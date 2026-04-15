@@ -1,0 +1,664 @@
+
+Running on host n05p027.gvr.local
+Time is Thu Apr 16 00:50:40 MSK 2026 
+
+
+ The total memory at the node (in GB)
+               total        used        free      shared  buff/cache   available
+Mem:            1991          21        1969           0           7        1969
+Swap:              3           0           3
+Total:          1995          21        1973
+
+
+Job user is milias and his job mpitestsuite has assigned ID 195924
+This job was submitted from the computer space01.hydra.local
+and from the home directory:
+/lustre/projects/m/milias/work/git-projects/open-collection/computer_science/mpi-test-suite/buildup_on_servers/jinr_ru/hydra_jinr_ru/openmpi5.0.9intelv2025.3.1
+
+It is running on the cluster compute node:
+gvr
+and is employing 2 node/nodes:
+n05p[027-028]
+
+Job partition is bltp 
+
+The job requests 2 CPU per task.
+The node's CPU model name	: Intel(R) Xeon(R) Platinum 8368Q CPU @ 2.60GHz
+This node has total NPROCS=152 CPUs available for an EXCLUSIVE job.
+Based on reserved memory, this node got SLURM_CPUS_ON_NODE=2 CPUs allocated for SLURM calculations.
+This job wants SLURM_NTASKS=4 threads . 
+
+ Allocated working nodes:
+n05p027.gvr.local
+n05p027.gvr.local
+n05p028.gvr.local
+n05p028.gvr.local
+
+ generated machinefile for MPI, nodes.bltp.195924
+-rw-r--r--. 1 milias hybrilit 72 Apr 16 00:50 /lustre/projects/m/milias/work/git-projects/open-collection/computer_science/mpi-test-suite/buildup_on_servers/jinr_ru/hydra_jinr_ru/openmpi5.0.9intelv2025.3.1/nodes.bltp.195924
+containing:
+n05p027.gvr.local
+n05p027.gvr.local
+n05p028.gvr.local
+n05p028.gvr.local
+
+
+ loaded modules:
+
+ loaded modules ?
+
+Currently Loaded Modules:
+  1) intel/v2025.3.1
+
+ 
+
+
+ Checking presence of full path install dir, ls -lt :
+total 74
+drwxr-xr-x. 2 milias hybrilit 13312 Apr 14 22:13 bin
+drwxr-xr-x. 5 milias hybrilit 15360 Apr 14 22:13 lib
+drwxr-xr-x. 7 milias hybrilit 13312 Apr 14 22:09 include
+drwxr-xr-x. 2 milias hybrilit 11264 Apr 14 22:09 etc
+drwxr-xr-x. 9 milias hybrilit 11264 Apr 14 22:09 share
+drwxr-xr-x. 2 milias hybrilit 11264 Apr 14 22:08 sbin
+
+
+ Check OpenMPI binaries and libs in /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/:
+lrwxrwxrwx. 1 milias hybrilit     12 Apr 14 22:13 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/mpiCC -> opal_wrapper
+lrwxrwxrwx. 1 milias hybrilit     12 Apr 14 22:13 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/mpic++ -> opal_wrapper
+lrwxrwxrwx. 1 milias hybrilit     12 Apr 14 22:13 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/mpicc -> opal_wrapper
+lrwxrwxrwx. 1 milias hybrilit     12 Apr 14 22:13 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/mpicxx -> opal_wrapper
+lrwxrwxrwx. 1 milias hybrilit      6 Apr 14 22:13 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/mpiexec -> mpirun
+lrwxrwxrwx. 1 milias hybrilit     12 Apr 14 22:13 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/mpif77 -> opal_wrapper
+lrwxrwxrwx. 1 milias hybrilit     12 Apr 14 22:13 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/mpif90 -> opal_wrapper
+lrwxrwxrwx. 1 milias hybrilit     12 Apr 14 22:13 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/mpifort -> opal_wrapper
+-rwxr-xr-x. 1 milias hybrilit 358144 Apr 14 22:13 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/mpirun
+-rwxr-xr-x. 1 milias hybrilit 151960 Apr 14 22:13 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/ompi_info
+lrwxrwxrwx. 1 milias hybrilit      6 Apr 14 22:13 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/oshrun -> mpirun
+-rwxr-xr-x. 1 milias hybrilit 367160 Apr 14 22:09 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/opal_wrapper
+-rwxr-xr-x. 1 milias hybrilit 100152 Apr 14 22:09 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/pterm
+-rwxr-xr-x. 1 milias hybrilit 134000 Apr 14 22:09 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/prte
+-rwxr-xr-x. 1 milias hybrilit 118952 Apr 14 22:09 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/prte_info
+lrwxrwxrwx. 1 milias hybrilit      4 Apr 14 22:09 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/prterun -> prte
+-rwxr-xr-x. 1 milias hybrilit 119248 Apr 14 22:09 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/prted
+-rwxr-xr-x. 1 milias hybrilit  93408 Apr 14 22:09 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/prun
+-rwxr-xr-x. 1 milias hybrilit  99536 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/pctrl
+-rwxr-xr-x. 1 milias hybrilit  99896 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/palloc
+-rwxr-xr-x. 1 milias hybrilit 104216 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/pattrs
+-rwxr-xr-x. 1 milias hybrilit 102800 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/pmixcc
+-rwxr-xr-x. 1 milias hybrilit 104080 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/pquery
+-rwxr-xr-x. 1 milias hybrilit  99320 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/pevent
+-rwxr-xr-x. 1 milias hybrilit  98504 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/plookup
+-rwxr-xr-x. 1 milias hybrilit 120320 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/pmix_info
+-rwxr-xr-x. 1 milias hybrilit  94320 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/pps
+lrwxrwxrwx. 1 milias hybrilit     18 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/hwloc-ls -> lstopo-no-graphics
+lrwxrwxrwx. 1 milias hybrilit     18 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/lstopo -> lstopo-no-graphics
+-rwxr-xr-x. 1 milias hybrilit 242288 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/lstopo-no-graphics
+-rwxr-xr-x. 1 milias hybrilit  96112 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/hwloc-bind
+-rwxr-xr-x. 1 milias hybrilit 105024 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/hwloc-calc
+-rwxr-xr-x. 1 milias hybrilit   4457 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/hwloc-compress-dir
+-rwxr-xr-x. 1 milias hybrilit  59464 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/hwloc-diff
+-rwxr-xr-x. 1 milias hybrilit  73376 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/hwloc-distrib
+-rwxr-xr-x. 1 milias hybrilit  72176 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/hwloc-gather-cpuid
+-rwxr-xr-x. 1 milias hybrilit  11557 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/hwloc-gather-topology
+-rwxr-xr-x. 1 milias hybrilit 108992 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/hwloc-info
+-rwxr-xr-x. 1 milias hybrilit  59544 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/hwloc-patch
+-rwxr-xr-x. 1 milias hybrilit  74584 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/hwloc-ps
+-rwxr-xr-x. 1 milias hybrilit  92880 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/hwloc-annotate
+-rwxr-xr-x. 1 milias hybrilit  54938 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/event_rpcgen.py
+-rwxr-xr-x. 1 milias hybrilit    2010 Apr 14 22:13 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libmpi_usempif08.la
+lrwxrwxrwx. 1 milias hybrilit      27 Apr 14 22:13 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libmpi_usempif08.so -> libmpi_usempif08.so.40.40.3
+lrwxrwxrwx. 1 milias hybrilit      27 Apr 14 22:13 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libmpi_usempif08.so.40 -> libmpi_usempif08.so.40.40.3
+-rwxr-xr-x. 1 milias hybrilit  343472 Apr 14 22:13 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libmpi_usempif08.so.40.40.3
+-rwxr-xr-x. 1 milias hybrilit  331405 Apr 14 22:13 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/mpi_f08.mod
+-rwxr-xr-x. 1 milias hybrilit   36744 Apr 14 22:13 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/mpi_f08_ext.mod
+-rwxr-xr-x. 1 milias hybrilit   24551 Apr 14 22:12 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/mpi_ext.mod
+-rwxr-xr-x. 1 milias hybrilit   16533 Apr 14 22:12 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/mpi_f08_callbacks.mod
+-rwxr-xr-x. 1 milias hybrilit  743073 Apr 14 22:12 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/mpi_f08_interfaces.mod
+-rwxr-xr-x. 1 milias hybrilit   19540 Apr 14 22:12 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/mpi_f08_interfaces_callbacks.mod
+-rwxr-xr-x. 1 milias hybrilit   75803 Apr 14 22:12 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/mpi_f08_types.mod
+-rwxr-xr-x. 1 milias hybrilit  749841 Apr 14 22:12 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/pmpi_f08_interfaces.mod
+-rwxr-xr-x. 1 milias hybrilit    1784 Apr 14 22:12 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libmpi_usempi_ignore_tkr.la
+lrwxrwxrwx. 1 milias hybrilit      35 Apr 14 22:12 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libmpi_usempi_ignore_tkr.so -> libmpi_usempi_ignore_tkr.so.40.40.1
+lrwxrwxrwx. 1 milias hybrilit      35 Apr 14 22:12 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libmpi_usempi_ignore_tkr.so.40 -> libmpi_usempi_ignore_tkr.so.40.40.1
+-rwxr-xr-x. 1 milias hybrilit   64608 Apr 14 22:12 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libmpi_usempi_ignore_tkr.so.40.40.1
+-rwxr-xr-x. 1 milias hybrilit 1126367 Apr 14 22:12 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/mpi.mod
+-rwxr-xr-x. 1 milias hybrilit    1871 Apr 14 22:12 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libmpi_mpifh.la
+lrwxrwxrwx. 1 milias hybrilit      23 Apr 14 22:12 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libmpi_mpifh.so -> libmpi_mpifh.so.40.40.1
+lrwxrwxrwx. 1 milias hybrilit      23 Apr 14 22:12 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libmpi_mpifh.so.40 -> libmpi_mpifh.so.40.40.1
+-rwxr-xr-x. 1 milias hybrilit  685768 Apr 14 22:12 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libmpi_mpifh.so.40.40.1
+-rwxr-xr-x. 1 milias hybrilit   12174 Apr 14 22:12 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/mpi_types.mod
+-rwxr-xr-x. 1 milias hybrilit    1707 Apr 14 22:11 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libmpi.la
+lrwxrwxrwx. 1 milias hybrilit      17 Apr 14 22:10 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libmpi.so -> libmpi.so.40.40.7
+lrwxrwxrwx. 1 milias hybrilit      17 Apr 14 22:10 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libmpi.so.40 -> libmpi.so.40.40.7
+-rwxr-xr-x. 1 milias hybrilit 3970296 Apr 14 22:10 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libmpi.so.40.40.7
+-rwxr-xr-x. 1 milias hybrilit    1580 Apr 14 22:09 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libopen-pal.la
+lrwxrwxrwx. 1 milias hybrilit      21 Apr 14 22:09 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libopen-pal.so -> libopen-pal.so.80.0.5
+lrwxrwxrwx. 1 milias hybrilit      21 Apr 14 22:09 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libopen-pal.so.80 -> libopen-pal.so.80.0.5
+-rwxr-xr-x. 1 milias hybrilit 1237120 Apr 14 22:09 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libopen-pal.so.80.0.5
+-rwxr-xr-x. 1 milias hybrilit    1560 Apr 14 22:09 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libprrte.la
+lrwxrwxrwx. 1 milias hybrilit      18 Apr 14 22:09 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libprrte.so -> libprrte.so.3.0.12
+lrwxrwxrwx. 1 milias hybrilit      18 Apr 14 22:09 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libprrte.so.3 -> libprrte.so.3.0.12
+-rwxr-xr-x. 1 milias hybrilit 1612480 Apr 14 22:09 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libprrte.so.3.0.12
+-rwxr-xr-x. 1 milias hybrilit    1426 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libpmix.la
+lrwxrwxrwx. 1 milias hybrilit      17 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libpmix.so -> libpmix.so.2.13.9
+lrwxrwxrwx. 1 milias hybrilit      17 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libpmix.so.2 -> libpmix.so.2.13.9
+-rwxr-xr-x. 1 milias hybrilit 3043336 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libpmix.so.2.13.9
+-rwxr-xr-x. 1 milias hybrilit    1024 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libhwloc.la
+lrwxrwxrwx. 1 milias hybrilit      18 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libhwloc.so -> libhwloc.so.15.5.3
+lrwxrwxrwx. 1 milias hybrilit      18 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libhwloc.so.15 -> libhwloc.so.15.5.3
+-rwxr-xr-x. 1 milias hybrilit  525456 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libhwloc.so.15.5.3
+lrwxrwxrwx. 1 milias hybrilit      21 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libevent-2.1.so.7 -> libevent-2.1.so.7.0.1
+-rw-r--r--. 1 milias hybrilit  658582 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libevent.a
+-rwxr-xr-x. 1 milias hybrilit    1038 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libevent.la
+lrwxrwxrwx. 1 milias hybrilit      21 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libevent.so -> libevent-2.1.so.7.0.1
+lrwxrwxrwx. 1 milias hybrilit      26 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libevent_core-2.1.so.7 -> libevent_core-2.1.so.7.0.1
+-rwxr-xr-x. 1 milias hybrilit  279256 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libevent_core-2.1.so.7.0.1
+-rw-r--r--. 1 milias hybrilit  387854 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libevent_core.a
+-rwxr-xr-x. 1 milias hybrilit    1073 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libevent_core.la
+lrwxrwxrwx. 1 milias hybrilit      26 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libevent_core.so -> libevent_core-2.1.so.7.0.1
+lrwxrwxrwx. 1 milias hybrilit      27 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libevent_extra-2.1.so.7 -> libevent_extra-2.1.so.7.0.1
+-rwxr-xr-x. 1 milias hybrilit  205968 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libevent_extra-2.1.so.7.0.1
+-rw-r--r--. 1 milias hybrilit  270802 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libevent_extra.a
+-rwxr-xr-x. 1 milias hybrilit    1080 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libevent_extra.la
+lrwxrwxrwx. 1 milias hybrilit      27 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libevent_extra.so -> libevent_extra-2.1.so.7.0.1
+lrwxrwxrwx. 1 milias hybrilit      30 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libevent_pthreads-2.1.so.7 -> libevent_pthreads-2.1.so.7.0.1
+-rwxr-xr-x. 1 milias hybrilit   17848 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libevent_pthreads-2.1.so.7.0.1
+-rw-r--r--. 1 milias hybrilit    5270 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libevent_pthreads.a
+-rwxr-xr-x. 1 milias hybrilit    1101 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libevent_pthreads.la
+lrwxrwxrwx. 1 milias hybrilit      30 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libevent_pthreads.so -> libevent_pthreads-2.1.so.7.0.1
+-rwxr-xr-x. 1 milias hybrilit  459520 Apr 14 22:08 /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libevent-2.1.so.7.0.1
+
+/lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/pkgconfig:
+total 68
+-rw-r--r--. 1 milias hybrilit 627 Apr 14 22:13 ompi-c.pc
+-rw-r--r--. 1 milias hybrilit 627 Apr 14 22:13 ompi-cxx.pc
+lrwxrwxrwx. 1 milias hybrilit  12 Apr 14 22:13 ompi-f77.pc -> ompi-fort.pc
+lrwxrwxrwx. 1 milias hybrilit  12 Apr 14 22:13 ompi-f90.pc -> ompi-fort.pc
+-rw-r--r--. 1 milias hybrilit 736 Apr 14 22:13 ompi-fort.pc
+-rw-r--r--. 1 milias hybrilit 627 Apr 14 22:13 ompi.pc
+-rw-r--r--. 1 milias hybrilit 505 Apr 14 22:09 pmix.pc
+-rw-r--r--. 1 milias hybrilit 391 Apr 14 22:08 hwloc.pc
+-rw-r--r--. 1 milias hybrilit 436 Apr 14 22:08 libevent.pc
+-rw-r--r--. 1 milias hybrilit 400 Apr 14 22:08 libevent_core.pc
+-rw-r--r--. 1 milias hybrilit 403 Apr 14 22:08 libevent_extra.pc
+-rw-r--r--. 1 milias hybrilit 473 Apr 14 22:08 libevent_pthreads.pc
+
+/lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/openmpi:
+total 137
+-rwxr-xr-x. 1 milias hybrilit  1605 Apr 14 22:09 libompi_dbg_msgq.la
+-rwxr-xr-x. 1 milias hybrilit 88248 Apr 14 22:09 libompi_dbg_msgq.so
+
+/lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/pmix:
+total 41
+-rwxr-xr-x. 1 milias hybrilit  1648 Apr 14 22:08 pmix_mca_pcompress_zlib.la
+-rwxr-xr-x. 1 milias hybrilit 17776 Apr 14 22:08 pmix_mca_pcompress_zlib.so
+
+
+ updated PATH=/lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/vtune/2025.8/bin64:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mpi/2021.17/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mkl/2025.3/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/ishmem/1.5/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/dpcpp-ct/2025.3/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/dev-utilities/2025.3/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/debugger/2025.3/opt/debugger/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/compiler/2025.3/bin:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/advisor/2025.4/bin64:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/puppetlabs/bin:.
+ updated LD_LIBRARY_PATH=/lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/tcm/1.4/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/umf/1.0/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/tbb/2022.3/env/../lib/intel64/gcc4.8:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mpi/2021.17/opt/mpi/libfabric/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mpi/2021.17/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/mkl/2025.3/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/ishmem/1.5/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/ippcp/2025.3/lib/:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/ipp/2022.3/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/dnnl/2025.3/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/debugger/2025.3/opt/debugger/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/dal/2025.10/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/compiler/2025.3/opt/compiler/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/compiler/2025.3/lib:/cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/ccl/2021.17/lib/
+
+
+ mpirun ? /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/mpirun
+mpirun (Open MPI) 5.0.9
+
+Report bugs to https://www.open-mpi.org/community/help/
+
+mpirun (Open MPI) 5.0.9
+
+Usage: mpirun [OPTION]...
+
+See the mpirun(1) man page or HTML help for a detailed list of command
+line options that are available.
+
+Report bugs to https://www.open-mpi.org/community/help/
+
+
+
+ ompi_info ? /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/bin/ompi_info
+
+
+ Directory MPS=/lustre/projects/m/milias/work/software/openmpi/mpi-test-suite/mpi-test-suite_openmpi5.0.9intelv2025.3.1
+total 1064
+-rwxr-xr-x. 1 milias hybrilit 588600 Apr 16 00:42 mpi_test_suite
+drwxr-xr-x. 2 milias hybrilit  13312 Apr 16 00:42 p2p
+drwxr-xr-x. 2 milias hybrilit  12288 Apr 16 00:42 threaded
+-rw-r--r--. 1 milias hybrilit  52544 Apr 16 00:42 tst_comm.o
+-rw-r--r--. 1 milias hybrilit   4376 Apr 16 00:42 tst_file.o
+-rw-r--r--. 1 milias hybrilit   3584 Apr 16 00:42 tst_output.o
+-rw-r--r--. 1 milias hybrilit  52768 Apr 16 00:42 tst_tests.o
+-rw-r--r--. 1 milias hybrilit  24064 Apr 16 00:42 tst_threads.o
+-rw-r--r--. 1 milias hybrilit  61112 Apr 16 00:42 tst_types.o
+-rw-r--r--. 1 milias hybrilit  22512 Apr 16 00:42 mpi_test_suite.o
+drwxr-xr-x. 2 milias hybrilit  12288 Apr 16 00:42 one-sided
+drwxr-xr-x. 2 milias hybrilit  13312 Apr 16 00:42 io
+-rw-r--r--. 1 milias hybrilit  21424 Apr 16 00:42 cmdline.o
+drwxr-xr-x. 2 milias hybrilit  12288 Apr 16 00:42 coll
+drwxr-xr-x. 2 milias hybrilit  11264 Apr 16 00:42 dynamic
+drwxr-xr-x. 2 milias hybrilit  11264 Apr 16 00:42 env
+-rw-r--r--. 1 milias hybrilit  41457 Apr 16 00:42 Makefile
+-rw-r--r--. 1 milias hybrilit  29703 Apr 16 00:42 config.log
+-rwxr-xr-x. 1 milias hybrilit  31786 Apr 16 00:42 config.status
+-rw-r--r--. 1 milias hybrilit     23 Apr 16 00:42 stamp-h1
+-rw-r--r--. 1 milias hybrilit  40359 Apr 16 00:42 Makefile.in
+-rwxr-xr-x. 1 milias hybrilit   7400 Apr 16 00:42 compile
+-rwxr-xr-x. 1 milias hybrilit  49348 Apr 16 00:42 config.guess
+-rwxr-xr-x. 1 milias hybrilit  35276 Apr 16 00:42 config.sub
+-rwxr-xr-x. 1 milias hybrilit  15358 Apr 16 00:42 install-sh
+-rwxr-xr-x. 1 milias hybrilit   6878 Apr 16 00:42 missing
+drwxr-xr-x. 2 milias hybrilit  11264 Apr 16 00:42 autom4te.cache
+-rw-r--r--. 1 milias hybrilit   8097 Apr 16 00:42 config.h.in
+-rwxr-xr-x. 1 milias hybrilit 231625 Apr 16 00:42 configure
+-rw-r--r--. 1 milias hybrilit  30936 Apr 16 00:41 aclocal.m4
+-rw-r--r--. 1 milias hybrilit  23127 Apr 15 23:51 cmdline.c
+-rw-r--r--. 1 milias hybrilit   9446 Apr 15 23:51 cmdline.h
+-rw-r--r--. 1 milias hybrilit   8512 Apr 15 23:51 config.h
+-rw-r--r--. 1 milias hybrilit   8097 Apr 15 23:51 config.h.in~
+-rwxr-xr-x. 1 milias hybrilit 231625 Apr 15 23:51 configure~
+-rw-r--r--. 1 milias hybrilit   3607 Apr 15 23:51 configure.ac
+-rw-r--r--. 1 milias hybrilit  16300 Apr 15 23:51 mpi_test_suite.c
+-rw-r--r--. 1 milias hybrilit  38056 Apr 15 23:51 mpi_test_suite.h
+-rw-r--r--. 1 milias hybrilit  26585 Apr 15 23:51 tst_comm.c
+-rw-r--r--. 1 milias hybrilit    737 Apr 15 23:51 tst_comm.h
+-rw-r--r--. 1 milias hybrilit   2191 Apr 15 23:51 tst_file.c
+-rw-r--r--. 1 milias hybrilit   4195 Apr 15 23:51 tst_output.c
+-rw-r--r--. 1 milias hybrilit   3203 Apr 15 23:51 tst_output.h
+-rw-r--r--. 1 milias hybrilit  57710 Apr 15 23:51 tst_tests.c
+-rw-r--r--. 1 milias hybrilit  14333 Apr 15 23:51 tst_threads.c
+-rw-r--r--. 1 milias hybrilit   2013 Apr 15 23:51 tst_threads.h
+-rw-r--r--. 1 milias hybrilit  64716 Apr 15 23:51 tst_types.c
+-rw-r--r--. 1 milias hybrilit   2339 Apr 15 23:51 compile_info.h
+drwxr-xr-x. 2 milias hybrilit  11264 Apr 15 23:51 m4
+-rw-r--r--. 1 milias hybrilit   2448 Apr 15 23:51 LICENSE
+-rw-r--r--. 1 milias hybrilit   4167 Apr 15 23:51 Makefile.am
+-rw-r--r--. 1 milias hybrilit  11966 Apr 15 23:51 README.md
+-rwxr-xr-x. 1 milias hybrilit     26 Apr 15 23:51 autogen.sh
+-rw-r--r--. 1 milias hybrilit   1218 Apr 15 23:51 cmdline.ggo
+
+
+ check presence of binary mpi_test_suite :
+-rwxr-xr-x. 1 milias hybrilit 588600 Apr 16 00:42 /lustre/projects/m/milias/work/software/openmpi/mpi-test-suite/mpi-test-suite_openmpi5.0.9intelv2025.3.1/mpi_test_suite
+	linux-vdso.so.1 (0x00007ffef7bd8000)
+	libmpi.so.40 => /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libmpi.so.40 (0x000014d8e8062000)
+	libm.so.6 => /lib64/libm.so.6 (0x000014d8e7f7d000)
+	libc.so.6 => /lib64/libc.so.6 (0x000014d8e7c00000)
+	liblustreapi.so.1 => /lib64/liblustreapi.so.1 (0x000014d8e7f24000)
+	libopen-pal.so.80 => /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libopen-pal.so.80 (0x000014d8e7e0c000)
+	libpmix.so.2 => /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libpmix.so.2 (0x000014d8e793f000)
+	libevent_core-2.1.so.7 => /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libevent_core-2.1.so.7 (0x000014d8e7903000)
+	libevent_pthreads-2.1.so.7 => /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libevent_pthreads-2.1.so.7 (0x000014d8e78fe000)
+	libhwloc.so.15 => /lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi5.0.9-intel2025.3.1_c/lib/libhwloc.so.15 (0x000014d8e7886000)
+	libimf.so => /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/compiler/2025.3/lib/libimf.so (0x000014d8e7400000)
+	libsvml.so => /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/compiler/2025.3/lib/libsvml.so (0x000014d8e5e00000)
+	libirng.so => /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/compiler/2025.3/lib/libirng.so (0x000014d8e5d07000)
+	libintlc.so.5 => /cvmfs/hlit.jinr.ru/alma9/intel/v2025.3.1/compiler/2025.3/lib/libintlc.so.5 (0x000014d8e739d000)
+	/lib64/ld-linux-x86-64.so.2 (0x000014d8e8419000)
+	liblnetconfig.so.4 => /lib64/liblnetconfig.so.4 (0x000014d8e783e000)
+	libyaml-0.so.2 => /lib64/libyaml-0.so.2 (0x000014d8e737b000)
+	libreadline.so.8 => /lib64/libreadline.so.8 (0x000014d8e7323000)
+	libnl-genl-3.so.200 => /lib64/libnl-genl-3.so.200 (0x000014d8e7835000)
+	libnl-3.so.200 => /lib64/libnl-3.so.200 (0x000014d8e5ce2000)
+	libkeyutils.so.1 => /lib64/libkeyutils.so.1 (0x000014d8e782c000)
+	libtinfo.so.6 => /lib64/libtinfo.so.6 (0x000014d8e5cb2000)
+	libgcc_s.so.1 => /lib64/libgcc_s.so.1 (0x000014d8e5c98000)
+
+
+ Check mpirun -np 1 mpi_test_suite ... 
+Usage: mpi_test_suite [OPTION]...
+
+  -h, --help                   Print help and exit
+  -V, --version                Print version and exit
+  -t, --test=STRING            tests or test-classes  (default=`all')
+  -c, --comm=STRING            communicators or commicator-classes
+                                 (default=`all')
+  -d, --datatype=STRING        datatypes of datatype-classes  (default=`all')
+  -n, --num-values=STRING      number of values to communicate in tests
+                                 (default=`1000')
+
+All multiple test-/comm-/datatype-names and num-values must be comma-separated.
+Names are not case-sensitive, due to spaces in names, propper quoting should be
+used. The special name 'all' can be used to select all tests/comms/datatypes.
+To exclude a test/comm/datatype prefix it with '^' but be aware, that the
+selection will happen in order, so use 'all,^exclude'.
+
+  -a, --atomic-io              enable atomicity for files in I/O for all tests
+                                 that support it
+  -j, --num-threads=INT        number of additional threads to execute the
+                                 tests  (default=`0')
+  -r, --report=STRING          level of detail for test report  (possible
+                                 values="none", "summary", "run",
+                                 "full" default=`summary')
+  -x, --execution-mode=STRING  level of correctness testing  (possible
+                                 values="disabled", "strict", "relaxed"
+                                 default=`relaxed')
+  -l, --list                   list all available tests, communicators,
+                                 datatypes and corresponding classes
+Num Tests : 101
+Environment test:0 Status
+Environment test:1 Request_Null
+Environment test:2 Type_dup
+Environment test:3 Get_version
+P2P test:4 Ring
+P2P test:5 Ring Send Bottom
+P2P test:6 Ring Send Pack
+P2P test:7 Ring Isend
+P2P test:8 Ring Ibsend
+P2P test:9 Ring Irsend
+P2P test:10 Ring Issend
+P2P test:11 Ring Bsend
+P2P test:12 Ring Rsend
+P2P test:13 Ring Ssend
+P2P test:14 Ring Sendrecv
+P2P test:15 Ring same value
+P2P test:16 Ring Persistent
+P2P test:17 Direct Partner Intercomm
+P2P test:18 Many-to-one
+P2P test:19 Many-to-one with MPI_Probe (MPI_ANY_SOURCE)
+P2P test:20 Many-to-one with MPI_Iprobe (MPI_ANY_SOURCE)
+P2P test:21 Many-to-one with Isend and Cancellation
+P2P test:22 Alltoall
+P2P test:23 Alltoall Persistent
+P2P test:24 Alltoall xIsend
+P2P test:25 Alltoall Irsend
+P2P test:26 Alltoall Issend
+P2P test:27 Alltoall with MPI_Probe (MPI_ANY_SOURCE)
+P2P test:28 Ring Send with cart comm
+P2P test:29 Alltoall with topo comm
+Collective test:30 Bcast
+Collective test:31 Gather
+Collective test:32 Allgather
+Collective test:33 Allgather with MPI_IN_PLACE
+Collective test:34 Scan sum
+Collective test:35 Scatter
+Collective test:36 Scatterv
+Collective test:37 Scatterv with stride
+Collective test:38 Reduce Min
+Collective test:39 Reduce Max
+Collective test:40 Reduce Min with MPI_IN_PLACE
+Collective test:41 Reduce Max with MPI_IN_PLACE
+Collective test:42 Allreduce Min
+Collective test:43 Allreduce Max
+Collective test:44 Allreduce Min/Max
+Collective test:45 Allreduce Min/Max with MPI_IN_PLACE
+Collective test:46 Allreduce Sum
+Collective test:47 Alltoall
+One-sided test:48 get_fence
+One-sided test:49 put_fence
+One-sided test:50 accumulate_fence
+One-sided test:51 get_post
+One-sided test:52 put_post
+One-sided test:53 accumulate_post_min
+One-sided test:54 get_lock
+One-sided test:55 put_lock
+One-sided test:56 accumulate_lock
+One-sided test:57 Ring with Get
+One-sided test:58 Ring with Get using Post
+One-sided test:59 Ring with Put
+IO test:60 file simple
+IO test:61 read_at
+IO test:62 write_at
+IO test:63 read_at_all
+IO test:64 write_at_all
+IO test:65 iread_at
+IO test:66 iwrite_at
+IO test:67 read_at_all_begin
+IO test:68 write_at_all_begin
+IO test:69 read
+IO test:70 write
+IO test:71 read_all
+IO test:72 write_all
+IO test:73 iread
+IO test:74 iwrite
+IO test:75 read_all_begin
+IO test:76 write_all_begin
+IO test:77 read_shared
+IO test:78 write_shared
+IO test:79 read_ordered
+IO test:80 write_ordered
+IO test:81 iread_shared
+IO test:82 iwrite_shared
+IO test:83 read_ordered_begin
+IO test:84 write_ordered_begin
+IO test:85 read_darray
+IO test:86 write_darray
+IO test:87 read_subarray
+IO test:88 write_subarray
+IO test:89 io_with_hole
+IO test:90 io_with_arrange
+IO test:91 read_convert
+IO test:92 io_atomic
+IO test:93 io_sync
+IO test:94 asyncio_atomic
+IO test:95 append_mode
+IO test:96 io_commself
+IO test:97 sequential_mode
+IO test:98 set_size
+IO test:99 preallocate
+IO test:100 io_with_hole2
+Test-Class:0 Unspecified
+Test-Class:1 Environment
+Test-Class:2 P2P
+Test-Class:3 Collective
+Test-Class:4 One-sided
+Test-Class:5 Dynamic
+Test-Class:6 IO
+Test-Class:7 Threaded
+Communicator:0 MPI_COMM_WORLD
+Communicator:1 MPI_COMM_NULL
+Communicator:2 MPI_COMM_SELF
+Communicator:3 Duplicated MPI_COMM_WORLD
+Communicator:4 Reversed MPI_COMM_WORLD
+Communicator:5 Halved MPI_COMM_WORLD
+Communicator:6 Odd/Even split MPI_COMM_WORLD
+Communicator:7 Full-connected Topology
+Communicator:8 MPI_COMM_TYPE_SHARED comm
+Communicator-Class:0 COMM_SELF
+Communicator-Class:1 COMM_NULL
+Communicator-Class:2 INTRA_COMM
+Communicator-Class:3 INTER_COMM
+Communicator-Class:4 CART_COMM
+Communicator-Class:5 TOPO_COMM
+Communicator-Class:6 SHARED_COMM
+Datatype:0 MPI_CHAR
+Datatype:1 MPI_UNSIGNED_CHAR
+Datatype:2 MPI_SIGNED_CHAR
+Datatype:3 MPI_BYTE
+Datatype:4 MPI_SHORT
+Datatype:5 MPI_UNSIGNED_SHORT
+Datatype:6 MPI_INT
+Datatype:7 MPI_UNSIGNED
+Datatype:8 MPI_LONG
+Datatype:9 MPI_UNSIGNED_LONG
+Datatype:10 MPI_FLOAT
+Datatype:11 MPI_DOUBLE
+Datatype:12 MPI_LONG_DOUBLE n/a
+Datatype:13 MPI_LONG_LONG n/a
+Datatype:14 MPI_FLOAT_INT
+Datatype:15 MPI_DOUBLE_INT
+Datatype:16 MPI_LONG_INT
+Datatype:17 MPI_SHORT_INT
+Datatype:18 MPI_2INT
+Datatype:19 MPI_LONG_DOUBLE_INT n/a
+Datatype:20 MPI_CONTIGUOUS_INT
+Datatype:21 MPI_VECTOR_INT
+Datatype:22 MPI_HVECTOR_INT
+Datatype:23 MPI_INDEXED_INT
+Datatype:24 MPI_HINDEXED_INT
+Datatype:25 MPI_STRUCT_INT
+Datatype:26 MPI_TYPE_MIX
+Datatype:27 MPI_TYPE_MIX_ARRAY
+Datatype:28 MPI_TYPE_MIX_LB_UB
+Datatype:29 Dup MPI_CHAR
+Datatype:30 Dup MPI_TYPE_MIX_LB_UB
+Datatype-Class:0 STANDARD_C_INT_TYPES
+Datatype-Class:1 STANDARD_C_FLOAT_TYPES
+Datatype-Class:2 STANDARD_C_TYPES
+Datatype-Class:3 STRUCT_C_TYPES
+Datatype-Class:4 ALL_C_TYPES
+Report:0 None
+Report:1 Summary
+Report:2 Run
+Report:3 Full
+Test mode:0 disabled
+Test mode:1 strict
+Test mode:2 relaxed
+
+
+ Running mpi_test_suite tests   :
+[n05p027.gvr.local:1792564] Rank 0 bound to package[0][core:0]
+[n05p027.gvr.local:1792564] Rank 1 bound to package[0][core:0]
+[n05p028.gvr.local:206518] Rank 2 bound to package[0][core:0]
+[n05p028.gvr.local:206518] Rank 3 bound to package[0][core:0]
+(Rank:0) tst_test_array[0]:Status
+(Rank:0) tst_test_array[1]:Request_Null
+(Rank:0) tst_test_array[2]:Type_dup
+(Rank:0) tst_test_array[3]:Get_version
+(Rank:0) tst_test_array[4]:Ring
+(Rank:0) tst_test_array[5]:Ring Send Bottom
+(Rank:0) tst_test_array[6]:Ring Send Pack
+(Rank:0) tst_test_array[7]:Ring Isend
+(Rank:0) tst_test_array[8]:Ring Ibsend
+(Rank:0) tst_test_array[9]:Ring Irsend
+(Rank:0) tst_test_array[10]:Ring Issend
+(Rank:0) tst_test_array[11]:Ring Bsend
+(Rank:0) tst_test_array[12]:Ring Rsend
+(Rank:0) tst_test_array[13]:Ring Ssend
+(Rank:0) tst_test_array[14]:Ring Sendrecv
+(Rank:0) tst_test_array[15]:Ring same value
+(Rank:0) tst_test_array[16]:Ring Persistent
+(Rank:0) tst_test_array[17]:Direct Partner Intercomm
+(Rank:0) tst_test_array[18]:Many-to-one
+(Rank:0) tst_test_array[19]:Many-to-one with MPI_Probe (MPI_ANY_SOURCE)
+(Rank:0) tst_test_array[20]:Many-to-one with MPI_Iprobe (MPI_ANY_SOURCE)
+(Rank:0) tst_test_array[21]:Many-to-one with Isend and Cancellation
+(Rank:0) tst_test_array[22]:Alltoall
+(Rank:0) tst_test_array[23]:Alltoall Persistent
+(Rank:0) tst_test_array[24]:Alltoall xIsend
+(Rank:0) tst_test_array[25]:Alltoall Irsend
+(Rank:0) tst_test_array[26]:Alltoall Issend
+(Rank:0) tst_test_array[27]:Alltoall with MPI_Probe (MPI_ANY_SOURCE)
+(Rank:0) tst_test_array[28]:Ring Send with cart comm
+(Rank:0) tst_test_array[29]:Alltoall with topo comm
+(Rank:0) tst_test_array[30]:Bcast
+(Rank:0) tst_test_array[31]:Gather
+(Rank:0) tst_test_array[32]:Allgather
+(Rank:0) tst_test_array[33]:Allgather with MPI_IN_PLACE
+(Rank:0) tst_test_array[34]:Scan sum
+(Rank:0) tst_test_array[35]:Scatter
+(Rank:0) tst_test_array[36]:Scatterv
+(Rank:0) tst_test_array[37]:Scatterv with stride
+(Rank:0) tst_test_array[38]:Reduce Min
+(Rank:0) tst_test_array[39]:Reduce Max
+(Rank:0) tst_test_array[40]:Reduce Min with MPI_IN_PLACE
+(Rank:0) tst_test_array[41]:Reduce Max with MPI_IN_PLACE
+(Rank:0) tst_test_array[42]:Allreduce Min
+(Rank:0) tst_test_array[43]:Allreduce Max
+(Rank:0) tst_test_array[44]:Allreduce Min/Max
+(Rank:0) tst_test_array[45]:Allreduce Min/Max with MPI_IN_PLACE
+(Rank:0) tst_test_array[46]:Allreduce Sum
+(Rank:0) tst_test_array[47]:Alltoall
+(Rank:0) tst_test_array[48]:get_fence
+(Rank:0) tst_test_array[49]:put_fence
+(Rank:0) tst_test_array[50]:accumulate_fence
+(Rank:0) tst_test_array[51]:get_post
+(Rank:0) tst_test_array[52]:put_post
+(Rank:0) tst_test_array[53]:accumulate_post_min
+(Rank:0) tst_test_array[54]:get_lock
+(Rank:0) tst_test_array[55]:put_lock
+(Rank:0) tst_test_array[56]:accumulate_lock
+(Rank:0) tst_test_array[57]:Ring with Get
+(Rank:0) tst_test_array[58]:Ring with Get using Post
+(Rank:0) tst_test_array[59]:Ring with Put
+(Rank:0) tst_test_array[60]:file simple
+(Rank:0) tst_test_array[61]:read_at
+(Rank:0) tst_test_array[62]:write_at
+(Rank:0) tst_test_array[63]:read_at_all
+(Rank:0) tst_test_array[64]:write_at_all
+(Rank:0) tst_test_array[65]:iread_at
+(Rank:0) tst_test_array[66]:iwrite_at
+(Rank:0) tst_test_array[67]:read_at_all_begin
+(Rank:0) tst_test_array[68]:write_at_all_begin
+(Rank:0) tst_test_array[69]:read
+(Rank:0) tst_test_array[70]:write
+(Rank:0) tst_test_array[71]:read_all
+(Rank:0) tst_test_array[72]:write_all
+(Rank:0) tst_test_array[73]:iread
+(Rank:0) tst_test_array[74]:iwrite
+(Rank:0) tst_test_array[75]:read_all_begin
+(Rank:0) tst_test_array[76]:write_all_begin
+(Rank:0) tst_test_array[77]:read_shared
+(Rank:0) tst_test_array[78]:write_shared
+(Rank:0) tst_test_array[79]:read_ordered
+(Rank:0) tst_test_array[80]:write_ordered
+(Rank:0) tst_test_array[81]:iread_shared
+(Rank:0) tst_test_array[82]:iwrite_shared
+(Rank:0) tst_test_array[83]:read_ordered_begin
+(Rank:0) tst_test_array[84]:write_ordered_begin
+(Rank:0) tst_test_array[85]:read_darray
+(Rank:0) tst_test_array[86]:write_darray
+(Rank:0) tst_test_array[87]:read_subarray
+(Rank:0) tst_test_array[88]:write_subarray
+(Rank:0) tst_test_array[89]:io_with_hole
+(Rank:0) tst_test_array[90]:io_with_arrange
+(Rank:0) tst_test_array[91]:read_convert
+(Rank:0) tst_test_array[92]:io_atomic
+(Rank:0) tst_test_array[93]:io_sync
+(Rank:0) tst_test_array[94]:asyncio_atomic
+(Rank:0) tst_test_array[95]:append_mode
+(Rank:0) tst_test_array[96]:io_commself
+(Rank:0) tst_test_array[97]:sequential_mode
+(Rank:0) tst_test_array[98]:set_size
+(Rank:0) tst_test_array[99]:preallocate
+(Rank:0) tst_test_array[100]:io_with_hole2
+malloc(): invalid next size (unsorted)
+munmap_chunk(): invalid pointer
+[n05p027:1792574] *** Process received signal ***
+[n05p027:1792574] Signal: Aborted (6)
+[n05p027:1792574] Signal code:  (-6)
+[n05p027:1792575] *** Process received signal ***
+[n05p027:1792574] [ 0] [n05p027:1792575] Signal: Aborted (6)
+[n05p027:1792575] Signal code:  (-6)
+/lib64/libc.so.6(+0x3ebf0)[0x14bf3063ebf0]
+[n05p027:1792574] [ 1] /lib64/libc.so.6(+0x8bedc)[0x14bf3068bedc]
+[n05p027:1792574] [ 2] /lib64/libc.so.6(raise+0x16)[0x14bf3063eb46]
+[n05p027:1792574] [ 3] malloc(): invalid next size (unsorted)
+[n05p028:206542] *** Process received signal ***
+[n05p028:206542] Signal: Aborted (6)
+[n05p028:206542] Signal code:  (-6)
+munmap_chunk(): invalid pointer
+/lib64/libc.so.6(abort+0xd3)[0x14bf30628833]
+[n05p027:1792574] [ 4] [n05p028:206541] *** Process received signal ***
+[n05p028:206541] Signal: Aborted (6)
+[n05p028:206541] Signal code:  (-6)
+/lib64/libc.so.6(+0x29172)[0x14bf30629172]
+[n05p027:1792574] [ 5] /lib64/libc.so.6(+0x95f87)[0x14bf30695f87]
+[n05p027:1792574] [ 6] /lib64/libc.so.6(+0x9621c)[0x14bf3069621c]
+[n05p027:1792574] [ 7] /lib64/libc.so.6(free+0x9a)[0x14bf3069a30a]
+[n05p027:1792574] [ 8] /lustre/projects/m/milias/work/software/openmpi/mpi-test-suite/mpi-test-suite_openmpi5.0.9intelv2025.3.1/mpi_test_suite[0x44db96]
+[n05p027:1792574] [ 9] /lustre/projects/m/milias/work/software/openmpi/mpi-test-suite/mpi-test-suite_openmpi5.0.9intelv2025.3.1/mpi_test_suite[0x44a7a4]
+[n05p027:1792574] [10] /lustre/projects/m/milias/work/software/openmpi/mpi-test-suite/mpi-test-suite_openmpi5.0.9intelv2025.3.1/mpi_test_suite[0x43be14]
+[n05p027:1792574] [11] /lustre/projects/m/milias/work/software/openmpi/mpi-test-suite/mpi-test-suite_openmpi5.0.9intelv2025.3.1/mpi_test_suite[0x42cf1a]
+[n05p027:1792574] [12] /lib64/libc.so.6(+0x295d0)[0x14bf306295d0]
+[n05p027:1792574] [13] /lib64/libc.so.6(__libc_start_main+0x80)[0x14bf30629680]
+[n05p027:1792574] [14] /lustre/projects/m/milias/work/software/openmpi/mpi-test-suite/mpi-test-suite_openmpi5.0.9intelv2025.3.1/mpi_test_suite[0x4076d5]
+[n05p027:1792574] *** End of error message ***
+[n05p028:206541] [ 0] /lib64/libc.so.6(+0x3ebf0)[0x1503d9c3ebf0]
+[n05p028:206541] [ 1] /lib64/libc.so.6(+0x8bedc)[0x1503d9c8bedc]
+[n05p028:206541] [ 2] /lib64/libc.so.6(raise+0x16)[0x1503d9c3eb46]
+[n05p028:206541] [ 3] /lib64/libc.so.6(abort+0xd3)[0x1503d9c28833]
+[n05p028:206541] [ 4] /lib64/libc.so.6(+0x29172)[0x1503d9c29172]
+[n05p028:206541] [ 5] /lib64/libc.so.6(+0x95f87)[0x1503d9c95f87]
+[n05p028:206541] [ 6] /lib64/libc.so.6(+0x9621c)[0x1503d9c9621c]
+[n05p028:206541] [ 7] /lib64/libc.so.6(free+0x9a)[0x1503d9c9a30a]
+[n05p028:206541] [ 8] /lustre/projects/m/milias/work/software/openmpi/mpi-test-suite/mpi-test-suite_openmpi5.0.9intelv2025.3.1/mpi_test_suite[0x44db96]
+[n05p028:206541] [ 9] /lustre/projects/m/milias/work/software/openmpi/mpi-test-suite/mpi-test-suite_openmpi5.0.9intelv2025.3.1/mpi_test_suite[0x44a7a4]
+[n05p028:206541] [10] /lustre/projects/m/milias/work/software/openmpi/mpi-test-suite/mpi-test-suite_openmpi5.0.9intelv2025.3.1/mpi_test_suite[0x43be14]
+[n05p028:206541] [11] /lustre/projects/m/milias/work/software/openmpi/mpi-test-suite/mpi-test-suite_openmpi5.0.9intelv2025.3.1/mpi_test_suite[0x42cf1a]
+[n05p028:206541] [12] /lib64/libc.so.6(+0x295d0)[0x1503d9c295d0]
+[n05p028:206541] [13] /lib64/libc.so.6(__libc_start_main+0x80)[0x1503d9c29680]
+[n05p028:206541] [14] /lustre/projects/m/milias/work/software/openmpi/mpi-test-suite/mpi-test-suite_openmpi5.0.9intelv2025.3.1/mpi_test_suite[0x4076d5]
+[n05p028:206541] *** End of error message ***
+--------------------------------------------------------------------------
+prterun noticed that process rank 0 with PID 1792574 on node n05p027 exited on
+signal 6 (Aborted).
+--------------------------------------------------------------------------

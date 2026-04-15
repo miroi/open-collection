@@ -93,7 +93,7 @@ free -t -g
 # IntelMPI compiled OpenMPI
 #
 INSTALLPATH=/lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1
-INSTALLDIR=install_openmpi-5.0.9-intelv2025.3.1
+INSTALLDIR=install_openmpi5.0.9-intel2025.3.1_c
 
 prefixdir=$INSTALLPATH/$INSTALLDIR
 echo -e "\n Checking presence of full path install dir, ls -lt :"; ls -lt $INSTALLPATH/$INSTALLDIR
@@ -171,7 +171,7 @@ LIBXC_DIR=/lustre/projects/m/milias/work/software/libxc/install_build_intel2025.
 LIBXC_INC=$LIBXC_DIR/include
 echo -e "\n LIBXC_DIR=$LIBXC_DIR"; $LIBXC_DIR/bin/xc-info .
 
-cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_Fortran_COMPILER=mpif90 -DCMAKE_Fortran_FLAGS="-g -traceback" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLIBXC_INCLUDE_DIR=$LIBXC_INC  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=OFF  .. 
+cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_Fortran_COMPILER=mpif90 -DCMAKE_Fortran_FLAGS="-xCORE-AVX2 -g -traceback" -DCMAKE_C_FLAGS="-xCORE-AVX2"  -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLIBXC_INCLUDE_DIR=$LIBXC_INC  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=OFF  .. 
 
 
 echo -e "\n\n Running make -j $SLURM_CPUS_ON_NODE :"
@@ -183,8 +183,11 @@ ls -lt $QE/$BUILD/bin
 echo -e "\n\n ldd $QE/$BUILD/bin/pw.x :"
 ldd $QE/$BUILD/bin/pw.x
 
-echo -e "\n\n running ctest -j $SLURM_CPUS_ON_NODE :"
-ctest -j  $SLURM_CPUS_ON_NODE
+PARA_PREFIX="mpirun  --report-bindings --bind-to core:overload-allowed -np 2"
+echo -e "\n\n setting PARA_PREFIX=$PARA_PREFIX"
+
+echo -e "\n now running ctest -j4 :"
+ctest -j4
 
 echo -e "\n\n End of script. Date & Time is `date` \n"
 

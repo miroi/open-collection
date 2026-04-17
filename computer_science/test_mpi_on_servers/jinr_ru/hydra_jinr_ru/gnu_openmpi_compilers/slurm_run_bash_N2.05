@@ -12,7 +12,7 @@
 #SBATCH --nodes=2
 ##SBATCH --ntasks=8
 #SBATCH --ntasks-per-node=4
-##SBATCH --distribution=cyclic:cyclic
+#SBATCH --distribution=cyclic:cyclic
 
 ## stdout/stderr output file
 #SBATCH -o log_slurm_job.%j.%N.std_out_err
@@ -90,7 +90,7 @@ echo -e "\n running mpirun -machinefile $MACHINEFILE  -np $SLURM_NTASKS ./pi_mpi
 #mpirun  -f $MACHINEFILE  -np $SLURM_NTASKS ./pi_mpi.x
 #mpirun  -np $SLURM_NTASKS ./pi_mpi.x
 
-mpirun  --display map --report-bindings   -machinefile $MACHINEFILE -np $SLURM_NTASKS ./pi_mpi.x
+mpirun   --report-bindings   -machinefile $MACHINEFILE -np $SLURM_NTASKS ./pi_mpi.x
 
 
 exit

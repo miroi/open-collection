@@ -87,11 +87,13 @@ mpif90 pi.F90 -o pi_mpi.x
 echo -e "\n check executable, ldd pi_mpi.x :"
 ldd pi_mpi.x
 
-echo -e "\n running mpirun -machinefile $MACHINEFILE  -np $SLURM_NTASKS ./pi_mpi.x :"
+#echo -e "\n running mpirun -machinefile $MACHINEFILE  -np $SLURM_NTASKS ./pi_mpi.x :"
 #mpirun -np $SLURM_NTASKS ./pi_mpi.x
 #mpirun  -f $MACHINEFILE  -np $SLURM_NTASKS ./pi_mpi.x
-mpirun  -machinefile $MACHINEFILE -np $SLURM_NTASKS ./pi_mpi.x
+#mpirun  -machinefile $MACHINEFILE -np $SLURM_NTASKS ./pi_mpi.x
 
+echo -e "\n running srun --mpi=pmix  ./pi_mpi.x  "
+srun --mpi=pmix  ./pi_mpi.x
 
 exit
 

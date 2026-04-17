@@ -9,12 +9,9 @@
 
 #SBATCH --mem=4GB
 
-# Force exactly 2 nodes with 4 tasks each
 #SBATCH --nodes=2
-#SBATCH --ntasks=8
 #SBATCH --ntasks-per-node=4
-# Use 'cyclic' or 'block' distribution instead of 'pack'
-#SBATCH --distribution=block:block 
+#SBATCH --cpus-per-task=1
 
 ## stdout/stderr output file
 #SBATCH -o log_slurm_job.%j.%N.std_out_err

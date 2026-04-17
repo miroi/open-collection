@@ -1,0 +1,98 @@
+#!/bin/bash
+#SBATCH --account=bltp
+#SBATCH --partition=bltp
+#SBATCH --constraint=icelake
+#SBATCH --qos=short
+
+## max. execution time
+#SBATCH --time=00:35:00
+
+#SBATCH --mem=4GB
+
+#SBATCH --nodes=2
+##SBATCH --ntasks=8
+#SBATCH --ntasks-per-node=4
+#SBATCH --distribution=cyclic:cyclic
+
+## stdout/stderr output file
+#SBATCH -o log_slurm_job.%j.%N.std_out_err
+
+## E-mail
+#SBATCH --mail-user=milias@jinr.ru
+#SBATCH --mail-type=ALL
+
+
+echo -e "\nRunning on host `hostname`"
+echo -e "Time is `date` \n"
+
+echo -e "\nJob user is SLURM_JOB_USER= $SLURM_JOB_USER"
+echo -e "User job SLURM_JOB_NAME=$SLURM_JOB_NAME has assigned ID SLURM_JOBID=$SLURM_JOBID"
+echo -e "This job was submitted from the computer SLURM_SUBMIT_HOST=$SLURM_SUBMIT_HOST"
+echo -e "and from the home directory SLURM_SUBMIT_DIR:"
+echo -e "$SLURM_SUBMIT_DIR"
+
+echo -e "Job is running on the cluster compute node: SLURM_CLUSTER_NAME=$SLURM_CLUSTER_NAME"
+echo -e "and is employing SLURM_JOB_NUM_NODES=$SLURM_JOB_NUM_NODES node/nodes:"
+echo -e "SLURM_JOB_NODELIST = $SLURM_JOB_NODELIST"
+echo -e "Job partition is SLURM_JOB_PARTITION=$SLURM_JOB_PARTITION \n"
+echo -e "Number of allocated CPUs on each single node, SLURM_CPUS_ON_NODE=$SLURM_CPUS_ON_NODE ."
+echo -e "Number of all reserved threads over ALL nodes, SLURM_NTASKS=$SLURM_NTASKS ."
+echo -e "Job has reserved memory per node, SLURM_MEM_PER_NODE=$SLURM_MEM_PER_NODE MB of memory"
+
+MACHINEFILE="nodes.$SLURM_JOB_PARTITION.$SLURM_JOB_ID" # Generate Machinefile for mpi such that hosts are in the same
+# order as if run via srun
+srun -l /bin/hostname | sort -n | awk '{print $2}' > $MACHINEFILE
+echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; echo "containing:"; cat $MACHINEFILE
+
+# CPU model, total numer of CPUs, number of allocated CPUs
+echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
+NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
+echo "BTW, this node has total $NPROCS CPUs available for an EXCLUSIVE job."
+echo "Based on reserved memory, this node got $SLURM_CPUS_ON_NODE CPUs allocated for SLURM calculations."
+echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
+
+# Generate Machinefile for mpi such that hosts are in the same
+# order as if run via srun
+srun -l /bin/hostname | sort -n | awk '{print $2}' > $MACHINEFILE
+echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; echo "containing:"; cat $MACHINEFILE
+
+module purge
+#module load   intel/v2025.3.1  
+module load openmpi/v4.1.8_gcc1230
+echo -e "\n\n loaded modules:"
+module list
+
+echo -e "\n The total memory at the node (in GB)"
+free -t -g
+echo -e "\n"
+
+echo -e "\n Current directory where this SLURM job is running `pwd`"
+echo -e " Current directory SLURM_SUBMIT_DIR=$SLURM_SUBMIT_DIR"
+echo " It has the disk space of (df -h) :"
+df -h .
+echo
+
+echo -e "\n\n My PATH=$PATH\n"
+echo -e "\nMy LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
+#echo -e "\n ifx ?  \c"; which ifx; ifx -V
+echo -e "\n gfortran ?  \c"; which gfortran; gfortran --version
+#echo -e " mpiifx ? \c"; which mpiifx;  mpiifx -V
+echo -e " mpif90 ? \c"; which mpif90;  mpif90 --version
+echo -e " mpirun ? \c"; which mpirun; mpirun --version
+
+echo -e "\n compiling mpif90 pi.F90 -o pi_mpi.x :"
+mpif90 pi.F90 -o pi_mpi.x
+echo -e "\n check executable, ldd pi_mpi.x :"
+ldd pi_mpi.x
+
+echo -e "\n running mpirun -machinefile $MACHINEFILE  -np $SLURM_NTASKS ./pi_mpi.x :"
+#mpirun -np $SLURM_NTASKS ./pi_mpi.x
+#mpirun  -f $MACHINEFILE  -np $SLURM_NTASKS ./pi_mpi.x
+#mpirun  -np $SLURM_NTASKS ./pi_mpi.x
+
+mpirun   --report-bindings   -machinefile $MACHINEFILE -np $SLURM_NTASKS ./pi_mpi.x
+
+
+exit
+
+

@@ -31,8 +31,8 @@
 ## nodes
 #SBATCH --nodes=2
 #SBATCH --ntasks-per-node=4
-#SBATCH --distribution=cyclic:cyclic
-
+##SBATCH --distribution=cyclic:cyclic
+#SBATCH --distribution=block:block,nopack
 
 ## stdout/stderr output file
 #SBATCH -o log_slurm_job.%j.%N.std_out_err
@@ -43,13 +43,18 @@
 
 #### modules  ####
 module purge
-module load intel/v2025.3.1   Python/v3.12.13
+module load Python/v3.12.13  openmpi/v4.1.8_gcc1230 fftw/v3.3.10_openmpi418 LAPACK/v3.12.0_gcc1230
 echo -e "\n\n loaded modules:"
 module list
 
 
 #### QE ####
-export qe_bin="/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/build_intelmpi2025.3.1_libxc_mkl_scalapack"
+QE_DIR=/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e
+BUILD=build_openmpi4.1.8_gcc12.3.0_LAPACK3.12.0_fftw3.3.10_libxc
+export QE=$QE_DIR/$BUILD
+
+echo -e "\nldd  $QE/bin/pw.x :"
+ldd  $QE/bin/pw.x
 
 
 ##--------------------------------------------------------------------------------------------------------------
@@ -98,23 +103,8 @@ echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
 #source /lustre/projects/m/milias/work/software/myvenv/bin/activate
 #pip show ase
 
-# IntelMPI compiled OpenMPI
-INSTALLPATH=/lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1
-INSTALLDIR=install_openmpi-5.0.9-intelv2025.3.1
-prefixdir=$INSTALLPATH/$INSTALLDIR
-echo -e "\n Checking presence of full path install dir, ls -lt :"; ls -lt $INSTALLPATH/$INSTALLDIR
-echo -e "\n\n  OpenMPI installed binaries and libs:"
-#ls -lt $prefixdir/bin/*
-#ls -lt $prefixdir/lib/*
-# extend environment variables
-export PATH=$prefixdir/bin:$PATH
-export LD_LIBRARY_PATH=$prefixdir/lib:$LD_LIBRARY_PATH
-
 echo -e "\n\n My PATH=$PATH\n"
 echo -e "\n My LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
-
-echo -e "\nldd  $qe_bin/bin/pw.x :"
-ldd  $qe_bin/bin/pw.x
 
 echo -e "Python ? :\c"; which python; python -V
 echo -e "\n mpif90 ?: \c"; which mpif90; mpif90 -V
@@ -147,15 +137,13 @@ echo -e "\n Running QE pw.x with Intel2025-OpenMPI5 parallel job:"
 #mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE  --oversubscribe --mca pml ob1 --mca btl tcp,self  $qe_bin/bin/pw.x  < $inp > $out
 #mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE  --oversubscribe --bind-to none  $qe_bin/bin/pw.x  -input  $inp > $out
 #mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --bind-to core:overload-allowed  $qe_bin/bin/pw.x  -npool $SLURM_JOB_NUM_NODES  -input  $inp > $out
-
-MPIRUN_DIR=/lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi-5.0.9-intelv2025.3.1/bin
+#MPIRUN_DIR=/lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi-5.0.9-intelv2025.3.1/bin
 #$MPIRUN_DIR/mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --bind-to core:overload-allowed  $qe_bin/bin/pw.x  -npool $SLURM_JOB_NUM_NODES  -input  $inp > $out
 #$MPIRUN_DIR/mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --bind-to none  $qe_bin/bin/pw.x  -npool $SLURM_JOB_NUM_NODES  -input  $inp > $out
 #$MPIRUN_DIR/mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --bind-to none  $qe_bin/bin/pw.x   -input  $inp > $out
-
 #$MPIRUN_DIR/mpirun  -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --bind-to hwthread  $qe_bin/bin/pw.x   -input  $inp > $out
 
-$MPIRUN_DIR/mpirun  -v  --hostfile $MACHINEFILE   -np $SLURM_NTASKS  $qe_bin/bin/pw.x   -input  $inp > $out
+mpirun  -v  --hostfile $MACHINEFILE   -np $SLURM_NTASKS  $QE/bin/pw.x   -npool $SLURM_JOB_NUM_NODES    -input  $inp > $out
 
 echo -e "\n\n QE finished on : \c";date
 

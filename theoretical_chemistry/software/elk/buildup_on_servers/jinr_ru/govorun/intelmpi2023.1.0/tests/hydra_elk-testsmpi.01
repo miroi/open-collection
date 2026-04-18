@@ -28,7 +28,7 @@
 
 #
 #SBATCH -N 1
-#SBATCH --ntasks-per-node=6
+#SBATCH --ntasks-per-node=8
 
 
 ## stdout/stderr output file
@@ -127,6 +127,9 @@ ldd $ELKDIR/src/elk
 
 echo -e "\n\n running make test-mpi :"
 make test-mpi
+
+echo -e "\n\n running make test-libxc-mpi :"
+make test-libxc-mpi
 
 
 echo -e "\n\n End of script. Date & Time is `date` \n"

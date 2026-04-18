@@ -168,8 +168,9 @@ echo -e "\n\n ldd $QE/$BUILD/bin/pw.x :"
 ldd $QE/$BUILD/bin/pw.x
 
 PARA_PREFIX="mpirun  --report-bindings -np 2"
+echo -e "\n PARA_PREFIX=$PARA_PREFIX"
 echo -e "\n\n running ctest -j 4 :"
-ctest -j 4
+ctest -V  -j 4
 
 echo -e "\n\n End of script. Date & Time is `date` \n"
 

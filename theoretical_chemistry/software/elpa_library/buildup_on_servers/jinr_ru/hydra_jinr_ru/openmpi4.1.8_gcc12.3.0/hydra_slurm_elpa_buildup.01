@@ -5,7 +5,8 @@
 ##  partition (queue)
 #SBATCH --account=bltp
 #SBATCH --partition=bltp
-#SBATCH --constraint=icelake
+##SBATCH --constraint=icelake
+#SBATCH --constraint=cascade
 #SBATCH --qos=short
 
 ## max. execution time
@@ -80,16 +81,16 @@ module purge
 #module add autotools
 
 module add Python/v3.12.13
-module add CMake/v3.26.5
+module add CMake/v3.26.5 Autotools
 module add openmpi/v4.1.8_gcc1230  fftw/v3.3.10_openmpi418 LAPACK/v3.12.0_gcc1230 
 module list
 
 echo -e "\n python ? :\c"; which python; python -V
 echo -e "  cmake ? :\c";  which cmake; cmake --version
 #echo -e "  mpiifx ? :\c"; which mpiifx; mpiifx -V
-echo -e "  mpif90 ? :\c"; which mpif90; mpif90 -V
-echo -e "  mpicc ? :\c"; which mpicc; mpicc -V; mpicc --help
-echo -e "  mpicxx ? :\c"; which mpicxx; mpicxx  -V
+echo -e "  mpif90 ? :\c"; which mpif90; mpif90 --version
+echo -e "  mpicc ? :\c"; which mpicc; mpicc --version; mpicc --help
+echo -e "  mpicxx ? :\c"; which mpicxx; mpicxx  --version
 echo -e "  mpirun ? :\c"; which mpirun; mpirun --version
 
 echo -e "\n The variable PATH=$PATH\n"
@@ -118,8 +119,8 @@ mkdir install_$BUILD
 cd $ELPA
 echo -e "\n I am  in :\c"; pwd
 
-#echo -e "\n\n Going to do autoreconf -f -i :"
-#autoreconf -f -i
+echo -e "\n\n Going to run autogen.sh :"
+./autogen.sh
 
 echo -e "\n FIRST, checking configure --help :"
 configure --help

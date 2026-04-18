@@ -85,11 +85,11 @@ except Exception as e:
 # 4. Define Calculator Configuration
 # ==============================================
 # Set QE bin directory
-qe_bin = os.environ["qe_bin"]
+qe_bin = os.environ["QE"]
 
 # Main QE calculation with full parallelization
-pw_command = f'/lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi-5.0.9-intelv2025.3.1/bin/mpirun -v -np {os.environ["SLURM_NTASKS"]} -machinefile nodes.{os.environ["SLURM_JOB_PARTITION"]}.{os.environ["SLURM_JOB_ID"]} --bind-to core:overload-allowed {qe_bin}/bin/pw.x -npool {os.environ["SLURM_JOB_NUM_NODES"]}'
-#pw_command = f'mpirun -np {os.environ["SLURM_NTASKS"]} -machinefile nodes.{os.environ["SLURM_JOB_PARTITION"]}.{os.environ["SLURM_JOB_ID"]} {qe_bin}/bin/pw.x -npool {os.environ["SLURM_JOB_NUM_NODES"]}'
+#pw_command = f'/lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi-5.0.9-intelv2025.3.1/bin/mpirun -v -np {os.environ["SLURM_NTASKS"]} -machinefile nodes.{os.environ["SLURM_JOB_PARTITION"]}.{os.environ["SLURM_JOB_ID"]} --bind-to core:overload-allowed {qe_bin}/bin/pw.x -npool {os.environ["SLURM_JOB_NUM_NODES"]}'
+pw_command = f'mpirun -np {os.environ["SLURM_NTASKS"]} -machinefile nodes.{os.environ["SLURM_JOB_PARTITION"]}.{os.environ["SLURM_JOB_ID"]} {qe_bin}/bin/pw.x -npool {os.environ["SLURM_JOB_NUM_NODES"]}'
 
 profile = EspressoProfile(
     command=pw_command,

@@ -6,7 +6,8 @@
 ##  partition (queue)
 #SBATCH --account=bltp
 #SBATCH --partition=bltp
-#SBATCH --constraint=cascade
+#SBATCH --constraint=icelake
+##SBATCH --constraint=cascade
 #SBATCH --qos=medium
 
 ## max. execution time
@@ -78,9 +79,10 @@ echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
 module purge
 #module load GVR/v1.0-1 gcc/v11.2.0 fftw/v3.3.10_gcc1120 LAPACK/v3.9.0 openmpi/v4.1.1_gcc1120
 module load  Python/v3.12.13  
-module load  intel/v2025.3.1  
 module load  openmpi/v4.1.8_gcc1230
 module load  CMake/v3.26.5
+module load  fftw/v3.3.10_openmpi418
+module load  LAPACK/v3.12.0_gcc1230
 
 echo -e "\n\n loaded modules:"
 module list
@@ -116,8 +118,7 @@ echo -e "\n mpirun ? \c"; which mpirun; mpirun --version; mpirun --help
 
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e
 QE=/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e
-
-BUILD=build_openmpi4.1.8_gcc12.3.0_libcx_mkl2025.3.1_scalapack
+BUILD=build_openmpi4.1.8_gcc12.3.0_LAPACK3.12.0_fftw3.3.10_libxc
 
 echo -e "\n\n QE=$QE"
 echo -e "ls $QE/"
@@ -162,7 +163,7 @@ echo -e "\n\n"
 
 #cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=mpicc -DCMAKE_CXX_COMPILER=mpicxx -DCMAKE_Fortran_COMPILER=mpif90 -DCMAKE_Fortran_FLAGS="-g -traceback" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLIBXC_INCLUDE_DIR=$LIBXC_INC  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=OFF  .. 
 
-cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=mpicc -DCMAKE_CXX_COMPILER=mpicxx -DCMAKE_Fortran_COMPILER=mpif90 -DCMAKE_Fortran_FLAGS="-g" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLIBXC_INCLUDE_DIR=$LIBXC_INC  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=OFF  .. 
+cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=mpicc -DCMAKE_CXX_COMPILER=mpicxx -DCMAKE_Fortran_COMPILER=mpif90 -DCMAKE_Fortran_FLAGS="-g -O3" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLIBXC_INCLUDE_DIR=$LIBXC_INC  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=OFF  .. 
 
 
 echo -e "\n\n Running make -j $SLURM_CPUS_ON_NODE :"
@@ -173,6 +174,10 @@ ls -lt $QE/$BUILD/bin
 
 echo -e "\n\n ldd $QE/$BUILD/bin/pw.x :"
 ldd $QE/$BUILD/bin/pw.x
+
+#PARA_PREFIX="mpirun  --report-bindings --bind-to core:overload-allowed -np 2"
+PARA_PREFIX="mpirun  --report-bindings --bind-to core:overload-allowed -np 2"
+echo -e "\n\n setting PARA_PREFIX=$PARA_PREFIX"
 
 echo -e "\n\n running ctest -j $SLURM_CPUS_ON_NODE :"
 ctest -j  $SLURM_CPUS_ON_NODE

@@ -8,7 +8,6 @@
 #SBATCH --partition=bltp
 #SBATCH --constraint=icelake
 ##SBATCH --constraint=cascade
-#SBATCH --distribution=block:block,nopack  
 
 #SBATCH --qos=short
 
@@ -45,14 +44,17 @@
 
 #### modules  ####
 module purge
-module load Python/v3.12.13  openmpi/v4.1.8_gcc1230 fftw/v3.3.10_openmpi418 LAPACK/v3.12.0_gcc1230
+module load  Python/v3.12.13
+module load  intel/v2025.3.1
+module load  openmpi/v4.1.8_gcc1230
 echo -e "\n\n loaded modules:"
 module list
 
 
 #### QE ####
 QE_DIR=/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e
-BUILD=build_openmpi4.1.8_gcc12.3.0_LAPACK3.12.0_fftw3.3.10_libxc
+#BUILD=build_openmpi4.1.8_gcc12.3.0_LAPACK3.12.0_fftw3.3.10_libxc
+BUILD=build_openmpi4.1.8_gcc12.3.0_libcx_mkl2025.3.1_scalapack
 export QE=$QE_DIR/$BUILD
 
 echo -e "\nldd  $QE/bin/pw.x :"

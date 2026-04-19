@@ -67,6 +67,9 @@ echo "BTW, this node has total $NPROCS CPUs available for an EXCLUSIVE job."
 echo "Based on reserved memory, this node got $SLURM_CPUS_ON_NODE CPUs allocated for SLURM calculations."
 echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
 
+
+echo -e "\n\n srun --mpi=list :"; srun --mpi=list
+
 #RATIO=$(( $SLURM_CPUS_ON_NODE / $SLURM_NTASKS ))
 #echo -e "Ratio SLURM_CPUS_ON_NODE/SLURM_NTASKS=$SLURM_CPUS_ON_NODE/$SLURM_NTASKS=\c";echo $(( $SLURM_CPUS_ON_NODE / $SLURM_NTASKS ))
 #echo -e $RATIO
@@ -103,7 +106,7 @@ echo -e "\n mpiifort ? : \c";which mpiifort; mpiifort -V
 echo -e "\n icx ? ; icx -V: \c"; which icx; icx -V
 echo -e "\n mpiicc ? : \c";which mpiicc; mpiicc -V
 echo -e "\n icpx ? ; icpx -V: \c"; which icpx; icpx -V
-echo -e "\n mpiicpc ? : \c";which mpiicpc; mpiicapcxc -V
+echo -e "\n mpiicpc ? : \c";which mpiicpc; mpiicpc -V
 echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"
 echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
 echo -e "\n cmake ? \c"; which cmake; cmake --version

@@ -31,8 +31,7 @@
 ## nodes
 #SBATCH --nodes=2
 #SBATCH --ntasks-per-node=4
-#SBATCH --distribution=cyclic:cyclic
-
+#SBATCH --distribution=block:block,nopack
 
 ## stdout/stderr output file
 #SBATCH -o log_slurm_job.%j.%N.std_out_err
@@ -49,7 +48,8 @@ module list
 
 
 #### QE ####
-export qe_bin="/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/build_intelmpi2025.3.1_libxc_mkl_scalapack"
+#export qe_bin="/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/build_intelmpi2025.3.1_libxc_mkl_scalapack"
+export qe_bin="/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/build_intel2025.3.1-openmpi5.0.9_libxc_mkl_scalapack"
 
 
 ##--------------------------------------------------------------------------------------------------------------
@@ -148,14 +148,14 @@ echo -e "\n Running QE pw.x with Intel2025-OpenMPI5 parallel job:"
 #mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE  --oversubscribe --bind-to none  $qe_bin/bin/pw.x  -input  $inp > $out
 #mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --bind-to core:overload-allowed  $qe_bin/bin/pw.x  -npool $SLURM_JOB_NUM_NODES  -input  $inp > $out
 
-MPIRUN_DIR=/lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi-5.0.9-intelv2025.3.1/bin
+#MPIRUN_DIR=/lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi-5.0.9-intelv2025.3.1/bin
 #$MPIRUN_DIR/mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --bind-to core:overload-allowed  $qe_bin/bin/pw.x  -npool $SLURM_JOB_NUM_NODES  -input  $inp > $out
 #$MPIRUN_DIR/mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --bind-to none  $qe_bin/bin/pw.x  -npool $SLURM_JOB_NUM_NODES  -input  $inp > $out
 #$MPIRUN_DIR/mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --bind-to none  $qe_bin/bin/pw.x   -input  $inp > $out
-
 #$MPIRUN_DIR/mpirun  -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --bind-to hwthread  $qe_bin/bin/pw.x   -input  $inp > $out
+#$MPIRUN_DIR/mpirun  -v  --hostfile $MACHINEFILE   -np $SLURM_NTASKS  $qe_bin/bin/pw.x   -input  $inp > $out
 
-$MPIRUN_DIR/mpirun  -v  --hostfile $MACHINEFILE   -np $SLURM_NTASKS  $qe_bin/bin/pw.x   -input  $inp > $out
+mpirun  -v  --hostfile $MACHINEFILE   -np $SLURM_NTASKS  $qe_bin/bin/pw.x  -npool $SLURM_JOB_NUM_NODES    -input  $inp > $out
 
 echo -e "\n\n QE finished on : \c";date
 

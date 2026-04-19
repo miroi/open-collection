@@ -8,6 +8,7 @@
 #SBATCH --partition=bltp
 #SBATCH --constraint=icelake
 #SBATCH --qos=medium
+##SBATCH --distribution=block:block,nopack
 
 ## max. execution time
 ##SBATCH -t 3-00:00:00
@@ -99,10 +100,8 @@ free -t -g
 #
 INSTALLPATH=/lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1
 INSTALLDIR=install_openmpi5.0.9-intel2025.3.1_c
-
 prefixdir=$INSTALLPATH/$INSTALLDIR
 echo -e "\n Checking presence of full path install dir, ls -lt :"; ls -lt $INSTALLPATH/$INSTALLDIR
-
 echo -e "\n\n  OpenMPI installed binaries and libs:"
 ls -lt $prefixdir/bin/*
 ls -lt $prefixdir/lib/*
@@ -180,7 +179,10 @@ echo -e "\n LIBXC_DIR=$LIBXC_DIR"; $LIBXC_DIR/bin/xc-info .
 
 #cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_Fortran_COMPILER=mpif90 -DCMAKE_Fortran_FLAGS="-xHost -g -traceback" -DCMAKE_C_FLAGS="-xCORE-AVX2"  -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLIBXC_INCLUDE_DIR=$LIBXC_INC  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=OFF  .. 
 
-cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_Fortran_COMPILER=mpif90 -DCMAKE_Fortran_FLAGS="-march=core-avx2 -g -traceback" -DCMAKE_C_FLAGS="-march=core-avx2"  -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLIBXC_INCLUDE_DIR=$LIBXC_INC  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=OFF  .. 
+## try this ...
+#cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_Fortran_COMPILER=mpif90 -DCMAKE_Fortran_FLAGS="-xHost -march=core-avx2 -g -traceback" -DCMAKE_C_FLAGS="-xHost -march=core-avx2"  -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLIBXC_INCLUDE_DIR=$LIBXC_INC  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=OFF  .. 
+
+cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_Fortran_COMPILER=mpif90 -DCMAKE_Fortran_FLAGS="-xHost  -g -traceback" -DCMAKE_C_FLAGS="-xHost"  -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLIBXC_INCLUDE_DIR=$LIBXC_INC  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=OFF  .. 
 
 
 echo -e "\n\n Running make -j $SLURM_CPUS_ON_NODE :"
@@ -192,11 +194,12 @@ ls -lt $QE/$BUILD/bin
 echo -e "\n\n ldd $QE/$BUILD/bin/pw.x :"
 ldd $QE/$BUILD/bin/pw.x
 
-PARA_PREFIX="mpirun  --report-bindings --bind-to core:overload-allowed -np 2"
+export PARA_PREFIX="mpirun  --report-bindings --bind-to core:overload-allowed -np 2"
+#export PARA_PREFIX="mpirun  --report-bindings -np 2"
 echo -e "\n\n setting PARA_PREFIX=$PARA_PREFIX"
 
 echo -e "\n now running ctest -j4 :"
-ctest -j4
+ctest -V -j4
 
 echo -e "\n\n End of script. Date & Time is `date` \n"
 

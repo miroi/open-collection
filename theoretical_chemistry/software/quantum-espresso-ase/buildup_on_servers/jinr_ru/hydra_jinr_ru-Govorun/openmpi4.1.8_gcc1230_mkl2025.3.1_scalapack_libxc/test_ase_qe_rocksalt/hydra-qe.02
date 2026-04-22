@@ -32,7 +32,7 @@
 ## nodes
 #SBATCH --nodes=2
 #SBATCH --ntasks-per-node=4
-##SBATCH --cpus-per-task=1
+#SBATCH --cpus-per-task=1
 #SBATCH --distribution=block:block,nopack
 
 ## stdout/stderr output file
@@ -101,6 +101,21 @@ echo "BTW, this node has total $NPROCS CPUs available for an EXCLUSIVE job."
 echo "Based on reserved memory, this node got $SLURM_CPUS_ON_NODE CPUs allocated for SLURM calculations."
 echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
 
+echo -e "\n\n SLURM version: "
+sinfo -V
+scontrol version
+sacct --version
+
+echo -e "\n\n Check nodes on the hyperthreading :"
+#
+grep -m 1 "flags" /proc/cpuinfo | grep -o "ht"
+#
+sinfo -Node -o "%N %.5D %.9P %11T %.4c %.4X %.4Y %.4Z"
+# Prints: NodeName, Sockets, Cores, Threads
+sinfo -n $SLURMD_NODENAME -o "%N %X %Y %Z"
+#
+scontrol show job $SLURM_JOB_ID | grep -E "ThreadsPerCore|TresPerNode"
+
 
 ## get venv
 #echo -e "\n\n Activating Python virtual environment: source /lustre/projects/m/milias/work/software/myvenv/bin/activate "
@@ -148,7 +163,7 @@ echo -e "\n Running QE pw.x with Intel2025-OpenMPI5 parallel job:"
 #$MPIRUN_DIR/mpirun  -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --bind-to hwthread  $qe_bin/bin/pw.x   -input  $inp > $out
 
 #mpirun  -v  --hostfile $MACHINEFILE   -np $SLURM_NTASKS  $QE/bin/pw.x   -npool $SLURM_JOB_NUM_NODES    -input  $inp > $out
-mpirun  -v  --hostfile $MACHINEFILE --use-hwthread-cpus    -np $SLURM_NTASKS  $QE/bin/pw.x    -input  $inp > $out
+mpirun  -v  --hostfile $MACHINEFILE --use-hwthread-cpus --report-bindings    -np $SLURM_NTASKS  $QE/bin/pw.x    -input  $inp > $out
 
 echo -e "\n\n QE finished on : \c";date
 

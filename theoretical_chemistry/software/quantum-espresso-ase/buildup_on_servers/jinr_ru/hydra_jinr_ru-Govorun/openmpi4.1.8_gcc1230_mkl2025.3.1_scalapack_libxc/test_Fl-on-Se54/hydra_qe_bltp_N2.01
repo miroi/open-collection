@@ -149,7 +149,9 @@ echo -e "\n Running QE pw.x with openmpi4.1.8_gcc1230_mkl2025.3.1_scalapack_libx
 #  OpenMPI : #
 #export OMPI_MCA_btl=^openib
 #mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --bind-to core:overload-allowed  $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
-mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
+#mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
+
+mpirun -v -np $SLURM_NTASKS  --use-hwthread-cpus  --hostfile $MACHINEFILE $QE/bin/pw.x  < $inp > $out
 
 echo -e "\n\n QE finished on : \c";date
 exit

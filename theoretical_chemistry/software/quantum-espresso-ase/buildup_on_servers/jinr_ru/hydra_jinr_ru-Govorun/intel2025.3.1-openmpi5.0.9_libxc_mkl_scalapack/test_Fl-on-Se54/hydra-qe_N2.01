@@ -49,9 +49,13 @@ echo -e "\n"
 echo -e "\n\nSlurm version :"; sacct --version; scontrol version; sinfo -V
 
 echo -e "\n\n Info about ThreadsPerCore :"
+echo -e "scontrol show node `hostname` :"
 scontrol show node `hostname`
+echo -e "slurmd -C :"
 slurmd -C
+echo -e "lscpu | grep -A1 'Thread(s) per core' :"
 lscpu | grep -A1 'Thread(s) per core'
+echo -e "grep -E 'cpu cores|siblings' /proc/cpuinfo | head -2 :"
 grep -E 'cpu cores|siblings' /proc/cpuinfo | head -2
 
 

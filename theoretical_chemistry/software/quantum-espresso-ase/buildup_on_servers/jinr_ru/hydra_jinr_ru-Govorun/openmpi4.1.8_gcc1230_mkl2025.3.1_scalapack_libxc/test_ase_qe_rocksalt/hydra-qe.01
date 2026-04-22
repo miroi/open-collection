@@ -32,9 +32,7 @@
 ## nodes
 #SBATCH --nodes=2
 #SBATCH --ntasks-per-node=4
-#SBATCH --cpus-per-task=1
-
-##SBATCH --distribution=cyclic:cyclic
+##SBATCH --cpus-per-task=1
 #SBATCH --distribution=block:block,nopack
 
 ## stdout/stderr output file
@@ -149,7 +147,8 @@ echo -e "\n Running QE pw.x with Intel2025-OpenMPI5 parallel job:"
 #$MPIRUN_DIR/mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --bind-to none  $qe_bin/bin/pw.x   -input  $inp > $out
 #$MPIRUN_DIR/mpirun  -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --bind-to hwthread  $qe_bin/bin/pw.x   -input  $inp > $out
 
-mpirun  -v  --hostfile $MACHINEFILE   -np $SLURM_NTASKS  $QE/bin/pw.x   -npool $SLURM_JOB_NUM_NODES    -input  $inp > $out
+#mpirun  -v  --hostfile $MACHINEFILE   -np $SLURM_NTASKS  $QE/bin/pw.x   -npool $SLURM_JOB_NUM_NODES    -input  $inp > $out
+mpirun  -v  --hostfile $MACHINEFILE --use-hwthread-cpus    -np $SLURM_NTASKS  $QE/bin/pw.x    -input  $inp > $out
 
 echo -e "\n\n QE finished on : \c";date
 

@@ -14,13 +14,10 @@
 #SBATCH -t 0-20:00:00
 ##SBATCH -t 30-00:00:00
 
-##SBATCH --exclusive
-
-##SBATCH --mem=640GB
-#SBATCH --mem=240GB
+##SBATCH --mem=240GB
 ##SBATCH --mem=16GB
 
-##SBATCH --mem-per-cpu=10GB
+#SBATCH --mem-per-cpu=2GB
 
 # do not restart in the case of nodefail!
 ##SBATCH --no-requeue
@@ -28,8 +25,14 @@
 
 #
 #SBATCH -N 2
-#SBATCH --ntasks-per-node=20
+##SBATCH --ntasks-per-node=20
+#SBATCH --ntasks=80
+#SBATCH --distribution=block:block,nopack
 
+## Deactivate hyperthreading 
+##SBATCH --hint=nomultithread
+## OR
+##SBATCH --threads-per-core=1
 
 ## stdout/stderr output file
 #SBATCH -o log_slurm_job.%j.%N.std_out_err
@@ -43,7 +46,22 @@ echo -e "Time is `date` \n"
 
 echo -e "\n The total memory at the node (in GB)"
 free -t -g
-echo -e "\n"
+
+
+echo -e "\n\n SLURM version: "
+sinfo -V
+scontrol version
+sacct --version
+
+echo -e "\n\n Check nodes on the hyperthreading :"
+#
+grep -m 1 "flags" /proc/cpuinfo | grep -o "ht"
+#
+sinfo -Node -o "%N %.5D %.9P %11T %.4c %.4X %.4Y %.4Z"
+# Prints: NodeName, Sockets, Cores, Threads
+sinfo -n $SLURMD_NODENAME -o "%N %X %Y %Z"
+#
+scontrol show job $SLURM_JOB_ID | grep -E "ThreadsPerCore|TresPerNode"
 
 
 echo -e "\nJob user is SLURM_JOB_USER= $SLURM_JOB_USER"
@@ -56,7 +74,8 @@ echo -e "Job is running on the cluster compute node: SLURM_CLUSTER_NAME=$SLURM_C
 echo -e "and is employing SLURM_JOB_NUM_NODES=$SLURM_JOB_NUM_NODES node/nodes:"
 echo -e "SLURM_JOB_NODELIST = $SLURM_JOB_NODELIST"
 echo -e "Job partition is SLURM_JOB_PARTITION=$SLURM_JOB_PARTITION \n"
-echo -e "Number of allocated CPUs on each single node, SLURM_CPUS_ON_NODE=$SLURM_CPUS_ON_NODE ."
+echo -e "Number of allocated CPUs on main node, SLURM_CPUS_ON_NODE=$SLURM_CPUS_ON_NODE ."
+echo -e "Number of allocated tasks on main node, SLURM_TASKS_PER_NODE=$SLURM_TASKS_PER_NODE ."
 echo -e "Number of all reserved threads over ALL nodes, SLURM_NTASKS=$SLURM_NTASKS ."
 echo -e "Job has reserved memory per node, SLURM_MEM_PER_NODE=$SLURM_MEM_PER_NODE MB of memory"
 
@@ -71,7 +90,7 @@ echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
 NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
 echo "BTW, this node has total $NPROCS CPUs available for an EXCLUSIVE job."
 echo "Based on reserved memory, this node got $SLURM_CPUS_ON_NODE CPUs allocated for SLURM calculations."
-echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
+echo "This job wants in total SLURM_NTASKS=$SLURM_NTASKS threads . "
 
 #RATIO=$(( $SLURM_CPUS_ON_NODE / $SLURM_NTASKS ))
 #echo -e "Ratio SLURM_CPUS_ON_NODE/SLURM_NTASKS=$SLURM_CPUS_ON_NODE/$SLURM_NTASKS=\c";echo $(( $SLURM_CPUS_ON_NODE / $SLURM_NTASKS ))
@@ -81,40 +100,21 @@ echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
 #export OPENBLAS_NUM_THREADS=$RATIO
 #echo -e "\nFor openblas internal parallelization, OPENBLAS_NUM_THREADS=$OPENBLAS_NUM_THREADS"
 
-
+#### modules  ####
 module purge
-#module load GVR/v1.0-1 gcc/v11.2.0 fftw/v3.3.10_gcc1120 LAPACK/v3.9.0 openmpi/v4.1.1_gcc1120
-#module load GVR/v1.0-1 intel/v2021.1 Python/v3.10.13
-module load     Python/v3.12.13   intel/v2025.3.1   CMake/v4.2.3
+module load  Python/v3.12.13
+module load  intel/v2025.3.1
+module load  openmpi/v4.1.8_gcc1230
 echo -e "\n\n loaded modules:"
 module list
-
-#
-# IntelMPI compiled OpenMPI
-#
-INSTALLPATH=/lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1
-INSTALLDIR=install_openmpi-5.0.9-intelv2025.3.1
-
-prefixdir=$INSTALLPATH/$INSTALLDIR
-echo -e "\n Checking presence of full path install dir, ls -lt :"; ls -lt $INSTALLPATH/$INSTALLDIR
-
-echo -e "\n\n  OpenMPI installed binaries and libs:"
-ls -lt $prefixdir/bin/*
-ls -lt $prefixdir/lib/*
-
-# extend environvariables
-export PATH=$prefixdir/bin:$PATH
-export LD_LIBRARY_PATH=$prefixdir/lib:$LD_LIBRARY_PATH
-
-echo -e "\n\n My PATH=$PATH\n"
-echo -e "\n My LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
 
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_intelmpi_mkl_xh
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_intelmpimkl_dbg
 
 #BUILD=build_intelmpi2023_mkl_scalapack
 #BUILD=build_intelmpi2025.3.1_libxc_mkl_scalapack
-BUILD=build_intel2025.3.1-openmpi5.0.9_libxc_mkl_scalapack
+#BUILD=build_intel2025.3.1-openmpi5.0.9_libxc_mkl_scalapack
+BUILD=build_openmpi4.1.8_gcc12.3.0_libcx_mkl2025.3.1_scalapack
 QE=/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/$BUILD
 
 echo -e "\n ldd  $QE/bin/pw.x :"
@@ -134,9 +134,6 @@ echo " It has the disk space of (df -h) :"
 df -h .
 echo
 
-# https://community.intel.com/t5/Intel-MPI-Library/Unable-to-run-bstrap-proxy-error-with-intel-oneapi-mpi-2021-8/m-p/1538989/highlight/true#M11093
-#export I_MPI_HYDRA_IFACE="ib0"
-
 project=Se54_r_Fl_2steprelax
 inp=$project.in
 
@@ -145,13 +142,13 @@ inp=$project.in
 out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out
 #out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION-$SBATCH_CONSTRAINT.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out
 
-echo -e "\n Running QE pw.x with openmpi4.1.8_gcc1230_mkl2025.3.1_scalapack_libxc parallel job:"
+echo -e "\n Running QE pw.x parallel job on `date`  : "
 #  OpenMPI : #
 #export OMPI_MCA_btl=^openib
 #mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --bind-to core:overload-allowed  $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
 #mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
 
-mpirun -v -np $SLURM_NTASKS  --use-hwthread-cpus  --hostfile $MACHINEFILE $QE/bin/pw.x  < $inp > $out
+mpirun -v -np $SLURM_NTASKS  --use-hwthread-cpus --hostfile $MACHINEFILE $QE/bin/pw.x   < $inp > $out
 
 echo -e "\n\n QE finished on : \c";date
 exit

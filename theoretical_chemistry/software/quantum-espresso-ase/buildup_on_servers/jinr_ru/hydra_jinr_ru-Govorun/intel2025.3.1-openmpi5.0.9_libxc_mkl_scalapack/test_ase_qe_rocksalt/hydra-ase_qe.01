@@ -32,8 +32,9 @@
 ##SBATCH --no-kill
 
 ## nodes
-#SBATCH -N 1
+#SBATCH -N 2
 #SBATCH --ntasks-per-node=4
+#SBATCH --distribution=block:block,nopack
 
 ## stdout/stderr output file
 #SBATCH -o log_slurm_job.%j.%N.std_out_err
@@ -135,32 +136,6 @@ echo " It has the disk space of (df -h) :"
 df -h .
 echo
 
-echo -e "\n\n Checking I_MPI_PMI_LIBRARY, I_MPI_ROOT ..."
-echo -e "I_MPI_PMI_LIBRARY=$I_MPI_PMI_LIBRARY"
-echo -e "I_MPI_ROOT=$I_MPI_ROOT"
-echo -e "Unsetting them !!!"
-unset I_MPI_PMI_LIBRARY
-unset I_MPI_ROOT
-
-# 
-#export I_MPI_PMI_LIBRARY=/lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi-5.0.9-intelv2025.3.1/lib/libmpix.so
-
-
-#
-# own QE job
-#
-project=NaCl_qe
-inp=$project.in
-out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out
-echo -e "\n Running QE pw.x with Intel2025-OpenMPI parallel job:"
-#  OpenMPI : #
-export OMPI_MCA_btl=^openib
-mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --bind-to core:overload-allowed  $qe_bin/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
-
-
-##--------------------------------------------------------------------------------------------------------------
-##
-##
 ##---------------------------------------------------Run job----------------------------------------------------
 ## Specify ASE script here
 echo -e "\nStarting ASE parallel job on \c";date; echo

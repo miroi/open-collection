@@ -10,7 +10,7 @@
 #SBATCH --qos=medium
 
 ## max. execution time
-#SBATCH -t 4-00:00:00
+#SBATCH -t 1-00:00:00
 ##SBATCH -t 0-08:00:00
 ##SBATCH -t 30-00:00:00
 
@@ -29,9 +29,8 @@
 # distribute over 2 nodes...
 #SBATCH -N 2
 #SBATCH --ntasks-per-node=20
-
-##SBATCH --distribution=block:block
-#SBATCH --distribution=block
+#SBATCH --cpus-per-task=1
+#SBATCH --distribution=block:block,nopack
 
 ## stdout/stderr output file
 #SBATCH -o log_slurm_job.%j.%N.std_out_err
@@ -40,15 +39,23 @@
 #SBATCH --mail-user=milias@jinr.ru
 #SBATCH --mail-type=ALL
 
-echo -e "\nRunning on host `hostname`"
+echo -e "\nRunning SLURM job on host `hostname`"
 echo -e "Time is `date` \n"
 
 echo -e "\n The total memory at the node (in GB)"
 free -t -g
 echo -e "\n"
 
+echo -e "\n\nSlurm version :"; sacct --version; scontrol version; sinfo -V
 
-echo -e "\nJob user is SLURM_JOB_USER= $SLURM_JOB_USER"
+echo -e "\n\n Info about ThreadsPerCore :"
+scontrol show node `hostname`
+slurmd -C
+lscpu | grep -A1 'Thread(s) per core'
+grep -E 'cpu cores|siblings' /proc/cpuinfo | head -2
+
+
+echo -e "\n\nJob user is SLURM_JOB_USER= $SLURM_JOB_USER"
 echo -e "User job SLURM_JOB_NAME=$SLURM_JOB_NAME has assigned ID SLURM_JOBID=$SLURM_JOBID"
 echo -e "This job was submitted from the computer SLURM_SUBMIT_HOST=$SLURM_SUBMIT_HOST"
 echo -e "and from the home directory SLURM_SUBMIT_DIR:"
@@ -69,7 +76,7 @@ srun -l /bin/hostname | sort -n | awk '{print $2}' > $MACHINEFILE
 echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; echo "containing:"; cat $MACHINEFILE
 
 # CPU model, total numer of CPUs, number of allocated CPUs
-echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
+echo -e "\n\n The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
 NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
 echo "BTW, this node has total $NPROCS CPUs available for an EXCLUSIVE job."
 echo "Based on reserved memory, this node got $SLURM_CPUS_ON_NODE CPUs allocated for SLURM calculations."
@@ -83,38 +90,19 @@ echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
 #export OPENBLAS_NUM_THREADS=$RATIO
 #echo -e "\nFor openblas internal parallelization, OPENBLAS_NUM_THREADS=$OPENBLAS_NUM_THREADS"
 
-
+#### QE ####
 module purge
-#module load GVR/v1.0-1 gcc/v11.2.0 fftw/v3.3.10_gcc1120 LAPACK/v3.9.0 openmpi/v4.1.1_gcc1120
-#module load GVR/v1.0-1 intel/v2021.1 Python/v3.10.13
-module load     Python/v3.12.13   intel/v2025.3.1   CMake/v4.2.3
+module load  Python/v3.12.13
+module load  intel/v2025.3.1
+module load  openmpi/v4.1.8_gcc1230
 echo -e "\n\n loaded modules:"
 module list
 
-#
-# IntelMPI compiled OpenMPI
-#
-INSTALLPATH=/lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1
-#INSTALLDIR=install_openmpi-5.0.9-intelv2025.3.1
-INSTALLDIR=install_openmpi5.0.9-intel2025.3.1_c
-prefixdir=$INSTALLPATH/$INSTALLDIR
-echo -e "\n Checking presence of full path install dir, ls -lt :"; ls -lt $INSTALLPATH/$INSTALLDIR
-#echo -e "\n\n  OpenMPI installed binaries and libs:"
-#ls -lt $prefixdir/bin/*
-#ls -lt $prefixdir/lib/*
-# extend environvariables
-export PATH=$prefixdir/bin:$PATH
-export LD_LIBRARY_PATH=$prefixdir/lib:$LD_LIBRARY_PATH
-echo -e "\n\n My PATH=$PATH\n"
-echo -e "\n My LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
-
-#QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_intelmpi_mkl_xh
-#QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_intelmpimkl_dbg
-
-#BUILD=build_intelmpi2023_mkl_scalapack
-#BUILD=build_intelmpi2025.3.1_libxc_mkl_scalapack
-BUILD=build_intel2025.3.1-openmpi5.0.9_libxc_mkl_scalapack
-QE=/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/$BUILD
+#### QE ####
+QE_DIR=/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e
+#BUILD=build_openmpi4.1.8_gcc12.3.0_LAPACK3.12.0_fftw3.3.10_libxc
+BUILD=build_openmpi4.1.8_gcc12.3.0_libcx_mkl2025.3.1_scalapack
+export QE=$QE_DIR/$BUILD
 
 echo -e "\n ldd  $QE/bin/pw.x :"
 ldd  $QE/bin/pw.x
@@ -144,11 +132,11 @@ inp=$project.in
 out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out
 #out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION-$SBATCH_CONSTRAINT.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out
 
-echo -e "\n Running QE pw.x with Intel2025-OpenMPI parallel job:"
+echo -e "\n Running QE pw.x with OpenMPI4.1.8_gcc12.3.0-MKL2025 parallel job:"
 #  OpenMPI : #
-export OMPI_MCA_btl=^openib
-mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --bind-to core:overload-allowed  $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
-#mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE  $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
+#export OMPI_MCA_btl=^openib
+#mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --bind-to core:overload-allowed  $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
+mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE  $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
 
 echo -e "\n\n QE finished on : \c";date
 exit

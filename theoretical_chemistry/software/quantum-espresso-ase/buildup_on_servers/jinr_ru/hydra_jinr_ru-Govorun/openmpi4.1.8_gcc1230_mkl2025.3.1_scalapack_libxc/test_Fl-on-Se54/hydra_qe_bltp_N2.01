@@ -10,8 +10,8 @@
 #SBATCH --qos=medium
 
 ## max. execution time
-#SBATCH -t 4-00:00:00
-##SBATCH -t 0-08:00:00
+##SBATCH -t 2-00:00:00
+#SBATCH -t 0-20:00:00
 ##SBATCH -t 30-00:00:00
 
 ##SBATCH --exclusive
@@ -137,7 +137,7 @@ echo
 # https://community.intel.com/t5/Intel-MPI-Library/Unable-to-run-bstrap-proxy-error-with-intel-oneapi-mpi-2021-8/m-p/1538989/highlight/true#M11093
 #export I_MPI_HYDRA_IFACE="ib0"
 
-project=Se54_r_Fl
+project=Se54_r_Fl_2steprelax
 inp=$project.in
 
 #out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOBID.out$SLURM_CPUS_ON_NODE
@@ -145,10 +145,11 @@ inp=$project.in
 out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out
 #out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION-$SBATCH_CONSTRAINT.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out
 
-echo -e "\n Running QE pw.x with Intel2025-OpenMPI parallel job:"
+echo -e "\n Running QE pw.x with openmpi4.1.8_gcc1230_mkl2025.3.1_scalapack_libxc parallel job:"
 #  OpenMPI : #
-export OMPI_MCA_btl=^openib
-mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --bind-to core:overload-allowed  $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
+#export OMPI_MCA_btl=^openib
+#mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --bind-to core:overload-allowed  $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
+mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
 
 echo -e "\n\n QE finished on : \c";date
 exit

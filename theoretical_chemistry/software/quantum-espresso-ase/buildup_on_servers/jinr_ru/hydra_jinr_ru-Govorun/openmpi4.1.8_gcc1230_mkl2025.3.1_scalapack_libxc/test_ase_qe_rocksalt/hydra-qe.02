@@ -165,6 +165,8 @@ echo -e "\n Running QE pw.x with Intel2025-OpenMPI5 parallel job:"
 #mpirun  -v  --hostfile $MACHINEFILE   -np $SLURM_NTASKS  $QE/bin/pw.x   -npool $SLURM_JOB_NUM_NODES    -input  $inp > $out
 mpirun  -v  --hostfile $MACHINEFILE --use-hwthread-cpus --report-bindings    -np $SLURM_NTASKS  $QE/bin/pw.x    -input  $inp > $out
 
+#mpirun  -v  --hostfile $MACHINEFILE --map-by core --bind-to core --report-bindings    -np $SLURM_NTASKS  $QE/bin/pw.x    -input  $inp > $out
+
 echo -e "\n\n QE finished on : \c";date
 
 exit

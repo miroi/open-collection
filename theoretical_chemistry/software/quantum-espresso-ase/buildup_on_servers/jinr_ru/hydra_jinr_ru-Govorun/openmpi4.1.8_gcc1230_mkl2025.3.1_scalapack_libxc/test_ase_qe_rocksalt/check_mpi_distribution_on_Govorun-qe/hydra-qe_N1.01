@@ -32,7 +32,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=4
 
-## Do not use Hypethrading, only physical cores !
+## Do not use Hyperthreading, only physical cores !
 ##SBATCH --threads-per-core=1  # Do not use Hyper-threading
 ##SBATCH --cpus-per-task=1
 ##SBATCH --ntasks-per-core=1   # One task per physical core
@@ -151,7 +151,8 @@ project=NaCl_qe
 inp=$project.in
 out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out
 
-mpirun  -v  --hostfile $MACHINEFILE  --use-hwthread-cpus   -np $SLURM_NTASKS  $QE/bin/pw.x  -input  $inp > $out
+#mpirun  -v  --hostfile $MACHINEFILE   --report-bindings  --use-hwthread-cpus   -np $SLURM_NTASKS  $QE/bin/pw.x  -input  $inp > $out
+mpirun  -v  --hostfile $MACHINEFILE   --report-bindings   -np $SLURM_NTASKS  $QE/bin/pw.x  -input  $inp > $out
 
 exit
 ##--------------------------------------------------------------------------------------------------------------

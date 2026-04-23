@@ -30,7 +30,8 @@
 
 ## nodes
 #SBATCH --nodes=1
-#SBATCH --ntasks=4
+#SBATCH --ntasks-per-node=4
+#SBATCH --threads-per-core=1   Do not use Hyper-threading
 #SBATCH --ntasks-per-core=1   # One task per physical core
 #SBATCH --hint=nomultithread  # Explicitly ignore hyperthreading
 

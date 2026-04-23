@@ -2,10 +2,18 @@
 QE rocksalt test
 =================
 
-N1,n4, noHT ... 32.27s WALL
-N1,n4, noHT ..  33.26s WALL
+slurm does not do proper binding of MPI processes
 
-espresso.err ...The error logs you're seeing show that your MPI ranks (specifically ranks 0 and 2) are being bound to the same set of physical cores (cores 19, 20, 21, 22), causing an overlap. This "over-binding" typically happens when the launcher (e.g., mpirun or srun) and the SLURM scheduler have conflicting ideas about the node's architecture or how to distribute tasks.
+ hydra-qe_N1.01.logfile_jid373328:
 
+ Running QE pw.x OpenMPI parallel job:
+[n05p027.gvr.local:3111008] MCW rank 0 bound to socket 0[core 19[hwt 0-1]], socket 0[core 20[hwt 0-1]]: [../../../../../../../../../../../../../../../../../../../BB/BB/../../../../../../../../../../../../../../../../..][../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../..]
+[n05p027.gvr.local:3111008] MCW rank 2 bound to socket 0[core 19[hwt 0-1]], socket 0[core 20[hwt 0-1]]: [../../../../../../../../../../../../../../../../../../../BB/BB/../../../../../../../../../../../../../../../../..][../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../..]
+[n05p027.gvr.local:3111013] MCW rank 1 bound to SK1:L31:L238-75:L138-75:CR38-75:HT76-151:NM1
+[n05p027.gvr.local:3111015] MCW rank 3 bound to SK1:L31:L238-75:L138-75:CR38-75:HT76-151:NM1
 
-to fix..
+ hydra-qe_N1.05.logfile_jid373642:
+[n05p027.gvr.local:3112358] MCW rank 0 bound to socket 0[core 19[hwt 0-1]], socket 0[core 20[hwt 0-1]], socket 0[core 21[hwt 0-1]], socket 0[core 22[hwt 0-1]]: [../../../../../../../../../../../../../../../../../../../BB/BB/BB/BB/../../../../../../../../../../../../../../..][../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../..]
+[n05p027.gvr.local:3112358] MCW rank 2 bound to socket 0[core 19[hwt 0-1]], socket 0[core 20[hwt 0-1]], socket 0[core 21[hwt 0-1]], socket 0[core 22[hwt 0-1]]: [../../../../../../../../../../../../../../../../../../../BB/BB/BB/BB/../../../../../../../../../../../../../../..][../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../..]
+[n05p027.gvr.local:3112365] MCW rank 3 bound to SK1:L31:L238-75:L138-75:CR38-75:HT76-151:NM1
+[n05p027.gvr.local:3112363] MCW rank 1 bound to SK1:L31:L238-75:L138-75:CR38-75:HT76-151:NM1

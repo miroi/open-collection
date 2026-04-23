@@ -32,6 +32,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=4
 #SBATCH --threads-per-core=1  # Do not use Hyper-threading
+#SBATCH --cpu-bind=cores
 #SBATCH --ntasks-per-core=1   # One task per physical core
 #SBATCH --hint=nomultithread  # Explicitly ignore hyperthreading
 
@@ -140,6 +141,9 @@ echo -e "\n Current directory where this SLURM job is running `pwd`"
 echo " It has the disk space of (df -h) :"
 df -h .
 echo
+
+echo -e "\n setting OMP_NUM_THREADS=1 "
+export OMP_NUM_THREADS=1
 
 ##--------------------------------------------------------------------------------------------------------------
 ##

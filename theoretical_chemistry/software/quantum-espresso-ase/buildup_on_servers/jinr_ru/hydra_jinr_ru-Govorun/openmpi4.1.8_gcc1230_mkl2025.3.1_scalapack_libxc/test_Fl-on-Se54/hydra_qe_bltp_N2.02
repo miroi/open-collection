@@ -25,14 +25,13 @@
 
 #
 #SBATCH -N 2
-##SBATCH --ntasks-per-node=20
+#SBATCH --ntasks-per-node=20
 #SBATCH --ntasks=40
 #SBATCH --distribution=block:block,nopack
 
 ## Deactivate hyperthreading 
 #SBATCH --hint=nomultithread
 #SBATCH --threads-per-core=1
-#SBATCH --cpu-bind=cores
 
 ## stdout/stderr output file
 #SBATCH -o log_slurm_job.%j.%N.std_out_err

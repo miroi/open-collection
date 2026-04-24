@@ -34,6 +34,7 @@
 ## nodes
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=4
+#SBATCH --distribution=block:block,nopack
 
 ## stdout/stderr output file
 #SBATCH -o log_slurm_job.%j.%N.std_out_err
@@ -83,11 +84,13 @@ echo -e "Number of all reserved threads over ALL nodes, SLURM_NTASKS=$SLURM_NTAS
 echo -e "Job has reserved memory per node, SLURM_MEM_PER_NODE=$SLURM_MEM_PER_NODE MB of memory"
 
 
-MACHINEFILE="nodes.$SLURM_JOB_PARTITION.$SLURM_JOB_ID"
+#MACHINEFILE="nodes.$SLURM_JOB_PARTITION.$SLURM_JOB_ID"
 # Generate Machinefile for mpi such that hosts are in the same
 # order as if run via srun
-srun -l /bin/hostname | sort -n | awk '{print $2}' > $MACHINEFILE
-echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; echo "containing:"; cat $MACHINEFILE
+#srun -l /bin/hostname | sort -n | awk '{print $2}' > $MACHINEFILE
+echo -e "\n\n List of nodes for this MPI job:"
+srun -l /bin/hostname | sort -n | awk '{print $2}' 
+#echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; echo "containing:"; cat $MACHINEFILE
 
 
 # CPU model, total numer of CPUs, number of allocated CPUs
@@ -103,29 +106,8 @@ echo -e "\n\n Actovating Python virtual environment: "
 source /lustre/projects/m/milias/work/software/myvenv/bin/activate
 pip show ase
 
-# IntelMPI compiled OpenMPI
-INSTALLPATH=/lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1
-INSTALLDIR=install_openmpi-5.0.9-intelv2025.3.1
-prefixdir=$INSTALLPATH/$INSTALLDIR
-echo -e "\n Checking presence of full path install dir, ls -lt :"; ls -lt $INSTALLPATH/$INSTALLDIR
-echo -e "\n\n  OpenMPI installed binaries and libs:"
-ls -lt $prefixdir/bin/*
-ls -lt $prefixdir/lib/*
-# extend environment variables
-export PATH=$prefixdir/bin:$PATH
-export LD_LIBRARY_PATH=$prefixdir/lib:$LD_LIBRARY_PATH
-
-echo -e "\n\n My PATH=$PATH\n"
-echo -e "\n My LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
-
 echo -e "\nldd  $qe_bin/bin/pw.x :"
 ldd  $qe_bin/bin/pw.x
-
-echo -e "\n\n My PATH=$PATH\n"
-echo -e "\nMy LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
-echo -e "Python ? :\c"; which python; python -V
-echo -e "\n mpif90 ?: \c"; which mpif90; mpif90 -V
-echo -e "\n mpirun ? \c"; which mpirun; mpirun --version; mpirun --help
 
 # for running jobs from your homedir, use ...
 cd $SLURM_SUBMIT_DIR
@@ -135,16 +117,7 @@ echo " It has the disk space of (df -h) :"
 df -h .
 echo
 
-echo -e "\n\n Checking I_MPI_PMI_LIBRARY, I_MPI_ROOT ..."
-echo -e "I_MPI_PMI_LIBRARY=$I_MPI_PMI_LIBRARY"
-echo -e "I_MPI_ROOT=$I_MPI_ROOT"
-echo -e "Unsetting them !!!"
-unset I_MPI_PMI_LIBRARY
-unset I_MPI_ROOT
-
-# 
-#export I_MPI_PMI_LIBRARY=/lustre/projects/m/milias/work/software/openmpi/openmpi-5.0.9-intelv2025.3.1/install_openmpi-5.0.9-intelv2025.3.1/lib/libmpix.so
-
+export OMP_NUM_THREADS=1
 
 #
 # own QE job
@@ -153,9 +126,8 @@ project=NaCl_qe
 inp=$project.in
 out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out
 echo -e "\n Running QE pw.x with Intel2025-OpenMPI parallel job:"
-#  OpenMPI : #
-export OMPI_MCA_btl=^openib
-mpirun -v -np $SLURM_NTASKS --hostfile $MACHINEFILE --bind-to core:overload-allowed  $qe_bin/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
+# IntelMPI run
+mpirun -v -np $SLURM_NTASKS  $qe_bin/bin/pw.x  < $inp > $out
 
 
 ##--------------------------------------------------------------------------------------------------------------

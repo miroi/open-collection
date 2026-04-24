@@ -30,6 +30,11 @@
 
 echo -e "\nRunning on host `hostname` at `date`"
 
+echo -e "\n The total memory at the main node (in GB)"
+free -t -g
+
+echo -e "\n srun --mpi=list :"; srun --mpi=list
+
 echo -e "\nJob user is SLURM_JOB_USER= $SLURM_JOB_USER"
 echo -e "User job SLURM_JOB_NAME=$SLURM_JOB_NAME has assigned ID SLURM_JOBID=$SLURM_JOBID"
 echo -e "This job was submitted from the computer SLURM_SUBMIT_HOST=$SLURM_SUBMIT_HOST"
@@ -62,7 +67,6 @@ echo "This job wants in total SLURM_NTASKS=$SLURM_NTASKS threads . "
 
 echo -e "cpuinfo :"; cpuinfo
 echo -e "impi_info :"; impi_info
-echo -e "\n srun --mpi=list :"; srun --mpi=list
 
 #RATIO=$(( $SLURM_CPUS_ON_NODE / $SLURM_NTASKS ))
 #echo -e "Ratio SLURM_CPUS_ON_NODE/SLURM_NTASKS=$SLURM_CPUS_ON_NODE/$SLURM_NTASKS=\c";echo $(( $SLURM_CPUS_ON_NODE / $SLURM_NTASKS ))
@@ -79,8 +83,8 @@ module load     Python/v3.12.13   intel/v2025.3.1
 echo -e "\n\n loaded modules:"
 module list
 
-echo -e "\n The total memory at the node (in GB)"
-free -t -g
+echo -e "\n\ncpuinfo :"; cpuinfo
+echo -e "impi_info :"; impi_info
 
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_intelmpi_mkl_xh
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e/build_intelmpimkl_dbg
@@ -114,4 +118,5 @@ echo -e "\n\n Running QE pw.x IntelMPI parallel job  on \c";date; echo
 mpirun -np $SLURM_NTASKS  $QE/bin/pw.x < $inp > $out
 
 echo -e "\n\n QE finished on : \c";date
+
 exit

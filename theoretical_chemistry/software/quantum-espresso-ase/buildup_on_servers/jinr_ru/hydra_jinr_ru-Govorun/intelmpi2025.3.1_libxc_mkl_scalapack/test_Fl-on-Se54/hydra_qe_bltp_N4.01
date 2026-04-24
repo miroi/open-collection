@@ -115,7 +115,7 @@ out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SL
 # IntelMPI :
 echo -e "\n\n Running QE pw.x IntelMPI parallel job  on \c";date; echo
 #mpirun -f $MACHINEFILE -np $SLURM_NTASKS  $QE/bin/pw.x -npool $SLURM_JOB_NUM_NODES  < $inp > $out
-mpirun -np $SLURM_NTASKS  $QE/bin/pw.x < $inp > $out
+mpirun -v  -np $SLURM_NTASKS  $QE/bin/pw.x < $inp > $out
 
 echo -e "\n\n QE finished on : \c";date
 

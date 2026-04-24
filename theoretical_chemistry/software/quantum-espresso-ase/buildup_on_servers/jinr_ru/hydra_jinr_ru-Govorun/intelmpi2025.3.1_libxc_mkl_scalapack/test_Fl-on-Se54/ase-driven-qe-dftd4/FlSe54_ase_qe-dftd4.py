@@ -19,13 +19,13 @@ sys.stdout.flush()
 # 1. Quantum Espresso Input Parameters
 # ==============================================
 pseudopotentials = {
-    'Na': 'Na.upf',
-    'Cl': 'Cl.upf'
+    'Fl': 'Fl-6spd_r.upf',
+    'Se': 'Se_r.upf'
 }
 
 input_data = {
     'control': {
-        'prefix': 'NaCl',
+        'prefix': 'FlSe54',
         'outdir': './tmp',
         'verbosity': 'low',
         'tstress': True,
@@ -34,15 +34,15 @@ input_data = {
     },
     'system': {
         'input_dft': 'XC-000I-000I-116L-133L-000I-000I',
-        'ecutwfc': 90,
+        'ecutwfc': 60,
         'occupations': 'smearing',
         'smearing': 'gauss',
-        'degauss': 0.01,
+        'degauss': 0.02,
 #       'assume_isolated': '2D',
 #        'nosym': True,
 #        'noinv': True,
         'ibrav': 0,
-        'nat': 8,
+        'nat': 55,
         'ntyp': 2,
 #        'noncolin': True,
 #        'lspinorb': True
@@ -61,7 +61,7 @@ input_data = {
 # ==============================================
 # 2. Import atomic structure
 # ==============================================
-vasp_file = 'nacl.vasp'  
+vasp_file = 'Fese54.vasp'  
 
 try:
     atoms = read(vasp_file, format='vasp')
@@ -85,7 +85,7 @@ except Exception as e:
 # 4. Define Calculator Configuration
 # ==============================================
 # Main QE calculation with full parallelization
-pw_command = f'mpirun -np {os.environ["SLURM_NTASKS"]} -machinefile nodes.{os.environ["SLURM_JOB_PARTITION"]}.{os.environ["SLURM_JOB_ID"]} {os.environ["QE"]}/bin/pw.x -npool {os.environ["SLURM_JOB_NUM_NODES"]}'
+pw_command = f'mpirun -np {os.environ["SLURM_NTASKS"]}  {os.environ["QE"]}/bin/pw.x '
 
 profile = EspressoProfile(
     command=pw_command,

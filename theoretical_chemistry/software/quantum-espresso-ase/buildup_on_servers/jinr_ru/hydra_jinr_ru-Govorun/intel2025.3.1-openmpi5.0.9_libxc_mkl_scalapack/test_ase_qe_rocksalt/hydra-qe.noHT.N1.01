@@ -33,6 +33,14 @@
 #SBATCH --ntasks-per-node=4
 #SBATCH --distribution=block:block,nopack
 
+## Do not use Hyperthreading, only physical cores !
+#SBATCH --threads-per-core=1  # Do not use Hyper-threading
+#SBATCH --cpus-per-task=1
+#SBATCH --ntasks-per-core=1   # One task per physical core
+#SBATCH --hint=nomultithread  # Explicitly ignore hyperthreading
+
+
+
 ## stdout/stderr output file
 #SBATCH -o log_slurm_job.%j.%N.std_out_err
 
@@ -78,17 +86,15 @@ echo -e "Number of all reserved threads over ALL nodes, SLURM_NTASKS=$SLURM_NTAS
 echo -e "Job has reserved memory per node, SLURM_MEM_PER_NODE=$SLURM_MEM_PER_NODE MB of memory"
 
 
-#MACHINEFILE="nodes.$SLURM_JOB_PARTITION.$SLURM_JOB_ID"
+MACHINEFILE="nodes.$SLURM_JOB_PARTITION.$SLURM_JOB_ID"
 # Generate Machinefile for mpi such that hosts are in the same
 # order as if run via srun
-#srun -l /bin/hostname | sort -n | awk '{print $2}' > $MACHINEFILE
-echo -e "\n List of machines for MPI tasks:"
-srun -l /bin/hostname | sort -n | awk '{print $2}' 
-#echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; echo "containing:"; cat $MACHINEFILE
+srun -l /bin/hostname | sort -n | awk '{print $2}' > $MACHINEFILE
+echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; echo "containing:"; cat $MACHINEFILE
 
 
 # CPU model, total numer of CPUs, number of allocated CPUs
-echo -e "\nThe node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
+echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
 NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
 echo "BTW, this node has total $NPROCS CPUs available for an EXCLUSIVE job."
 echo "Based on reserved memory, this node got $SLURM_CPUS_ON_NODE CPUs allocated for SLURM calculations."
@@ -160,7 +166,7 @@ echo -e "\n Running QE pw.x with Intel2025-OpenMPI5 parallel job:"
 
 #mpirun  -v  --use-hwthread-cpus  --hostfile $MACHINEFILE   -np $SLURM_NTASKS  $qe_bin/bin/pw.x  -npool $SLURM_JOB_NUM_NODES    -input  $inp > $out
 #mpirun  -v  --use-hwthread-cpus  --hostfile $MACHINEFILE   -np $SLURM_NTASKS  $qe_bin/bin/pw.x   -input  $inp > $out
-mpirun  -v --report-bindings  --use-hwthread-cpus  -np $SLURM_NTASKS  $qe_bin/bin/pw.x   -input  $inp > $out
+mpirun  -v --report-bindings    -np $SLURM_NTASKS  $qe_bin/bin/pw.x   -input  $inp > $out
 
 echo -e "\n\n QE finished on : \c";date
 

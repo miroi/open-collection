@@ -38,14 +38,14 @@ input_data = {
         'occupations': 'smearing',
         'smearing': 'gauss',
         'degauss': 0.02,
-#       'assume_isolated': '2D',
-#        'nosym': True,
+        'assume_isolated': '2D',
+        'nosym': False,
 #        'noinv': True,
         'ibrav': 0,
         'nat': 55,
         'ntyp': 2,
-#        'noncolin': True,
-#        'lspinorb': True
+        'noncolin': True,
+        'lspinorb': True
     },
     'electrons': {
         'mixing_beta': 0.2,
@@ -85,7 +85,7 @@ except Exception as e:
 # 4. Define Calculator Configuration
 # ==============================================
 # Main QE calculation with full parallelization
-pw_command = f'mpirun -np {os.environ["SLURM_NTASKS"]}  {os.environ["QE"]}/bin/pw.x '
+pw_command = f'mpirun -v  -np {os.environ["SLURM_NTASKS"]}  {os.environ["QE"]}/bin/pw.x '
 
 profile = EspressoProfile(
     command=pw_command,

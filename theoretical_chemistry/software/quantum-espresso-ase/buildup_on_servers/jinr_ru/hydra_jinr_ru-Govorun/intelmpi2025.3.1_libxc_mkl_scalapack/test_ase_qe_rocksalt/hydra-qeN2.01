@@ -109,8 +109,9 @@ ldd  $qe_bin/bin/pw.x
 
 echo -e "Python ? :\c"; which python; python -V
 echo -e "\n mpiifx ?: \c"; which mpiifx; mpifx -V
-echo -e "\n mpirun ? \c"; which mpirun; mpirun --version; mpirun --help
-echo -e "\n ompi_info ?"; which ompi_info; ompi_info -V
+echo -e "\n mpirun ? \c"; which mpirun; mpirun --version  #; mpirun --help
+echo -e "cpuinfo :"; cpuinfo
+echo -e "impi_info :"; impi_info
 
 # for running jobs from your homedir, use ...
 cd $SLURM_SUBMIT_DIR
@@ -128,14 +129,13 @@ export OMP_NUM_THREADS=1
 project=NaCl_qe
 inp=$project.in
 out=$project.$SLURM_CLUSTER_NAME.$SLURM_JOB_PARTITION.N$SLURM_JOB_NUM_NODES.n$SLURM_NTASKS.jid$SLURM_JOBID.out
-#echo -e "\n Running QE pw.x with Intel2025-OpenMPI5 parallel job:"
-#  OpenMPI : #
-#export OMPI_MCA_btl=^openib
 
 # IntelMPI :
 echo -e "\n\n srun --mpi=list :"; srun --mpi=list
 echo -e "\n\n Running QE pw.x IntelMPI parallel job  on \c";date; echo
-mpirun  -v -f  $MACHINEFILE   -np $SLURM_NTASKS  $qe_bin/bin/pw.x  -npool $SLURM_JOB_NUM_NODES    -input  $inp > $out
+
+#mpirun  -v -f  $MACHINEFILE   -np $SLURM_NTASKS  $qe_bin/bin/pw.x  -npool $SLURM_JOB_NUM_NODES    -input  $inp > $out
+mpirun  -v  -np $SLURM_NTASKS  $qe_bin/bin/pw.x   -input  $inp > $out
 
 echo -e "\n\n QE finished on : \c";date
 

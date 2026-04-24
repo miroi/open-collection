@@ -91,14 +91,16 @@ echo -e "impi_info :"; impi_info
 
 #BUILD=build_intelmpi2023_mkl_scalapack
 BUILD=build_intelmpi2025.3.1_libxc_mkl_scalapack
-QE=/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/$BUILD
+#QE=/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/$BUILD
+export QE="/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/build_intelmpi2025.3.1_libxc_mkl_scalapack"
 
 echo -e "\n\n ldd  $QE/bin/pw.x :"
 ldd  $QE/bin/pw.x
 
 
-echo -e "\n\n Activating Python virtual environment : "
+echo -e "\n\n Activating Python virtual environment , source  /lustre/projects/m/milias/work/software/myvenv/bin/activate : "
 source /lustre/projects/m/milias/work/software/myvenv/bin/activate
+which pip; pip --version
 echo -e "\n pip installed libraries - ase, dftd4 :"
 pip list
 pip show ase dftd4

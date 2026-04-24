@@ -61,7 +61,7 @@ input_data = {
 # ==============================================
 # 2. Import atomic structure
 # ==============================================
-vasp_file = 'Fese54.vasp'  
+vasp_file = 'FlSe54.vasp'  
 
 try:
     atoms = read(vasp_file, format='vasp')

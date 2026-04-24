@@ -14,3 +14,6 @@ N1,n8    13.59s WALL ( oversubscription detected: 8 processes will be placed on 
 N2,n4    25.77s WALL ( oversubscription detected: 2 processes will be placed on 1 cores, on 2 nodes)
 N1,n4    25.77s WALL (  oversubscription detected: 4 processes will be placed on 2 cores, on 1 node  )
 
+only physical CPUs
+
+N2,n8    10.93s WALL

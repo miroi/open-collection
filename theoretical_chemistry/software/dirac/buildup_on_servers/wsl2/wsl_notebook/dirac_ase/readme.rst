@@ -90,6 +90,7 @@ Current settings:
 
 own ase test
 ~~~~~~~~~~~~
+(myenv) miroi@MIRO:~/work/software/dirac/trunk_cloned/ase_dirac/tests/.python mp2.py
  starting DIRAC for molecule ./NR-MP2_H2O.xyz with input ./NR-MP2_H2O.inp
   creating archive file  NR-MP2_H2O.tgz
   archived working files: ['MOLECULE.XYZ', 'DIRAC.INP']
@@ -125,5 +126,89 @@ Calculation X2Cmmf-MP2_N2 could not be run correctly, please check
   archived working files: ['MOLECULE.XYZ', 'DIRAC.INP']
   Could not construct hdf5 checkpoint file
   exit           : ABNORMAL (CHECK DIRAC OUTPUT)
+Calculation DCG-MP2_N2 could not be run correctly, please check
+ starting DIRAC for molecule ./NR-MP2_F2.xyz with input ./NR-MP2_F2.inp
+  creating archive file  NR-MP2_F2.tgz
+  archived working files: ['MOLECULE.XYZ', 'DIRAC.INP']
+  Could not construct hdf5 checkpoint file
+  exit           : ABNORMAL (CHECK DIRAC OUTPUT)
+Calculation NR-MP2_F2 could not be run correctly, please check
+ starting DIRAC for molecule ./X2Cmmf-MP2_F2.xyz with input ./X2Cmmf-MP2_F2.inp
+  creating archive file  X2Cmmf-MP2_F2.tgz
+  archived working files: ['MOLECULE.XYZ', 'DIRAC.INP']
+  Could not construct hdf5 checkpoint file
+  exit           : ABNORMAL (CHECK DIRAC OUTPUT)
+Calculation X2Cmmf-MP2_F2 could not be run correctly, please check
+ starting DIRAC for molecule ./DCG-MP2_F2.xyz with input ./DCG-MP2_F2.inp
+  creating archive file  DCG-MP2_F2.tgz
+  archived working files: ['MOLECULE.XYZ', 'DIRAC.INP']
+  Could not construct hdf5 checkpoint file
+  exit           : ABNORMAL (CHECK DIRAC OUTPUT)
+Calculation DCG-MP2_F2 could not be run correctly, please check
+ starting DIRAC for molecule ./NR-MP2_Cl2.xyz with input ./NR-MP2_Cl2.inp
+  creating archive file  NR-MP2_Cl2.tgz
+  archived working files: ['MOLECULE.XYZ', 'DIRAC.INP']
+  Could not construct hdf5 checkpoint file
+  exit           : ABNORMAL (CHECK DIRAC OUTPUT)
+Calculation NR-MP2_Cl2 could not be run correctly, please check
+ starting DIRAC for molecule ./X2Cmmf-MP2_Cl2.xyz with input ./X2Cmmf-MP2_Cl2.inp
+  creating archive file  X2Cmmf-MP2_Cl2.tgz
+  archived working files: ['MOLECULE.XYZ', 'DIRAC.INP']
+  Could not construct hdf5 checkpoint file
+  exit           : ABNORMAL (CHECK DIRAC OUTPUT)
+Calculation X2Cmmf-MP2_Cl2 could not be run correctly, please check
+ starting DIRAC for molecule ./DCG-MP2_Cl2.xyz with input ./DCG-MP2_Cl2.inp
+  creating archive file  DCG-MP2_Cl2.tgz
+  archived working files: ['MOLECULE.XYZ', 'DIRAC.INP']
+  Could not construct hdf5 checkpoint file
+  exit           : ABNORMAL (CHECK DIRAC OUTPUT)
+Calculation DCG-MP2_Cl2 could not be run correctly, please check
+ starting DIRAC for molecule ./NR-MP2_CH4.xyz with input ./NR-MP2_CH4.inp
+  creating archive file  NR-MP2_CH4.tgz
+  archived working files: ['MOLECULE.XYZ', 'DIRAC.INP']
+  Could not construct hdf5 checkpoint file
+  exit           : ABNORMAL (CHECK DIRAC OUTPUT)
+Calculation NR-MP2_CH4 could not be run correctly, please check
+ starting DIRAC for molecule ./X2Cmmf-MP2_CH4.xyz with input ./X2Cmmf-MP2_CH4.inp
+  creating archive file  X2Cmmf-MP2_CH4.tgz
+  archived working files: ['MOLECULE.XYZ', 'DIRAC.INP']
+  Could not construct hdf5 checkpoint file
+  exit           : ABNORMAL (CHECK DIRAC OUTPUT)
+Calculation X2Cmmf-MP2_CH4 could not be run correctly, please check
+ starting DIRAC for molecule ./DCG-MP2_CH4.xyz with input ./DCG-MP2_CH4.inp
+  creating archive file  DCG-MP2_CH4.tgz
+  archived working files: ['MOLECULE.XYZ', 'DIRAC.INP']
+  Could not construct hdf5 checkpoint file
+  exit           : ABNORMAL (CHECK DIRAC OUTPUT)
+Calculation DCG-MP2_CH4 could not be run correctly, please check
+ starting DIRAC for molecule ./NR-MP2_C2H4.xyz with input ./NR-MP2_C2H4.inp
+  creating archive file  NR-MP2_C2H4.tgz
+  archived working files: ['MOLECULE.XYZ', 'DIRAC.INP']
+  Could not construct hdf5 checkpoint file
+  exit           : ABNORMAL (CHECK DIRAC OUTPUT)
+Calculation NR-MP2_C2H4 could not be run correctly, please check
+ starting DIRAC for molecule ./X2Cmmf-MP2_C2H4.xyz with input ./X2Cmmf-MP2_C2H4.inp
+  creating archive file  X2Cmmf-MP2_C2H4.tgz
+  archived working files: ['MOLECULE.XYZ', 'DIRAC.INP']
+  Could not construct hdf5 checkpoint file
+  exit           : ABNORMAL (CHECK DIRAC OUTPUT)
+Calculation X2Cmmf-MP2_C2H4 could not be run correctly, please check
+ starting DIRAC for molecule ./DCG-MP2_C2H4.xyz with input ./DCG-MP2_C2H4.inp
+  creating archive file  DCG-MP2_C2H4.tgz
+  archived working files: ['MOLECULE.XYZ', 'DIRAC.INP']
+  Could not construct hdf5 checkpoint file
+  exit           : ABNORMAL (CHECK DIRAC OUTPUT)
+Calculation DCG-MP2_C2H4 could not be run correctly, please check
+ Møller-Plesset second order (MP2) energies computed with different Hamiltonians
 
-
+--------------------------------------------------------------------------------
+  Molecule                      NR-MP2           X2Cmmf-MP2              DCG-MP2
+--------------------------------------------------------------------------------
+  H2O                       0.00000000           0.00000000           0.00000000
+  N2                        0.00000000           0.00000000           0.00000000
+  F2                        0.00000000           0.00000000           0.00000000
+  Cl2                       0.00000000           0.00000000           0.00000000
+  CH4                       0.00000000           0.00000000           0.00000000
+  C2H4                      0.00000000           0.00000000           0.00000000
+--------------------------------------------------------------------------------
+(myenv) miroi@MIRO:~/work/software/dirac/trunk_cloned/ase_dirac/tests/.

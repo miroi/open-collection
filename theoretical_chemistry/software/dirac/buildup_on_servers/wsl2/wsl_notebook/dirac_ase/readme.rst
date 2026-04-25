@@ -212,3 +212,6 @@ Calculation DCG-MP2_C2H4 could not be run correctly, please check
   C2H4                      0.00000000           0.00000000           0.00000000
 --------------------------------------------------------------------------------
 (myenv) miroi@MIRO:~/work/software/dirac/trunk_cloned/ase_dirac/tests/.
+
+
+see https://gitlab.com/dirac/dirac/-/merge_requests/398

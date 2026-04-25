@@ -4,7 +4,6 @@ ASE-driven DIRAC
 
 installation
 ------------
-
 (myenv) miroi@MIRO:~/work/software/dirac/trunk_cloned/ase_dirac/.pip install -e .
 Obtaining file:///home/miroi/work/software/dirac/trunk_cloned/ase_dirac
   Installing build dependencies ... done
@@ -44,5 +43,13 @@ Location: /home/miroi/work/software/myenv/lib/python3.12/site-packages
 Editable project location: /home/miroi/work/software/dirac/trunk_cloned/ase_dirac
 Requires: ase
 Required-by:
+
+test
+----
+(myenv) miroi@MIRO:~/work/software/dirac/trunk_cloned/ase_dirac/tests/.ls
+mp2.py  pam@  test_dirac_ase.py
+
+(myenv) miroi@MIRO:~/work/software/dirac/trunk_cloned/ase_dirac/tests/.python test_dirac_ase.py
+(myenv) miroi@MIRO:~/work/software/dirac/trunk_cloned/ase_dirac/tests/.
 
 

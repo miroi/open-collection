@@ -49,7 +49,81 @@ test
 (myenv) miroi@MIRO:~/work/software/dirac/trunk_cloned/ase_dirac/tests/.ls
 mp2.py  pam@  test_dirac_ase.py
 
-(myenv) miroi@MIRO:~/work/software/dirac/trunk_cloned/ase_dirac/tests/.python test_dirac_ase.py
-(myenv) miroi@MIRO:~/work/software/dirac/trunk_cloned/ase_dirac/tests/.
+(myenv) miroi@MIRO:~/work/software/dirac/trunk_cloned/ase_dirac/tests/.pam --show
+
+  DIRAC pam script running:
+
+  user           : miroi
+  machine        : MIRO
+  date and time  : 2026-04-25 18:38:09.371225
+  input dir      : /home/miroi/work/software/dirac/trunk_cloned/ase_dirac/tests
+  pam command    : /home/miroi/work/software/dirac/trunk_cloned/build_intelmpi_mkl_ilp64/pam
+  all pam args   : ['--show']
+  executable     : /home/miroi/work/software/dirac/trunk_cloned/build_intelmpi_mkl_ilp64/dirac.x
+  scratch dir    : /home/miroi/DIRAC_scratch_directory/miroi/DIRAC_dirac_output.19837_19837 (availspace=870.253[GB])
+  output file    : dirac_output.19837.out
+  DIRAC run      : parallel (launcher: /usr/bin/mpirun)
+  local disks    : False
+  rsh/rcp        : ssh / scp
+  machine file   : None
+
+  Setting MKL and OPENMP environment to default values (if not set already)
+   MKL_NUM_THREADS = 1
+   MKL_DYNAMIC = "FALSE"
+   OMP_NUM_THREADS = 1
+   OMP_DYNAMIC="FALSE"
+  Setting environment variables (as specified explicitly or in .diracrc)
+Operating system:      Linux
+Current settings:
+  Basis directories    /home/miroi/work/software/dirac/trunk_cloned/ase_dirac/tests:.:/home/miroi/work/software/dirac/trunk_cloned/build_intelmpi_mkl_ilp64/basis:/home/miroi/work/software/dirac/trunk_cloned/build_intelmpi_mkl_ilp64/basis_dalton:/home/miroi/work/software/dirac/trunk_cloned/build_intelmpi_mkl_ilp64/basis_ecp
+  Scratch directory    /home/miroi/DIRAC_scratch_directory/miroi/DIRAC_dirac_output.19837_19837 (avail=870.253[GB])
+  Relevant for parallel builds:
+    mpi launcher          /usr/bin/mpirun
+    mpirun extra args     None
+    global scratch disk   True
+    Machine file          None
+    own mpirun command    None
+  Profiler             None
+  Debugger             None
+  Dirac command        None
+  Dirac executable     /home/miroi/work/software/dirac/trunk_cloned/build_intelmpi_mkl_ilp64/dirac.x
+
+own ase test
+~~~~~~~~~~~~
+ starting DIRAC for molecule ./NR-MP2_H2O.xyz with input ./NR-MP2_H2O.inp
+  creating archive file  NR-MP2_H2O.tgz
+  archived working files: ['MOLECULE.XYZ', 'DIRAC.INP']
+  Could not construct hdf5 checkpoint file
+  exit           : ABNORMAL (CHECK DIRAC OUTPUT)
+Calculation NR-MP2_H2O could not be run correctly, please check
+ starting DIRAC for molecule ./X2Cmmf-MP2_H2O.xyz with input ./X2Cmmf-MP2_H2O.inp
+  creating archive file  X2Cmmf-MP2_H2O.tgz
+  archived working files: ['MOLECULE.XYZ', 'DIRAC.INP']
+  Could not construct hdf5 checkpoint file
+  exit           : ABNORMAL (CHECK DIRAC OUTPUT)
+Calculation X2Cmmf-MP2_H2O could not be run correctly, please check
+ starting DIRAC for molecule ./DCG-MP2_H2O.xyz with input ./DCG-MP2_H2O.inp
+  creating archive file  DCG-MP2_H2O.tgz
+  archived working files: ['MOLECULE.XYZ', 'DIRAC.INP']
+  Could not construct hdf5 checkpoint file
+  exit           : ABNORMAL (CHECK DIRAC OUTPUT)
+Calculation DCG-MP2_H2O could not be run correctly, please check
+ starting DIRAC for molecule ./NR-MP2_N2.xyz with input ./NR-MP2_N2.inp
+  creating archive file  NR-MP2_N2.tgz
+  archived working files: ['MOLECULE.XYZ', 'DIRAC.INP']
+  Could not construct hdf5 checkpoint file
+  exit           : ABNORMAL (CHECK DIRAC OUTPUT)
+Calculation NR-MP2_N2 could not be run correctly, please check
+ starting DIRAC for molecule ./X2Cmmf-MP2_N2.xyz with input ./X2Cmmf-MP2_N2.inp
+  creating archive file  X2Cmmf-MP2_N2.tgz
+  archived working files: ['MOLECULE.XYZ', 'DIRAC.INP']
+  Could not construct hdf5 checkpoint file
+  exit           : ABNORMAL (CHECK DIRAC OUTPUT)
+Calculation X2Cmmf-MP2_N2 could not be run correctly, please check
+ starting DIRAC for molecule ./DCG-MP2_N2.xyz with input ./DCG-MP2_N2.inp
+  creating archive file  DCG-MP2_N2.tgz
+  archived working files: ['MOLECULE.XYZ', 'DIRAC.INP']
+  Could not construct hdf5 checkpoint file
+  exit           : ABNORMAL (CHECK DIRAC OUTPUT)
 
 

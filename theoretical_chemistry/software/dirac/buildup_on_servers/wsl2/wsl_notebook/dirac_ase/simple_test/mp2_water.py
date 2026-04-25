@@ -5,6 +5,70 @@ from ase.build import molecule
 from ase.units import Ha
 from ase_dirac import DIRAC
 
+# check pam in the $PATH variable
+
+import os
+from pathlib import Path
+
+def find_file_in_path(filename):
+    # Get the system PATH and split it (';' for Windows, ':' for Linux/macOS)
+    path_dirs = os.environ.get("PATH", "").split(os.pathsep)
+
+    for directory in path_dirs:
+        # Combine directory with our filename
+        full_path = Path(directory) / filename
+        
+        try:
+            # resolve(strict=True) will raise FileNotFoundError if the file isn't there
+            resolved_path = full_path.resolve(strict=True)
+            
+            # Double-check it's a file, not just a directory that happens to have this name
+            if resolved_path.is_file():
+                return resolved_path
+                
+        except (FileNotFoundError, PermissionError):
+            # If not found or no permission, just move to the next directory in PATH
+            continue
+            
+    return None
+
+target_file = "pam" 
+result = find_file_in_path(target_file)
+if result:
+    print(f"Success! pam script found at: {result}")
+else:
+    print(f"Could not find '{target}' in any $PATH directory.")
+    exit(-1)    
+
+# check dirac.x in pam directory
+target_file = "dirac.x" 
+result = find_file_in_path(target_file)
+if result:
+    print(f"Success! dirac.x executable found at: {result}")
+else:
+    print(f"Could not find '{target}' in any $PATH directory.")
+    exit(-1)    
+
+# check dirac.x has all libs connected
+import subprocess
+def check_linux_dependencies(executable_path):
+    try:
+        # Run ldd and capture output
+        result = subprocess.run(['ldd', executable_path], capture_output=True, text=True)
+        if "not found" in result.stdout:
+            print("❌ Missing libraries detected:")
+            for line in result.stdout.split('\n'):
+                if "not found" in line:
+                    print(line.strip())
+        else:
+            print("✅ All libraries are connected to dirac.x.")
+            
+    except FileNotFoundError:
+        print("Error: 'ldd' command not found. Are you on Linux?")
+
+check_linux_dependencies(result)
+
+
 # Some simple small molecules taken from the G2 set in the ASE database
 #molecules = ['H2O','N2','F2','Cl2','CH4','C2H4']
 molecules = ['H2O']

@@ -116,6 +116,7 @@ miroi      22367   22364 62 19:06 pts/7    00:00:00 /home/miroi/DIRAC_scratch_di
 miroi      22368   22364 46 19:06 pts/7    00:00:00 /home/miroi/DIRAC_scratch_directory/miroi/DIRAC_DCG-MP2_F2_22362/dirac.x
 
 
+see https://gitlab.com/dirac/dirac/-/merge_requests/398
 
 
 

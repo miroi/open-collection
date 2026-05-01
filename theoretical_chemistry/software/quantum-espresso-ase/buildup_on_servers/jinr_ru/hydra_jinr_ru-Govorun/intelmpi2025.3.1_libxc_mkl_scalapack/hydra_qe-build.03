@@ -54,11 +54,11 @@ echo -e "Number of allocated CPUs on each single node, SLURM_CPUS_ON_NODE=$SLURM
 echo -e "Number of all reserved threads over ALL nodes, SLURM_NTASKS=$SLURM_NTASKS ."
 echo -e "Job has reserved memory per node, SLURM_MEM_PER_NODE=$SLURM_MEM_PER_NODE MB of memory"
 
-MACHINEFILE="nodes.$SLURM_JOB_PARTITION.$SLURM_JOB_ID"
+#MACHINEFILE="nodes.$SLURM_JOB_PARTITION.$SLURM_JOB_ID"
 # Generate Machinefile for mpi such that hosts are in the same
 # order as if run via srun
-srun -l /bin/hostname | sort -n | awk '{print $2}' > $MACHINEFILE
-echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; echo "containing:"; cat $MACHINEFILE
+#srun -l /bin/hostname | sort -n | awk '{print $2}' > $MACHINEFILE
+#echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; echo "containing:"; cat $MACHINEFILE
 
 # CPU model, total numer of CPUs, number of allocated CPUs
 echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
@@ -178,7 +178,7 @@ echo -e " MPIEXEC_NUMPROC_FLAG=$MPIEXEC_NUMPROC_FLAG"
 echo -e " MPIEXEC_PREFLAGS=$MPIEXEC_PREFLAGS"
 echo -e "  Tests run as : ${MPIEXEC_EXECUTABLE} ${MPIEXEC_NUMPROC_FLAG} <NUM_PROCS> ${MPIEXEC_PREFLAGS_PRINT} <EXECUTABLE>"
 
-echo -e "\n\n running ctest -j4 :"
+echo -e "\n\n running adjusted ctest:"
 ctest -V  -j 4
 
 echo -e "\n\n End of script. Date & Time is `date` \n"

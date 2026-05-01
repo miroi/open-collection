@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## jobname
-#SBATCH -J QEctest
+#SBATCH -J QEbuild
 
 ##  partition (queue)
 #SBATCH --account=bltp
@@ -27,7 +27,7 @@
 
 #
 #SBATCH -N 1
-#SBATCH --ntasks-per-node=4
+#SBATCH --ntasks-per-node=8
 
 
 ## stdout/stderr output file
@@ -54,13 +54,11 @@ echo -e "Number of allocated CPUs on each single node, SLURM_CPUS_ON_NODE=$SLURM
 echo -e "Number of all reserved threads over ALL nodes, SLURM_NTASKS=$SLURM_NTASKS ."
 echo -e "Job has reserved memory per node, SLURM_MEM_PER_NODE=$SLURM_MEM_PER_NODE MB of memory"
 
-#MACHINEFILE="nodes.$SLURM_JOB_PARTITION.$SLURM_JOB_ID"
+MACHINEFILE="nodes.$SLURM_JOB_PARTITION.$SLURM_JOB_ID"
 # Generate Machinefile for mpi such that hosts are in the same
 # order as if run via srun
-#srun -l /bin/hostname | sort -n | awk '{print $2}' > $MACHINEFILE
-echo -e "\n\n List of machines for MPI :"
-srun -l /bin/hostname | sort -n | awk '{print $2}'
-#echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; echo "containing:"; cat $MACHINEFILE
+srun -l /bin/hostname | sort -n | awk '{print $2}' > $MACHINEFILE
+echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; echo "containing:"; cat $MACHINEFILE
 
 # CPU model, total numer of CPUs, number of allocated CPUs
 echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
@@ -114,7 +112,9 @@ echo -e "\n git ? \c"; which git; git --version
 
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e
 QE=/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e
-BUILD=build_intelmpi2025.3.1_libxc_mkl_scalapack
+
+#BUILD=build_intelmpi2025.3.1_libxc_mkl_scalapack
+BUILD=build_intelmpi2025.3.1_libxc_mkl_scalapack_01
 
 echo -e "\n\n QE=$QE"
 echo -e "ls $QE/"
@@ -122,10 +122,21 @@ ls $QE/
 
 cd $QE
 echo -e "\n I am in QE=\c";pwd
+
+if [ -d "$BUILD" ]; then
+  echo -e "\n The directory $QE/$BUILD does exist."
+  echo -e "Its old content :"; ls -lt $QE/$BUILD/.
+  echo -e "Deleting it and re-creating again."
+  /bin/rm -rf $BUILD
+  mkdir $BUILD
+else
+  echo -e "\n The directory  $QE/$BUILD does not exist, creating it."
+  mkdir $BUILD
+fi
 cd $BUILD
 
 echo -e "\n Current directory where this SLURM job is running `pwd`"
-echo -e "   Current directory  QE/BUILD=$QE/$BUILD "
+echo -e " Current directory  QE/BUILD=$QE/$BUILD "
 echo " It has the disk space of (df -h) :"
 df -h .
 echo -e "\n ls -lt $PWD"; ls -lt
@@ -134,16 +145,41 @@ echo -e "\n ls -lt $PWD"; ls -lt
 # see https://gitlab.com/QEF/q-e/-/wikis/Developers/CMake-build-system
 #
 
+echo -e "\n\n\n Running cmake :"
+#cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DCMAKE_Fortran_COMPILER=mpiifort -DCMAKE_Fortran_FLAGS="-g -Winline -diag-dump -diag-enable=all"  .. 
+
+#cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc -DCMAKE_Fortran_COMPILER=mpiifort -DCMAKE_Fortran_FLAGS="-g -Winline -diag-enable=all -qopt-report=4 -qopt-report-phase ipo"  .. 
+
+
+#LIBXC_DIR=/lustre/projects/m/milias/work/software/libxc/install_build_intel2023.1
+LIBXC_DIR=/lustre/projects/m/milias/work/software/libxc/install_build_intel2025.3.1
+LIBXC_INC=$LIBXC_DIR/include
+#cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_Fortran_COMPILER=mpiifx -DCMAKE_Fortran_FLAGS="-g -traceback" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLIBXC_INCLUDE_DIR=$LIBXC_INC  -DQE_ENABLE_HDF5=OFF  .. 
+
+# see https://gitlab.com/QEF/q-e/-/work_items/844
+#cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_Fortran_COMPILER=mpiifx -DCMAKE_Fortran_FLAGS="-xHost -g -traceback"  -DCMAKE_C_FLAGS="-xHost"  -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=OFF  .. 
+
+cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_Fortran_COMPILER=mpiifx -DCMAKE_Fortran_FLAGS="-xHost -g -traceback"  -DCMAKE_C_FLAGS="-xHost"  -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=OFF -DMPIEXEC_PREFLAGS="-v " -DMPIEXEC_NUMPROC_FLAG="-np 2"   .. 
+
+echo -e "\n\n Running make -j $SLURM_CPUS_ON_NODE :"
+make -j $SLURM_CPUS_ON_NODE
+
 echo -e "\n\n content of $QE/$BUILD/bin  :"
 ls -lt $QE/$BUILD/bin
 
 echo -e "\n\n ldd $QE/$BUILD/bin/pw.x :"
 ldd $QE/$BUILD/bin/pw.x
 
-#PARA_PREFIX="mpirun  --report-bindings -np 2"
-#echo -e "\n PARA_PREFIX=$PARA_PREFIX"
-echo -e "\n\n running verbose ctest -VV  :"
-ctest -VV 
+#MPIEXEC_PREFLAGS="-v"
+#MPIEXEC_MPIEXEC_NUMPROC_FLAG="-np 2"
+echo -e "\n\n Changed MPI setting to be used in CTest : " 
+echo -e " MPIEXEC_EXECUTABLE=$MPIEXEC_EXECUTABLE"
+echo -e " MPIEXEC_NUMPROC_FLAG=$MPIEXEC_NUMPROC_FLAG"
+echo -e " MPIEXEC_PREFLAGS=$MPIEXEC_PREFLAGS"
+echo -e "  Tests run as : ${MPIEXEC_EXECUTABLE} ${MPIEXEC_NUMPROC_FLAG} <NUM_PROCS> ${MPIEXEC_PREFLAGS_PRINT} <EXECUTABLE>"
+
+echo -e "\n\n running ctest -j4 :"
+ctest -V  -j 4
 
 echo -e "\n\n End of script. Date & Time is `date` \n"
 

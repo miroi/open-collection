@@ -96,13 +96,14 @@ echo -e "\n The variable PATH=$PATH\n"
 
 #DIRAC=/lustre/home/user/m/milias/work/software/dirac/trunk
 #DIRAC=/zfs/store5.hydra.local/user/m/milias/work/software/dirac/trunk_cloned
-DIRAC=/lustre/projects/m/milias/work/software/dirac/trunk_cloned
+#DIRAC=/lustre/projects/m/milias/work/software/dirac/trunk_cloned
+DIRAC=/lustre/projects/m/milias/work/software/dirac/trunk
 
 cd $DIRAC
 pwd
 
 BUILD=build_intelmpi2025_mkl_i8
-echo -e "\n DIRAC build directory, BUILD=$BUILD"
+echo -e "\n\n DIRAC build directory, BUILD=$BUILD"
 if [ -d $BUILD ]; then
   echo "Directory BUILD exists. Going to delete it !"
   /bin/rm -rf $BUILD
@@ -114,12 +115,13 @@ fi
 ./setup --mpi --exatensor=OFF --pcmsolver=OFF  --pelib=OFF  --fc=mpiifx   --extra-fc-flags="-O3 -xHost -ilp64" --cc=mpiicx --extra-cc-flags="-O"  --cxx=mpiicpx --int64 $BUILD
 
 cd $BUILD
-echo -e "\n I am in : \c "; pwd
-cmake ..
-echo -e "Going to compile...  make -j $SLURM_CPUS_ON_NODE :"
-make -j $SLURM_CPUS_ON_NODE
+echo -e "\n\n I am in DIRAC/BUILD = $DIRAC/$BUILD "; pwd
 
-echo -e "\n after the compilation, perform ldd dirac.x:"
+#cmake ..
+echo -e "Going to compile...  make -j $SLURM_CPUS_ON_NODE :"
+make VERBOSE=1 -j $SLURM_CPUS_ON_NODE
+
+echo -e "\n\n after the compilation, perform ldd dirac.x:"
 ldd dirac.x
 
 export DIRAC_TMPDIR=/lustre/projects/m/milias/DIRAC_scratch
@@ -129,7 +131,6 @@ export DIRAC_MPIRUN="mpiexec -ilp64 -np 2"
 echo -e "\n\n DIRAC_MPIRUN=$DIRAC_MPIRUN"
 
 echo -e "\n running ctest -VV -j4 :"
-
 ctest -VV  -j4
 
 

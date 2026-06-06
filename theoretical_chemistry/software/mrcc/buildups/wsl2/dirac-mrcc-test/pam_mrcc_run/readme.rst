@@ -50,11 +50,16 @@ miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/mrcc/b
 
 MINP created !!!
 
+
 goldstone run
 ~~~~~~~~~~~~~
 goldstone
 forrtl: No such file or directory
 forrtl: severe (29): file not found, unit 75, file /home/miroi/work/projects/open-collection/theoretical_chemistry/software/mrcc/buildups/wsl2/dirac-mrcc-test/pam_run/KEYWD
+
+
+miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/mrcc/buildups/wsl2/dirac-mrcc-test/pam_mrcc_run/.minp ... generates KEYWD file
+
 
 miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/mrcc/buildups/wsl2/dirac-mrcc-test/pam_run/.dmrcc > dmrcc.logfile
 

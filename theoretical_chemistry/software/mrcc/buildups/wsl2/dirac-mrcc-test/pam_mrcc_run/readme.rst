@@ -59,5 +59,11 @@ forrtl: severe (29): file not found, unit 75, file /home/miroi/work/projects/ope
 miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/mrcc/buildups/wsl2/dirac-mrcc-test/pam_run/.dmrcc > dmrcc.logfile
 
 Total CCSD energy [au]:                     -122.356754196691
-
 @ Total CCSD energy :                       -113.117918449391453
+
+
+again: goldstone works
+
+miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/mrcc/buildups/wsl2/dirac-mrcc-test/pam_run/.goldstone > goldstone.logfile
+
+

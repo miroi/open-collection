@@ -14,3 +14,19 @@ milias@DESKTOP-7OTLCGO:~/work/git-projects/open-collection/theoretical_chemistry
   Group type (1:real, 2:complex, 4:quaternion) :                    1
   Initialized reading from MDCINT
   MDCINT created:  20251020   12:48:22
+
+
+new
+---
+miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/mrcc/buildups/wsl2/dirac-mrcc-test/pam_run/.~/work/software/dirac/trunk_cloned/build_intelmpi_mkl_ilp64/pam  --get="MRCONEE MDCINT" --inp=ccsd.inp --mol=CO_C2v.mol
+
+miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/mrcc/buildups/wsl2/dirac-mrcc-test/pam_run/.~/work/software/dirac/trunk_cloned/build_intelmpi_mkl_ilp64/dirac_mointegral_export.x
+
+  Initialized reading from MRCONEE (version DIRAC20 and later)
+  Core energy:   -80.2736430339140
+  Breit interaction:  F
+  Group type (1:real, 2:complex, 4:quaternion) :                     1
+  Initialized reading from MDCINT
+  MDCINT created:  20260606   21:19:08
+
+

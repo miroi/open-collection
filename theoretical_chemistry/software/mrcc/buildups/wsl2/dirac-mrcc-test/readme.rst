@@ -6,6 +6,11 @@ see  https://gitlab.com/dirac/dirac/-/tree/master/test/benchmark_kallay_mrcc_int
 
 Victus Notebook
 ---------------
+miroi@MIRO:~/work/software/dirac/trunk_cloned/test/benchmark_kallay_mrcc_interface/.export MRCCDIR=/home/miroi/work/software/mrcc
+miroi@MIRO:~/work/software/dirac/trunk_cloned/test/benchmark_kallay_mrcc_interface/.export DIRAC_UTILS_PATH=~/work/software/dirac/trunk_cloned/build_intelmpi_mkl_ilp64
+
+miroi@MIRO:~/work/software/dirac/trunk_cloned/test/benchmark_kallay_mrcc_interface/../test -b ~/work/software/dirac/trunk_cloned/build_intelmpi_mkl_ilp64/
+
 
 PC Desktop
 -----------

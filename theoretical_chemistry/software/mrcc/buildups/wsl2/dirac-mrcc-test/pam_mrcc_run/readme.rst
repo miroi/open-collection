@@ -2,9 +2,14 @@
 Simple DIRAC-MRCC run
 =====================
 
+Get DIRAC files
+---------------
 based on https://mrcc.hu/MRCC/manual/html/single/manual_sp.xhtml#S5.SS3 :
 
 /home/milias/work/software/dirac/trunk_cloned/build_gnu_mkl_ilp64/pam --get="MRCONEE MDCINT" --inp=ccsd.inp --mol=CO_C2v.mol
+
+milias@DESKTOP-7OTLCGO:~/work/projects/open-collection/theoretical_chemistry/software/mrcc/buildups/wsl2/dirac-mrcc-test/pam_mrcc_run/.~/work/software/dirac/trunk_cloned/build_gnu_mpi/pam --mpi=4 --get="MRCONEE MDCINT" --inp=ccsd.inp --mol=CO_C2v.mol
+
 
 milias@DESKTOP-7OTLCGO:~/work/git-projects/open-collection/theoretical_chemistry/software/mrcc/buildups/wsl2/dirac-mrcc-test/pam_run/./home/milias/work/software/dirac/trunk_cloned/build_gnu_mkl_ilp64/dirac_mointegral_export.x
 
@@ -33,8 +38,8 @@ miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/mrcc/b
   MDCINT created:  20260606   21:19:08
 
 
-better
-------
+from MRCC
+---------
 miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/mrcc/buildups/wsl2/dirac-mrcc-test/pam_run/.export PATH=/home/miroi/work/software/mrcc:$PATH
 miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/mrcc/buildups/wsl2/dirac-mrcc-test/pam_run/.dirac_mointegral_export
   Initialized reading from MRCONEE

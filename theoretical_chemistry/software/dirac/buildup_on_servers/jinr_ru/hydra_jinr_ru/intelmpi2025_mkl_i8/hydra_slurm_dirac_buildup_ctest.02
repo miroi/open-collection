@@ -88,6 +88,7 @@ module add  intel/v2025.3.1
 #module add LAPACK/v3.12.0_gcc1230
 #module add Python/v3.12.13  
 module add Python/v3.12.4-1 # Of J.Busa Jr.
+module add  hdf5/v1.14.6_intel2023 
 
 echo -e "\n\n loaded modules:"
 module list
@@ -111,7 +112,7 @@ DIRAC=/lustre/projects/m/milias/work/software/dirac/trunk
 cd $DIRAC
 pwd
 
-BUILD=build_intelmpi2025_mkl_i8
+BUILD=build_intelmpi2025_mkl_i8_hdf5
 echo -e "\n\n DIRAC build directory, BUILD=$BUILD"
 if [ -d $BUILD ]; then
   echo "Directory BUILD exists. Going to delete it !"

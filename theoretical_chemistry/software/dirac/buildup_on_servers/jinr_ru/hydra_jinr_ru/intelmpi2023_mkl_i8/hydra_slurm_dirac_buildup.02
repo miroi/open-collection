@@ -5,8 +5,8 @@
 ##  partition (queue)
 #SBATCH --account=bltp
 #SBATCH --partition=bltp
-#SBATCH --constraint=cascade
-##SBATCH --constraint=icelake
+##SBATCH --constraint=cascade
+#SBATCH --constraint=icelake
 #SBATCH --qos=medium
 
 ## max. execution time
@@ -74,13 +74,20 @@ echo -e "\n Allocated working nodes:"
 srun -l /bin/hostname | sort -n | awk '{print $2}' 
 #echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; echo "containing:"; cat $MACHINEFILE
 
+# J.Busa Jr. module path
+export MODULEPATH=/cvmfs/nica.jinr.ru/sw/202309/MODULES/slc9_x86-64:$MODULEPATH
+echo -e  "\n\n For modules, extended MODULEPATH=$MODULEPATH:"
+
+
 echo -e "\n\n loaded modules:"
 module purge
 #module add GVR/v1.0-1
-module add Python/v3.12.13
 module add CMake/v4.2.3
 #module add  intel/v2025.3.1
 module add  intel/v2023.1.0
+module add Python/v3.12.4-1 # Of J.Busa Jr.
+module add  hdf5/v1.14.6_intel2023
+
 #module add openmpi/v5.0.3_gcc1230
 #module add LAPACK/v3.12.0_gcc1230
 module list
@@ -103,7 +110,7 @@ DIRAC=/lustre/projects/m/milias/work/software/dirac/trunk
 cd $DIRAC
 pwd
 
-BUILD=build_intelmpi2023_mkl_i8_cascade
+BUILD=build_intelmpi2023_mkl_i8
 echo -e "\n DIRAC build directory, BUILD=$BUILD"
 if [ -d $BUILD ]; then
   echo "Directory BUILD exists. Going to delete it !"
@@ -121,7 +128,7 @@ cmake ..
 echo -e "Going to compile...  make -j $SLURM_CPUS_ON_NODE :"
 make -j $SLURM_CPUS_ON_NODE
 
-echo -e "\n after the compilation, perform ldd dirac.x:"
+echo -e "\n\n after the compilation, perform ldd dirac.x:"
 ldd dirac.x
 
 export DIRAC_TMPDIR=/lustre/projects/m/milias/DIRAC_scratch

@@ -127,7 +127,7 @@ cd $BUILD
 echo -e "\n I am in : \c "; pwd
 cmake ..
 echo -e "Going to compile...  make -j $SLURM_CPUS_ON_NODE :"
-make -j $SLURM_CPUS_ON_NODE
+make VERBOSE=1  -j $SLURM_CPUS_ON_NODE
 
 echo -e "\n after the compilation, perform ldd dirac.x:"
 ldd dirac.x

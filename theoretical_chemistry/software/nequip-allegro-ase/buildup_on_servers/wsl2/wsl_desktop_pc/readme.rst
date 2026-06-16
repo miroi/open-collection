@@ -65,5 +65,9 @@ recompile for GPU
 
 (venv3) milias@DESKTOP-7OTLCGO:~/work/projects/open-collection/theoretical_chemistry/software/nequip-allegro-ase/buildup_on_servers/wsl2/wsl_desktop_pc/.python test_nequip_gpu.py  > test_nequip_gpu.py_logfile
 
+benchmarking
+------------
+python benchmark_speed.py > benchmark_speed.py_logfile
+
 
 

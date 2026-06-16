@@ -47,3 +47,7 @@ nequip-compile \
 [2026-06-16 14:54:50,096][nequip.scripts.compile][INFO] - [rank: 0] Exported model saved to allegro_oam_l.nequip.pt2
 
 
+test run
+--------
+python test_nequip.py
+

@@ -56,3 +56,14 @@ test run
 --------
 python test_nequip_cpu.py  > test_nequip_cpu.py_logfile
 
+recompile for GPU
+-----------------
+(venv3) milias@DESKTOP-7OTLCGO:~/work/projects/open-collection/theoretical_chemistry/software/nequip-allegro-ase/buildup_on_servers/wsl2/wsl_desktop_pc/.bash -f recompile_for_gpu.bash
+.
+.
+[2026-06-16 15:20:12,158][nequip.scripts.compile][INFO] - [rank: 0] Exported model saved to allegro_oam_l_gpu.nequip.pt2
+
+(venv3) milias@DESKTOP-7OTLCGO:~/work/projects/open-collection/theoretical_chemistry/software/nequip-allegro-ase/buildup_on_servers/wsl2/wsl_desktop_pc/.python test_nequip_gpu.py  > test_nequip_gpu.py_logfile
+
+
+

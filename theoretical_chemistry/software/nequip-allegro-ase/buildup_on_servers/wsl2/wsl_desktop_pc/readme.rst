@@ -97,9 +97,13 @@ summary of compiled models
 -rw-r--r-- 1 milias milias 41631759 Jun 16 15:20 allegro_oam_l_gpu.nequip.pt2
 -rw-r--r-- 1 milias milias 40933380 Jun 16 15:06 allegro_oam_l.nequip.pt2
 
+stored in 
+https://disk.yandex.ru/client/disk/MLIPs/NequIP-Allegro
 
 Application - surface energy
 ============================
 
 python surface_energy_working.py > surface_energy_working.py_logfile
+
+
 

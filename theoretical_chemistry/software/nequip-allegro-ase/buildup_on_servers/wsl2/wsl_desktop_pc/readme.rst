@@ -1,3 +1,4 @@
+==============
 NequIP-Allegro
 ==============
 
@@ -83,6 +84,9 @@ nequip-compile \
 .
 [2026-06-16 15:43:18,257][nequip.scripts.compile][INFO] - [rank: 0] Exported model saved to allegro_oam_l_gpu_precise.nequip.pt2
 
+info on packages
+-----------------
+python packages_info_simpler.py > packages_info_simpler.py_logfile
 
 
 

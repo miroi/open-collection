@@ -69,5 +69,21 @@ benchmarking
 ------------
 python benchmark_speed.py > benchmark_speed.py_logfile
 
+recompile GPU with higher precision
+
+# Recompile with double precision and no optimization
+nequip-compile \
+  /home/milias/.nequip/model_cache/cd7794ba9456e3aef505c69a7db8985d06641057c976c58f272c1107f37aaf77.nequip.zip \
+  allegro_oam_l_gpu_precise.nequip.pt2 \
+  --mode aotinductor \
+  --device cuda \
+  --target ase \
+  --inductor-configs "max_autotune=False" "epilogue_fusion=False"
+.
+.
+[2026-06-16 15:43:18,257][nequip.scripts.compile][INFO] - [rank: 0] Exported model saved to allegro_oam_l_gpu_precise.nequip.pt2
+
+
+
 
 

@@ -90,4 +90,16 @@ python packages_info_simpler.py > packages_info_simpler.py_logfile
 
 
 
+summary of compiled models
+--------------------------
+(venv3) milias@DESKTOP-7OTLCGO:~/work/projects/open-collection/theoretical_chemistry/software/nequip-allegro-ase/buildup_on_servers/wsl2/wsl_desktop_pc/.ls -lt allegro_oam_l*
+-rw-r--r-- 1 milias milias 41647563 Jun 16 15:43 allegro_oam_l_gpu_precise.nequip.pt2
+-rw-r--r-- 1 milias milias 41631759 Jun 16 15:20 allegro_oam_l_gpu.nequip.pt2
+-rw-r--r-- 1 milias milias 40933380 Jun 16 15:06 allegro_oam_l.nequip.pt2
+
+
+Application - surface energy
+============================
+
+python surface_energy_working.py > surface_energy_working.py_logfile
 

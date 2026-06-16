@@ -28,3 +28,11 @@ Required-by:
 (myenv3) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/matgl-ase/buildups/wsl2/wsl2_win11_VictusNB/.mgl --help
 usage: mgl [-h] {relax,predict,md,clear} ...
 
+(myenv3) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/matgl-ase/buildups/wsl2/wsl2_win11_VictusNB/.pip install  pymatgen
+.
+.
+Installing collected packages: pymatgen
+Successfully installed pymatgen-2026.5.4
+
+
+

@@ -22,9 +22,28 @@ The mismatch: PyTorch wants CUDA 13.0, but your driver only supports up to CUDA 
 pip uninstall torch torchvision torchaudio
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
 
+own CUDA installation
+~~~~~~~~~~~~~~~~~~~~~
+
+bash -f bash -f find_cuda_installation.bash
+
+.bash -f set_CUDA_HOME.bash
+
+
 obtain a model
 --------------
 nequip-compile   nequip.net:mir-group/Allegro-OAM-L:0.1   allegro_oam_l.nequip.pt2   --mode aotinductor   --device cuda    --target ase
 
+nequip-compile \
+  /home/milias/.nequip/model_cache/cd7794ba9456e3aef505c69a7db8985d06641057c976c58f272c1107f37aaf77.nequip.zip \
+  allegro_oam_l.nequip.pt2 \
+  --mode aotinductor \
+  --device cuda \
+  --target ase
+
+.
+.
+.
+[2026-06-16 14:54:50,096][nequip.scripts.compile][INFO] - [rank: 0] Exported model saved to allegro_oam_l.nequip.pt2
 
 

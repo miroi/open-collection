@@ -11,7 +11,7 @@ based on https://mrcc.hu/MRCC/manual/html/single/manual_sp.xhtml#S5.SS3 :
 milias@DESKTOP-7OTLCGO:~/work/projects/open-collection/theoretical_chemistry/software/mrcc/buildups/wsl2/dirac-mrcc-test/pam_mrcc_run/.~/work/software/dirac/trunk_cloned/build_gnu_mpi/pam --mpi=4 --get="MRCONEE MDCINT" --inp=ccsd.inp --mol=CO_C2v.mol
 
 
-milias@DESKTOP-7OTLCGO:~/work/git-projects/open-collection/theoretical_chemistry/software/mrcc/buildups/wsl2/dirac-mrcc-test/pam_run/./home/milias/work/software/dirac/trunk_cloned/build_gnu_mkl_ilp64/dirac_mointegral_export.x
+milias@DESKTOP-7OTLCGO:~/work/git-projects/open-collection/theoretical_chemistry/software/mrcc/buildups/wsl2/dirac-mrcc-test/pam_run/./home/milias/work/software/dirac/trunk_cloned/build_gnu_mkl_ilp64/dirac_mointegral_export.x  mrcc
 
   Initialized reading from MRCONEE (version DIRAC20 and later)
   Core energy:   -80.273643033914084
@@ -28,14 +28,7 @@ source  /opt/intel/oneapi/2025.3/oneapi-vars.sh
 
 miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/mrcc/buildups/wsl2/dirac-mrcc-test/pam_run/.~/work/software/dirac/trunk_cloned/build_intelmpi_mkl_ilp64/pam  --get="MRCONEE MDCINT" --inp=ccsd.inp --mol=CO_C2v.mol
 
-miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/mrcc/buildups/wsl2/dirac-mrcc-test/pam_run/.~/work/software/dirac/trunk_cloned/build_intelmpi_mkl_ilp64/dirac_mointegral_export.x
-
-  Initialized reading from MRCONEE (version DIRAC20 and later)
-  Core energy:   -80.2736430339140
-  Breit interaction:  F
-  Group type (1:real, 2:complex, 4:quaternion) :                     1
-  Initialized reading from MDCINT
-  MDCINT created:  20260606   21:19:08
+miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/mrcc/buildups/wsl2/dirac-mrcc-test/pam_run/.~/work/software/dirac/trunk_cloned/build_intelmpi_mkl_ilp64/dirac_mointegral_export.x mrcc
 
 
 from MRCC
@@ -53,7 +46,7 @@ miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/mrcc/b
   fort.55 file ready
 
 
-MINP created !!!
+MINP created - saved as MINP_default
 
 
 goldstone run

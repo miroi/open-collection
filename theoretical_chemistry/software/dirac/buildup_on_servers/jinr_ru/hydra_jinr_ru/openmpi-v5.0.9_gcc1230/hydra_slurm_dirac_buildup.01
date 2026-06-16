@@ -78,10 +78,11 @@ srun -l /bin/hostname | sort -n | awk '{print $2}'
 echo -e "\n\n loaded modules:"
 module purge
 module add CMake/v4.2.3
-module add openmpi/v5.0.9_gcc1230
+# try this order :
 module add Python/v3.12.13
+module add openmpi/v5.0.9_gcc1230
 module add LAPACK/v3.12.0_gcc1230
-#
+
 module list
 
 echo -e "\n python ? :\c"; which python; python -V

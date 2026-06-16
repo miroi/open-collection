@@ -74,13 +74,21 @@ echo -e "\n Allocated working nodes:"
 srun -l /bin/hostname | sort -n | awk '{print $2}' 
 #echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; echo "containing:"; cat $MACHINEFILE
 
+# J.Busa Jr. module path
+export MODULEPATH=/cvmfs/nica.jinr.ru/sw/202309/MODULES/slc9_x86-64:$MODULEPATH
+echo -e  "\n\n For modules, extended MODULEPATH=$MODULEPATH:"
+
+
 echo -e "\n\n loaded modules:"
 module purge
 #module add GVR/v1.0-1
-module add Python/v3.12.13
-module add CMake/v4.2.3
+#module add CMake/v4.2.3
+module add CMake/v3.26.5
 #module add  intel/v2025.3.1
 module add  intel/v2023.1.0
+module add Python/v3.12.4-1 # Of J.Busa Jr.
+#module add  hdf5/v1.14.6_intel2023
+
 #module add openmpi/v5.0.3_gcc1230
 #module add LAPACK/v3.12.0_gcc1230
 module list
@@ -113,15 +121,16 @@ fi
 
 
 #./setup --mpi --exatensor=OFF --pcmsolver=OFF  --pelib=OFF  --fc=mpiifort   --extra-fc-flags="-O2 -ilp64" --cc=mpiicc --cxx=mpiicpc --int64 $BUILD
-./setup --mpi --exatensor=OFF --pcmsolver=OFF  --pelib=OFF  --fc=mpiifort   --extra-fc-flags="-O3 -xHost -ilp64" --cc=mpiicc  --extra-cc-flags="-O" --cxx=mpiicpc --int64 $BUILD
+./setup --int64  --mpi --exatensor=OFF --pcmsolver=OFF  --pelib=OFF  --fc=mpiifort   --extra-fc-flags="-O3 -xHost -ilp64" --cc=mpiicc  --cxx=mpiicpc $BUILD
 
 cd $BUILD
-echo -e "\n I am in : \c "; pwd
-cmake ..
-echo -e "Going to compile...  make -j $SLURM_CPUS_ON_NODE :"
+echo -e "\n I am in DIRAC/BUILD=$DIRAC/$BUILD : \c "; pwd
+#cmake ..
+
+echo -e "\n Going to compile...  make -j $SLURM_CPUS_ON_NODE :"
 make -j $SLURM_CPUS_ON_NODE
 
-echo -e "\n after the compilation, perform ldd dirac.x:"
+echo -e "\n\n after the compilation, perform ldd dirac.x:"
 ldd dirac.x
 
 export DIRAC_TMPDIR=/lustre/projects/m/milias/DIRAC_scratch

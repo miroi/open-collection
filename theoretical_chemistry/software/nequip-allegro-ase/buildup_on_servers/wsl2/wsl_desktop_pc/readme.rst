@@ -46,8 +46,13 @@ nequip-compile \
 .
 [2026-06-16 14:54:50,096][nequip.scripts.compile][INFO] - [rank: 0] Exported model saved to allegro_oam_l.nequip.pt2
 
+nequip-compile   /home/milias/.nequip/model_cache/cd7794ba9456e3aef505c69a7db8985d06641057c976c58f272c1107f37aaf77.nequip.zip   allegro_oam_l.nequip.pt2   --mode aotinductor   --device cpu   --target ase
+[2026-06-16 15:06:59,961][nequip.scripts.compile][INFO] - [rank: 0] Exported model saved to allegro_oam_l.nequip.pt2
+
+(venv3) milias@DESKTOP-7OTLCGO:~/work/projects/open-collection/theoretical_chemistry/software/nequip-allegro-ase/buildup_on_servers/wsl2/wsl_desktop_pc/.ls -lt allegro_oam_l.nequip.pt2
+-rw-r--r-- 1 milias milias 40933380 Jun 16 15:06 allegro_oam_l.nequip.pt2
 
 test run
 --------
-python test_nequip.py
+python test_nequip_cpu.py  > test_nequip_cpu.py_logfile
 

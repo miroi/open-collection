@@ -97,9 +97,16 @@ module list
 
   GMX_PATH=$GROMACS/$BUILD/bin
 
-  echo -e "\n Looking after $GMX_PATH/gmx_mpi  :"; ls -lt $GMX_PATH/gmx_mpi
+  echo -e "\n\n Looking after $GMX_PATH/gmx_mpi  :"; ls -lt $GMX_PATH/gmx_mpi
   ldd $GMX_PATH/gmx_mpi
 
-  $GMX_PATH/gmx_mpi --help
+  echo -e "\n\n just poking executable:"
+  $GMX_PATH/gmx_mpi 
+
+  $GMX_PATH/gmx_mpi help commands
+
+  $GMX_PATH/gmx_mpi help selections
+
+  $GMX_PATH/gmx_mpi help selections examples
    
   exit 0

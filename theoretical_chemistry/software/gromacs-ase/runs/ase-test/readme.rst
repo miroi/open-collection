@@ -23,3 +23,11 @@ run
 (myenv) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/gromacs-ase/runs/ase-test/.python gromacs_ase_example_02.py  >  gromacs_ase_example_02.py_logfile
 
 
+(myenv) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/gromacs-ase/runs/ase-test/.ls
+1CRN.pdb            gromacs.g96             gromacs_ase_example.py_logfile_SAVED     mdout.mdp  minim.log  minim.trr  nvt.gro  nvt.tpr    readme.rst
+box.g96             gromacs.top             gromacs_ase_example_02.py                minim.edr  minim.mdp  nvt.cpt    nvt.log  nvt.trr
+energy_profile.xvg  gromacs_ase_example.py  gromacs_ase_example_02.py_logfile_SAVED  minim.gro  minim.tpr  nvt.edr    nvt.mdp  posre.itp
+
+
+
+

@@ -14,7 +14,7 @@
 
 ##SBATCH --exclusive
 
-#SBATCH --mem=32GB
+#SBATCH --mem=16GB
 ##SBATCH --mem=64GB
 ##SBATCH --mem=164GB
 ##SBATCH --mem=16GB
@@ -23,7 +23,7 @@
 #SBATCH --no-requeue
 #SBATCH --no-kill
 
-#SBATCH -N 1 -n 8
+#SBATCH -N 1 -n 4
 #SBATCH  --sockets-per-node=1
 
 ## memory NO !!!
@@ -93,9 +93,11 @@ module list
   echo -e "g++ ?"; which g++; g++ --version
   echo -e "mpicxx ?"; which mpicxx; mpicxx --version
   echo -e "mpirun ?";  which mpirun; mpirun --version
+  echo -e "srun ?";  which srun; srun --version
   #echo -e "\n ===  We have the MKL library, MKLROOT=${MKLROOT}"
 
   GMX_PATH=$GROMACS/$BUILD/bin
+  export OMP_NUM_THREADS=1
 
   echo -e "\n\n Looking after $GMX_PATH/gmx_mpi  :"; ls -lt $GMX_PATH/gmx_mpi
   ldd $GMX_PATH/gmx_mpi
@@ -103,10 +105,15 @@ module list
   echo -e "\n\n just poking executable:"
   $GMX_PATH/gmx_mpi 
 
-  $GMX_PATH/gmx_mpi help commands
+  #$GMX_PATH/gmx_mpi help commands
+  #$GMX_PATH/gmx_mpi help selections
+  #$GMX_PATH/gmx_mpi help selections examples
 
-  $GMX_PATH/gmx_mpi help selections
+  # 1. Process the parameter file and your structure/topology
+  srun $GMX_PATH/gmx_mpi grompp -f minim.mdp -c box.gro -p topol.top -o min.tpr
 
-  $GMX_PATH/gmx_mpi help selections examples
+  # 2. Run the energy minimization
+  srun $GMX_PATH/gmx mdrun -v -deffnm min
+
    
   exit 0

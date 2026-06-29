@@ -116,7 +116,9 @@ module list
   mpirun -np  4  $GMX_PATH/gmx_mpi grompp -f minim.mdp -c conf.gro -p topol.top -o min.tpr
 
   # 3. Run the energy minimization
-  mpirun -np 4 $GMX_PATH/gmx_mpi mdrun -v -deffnm min
+  mpirun -np 4 $GMX_PATH/gmx_mpi mdrun -v -s min.tpr -deffnm min
 
+  # 4. Check if the minimization converged
+  echo "10 0" | $GMX_PATH/gmx_mpi  energy -f min.edr -o potential.xvg
    
   exit 0

@@ -20,3 +20,6 @@ run
 
 
 
+(myenv) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/gromacs-ase/runs/ase-test/.python gromacs_ase_example_02.py  >  gromacs_ase_example_02.py_logfile
+
+

@@ -29,5 +29,7 @@ box.g96             gromacs.top             gromacs_ase_example_02.py           
 energy_profile.xvg  gromacs_ase_example.py  gromacs_ase_example_02.py_logfile_SAVED  minim.gro  minim.tpr  nvt.edr    nvt.mdp  posre.itp
 
 
+miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/gromacs-ase/runs/ase-test/.python   gromacs_ase_example_03.py > gromacs_ase_example_03.py_logfile
+
 
 

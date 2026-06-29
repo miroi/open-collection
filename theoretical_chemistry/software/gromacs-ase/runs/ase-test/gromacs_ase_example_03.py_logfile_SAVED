@@ -1,0 +1,96 @@
+
+============================================================
+GROMACS-ASE Enhanced Workflow for Protein (1CRN)
+============================================================
+
+============================================================
+PART 0: Converting PDB to GROMACS Format
+============================================================
+Using PDB file: 1CRN.pdb
+✗ GROMACS structure file not found: gromacs.g96
+
+--- Running pdb2gmx ---
+Executing: mpirun -np 1 /home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi pdb2gmx -f 1CRN.pdb -o gromacs.g96 -p gromacs.top -ff charmm27 -water tip3p
+✓ Command completed successfully
+
+--- Creating solvent box ---
+Executing: mpirun -np 1 /home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi editconf -f gromacs.g96 -o box.g96 -c -d 1.0 -bt cubic
+✓ Command completed successfully
+✓ Solvent box added
+
+============================================================
+PART 1: Energy Minimization
+============================================================
+✓ Structure file found: gromacs.g96
+✓ Topology file found: gromacs.top
+
+--- Running grompp for minimization ---
+Executing: mpirun -np 1 /home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi grompp -f minim.mdp -c gromacs.g96 -p gromacs.top -o minim.tpr -maxwarn 10
+✓ Command completed successfully
+
+--- Running energy minimization ---
+Executing: mpirun -np 2 /home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi mdrun -v -deffnm minim
+✓ Command completed successfully
+
+============================================================
+PART 2: NVT Equilibration
+============================================================
+✓ Minimized structure found: minim.gro
+
+--- Running grompp for NVT ---
+Executing: mpirun -np 1 /home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi grompp -f nvt.mdp -c minim.gro -p gromacs.top -o nvt.tpr -maxwarn 10
+✓ Command completed successfully
+
+--- Running NVT equilibration ---
+Executing: mpirun -np 2 /home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi mdrun -v -deffnm nvt
+✓ Command completed successfully
+
+============================================================
+PART 3: Extract and Plot Energy Profile
+============================================================
+
+--- Extracting energy profile ---
+Executing: mpirun -np 1 /home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi energy -f minim.edr -o energy_profile.xvg
+✓ Command completed successfully
+✓ Energy profile plotted: energy_profile.png
+
+============================================================
+PART 4: Structure Analysis
+============================================================
+
+--- Calculating RMSD ---
+Executing: echo '1 1' | mpirun -np 1 /home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi rms -s minim.tpr -f nvt.gro -o rmsd.xvg
+✓ Command completed successfully
+
+--- Calculating radius of gyration ---
+Executing: mpirun -np 1 /home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi gyrate -s nvt.tpr -f nvt.gro -o gyrate.xvg
+[ERROR] Command failed with return code 1
+STDERR:           :-) GROMACS - gmx gyrate, 2027.0-dev-20251202-15e0cf6836 (-:
+
+Executable:   /home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi
+Data prefix:  /home/miroi/work/software/gromacs/gromacs_cloned (source tree)
+Working dir:  /home/miroi/work/projects/open-collection/theoretical_chemistry/software/gromacs-ase/runs/ase-test
+Command line:
+  gmx_mpi gyrate -s nvt.tpr -f nvt.gro -o gyrate.xvg
+
+Reading file nvt.tpr, VERSION 2027.0-dev-20251202-15e0cf6836 (single precision)
+Readi
+
+============================================================
+✓ WORKFLOW COMPLETED SUCCESSFULLY
+
+Generated files:
+  - box.g96
+  - energy_profile.png
+  - energy_profile.xvg
+  - gromacs.g96
+  - minim.edr
+  - minim.gro
+  - minim.log
+  - minim.tpr
+  - nvt.edr
+  - nvt.gro
+  - nvt.log
+  - nvt.tpr
+  - rmsd.xvg
+============================================================

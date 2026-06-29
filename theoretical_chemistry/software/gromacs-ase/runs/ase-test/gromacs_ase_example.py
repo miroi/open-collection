@@ -1,39 +1,42 @@
 import os
-from ase.calculators.gromacs import Gromacs, GromacsProfile
+import sys
+from ase.calculators.gromacs import Gromacs
 
-# 1. Define the exact path to your custom GROMACS executable folder
+# 1. Define the exact path to your custom GROMACS binary folder
 gmx_bin_dir = "/home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin"
-gmx_executable = os.path.join(gmx_bin_dir, "gmx_mpi")
 
-# 2. Inject the mpirun wrapper prefix directly into the profile command definition
-# Adjust "-np 2" to change the total number of parallel processor ranks
-mpi_prefix = "mpirun -np 2"
-custom_parallel_command = f"{mpi_prefix} {gmx_executable}"
+# 2. Configure the ASE environment variables for GROMACS execution
+# GMXCMD_PREF handles your parallel wrapper (mpirun + core allocation)
+os.environ['GMXCMD_PREF'] = "mpirun -np 2"
 
-# 3. Create the profile instructing ASE to route execution through your MPI environment
-profile = GromacsProfile(command=custom_parallel_command)
+# Use the absolute path to your custom gmx_mpi executable
+os.environ['ASE_GROMACS_COMMAND'] = os.path.join(gmx_bin_dir, "gmx_mpi")
 
-# 4. Define your initial structure template
+# 3. Define your initial structure template
 input_structure = '1CRN.pdb' 
 
-print(f"Initializing ASE GROMACS Calculator using: {custom_parallel_command}")
-calc = Gromacs(clean=True, profile=profile)
+print(f"Initializing ASE GROMACS Calculator...")
+print(f"Command prefix: {os.environ['GMXCMD_PREF']}")
+print(f"Executable target: {os.environ['ASE_GROMACS_COMMAND']}")
 
-# 5. Convert PDB to GROMACS format and generate topology
+# Initialize the calculator simply; it naturally pulls from os.environ
+calc = Gromacs(clean=True)
+
+# 4. Convert PDB to GROMACS format and generate topology
 calc.set_own_params_runs('extra_pdb2gmx_parameters', '-ignh')
 calc.set_own_params_runs('init_structure', input_structure)
 calc.generate_topology_and_g96file()
 calc.write_input()
 
-# 6. Define the simulation box boundaries (gmx editconf)
+# 5. Define the simulation box boundaries (gmx editconf)
 calc.set_own_params_runs('extra_editconf_parameters', '-bt cubic -c -d 0.8')
 calc.run_editconf()
 
-# 7. Solvate the system (gmx solvate)
+# 6. Solvate the system (gmx solvate)
 calc.set_own_params_runs('extra_genbox_parameters', '-cs spc216.gro')
 calc.run_genbox()
 
-# 8. Compile calculations and run the energy minimization
+# 7. Compile parameters and run the energy minimization
 print("Compiling parameters and running energy minimization via MPI pipeline...")
 calc.generate_gromacs_run_file()
 calc.run()

@@ -102,12 +102,15 @@ module list
   echo -e "\n\n Looking after $GMX_PATH/gmx_mpi  :"; ls -lt $GMX_PATH/gmx_mpi
   ldd $GMX_PATH/gmx_mpi
 
-  echo -e "\n\n just poking executable:"
+  echo -e "\n\n just poking executable gmx_mpi :"
   $GMX_PATH/gmx_mpi 
 
   #$GMX_PATH/gmx_mpi help commands
   #$GMX_PATH/gmx_mpi help selections
   #$GMX_PATH/gmx_mpi help selections examples
+
+  # Convert PDB to GRO with proper formatting
+  $GMX_PATH/gmx_mpi editconf -f methane.pdb -o conf.gro -box 1.0 1.0 1.0
 
   # 1. Process the parameter file and your structure/topology
   mpirun -np  4  $GMX_PATH/gmx_mpi grompp -f minim.mdp -c conf.gro -p topol.top -o min.tpr

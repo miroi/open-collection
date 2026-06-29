@@ -1,3 +1,7 @@
+#
+#  gromacs_ase_example_02.py
+#
+
 import os
 import subprocess
 

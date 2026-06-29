@@ -10,6 +10,9 @@ pdb: https://share.google/aimode/e5nuCEqSyzNzVCqoR
 run
 ---
 
+https://chat.deepseek.com/a/chat/s/56441f7a-73e5-4a8a-9fa4-9c2e33a622c1
+
+
 (myenv) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/gromacs-ase/runs/ase-test/.python gromacs_ase_example.py > gromacs_ase_example.py_logfile
 
 (myenv) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/gromacs-ase/runs/ase-test/.ls
@@ -31,5 +34,11 @@ energy_profile.xvg  gromacs_ase_example.py  gromacs_ase_example_02.py_logfile_SA
 
 miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/gromacs-ase/runs/ase-test/.python   gromacs_ase_example_03.py > gromacs_ase_example_03.py_logfile
 
+miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/gromacs-ase/runs/ase-test/.ls
+1CRN.pdb            gromacs.top                              gromacs_ase_example_03.py                minim.edr  minim.trr  nvt.mdp     rmsd.png
+box.g96             gromacs_ase_example.py                   gromacs_ase_example_03.py_logfile_SAVED  minim.gro  nvt.cpt    nvt.tpr     rmsd.xvg
+energy_profile.png  gromacs_ase_example.py_logfile_SAVED     gyrate.png                               minim.log  nvt.edr    nvt.trr     temperature.xvg
+energy_profile.xvg  gromacs_ase_example_02.py                gyrate.xvg                               minim.mdp  nvt.gro    posre.itp   workflow_20260630_000639.log
+gromacs.g96         gromacs_ase_example_02.py_logfile_SAVED  mdout.mdp                                minim.tpr  nvt.log    readme.rst
 
 

@@ -110,10 +110,10 @@ module list
   #$GMX_PATH/gmx_mpi help selections examples
 
   # 1. Process the parameter file and your structure/topology
-  srun $GMX_PATH/gmx_mpi grompp -f minim.mdp -c box.gro -p topol.top -o min.tpr
+  mpirun -np  4  $GMX_PATH/gmx_mpi grompp -f minim.mdp -c conf.gro -p topol.top -o min.tpr
 
   # 2. Run the energy minimization
-  srun $GMX_PATH/gmx mdrun -v -deffnm min
+  mpirun -np 4 $GMX_PATH/gmx_mpi mdrun -v -deffnm min
 
    
   exit 0

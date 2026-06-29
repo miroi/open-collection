@@ -4,14 +4,13 @@ GROMACS cloned
 
 https://gitlab.com/gromacs/gromacs
 
+milias@hydra.jinr.ru:/lustre/projects/m/milias/work/software/gromacs/git_cloned/gromacs/.git remote -v
+origin  git@gitlab.com:gromacs/gromacs.git (fetch)
+origin  git@gitlab.com:gromacs/gromacs.git (push)
+
 https://manual.gromacs.org/documentation/2025.4/install-guide/index.html#compiler :
 The Intel classic compiler (icc/icpc) is no longer supported in GROMACS. Use Intel's newer clang-based compiler from oneAPI, or gcc.
 
-
-clone
-~~~~~
-
-milias@hydra.jinr.ru:/zfs/scratch/HybriLITWorkshop2025/milias/software/gromacs/git_cloned/.git clone git@gitlab.com:gromacs/gromacs.git
 
 modules
 ~~~~~~~

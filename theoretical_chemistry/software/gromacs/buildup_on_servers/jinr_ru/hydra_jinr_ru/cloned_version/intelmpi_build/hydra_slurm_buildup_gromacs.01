@@ -3,14 +3,16 @@
 #SBATCH -J GMXintel
 
 ##  partition (queue)
-##SBATCH -p cascade
-##SBATCH -p knl
-##SBATCH -p flnr-ice
-#SBATCH -p flnr-sod
+##  partition (queue)
+#SBATCH --account=bltp
+#SBATCH --partition=bltp
+##SBATCH --constraint=cascade
+#SBATCH --constraint=icelake
+#SBATCH --qos=medium
 
 ## max. execution time
 ##SBATCH -t 7-00:00:00
-#SBATCH -t 1-00:00:00
+#SBATCH -t 0-06:00:00
 
 ##SBATCH --exclusive
 
@@ -51,29 +53,21 @@ echo
 echo -e "Job partition is $SLURM_JOB_PARTITION \n"
 echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
 
-#echo "modules at disposal:"
-#module avail
-#echo
-#
+echo -e "\n\n...Loading modules :"
 module purge
-#module load openmpi/v2.1.2-2
-module add GVR/v1.0-1
-module add Python/v3.10.13
-module add intel/oneapi
-module add CMake/v3.29.2
-
-module add gcc/v12.3.0
-
-#module add ELPA/v2025.01.002_oneapi
-echo -e "\n\n loaded modules :"
+module load  Python/v3.12.13  
+module load  intel/v2025.3.1
+module load  CMake/v3.26.5
+echo -e "...loaded modules :"
 module list
 
 # 
   echo -e "\n\n*** hydra.jinr.ru setting for compilation:   ***"
 
-  export GROMACS=/zfs/scratch/HybriLITWorkshop2025/milias/software/gromacs/git_cloned/gromacs
-  export REGTESTS=/zfs/scratch/HybriLITWorkshop2025/milias/software/gromacs/git_cloned/gromacs-regressiontests
-  export BUILD=build_intelmpi_mkl
+  export GROMACS_ROOT=/lustre/projects/m/milias/work/software/gromacs/git_cloned
+  export GROMACS=$GROMACS_ROOT/gromacs
+  export REGTESTS=$GROMACS_ROOT/gromacs-regressiontests
+  export BUILD=build_intelmpi2025.3.1_mkl
 
   echo -e "\n GROMACS=$GROMACS"
   echo -e "\n GROMACS REGRESSION TESTS=$REGTESTS"

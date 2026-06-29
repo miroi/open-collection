@@ -192,8 +192,18 @@ ls -lt $QE/$BUILD/bin
 echo -e "\n\n ldd $QE/$BUILD/bin/pw.x :"
 ldd $QE/$BUILD/bin/pw.x
 
-echo -e "\n\n running ctest -j $SLURM_CPUS_ON_NODE :"
-ctest -j  $SLURM_CPUS_ON_NODE
+echo -e "\n\n QE MPI setting to be used in CTest : "
+#echo -e " MPIEXEC_EXECUTABLE=$MPIEXEC_EXECUTABLE"
+#echo -e " MPIEXEC_NUMPROC_FLAG=$MPIEXEC_NUMPROC_FLAG"
+#echo -e " MPIEXEC_PREFLAGS=$MPIEXEC_PREFLAGS"
+#echo -e "  Tests run as : ${MPIEXEC_EXECUTABLE} ${MPIEXEC_NUMPROC_FLAG} <NUM_PROCS> ${MPIEXEC_PREFLAGS_PRINT} <EXECUTABLE>"
+
+#echo -e "\n\n running ctest -j $SLURM_CPUS_ON_NODE :"
+#ctest -j  $SLURM_CPUS_ON_NODE
+
+echo -e "\n\n running ctest:"
+echo -e "PARA_PREFIX=$PARA_PREFIX; PARA_POSTFIX=$PARA_POSTFIX"
+ctest -VV
 
 echo -e "\n\n End of script. Date & Time is `date` \n"
 

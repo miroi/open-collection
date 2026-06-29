@@ -109,13 +109,13 @@ module list
   #$GMX_PATH/gmx_mpi help selections
   #$GMX_PATH/gmx_mpi help selections examples
 
-  # Convert PDB to GRO with proper formatting
-  $GMX_PATH/gmx_mpi editconf -f methane.pdb -o conf.gro -box 1.0 1.0 1.0
+  # 1. Convert PDB to GRO with proper formatting
+  $GMX_PATH/gmx_mpi editconf -f methane.pdb -o conf.gro -box 2.5 2.5 2.5 -c
 
-  # 1. Process the parameter file and your structure/topology
+  # 2. Process the parameter file and your structure/topology
   mpirun -np  4  $GMX_PATH/gmx_mpi grompp -f minim.mdp -c conf.gro -p topol.top -o min.tpr
 
-  # 2. Run the energy minimization
+  # 3. Run the energy minimization
   mpirun -np 4 $GMX_PATH/gmx_mpi mdrun -v -deffnm min
 
    

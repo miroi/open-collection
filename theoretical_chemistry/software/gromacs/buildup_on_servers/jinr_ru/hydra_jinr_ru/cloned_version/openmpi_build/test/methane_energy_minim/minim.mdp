@@ -1,14 +1,14 @@
-; minim.mdp - Simple energy minimization parameters
-integrator               = steep       ; Steepest descent minimization
-emtol                    = 1000.0      ; Stop when max force < 1000 kJ/mol/nm
-emstep                   = 0.01        ; Minimization step size (nm)
-nsteps                   = 50000       ; Max number of minimization steps
+; minim.mdp - with reduced cutoff for small box
+integrator               = steep
+emtol                    = 1000.0
+emstep                   = 0.01
+nsteps                   = 50000
 
-; Neighbor searching and interactions
-nstlist                  = 1           ; Frequency to update neighbor list
-cutoff-scheme            = Verlet      ; For modern GROMACS versions
-ns_type                  = grid        ; Method to find neighbors
-coulombtype              = PME         ; For electrostatics (common choice)
-rcoulomb                 = 1.0         ; Coulomb cut-off (nm)
-rvdw                     = 1.0         ; Van der Waals cut-off (nm)
-pbc                      = xyz         ; Periodic Boundary Conditions in all directions
+nstlist                  = 1
+cutoff-scheme            = Verlet
+ns_type                  = grid
+coulombtype              = PME
+rcoulomb                 = 0.8          ; Reduced from 1.0 to 0.8
+rvdw                     = 0.8          ; Reduced from 1.0 to 0.8
+rlist                    = 0.8          ; Added to match
+pbc                      = xyz

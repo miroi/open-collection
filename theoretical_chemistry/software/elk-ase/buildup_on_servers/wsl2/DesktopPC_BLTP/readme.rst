@@ -71,5 +71,7 @@ tests
 ~~~~~
 milias@DESKTOP-7OTLCGO:~/work/software/elk/elk-11.0.2/.make  VERBOSE=1  test-all >  make-test-all.log 2>&1
 
+TODO: install libxc
+
 
 

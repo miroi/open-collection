@@ -1,121 +1,131 @@
+import os
+import subprocess
 import numpy as np
 from ase import Atoms
 from ase.calculators.elk import ELK, ElkProfile
-from ase.spacegroup import crystal
 
-# --- 1. Define the crystal structure for Rf ---
-# Rutherfordium is predicted to have an hcp structure like other group 4 elements
-# Estimated lattice parameters (these may need adjustment)
-a = 3.8  # Approximate lattice parameter for Rf in Å
-c = 6.2  # Approximate c/a ratio ~1.63 for ideal hcp
-
-# Create an hcp crystal structure for Rutherfordium.
-# hcp has two atoms per unit cell at (0,0,0) and (1/3, 2/3, 1/2)
-Rf = crystal('Rf', basis=[(0, 0, 0), (2/3, 1/3, 1/2)], 
-              spacegroup=194, cellpar=[a, a, c, 90, 90, 120])
-
-print(f"Rutherfordium crystal structure:")
-print(f"Space group: 194 (hcp)")
-print(f"Lattice parameters: a = {a:.3f} Å, c = {c:.3f} Å")
-print(f"Number of atoms in unit cell: {len(Rf)}")
-
-# --- 2. Set up the Elk calculator ---
-# Define the path to the Elk executable and species files
+# --- 0. Debugging: Check if Elk works ---
 elk_exe = '/home/milias/work/software/elk/elk-11.0.2/src/elk'
 species_path = '/home/milias/work/software/elk/elk-11.0.2/species/'
 
+# Check if executable exists and is runnable
+print("="*60)
+print("DEBUG: Checking Elk setup")
+print("="*60)
+print(f"Elk executable: {elk_exe}")
+print(f"Exists: {os.path.exists(elk_exe)}")
+print(f"Is executable: {os.access(elk_exe, os.X_OK)}")
+
+# Try to run elk --version
+try:
+    result = subprocess.run([elk_exe, '--version'], 
+                          capture_output=True, text=True, timeout=5)
+    print(f"Elk version output: {result.stdout.strip()}")
+except Exception as e:
+    print(f"Could not run elk: {e}")
+
+# Check if Rf.in exists
+rf_species = os.path.join(species_path, 'Rf.in')
+print(f"\nRf.in species file: {rf_species}")
+print(f"Exists: {os.path.exists(rf_species)}")
+
+# If Rf.in exists, print first few lines
+if os.path.exists(rf_species):
+    with open(rf_species, 'r') as f:
+        lines = f.readlines()[:10]
+    print("First 10 lines of Rf.in:")
+    for line in lines:
+        print(f"  {line.rstrip()}")
+print("="*60 + "\n")
+
+# --- 1. Define the hcp structure ---
+a = 3.8  # Å
+c = 6.2  # Å
+
+from ase.build import bulk
+Rf = bulk('Rf', 'hcp', a=a, c=c)
+
+print(f"Rutherfordium crystal structure:")
+print(f"a = {a:.3f} Å, c = {c:.3f} Å")
+print(f"Number of atoms: {len(Rf)}")
+
+# --- 2. Set up the Elk calculator with verbose output ---
 elk_profile = ElkProfile(command=elk_exe, sppath=species_path)
 
-# Set up calculator with parameters for superheavy element
-calc = ELK(profile=elk_profile,
-           directory='./rf_scf',  # Directory for calculation files
-           label='rf',            # Prefix for output files
+# Clean up previous calculation directory if it exists
+import shutil
+if os.path.exists('./rf_scf'):
+    print("\nRemoving previous calculation directory...")
+    shutil.rmtree('./rf_scf')
 
-           # --- Key Parameters for a Two-Component SO-SCF Run ---
-           
-           # Tasks: [0] is a ground-state SCF calculation
-           tasks=[0], 
-           
-           # Enable spin-polarization and spin-orbit coupling.
-           # Setting spinorb=True will automatically enable spinpol.
-           spinpol=True, 
-           spinorb=True, 
-           
-           # Dense k-point grid for heavy elements
-           ngridk=[12, 12, 12], 
-           
-           # --- Important SCF settings for heavy elements ---
-           
-           # 'gmaxvr' controls the basis size. Higher value for better accuracy
-           gmaxvr=12.0, 
-           
-           # 'rgkmax' controls muffin-tin radius times plane-wave cutoff
-           rgkmax=8.0,
-           
-           # Smearing to help with convergence in metals
+calc = ELK(profile=elk_profile,
+           directory='./rf_scf',
+           tasks=[0],
+           spinpol=True,
+           spinorb=True,
+           ngridk=[8, 8, 8],  # Reduced for testing
+           gmaxvr=10.0,       # Reduced for testing
+           rgkmax=7.0,        # Reduced for testing
            swidth=0.01,
-           
-           # Number of empty bands (important for heavy elements)
-           nempty=15,
-           
-           # SCF convergence parameters
-           maxscl=150,
-           epspot=1e-6,
-           
-           # Additional parameters for heavy elements
-           # 'fsmtype' controls the Fermi smearing type (0=Gaussian)
+           nempty=10,
+           maxscl=50,
+           epspot=1e-5,       # Looser tolerance for testing
            fsmtype=0,
-           
-           # 'stype' controls the spin type (0=non-collinear, 2=spin-orbit)
            stype=2,
-           
-           # 'nspins' = 4 for non-collinear spin-orbit calculations
            nspins=4,
-           
-           # 'chgmult' charge mixing multiplier for better convergence
-           chgmult=0.3,
-           
-           # 'maxit' maximum number of iterations for the density mixing
-           maxit=50,
+           chgmult=0.5,
+           maxit=30,
            )
 
-# Attach the calculator to the atoms object
-Rf.set_calculator(calc)
+Rf.calc = calc  # New syntax
 
-# --- 3. Display calculation information ---
+# --- 3. Run the calculation ---
 print("\n" + "="*60)
 print("Starting two-component SO-SCF calculation for Rutherfordium (Rf)")
 print("="*60)
-print(f"Elk executable: {elk_exe}")
-print(f"Species path: {species_path}")
 print(f"Calculation directory: ./rf_scf")
-print(f"k-point grid: 12x12x12")
-print(f"Spin-orbit coupling: Enabled")
 print("="*60 + "\n")
 
-# --- 4. Run the SCF calculation and extract energy ---
+# Check what files are created in the calculation directory
 try:
-    # This triggers the SCF calculation.
+    # Create the directory and write input files manually to see what's happening
+    os.makedirs('./rf_scf', exist_ok=True)
+    
+    # Write input files
+    calc.write_input(Rf)
+    
+    print("Input files written to ./rf_scf/")
+    print("Files in ./rf_scf/:")
+    for f in os.listdir('./rf_scf'):
+        if os.path.isfile(os.path.join('./rf_scf', f)):
+            size = os.path.getsize(os.path.join('./rf_scf', f))
+            print(f"  {f} ({size} bytes)")
+    
+    # Now run the calculation
     energy = Rf.get_potential_energy()
     print(f"✅ SCF calculation converged successfully!")
-    print(f"Total energy per unit cell: {energy:.6f} eV")
-    print(f"Total energy per atom: {energy/len(Rf):.6f} eV")
+    print(f"Total energy: {energy:.6f} eV")
+    print(f"Energy per atom: {energy/len(Rf):.6f} eV")
     
-    # Optional: Access other properties
-    # forces = Rf.get_forces()
-    # print(f"Forces: {forces}")
-    
-    # Try to get magnetic moment if available
-    try:
-        magmom = Rf.get_magnetic_moment()
-        print(f"Total magnetic moment: {magmom:.4f} μB")
-    except:
-        pass
-
 except Exception as e:
-    print(f"❌ An error occurred during the SCF calculation: {e}")
-    print("\nPlease check the Elk output files in the './rf_scf' directory for details.")
-    print("Common issues:")
-    print("  - Check if Rf.in species file is valid")
-    print("  - Adjust ngridk, gmaxvr, or rgkmax if convergence fails")
-    print("  - Try increasing swidth if system is metallic")
+    print(f"❌ An error occurred: {e}")
+    print("\n=== DEBUG: Checking calculation directory ===")
+    if os.path.exists('./rf_scf'):
+        print(f"Files in ./rf_scf/:")
+        for f in os.listdir('./rf_scf'):
+            path = os.path.join('./rf_scf', f)
+            if os.path.isfile(path):
+                size = os.path.getsize(path)
+                print(f"  {f} ({size} bytes)")
+                # Print first few lines of key files
+                if f in ['INPUT', 'GEOMETRY', 'SPECIES', 'elk.log']:
+                    print(f"  --- First 5 lines of {f}:")
+                    try:
+                        with open(path, 'r') as file:
+                            lines = file.readlines()[:5]
+                            for line in lines:
+                                print(f"    {line.rstrip()}")
+                    except:
+                        pass
+    else:
+        print("No calculation directory found!")

@@ -67,5 +67,9 @@ milias@DESKTOP-7OTLCGO:~/work/software/elk/elk-11.0.2/.ldd src/elk
         libudev.so.1 => /lib/x86_64-linux-gnu/libudev.so.1 (0x000075699d47f000)
         libcap.so.2 => /lib/x86_64-linux-gnu/libcap.so.2 (0x00007569a0198000)
 
+tests
+~~~~~
+milias@DESKTOP-7OTLCGO:~/work/software/elk/elk-11.0.2/.make  VERBOSE=1  test-all >  make-test-all.log 2>&1
+
 
 

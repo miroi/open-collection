@@ -111,10 +111,10 @@ echo -e "\n git ? \c"; which git; git --version
 #cd $SLURM_SUBMIT_DIR
 
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e
-QE=/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e
+QE=/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e_cloned
 
 #BUILD=build_intelmpi2025.3.1_libxc_mkl_scalapack
-BUILD=build_intelmpi2025.3.1_libxc_mkl_scalapack_01
+BUILD=build_intelmpi2025.3.1_libxc_mkl_scalapack_n05p
 
 echo -e "\n\n QE=$QE"
 echo -e "ls $QE/"
@@ -159,7 +159,9 @@ LIBXC_INC=$LIBXC_DIR/include
 # see https://gitlab.com/QEF/q-e/-/work_items/844
 #cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_Fortran_COMPILER=mpiifx -DCMAKE_Fortran_FLAGS="-xHost -g -traceback"  -DCMAKE_C_FLAGS="-xHost"  -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=OFF  .. 
 
-cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_Fortran_COMPILER=mpiifx -DCMAKE_Fortran_FLAGS="-xHost -g -traceback"  -DCMAKE_C_FLAGS="-xHost"  -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=OFF -DMPIEXEC_PREFLAGS="-v " -DMPIEXEC_NUMPROC_FLAG="-np 2"   .. 
+#cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_Fortran_COMPILER=mpiifx -DCMAKE_Fortran_FLAGS="-xHost -g -traceback"  -DCMAKE_C_FLAGS="-xHost"  -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=OFF -DMPIEXEC_PREFLAGS="-v " -DMPIEXEC_NUMPROC_FLAG="-np 2"   .. 
+
+cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_Fortran_COMPILER=mpiifx -DCMAKE_Fortran_FLAGS="-xHost -g -traceback"  -DCMAKE_C_FLAGS="-xHost"  -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=OFF  .. 
 
 echo -e "\n\n Running make -j $SLURM_CPUS_ON_NODE :"
 make -j $SLURM_CPUS_ON_NODE
@@ -172,14 +174,14 @@ ldd $QE/$BUILD/bin/pw.x
 
 #MPIEXEC_PREFLAGS="-v"
 #MPIEXEC_MPIEXEC_NUMPROC_FLAG="-np 2"
-echo -e "\n\n Changed MPI setting to be used in CTest : " 
+echo -e "\n\n MPI setting to be used in CTest : " 
 echo -e " MPIEXEC_EXECUTABLE=$MPIEXEC_EXECUTABLE"
 echo -e " MPIEXEC_NUMPROC_FLAG=$MPIEXEC_NUMPROC_FLAG"
 echo -e " MPIEXEC_PREFLAGS=$MPIEXEC_PREFLAGS"
 echo -e "  Tests run as : ${MPIEXEC_EXECUTABLE} ${MPIEXEC_NUMPROC_FLAG} <NUM_PROCS> ${MPIEXEC_PREFLAGS_PRINT} <EXECUTABLE>"
 
-echo -e "\n\n running adjusted ctest:"
-ctest -V  -j 4
+echo -e "\n\n running ctest -VV:"
+ctest -VV
 
 echo -e "\n\n End of script. Date & Time is `date` \n"
 

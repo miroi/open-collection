@@ -1,0 +1,85 @@
+
+============================================================
+GROMACS-ASE Workflow for Protein (1CRN)
+============================================================
+Working directory: /home/miroi/work/projects/open-collection/theoretical_chemistry/software/gromacs-ase/runs/ase-test
+GROMACS executable: /home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi
+
+============================================================
+PART 0: Converting PDB to GROMACS Format
+============================================================
+Using PDB file: 1CRN.pdb
+✗ GROMACS structure file not found: gromacs.g96
+
+Attempting to convert PDB to GROMACS format using pdb2gmx...
+
+--- Running pdb2gmx ---
+Executing: mpirun -np 1 /home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi pdb2gmx -f 1CRN.pdb -o gromacs.g96 -p gromacs.top -ff charmm27 -water tip3p
+✓ Command completed successfully
+✓ Successfully converted PDB to GROMACS format
+
+Adding solvent box...
+
+--- Creating solvent box ---
+Executing: mpirun -np 1 /home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi editconf -f gromacs.g96 -o box.g96 -c -d 1.0 -bt cubic
+✓ Command completed successfully
+✓ Solvent box added
+
+============================================================
+PART 1: Energy Minimization
+============================================================
+✓ Structure file found: gromacs.g96
+✓ Topology file found: gromacs.top
+✓ Minimization MDP file created: minim.mdp
+
+--- Running grompp for minimization ---
+Executing: mpirun -np 1 /home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi grompp -f minim.mdp -c gromacs.g96 -p gromacs.top -o minim.tpr -maxwarn 10
+✓ Command completed successfully
+
+--- Running energy minimization ---
+Executing: mpirun -np 2 /home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi mdrun -v -deffnm minim
+✓ Command completed successfully
+✓ Energy minimization completed successfully
+
+============================================================
+PART 2: NVT Equilibration
+============================================================
+✓ Minimized structure found: minim.gro
+✓ NVT MDP file created: nvt.mdp
+
+--- Running grompp for NVT ---
+Executing: mpirun -np 1 /home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi grompp -f nvt.mdp -c minim.gro -p gromacs.top -o nvt.tpr -maxwarn 10
+✓ Command completed successfully
+
+--- Running NVT equilibration ---
+Executing: mpirun -np 2 /home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi mdrun -v -deffnm nvt
+✓ Command completed successfully
+✓ NVT equilibration completed successfully
+
+============================================================
+PART 3: Extracting Energy Profile
+============================================================
+Using EDR file: minim.edr
+
+--- Extracting energy profile ---
+Executing: mpirun -np 1 /home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin/gmx_mpi energy -f minim.edr -o energy_profile.xvg
+✓ Command completed successfully
+✓ Energy profile extracted to energy_profile.xvg
+
+============================================================
+✓ WORKFLOW COMPLETED SUCCESSFULLY
+
+Generated files:
+  - box.g96
+  - energy_profile.xvg
+  - gromacs.g96
+  - minim.edr
+  - minim.gro
+  - minim.log
+  - minim.tpr
+  - nvt.edr
+  - nvt.gro
+  - nvt.log
+  - nvt.tpr
+
+============================================================

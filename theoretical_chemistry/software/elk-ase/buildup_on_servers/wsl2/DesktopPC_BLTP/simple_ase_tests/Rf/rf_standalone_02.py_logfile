@@ -1,0 +1,114 @@
+(venv) milias@DESKTOP-7OTLCGO:~/work/projects/open-collection/theoretical_chemistry/software/elk-ase/buildup_on_servers/wsl2/DesktopPC_BLTP/simple_ase_test/Rf/.python  rf_standalone_02.py
+============================================================
+Setting up calculation for Rutherfordium (Rf)
+============================================================
+Rf hcp structure:
+a = 3.800 Å, c = 6.200 Å
+c/a ratio = 1.6316
+
+Parallelization settings:
+  MPI processes: 4
+  OpenMP threads per MPI process: 1
+  Total threads: 4
+
+✅ Found Rf.in in /home/milias/work/software/elk/elk-11.0.2/species/
+First 5 lines of Rf.in:
+   'Rf'                                       : spsymb
+   'rutherfordium'                            : spname
+    -104.000                                  : spzn
+     475773.8949                              : spmass
+    0.196116E-06    3.0000   54.4823   800    : rminsp, rmt, rmaxsp, nrmt
+✅ Calculation directory created
+✅ Copied Rf.in to run directory
+✅ elk.in file created
+
+Input files written to ./rf_run/
+Files in ./rf_run/:
+  Rf.in (2368 bytes)
+  elk.in (836 bytes)
+
+============================================================
+Running Elk for Rutherfordium (Rf) with MPI
+============================================================
+Using species file: ./rf_run/Rf.in
+k-point grid: 8x8x8
+Spin-orbit coupling: Enabled
+MPI processes: 4
+OpenMP threads per process: 1
+============================================================
+
+Running command: mpirun -np 4 /home/milias/work/software/elk/elk-11.0.2/src/elk
+
+Elk output:
+
+┌─────────────────────────────────┐
+│ Elk code version 11.0.2 started │
+└─────────────────────────────────┘
+
+Number of MPI processes : 4
+Number of OpenMP threads per MPI process : 1
+Total number of threads (MPI x OpenMP) : 4
+Maximum OpenMP nesting level : 4
+Number of OpenMP threads at first nesting level : 1
+Number of MKL threads : 1
+
+RAM disk enabled
+
+┌──────────────────┐
+│ Current task : 0 │
+└──────────────────┘
+Info(checkmt): changed muffin-tin radius of species 1 (Rf) from   3.0000 to   1.8739
+
+Info(findsymcrys): atomic basis shift (lattice) :
+  0.3333333350      0.1666666650      0.2500000000
+See GEOMETRY.OUT for new atomic positions
+
+Warning(linengy): could not find 3 linearisation energies in s.c. loop 1
+
+Warning(linengy): could not find 3 linearisation energies in s.c. loop 2
+
+Warning(linengy): could not find 3 linearisation energies in s.c. loop 3
+
+Warning(linengy): could not find 3 linearisation energies in s.c. loop 4
+
+Warning(linengy): could not find 3 linearisation energies in s.c. loop 5
+
+Warning(linengy): could not find 3 linearisation energies in s.c. loop 6
+
+Warning(linengy): could not find 3 linearisation energies in s.c. loop 7
+
+Warning(linengy): could not find 3 linearisation energies in s.c. loop 8
+
+Warning(linengy): could not find 3 linearisation energies in s.c. loop 9
+
+Warning(linengy): could not find 3 linearisation energies in s.c. loop 10
+
+Warning(linengy): could not find 3 linearisation energies in s.c. loop 11
+
+Warning(linengy): could not find 3 linearisation energies in s.c. loop 12
+
+Warning(linengy): could not find 3 linearisation energies in s.c. loop 13
+
+Warning(linengy): could not find 3 linearisation energies in s.c. loop 14
+
+Warning(linengy): could not find 3 linearisation energies in s.c. loop 15
+
+Warning(linengy): could not find 3 linearisation energies in s.c. loop 16
+
+Warning(linengy): could not find 3 linearisation energies in s.c. loop 17
+
+┌──────────────────┐
+│ Elk code stopped │
+└──────────────────┘
+
+
+============================================================
+✅ Calculation completed successfully!
+============================================================
+Total energy: -77515.518459133
+
+Energy in Hartree: -77515.5184591330 Ha
+Energy in eV: -2109305.778999 eV
+Energy per atom: -1054652.889499 eV
+
+✅ Energy saved to ./rf_run/energy.txt

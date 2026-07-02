@@ -1,0 +1,437 @@
+make test
+make[1]: Entering directory '/home/milias/work/software/elk/elk-11.0.2'
+cd tests; ./test.sh
+
+Running test in directory test_001...
+ Passed
+
+Running test in directory test_002...
+ Passed
+
+Running test in directory test_003...
+ Passed
+
+Running test in directory test_004...
+ Passed
+
+Running test in directory test_005...
+ Passed
+
+Running test in directory test_006...
+ Passed
+
+Running test in directory test_007...
+ Passed
+
+Running test in directory test_008...
+ Passed
+
+Running test in directory test_009...
+ Passed
+
+Running test in directory test_010...
+ Passed
+
+Running test in directory test_011...
+ Passed
+
+Running test in directory test_012...
+ Passed
+
+Running test in directory test_013...
+ Passed
+
+Running test in directory test_014...
+ Passed
+
+Running test in directory test_015...
+ Passed
+
+Running test in directory test_016...
+ Passed
+
+Running test in directory test_017...
+ Passed
+
+Running test in directory test_018...
+ Passed
+
+Running test in directory test_019...
+ Passed
+
+Running test in directory test_020...
+Segmentation fault (core dumped)
+ Passed
+
+Running test in directory test_021...
+ Passed
+
+Running test in directory test_022...
+ Passed
+
+Running test in directory test_023...
+ Passed
+
+Running test in directory test_024...
+ Passed
+
+Running test in directory test_025...
+ Passed
+
+Running test in directory test_026...
+ Passed
+
+Running test in directory test_027...
+ Passed
+
+Running test in directory test_028...
+ Passed
+
+Running test in directory test_029...
+ Passed
+
+Running test in directory test_030...
+ Passed
+
+Running test in directory test_031...
+ Passed
+
+Running test in directory test_032...
+ Passed
+
+Running test in directory test_033...
+ Passed
+
+Running test in directory test_034...
+ Passed
+
+Running test in directory test_035...
+ Passed
+make[1]: Leaving directory '/home/milias/work/software/elk/elk-11.0.2'
+make test-libxc
+make[1]: Entering directory '/home/milias/work/software/elk/elk-11.0.2'
+cd tests-libxc; ../tests/test.sh
+
+Running test in directory test_001...
+ Failed! See test.log and output files
+
+Running test in directory test_002...
+ Failed! See test.log and output files
+
+Running test in directory test_003...
+ Failed! See test.log and output files
+
+Running test in directory test_004...
+ Failed! See test.log and output files
+
+Running test in directory test_005...
+ Failed! See test.log and output files
+
+Running test in directory test_006...
+ Failed! See test.log and output files
+
+Running test in directory test_007...
+ Failed! See test.log and output files
+make[1]: Leaving directory '/home/milias/work/software/elk/elk-11.0.2'
+make test-mpi
+make[1]: Entering directory '/home/milias/work/software/elk/elk-11.0.2'
+cd tests; ./test-mpi.sh
+
+Running test in directory test_001...
+ Passed
+
+Running test in directory test_002...
+ Passed
+
+Running test in directory test_003...
+ Passed
+
+Running test in directory test_004...
+ Passed
+
+Running test in directory test_005...
+ Passed
+
+Running test in directory test_006...
+ Passed
+
+Running test in directory test_007...
+ Passed
+
+Running test in directory test_008...
+ Passed
+
+Running test in directory test_009...
+ Passed
+
+Running test in directory test_010...
+ Passed
+
+Running test in directory test_011...
+ Passed
+
+Running test in directory test_012...
+ Passed
+
+Running test in directory test_013...
+ Passed
+
+Running test in directory test_014...
+ Passed
+
+Running test in directory test_015...
+ Passed
+
+Running test in directory test_016...
+ Passed
+
+Running test in directory test_017...
+ Passed
+
+Running test in directory test_018...
+ Passed
+
+Running test in directory test_019...
+ Passed
+
+Running test in directory test_020...
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun noticed that process rank 0 with PID 0 on node DESKTOP-7OTLCGO exited on signal 11 (Segmentation fault).
+--------------------------------------------------------------------------
+ Passed
+
+Running test in directory test_021...
+ Passed
+
+Running test in directory test_022...
+ Passed
+
+Running test in directory test_023...
+ Passed
+
+Running test in directory test_024...
+ Passed
+
+Running test in directory test_025...
+ Passed
+
+Running test in directory test_026...
+ Passed
+
+Running test in directory test_027...
+ Passed
+
+Running test in directory test_028...
+ Passed
+
+Running test in directory test_029...
+ Passed
+
+Running test in directory test_030...
+ Passed
+
+Running test in directory test_031...
+ Passed
+
+Running test in directory test_032...
+ Passed
+
+Running test in directory test_033...
+ Passed
+
+Running test in directory test_034...
+ Passed
+
+Running test in directory test_035...
+ Passed
+make[1]: Leaving directory '/home/milias/work/software/elk/elk-11.0.2'
+make test-libxc-mpi
+make[1]: Entering directory '/home/milias/work/software/elk/elk-11.0.2'
+cd tests-libxc; ../tests/test-mpi.sh
+
+Running test in directory test_001...
+--------------------------------------------------------------------------
+mpirun has exited due to process rank 0 with PID 0 on
+node DESKTOP-7OTLCGO exiting improperly. There are three reasons this could occur:
+
+1. this process did not call "init" before exiting, but others in
+the job did. This can cause a job to hang indefinitely while it waits
+for all processes to call "init". By rule, if one process calls "init",
+then ALL processes must call "init" prior to termination.
+
+2. this process called "init", but exited without calling "finalize".
+By rule, all processes that call "init" MUST call "finalize" prior to
+exiting or it will be considered an "abnormal termination"
+
+3. this process called "MPI_Abort" or "orte_abort" and the mca parameter
+orte_create_session_dirs is set to false. In this case, the run-time cannot
+detect that the abort call was an abnormal termination. Hence, the only
+error message you will receive is this one.
+
+This may have caused other processes in the application to be
+terminated by signals sent by mpirun (as reported here).
+
+You can avoid this message by specifying -quiet on the mpirun command line.
+--------------------------------------------------------------------------
+ Failed! See test.log and output files
+
+Running test in directory test_002...
+--------------------------------------------------------------------------
+mpirun has exited due to process rank 2 with PID 0 on
+node DESKTOP-7OTLCGO exiting improperly. There are three reasons this could occur:
+
+1. this process did not call "init" before exiting, but others in
+the job did. This can cause a job to hang indefinitely while it waits
+for all processes to call "init". By rule, if one process calls "init",
+then ALL processes must call "init" prior to termination.
+
+2. this process called "init", but exited without calling "finalize".
+By rule, all processes that call "init" MUST call "finalize" prior to
+exiting or it will be considered an "abnormal termination"
+
+3. this process called "MPI_Abort" or "orte_abort" and the mca parameter
+orte_create_session_dirs is set to false. In this case, the run-time cannot
+detect that the abort call was an abnormal termination. Hence, the only
+error message you will receive is this one.
+
+This may have caused other processes in the application to be
+terminated by signals sent by mpirun (as reported here).
+
+You can avoid this message by specifying -quiet on the mpirun command line.
+--------------------------------------------------------------------------
+ Failed! See test.log and output files
+
+Running test in directory test_003...
+--------------------------------------------------------------------------
+mpirun has exited due to process rank 1 with PID 0 on
+node DESKTOP-7OTLCGO exiting improperly. There are three reasons this could occur:
+
+1. this process did not call "init" before exiting, but others in
+the job did. This can cause a job to hang indefinitely while it waits
+for all processes to call "init". By rule, if one process calls "init",
+then ALL processes must call "init" prior to termination.
+
+2. this process called "init", but exited without calling "finalize".
+By rule, all processes that call "init" MUST call "finalize" prior to
+exiting or it will be considered an "abnormal termination"
+
+3. this process called "MPI_Abort" or "orte_abort" and the mca parameter
+orte_create_session_dirs is set to false. In this case, the run-time cannot
+detect that the abort call was an abnormal termination. Hence, the only
+error message you will receive is this one.
+
+This may have caused other processes in the application to be
+terminated by signals sent by mpirun (as reported here).
+
+You can avoid this message by specifying -quiet on the mpirun command line.
+--------------------------------------------------------------------------
+ Failed! See test.log and output files
+
+Running test in directory test_004...
+--------------------------------------------------------------------------
+mpirun has exited due to process rank 0 with PID 0 on
+node DESKTOP-7OTLCGO exiting improperly. There are three reasons this could occur:
+
+1. this process did not call "init" before exiting, but others in
+the job did. This can cause a job to hang indefinitely while it waits
+for all processes to call "init". By rule, if one process calls "init",
+then ALL processes must call "init" prior to termination.
+
+2. this process called "init", but exited without calling "finalize".
+By rule, all processes that call "init" MUST call "finalize" prior to
+exiting or it will be considered an "abnormal termination"
+
+3. this process called "MPI_Abort" or "orte_abort" and the mca parameter
+orte_create_session_dirs is set to false. In this case, the run-time cannot
+detect that the abort call was an abnormal termination. Hence, the only
+error message you will receive is this one.
+
+This may have caused other processes in the application to be
+terminated by signals sent by mpirun (as reported here).
+
+You can avoid this message by specifying -quiet on the mpirun command line.
+--------------------------------------------------------------------------
+ Failed! See test.log and output files
+
+Running test in directory test_005...
+--------------------------------------------------------------------------
+mpirun has exited due to process rank 0 with PID 0 on
+node DESKTOP-7OTLCGO exiting improperly. There are three reasons this could occur:
+
+1. this process did not call "init" before exiting, but others in
+the job did. This can cause a job to hang indefinitely while it waits
+for all processes to call "init". By rule, if one process calls "init",
+then ALL processes must call "init" prior to termination.
+
+2. this process called "init", but exited without calling "finalize".
+By rule, all processes that call "init" MUST call "finalize" prior to
+exiting or it will be considered an "abnormal termination"
+
+3. this process called "MPI_Abort" or "orte_abort" and the mca parameter
+orte_create_session_dirs is set to false. In this case, the run-time cannot
+detect that the abort call was an abnormal termination. Hence, the only
+error message you will receive is this one.
+
+This may have caused other processes in the application to be
+terminated by signals sent by mpirun (as reported here).
+
+You can avoid this message by specifying -quiet on the mpirun command line.
+--------------------------------------------------------------------------
+ Failed! See test.log and output files
+
+Running test in directory test_006...
+--------------------------------------------------------------------------
+mpirun has exited due to process rank 0 with PID 0 on
+node DESKTOP-7OTLCGO exiting improperly. There are three reasons this could occur:
+
+1. this process did not call "init" before exiting, but others in
+the job did. This can cause a job to hang indefinitely while it waits
+for all processes to call "init". By rule, if one process calls "init",
+then ALL processes must call "init" prior to termination.
+
+2. this process called "init", but exited without calling "finalize".
+By rule, all processes that call "init" MUST call "finalize" prior to
+exiting or it will be considered an "abnormal termination"
+
+3. this process called "MPI_Abort" or "orte_abort" and the mca parameter
+orte_create_session_dirs is set to false. In this case, the run-time cannot
+detect that the abort call was an abnormal termination. Hence, the only
+error message you will receive is this one.
+
+This may have caused other processes in the application to be
+terminated by signals sent by mpirun (as reported here).
+
+You can avoid this message by specifying -quiet on the mpirun command line.
+--------------------------------------------------------------------------
+ Failed! See test.log and output files
+
+Running test in directory test_007...
+--------------------------------------------------------------------------
+mpirun has exited due to process rank 1 with PID 0 on
+node DESKTOP-7OTLCGO exiting improperly. There are three reasons this could occur:
+
+1. this process did not call "init" before exiting, but others in
+the job did. This can cause a job to hang indefinitely while it waits
+for all processes to call "init". By rule, if one process calls "init",
+then ALL processes must call "init" prior to termination.
+
+2. this process called "init", but exited without calling "finalize".
+By rule, all processes that call "init" MUST call "finalize" prior to
+exiting or it will be considered an "abnormal termination"
+
+3. this process called "MPI_Abort" or "orte_abort" and the mca parameter
+orte_create_session_dirs is set to false. In this case, the run-time cannot
+detect that the abort call was an abnormal termination. Hence, the only
+error message you will receive is this one.
+
+This may have caused other processes in the application to be
+terminated by signals sent by mpirun (as reported here).
+
+You can avoid this message by specifying -quiet on the mpirun command line.
+--------------------------------------------------------------------------
+ Failed! See test.log and output files
+make[1]: Leaving directory '/home/milias/work/software/elk/elk-11.0.2'

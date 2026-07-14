@@ -40,6 +40,10 @@
 echo -e "\nRunning on host `hostname`"
 echo -e "Date & Time is `date` \n"
 
+echo -e "\n The total memory at the node (in GB)"
+free -t -g
+
+
 echo -e "\nJob user is SLURM_JOB_USER= $SLURM_JOB_USER"
 echo -e "User job SLURM_JOB_NAME=$SLURM_JOB_NAME has assigned ID SLURM_JOBID=$SLURM_JOBID"
 echo -e "This job was submitted from the computer SLURM_SUBMIT_HOST=$SLURM_SUBMIT_HOST"
@@ -73,7 +77,10 @@ echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
 #export OPENBLAS_NUM_THREADS=$RATIO
 #echo -e "\nFor openblas internal parallelization, OPENBLAS_NUM_THREADS=$OPENBLAS_NUM_THREADS"
 
+echo -e "\n\n First initiating MKL 2026.1 :"
+source /lustre/projects/m/milias/intel_mkl/oneapi/setvars.sh
 
+echo -e "\n\n Loading Govoron modules :"
 module purge
 #module load GVR/v1.0-1 gcc/v11.2.0 fftw/v3.3.10_gcc1120 LAPACK/v3.9.0 openmpi/v4.1.1_gcc1120
 module load  Python/v3.12.13  
@@ -82,16 +89,6 @@ module load  CMake/v3.26.5
 
 echo -e "\n\n loaded modules:"
 module list
-
-echo -e "\n\n initiating MKL 2026.1 :"
-source /lustre/projects/m/milias/intel_mkl/oneapi/setvars.sh
-
-
-echo -e "\nRunning on host `hostname`"
-echo -e "Time is `date` \n"
-
-echo -e "\n The total memory at the node (in GB)"
-free -t -g
 
 echo -e "\n\n My PATH=$PATH\n"
 echo -e "\n My LD_LIBRARY_PATH=$LD_LIBRARY_PATH "

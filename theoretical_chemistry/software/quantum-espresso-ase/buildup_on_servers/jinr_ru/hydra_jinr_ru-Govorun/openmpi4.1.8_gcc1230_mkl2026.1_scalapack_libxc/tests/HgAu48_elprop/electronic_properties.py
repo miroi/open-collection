@@ -77,16 +77,16 @@ except Exception as e:
 # 3. Calculator configuration
 # ==============================================
 # Main QE calculation with full parallelization
-#pw_command = f'srun -v   --mpi=pmix    {os.environ["QE"]}/bin/pw.x '
-pw_command = f'mpirun -np 64 {os.environ["QE"]}/bin/pw.x '
+pw_command = f'srun -v --mpi=pmix   --mpi=pmix    {os.environ["QE"]}/bin/pw.x '
+#pw_command = f'mpirun -np 46 {os.environ["QE"]}/bin/pw.x '
 
 # Serial post-processing commands for fast execution
 pp_command = f'{os.environ["QE"]}/bin/pp.x < pp.in > pp.out 2>&1'
 dos_command = f'{os.environ["QE"]}/bin/dos.x < dos.in > dos.out 2>&1'
 
 # Parallel post-processing commands (one node only)
-#projwfc_command = f'srun -v --mpi=pmix -N 1 -n 32 {os.environ["QE"]}/bin/projwfc.x < projwfc.in > projwfc.out 2>&1'
-projwfc_command = f'mpirun -N 1 -n 32 {os.environ["QE"]}/bin/projwfc.x < projwfc.in > projwfc.out 2>&1'
+projwfc_command = f'srun -v --mpi=pmix -N 1 -n 32 {os.environ["QE"]}/bin/projwfc.x < projwfc.in > projwfc.out 2>&1'
+#projwfc_command = f'mpirun -N 1 -n 32 {os.environ["QE"]}/bin/projwfc.x < projwfc.in > projwfc.out 2>&1'
 
 profile = EspressoProfile(
     command=pw_command,

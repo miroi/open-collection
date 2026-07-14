@@ -35,7 +35,7 @@
 ## nodes
 #SBATCH -N 1
 ##SBATCH --nodelist=n05p032
-#SBATCH --ntasks-per-node=46
+#SBATCH --ntasks-per-node=40
 
 ## stdout/stderr output file
 #SBATCH -o log_slurm_job.%j.%N.std_out_err
@@ -53,7 +53,6 @@ free -t -g
 module purge
 module load  Python/v3.12.13
 module load  openmpi/v4.1.8_gcc1230
-module load  CMake/v3.26.5
 echo -e "\n\nloaded modules:"
 module list
 
@@ -71,6 +70,21 @@ echo -e " mpicc ? \c";  which mpicc; mpicc --version
 echo -e " mpicxx ? \c"; which mpicxx; mpicxx --version
 echo -e " mpirun ? \c"; which mpirun; mpirun --version
 echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"
+
+
+export PMIX_MCA_gds=hash
+export PMIX_MCA_psec=none
+export OMPI_MCA_btl=^openib
+
+# Reduce verbosity
+export PMIX_MCA_pmix_base_verbose=0
+export OMPI_MCA_orte_base_help_aggregate=0
+
+echo -e "\n\n Simple mpirun checks: "
+# Test with hostname
+mpirun -np 4 hostname
+# Test with a simple MPI program
+mpirun -np 4 echo "Hello"
 
 export QE="/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e_cloned/build_openmpi4.1.8_gcc12.3.0_mkl2026.1_scalapack_libxc"
 echo -e "\n\n Checking $QE/bin/pw.x ..."
@@ -123,7 +137,7 @@ echo
 ##
 ##---------------------------------------------------Run job----------------------------------------------------
 # Add this line before your main execution to log the binding:
-srun --label grep Cpus_allowed_list /proc/self/status
+#srun --label grep Cpus_allowed_list /proc/self/status
 
 # another summary
 #srun taskset -cp $$
@@ -134,10 +148,6 @@ srun --label grep Cpus_allowed_list /proc/self/status
 # try to fix file saving ...
 ulimit -a
 ulimit -f unlimited
-
-#export PMIX_MCA_gds=hash           # Use hash instead of shmem2
-#export PMIX_MCA_psec=none          # Disable security
-#export OMPI_MCA_btl=^openib        # Disable OpenIB if not needed
 
 ## Specify ASE script here
 echo -e "\n\n"

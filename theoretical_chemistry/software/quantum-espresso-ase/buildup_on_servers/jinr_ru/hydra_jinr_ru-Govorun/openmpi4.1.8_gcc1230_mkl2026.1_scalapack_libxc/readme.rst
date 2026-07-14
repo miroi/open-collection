@@ -3,8 +3,6 @@ Quantum Espresso buildup
 
 openmpi4.1.8_gcc1230_mkl2026.1_scalapack
 
-
-
 MKL
 ---
 source /lustre/projects/m/milias/intel_mkl/oneapi/setvars.sh
@@ -23,4 +21,6 @@ emkl
 Intel MKL library ? MKLROOT=/lustre/projects/m/milias/intel_mkl/oneapi/mkl/2026.1
 
 
-
+tests
+-----
+100% tests passed, 0 tests failed out of 381 , see  hydra_qe-build.01_log_slurm_job.624866.n02p046.std_out_err

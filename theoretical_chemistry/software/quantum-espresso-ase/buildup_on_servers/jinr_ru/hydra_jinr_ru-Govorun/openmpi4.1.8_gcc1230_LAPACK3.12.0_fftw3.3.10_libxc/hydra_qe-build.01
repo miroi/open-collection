@@ -16,8 +16,8 @@
 
 ##SBATCH --exclusive
 
-#SBATCH --mem=64GB
-##SBATCH --mem=32GB
+##SBATCH --mem=64GB
+#SBATCH --mem=32GB
 
 ##SBATCH --mem-per-cpu=4GB
 
@@ -117,7 +117,8 @@ echo -e "\n mpirun ? \c"; which mpirun; mpirun --version; mpirun --help
 #cd $SLURM_SUBMIT_DIR
 
 #QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e
-QE=/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e
+#QE=/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e
+QE=/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e_cloned
 BUILD=build_openmpi4.1.8_gcc12.3.0_LAPACK3.12.0_fftw3.3.10_libxc
 
 echo -e "\n\n QE=$QE"
@@ -159,6 +160,7 @@ echo -e "\n\n\n Running cmake :"
 LIBXC_DIR=/lustre/projects/m/milias/work/software/libxc/install_build_gnu12.3.0
 LIBXC_INC=$LIBXC_DIR/include
 echo -e "\n LIBXC_DIR=$LIBXC_DIR"; $LIBXC_DIR/bin/xc-info .
+ls -lt $LIBXC_DIR
 echo -e "\n\n"
 
 #cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=mpicc -DCMAKE_CXX_COMPILER=mpicxx -DCMAKE_Fortran_COMPILER=mpif90 -DCMAKE_Fortran_FLAGS="-g -traceback" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLIBXC_INCLUDE_DIR=$LIBXC_INC  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=OFF  .. 
@@ -179,8 +181,9 @@ ldd $QE/$BUILD/bin/pw.x
 PARA_PREFIX="mpirun  --report-bindings --bind-to core:overload-allowed -np 2"
 echo -e "\n\n setting PARA_PREFIX=$PARA_PREFIX"
 
-echo -e "\n\n running ctest -j $SLURM_CPUS_ON_NODE :"
-ctest -j  $SLURM_CPUS_ON_NODE
+echo -e "\n\n running ctest -VV  .... :"
+#ctest -VV  -j $SLURM_CPUS_ON_NODE
+ctest -VV 
 
 echo -e "\n\n End of script. Date & Time is `date` \n"
 

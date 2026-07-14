@@ -1,6 +1,9 @@
 Quantum Espresso buildup
 ========================
 
+openmpi4.1.8_gcc1230_mkl2026.1_scalapack
+
+
 
 MKL
 ---

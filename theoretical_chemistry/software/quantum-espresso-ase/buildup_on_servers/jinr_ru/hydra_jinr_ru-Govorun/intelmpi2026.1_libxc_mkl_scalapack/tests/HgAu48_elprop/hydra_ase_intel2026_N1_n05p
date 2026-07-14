@@ -60,19 +60,28 @@ free -t -g
 module purge
 module load  Python/v3.12.13
 #module load  intel/v2025.3.1
-
-source /lustre/projects/m/milias/work/software/myvenv/bin/activate
-
-#export QE="/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/build_intelmpi2025.3.1_libxc_mkl_scalapack"
-#export QE="/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e_cloned/build_intelmpi2025.3.1_libxc_mkl_scalapack_n05p"
-export QE="/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e_cloned/build_intelmpi2026.1_libxc_mkl_scalapack_n05p"
-
 echo -e "\nloaded modules:"
 module list
-echo -e "\nPython ? :\c"; which python; python -V
+
+source /lustre/projects/m/milias/work/software/myvenv/bin/activate
 pip list 
 pip show ase
 
+#IntelMPI2026.1 compilers
+echo -e "\n\n Activating IntelMPI OneAPI 2026.1 :"
+source /lustre/projects/m/milias/work/software/intel/oneapi/setvars.sh
+
+echo -e "\n\n python ? ; python -V :\c"; which python; python -V
+echo -e "\n ifx ? ; ifx -V: \c"; which ifx; ifx -V
+echo -e "\n mpiifx ? ;  mpiifx -V: \c";which mpiifx; mpiifx -V
+echo -e "\n icx ? ; icx -V: \c"; which icx; icx -V
+echo -e "\n icpx ? ; icpx -V: \c"; which icpx; icpx -V
+echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"
+echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
+
+export QE="/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e_cloned/build_intelmpi2026.1_libxc_mkl_scalapack_n05p"
+echo -e "\n\n Checking $QE/bin/pw.x :"
+ls -lt  $QE/bin/pw.x
 ldd  $QE/bin/pw.x
 
 ##--------------------------------------------------------------------------------------------------------------
@@ -128,39 +137,6 @@ srun --label grep Cpus_allowed_list /proc/self/status
 
 ## Check physical vs logical IDs
 #lscpu -p=CPU,Core,Socket
-
-# Clear any previous MPI settings
-unset I_MPI_FABRICS
-unset I_MPI_OFI_PROVIDER
-unset I_MPI_DYNAMIC_CONNECTION
-
-# Try TCP (most compatible)
-export I_MPI_FABRICS=shm:tcp
-export I_MPI_OFI_PROVIDER=tcp
-export I_MPI_DYNAMIC_CONNECTION=1
-export I_MPI_DEBUG=5
-
-# Disable PSM3 completely to avoid conflicts
-export I_MPI_PSM=disable
-export I_MPI_PSM2=disable
-export PSM3_DEVICES=all
-
-echo -e "\nMPI Configuration:"
-echo "I_MPI_FABRICS=$I_MPI_FABRICS"
-echo "I_MPI_OFI_PROVIDER=$I_MPI_OFI_PROVIDER"
-echo "I_MPI_DYNAMIC_CONNECTION=$I_MPI_DYNAMIC_CONNECTION"
-
-# Test MPI
-echo -e "\nTesting MPI communication with TCP..."
-srun -n 2 hostname
-if [ $? -eq 0 ]; then
-    echo "TCP MPI test successful!"
-else
-    echo "TCP failed, trying sockets..."
-    export I_MPI_FABRICS=shm:sockets
-    export I_MPI_OFI_PROVIDER=sockets
-    srun -n 2 hostname
-fi
 
 # try to fix file saving ...
 ulimit -a

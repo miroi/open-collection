@@ -1,38 +1,34 @@
-===============================
- Get the Intel® oneAPI Toolkit 
-===============================
+=======================
+Intel ONEAPI on Govorun
+=======================
 
 Downloading
 ------------
 
-https://www.intel.com/content/www/us/en/developer/tools/oneapi/oneapi-toolkit-download.html?packages=oneapi-toolkit&oneapi-toolkit-os=linux&oneapi-lin=offline
+https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit-download.html?packages=oneapi-toolkit&oneapi-toolkit-os=linux&oneapi-lin=offline
 
-With the 2026.0 Release, the Intel® oneAPI Base Toolkit (Base Kit) and Intel® oneAPI HPC Toolkit have been combined into the Intel® oneAPI Toolkit. 
+https://www.intel.com/content/www/us/en/developer/tools/oneapi/fortran-compiler-download.html?operatingsystem=linux&distribution-linux=offline
 
+HPC toolkit
+~~~~~~~~~~~
 
-milias@hydra.jinr.ru:/lustre/projects/m/milias/work/intel_compilers/.wget https://registrationcenter-download.intel.com/akdlm/IRC_NAS/33cb2a22-ddf1-4aa9-8d68-1f5a118acaf2/intel-oneapi-toolkit-2026.1.0.192_offline.sh
---2026-07-14 20:18:11--  https://registrationcenter-download.intel.com/akdlm/IRC_NAS/33cb2a22-ddf1-4aa9-8d68-1f5a118acaf2/intel-oneapi-toolkit-2026.1.0.192_offline.sh
-Resolving registrationcenter-download.intel.com (registrationcenter-download.intel.com)... 87.245.198.155, 87.245.198.145
-Connecting to registrationcenter-download.intel.com (registrationcenter-download.intel.com)|87.245.198.155|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 2218010281 (2.1G) [application/octet-stream]
-Saving to: ‘intel-oneapi-toolkit-2026.1.0.192_offline.sh’
+https://www.intel.com/content/www/us/en/developer/tools/oneapi/hpc-toolkit-download.html?packages=hpc-toolkit&hpc-toolkit-os=linux&hpc-toolkit-lin=offline
 
-intel-oneapi-toolkit-2026.1.0.192_offline.sh 100%[============================================================================================>]   2.07G  26.3MB/s    in 87s
+install as user
+---------------
+milias@hydra.jinr.ru:/lustre/projects/m/milias/work/intel_compilers/.chmod u+x intel-oneapi-hpc-toolkit-2025.3.1.55_offline.sh
+milias@hydra.jinr.ru:/lustre/projects/m/milias/work/intel_compilers/../intel-oneapi-hpc-toolkit-2025.3.1.55_offline.sh
+[#####################################################################################################################################################################]
+Extract intel-oneapi-hpc-toolkit-2025.3.1.55_offline completed!
+The installer is running in graphical user interface (GUI) mode. If you expected to run the installer in command line interface (CLI) or silent mode, relaunch it with the appropriate parameters: --cli or --silent.
+Remove extracted files: /lustre/projects/m/milias/work/intel_compilers/intel-oneapi-hpc-toolkit-2025.3.1.55_offline...
 
-2026-07-14 20:19:40 (24.3 MB/s) - ‘intel-oneapi-toolkit-2026.1.0.192_offline.sh’ saved [2218010281/2218010281]
+without GUI, silent and with destination directory change:
 
-Install
--------
-milias@hydra.jinr.ru:/lustre/projects/m/milias/work/intel_compilers/.chmod u+x intel-oneapi-toolkit-2026.1.0.192_offline.sh
+sh ./intel-oneapi-hpc-toolkit-2025.3.1.55_offline.sh -s -a -d /path/to/custom/dir
 
-change the installation directory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/lustre/projects/m/milias/work/software/intel/oneapi
-
-
-initialize and check
---------------------
+initialize
+~~~~~~~~~~
 milias@hydra.jinr.ru:/lustre/projects/m/milias/work/intel_compilers/.source /lustre/projects/m/milias/intel/oneapi/setvars.sh
 :: initializing oneAPI environment ...
    -bash: BASH_VERSION = 5.1.8(1)-release

@@ -51,14 +51,21 @@
 ##-----------------------------------------Builds with DFT-D4 patch-------------------------------------------
 #
 
+echo -e "\nRunning on host `hostname` at `date`"
+echo -e "\n The total memory at the main node (in GB)"
+free -t -g
+
+
 #### QE ####
 module purge
 module load  Python/v3.12.13
-module load  intel/v2025.3.1
+#module load  intel/v2025.3.1
+
 source /lustre/projects/m/milias/work/software/myvenv/bin/activate
 
 #export QE="/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e/build_intelmpi2025.3.1_libxc_mkl_scalapack"
-export QE="/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e_cloned/build_intelmpi2025.3.1_libxc_mkl_scalapack_n05p"
+#export QE="/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e_cloned/build_intelmpi2025.3.1_libxc_mkl_scalapack_n05p"
+export QE="/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e_cloned/build_intelmpi2026.1_libxc_mkl_scalapack_n05p"
 
 echo -e "\nloaded modules:"
 module list
@@ -72,11 +79,6 @@ ldd  $QE/bin/pw.x
 ##
 ##
 ##-------------------------------------------Print debug info---------------------------------------------------
-echo -e "\nRunning on host `hostname` at `date`"
-
-echo -e "\n The total memory at the main node (in GB)"
-free -t -g
-
 echo -e "\n srun --mpi=list :"; srun --mpi=list
 
 echo -e "\nJob user is SLURM_JOB_USER= $SLURM_JOB_USER"
@@ -170,7 +172,7 @@ echo -e "\n============================================================"
 echo -e "\n"
 echo -e "\nStarting ASE parallel job on \c";date; echo
 
-python electronic_properties.py
+  python electronic_properties.py
 
 echo -e "\nASE finished on : \c";date
 exit

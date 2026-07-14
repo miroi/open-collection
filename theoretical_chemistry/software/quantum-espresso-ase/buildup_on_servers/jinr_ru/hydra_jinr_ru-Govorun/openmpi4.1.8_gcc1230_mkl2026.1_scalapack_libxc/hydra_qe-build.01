@@ -161,7 +161,7 @@ echo -e "\n\n"
 
 #cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=mpicc -DCMAKE_CXX_COMPILER=mpicxx -DCMAKE_Fortran_COMPILER=mpif90 -DCMAKE_Fortran_FLAGS="-g -traceback" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLIBXC_INCLUDE_DIR=$LIBXC_INC  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=OFF  .. 
 
-cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=mpicc -DCMAKE_CXX_COMPILER=mpicxx -DCMAKE_Fortran_COMPILER=mpif90 -DCMAKE_Fortran_FLAGS="-g -O3" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLIBXC_INCLUDE_DIR=$LIBXC_INC  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=OFF  .. 
+cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=mpicc -DCMAKE_CXX_COMPILER=mpicxx -DCMAKE_Fortran_COMPILER=mpif90 -DCMAKE_Fortran_FLAGS="-g -O3" -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLIBXC_INCLUDE_DIR=$LIBXC_INC  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=OFF -DMPIEXEC_EXECUTABLE=/cvmfs/hlit.jinr.ru/alma9/openmpi/v4.1.8_gcc1230/bin/mpirun .. 
 
 
 echo -e "\n\n Running make -j $SLURM_CPUS_ON_NODE :"
@@ -174,8 +174,8 @@ echo -e "\n\n ldd $QE/$BUILD/bin/pw.x :"
 ldd $QE/$BUILD/bin/pw.x
 
 #PARA_PREFIX="mpirun  --report-bindings --bind-to core:overload-allowed -np 2"
-PARA_PREFIX="mpirun  --report-bindings  --bind-to core:overload-allowed"
-echo -e "\n\n setting PARA_PREFIX=$PARA_PREFIX"
+#PARA_PREFIX="mpirun  --report-bindings  --bind-to core:overload-allowed"
+#echo -e "\n\n setting PARA_PREFIX=$PARA_PREFIX"
 
 echo -e "\n\n running ctest -VV  .... :"
 #ctest -VV  -j $SLURM_CPUS_ON_NODE

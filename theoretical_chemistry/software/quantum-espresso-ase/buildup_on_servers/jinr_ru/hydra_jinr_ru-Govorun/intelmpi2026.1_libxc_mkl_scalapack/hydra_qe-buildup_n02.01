@@ -6,10 +6,8 @@
 ##  partition (queue)
 #SBATCH --account=bltp
 #SBATCH --partition=bltp
-
 #SBATCH --constraint=cascade
 ##SBATCH --constraint=icelake
-
 #SBATCH --qos=medium
 
 ## max. execution time
@@ -18,8 +16,8 @@
 
 ##SBATCH --exclusive
 
-#SBATCH --mem=64GB
-##SBATCH --mem=32GB
+##SBATCH --mem=64GB
+#SBATCH --mem=32GB
 
 ##SBATCH --mem-per-cpu=4GB
 
@@ -42,7 +40,10 @@
 echo -e "\nRunning on host `hostname`"
 echo -e "Date & Time is `date` \n"
 
-echo -e "\nJob user is SLURM_JOB_USER= $SLURM_JOB_USER"
+echo -e "\n\n The total memory at the node (in GB)"
+free -t -g
+
+echo -e "\n\nJob user is SLURM_JOB_USER= $SLURM_JOB_USER"
 echo -e "User job SLURM_JOB_NAME=$SLURM_JOB_NAME has assigned ID SLURM_JOBID=$SLURM_JOBID"
 echo -e "This job was submitted from the computer SLURM_SUBMIT_HOST=$SLURM_SUBMIT_HOST"
 echo -e "and from the home directory SLURM_SUBMIT_DIR:"
@@ -80,26 +81,17 @@ echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
 
 module purge
 #module load GVR/v1.0-1 gcc/v11.2.0 fftw/v3.3.10_gcc1120 LAPACK/v3.9.0 openmpi/v4.1.1_gcc1120
-module load   Python/v3.12.13   intel/v2025.3.1  
+module load   Python/v3.12.13   
 module load  CMake/v3.26.5
-
-#echo -e "\n adding git module from source /cvmfs/nica.jinr.ru/sw/os/login.sh :"
-#source /cvmfs/nica.jinr.ru/sw/os/login.sh
-#module add git
-
-
 echo -e "\n\n loaded modules:"
 module list
 
-echo -e "\nRunning on host `hostname`"
-echo -e "Time is `date` \n"
+#IntelMPI2026.1 compilers
+echo -e "\n\n Activating IntelMPI OneAPI 2026.1 :"
+source /lustre/projects/m/milias/work/software/intel/oneapi/setvars.sh
 
-echo -e "\n The total memory at the node (in GB)"
-free -t -g
 
-echo -e "\n\n My PATH=$PATH\n"
-echo -e "\n My LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
-echo -e "\n python ? ; python -V :\c"; which python; python -V
+echo -e "\n\n python ? ; python -V :\c"; which python; python -V
 echo -e "\n ifx ? ; ifx -V: \c"; which ifx; ifx -V
 echo -e "\n mpiifx ? ;  mpiifx -V: \c";which mpiifx; mpiifx -V
 echo -e "\n icx ? ; icx -V: \c"; which icx; icx -V
@@ -107,7 +99,9 @@ echo -e "\n icpx ? ; icpx -V: \c"; which icpx; icpx -V
 echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"
 echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
 echo -e "\n cmake ? \c"; which cmake; cmake --version
-echo -e "\n git ? \c"; which git; git --version
+
+echo -e "\n\n My PATH=$PATH\n"
+echo -e "\n My LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
 
 # for running jobs from your homedir, use ...
 #cd $SLURM_SUBMIT_DIR
@@ -116,8 +110,7 @@ echo -e "\n git ? \c"; which git; git --version
 QE=/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e_cloned
 
 #BUILD=build_intelmpi2025.3.1_libxc_mkl_scalapack
-#BUILD=build_intelmpi2025.3.1_libxc_mkl_scalapack_n05p
-BUILD=build_intelmpi2025.3.1_libxc_mkl_scalapack_n02p
+BUILD=build_intelmpi2026.1_libxc_mkl_scalapack_n05p
 
 echo -e "\n\n QE=$QE"
 echo -e "ls $QE/"
@@ -184,7 +177,7 @@ echo -e " MPIEXEC_PREFLAGS=$MPIEXEC_PREFLAGS"
 echo -e "  Tests run as : ${MPIEXEC_EXECUTABLE} ${MPIEXEC_NUMPROC_FLAG} <NUM_PROCS> ${MPIEXEC_PREFLAGS_PRINT} <EXECUTABLE>"
 
 echo -e "\n\n running ctest -VV:"
-ctest -VV
+ctest -VV -j2
 
 echo -e "\n\n End of script. Date & Time is `date` \n"
 

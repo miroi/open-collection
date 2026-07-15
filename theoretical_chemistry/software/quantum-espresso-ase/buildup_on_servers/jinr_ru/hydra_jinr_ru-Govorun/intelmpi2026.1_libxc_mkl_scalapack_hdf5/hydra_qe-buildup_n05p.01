@@ -83,13 +83,13 @@ module purge
 #module load GVR/v1.0-1 gcc/v11.2.0 fftw/v3.3.10_gcc1120 LAPACK/v3.9.0 openmpi/v4.1.1_gcc1120
 module load   Python/v3.12.13   
 module load  CMake/v3.26.5
-module load   hdf5/v1.14.6_intel2023
+module load  intel/v2026.1.0
 echo -e "\n\n loaded modules:"
 module list
 
 #IntelMPI2026.1 compilers
-echo -e "\n\n Activating IntelMPI OneAPI 2026.1 :"
-source /lustre/projects/m/milias/work/software/intel/oneapi/setvars.sh
+#echo -e "\n\n Activating IntelMPI OneAPI 2026.1 :"
+#source /lustre/projects/m/milias/work/software/intel/oneapi/setvars.sh
 
 
 echo -e "\n\n python ? ; python -V :\c"; which python; python -V
@@ -162,7 +162,7 @@ LIBXC_INC=$LIBXC_DIR/include
 
 #cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_Fortran_COMPILER=mpiifx -DCMAKE_Fortran_FLAGS="-xHost -g -traceback"  -DCMAKE_C_FLAGS="-xHost"  -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=ON  -DHDF5_ROOT=/lustre/projects/m/milias/work/software/hdf5/hdf5-2.1.1/install_build_intelmpi2026.1  .. 
 
-cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=mpiicx -DCMAKE_CXX_COMPILER=mpiicpx -DCMAKE_Fortran_COMPILER=mpiifx -DCMAKE_Fortran_FLAGS="-xHost -g -traceback"  -DCMAKE_C_FLAGS="-xHost"  -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=ON  -DHDF5_ROOT=/lustre/projects/m/milias/work/software/hdf5/hdf5-2.1.1/install_build_intelmpi2026.1  .. 
+cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=mpiicx -DCMAKE_CXX_COMPILER=mpiicpx -DCMAKE_Fortran_COMPILER=mpiifx -DCMAKE_Fortran_FLAGS="-xHost -g -traceback"  -DCMAKE_C_FLAGS="-xHost"  -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=ON  -DHDF5_ROOT=/lustre/projects/m/milias/work/software/hdf5/hdf5-2.1.1/install_build_intelmpi2026.1  -DHDF5_PREFER_PARALLEL=ON  -DHDF5_IS_PARALLEL=ON .. 
 
 echo -e "\n\n Running make -j $SLURM_CPUS_ON_NODE :"
 make -j $SLURM_CPUS_ON_NODE

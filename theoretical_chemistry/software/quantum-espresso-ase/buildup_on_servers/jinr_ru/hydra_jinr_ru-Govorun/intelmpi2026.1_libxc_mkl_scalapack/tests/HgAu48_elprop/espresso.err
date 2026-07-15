@@ -1,0 +1,47 @@
+srun: defined options
+srun: -------------------- --------------------
+srun: (null)              : n05p032
+srun: distribution        : block:block,nopack
+srun: jobid               : 624949
+srun: job-name            : ElHg
+srun: mem-per-cpu         : 6G
+srun: mpi                 : pmi2
+srun: nodes               : 1
+srun: ntasks              : 64
+srun: ntasks-per-core     : 1
+srun: ntasks-per-node     : 64
+srun: oom-kill-step       : 0
+srun: verbose             : 1
+srun: -------------------- --------------------
+srun: end of defined options
+srun: jobid 624949: nodes(1):`n05p032', cpu counts: 128(x1)
+srun: CpuBindType=cores
+srun: launching StepId=624949.4 on host n05p032, 64 tasks: [0-63]
+srun: Node n05p032, 64 tasks started
+forrtl: Bad address
+forrtl: severe (38): error during write, unit 4, file /lustre/projects/m/milias/work/git-projects/open-collection/theoretical_chemistry/software/quantum-espresso-ase/buildup_on_servers/jinr_ru/hydra_jinr_ru-Govorun/intelmpi2026.1_libxc_mkl_scalapack/tests/HgAu48_elprop/./tmp/El_Hg_NSCF.save/wfc8.dat
+Image              PC                Routine            Line        Source             
+pw.x               0000000001C39AEF  Unknown               Unknown  Unknown
+pw.x               0000000001C37865  Unknown               Unknown  Unknown
+pw.x               0000000000989A95  write_wfc                 186  io_base.f90
+pw.x               0000000000521754  write_collected_w        1057  pw_restart_new.f90
+pw.x               0000000000515C4C  punch                     152  punch.f90
+pw.x               000000000055C54A  run_pwscf                 353  run_pwscf.f90
+pw.x               0000000000409192  pwscf                      83  pwscf.f90
+pw.x               0000000000408F7D  Unknown               Unknown  Unknown
+libc.so.6          000014E67B2295D0  Unknown               Unknown  Unknown
+libc.so.6          000014E67B229680  __libc_start_main     Unknown  Unknown
+pw.x               0000000000408E65  Unknown               Unknown  Unknown
+srun: Received task exit notification for 1 task of StepId=624949.4 (status=0x2600).
+srun: error: n05p032: task 0: Exited with exit code 38
+srun: First task exited. Terminating job in 150s
+srun: First task exited 150s ago
+srun: StepId=624949.4 tasks 1-63: running
+srun: StepId=624949.4 task 0: exited abnormally
+srun: Terminating StepId=624949.4
+srun: Complete JobId=624949 SLUID=s665KXH094JH00 StepId=624949.4 received
+srun: Job step aborted: Waiting up to 122 seconds for job step to finish.
+[2026-07-15T17:41:56.015] error: *** STEP 624949.4 ON n05p032 CANCELLED AT 2026-07-15T17:41:56 DUE to SIGNAL Killed ***
+srun: Complete JobId=624949 SLUID=s665KXH094JH00 StepId=624949.4 received
+srun: Received task exit notification for 63 tasks of StepId=624949.4 (status=0x0009).
+srun: error: n05p032: tasks 1-63: Killed

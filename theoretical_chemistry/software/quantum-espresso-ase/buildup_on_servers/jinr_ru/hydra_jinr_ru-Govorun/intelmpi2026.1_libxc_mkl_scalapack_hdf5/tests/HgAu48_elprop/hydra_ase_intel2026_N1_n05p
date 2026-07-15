@@ -51,7 +51,7 @@
 ##-----------------------------------------Builds with DFT-D4 patch-------------------------------------------
 #
 
-echo -e "\nRunning on host `hostname` at `date`"
+echo -e "\n\nRunning on host `hostname` at `date`"
 echo -e "\n The total memory at the main node (in GB)"
 free -t -g
 
@@ -59,17 +59,14 @@ free -t -g
 #### QE ####
 module purge
 module load  Python/v3.12.13
-#module load  intel/v2025.3.1
-echo -e "\nloaded modules:"
+module load  intel/v2026.1.0
+echo -e "\n\n loaded modules:"
 module list
 
+echo -e "\n\n pip installed packages :"
 source /lustre/projects/m/milias/work/software/myvenv/bin/activate
 pip list 
 pip show ase
-
-#IntelMPI2026.1 compilers
-echo -e "\n\n Activating IntelMPI OneAPI 2026.1 :"
-source /lustre/projects/m/milias/work/software/intel/oneapi/setvars.sh
 
 echo -e "\n\n python ? ; python -V :\c"; which python; python -V
 echo -e "\n ifx ? ; ifx -V: \c"; which ifx; ifx -V
@@ -79,7 +76,8 @@ echo -e "\n icpx ? ; icpx -V: \c"; which icpx; icpx -V
 echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"
 echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
 
-export QE="/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e_cloned/build_intelmpi2026.1_libxc_mkl_scalapack_n05p"
+#export QE="/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e_cloned/build_intelmpi2026.1_libxc_mkl_scalapack_n05p"
+export QE="/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e_cloned/build_intelmpi2026.1_libxc_mkl_scalapack_hdf5_n05p"
 echo -e "\n\n Checking $QE/bin/pw.x :"
 ls -lt  $QE/bin/pw.x
 ldd  $QE/bin/pw.x
@@ -114,8 +112,8 @@ echo "BTW, this node has total $NPROCS CPUs available for an EXCLUSIVE job."
 echo "Based on reserved memory, this node got $SLURM_CPUS_ON_NODE CPUs allocated for SLURM calculations."
 echo "This job wants in total SLURM_NTASKS=$SLURM_NTASKS threads . "
 
-echo -e "cpuinfo :"; cpuinfo
-echo -e "impi_info :"; impi_info
+echo -e "\n cpuinfo :"; cpuinfo
+echo -e "\n impi_info :"; impi_info
 
 # for running jobs from your homedir, use ...
 cd $SLURM_SUBMIT_DIR
@@ -150,6 +148,6 @@ echo -e "\nStarting ASE parallel job on \c";date; echo
 
   python electronic_properties.py
 
-echo -e "\nASE finished on : \c";date
+echo -e "\n Job finished on : \c";date
 exit
 ##--------------------------------------------------------------------------------------------------------------

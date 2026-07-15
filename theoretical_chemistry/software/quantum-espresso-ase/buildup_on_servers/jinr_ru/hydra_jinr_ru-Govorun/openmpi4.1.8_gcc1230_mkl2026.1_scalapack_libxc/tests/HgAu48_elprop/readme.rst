@@ -11,3 +11,8 @@ Total:           191          11         172
 
 srun: error: n02p046: task 12: Out Of Memory
 srun: First task exited. Terminating job in 150s
+
+
+next error: Error in routine  cdiaghg (1887):
+      problems computing cholesky 
+try: mixing_beta = 0.1

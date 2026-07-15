@@ -116,7 +116,8 @@ echo -e "ls $HDF5/"
 ls $HDF5/
 
 cd $HDF5
-echo -e "\n I am in QE=\c";pwd
+echo -e "\n I am in HDF5=$HDF5";
+echo -e "\n         pwd=  ";pwd
 
 if [ -d "$BUILD" ]; then
   echo -e "\n The directory $HDF5/$BUILD does exist."
@@ -158,14 +159,18 @@ cmake .. \
 echo -e "\n\n Running make -j $SLURM_CPUS_ON_NODE :"
 make -j $SLURM_CPUS_ON_NODE
 
-#echo -e "\n\n content of $QE/$BUILD/bin  :"
-#ls -lt $QE/$BUILD/bin
+echo -e "\n\n content of $HDF5/$BUILD  :"
+ls -lt $HDF5/$BUILD
+
+echo -e "\n\n Running make install"
+make -j $SLURM_CPUS_ON_NODE install
 
 #echo -e "\n\n ldd $QE/$BUILD/bin/pw.x :"
 #ldd $QE/$BUILD/bin/pw.x
 
-echo -e "\n\n running ctest -VV:"
-ctest -VV -j2
+echo -e "\n\n running ctest:"
+#ctest -VV -j2
+ctest
 
 echo -e "\n\n End of script. Date & Time is `date` \n"
 

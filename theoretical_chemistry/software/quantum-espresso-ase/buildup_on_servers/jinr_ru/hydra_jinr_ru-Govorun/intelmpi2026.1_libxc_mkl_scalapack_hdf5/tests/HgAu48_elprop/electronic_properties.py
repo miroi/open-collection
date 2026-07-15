@@ -289,7 +289,8 @@ source_dir = os.path.join(script_dir, 'tmp', 'El_Hg.save')
 dest_dir = os.path.join(script_dir, 'tmp', 'El_Hg_NSCF.save')
 
 # Files to check and copy
-files_to_copy = ['charge-density.dat', 'data-file-schema.xml']
+#files_to_copy = ['charge-density.dat', 'data-file-schema.xml']
+files_to_copy = ['charge-density.hdf5', 'data-file-schema.xml']
 
 # Check if source directory exists
 if not os.path.exists(source_dir):

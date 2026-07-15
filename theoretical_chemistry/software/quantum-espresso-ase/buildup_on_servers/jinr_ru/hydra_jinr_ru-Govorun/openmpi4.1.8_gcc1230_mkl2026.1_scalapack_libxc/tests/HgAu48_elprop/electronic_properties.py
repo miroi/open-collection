@@ -47,7 +47,7 @@ base_input_data = {
         'lspinorb': True
     },
     'electrons': {
-        'mixing_beta': 0.2,
+        'mixing_beta': 0.1,
         'electron_maxstep': 100,
         'diagonalization': 'david',
         'diago_full_acc': True,
@@ -77,7 +77,7 @@ except Exception as e:
 # 3. Calculator configuration
 # ==============================================
 # Main QE calculation with full parallelization
-pw_command = f'srun -v --mpi=pmix   --mpi=pmix    {os.environ["QE"]}/bin/pw.x '
+pw_command = f'srun -v --mpi=pmix    {os.environ["QE"]}/bin/pw.x '
 #pw_command = f'mpirun -np 46 {os.environ["QE"]}/bin/pw.x '
 
 # Serial post-processing commands for fast execution

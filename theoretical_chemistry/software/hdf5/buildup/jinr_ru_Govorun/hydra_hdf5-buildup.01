@@ -108,8 +108,8 @@ echo -e "\n My LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
 HDF5=/lustre/projects/m/milias/work/software/hdf5/hdf5-2.1.1
 BUILD=build_intelmpi2026.1
 
-HDF5_INSTALL=$HDF5/install_$BUILD
-
+INSTALL_DIR=install_$BUILD
+HDF5_INSTALL=$HDF5/$INSTALL_DIR
 
 echo -e "\n\n HDF5=$HDF5"
 echo -e "ls $HDF5/"
@@ -118,6 +118,13 @@ ls $HDF5/
 cd $HDF5
 echo -e "\n I am in HDF5=$HDF5";
 echo -e "\n         pwd=  ";pwd
+
+if [ -d "$INSTALL_DIR" ]; then
+  echo -e "\n The old directory $INSTALL_DIR exists."
+  echo -e "Its old content :"; ls -lt $INSTALL_DIR/.
+  echo -e "Deleting it."
+  /bin/rm -rf $INSTALL_DIR
+fi
 
 if [ -d "$BUILD" ]; then
   echo -e "\n The directory $HDF5/$BUILD does exist."
@@ -151,6 +158,7 @@ cmake .. \
   -DCMAKE_Fortran_COMPILER=mpiifx \
   -DHDF5_ENABLE_PARALLEL=ON \
   -DHDF5_BUILD_FORTRAN=ON \
+  -DHDF5_BUILD_HL_LIB=ON \
   -DCMAKE_INSTALL_PREFIX=$HDF5_INSTALL \
   -DBUILD_SHARED_LIBS=ON \
   -DCMAKE_BUILD_TYPE=Release

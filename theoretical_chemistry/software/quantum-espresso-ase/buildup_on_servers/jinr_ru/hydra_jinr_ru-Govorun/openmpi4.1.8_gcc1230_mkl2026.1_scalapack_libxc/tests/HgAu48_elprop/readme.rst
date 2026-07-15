@@ -8,3 +8,6 @@ n02p:
 Mem:             187          11         168           5          14         175
 Swap:              3           0           3
 Total:           191          11         172
+
+srun: error: n02p046: task 12: Out Of Memory
+srun: First task exited. Terminating job in 150s

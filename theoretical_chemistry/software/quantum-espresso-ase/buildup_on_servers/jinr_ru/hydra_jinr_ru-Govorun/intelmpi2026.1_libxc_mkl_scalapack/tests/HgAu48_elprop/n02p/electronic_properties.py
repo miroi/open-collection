@@ -77,7 +77,8 @@ except Exception as e:
 # 3. Calculator configuration
 # ==============================================
 # Main QE calculation with full parallelization
-pw_command = f'srun -v   --mpi=pmi2    {os.environ["QE"]}/bin/pw.x '
+#pw_command = f'srun -v   --mpi=pmi2    {os.environ["QE"]}/bin/pw.x '
+pw_command = f'srun -v   --mpi=pmix_v6    {os.environ["QE"]}/bin/pw.x '
 
 # Serial post-processing commands for fast execution
 pp_command = f'{os.environ["QE"]}/bin/pp.x < pp.in > pp.out 2>&1'

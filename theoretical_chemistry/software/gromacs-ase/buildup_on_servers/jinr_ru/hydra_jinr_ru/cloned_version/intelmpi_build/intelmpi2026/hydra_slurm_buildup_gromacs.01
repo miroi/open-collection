@@ -70,9 +70,10 @@ module list
   echo -e "\n GROMACS REGRESSION TESTS=$REGTESTS"
 
   #echo -e "ifort ?"; which ifort; ifort --version
-  echo -e "clang ?"; which clang; clang --version
-  echo -e "clang++ ?"; which clang++ ; clang++ --version
-  echo -e "icc ?"; which icc; icc --version
+ # echo -e "clang ?"; which clang; clang --version
+ # echo -e "clang++ ?"; which clang++ ; clang++ --version
+  echo -e "icx ?"; which icx; icx --version
+  echo -e "mpiicpx ?"; which mpiicpx; mpiicpx  --version
  # echo -e "mpiifort ?"; which mpiifort; mpiifort -V
   echo -e "mpirun ?";  which mpirun; mpirun --version
   echo -e "\n ===  We have the MKL library, MKLROOT=${MKLROOT}"
@@ -95,8 +96,8 @@ module list
 
 # The Intel classic compiler (icc/icpc) is no longer supported in GROMACS. Use Intel’s newer clang-based compiler from oneAPI, or gcc.
   echo -e "\n\n running cmake configuration : "
-  #cmake .. -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=mpiicpc  -DGMX_MPI=on  -DGMX_FFT_LIBRARY=mkl  -DGMX_OPENMP=OFF
-  cmake .. -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++  -DGMX_MPI=on  -DGMX_FFT_LIBRARY=mkl  -DGMX_OPENMP=OFF -DREGRESSIONTEST_DOWNLOAD=OFF -DREGRESSIONTEST_PATH=$REGTESTS
+ # cmake .. -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++  -DGMX_MPI=on  -DGMX_FFT_LIBRARY=mkl  -DGMX_OPENMP=OFF -DREGRESSIONTEST_DOWNLOAD=OFF -DREGRESSIONTEST_PATH=$REGTESTS
+  cmake .. -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=mpiicpx  -DGMX_MPI=on  -DGMX_FFT_LIBRARY=mkl  -DGMX_OPENMP=OFF -DREGRESSIONTEST_DOWNLOAD=OFF -DREGRESSIONTEST_PATH=$REGTESTS
 
   echo -e "\n\n running make -j $SLURM_CPUS_ON_NODE : "
   make -j $SLURM_CPUS_ON_NODE

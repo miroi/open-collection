@@ -29,7 +29,7 @@ base_input_data = {
         'verbosity': 'low',
         'tstress': True,
         'tprnfor': True,
-        'disk_io': 'high'
+        'disk_io': 'low'
     },
     'system': {
         'input_dft': 'XC-000I-000I-116L-133L-000I-000I',

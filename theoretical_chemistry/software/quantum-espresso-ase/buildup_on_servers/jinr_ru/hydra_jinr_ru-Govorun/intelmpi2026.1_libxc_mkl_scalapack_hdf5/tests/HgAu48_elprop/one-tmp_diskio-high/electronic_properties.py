@@ -29,7 +29,7 @@ base_input_data = {
         'verbosity': 'low',
         'tstress': True,
         'tprnfor': True,
-        'disk_io': 'low'
+        'disk_io': 'high'
     },
     'system': {
         'input_dft': 'XC-000I-000I-116L-133L-000I-000I',
@@ -269,7 +269,6 @@ for fname in os.listdir('.'):
 
 print("\n1. Moved all SCF-related files to scf_files directory", flush=True)
 
-
 ## Restart NSCF from scratch ##
 
 # 6.2 Running NSCF calculation (No forces, stress, DFT-D4)
@@ -277,61 +276,6 @@ nscf_input_data = base_input_data.copy()
 nscf_input_data['control']['calculation'] = 'nscf'
 nscf_input_data['control'].pop('tstress', None)
 nscf_input_data['control'].pop('tprnfor', None)
-
-
-#  but new prefix with starting files charge-density.dat, data-file-schema.xml
-nscf_input_data['control']['prefix'] = 'El_Hg_NSCF'
-
-# copy selected files from tmp/El_Hg.save to tmp/El_Hg_NSCF.save/ , create directory first
-# Define paths
-script_dir = os.getcwd()  # Current working directory
-source_dir = os.path.join(script_dir, 'tmp', 'El_Hg.save')
-dest_dir = os.path.join(script_dir, 'tmp', 'El_Hg_NSCF.save')
-
-# Files to check and copy
-#files_to_copy = ['charge-density.dat', 'data-file-schema.xml']
-files_to_copy = ['charge-density.hdf5', 'data-file-schema.xml']
-
-# Check if source directory exists
-if not os.path.exists(source_dir):
-    print(f"Error: Source directory '{source_dir}' does not exist.")
-    sys.exit(1)
-
-# Check if source directory is a directory
-if not os.path.isdir(source_dir):
-    print(f"Error: '{source_dir}' is not a directory.")
-    sys.exit(1)
-
-# Check if all required files exist in source directory
-missing_files = []
-for filename in files_to_copy:
-    file_path = os.path.join(source_dir, filename)
-    if not os.path.isfile(file_path):
-        missing_files.append(filename)
-
-if missing_files:
-    print(f"Error: Missing files in '{source_dir}': {', '.join(missing_files)}")
-    sys.exit(1)
-
-# Create destination directory
-try:
-    os.makedirs(dest_dir, exist_ok=True)
-    print(f"Created directory: '{dest_dir}'")
-except Exception as e:
-    print(f"Error creating destination directory: {e}")
-    sys.exit(1)
-
-# Copy files
-success = True
-for filename in files_to_copy:
-    source_file = os.path.join(source_dir, filename)
-    dest_file = os.path.join(dest_dir, filename)
-    
-    try:
-        shutil.copy2(source_file, dest_file)  # copy2 preserves metadata
-        print(f"Copied: '{filename}'")
-    except Exception as e:
-        print(f"Error copying '{filename}': {e}")
 
 ## define NSCF run parameters
 nscf_calc = Espresso(

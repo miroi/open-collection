@@ -5,7 +5,7 @@ from ase.optimize import BFGS
 
 # 1. Set the environment variable for the MOPAC executable path
 #os.environ['ASE_MOPAC_COMMAND'] = 'path/to/mopac'
-os.environ['ASE_MOPAC_COMMAND'] = '/home/milias/work/software/mopac/mopac-23.2.3-linux/bin/mopac'
+#os.environ['ASE_MOPAC_COMMAND'] = '/home/milias/work/software/mopac/mopac-23.2.3-linux/bin/mopac'
 
 # 2. Define the molecule (Water)
 molecule = Atoms('H2O',
@@ -14,7 +14,7 @@ molecule = Atoms('H2O',
                             [0.000, -0.757,  0.586]])
 
 # 3. Attach the MOPAC calculator
-molecule.calc = MOPAC(label='h2o_opt', method='PM7', task='1SCF')
+molecule.calc = MOPAC(label='h2o_opt', method='PM7', task='1SCF GRADIENTS')
 
 # 4. Optimize the geometry
 opt = BFGS(molecule, trajectory='opt.traj')

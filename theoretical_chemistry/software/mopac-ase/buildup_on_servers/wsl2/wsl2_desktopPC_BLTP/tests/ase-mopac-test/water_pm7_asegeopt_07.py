@@ -15,7 +15,7 @@ system.calc = MOPAC(method='PM7', task='1SCF GRADIENTS')
 
 # 4. Run optimization and save step information silently to optimization.log
 opt = BFGS(system, trajectory='opt.traj', logfile='optimization.log')
-opt.run(fmax=0.05)
+opt.run(fmax=0.01)
 
 # 5. Extract structural parameters
 r_oh1 = system.get_distance(0, 1)

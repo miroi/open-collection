@@ -4,7 +4,8 @@ from ase.calculators.mopac import MOPAC
 from ase.optimize import BFGS
 
 # 1. Set the environment variable for the MOPAC executable path
-os.environ['ASE_MOPAC_COMMAND'] = 'path/to/mopac'
+#os.environ['ASE_MOPAC_COMMAND'] = 'path/to/mopac'
+os.environ['ASE_MOPAC_COMMAND'] = '/home/milias/work/software/mopac/mopac-23.2.3-linux/bin/mopac'
 
 # 2. Define the molecule (Water)
 molecule = Atoms('H2O',

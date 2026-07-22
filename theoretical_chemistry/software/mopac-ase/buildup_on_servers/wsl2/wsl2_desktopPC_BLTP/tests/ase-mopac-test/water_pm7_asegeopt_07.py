@@ -1,28 +1,48 @@
 import os
+import sys
 from ase.build import molecule
 from ase.calculators.mopac import MOPAC
 from ase.optimize import BFGS
 
-# 1. Hardcode MOPAC path & pipe an EOF string to auto-respond to interactive prompts
+# 1. Hardcode your clean MOPAC path 
 mopac_exec = '/usr/bin/mopac'
+# We append echo to handle any lingering internal interactive requirements
 os.environ['ASE_MOPAC_COMMAND'] = f'echo "" | {mopac_exec}'
 
 # 2. Generate the initial water molecule
 system = molecule('H2O')
 
-# 3. Attach MOPAC calculator
+# 3. Attach MOPAC calculator 
 system.calc = MOPAC(method='PM7', task='1SCF GRADIENTS')
 
-# 4. Run optimization and save step information silently to optimization.log
+# 4. Initialize the optimizer
 opt = BFGS(system, trajectory='opt.traj', logfile='optimization.log')
-opt.run(fmax=0.01)
 
-# 5. Extract structural parameters
+# 5. Low-level descriptor manipulation to force 100% terminal silence
+# This physically detaches the script from the terminal screen during the run
+null_fds = [os.open(os.devnull, os.O_RDWR) for _ in range(2)]
+save_fds = [os.dup(1), os.dup(2)]
+
+try:
+    # Redirect stdout (1) and stderr (2) at the operating system file descriptor level
+    os.dup2(null_fds[0], 1)
+    os.dup2(null_fds[1], 2)
+    
+    # Run the optimization completely headlessly
+    opt.run(fmax=0.01)
+finally:
+    # Restore original terminal streams so python can print the final summary block
+    os.dup2(save_fds[0], 1)
+    os.dup2(save_fds[1], 2)
+    for fd in null_fds + save_fds:
+        os.close(fd)
+
+# 6. Extract finalized structural parameters
 r_oh1 = system.get_distance(0, 1)
 r_oh2 = system.get_distance(0, 2)
 angle_hoh = system.get_angle(1, 0, 2)
 
-# 6. Parse the MOPAC output file for version, heat of formation, and partial charges
+# 7. Parse the MOPAC output file safely
 mopac_version = "Unknown Version"
 heat_of_formation = "Unknown"
 charges = []
@@ -33,20 +53,17 @@ if os.path.exists(out_filename):
         lines = f.readlines()
         
     for idx, line in enumerate(lines):
-        # Extract version
-        if "Version" in line or "MOPAC" in line and any(yr in line for yr in ["2012", "2016", "2022", "v"]):
-            if mopac_version == "Unknown Version":
+        if "Version" in line or "MOPAC" in line:
+            if "MOPAC v" in line or "MOPAC2" in line:
                 mopac_version = line.strip()
         
-        # Extract Heat of Formation
         if "FINAL HEAT OF FORMATION" in line:
-            # Splits row to capture the numeric value right after the '=' sign
-            heat_of_formation = line.split('=')[1].strip().split()[0] + " kcal/mol"
+            parts = line.split('=')
+            if len(parts) > 1:
+                heat_of_formation = parts[1].split()[0] + " kcal/mol"
             
-        # Extract Mulliken/ESP Partial Charges
         if "NET ATOMIC CHARGES" in line:
-            charges = [] # Clear any previous optimization step entries
-            # Skip the table header rows to start parsing structural values
+            charges = []
             for charge_line in lines[idx + 3 : idx + 3 + len(system)]:
                 parts = charge_line.split()
                 if len(parts) >= 3:
@@ -55,8 +72,8 @@ if os.path.exists(out_filename):
                     partial_charge = parts[2]
                     charges.append((atom_index, atom_symbol, partial_charge))
 
-# 7. Print clean terminal results and parsed quantum data
-print(f"--- Computational Environment ---")
+# 8. Print clean terminal results and parsed quantum data
+print("--- Computational Environment ---")
 print(f"MOPAC Executable : {mopac_exec}")
 print(f"MOPAC Version    : {mopac_version}")
 

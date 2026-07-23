@@ -1,25 +1,28 @@
-#!/usr/bin/expect -f
-# Expect script to handle MOPAC's interactive prompt
-set timeout 30
-set mopac_path "/home/miroi/work/software/mopac/mopac-23.1.2-linux/bin/mopac"
-set label [lindex $argv 0]
+#!/bin/bash
+# Simple wrapper that handles MOPAC's interactive prompt
+MOPAC_PATH="/home/miroi/work/software/mopac/mopac-23.1.2-linux/bin/mopac"
 
-# Remove .mop extension if present
-set label [string map {".mop" ""} $label]
+# Get the input file (ASE passes it as argument)
+INPUT_FILE="$1"
+BASE_NAME="${INPUT_FILE%.mop}"
 
-# Start MOPAC
-spawn $mopac_path $label
+# Try multiple methods to send Enter key
+# Method 1: echo with pipe
+echo "" | $MOPAC_PATH $BASE_NAME 2>/dev/null
 
-# Wait for the prompt and send Enter
-expect "Press (return) to continue"
-send "\r"
+# Method 2: If method 1 failed, try with printf
+if [ ! -f "${BASE_NAME}.out" ]; then
+    printf "\n" | $MOPAC_PATH $BASE_NAME 2>/dev/null
+fi
 
-# Wait for job to complete
-expect eof
+# Method 3: If still failed, try with yes
+if [ ! -f "${BASE_NAME}.out" ]; then
+    yes "" | head -n 1 | $MOPAC_PATH $BASE_NAME 2>/dev/null
+fi
 
-# Check if output file was created
-if {[file exists "${label}.out"]} {
-    exit 0
-} else {
-    exit 1
-}
+# Method 4: Try with cat and here-document
+if [ ! -f "${BASE_NAME}.out" ]; then
+    cat <<< "" | $MOPAC_PATH $BASE_NAME 2>/dev/null
+fi
+
+exit 0

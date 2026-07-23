@@ -3,6 +3,8 @@ import sys
 from ase.build import molecule
 from ase.calculators.mopac import MOPAC
 from ase.optimize import BFGS
+from ase.io import write
+from ase.vibrations import Vibrations
 
 # 1. Set the environment variable for the MOPAC executable path
 #os.environ['ASE_MOPAC_COMMAND'] = 'path/to/mopac'

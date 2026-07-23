@@ -4,41 +4,34 @@ from ase.build import molecule
 from ase.calculators.mopac import MOPAC
 from ase.optimize import BFGS
 
-# 1. Hardcode your clean MOPAC path 
-#mopac_exec = '/usr/bin/mopac'
-mopac_exec = '/home/miroi/work/software/mopac/mopac-23.1.2-linux/bin/mopac'
-# We append echo to handle any lingering internal interactive requirements
-os.environ['ASE_MOPAC_COMMAND'] = f'echo "" | {mopac_exec}'
+# 1. Set the environment variable for the MOPAC executable path
+#os.environ['ASE_MOPAC_COMMAND'] = 'path/to/mopac'
+#os.environ['ASE_MOPAC_COMMAND'] = '/home/milias/work/software/mopac/mopac-23.2.3-linux/bin/mopac'
+#os.environ['ASE_MOPAC_COMMAND'] = '/usr/bin/mopac'
+#os.environ['ASE_MOPAC_COMMAND'] = '/home/miroi/work/software/mopac/mopac-23.1.2-linux/bin/mopac'
+mopac_exec='/home/miroi/work/software/mopac/mopac-23.1.2-linux/bin/mopac'
+os.environ['ASE_MOPAC_COMMAND'] = '{mopac_exec} PREFIX.mop 2> /dev/null'
 
 # 2. Generate the initial water molecule
 system = molecule('H2O')
+r_oh1 = system.get_distance(0, 1)
+r_oh2 = system.get_distance(0, 2)
+angle_hoh = system.get_angle(1, 0, 2)
+print(f"\n--- ASE prepared H2O molecule geometry  ---")
+print(f"O-H1 Bond Length : {r_oh1:.3f} Å")
+print(f"O-H2 Bond Length : {r_oh2:.3f} Å")
+print(f"H-O-H Bond Angle : {angle_hoh:.1f}°")
 
-# 3. Attach MOPAC calculator 
+# 3. Suppress MOPAC's stdout by redirecting it to devnull during calculation
+# Note: MOPAC prints directly to stdout bypasses ASE's logfile controls
 system.calc = MOPAC(method='PM7', task='1SCF GRADIENTS')
 
-# 4. Initialize the optimizer
+# 4. Run optimization with a clean logfile and restore standard output
+# Setting logfile='optimization.log' redirects the BFGS step information
 opt = BFGS(system, trajectory='opt.traj', logfile='optimization.log')
+opt.run(fmax=0.01)
 
-# 5. Low-level descriptor manipulation to force 100% terminal silence
-# This physically detaches the script from the terminal screen during the run
-null_fds = [os.open(os.devnull, os.O_RDWR) for _ in range(2)]
-save_fds = [os.dup(1), os.dup(2)]
-
-try:
-    # Redirect stdout (1) and stderr (2) at the operating system file descriptor level
-    os.dup2(null_fds[0], 1)
-    os.dup2(null_fds[1], 2)
-    
-    # Run the optimization completely headlessly
-    opt.run(fmax=0.01)
-finally:
-    # Restore original terminal streams so python can print the final summary block
-    os.dup2(save_fds[0], 1)
-    os.dup2(save_fds[1], 2)
-    for fd in null_fds + save_fds:
-        os.close(fd)
-
-# 6. Extract finalized structural parameters
+# 5. Extract finalized structural parameters
 r_oh1 = system.get_distance(0, 1)
 r_oh2 = system.get_distance(0, 2)
 angle_hoh = system.get_angle(1, 0, 2)
@@ -52,17 +45,17 @@ out_filename = 'mopac.out'
 if os.path.exists(out_filename):
     with open(out_filename, 'r') as f:
         lines = f.readlines()
-        
+
     for idx, line in enumerate(lines):
         if "Version" in line or "MOPAC" in line:
             if "MOPAC v" in line or "MOPAC2" in line:
                 mopac_version = line.strip()
-        
+
         if "FINAL HEAT OF FORMATION" in line:
             parts = line.split('=')
             if len(parts) > 1:
                 heat_of_formation = parts[1].split()[0] + " kcal/mol"
-            
+
         if "NET ATOMIC CHARGES" in line:
             charges = []
             for charge_line in lines[idx + 3 : idx + 3 + len(system)]:
@@ -85,6 +78,8 @@ print(f"\n--- Net Atomic Charges ---")
 for idx, sym, chg in charges:
     print(f"Atom {idx:>2} ({sym:<2}) : {chg:>8} e")
 
+
+# 6. Print the structural results
 print(f"\n--- Optimized Geometry Results ---")
 print(f"O-H1 Bond Length : {r_oh1:.3f} Å")
 print(f"O-H2 Bond Length : {r_oh2:.3f} Å")

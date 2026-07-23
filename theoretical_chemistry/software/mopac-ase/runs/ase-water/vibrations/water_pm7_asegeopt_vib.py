@@ -12,7 +12,8 @@ from ase.vibrations import Vibrations
 #os.environ['ASE_MOPAC_COMMAND'] = '/usr/bin/mopac'
 #os.environ['ASE_MOPAC_COMMAND'] = '/home/miroi/work/software/mopac/mopac-23.1.2-linux/bin/mopac'
 mopac_exec='/home/miroi/work/software/mopac/mopac-23.1.2-linux/bin/mopac'
-os.environ['ASE_MOPAC_COMMAND'] = '/home/miroi/work/software/mopac/mopac-23.1.2-linux/bin/mopac  PREFIX.mop'
+#os.environ['ASE_MOPAC_COMMAND'] = '/home/miroi/work/software/mopac/mopac-23.1.2-linux/bin/mopac  PREFIX.mop '
+os.environ['ASE_MOPAC_COMMAND'] = '/home/miroi/work/software/mopac/mopac-23.1.2-linux/bin/mopac  PREFIX.mop  > /dev/null 2>&1 '
 
 # 2. Generate the initial water molecule
 system = molecule('H2O')

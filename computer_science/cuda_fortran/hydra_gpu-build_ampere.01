@@ -7,7 +7,8 @@
 #SBATCH -p ampere
 #SBATCH -w ampere01
 
-##SBATCH --qos=dirac
+#SBATCH --account=bltp
+#SBATCH --qos=medium
 
 ## max. execution time
 ##SBATCH -t 3-00:00:00
@@ -97,8 +98,8 @@ module load Python/v3.12.13    CMake/v3.26.5
 #module load git
 
 # NVHPC with own OpenMPI 
-module load cuda/v12.8
-
+module load cuda/v13.0
+module load 26.8-27.8.2026
 
 echo -e "\n\n All loaded modules:"
 module list
@@ -139,7 +140,8 @@ echo -e "\n pgfortran ? ; \c"; which pgfortran; pgfortran --version
 CFB=/lustre/projects/m/milias/work/git-projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book
 
 randstr=`openssl rand -hex  6`
-CFB_TMP=$HOME/scratch/CUDAFortran.$randstr
+#CFB_TMP=$HOME/scratch/CUDAFortran.$randstr
+CFB_TMP=$PWD/CUDAFortran.$randstr
 echo -e "\n\n  Scratch directory, $CFB_TMP"; mkdir $CFB_TMP
 if [ -d "$CFB_TMP" ]; then
   echo -e "\n The directory $CFB_TMP does exist."

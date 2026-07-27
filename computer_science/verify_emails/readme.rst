@@ -6,9 +6,8 @@ GoogleAI Python script for verifycation of vcf file emails.
 
 pip install email-validator dnspython
 
-(venv) milias@DESKTOP-7OTLCGO:~/work/projects/open-collection/computer_science/verify_emails/.python verify_emails.py emails.vcf
-Found 1525 unique email addresses to verify via DNS lookups.
+example of usage:
+python verify_emails.py emails.vcf --workers 40 --txt-report audit.txt --clean-vcf filtered.vcf
 
-Email Address                            | Status     | Verification Details
-------------------------------------------------------------------------------------------
+
 

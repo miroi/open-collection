@@ -40,8 +40,10 @@
 
 echo -e "\nRunning on host `hostname`"
 echo -e "Time is `date` \n"
+echo -e "\n The total memory at the node (in GB)"
+free -t -g
 
-echo -e "\nJob user is SLURM_JOB_USER= $SLURM_JOB_USER"
+echo -e "\n\nJob user is SLURM_JOB_USER= $SLURM_JOB_USER"
 echo -e "User job SLURM_JOB_NAME=$SLURM_JOB_NAME has assigned ID SLURM_JOBID=$SLURM_JOBID"
 echo -e "This job was submitted from the computer SLURM_SUBMIT_HOST=$SLURM_SUBMIT_HOST"
 echo -e "and from the home directory SLURM_SUBMIT_DIR:"
@@ -55,7 +57,6 @@ echo -e "Number of allocated CPUs on each single node, SLURM_CPUS_ON_NODE=$SLURM
 echo -e "Number of all reserved threads over ALL nodes, SLURM_NTASKS=$SLURM_NTASKS ."
 echo -e "Job has reserved memory per node, SLURM_MEM_PER_NODE=$SLURM_MEM_PER_NODE MB of memory"
 
-
 # ... does not work on GPU
 #MACHINEFILE="nodes.$SLURM_JOB_PARTITION.$SLURM_JOB_ID"
 # Generate Machinefile for mpi such that hosts are in the same
@@ -64,7 +65,7 @@ echo -e "Job has reserved memory per node, SLURM_MEM_PER_NODE=$SLURM_MEM_PER_NOD
 #echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; echo "containing:"; cat $MACHINEFILE
 
 # CPU model, total numer of CPUs, number of allocated CPUs
-echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
+echo -e "\n\nThe node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
 NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
 echo "BTW, this node has total $NPROCS CPUs available for an EXCLUSIVE job."
 echo "Based on reserved memory, this node got $SLURM_CPUS_ON_NODE CPUs allocated for SLURM calculations."
@@ -84,29 +85,13 @@ echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
 
 
 module purge
-#module load GVR/v1.0-1 gcc/v11.2.0 fftw/v3.3.10_gcc1120 LAPACK/v3.9.0 openmpi/v4.1.1_gcc1120
-#module load GVR/v1.0-1 intel/v2021.1 Python/v3.10.13 CMake/v3.29.2
-#module load GVR/v1.0-1 Python/v3.10.13 CMake/v3.29.2 
-#module load LAPACK/v3.12.0_gcc1230
-#module load fftw/v3.3.10_gcc1120
-#module load fftw/v3.3.10_openmpi503
-#module load git
-
+module load Python/v3.12.13    CMake/v3.26.5
 # NVHPC with own OpenMPI 
 module load cuda/v13.0
-
 
 echo -e "\n\n All loaded modules:"
 module list
 
-echo -e "\nRunning on host `hostname`"
-echo -e "Time is `date` \n"
-
-echo -e "\n The total memory at the node (in GB)"
-free -t -g
-echo -e "\n"
-
-echo -e "\n\n python ? :\c"; which python;  python -V
 
 #export PATH=/cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/25.11/compilers/bin:$PATH
 #export LD_LIBRARY_PATH=/cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/25.11/compilers/lib:$LD_LIBRARY_PATH
@@ -120,6 +105,7 @@ echo -e "\n My extended LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
 #echo -e "\n cmake ? \c"; which cmake; cmake --version
 #echo -e "\n git ? \c"; which git; git --version
 
+echo -e "\n\n python ? :\c"; which python;  python -V
 echo -e "\n nvidia-smi ? \c"; which nvidia-smi; nvidia-smi
 
 echo -e "\n\n nvcc ? ; \c"; which nvcc; nvcc --version

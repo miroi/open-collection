@@ -99,7 +99,7 @@ module load Python/v3.12.13    CMake/v3.26.5
 
 # NVHPC with own OpenMPI 
 module load cuda/v13.0
-module load nvphc/v25.11-ompi 
+#module load nvphc/v25.11-ompi 
 
 echo -e "\n\n All loaded modules:"
 module list
@@ -113,8 +113,8 @@ echo -e "\n"
 
 echo -e "\n\n python ? :\c"; which python;  python -V
 
-export PATH=/cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/25.11/compilers/bin:$PATH
-export LD_LIBRARY_PATH=/cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/25.11/compilers/lib:$LD_LIBRARY_PATH
+#export PATH=/cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/25.11/compilers/bin:$PATH
+#export LD_LIBRARY_PATH=/cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/25.11/compilers/lib:$LD_LIBRARY_PATH
 
 echo -e "\n\n My extended PATH=$PATH\n"
 echo -e "\n My extended LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
@@ -176,8 +176,8 @@ export FC=nvfortran
 #echo -e "\n First, do the cleaning..."
 #make clean
 
-echo -e "\n Own compilation in clean directory...make all :"
-#make  VERBOSE=2  all 
-make FCFLAGS="-O2 -c++libs"  VERBOSE=2  all 
+echo -e "\n\n Own compilation in freshly created directory...make all :"
+make  VERBOSE=2  all 
+#make FCFLAGS="-O2 -c++libs"  VERBOSE=2  all 
 
 exit

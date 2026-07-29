@@ -4,7 +4,6 @@
 #SBATCH -J CuFor
 
 ##  partition (queue)
-##SBATCH -p ampere
 #SBATCH -p volta
 
 #SBATCH --account=bltp
@@ -109,8 +108,8 @@ echo -e "\n"
 
 echo -e "\n\n python ? :\c"; which python;  python -V
 
-export PATH=/cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/25.11/compilers/bin:$PATH
-export LD_LIBRARY_PATH=/cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/25.11/compilers/lib:$LD_LIBRARY_PATH
+#export PATH=/cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/25.11/compilers/bin:$PATH
+#export LD_LIBRARY_PATH=/cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/25.11/compilers/lib:$LD_LIBRARY_PATH
 echo -e "\n\n My extended PATH=$PATH\n"
 echo -e "\n My extended LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
 
@@ -167,10 +166,8 @@ cd $CFB_COPY; echo -e "\n\nI am in the directory CFB_COPY=$CFB_COPY"; pwd
 
 export FC=nvfortran
 
-#echo -e "\n First, do the cleaning..."
-#make clean
-
-echo -e "\n Second, own compilation...make all :"
-make all 
+echo -e "\n\n Own compilation in freshly created directory...make all :"
+make  VERBOSE=2  all
+#make FCFLAGS="-O2 -c++libs"  VERBOSE=2  all
 
 exit

@@ -2,8 +2,40 @@
 QE on Aphroditi cluster
 =======================
 
-
+cloning
+-------
 ru26mi1@front01:~/work/software/quantum-espresso/.git clone  git@gitlab.com:QEF/q-e.git q-e_cloned
 
+sumbodules
+~~~~~~~~~~
+ru26mi1@front01:~/work/software/quantum-espresso/q-e_cloned/.gsu
+Submodule 'external/d3q' (https://github.com/anharmonic/d3q.git) registered for path 'external/d3q'
+Submodule 'external/devxlib' (https://gitlab.com/max-centre/components/devicexlib.git) registered for path 'external/devxlib'
+Submodule 'external/fox' (https://github.com/pietrodelugas/fox.git) registered for path 'external/fox'
+Submodule 'external/lapack' (https://github.com/Reference-LAPACK/lapack.git) registered for path 'external/lapack'
+Submodule 'external/mbd' (https://github.com/libmbd/libmbd.git) registered for path 'external/mbd'
+Submodule 'external/pw2qmcpack' (https://github.com/QMCPACK/pw2qmcpack.git) registered for path 'external/pw2qmcpack'
+Submodule 'external/qe-gipaw' (https://github.com/dceresoli/qe-gipaw) registered for path 'external/qe-gipaw'
+Submodule 'external/wannier90' (https://github.com/wannier-developers/wannier90.git) registered for path 'external/wannier90'
+Cloning into '/nvme/h/ru26mi1/work/software/quantum-espresso/q-e_cloned/external/d3q'...
+Cloning into '/nvme/h/ru26mi1/work/software/quantum-espresso/q-e_cloned/external/devxlib'...
+Cloning into '/nvme/h/ru26mi1/work/software/quantum-espresso/q-e_cloned/external/fox'...
+Cloning into '/nvme/h/ru26mi1/work/software/quantum-espresso/q-e_cloned/external/lapack'...
+Cloning into '/nvme/h/ru26mi1/work/software/quantum-espresso/q-e_cloned/external/mbd'...
+Cloning into '/nvme/h/ru26mi1/work/software/quantum-espresso/q-e_cloned/external/pw2qmcpack'...
+Cloning into '/nvme/h/ru26mi1/work/software/quantum-espresso/q-e_cloned/external/qe-gipaw'...
+Cloning into '/nvme/h/ru26mi1/work/software/quantum-espresso/q-e_cloned/external/wannier90'...
+Submodule path 'external/d3q': checked out '6e5f97816af439702196c248ec2ad0092c561b89'
+Submodule path 'external/devxlib': checked out 'a6b89ef77b1ceda48e967921f1f5488d2df9226d'
+Submodule path 'external/fox': checked out '3453648e6837658b747b895bb7bef4b1ed2eac40'
+Submodule path 'external/lapack': checked out '12d825396fcef1e0a1b27be9f119f9e554621e55'
+Submodule path 'external/mbd': checked out '89a3cc199c0a200c9f0f688c3229ef6b9a8d63bd'
+Submodule path 'external/pw2qmcpack': checked out 'f72ab25fa4ea755c1b4b230ae8074b47d5509c70'
+Submodule path 'external/qe-gipaw': checked out '717e55c36f28c512d232321adb10d5a66d3e1072'
+Submodule path 'external/wannier90': checked out '1d6b187374a2d50b509e5e79e2cab01a79ff7ce1'
+ru26mi1@front01:~/work/software/quantum-espresso/q-e_cloned/.
+
+buildup with script
+-------------------
 
 

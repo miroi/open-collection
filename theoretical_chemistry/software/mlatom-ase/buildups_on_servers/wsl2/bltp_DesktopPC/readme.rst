@@ -20,4 +20,9 @@ Location: /home/milias/work/software/venv/lib/python3.12/site-packages
 Requires: h5py, matplotlib, numpy, pyh5md, scipy, statsmodels, torch, torchani, tqdm
 Required-by:
 
-
+dftd4
+~~~~~
+(base) milias@DESKTOP-7OTLCGO:~/work/projects/open-collection/theoretical_chemistry/software/mlatom-ase/buildups_on_servers/wsl2/bltp_DesktopPC/.conda install -c conda-forge dftd4
+(base) milias@DESKTOP-7OTLCGO:~/work/projects/open-collection/theoretical_chemistry/software/mlatom-ase/buildups_on_servers/wsl2/bltp_DesktopPC/.export dftd4bin=$(which dftd4)
+(base) milias@DESKTOP-7OTLCGO:~/work/projects/open-collection/theoretical_chemistry/software/mlatom-ase/buildups_on_servers/wsl2/bltp_DesktopPC/.echo $dftd4bin
+/home/milias/miniconda3/bin/dftd4

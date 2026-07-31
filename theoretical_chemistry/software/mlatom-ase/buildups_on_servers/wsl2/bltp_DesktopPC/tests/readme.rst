@@ -41,3 +41,8 @@ run
 
 The script has successfully run, and the AIQM2 optimized energy for your water molecule is -76.38409860835867 Hartree.
 
+improved versions
+~~~~~~~~~~~~~~~~~
+(venv) milias@DESKTOP-7OTLCGO:~/work/projects/open-collection/theoretical_chemistry/software/mlatom-ase/buildups_on_servers/wsl2/bltp_DesktopPC/tests/. python water-optim_02.py  > water-optim_02.py_logfile
+
+

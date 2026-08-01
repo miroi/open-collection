@@ -1,28 +1,28 @@
 #!/bin/bash
 
-#SBATCH -J GMXintel
+##SBATCH -J GMXintel
 
 #SBATCH -A p326
 
 ##  partition (queue)
 #SBATCH --partition=milan
+#SBATCH --constraint=milan
+#SBATCH --qos=medium
 
 ## max. execution time
 ##SBATCH -t 7-00:00:00
-#SBATCH -t 0-06:00:00
-
-##SBATCH --exclusive
+#SBATCH -t 0-04:00:00
 
 #SBATCH --mem=32GB
 ## memory NO !!!
 ##SBATCH --mem-per-cpu=28G
 
 # do not restart in the case of nodefail!
-#SBATCH --no-requeue
-#SBATCH --no-kill
+##SBATCH --no-requeue
+##SBATCH --no-kill
 
-#SBATCH -N 1 -n 8
-#SBATCH  --sockets-per-node=1
+#SBATCH -N 1 -n 4
+##SBATCH  --sockets-per-node=1
 
 ## stdout/stderr output file
 ##SBATCH -o log_slurm_job.%j.%N.std_out_err
@@ -48,7 +48,8 @@ echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
 
 module purge
 module load  Python CMake
-module load  impi/2021.13.0-intel-compilers-2024.2.0
+#module load  impi/2021.13.0-intel-compilers-2024.2.0
+module load  intel
 echo -e "\n\n...loaded modules :"
 module list
 

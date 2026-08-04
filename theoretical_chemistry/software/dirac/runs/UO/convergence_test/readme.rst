@@ -3,27 +3,16 @@ UO molecule
 ===========
 
 
-miroi@MIRO:~/work/software/dirac/trunk_cloned/build_intelmpi_mkl_ilp64/..  /opt/intel/oneapi/setvars.sh
+DIRAC code
+----------
 
-:: initializing oneAPI environment ...
-   -bash: BASH_VERSION = 5.2.21(1)-release
-   args: Using "$@" for setvars.sh arguments: autologout=no
-:: advisor -- latest
-:: ccl -- latest
-:: compiler -- latest
-:: dal -- latest
-:: debugger -- latest
-:: dev-utilities -- latest
-:: dnnl -- latest
-:: dpcpp-ct -- latest
-:: dpl -- latest
-:: ipp -- latest
-:: ippcp -- latest
-:: mkl -- latest
-:: mpi -- latest
-:: tbb -- latest
-:: umf -- latest
-:: vtune -- latest
-:: oneAPI environment initialized ::
+miroi@MIRO:~/work/software/dirac/trunk_cloned/build_intelmpi_mkl_ilp64/.
 
+miroi@MIRO:~/work/software/dirac/trunk_cloned/build_intelmpi_mkl_ilp64/basis_ecp/.grep 'Uranium atom' *
+ECPDS60MHFSF:$ Uranium atom
+ECPDS60MWBSF:$ Uranium atom
+ECPDS60MWBSO:$ Uranium atom
+ECPDS80MWBSF:$ Uranium atom
+ECPDS81MWBSF:$ Uranium atom
+ECPHW78SF:$ Uranium atom
 

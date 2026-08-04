@@ -2,6 +2,8 @@
 .TITLE                                                                                              
 Open shell UO CCSD(T)                                                                               
 .WAVE FUNCTION                                                                                      
+**GENERAL
+.PCMOUT
 **HAMILTONIAN                                                                                       
 .ECP                                                                                                
 **INTEGRALS                                                                                         
@@ -26,9 +28,10 @@ Open shell UO CCSD(T)
 24 10 2 0 0 0                                                                                       
 4 2 2 0 0 0                                                                                         
 .MAXITR                                                                                             
-200                                                                                                 
-.EVCCNV                                                                                             
-1.0D-9 1.0D-8                                                                                       
+220
+# make SCF convergence by increasing the second parameter
+.EVCCNV 
+1.0D-9  1.0D-7
 **RELCC                                                                                             
 .ENERGY                                                                                             
 .PRINT                                                                                              
@@ -37,12 +40,12 @@ Open shell UO CCSD(T)
 14 12 6 5 2 1                                                                                       
 *CCENER                                                                                             
 .MAXIT                                                                                              
-200                                                                                                 
+200 
 .MAXDIM                                                                                             
-9                                                                                                   
+9 
 .NTOL                                                                                               
 10                                                                                                  
 **MOLTRA                                                                                            
 .ACTIVE                                                                                             
-energy -30 200 1                                                                                    
+energy -30 200 1 
 **END OF  

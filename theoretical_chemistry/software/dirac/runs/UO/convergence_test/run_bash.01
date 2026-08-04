@@ -1,0 +1,21 @@
+#!/bin/bash
+
+echo -e "running DIRAC job"
+
+# initialize Intel compilers
+.  /opt/intel/oneapi/setvars.sh
+
+
+DIRAC=/home/miroi/work/software/dirac/trunk_cloned
+BUILD=build_intelmpi_mkl_ilp64
+PAM=$DIRAC/$BUILD/pam
+# check pam
+ls -lt $PAM
+
+molf=
+inpf=
+
+$PAM --noarch --mpi=6 --mol=$molf --inp=$inf --get="DFPCMO=DFPCMO_UO_ecp"
+
+
+exit 0

@@ -14,7 +14,7 @@
 ##SBATCH --exclusive
 
 ##SBATCH --mem=264GB
-#SBATCH --mem=64GB
+#SBATCH --mem=34GB
 
 # do not restart in the case of nodefail!
 #SBATCH --no-requeue
@@ -94,7 +94,7 @@ echo -e "  python ? :\c"; which python; python -V
 echo -e "  mpiifx ? :\c"; which mpiifx; mpiifx -V
 echo -e "  mpiicx ? :\c"; which mpiicx; mpiicx -V
 echo -e "  mpiicpx ? :\c"; which mpiicpx; mpiicpx  -V
-echo -e "  mpirun ? :\c"; which mpirun; mpirun --version
+echo -e "  mpiexec ? :\c"; which mpiexec; mpiexec --version
 echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"; ls -lt  $MKLROOT/lib/intel64
 
 echo -e "\n\n The variable PATH=$PATH"
@@ -102,22 +102,27 @@ echo -e "\n The variable LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
 
 DALTON=/lustre/projects/m/milias/work/software/dalton/dalton_cloned
 BUILD=build_intelmpi2026_mkl_i8
-DALTON_LAUNCH=$DALTON/$BUILD/dalton
+DAL_LAUNCH=$DALTON/$BUILD/dalton
 echo -e "\n\n DALTON build directory, BUILD=$BUILD"
 if [ -d $DALTON/$BUILD ]; then
   echo -e "\n Directory DALTON/BUILD=$DALTON/$BUILD"
+  echo -e "\n executable :"
   ls -lt  $DALTON/$BUILD/dalton.x
   ldd $DALTON/$BUILD/dalton.x
-  ls -lt $DALTON_LAUNCH
-  $DALTON_LAUNCH --help
+  echo -e "\n launching script :"
+  ls -lt $DAL_LAUNCH
+  $DAL_LAUNCH --help
 fi
 
 export DALTON_TMPDIR=/lustre/projects/m/milias/DIRAC_scratch
-echo -e "\n scratch directory, DALTON_TMPDIR=$DALTON_TMPDIR"
-export DALTON_LAUNCHER="mpiexec -ilp64 -np 2"
+echo -e "\n\n scratch directory, DALTON_TMPDIR=$DALTON_TMPDIR"
+export DALTON_LAUNCHER="mpiexec -ilp64 -np $SLURM_NTASKS"
 echo -e "\n\n DALTON_LAUNCHER=$DALTON_LAUNCHER"
 
 # test /lustre/projects/m/milias/work/software/dalton/dalton_cloned/DALTON/test/dft_properties_sym
-
+testdir=/lustre/projects/m/milias/work/software/dalton/dalton_cloned/DALTON/test/dft_properties_sym
+dalf=$testdir/dft_properties_sym.dal
+molf=$testdir/H2O_cc-pVDZ.mol
+$DALTON_LAUNCHER -gb 30  -dal $dalf -mol $molf
 
 exit

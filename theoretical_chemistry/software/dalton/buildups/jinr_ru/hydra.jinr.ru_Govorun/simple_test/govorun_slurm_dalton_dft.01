@@ -119,11 +119,8 @@ export DALTON_LAUNCHER="mpiexec -ilp64 -np $SLURM_NTASKS"
 echo -e "DALTON_LAUNCHER=$DALTON_LAUNCHER"
 
 # test /lustre/projects/m/milias/work/software/dalton/dalton_cloned/DALTON/test/dft_properties_sym
-testdir=/lustre/projects/m/milias/work/software/dalton/dalton_cloned/DALTON/test/dft_properties_sym
-dalf=$testdir/dft_properties_sym.dal
-#dalf=dft_properties_sym
-molf=$testdir/H2O_cc-pVDZ.mol
-#molf=H2O_cc-pVDZ
+dalf=dft_properties_sym.dal
+molf=H2O_cc-pVDZ.mol
 
 echo -e "\n\n Launching Dalton with dalfile=$dalf & molfile=$molf :"
 $DAL_LAUNCH -w $SLURM_SUBMIT_DIR -noarch -gb 7 -dal $dalf -mol $molf

@@ -1,10 +1,9 @@
-=================
-Some DALTON tests
-=================
+============
+DALTON tests
+============
 
-directory
----------
 /lustre/projects/m/milias/work/software/dalton/dalton_cloned/DALTON/test
+
 README                          cc_fop_cc3*               dftmm_9/                       pehf_amoeba/                    r12_fc_nosym*
 TEST*                           cc_fop_drw2e*             dpt_h2s*                       pehf_amoeba_oldfield/           r12_fc_sym*
 __pycache__/                    cc_fop_freeze*            dpt_h2s_ff*                    pehf_approximate_coupling/      r12_loc*

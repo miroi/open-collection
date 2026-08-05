@@ -35,8 +35,7 @@ all: build run verify
 
 build: fCallingC.cuf zero.cu
 	$(NVXX) -O3 $(NVCCOPTIONS) -c zero.cu
-	#$(FC) $(FCFLAGS) $(CUDAFLAGS) -gpu=nordc -o fCallingC.$(EXE) zero.o fCallingC.cuf
-	$(FC) $(FCFLAGS) $(CUDAFLAGS) -gpu=nordc -c++libs -o fCallingC.$(EXE) zero.o fCallingC.cuf
+	$(FC) $(FCFLAGS) $(CUDAFLAGS) -gpu=nordc -o fCallingC.$(EXE) zero.o fCallingC.cuf
 
 run: fCallingC.$(EXE)
 	$(RUN) ./fCallingC.$(EXE)

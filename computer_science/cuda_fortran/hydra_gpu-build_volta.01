@@ -85,9 +85,11 @@ echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
 
 
 module purge
-module load Python/v3.12.13    CMake/v3.26.5
+module load Python/v3.12.13 
+module load CMake/v3.26.5
 # NVHPC with own OpenMPI 
-module load cuda/v13.0
+#module load cuda/v13.0
+module load cuda/v12.8
 
 echo -e "\n\n All loaded modules:"
 module list
@@ -154,6 +156,5 @@ export FC=nvfortran
 
 echo -e "\n\n Own compilation in freshly created directory...make all :"
 make  VERBOSE=2  all
-#make FCFLAGS="-O2 -c++libs"  VERBOSE=2  all
 
 exit

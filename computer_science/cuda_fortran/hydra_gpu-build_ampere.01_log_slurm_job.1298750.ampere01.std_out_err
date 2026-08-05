@@ -1,0 +1,1411 @@
+
+Running on host ampere01.hydra.local
+Time is Wed Aug  5 22:01:12 MSK 2026 
+
+
+Job user is SLURM_JOB_USER= milias
+User job SLURM_JOB_NAME=CuFor has assigned ID SLURM_JOBID=1298750
+This job was submitted from the computer SLURM_SUBMIT_HOST=space06.hydra.local
+and from the home directory SLURM_SUBMIT_DIR:
+/lustre/projects/m/milias/work/git-projects/open-collection/computer_science/cuda_fortran
+Job is running on the cluster compute node: SLURM_CLUSTER_NAME=gvr
+and is employing SLURM_JOB_NUM_NODES=1 node/nodes:
+SLURM_JOB_NODELIST = ampere01
+Job partition is SLURM_JOB_PARTITION=ampere 
+
+Number of allocated CPUs on each single node, SLURM_CPUS_ON_NODE=4 .
+Number of all reserved threads over ALL nodes, SLURM_NTASKS=4 .
+Job has reserved memory per node, SLURM_MEM_PER_NODE=32768 MB of memory
+The node's CPU model name	: AMD EPYC 7763 64-Core Processor
+BTW, this node has total 256 CPUs available for an EXCLUSIVE job.
+Based on reserved memory, this node got 4 CPUs allocated for SLURM calculations.
+This job wants SLURM_NTASKS=4 threads . 
+
+ adding git module from source /cvmfs/nica.jinr.ru/sw/os/login.sh :
+Script called without parameters. Defaulting to latest version of modules. For certain version use:
+login.sh legacy - for packages from before 23.09.23 release
+login.sh latest - for packages starting from 23.09.23 release
+
+ all modules, including /cvmfs/nica.jinr.ru/sw/os/login.sh
+
+-------------- /cvmfs/nica.jinr.ru/sw/202309/MODULES/slc9_x86-64 --------------
+   ACTS/v33.0.0-1                        ROOT/v6.32.06-1
+   ACTS/v35.2.0-1                        ROOT/v6.36.06-1
+   ACTS/v36.0.0-1                        ROOT/v6.36.12-1                (D)
+   ACTS/v37.2.0-1                        RapidYAML/v0.7.0-1
+   ACTS/v38.1.0-ckf_patch-1              RooUnfold/v3.1.0-1
+   ACTS/v38.1.0-1                        RooUnfold/v3.1.0-2
+   ACTS/v40.0.0-1                        RooUnfold/v3.1.0-3             (D)
+   ACTS/v41.1.0-1                        SafeInt/v3.0.28a-1
+   ACTS/v43.1.0-1                        TBB/v2021.10.0-1
+   ACTS/v43.3.0-1                        TBB/v2021.12.0-1               (D)
+   ACTS/v44.4.0-1                        UUID/v2.39.3-1
+   ACTS/v45.2.0-1                        UUID/v2.40.1-1                 (D)
+   ACTS/v45.2.0-2                        VGM/v5.2-1
+   ACTS/v45.3.0-1                        VGM/v5.3-1
+   ACTS/v45.4.0-1                        VGM/v5.3.1-1
+   ACTS/v46.7.0-1                        VGM/v5.3.1-2
+   ACTS/v47.2.0-1                 (D)    VGM/v5.3.1-3
+   AliEn-CAs/v2023.04.23-1               VGM/v5.3.1-4                   (D)
+   AliEn-Runtime/v2024.03-1              VMC/v2.0-1
+   AliEn-Runtime/v2024.03-2       (D)    VMC/v2.0-2
+   ApMon-CPP/v2.2.8-a6-1                 VMC/v2.1-1
+   Boost/v1.83.0-1                       VMC/v2.1-2
+   Boost/v1.83.0-2                (D)    VMC/v2.1-3                     (D)
+   C-Blosc/v1.21.6-1                     Vc/v1.4.4-gvr-1
+   C-Blosc2/v2.23.1-1                    Vc/v1.4.4-hlit-1
+   CLHEP/v2.4.7.2-1                      Vc/v1.4.4-knl-1                (D)
+   CMake/v3.28.3-1                       XGBoost/v3.0.5-1
+   CMake/v3.29.6-1                       XRootD/v5.6.9-1
+   CUDA/v11.8-1                          XRootD/v5.6.9-2                (D)
+   Catch2/v3.5.3-1                       ZeroMQ/v4.3.5-1
+   Catch2/v3.6.0-1                       ZeroMQ/v4.3.5-2                (D)
+   Catch2/v3.15.0-1               (D)    abseil-cpp/v20230802.2-1
+   Clang/v22.1.5-1                       abseil-cpp/v20240116.2-1
+   Cppcheck/v2.20.1-1                    abseil-cpp/v20250814.1-1       (D)
+   DD4hep/v1.27.2-1                      alibuild-recipe-tools/v0.3.1-1
+   DD4hep/v1.29-1                        autotools/v1.7.0-1
+   DD4hep/v1.30.0-pre-1                  bzip2/v1.0.8-1
+   DD4hep/v1.33-1                        clang-format/v18.1.1-1
+   DD4hep/v1.33-2                        clang-format/v18.1.8-1
+   DD4hep/v1.33-3                        clang-format/v18.1.8-2         (D)
+   DD4hep/v1.35-1                 (D)    curl/v8.6.0-1
+   DDS/v3.7.23-1                         curl/v8.8.0-1                  (D)
+   DDS/v3.10.0-1                         date/v3.0.4-1
+   DDS/v3.16.0-1                  (D)    emulzie/v1.0.0-1
+   EDM4hep/v0.10.5-1                     fmt/v10.1.1-1
+   EDM4hep/v0.10.5-2                     fmt/v10.2.1-1                  (D)
+   EDM4hep/v0.99.1-1                     freeglut/v3.4.0-1
+   EDM4hep/v0.99.4-1                     freeglut/v3.6.0-1              (D)
+   EDM4hep/v0.99.4-2                     generators/v2023.09-1
+   EDM4hep/v1.00.0-1              (D)    generators/v2024.06-1          (D)
+   EMACS/v29.2-1                         gengetopt/v2.22-1
+   Eigen3/v3.4.0-1                       giflib/v5.2.2-1
+   Eigen3/v3.4.0-2                       git/v2.44.0-1
+   Eigen3/v5.0.0-1                (D)    git/v2.45.2-1                  (D)
+   EnvironmentModules/v5.4.0-1           gl2ps/v1.4.1-1
+   FFTW/v3.3.10-1                        glew/v2.3.0-pre-1
+   FFTW/v3.3.10-2                 (D)    glew/v2.3.0-pre2-1             (D)
+   FairCMakeModules/v1.0.0-1             libICU/v73.2-1
+   FairCMakeModules/v1.0.0-2      (D)    libICU/v75.1-1                 (D)
+   FairLogger/v1.11.1-1                  libbsd/v0.12.2-1
+   FairLogger/v2.0.0-1            (D)    libffi/v3.4.6-1
+   FairMQ/v1.8.4-1                       libjpeg-turbo/v3.0.2-1
+   FairMQ/v1.8.4-2                (D)    libjpeg-turbo/v3.0.3-1         (D)
+   FairRoot/v18.6.10-1                   libmd/v1.1.0-1
+   FairRoot/v18.6.10-2                   libpng/v1.6.43-1
+   FairRoot/v18.6.10-3                   libpng/v1.6.43-2               (D)
+   FairRoot/v18.6.10-4                   libtiff/v4.6.0-1
+   FairRoot/v18.6.10-5            (D)    libtirpc/v1.3.4-1
+   FlatBuffers/v23.5.26-1                libxml2/v2.12.5-1
+   FlatBuffers/v24.3.25-1         (D)    libxml2/v2.13.0-1              (D)
+   FreeType/v2.13.2-1                    lz4/v1.9.4-1
+   FreeType/v2.13.2-2             (D)    lz4/v1.9.4-2                   (D)
+   GCC-ToolChain/v13.2.0-1               lzma/v5.6.1-1
+   GCC/v6.2.0-alice1-1                   lzma/v5.6.2-1                  (D)
+   GEANT3/v4.3-1                         mcini/v2025.12.24-1
+   GEANT3/v4.4-1                         mfddev/0-1
+   GEANT3/v4.4-2                         mpddev/v23.09.23-1
+   GEANT3/v4.4-3                         mpddev/v23.12.23-1
+   GEANT3/v4.4-4                  (D)    mpddev/v24.03.24-1
+   GEANT4/v11.1.3-1                      mpddev/v24.06.24-1
+   GEANT4/v11.2.1-1                      mpddev/v24.09.24-1
+   GEANT4/v11.4.0-1               (D)    mpddev/v24.12.24-1
+   GEANT4_VMC/v6.4-1                     mpddev/v25.03.25-1
+   GEANT4_VMC/v6.6.2-1                   mpddev/v25.06.03-1
+   GEANT4_VMC/v6.6.2-2                   mpddev/v25.09.25-1
+   GEANT4_VMC/v6.7.1-1                   mpddev/v25.12.25-1
+   GEANT4_VMC/v6.7.1-2                   mpddev/v26.03.26-1
+   GEANT4_VMC/v6.7.1-3            (D)    mpddev/v26.03.26-2
+   GSL/v2.7-1                            mpddev/v26.06.11-1             (D)
+   GSL/v2.8-1                            mpdroot/v23.09.23-1
+   GSL/v2.8-2                     (D)    mpdroot/v23.12.23-1
+   HDF5-Tools/v2.1.0-1                   mpdroot/v24.03.24-1
+   HDF5-Tools/v2.1.0-2            (D)    mpdroot/v24.06.24-1
+   HepMC/v2.6.11-1                       mpdroot/v24.09.24-1
+   HepMC/v2.6.11-2                (D)    mpdroot/v24.12.24-1
+   HepMC3/v3.2.7-1                       mpdroot/v25.03.25-1
+   HepMC3/v3.3.0-1                       mpdroot/v25.06.03-1
+   HepMC3/v3.3.1-1                       mpdroot/v25.09.25-1
+   HepMC3/v3.3.1-2                       mpdroot/v25.12.25-1
+   HepMC3/v3.3.1-3                (D)    mpdroot/v26.03.26-1
+   HepPDT/v3.04.01-1                     mpdroot/v26.06.11-1            (D)
+   KFParticle/v2020.06.10-gvr-1          mxpfit/vCPC-1
+   KFParticle/v2020.06.10-hlit-1         mxpfit/vCPC-2                  (D)
+   KFParticle/v2020.06.10-knl-1   (D)    ndmspc/v0.20240624.0-1
+   LCIO/v2.20.2-1                        nicadist-recipe-tools/v0.3.1-1
+   LCIO/v2.22.1-1                        ninja/v1.11.1-1
+   LCIO/v2.23.1-1                        ninja/v1.12.1-1                (D)
+   LCIO/v2.23.1-2                        nlohmann_json/v3.11.3-1
+   LCIO/v2.23.1-3                 (D)    nlohmann_json/v3.11.3-2
+   LHAPDF/v6.5.2-1                       nlohmann_json/v3.12.0-1        (D)
+   LHAPDF/v6.5.2-2                (D)    pigz/v2.8-1
+   LibTorch/v2.6.0-1                     podio/v0.17.4-1
+   Lmod/v9.1.2-1                         podio/v0.17.4-2
+   Lua/v5.4.8-1                          podio/v1.1.0-1
+   MicrosoftGSL/v4.2.0-1                 podio/v1.6.0-1
+   MrDocs/v0.8.0-1                       podio/v1.6.0-2
+   NICA_scheduler/v22.08.0-1             podio/v1.07.0-1                (D)
+   NICA_scheduler/v24.06.0-1      (D)    protobuf/v24.4-1
+   ONNX/v1.17.0-1                        protobuf/v27.1-1
+   ONNXRuntime/v1.22.2-1                 protobuf/v33.0-1               (D)
+   ONNXRuntime/v1.22.2-2          (D)    pybind11/v3.0.1-1
+   OpenSSH/v9.7.1-1                      pythia/v8.3.9-1
+   OpenSSH/v9.7.1-2               (D)    pythia/v8.3.12-1               (D)
+   OpenSSL/v3.2.1-1                      pythia6/v6.4.28-1
+   OpenSSL/v3.3.1-1                      pythia6/v6.4.28-2              (D)
+   PCRE/v8.45-1                          simulation/v2024.03-1
+   PFSimple/v2024.03.28-gvr-1            simulation/v2024.06-1          (D)
+   PFSimple/v2024.03.28-hlit-1           sqlite/v3.45.1-1
+   PFSimple/v2024.03.28-knl-1     (D)    sqlite/v3.46.0-1               (D)
+   PostgreSQL/v16.2-1                    texinfo/v7.1.1-1
+   PostgreSQL/v16.3-1             (D)    xerces-c/v3.2.5-1
+   PyTorch-CPUInfo/v2025.11.05-1         xerces-c/v3.2.5-2              (D)
+   Python-modules-list/v2024.03-1        xxHash/v0.8.2-1
+   Python-modules-list/v2024.06-1 (D)    xxHash/v0.8.2-2                (D)
+   Python-modules/v2024.03-1             yaml-cpp/v0.8.0-1
+   Python-modules/v2024.06-1      (D)    yaml-cpp/v0.8.0-2
+   Python/v3.11.8-1                      yaml-cpp/v0.9.0-1              (D)
+   Python/v3.12.4-1                      zlib/v1.3.1-1
+   QnTools/v2023.08.20-1                 zstd/v1.5.5-1
+   RE2/v20250812-1                       zstd/v1.5.6-1                  (D)
+   ROOT/v6.28.12-1
+
+-------------------- /cvmfs/hlit.jinr.ru/alma9/modulefiles --------------------
+   ABINIT/v10.6.3_openmpi5098          ScaLAPACK/v2.2.3_openmpi418
+   Amber/v18                           ScaLAPACK/v2.2.3_openmpi509        (D)
+   Autotools                           boost/v1.90.0_openmpi418
+   CMake/v3.26.5                       cuda/v11.2
+   CMake/v4.2.3                 (D)    cuda/v12.8
+   COMSOL/v6.2                         cuda/v13.0                         (D)
+   ELPA/v2026.02.001_intel2023         fftw/v3.3.10_openmpi418
+   ELPA/v2026.02.001_openmpi418        gcc/v9.5.0
+   ELPA/v2026.02.001_openmpi509 (D)    gcc/v12.3.0
+   EOS/jinr                            gcc/v13.1.0                        (D)
+   EOS/mpd                      (D)    gengetopt/v2.23                    (D)
+   Emacs/v30.2                         hdf5/v1.14.6_intel2023
+   FLUKA/v2025.1.3                     intel/v2023.1.0
+   GMP/v6.3.0_gcc1230                  intel/v2025.3.1
+   GROMACS/v2026.3_intel2026           intel/v2026.1.0                    (D)
+   GSL/v2.8_gcc1230                    java/v8u202
+   GSL/v2.8                            libarchive
+   Geant4/v11.4.1_gcc1310              libexpat/v2.5.0_gcc1430
+   Julia/v1.12.6                       libtorch/v2.11_cuda128
+   LAPACK/v3.12.0_gcc1230              libtorch/v2.11_cuda130             (D)
+   MATLAB/r2022b                       libxml2/v2.9.13_gcc1430
+   MATLAB/r2026a                (D)    miniconda
+   Maple/v2026.1                       mpiFileUtils/v0.12
+   Mathematica/v11.2                   mpich/v4.3.2_gcc1310
+   Mathematica/v14.1            (D)    nvphc/v25.3-ompi
+   ORCA/v6.1.1_openmpi418              nvphc/v25.11-ompi                  (D)
+   OpenSSL/v3.5.5               (D)    openmpi/v4.1.8_gcc1230
+   Perl/v5.42.2                        openmpi/v4.1.8_intel2023_i8
+   Python/v3.12.13_mpi4py              openmpi/v5.0.9_gcc950
+   Python/v3.12.13              (D)    openmpi/v5.0.9_gcc1230             (D)
+   ROOT/v6.36.10_gcc1230_x11           quantum-espresso/v7.5.0_openmpi509
+   ROOT/v6.36.10_gcc1230               yaml-cpp/v0.8.0_gcc1230
+
+  Where:
+   D:  Default Module
+
+If the avail list is too long consider trying:
+
+"module --default avail" or "ml -d av" to just list the default modules.
+"module overview" or "ml ov" to display the number of modules for each name.
+
+Use "module spider" to find all possible modules and extensions.
+Use "module keyword key1 key2 ..." to search for all possible modules matching
+any of the "keys".
+
+
+
+
+ All loaded modules:
+
+Currently Loaded Modules:
+  1) Python/v3.12.13   3) java/v8u202     5) cuda/v13.0
+  2) OpenSSL/v3.5.5    4) CMake/v3.26.5
+
+ 
+
+
+Running on host ampere01.hydra.local
+Time is Wed Aug  5 22:01:15 MSK 2026 
+
+
+ The total memory at the node (in GB)
+               total        used        free      shared  buff/cache   available
+Mem:            2003         534        1373           0         103        1468
+Swap:             31           0          31
+Total:          2035         534        1405
+
+
+
+
+ python ? :/cvmfs/hlit.jinr.ru/alma9/miniconda/envs/Py3.12.13/bin/python
+Python 3.12.13
+
+
+ My extended PATH=/cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/2025/compilers/bin:/cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/bin:/cvmfs/hlit.jinr.ru/alma9/miniconda/envs/Py3.12.13/bin:/cvmfs/hlit.jinr.ru/alma9/miniconda/condabin:/cvmfs/hlit.jinr.ru/alma9/CMake/v3.26.5/bin:/cvmfs/hlit.jinr.ru/alma9/java/v8u202/bin:/cvmfs/hlit.jinr.ru/alma9/OpenSSL/v3.5.5/bin:/cvmfs/nica.jinr.ru/sw/os/linux/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/puppetlabs/bin:.
+
+
+ My extended LD_LIBRARY_PATH=/cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/2025/compilers/lib:/cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/lib64:/cvmfs/hlit.jinr.ru/alma9/java/v8u202/lib:/cvmfs/hlit.jinr.ru/alma9/OpenSSL/v3.5.5/lib64 
+
+ nvidia-smi ? /usr/bin/nvidia-smi
+Wed Aug  5 22:01:15 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.126.20             Driver Version: 580.126.20     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-80GB          Off |   00000000:07:00.0 Off |                    0 |
+| N/A   29C    P0             59W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA A100-SXM4-80GB          Off |   00000000:0A:00.0 Off |                    0 |
+| N/A   27C    P0             60W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   2  NVIDIA A100-SXM4-80GB          Off |   00000000:45:00.0 Off |                    0 |
+| N/A   27C    P0             62W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   3  NVIDIA A100-SXM4-80GB          Off |   00000000:4B:00.0 Off |                    0 |
+| N/A   30C    P0             61W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   4  NVIDIA A100-SXM4-80GB          Off |   00000000:83:00.0 Off |                    0 |
+| N/A   30C    P0             59W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   5  NVIDIA A100-SXM4-80GB          Off |   00000000:89:00.0 Off |                    0 |
+| N/A   26C    P0             58W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   6  NVIDIA A100-SXM4-80GB          Off |   00000000:BF:00.0 Off |                    0 |
+| N/A   27C    P0             61W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   7  NVIDIA A100-SXM4-80GB          Off |   00000000:C2:00.0 Off |                    0 |
+| N/A   29C    P0             62W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+
+
+ nvcc ? ; /cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/2025/compilers/bin/nvcc
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2025 NVIDIA Corporation
+Built on Wed_Aug_20_01:58:59_PM_PDT_2025
+Cuda compilation tools, release 13.0, V13.0.88
+Build cuda_13.0.r13.0/compiler.36424714_0
+
+ nvfortran ? ; /cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/2025/compilers/bin/nvfortran
+
+nvfortran 25.11-0 64-bit target on x86-64 Linux -tp znver3 
+NVIDIA Compilers and Tools
+Copyright (c) 2025, NVIDIA CORPORATION & AFFILIATES.  All rights reserved.
+
+ pgfortran ? ; /cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/2025/compilers/bin/pgfortran
+
+pgfortran (aka nvfortran) 25.11-0 64-bit target on x86-64 Linux -tp znver3 
+PGI Compilers and Tools
+Copyright (c) 2025, NVIDIA CORPORATION & AFFILIATES.  All rights reserved.
+
+
+  Scratch directory, /lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b
+
+ The directory /lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b does exist.
+Its content :
+total 0
+
+ Copying /lustre/projects/m/milias/work/git-projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book  to  /lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/.
+
+ The directory /lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book does exist.
+Its content :
+total 22
+drwxr-xr-x.  4 milias hybrilit  1024 Aug  5 22:01 chapter4
+drwxr-xr-x.  7 milias hybrilit  1024 Aug  5 22:01 chapter5
+drwxr-xr-x.  6 milias hybrilit  1024 Aug  5 22:01 chapter6
+drwxr-xr-x.  7 milias hybrilit  1024 Aug  5 22:01 chapter7
+drwxr-xr-x.  2 milias hybrilit  1024 Aug  5 22:01 ch07
+drwxr-xr-x.  2 milias hybrilit  1024 Aug  5 22:01 ch08
+drwxr-xr-x.  2 milias hybrilit  1024 Aug  5 22:01 ch09
+drwxr-xr-x.  2 milias hybrilit  1024 Aug  5 22:01 ch10
+drwxr-xr-x.  2 milias hybrilit  1024 Aug  5 22:01 ch11
+drwxr-xr-x.  2 milias hybrilit  1024 Aug  5 22:01 ch12
+drwxr-xr-x.  6 milias hybrilit  1024 Aug  5 22:01 chapter1
+drwxr-xr-x.  4 milias hybrilit  1024 Aug  5 22:01 chapter2
+drwxr-xr-x. 14 milias hybrilit  1024 Aug  5 22:01 chapter3
+-rw-r--r--.  1 milias hybrilit   697 Aug  5 22:01 LICENSE.txt
+-rw-r--r--.  1 milias hybrilit 11704 Aug  5 22:01 Makefile
+-rw-r--r--.  1 milias hybrilit  1991 Aug  5 22:01 README
+drwxr-xr-x.  4 milias hybrilit  1024 Aug  5 22:01 appendixC
+drwxr-xr-x.  2 milias hybrilit  1024 Aug  5 22:01 ch01
+drwxr-xr-x.  2 milias hybrilit  1024 Aug  5 22:01 ch02
+drwxr-xr-x.  2 milias hybrilit  1024 Aug  5 22:01 ch03
+drwxr-xr-x.  2 milias hybrilit  1024 Aug  5 22:01 ch04
+drwxr-xr-x.  2 milias hybrilit  1024 Aug  5 22:01 ch05
+drwxr-xr-x.  2 milias hybrilit  1024 Aug  5 22:01 ch06
+
+
+I am in the directory CFB_COPY=/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book
+/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book
+
+
+ Own compilation in freshly created directory...make all :
+cd chapter1/deviceQuery; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter1/deviceQuery'
+nvfortran -O2  -o deviceQuery.out deviceQuery.cuf
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter1/deviceQuery'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter1/deviceQuery'
+./deviceQuery.out
+
+One CUDA device found
+
+Device Number: 0
+  GetDeviceProperties for device 0: Passed
+  Device Name: NVIDIA A100-SXM4-80GB
+  Compute Capability: 8.0
+  Number of Multiprocessors: 108
+  Max Threads per Multiprocessor: 2048
+  Global Memory (GB):    79.250
+
+  Execution Configuration Limits
+    Max Grid Dims: 2147483647 x 65535 x 65535
+    Max Block Dims: 1024 x 1024 x 64
+    Max Threads per Block: 1024
+
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter1/deviceQuery'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter1/deviceQuery'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter1/deviceQuery'
+cd chapter1/increment; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter1/increment'
+nvfortran -O2  -o increment.out increment.cuf
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter1/increment'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter1/increment'
+./increment.out
+ Program Passed
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter1/increment'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter1/increment'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter1/increment'
+cd chapter1/increment2; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter1/increment2'
+nvfortran -O2  -o increment2.out increment2.cuf
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter1/increment2'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter1/increment2'
+./increment2.out
+ Program Passed
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter1/increment2'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter1/increment2'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter1/increment2'
+cd chapter1/multidim; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter1/multidim'
+nvfortran -O2  -o multidim.out multidim.cuf
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter1/multidim'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter1/multidim'
+./multidim.out
+ Program Passed
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter1/multidim'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter1/multidim'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter1/multidim'
+cd chapter2/limitingFactor; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter2/limitingFactor'
+nvfortran -O2  -o limitingFactor.out limitingFactor.cuf
+nvfortran -O2  -cuda=fastmath -o limitingFactorFastMath.out limitingFactor.cuf
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter2/limitingFactor'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter2/limitingFactor'
+./limitingFactor.out
+ Test Passed
+./limitingFactorFastMath.out
+ Test Passed
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter2/limitingFactor'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter2/limitingFactor'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter2/limitingFactor'
+cd chapter2/peakBandwidth; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter2/peakBandwidth'
+nvfortran -O2  -o peakBandwidth.out peakBandwidth.cuf
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter2/peakBandwidth'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter2/peakBandwidth'
+./peakBandwidth.out
+  GetDeviceProperties for device 0: Passed
+ Device Number: 0
+   Device name: NVIDIA A100-SXM4-80GB
+   Memory Clock Rate (KHz): 1593000
+   Memory Bus Width (bits): 5120
+   Peak Memory Bandwidth (GB/s): ******
+ 
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter2/peakBandwidth'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter2/peakBandwidth'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter2/peakBandwidth'
+cd chapter3/async; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/async'
+nvfortran -O2  -o async.out async.cuf
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/async'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/async'
+./async.out
+ Device: NVIDIA A100-SXM4-80GB
+
+ Time for sequential transfer and execute (ms):     1.764256    
+   max error:    1.1920929E-07
+ Time for asynchronous V1 transfer and execute (ms):     1.015584    
+   max error:    1.1920929E-07
+ Time for asynchronous V2 transfer and execute (ms):     1.013600    
+   max error:    1.1920929E-07
+ Time for asynchronous V3 transfer and execute (ms):     1.016320    
+   max error:    1.1920929E-07
+ Test Passed
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/async'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/async'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/async'
+cd chapter3/constant; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/constant'
+nvfortran -O2  -o constant.out constant.cuf
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/constant'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/constant'
+./constant.out
+ Program Passed
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/constant'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/constant'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/constant'
+cd chapter3/cufILP; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/cufILP'
+nvfortran -O2  -o cufILP.out cufILP.cuf
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/cufILP'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/cufILP'
+./cufILP.out
+ Program Passed
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/cufILP'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/cufILP'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/cufILP'
+cd chapter3/cufKernel; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/cufKernel'
+nvfortran -O2  -o cufKernel.out cufKernel.cuf
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/cufKernel'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/cufKernel'
+./cufKernel.out
+ Program Passed
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/cufKernel'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/cufKernel'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/cufKernel'
+cd chapter3/cufKernel2D ; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/cufKernel2D'
+nvfortran -O2  -o cufKernel2D.out cufKernel2D.cuf
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/cufKernel2D'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/cufKernel2D'
+./cufKernel2D.out
+ Program Passed
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/cufKernel2D'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/cufKernel2D'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/cufKernel2D'
+cd chapter3/cufReduction ; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/cufReduction'
+nvfortran -O2  -o cufReduction.out cufReduction.cuf
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/cufReduction'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/cufReduction'
+./cufReduction.out
+ Program Passed
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/cufReduction'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/cufReduction'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/cufReduction'
+cd chapter3/local; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/local'
+nvfortran -O2  -cuda -gpu=ptxinfo -c local.cuf
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function 'localmem_k3_' for 'sm_80'
+ptxas info    : Function properties for localmem_k3_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 10 registers, used 0 barriers, 360 bytes cmem[0]
+ptxas info    : Compile time = 1.490 ms
+ptxas info    : Compiling entry function 'localmem_k2_' for 'sm_80'
+ptxas info    : Function properties for localmem_k2_
+    8 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 16 registers, used 0 barriers, 376 bytes cmem[0]
+ptxas info    : Compile time = 1.195 ms
+ptxas info    : Compiling entry function 'localmem_k1_' for 'sm_80'
+ptxas info    : Function properties for localmem_k1_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 10 registers, used 0 barriers, 360 bytes cmem[0]
+ptxas info    : Compile time = 0.728 ms
+Test Passed
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/local'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/local'
+make[1]: Nothing to be done for 'run'.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/local'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/local'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/local'
+cd chapter3/offsetNstride; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/offsetNstride'
+nvfortran -O2  -c precision_m.cuf
+nvfortran -O2  -o offsetNstride.out precision_m.o offsetNstride.cuf
+offsetNstride.cuf:
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/offsetNstride'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/offsetNstride'
+./offsetNstride.out
+
+Device: NVIDIA A100-SXM4-80GB
+Transfer size (MB): 4
+Single Precision
+
+ Offset, Bandwidth (GB/s):
+            0    585.1428    
+            1    585.1428    
+            2    585.1428    
+            3    585.1428    
+            4    630.1539    
+            5    585.1428    
+            6    585.1428    
+            7    546.1334    
+            8    630.1539    
+            9    585.1428    
+           10    630.1539    
+           11    585.1428    
+           12    585.1428    
+           13    585.1428    
+           14    630.1539    
+           15    585.1428    
+           16    585.1428    
+           17    546.1334    
+           18    630.1539    
+           19    546.1334    
+           20    585.1428    
+           21    585.1428    
+           22    630.1539    
+           23    585.1428    
+           24    630.1539    
+           25    585.1428    
+           26    585.1428    
+           27    546.1334    
+           28    630.1539    
+           29    546.1334    
+           30    630.1539    
+           31    585.1428    
+           32    630.1539    
+ 
+ Stride, Bandwidth (GB/s):
+            1    481.8823    
+            2    481.8823    
+            3    372.3636    
+            4    292.5714    
+            5    248.2424    
+            6    221.4054    
+            7    195.0476    
+            8    186.1818    
+            9    160.6275    
+           10    148.9454    
+           11    138.8475    
+           12    130.0317    
+           13    124.1212    
+           14    120.4706    
+           15    109.2267    
+           16    107.7895    
+           17    101.1358    
+           18    101.1358    
+           19    101.1358    
+           20    97.52381    
+           21    90.02197    
+           22    93.09091    
+           23    84.45361    
+           24    86.23158    
+           25    81.10891    
+           26    77.28301    
+           27    78.01905    
+           28    78.76923    
+           29    75.85184    
+           30    77.28301    
+           31    69.42373    
+           32    70.01710    
+ Test Passed
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/offsetNstride'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/offsetNstride'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/offsetNstride'
+cd chapter3/parallelism; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/parallelism'
+nvfortran -O2  -c precision_m.cuf
+nvfortran -O2  -o parallelism.out precision_m.o parallelism.cuf
+parallelism.cuf:
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/parallelism'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/parallelism'
+./parallelism.out
+
+Device Name: NVIDIA A100-SXM4-80GB
+Compute Capability: 8.0
+Single Precision
+
+Thread-level parallelism runs
+
+  Multiple Blocks per Multiprocessor
+       Threads/Block         Bandwidth (GB/s)
+                  32               78.65
+                  64              346.79
+                 128              544.96
+                 256              693.58
+                 512              762.94
+                1024              762.94
+
+  Single Block per Multiprocessor
+       Threads/Block         Bandwidth (GB/s)
+                  32              148.95
+                  64              264.26
+                 128              431.16
+                 256              630.15
+                 512              819.20
+                1024              819.20
+
+Intruction-level parallelism runs
+
+  ILP=4, Single Block per Multiprocessor
+       Threads/Block         Bandwidth (GB/s)
+ *** Test Passed ***
+                  32              315.08
+ *** Test Passed ***
+                  64              630.15
+ *** Test Passed ***
+                 128              819.20
+ *** Test Passed ***
+                 256              819.20
+ *** Test Passed ***
+                 512              819.20
+ *** Test Passed ***
+                1024              819.20
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/parallelism'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/parallelism'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/parallelism'
+cd chapter3/pinned; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/pinned'
+nvfortran   -o pinned.out pinned.cuf
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/pinned'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/pinned'
+./pinned.out
+ 
+ Device: NVIDIA A100-SXM4-80GB
+ Transfer size (MB):     16.00000    
+ 
+ Pageable transfers
+   Host to Device bandwidth (GB/s):     14.95573    
+   Device to Host bandwidth (GB/s):     18.14145    
+ 
+ Pinned transfers
+   Host to Device bandwidth (GB/s):     24.83365    
+   Device to Host bandwidth (GB/s):     18.18676    
+ *** Pinned transfers passed ***
+ 
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/pinned'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/pinned'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/pinned'
+cd chapter3/sharedExample; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/sharedExample'
+nvfortran -O2  -o sharedExample.out sharedExample.cuf
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/sharedExample'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/sharedExample'
+./sharedExample.out
+ Static case max error:    0.000000    
+ Test Passed
+ Dynamic case 1 max error:    0.000000    
+ Test Passed
+ Dynamic case 2 max error:    0.000000    
+ Test Passed
+ Dynamic case 3 max error:    0.000000    
+ Test Passed
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/sharedExample'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/sharedExample'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/sharedExample'
+cd chapter3/transpose; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/transpose'
+nvfortran -O2  -o transpose.out transpose.cuf
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/transpose'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/transpose'
+./transpose.out
+
+Device Name: NVIDIA A100-SXM4-80GB
+Compute Capability: 8.0
+ 
+Matrix size: 1024 1024,  Block size: 32  8,  Tile size: 32 32
+grid:  32  32   1,   tBlock:  32   8   1
+
+                  Routine         Bandwidth (GB/s)
+       shared memory copy *** Test Passed ***
+             1400.34
+          naive transpose *** Test Passed ***
+              227.11
+      coalesced transpose *** Test Passed ***
+              589.35
+  conflict-free transpose *** Test Passed ***
+             1419.76
+       diagonal transpose *** Test Passed ***
+             1414.85
+ 
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/transpose'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/transpose'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter3/transpose'
+cd chapter4/P2P/minimal; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/minimal'
+nvfortran -O2  -o minimal.out minimal.cuf
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/minimal'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/minimal'
+./minimal.out
+FORTRAN STOP
+ This program requires at least two GPUs
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/minimal'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/minimal'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/minimal'
+cd chapter4/P2P/p2pAccess; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/p2pAccess'
+nvfortran -O2  -o p2pAccess.out p2pAccess.cuf
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/p2pAccess'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/p2pAccess'
+./p2pAccess.out
+Number of CUDA-capable devices: 1
+
+Device 0: NVIDIA A100-SXM4-80GB
+ 
+     0
+  0  -   
+ Test Passed
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/p2pAccess'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/p2pAccess'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/p2pAccess'
+cd chapter4/P2P/directTransfer; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/directTransfer'
+nvfortran -O2  -o directTransfer.out directTransfer.cuf
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/directTransfer'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/directTransfer'
+./directTransfer.out
+FORTRAN STOP
+ Need at least two CUDA capable devices
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/directTransfer'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/directTransfer'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/directTransfer'
+cd chapter4/P2P/p2pBandwidth; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/p2pBandwidth'
+nvfortran -O2  -o p2pBandwidth.out p2pBandwidth.cuf
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/p2pBandwidth'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/p2pBandwidth'
+./p2pBandwidth.out
+Number of CUDA-capable devices: 1
+
+Device 0: NVIDIA A100-SXM4-80GB
+ 
+Bandwidth (GB/s) for transfer size (MB):    16.000
+
+ S\R   0
+  0    -   
+ Test Passed
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/p2pBandwidth'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/p2pBandwidth'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/p2pBandwidth'
+cd chapter4/P2P/transposeP2P; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/transposeP2P'
+nvfortran  -c timing.f90
+cc  -c wallclock.c
+nvfortran -O2  -o transposeP2P.out timing.o wallclock.o transposeP2P.cuf
+transposeP2P.cuf:
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/transposeP2P'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/transposeP2P'
+./transposeP2P.out
+Number of CUDA-capable devices: 1
+
+  Device 0: NVIDIA A100-SXM4-80GB
+ 
+
+Array size: 1920x1920
+
+CUDA block size: 32x8,  CUDA tile size: 32x32
+dimGrid: 60x60x1,   dimBlock: 32x8x1
+
+nDevices: 1, Local input array size: 1920x1920
+p2pTileDim: 1920x1920
+
+async mode:  T
+
+
+ *** Test Passed ***
+
+Bandwidth (GB/s):  215.12
+
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/transposeP2P'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/transposeP2P'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/P2P/transposeP2P'
+cd chapter4/MPI/mpiDevices; make build; make NPROCS=2 run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/MPI/mpiDevices'
+mpif90 -O2  -o mpiDevices.out mpiDevices.cuf
+make[1]: mpif90: No such file or directory
+make[1]: *** [Makefile:33: build] Error 127
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/MPI/mpiDevices'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/MPI/mpiDevices'
+make[1]: *** No rule to make target 'mpiDevices.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/MPI/mpiDevices'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/MPI/mpiDevices'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/MPI/mpiDevices'
+cd chapter4/MPI/assignDevice; make build; make NPROCS=2 run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/MPI/assignDevice'
+mpif90 -O2  -c ../common/mpiDeviceUtil.cuf
+make[1]: mpif90: No such file or directory
+make[1]: *** [Makefile:33: build] Error 127
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/MPI/assignDevice'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/MPI/assignDevice'
+make[1]: *** No rule to make target 'assignDevice.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/MPI/assignDevice'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/MPI/assignDevice'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/MPI/assignDevice'
+cd chapter4/MPI/transposeMPI; make build; make NPROCS=2 run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/MPI/transposeMPI'
+mpif90 -O2  -c ../common/mpiDeviceUtil.cuf
+make[1]: mpif90: No such file or directory
+make[1]: *** [Makefile:33: build] Error 127
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/MPI/transposeMPI'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/MPI/transposeMPI'
+make[1]: *** No rule to make target 'transposeMPI.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/MPI/transposeMPI'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/MPI/transposeMPI'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter4/MPI/transposeMPI'
+cd chapter5/rng_gpu; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter5/rng_gpu'
+nvfortran -O2 -cudalib=curand  -c ../common/precision_m.F90
+nvfortran -O2 -cudalib=curand  -c ../common/curand_m.cuf
+nvfortran -O2 -cudalib=curand  -o rng_gpu_sp.out precision_m.o curand_m.o  generate_randomnumbers.cuf
+generate_randomnumbers.cuf:
+nvfortran -O2 -cudalib=curand  -DDOUBLE -c ../common/precision_m.F90
+nvfortran -O2 -cudalib=curand  -DDOUBLE -c ../common/curand_m.cuf
+nvfortran -O2 -cudalib=curand  -DDOUBLE -o rng_gpu_dp.out precision_m.o curand_m.o  generate_randomnumbers.cuf
+generate_randomnumbers.cuf:
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter5/rng_gpu'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter5/rng_gpu'
+./rng_gpu_sp.out
+Generating random numbers in single precision
+   0.1454676       0.8201809       0.5503992       0.2948303    
+ Test Passed
+./rng_gpu_dp.out
+Generating random numbers in double precision
+   0.4348988043884129        0.9264169202024377        0.8118452111300192      
+   0.3085554246353980     
+ Test Passed
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter5/rng_gpu'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter5/rng_gpu'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter5/rng_gpu'
+cd chapter5/pi; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter5/pi'
+nvfortran -O2 -cudalib=curand  -c ../common/precision_m.F90
+nvfortran -O2 -cudalib=curand  -c ../common/curand_m.cuf
+nvfortran -O2 -cudalib=curand  -o pi_sp.out precision_m.o curand_m.o  compute_pi.cuf
+compute_pi.cuf:
+nvfortran -O2 -cudalib=curand  -DDOUBLE -c ../common/precision_m.F90
+nvfortran -O2 -cudalib=curand  -DDOUBLE -c ../common/curand_m.cuf
+nvfortran -O2 -cudalib=curand  -DDOUBLE -o pi_dp.out precision_m.o curand_m.o  compute_pi.cuf
+compute_pi.cuf:
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter5/pi'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter5/pi'
+./pi_sp.out
+Compute pi in single precision
+ Test Passed
+  Samples=    100000  Pi=3.13632011  Error= 0.5273E-02
+./pi_dp.out
+Compute pi in double precision
+ Test Passed
+  Samples=    100000  Pi=3.13716000  Error= 0.4433E-02
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter5/pi'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter5/pi'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter5/pi'
+cd chapter5/compute_pi_performance; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter5/compute_pi_performance'
+nvfortran -O2 -cudalib=curand -DLOOP  -c ../common/precision_m.F90
+nvfortran -O2 -cudalib=curand -DLOOP  -c ../common/curand_m.cuf
+nvfortran -O2 -cudalib=curand -DLOOP  -c sum_lock.cuf
+nvfortran -O2 -cudalib=curand -DLOOP  -c sum_gpu.cuf
+nvfortran -O2 -cudalib=curand -DLOOP  -o compute_pi_performance_sp.out precision_m.o curand_m.o sum_gpu.o sum_lock.o  compute_pi_performance.CUF
+compute_pi_performance.CUF:
+nvfortran -O2 -cudalib=curand -DLOOP  -DDOUBLE -c ../common/precision_m.F90
+nvfortran -O2 -cudalib=curand -DLOOP  -DDOUBLE -c ../common/curand_m.cuf
+nvfortran -O2 -cudalib=curand -DLOOP  -DDOUBLE -c sum_lock.cuf
+nvfortran -O2 -cudalib=curand -DLOOP  -DDOUBLE -c sum_gpu.cuf
+nvfortran -O2 -cudalib=curand -DLOOP  -DDOUBLE -o compute_pi_performance_dp.out precision_m.o curand_m.o sum_gpu.o sum_lock.o  compute_pi_performance.CUF
+compute_pi_performance.CUF:
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter5/compute_pi_performance'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter5/compute_pi_performance'
+./compute_pi_performance_sp.out
+  Compute pi  in single precision (seed=                   1234567 )
+  Times (CUF),(Two stages), (Single stage) (CPU):
+   5.1999999E-05   5.8000001E-05   5.6700001E-04   1.0000000E-06
+  Samples=     10000  Pi=3.16720009  Error= 0.2561E-01
+  
+ Test Passed
+  Times (CUF),(Two stages), (Single stage) (CPU):
+   3.1000000E-05   2.6000000E-05   8.2999999E-05   2.8000000E-05
+  Samples=    100000  Pi=3.13919997  Error= 0.2393E-02
+  
+ Test Passed
+  Times (CUF),(Two stages), (Single stage) (CPU):
+   5.0999999E-05   3.5000001E-05   9.7999997E-05   2.7600001E-04
+  Samples=   1000000  Pi=3.14109206  Error= 0.5007E-03
+  
+ Test Passed
+./compute_pi_performance_dp.out
+  Compute pi  in double precision (seed=                   1234567 )
+  Times (CUF),(Two stages), (Single stage) (CPU):
+   5.4000000E-05   4.8999998E-05   5.6600000E-04   7.0000001E-06
+  Samples=     10000  Pi=3.12880000  Error= 0.1279E-01
+  
+ Test Passed
+  Times (CUF),(Two stages), (Single stage) (CPU):
+   3.2000000E-05   2.4999999E-05   7.4000003E-05   5.6000001E-05
+  Samples=    100000  Pi=3.14676000  Error= 0.5167E-02
+  
+ Test Passed
+  Times (CUF),(Two stages), (Single stage) (CPU):
+   4.0999999E-05   2.6000000E-05   9.0000001E-05   5.3800002E-04
+  Samples=   1000000  Pi=3.14274000  Error= 0.1147E-02
+  
+ Test Passed
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter5/compute_pi_performance'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter5/compute_pi_performance'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter5/compute_pi_performance'
+cd chapter5/mc_european; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter5/mc_european'
+nvfortran -O2 -cudalib=curand  -c ../common/precision_m.F90
+nvfortran -O2 -cudalib=curand  -c ../common/curand_m.cuf
+nvfortran -O2 -cudalib=curand  -o mc_european_sp.out precision_m.o curand_m.o  montecarlo_european_option.cuf
+montecarlo_european_option.cuf:
+nvfortran -O2 -cudalib=curand  -DDOUBLE -c ../common/precision_m.F90
+nvfortran -O2 -cudalib=curand  -DDOUBLE -c ../common/curand_m.cuf
+nvfortran -O2 -cudalib=curand  -DDOUBLE -o mc_european_dp.out precision_m.o curand_m.o  montecarlo_european_option.cuf
+montecarlo_european_option.cuf:
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter5/mc_european'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter5/mc_european'
+./mc_european_sp.out
+  European option with random numbers
+  in single precisionm using                   1000000  samples
+ Montecarlo  value of put option  =   0.1276107    
+ BlackScholes value of put option =   0.1280212    
+ Confidence interval of put option  = [   0.1269988     ,   0.1282225     ]
+ Montecarlo value of call option  =    1.322457    
+ BlackScholes value of call option=    1.323104    
+ Confidence interval of call option  = [    1.319744     ,    1.325170     ]
+ Elapsed time (ms) :    11.07149    
+ Test Passed
+./mc_european_dp.out
+  European option with random numbers
+  in double precision using                   1000000  samples
+ Montecarlo  value of put option  =   0.1280019167019664     
+ BlackScholes value of put option =   0.1280215707263190     
+ Confidence interval of put option  = [   0.1273886989425721      , 
+   0.1286151344613608      ]
+ Montecarlo value of call option  =    1.322242692975768     
+ BlackScholes value of call option=    1.323103872723463     
+ Confidence interval of call option  = [    1.319531953505467      , 
+    1.324953432446068      ]
+ Elapsed time (ms) :    8.050944    
+ Test Passed
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter5/mc_european'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter5/mc_european'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter5/mc_european'
+cd chapter6/finiteDifference; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter6/finiteDifference'
+nvfortran -O2  -c ../common/precision_m.cuf
+nvfortran -O2  -c derivative_m.cuf
+nvfortran -O2  -o finiteDifference.out derivative_m.o precision_m.o finiteDifference.cuf
+finiteDifference.cuf:
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter6/finiteDifference'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter6/finiteDifference'
+./finiteDifference.out
+
+Device Name: NVIDIA A100-SXM4-80GB
+Compute Capability: 8.0
+Single Precision
+
+x derivatives
+
+  Using shared memory tile of x-y: 64x4
+   RMS error:    7.2519310E-06
+   MAX error:    2.7179718E-05
+   Average time (ms):    4.9152002E-03
+   Average Bandwidth (GB/s):     426.6667    
+   Test Passed
+
+  Single syncthreads, using shared memory tile of x-y: 64x4
+   RMS error:    7.2519310E-06
+   MAX error:    2.7179718E-05
+   Average time (ms):    4.7615999E-03
+   Average Bandwidth (GB/s):     440.4301    
+   Test Passed
+
+  Using shared memory tile of x-y: 64x32
+   RMS error:    7.2519310E-06
+   MAX error:    2.7179718E-05
+   Average time (ms):    5.9392001E-03
+   Average Bandwidth (GB/s):     353.1035    
+   Test Passed
+
+y derivatives
+
+  Using shared memory tile of x-y: 4x64
+   RMS error:    7.2517619E-06
+   MAX error:    2.7179718E-05
+   Average time (ms):    7.0143999E-03
+   Average Bandwidth (GB/s):     298.9781    
+   Test Passed
+
+  Using shared memory tile of x-y: 32x64
+   RMS error:    7.2517619E-06
+   MAX error:    2.7179718E-05
+   Average time (ms):    5.6832000E-03
+   Average Bandwidth (GB/s):     369.0090    
+   Test Passed
+
+z derivatives
+
+  Using shared memory tile of x-z: 4x64
+   RMS error:    7.2517541E-06
+   MAX error:    2.7179718E-05
+   Average time (ms):    6.9631999E-03
+   Average Bandwidth (GB/s):     301.1765    
+   Test Passed
+
+  Using shared memory tile of x-z: 32x64
+   RMS error:    7.2517541E-06
+   MAX error:    2.7179718E-05
+   Average time (ms):    5.6832000E-03
+   Average Bandwidth (GB/s):     369.0090    
+   Test Passed
+ 
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter6/finiteDifference'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter6/finiteDifference'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter6/finiteDifference'
+cd chapter6/limitingFactor; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter6/limitingFactor'
+nvfortran -O2  -c ../common/precision_m.cuf
+nvfortran -O2  -o limitingFactor.out precision_m.o limitingFactor.cuf
+limitingFactor.cuf:
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter6/limitingFactor'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter6/limitingFactor'
+./limitingFactor.out
+
+Device Name: NVIDIA A100-SXM4-80GB
+Compute Capability: 8.0
+Single Precision
+
+x derivative with x-y tile: 64x4
+   RMS error:    7.2519310E-06
+   MAX error:    2.7179718E-05
+   Average time (ms):    4.9152002E-03
+   Mem Bandwidth (GB/s):     426.6667    
+   Test Passed
+
+x derivative mem with x-y tile: 64x4
+   RMS error:     4.465209    
+   MAX error:     6.361378    
+   Average time (ms):    4.4543999E-03
+   Mem Bandwidth (GB/s):     470.8046    
+
+x derivative gmem with x-y tile: 64x4
+   RMS error:     4.465209    
+   MAX error:     6.361378    
+   Average time (ms):    4.2495998E-03
+   Mem Bandwidth (GB/s):     493.4940    
+
+x derivative math with x-y tile: 64x4
+   RMS error:     4.465209    
+   MAX error:     6.361378    
+   Average time (ms):    3.8400001E-03
+   Mem Bandwidth (GB/s):     546.1333    
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter6/limitingFactor'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter6/limitingFactor'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter6/limitingFactor'
+cd chapter6/finiteDifferenceStr; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter6/finiteDifferenceStr'
+nvfortran -O2  -c ../common/precision_m.cuf
+nvfortran -O2  -c derivativeStr_m.cuf
+nvfortran -O2  -o finiteDifferenceStr.out derivativeStr_m.o precision_m.o finiteDifferenceStr.cuf
+finiteDifferenceStr.cuf:
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter6/finiteDifferenceStr'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter6/finiteDifferenceStr'
+./finiteDifferenceStr.out
+
+Device Name: NVIDIA A100-SXM4-80GB
+Compute Capability: 8.0
+Single Precision
+
+x derivatives
+
+  Using shared memory tile of x-y: 64x4
+   RMS error:    3.8798994E-06
+   MAX error:    2.2888184E-05
+   Average time (ms):    2.2169601E-02
+   Average Bandwidth (GB/s):     94.59584    
+   Test Passed
+
+  Single syncthreads, using shared memory tile of x-y: 64x4
+   RMS error:    3.8798994E-06
+   MAX error:    2.2888184E-05
+   Average time (ms):    2.2067200E-02
+   Average Bandwidth (GB/s):     95.03480    
+   Test Passed
+
+  Using shared memory tile of x-y: 64x32
+   RMS error:    3.8798994E-06
+   MAX error:    2.2888184E-05
+   Average time (ms):    9.1647999E-03
+   Average Bandwidth (GB/s):     228.8268    
+   Test Passed
+
+y derivatives
+
+  Using shared memory tile of x-y: 4x64
+   RMS error:    3.8799290E-06
+   MAX error:    2.2888184E-05
+   Average time (ms):    8.8575995E-03
+   Average Bandwidth (GB/s):     236.7630    
+   Test Passed
+
+  Using shared memory tile of x-y: 32x64
+   RMS error:    3.8799290E-06
+   MAX error:    2.2888184E-05
+   Average time (ms):    5.9392001E-03
+   Average Bandwidth (GB/s):     353.1035    
+   Test Passed
+
+z derivatives
+
+  Using shared memory tile of x-z: 4x64
+   RMS error:    3.8799230E-06
+   MAX error:    2.2888184E-05
+   Average time (ms):    8.8064000E-03
+   Average Bandwidth (GB/s):     238.1395    
+   Test Passed
+
+  Using shared memory tile of x-z: 32x64
+   RMS error:    3.8799230E-06
+   MAX error:    2.2888184E-05
+   Average time (ms):    6.0416004E-03
+   Average Bandwidth (GB/s):     347.1186    
+   Test Passed
+ 
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter6/finiteDifferenceStr'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter6/finiteDifferenceStr'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter6/finiteDifferenceStr'
+cd chapter7/fft_test_c2c; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter7/fft_test_c2c'
+nvfortran -O2 -cudalib=cufft  -c ../common/precision_m.F90
+nvfortran -O2 -cudalib=cufft  -c ../common/cufft_m.cuf
+nvfortran -O2 -cudalib=cufft  -o fft_test_c2c_sp.out precision_m.o cufft_m.o fft_test_c2c.cuf 
+fft_test_c2c.cuf:
+nvfortran -O2 -cudalib=cufft  -DDOUBLE -c ../common/precision_m.F90
+nvfortran -O2 -cudalib=cufft  -DDOUBLE -c ../common/cufft_m.cuf
+nvfortran -O2 -cudalib=cufft  -DDOUBLE -o fft_test_c2c_dp.out precision_m.o cufft_m.o fft_test_c2c.cuf 
+fft_test_c2c.cuf:
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter7/fft_test_c2c'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter7/fft_test_c2c'
+./fft_test_c2c_sp.out
+  Transform from complex array
+ 1   1.0000  0.0000   0 -0.0000  0.0000
+ 2   1.6310  0.0000   1  0.0000 -0.0000
+ 3   0.7071  0.0000   2  0.5000  0.0000
+ 4  -1.0898  0.0000   3  0.0000 -0.5000
+ 5  -2.0000  0.0000   4  0.0000  0.0000
+ 6  -1.0898  0.0000   5 -0.0000  0.0000
+ 7   0.7071  0.0000   6  0.0000  0.0000
+ 8   1.6310  0.0000   7  0.0000 -0.0000
+ 9   1.0000  0.0000  -8 -0.0000  0.0000
+10  -0.2168  0.0000  -7  0.0000 -0.0000
+11  -0.7071  0.0000  -6  0.0000  0.0000
+12  -0.3244  0.0000  -5 -0.0000 -0.0000
+13   0.0000  0.0000  -4  0.0000 -0.0000
+14  -0.3244  0.0000  -3  0.0000  0.5000
+15  -0.7071  0.0000  -2  0.5000 -0.0000
+16  -0.2168  0.0000  -1  0.0000  0.0000
+ Test Passed
+./fft_test_c2c_dp.out
+  Transform from complex array
+ 1   1.0000  0.0000   0 -0.0000  0.0000
+ 2   1.6310  0.0000   1 -0.0000  0.0000
+ 3   0.7071  0.0000   2  0.5000 -0.0000
+ 4  -1.0898  0.0000   3 -0.0000 -0.5000
+ 5  -2.0000  0.0000   4  0.0000 -0.0000
+ 6  -1.0898  0.0000   5  0.0000 -0.0000
+ 7   0.7071  0.0000   6  0.0000 -0.0000
+ 8   1.6310  0.0000   7  0.0000  0.0000
+ 9   1.0000  0.0000  -8 -0.0000  0.0000
+10  -0.2168  0.0000  -7  0.0000 -0.0000
+11  -0.7071  0.0000  -6  0.0000  0.0000
+12  -0.3244  0.0000  -5  0.0000  0.0000
+13  -0.0000  0.0000  -4  0.0000  0.0000
+14  -0.3244  0.0000  -3 -0.0000  0.5000
+15  -0.7071  0.0000  -2  0.5000  0.0000
+16  -0.2168  0.0000  -1 -0.0000 -0.0000
+ Test Passed
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter7/fft_test_c2c'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter7/fft_test_c2c'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter7/fft_test_c2c'
+cd chapter7/fft_test_r2c; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter7/fft_test_r2c'
+nvfortran -O2 -cudalib=cufft  -c ../common/precision_m.F90
+nvfortran -O2 -cudalib=cufft  -c ../common/cufft_m.cuf
+nvfortran -O2 -cudalib=cufft  -o fft_test_r2c_sp.out precision_m.o cufft_m.o fft_test_r2c.cuf 
+fft_test_r2c.cuf:
+nvfortran -O2 -cudalib=cufft  -DDOUBLE -c ../common/precision_m.F90
+nvfortran -O2 -cudalib=cufft  -DDOUBLE -c ../common/cufft_m.cuf
+nvfortran -O2 -cudalib=cufft  -DDOUBLE -o fft_test_r2c_dp.out precision_m.o cufft_m.o fft_test_r2c.cuf 
+fft_test_r2c.cuf:
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter7/fft_test_r2c'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter7/fft_test_r2c'
+./fft_test_r2c_sp.out
+  Transform from real array
+ 1  0 -0.0000  0.0000
+ 2  1  0.0000 -0.0000
+ 3  2  0.5000  0.0000
+ 4  3  0.0000 -0.5000
+ 5  4  0.0000  0.0000
+ 6  5 -0.0000  0.0000
+ 7  6  0.0000  0.0000
+ 8  7  0.0000 -0.0000
+ 9  8 -0.0000  0.0000
+ Test Passed
+./fft_test_r2c_dp.out
+  Transform from real array
+ 1  0 -0.0000  0.0000
+ 2  1 -0.0000  0.0000
+ 3  2  0.5000 -0.0000
+ 4  3 -0.0000 -0.5000
+ 5  4  0.0000 -0.0000
+ 6  5  0.0000 -0.0000
+ 7  6  0.0000 -0.0000
+ 8  7  0.0000  0.0000
+ 9  8 -0.0000  0.0000
+ Test Passed
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter7/fft_test_r2c'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter7/fft_test_r2c'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter7/fft_test_r2c'
+cd chapter7/fft_derivative; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter7/fft_derivative'
+nvfortran -Mpreprocess -O2 -cudalib=cufft  -c ../common/precision_m.F90
+nvfortran -Mpreprocess -O2 -cudalib=cufft  -c ../common/cufft_m.cuf
+nvfortran -Mpreprocess -O2 -cudalib=cufft  -o fft_derivative_sp.out precision_m.o cufft_m.o fft_derivative.cuf 
+fft_derivative.cuf:
+nvfortran -Mpreprocess -O2 -cudalib=cufft  -DDOUBLE -c ../common/precision_m.F90
+nvfortran -Mpreprocess -O2 -cudalib=cufft  -DDOUBLE -c ../common/cufft_m.cuf
+nvfortran -Mpreprocess -O2 -cudalib=cufft  -DDOUBLE -o fft_derivative_dp.out precision_m.o cufft_m.o fft_derivative.cuf 
+fft_derivative.cuf:
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter7/fft_derivative'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter7/fft_derivative'
+./fft_derivative_sp.out
+  First Derivative from complex array
+ 1   3.0000   3.0000  -.2384186E-06
+ 2  -4.1213  -4.1213  0.0000000E+00
+ 3  -0.0000   0.0000  -.2381143E-06
+ 4   4.1213   4.1213  0.0000000E+00
+ 5  -3.0000  -3.0000  0.0000000E+00
+ 6   0.1213   0.1213  -.5960464E-07
+ 7   0.0000  -0.0000  0.4447463E-06
+ 8  -0.1213  -0.1213  -.2086163E-05
+ Test Passed
+./fft_derivative_dp.out
+  First Derivative from complex array
+ 1   3.0000   3.0000  0.1332268E-14
+ 2  -4.1213  -4.1213  -.8881784E-15
+ 3  -0.0000  -0.0000  -.8927925E-16
+ 4   4.1213   4.1213  0.8881784E-15
+ 5  -3.0000  -3.0000  -.8881784E-15
+ 6   0.1213   0.1213  0.3108624E-14
+ 7   0.0000   0.0000  -.5882969E-15
+ 8  -0.1213  -0.1213  -.1665335E-14
+ Test Passed
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter7/fft_derivative'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter7/fft_derivative'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter7/fft_derivative'
+cd chapter7/exampleOverlapFFT; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter7/exampleOverlapFFT'
+nvfortran -O2 -cudalib=cufft  -c ../common/precision_m.F90
+nvfortran -O2 -cudalib=cufft  -c ../common/cufft_m.cuf
+nvfortran -O2 -cudalib=cufft  -o exampleOverlapFFT.out precision_m.o cufft_m.o exampleOverlapFFT.cuf 
+exampleOverlapFFT.cuf:
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter7/exampleOverlapFFT'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter7/exampleOverlapFFT'
+./exampleOverlapFFT.out
+ I/O only
+ Elapsed time :   5.5916999E-02
+
+Single stream  loop
+ Elapsed time :   6.7215003E-02
+
+Do loop with multiple streams
+ Elapsed time :   4.9500000E-02
+ Test Passed
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter7/exampleOverlapFFT'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter7/exampleOverlapFFT'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/chapter7/exampleOverlapFFT'
+cd appendixC/sgemmDevice; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/appendixC/sgemmDevice'
+nvfortran -O2 -cudalib=cublas  -o sgemmDevice.out sgemmDevice.cuf
+nvfortran -O2 -cudalib=cublas  -o sgemmDeviceOld.out sgemmDeviceOld.cuf
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/appendixC/sgemmDevice'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/appendixC/sgemmDevice'
+./sgemmDevice.out
+ Max error =    0.000000    
+ Test Passed
+./sgemmDeviceOld.out
+ Max error =    0.000000    
+ Test Passed
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/appendixC/sgemmDevice'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/appendixC/sgemmDevice'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/appendixC/sgemmDevice'
+cd appendixC/fCallingC; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/appendixC/fCallingC'
+nvcc -O3  --generate-code arch=compute_80,code=sm_80 -c zero.cu
+#nvfortran -O2  -gpu=nordc -o fCallingC.out zero.o fCallingC.cuf
+nvfortran -O2  -gpu=nordc -c++libs -o fCallingC.out zero.o fCallingC.cuf
+fCallingC.cuf:
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/appendixC/fCallingC'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/appendixC/fCallingC'
+./fCallingC.out
+    0.000000        0.000000        0.000000        0.000000    
+ Test Passed
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/appendixC/fCallingC'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/appendixC/fCallingC'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.75603aeff41b/CUDA-Fortran-Book/appendixC/fCallingC'

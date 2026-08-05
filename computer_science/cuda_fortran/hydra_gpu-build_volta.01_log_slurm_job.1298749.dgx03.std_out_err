@@ -1,0 +1,751 @@
+
+Running on host dgx03.hydra.local
+Time is Wed Aug  5 21:45:16 MSK 2026 
+
+
+ The total memory at the node (in GB)
+               total        used        free      shared  buff/cache   available
+Mem:             503         213         283           1          10         289
+Swap:             15           1          14
+Total:           519         215         297
+
+
+Job user is SLURM_JOB_USER= milias
+User job SLURM_JOB_NAME=CuFor has assigned ID SLURM_JOBID=1298749
+This job was submitted from the computer SLURM_SUBMIT_HOST=space06.hydra.local
+and from the home directory SLURM_SUBMIT_DIR:
+/lustre/projects/m/milias/work/git-projects/open-collection/computer_science/cuda_fortran
+Job is running on the cluster compute node: SLURM_CLUSTER_NAME=gvr
+and is employing SLURM_JOB_NUM_NODES=1 node/nodes:
+SLURM_JOB_NODELIST = dgx03
+Job partition is SLURM_JOB_PARTITION=volta 
+
+Number of allocated CPUs on each single node, SLURM_CPUS_ON_NODE=4 .
+Number of all reserved threads over ALL nodes, SLURM_NTASKS=4 .
+Job has reserved memory per node, SLURM_MEM_PER_NODE=32768 MB of memory
+
+
+The node's CPU model name	: Intel(R) Xeon(R) CPU E5-2698 v4 @ 2.20GHz
+BTW, this node has total 80 CPUs available for an EXCLUSIVE job.
+Based on reserved memory, this node got 4 CPUs allocated for SLURM calculations.
+This job wants SLURM_NTASKS=4 threads . 
+
+
+ All loaded modules:
+
+Currently Loaded Modules:
+  1) Python/v3.12.13   3) java/v8u202     5) cuda/v13.0
+  2) OpenSSL/v3.5.5    4) CMake/v3.26.5
+
+ 
+
+
+
+ My extended PATH=/cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/2025/compilers/bin:/cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/bin:/cvmfs/hlit.jinr.ru/alma9/miniconda/envs/Py3.12.13/bin:/cvmfs/hlit.jinr.ru/alma9/miniconda/condabin:/cvmfs/hlit.jinr.ru/alma9/CMake/v3.26.5/bin:/cvmfs/hlit.jinr.ru/alma9/java/v8u202/bin:/cvmfs/hlit.jinr.ru/alma9/OpenSSL/v3.5.5/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/puppetlabs/bin:.
+
+
+ My extended LD_LIBRARY_PATH=/cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/2025/compilers/lib:/cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/lib64:/cvmfs/hlit.jinr.ru/alma9/java/v8u202/lib:/cvmfs/hlit.jinr.ru/alma9/OpenSSL/v3.5.5/lib64 
+
+
+ python ? :/cvmfs/hlit.jinr.ru/alma9/miniconda/envs/Py3.12.13/bin/python
+Python 3.12.13
+
+ nvidia-smi ? /usr/bin/nvidia-smi
+Wed Aug  5 21:45:19 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.126.20             Driver Version: 580.126.20     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  Tesla V100-SXM2-16GB           Off |   00000000:06:00.0 Off |                    0 |
+| N/A   32C    P0             42W /  300W |       0MiB /  16384MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   1  Tesla V100-SXM2-16GB           Off |   00000000:07:00.0 Off |                    0 |
+| N/A   32C    P0             42W /  300W |       0MiB /  16384MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   2  Tesla V100-SXM2-16GB           Off |   00000000:0A:00.0 Off |                    0 |
+| N/A   33C    P0             43W /  300W |       0MiB /  16384MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   3  Tesla V100-SXM2-16GB           Off |   00000000:0B:00.0 Off |                    0 |
+| N/A   31C    P0             43W /  300W |       0MiB /  16384MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   4  Tesla V100-SXM2-16GB           Off |   00000000:85:00.0 Off |                    0 |
+| N/A   33C    P0             45W /  300W |       0MiB /  16384MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   5  Tesla V100-SXM2-16GB           Off |   00000000:86:00.0 Off |                    0 |
+| N/A   34C    P0             42W /  300W |       0MiB /  16384MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   6  Tesla V100-SXM2-16GB           Off |   00000000:89:00.0 Off |                    0 |
+| N/A   34C    P0             44W /  300W |       0MiB /  16384MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   7  Tesla V100-SXM2-16GB           Off |   00000000:8A:00.0 Off |                    0 |
+| N/A   32C    P0             43W /  300W |       0MiB /  16384MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+
+
+ nvcc ? ; /cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/2025/compilers/bin/nvcc
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2025 NVIDIA Corporation
+Built on Wed_Aug_20_01:58:59_PM_PDT_2025
+Cuda compilation tools, release 13.0, V13.0.88
+Build cuda_13.0.r13.0/compiler.36424714_0
+
+ nvfortran ? ; /cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/2025/compilers/bin/nvfortran
+
+nvfortran 25.11-0 64-bit target on x86-64 Linux -tp broadwell 
+NVIDIA Compilers and Tools
+Copyright (c) 2025, NVIDIA CORPORATION & AFFILIATES.  All rights reserved.
+
+ pgfortran ? ; /cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/2025/compilers/bin/pgfortran
+
+pgfortran (aka nvfortran) 25.11-0 64-bit target on x86-64 Linux -tp broadwell 
+PGI Compilers and Tools
+Copyright (c) 2025, NVIDIA CORPORATION & AFFILIATES.  All rights reserved.
+
+
+  Scratch directory, /lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6
+
+ The directory /lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6 does exist.
+Its content :
+total 0
+
+ Copying /lustre/projects/m/milias/work/git-projects/open-collection/computer_science/cuda_fortran/CUDA-Fortran-Book  to  /lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/.
+
+ The directory /lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book does exist.
+Its content :
+total 53
+drwxr-xr-x.  2 milias hybrilit  1024 Aug  5 21:45 ch10
+drwxr-xr-x.  2 milias hybrilit  1024 Aug  5 21:45 ch11
+drwxr-xr-x.  2 milias hybrilit  1024 Aug  5 21:45 ch12
+drwxr-xr-x.  6 milias hybrilit  1024 Aug  5 21:45 chapter1
+drwxr-xr-x.  4 milias hybrilit  1024 Aug  5 21:45 chapter2
+drwxr-xr-x. 14 milias hybrilit  1024 Aug  5 21:45 chapter3
+drwxr-xr-x.  4 milias hybrilit  1024 Aug  5 21:45 chapter4
+drwxr-xr-x.  7 milias hybrilit  1024 Aug  5 21:45 chapter5
+drwxr-xr-x.  6 milias hybrilit  1024 Aug  5 21:45 chapter6
+drwxr-xr-x.  7 milias hybrilit  1024 Aug  5 21:45 chapter7
+-rw-r--r--.  1 milias hybrilit   697 Aug  5 21:45 LICENSE.txt
+-rw-r--r--.  1 milias hybrilit 11704 Aug  5 21:45 Makefile
+-rw-r--r--.  1 milias hybrilit  1991 Aug  5 21:45 README
+drwxr-xr-x.  4 milias hybrilit 11264 Aug  5 21:45 appendixC
+drwxr-xr-x.  2 milias hybrilit 12288 Aug  5 21:45 ch01
+drwxr-xr-x.  2 milias hybrilit 11264 Aug  5 21:45 ch02
+drwxr-xr-x.  2 milias hybrilit  1024 Aug  5 21:45 ch03
+drwxr-xr-x.  2 milias hybrilit  1024 Aug  5 21:45 ch04
+drwxr-xr-x.  2 milias hybrilit  1024 Aug  5 21:45 ch05
+drwxr-xr-x.  2 milias hybrilit  1024 Aug  5 21:45 ch06
+drwxr-xr-x.  2 milias hybrilit  1024 Aug  5 21:45 ch07
+drwxr-xr-x.  2 milias hybrilit  1024 Aug  5 21:45 ch08
+drwxr-xr-x.  2 milias hybrilit  1024 Aug  5 21:45 ch09
+
+
+I am in the directory CFB_COPY=/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book
+/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book
+
+
+ Own compilation in freshly created directory...make all :
+cd chapter1/deviceQuery; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter1/deviceQuery'
+nvfortran -O2  -o deviceQuery.out deviceQuery.cuf
+nvlink fatal   : Value 'sm_70' is not defined for option 'arch'
+pgacclnk: child process exit status 2: /cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/25.11/compilers/bin/tools/nvdd
+make[1]: *** [Makefile:29: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter1/deviceQuery'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter1/deviceQuery'
+make[1]: *** No rule to make target 'deviceQuery.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter1/deviceQuery'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter1/deviceQuery'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter1/deviceQuery'
+cd chapter1/increment; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter1/increment'
+nvfortran -O2  -o increment.out increment.cuf
+nvvmCompileProgram: failed with error 7: NVVM_ERROR_INVALID_OPTION
+nvnvvmd: error: libnvvm : error: -arch=compute_70 is an unsupported option
+NVFORTRAN-F-0155-Compiler failed to translate accelerator region (see -Minfo messages): Device compiler exited with error status code (increment.cuf: 16)
+NVFORTRAN/x86-64 Linux 25.11-0: compilation aborted
+make[1]: *** [Makefile:29: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter1/increment'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter1/increment'
+make[1]: *** No rule to make target 'increment.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter1/increment'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter1/increment'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter1/increment'
+cd chapter1/increment2; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter1/increment2'
+nvfortran -O2  -o increment2.out increment2.cuf
+nvvmCompileProgram: failed with error 7: NVVM_ERROR_INVALID_OPTION
+nvnvvmd: error: libnvvm : error: -arch=compute_70 is an unsupported option
+NVFORTRAN-F-0155-Compiler failed to translate accelerator region (see -Minfo messages): Device compiler exited with error status code (increment2.cuf: 17)
+NVFORTRAN/x86-64 Linux 25.11-0: compilation aborted
+make[1]: *** [Makefile:29: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter1/increment2'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter1/increment2'
+make[1]: *** No rule to make target 'increment2.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter1/increment2'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter1/increment2'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter1/increment2'
+cd chapter1/multidim; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter1/multidim'
+nvfortran -O2  -o multidim.out multidim.cuf
+nvvmCompileProgram: failed with error 7: NVVM_ERROR_INVALID_OPTION
+nvnvvmd: error: libnvvm : error: -arch=compute_70 is an unsupported option
+NVFORTRAN-F-0155-Compiler failed to translate accelerator region (see -Minfo messages): Device compiler exited with error status code (multidim.cuf: 17)
+NVFORTRAN/x86-64 Linux 25.11-0: compilation aborted
+make[1]: *** [Makefile:29: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter1/multidim'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter1/multidim'
+make[1]: *** No rule to make target 'multidim.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter1/multidim'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter1/multidim'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter1/multidim'
+cd chapter2/limitingFactor; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter2/limitingFactor'
+nvfortran -O2  -o limitingFactor.out limitingFactor.cuf
+nvvmCompileProgram: failed with error 7: NVVM_ERROR_INVALID_OPTION
+nvnvvmd: error: libnvvm : error: -arch=compute_70 is an unsupported option
+NVFORTRAN-F-0155-Compiler failed to translate accelerator region (see -Minfo messages): Device compiler exited with error status code (limitingFactor.cuf: 31)
+NVFORTRAN/x86-64 Linux 25.11-0: compilation aborted
+make[1]: *** [Makefile:29: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter2/limitingFactor'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter2/limitingFactor'
+make[1]: *** No rule to make target 'limitingFactor.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter2/limitingFactor'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter2/limitingFactor'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter2/limitingFactor'
+cd chapter2/peakBandwidth; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter2/peakBandwidth'
+nvfortran -O2  -o peakBandwidth.out peakBandwidth.cuf
+nvlink fatal   : Value 'sm_70' is not defined for option 'arch'
+pgacclnk: child process exit status 2: /cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/25.11/compilers/bin/tools/nvdd
+make[1]: *** [Makefile:29: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter2/peakBandwidth'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter2/peakBandwidth'
+make[1]: *** No rule to make target 'peakBandwidth.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter2/peakBandwidth'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter2/peakBandwidth'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter2/peakBandwidth'
+cd chapter3/async; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/async'
+nvfortran -O2  -o async.out async.cuf
+nvvmCompileProgram: failed with error 7: NVVM_ERROR_INVALID_OPTION
+nvnvvmd: error: libnvvm : error: -arch=compute_70 is an unsupported option
+NVFORTRAN-F-0155-Compiler failed to translate accelerator region (see -Minfo messages): Device compiler exited with error status code (async.cuf: 20)
+NVFORTRAN/x86-64 Linux 25.11-0: compilation aborted
+make[1]: *** [Makefile:29: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/async'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/async'
+make[1]: *** No rule to make target 'async.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/async'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/async'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/async'
+cd chapter3/constant; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/constant'
+nvfortran -O2  -o constant.out constant.cuf
+nvvmCompileProgram: failed with error 7: NVVM_ERROR_INVALID_OPTION
+nvnvvmd: error: libnvvm : error: -arch=compute_70 is an unsupported option
+NVFORTRAN-F-0155-Compiler failed to translate accelerator region (see -Minfo messages): Device compiler exited with error status code (constant.cuf: 18)
+NVFORTRAN/x86-64 Linux 25.11-0: compilation aborted
+make[1]: *** [Makefile:29: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/constant'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/constant'
+make[1]: *** No rule to make target 'constant.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/constant'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/constant'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/constant'
+cd chapter3/cufILP; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/cufILP'
+nvfortran -O2  -o cufILP.out cufILP.cuf
+nvvmCompileProgram: failed with error 7: NVVM_ERROR_INVALID_OPTION
+nvnvvmd: error: libnvvm : error: -arch=compute_70 is an unsupported option
+NVFORTRAN-F-0155-Compiler failed to translate accelerator region (see -Minfo messages): Device compiler exited with error status code (cufILP.cuf: 28)
+NVFORTRAN/x86-64 Linux 25.11-0: compilation aborted
+make[1]: *** [Makefile:29: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/cufILP'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/cufILP'
+make[1]: *** No rule to make target 'cufILP.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/cufILP'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/cufILP'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/cufILP'
+cd chapter3/cufKernel; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/cufKernel'
+nvfortran -O2  -o cufKernel.out cufKernel.cuf
+nvvmCompileProgram: failed with error 7: NVVM_ERROR_INVALID_OPTION
+nvnvvmd: error: libnvvm : error: -arch=compute_70 is an unsupported option
+NVFORTRAN-F-0155-Compiler failed to translate accelerator region (see -Minfo messages): Device compiler exited with error status code (cufKernel.cuf: 28)
+NVFORTRAN/x86-64 Linux 25.11-0: compilation aborted
+make[1]: *** [Makefile:29: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/cufKernel'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/cufKernel'
+make[1]: *** No rule to make target 'cufKernel.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/cufKernel'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/cufKernel'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/cufKernel'
+cd chapter3/cufKernel2D ; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/cufKernel2D'
+nvfortran -O2  -o cufKernel2D.out cufKernel2D.cuf
+nvvmCompileProgram: failed with error 7: NVVM_ERROR_INVALID_OPTION
+nvnvvmd: error: libnvvm : error: -arch=compute_70 is an unsupported option
+NVFORTRAN-F-0155-Compiler failed to translate accelerator region (see -Minfo messages): Device compiler exited with error status code (cufKernel2D.cuf: 28)
+NVFORTRAN/x86-64 Linux 25.11-0: compilation aborted
+make[1]: *** [Makefile:29: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/cufKernel2D'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/cufKernel2D'
+make[1]: *** No rule to make target 'cufKernel2D.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/cufKernel2D'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/cufKernel2D'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/cufKernel2D'
+cd chapter3/cufReduction ; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/cufReduction'
+nvfortran -O2  -o cufReduction.out cufReduction.cuf
+nvvmCompileProgram: failed with error 7: NVVM_ERROR_INVALID_OPTION
+nvnvvmd: error: libnvvm : error: -arch=compute_70 is an unsupported option
+NVFORTRAN-F-0155-Compiler failed to translate accelerator region (see -Minfo messages): Device compiler exited with error status code (cufReduction.cuf: 25)
+NVFORTRAN/x86-64 Linux 25.11-0: compilation aborted
+make[1]: *** [Makefile:29: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/cufReduction'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/cufReduction'
+make[1]: *** No rule to make target 'cufReduction.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/cufReduction'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/cufReduction'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/cufReduction'
+cd chapter3/local; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/local'
+nvfortran -O2  -cuda -gpu=ptxinfo -c local.cuf
+nvvmCompileProgram: failed with error 7: NVVM_ERROR_INVALID_OPTION
+nvnvvmd: error: libnvvm : error: -arch=compute_70 is an unsupported option
+NVFORTRAN-F-0155-Compiler failed to translate accelerator region (see -Minfo messages): Device compiler exited with error status code (local.cuf: 34)
+NVFORTRAN/x86-64 Linux 25.11-0: compilation aborted
+make[1]: *** [Makefile:29: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/local'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/local'
+make[1]: Nothing to be done for 'run'.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/local'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/local'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/local'
+cd chapter3/offsetNstride; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/offsetNstride'
+nvfortran -O2  -c precision_m.cuf
+nvfortran -O2  -o offsetNstride.out precision_m.o offsetNstride.cuf
+offsetNstride.cuf:
+nvvmCompileProgram: failed with error 7: NVVM_ERROR_INVALID_OPTION
+nvnvvmd: error: libnvvm : error: -arch=compute_70 is an unsupported option
+NVFORTRAN-F-0155-Compiler failed to translate accelerator region (see -Minfo messages): Device compiler exited with error status code (offsetNstride.cuf: 26)
+NVFORTRAN/x86-64 Linux 25.11-0: compilation aborted
+make[1]: *** [Makefile:30: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/offsetNstride'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/offsetNstride'
+make[1]: *** No rule to make target 'offsetNstride.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/offsetNstride'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/offsetNstride'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/offsetNstride'
+cd chapter3/parallelism; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/parallelism'
+nvfortran -O2  -c precision_m.cuf
+nvfortran -O2  -o parallelism.out precision_m.o parallelism.cuf
+parallelism.cuf:
+nvvmCompileProgram: failed with error 7: NVVM_ERROR_INVALID_OPTION
+nvnvvmd: error: libnvvm : error: -arch=compute_70 is an unsupported option
+NVFORTRAN-F-0155-Compiler failed to translate accelerator region (see -Minfo messages): Device compiler exited with error status code (parallelism.cuf: 41)
+NVFORTRAN/x86-64 Linux 25.11-0: compilation aborted
+make[1]: *** [Makefile:30: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/parallelism'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/parallelism'
+make[1]: *** No rule to make target 'parallelism.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/parallelism'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/parallelism'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/parallelism'
+cd chapter3/pinned; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/pinned'
+nvfortran   -o pinned.out pinned.cuf
+nvlink fatal   : Value 'sm_70' is not defined for option 'arch'
+pgacclnk: child process exit status 2: /cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/25.11/compilers/bin/tools/nvdd
+make[1]: *** [Makefile:29: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/pinned'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/pinned'
+make[1]: *** No rule to make target 'pinned.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/pinned'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/pinned'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/pinned'
+cd chapter3/sharedExample; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/sharedExample'
+nvfortran -O2  -o sharedExample.out sharedExample.cuf
+nvvmCompileProgram: failed with error 7: NVVM_ERROR_INVALID_OPTION
+nvnvvmd: error: libnvvm : error: -arch=compute_70 is an unsupported option
+NVFORTRAN-F-0155-Compiler failed to translate accelerator region (see -Minfo messages): Device compiler exited with error status code (sharedExample.cuf: 62)
+NVFORTRAN/x86-64 Linux 25.11-0: compilation aborted
+make[1]: *** [Makefile:29: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/sharedExample'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/sharedExample'
+make[1]: *** No rule to make target 'sharedExample.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/sharedExample'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/sharedExample'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/sharedExample'
+cd chapter3/transpose; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/transpose'
+nvfortran -O2  -o transpose.out transpose.cuf
+nvvmCompileProgram: failed with error 7: NVVM_ERROR_INVALID_OPTION
+nvnvvmd: error: libnvvm : error: -arch=compute_70 is an unsupported option
+NVFORTRAN-F-0155-Compiler failed to translate accelerator region (see -Minfo messages): Device compiler exited with error status code (transpose.cuf: 156)
+NVFORTRAN/x86-64 Linux 25.11-0: compilation aborted
+make[1]: *** [Makefile:29: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/transpose'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/transpose'
+make[1]: *** No rule to make target 'transpose.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/transpose'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/transpose'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter3/transpose'
+cd chapter4/P2P/minimal; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/minimal'
+nvfortran -O2  -o minimal.out minimal.cuf
+nvvmCompileProgram: failed with error 7: NVVM_ERROR_INVALID_OPTION
+nvnvvmd: error: libnvvm : error: -arch=compute_70 is an unsupported option
+NVFORTRAN-F-0155-Compiler failed to translate accelerator region (see -Minfo messages): Device compiler exited with error status code (minimal.cuf: 17)
+NVFORTRAN/x86-64 Linux 25.11-0: compilation aborted
+make[1]: *** [Makefile:29: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/minimal'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/minimal'
+make[1]: *** No rule to make target 'minimal.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/minimal'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/minimal'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/minimal'
+cd chapter4/P2P/p2pAccess; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/p2pAccess'
+nvfortran -O2  -o p2pAccess.out p2pAccess.cuf
+nvlink fatal   : Value 'sm_70' is not defined for option 'arch'
+pgacclnk: child process exit status 2: /cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/25.11/compilers/bin/tools/nvdd
+make[1]: *** [Makefile:29: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/p2pAccess'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/p2pAccess'
+make[1]: *** No rule to make target 'p2pAccess.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/p2pAccess'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/p2pAccess'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/p2pAccess'
+cd chapter4/P2P/directTransfer; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/directTransfer'
+nvfortran -O2  -o directTransfer.out directTransfer.cuf
+nvlink fatal   : Value 'sm_70' is not defined for option 'arch'
+pgacclnk: child process exit status 2: /cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/25.11/compilers/bin/tools/nvdd
+make[1]: *** [Makefile:29: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/directTransfer'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/directTransfer'
+make[1]: *** No rule to make target 'directTransfer.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/directTransfer'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/directTransfer'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/directTransfer'
+cd chapter4/P2P/p2pBandwidth; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/p2pBandwidth'
+nvfortran -O2  -o p2pBandwidth.out p2pBandwidth.cuf
+nvlink fatal   : Value 'sm_70' is not defined for option 'arch'
+pgacclnk: child process exit status 2: /cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/25.11/compilers/bin/tools/nvdd
+make[1]: *** [Makefile:29: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/p2pBandwidth'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/p2pBandwidth'
+make[1]: *** No rule to make target 'p2pBandwidth.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/p2pBandwidth'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/p2pBandwidth'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/p2pBandwidth'
+cd chapter4/P2P/transposeP2P; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/transposeP2P'
+nvfortran  -c timing.f90
+cc  -c wallclock.c
+nvfortran -O2  -o transposeP2P.out timing.o wallclock.o transposeP2P.cuf
+transposeP2P.cuf:
+nvvmCompileProgram: failed with error 7: NVVM_ERROR_INVALID_OPTION
+nvnvvmd: error: libnvvm : error: -arch=compute_70 is an unsupported option
+NVFORTRAN-F-0155-Compiler failed to translate accelerator region (see -Minfo messages): Device compiler exited with error status code (transposeP2P.cuf: 28)
+NVFORTRAN/x86-64 Linux 25.11-0: compilation aborted
+make[1]: *** [Makefile:32: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/transposeP2P'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/transposeP2P'
+make[1]: *** No rule to make target 'transposeP2P.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/transposeP2P'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/transposeP2P'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/P2P/transposeP2P'
+cd chapter4/MPI/mpiDevices; make build; make NPROCS=2 run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/MPI/mpiDevices'
+mpif90 -O2  -o mpiDevices.out mpiDevices.cuf
+make[1]: mpif90: No such file or directory
+make[1]: *** [Makefile:33: build] Error 127
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/MPI/mpiDevices'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/MPI/mpiDevices'
+make[1]: *** No rule to make target 'mpiDevices.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/MPI/mpiDevices'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/MPI/mpiDevices'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/MPI/mpiDevices'
+cd chapter4/MPI/assignDevice; make build; make NPROCS=2 run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/MPI/assignDevice'
+mpif90 -O2  -c ../common/mpiDeviceUtil.cuf
+make[1]: mpif90: No such file or directory
+make[1]: *** [Makefile:33: build] Error 127
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/MPI/assignDevice'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/MPI/assignDevice'
+make[1]: *** No rule to make target 'assignDevice.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/MPI/assignDevice'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/MPI/assignDevice'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/MPI/assignDevice'
+cd chapter4/MPI/transposeMPI; make build; make NPROCS=2 run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/MPI/transposeMPI'
+mpif90 -O2  -c ../common/mpiDeviceUtil.cuf
+make[1]: mpif90: No such file or directory
+make[1]: *** [Makefile:33: build] Error 127
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/MPI/transposeMPI'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/MPI/transposeMPI'
+make[1]: *** No rule to make target 'transposeMPI.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/MPI/transposeMPI'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/MPI/transposeMPI'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter4/MPI/transposeMPI'
+cd chapter5/rng_gpu; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter5/rng_gpu'
+nvfortran -O2 -cudalib=curand  -c ../common/precision_m.F90
+nvfortran -O2 -cudalib=curand  -c ../common/curand_m.cuf
+nvfortran -O2 -cudalib=curand  -o rng_gpu_sp.out precision_m.o curand_m.o  generate_randomnumbers.cuf
+generate_randomnumbers.cuf:
+nvlink fatal   : Value 'sm_70' is not defined for option 'arch'
+pgacclnk: child process exit status 2: /cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/25.11/compilers/bin/tools/nvdd
+make[1]: *** [Makefile:31: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter5/rng_gpu'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter5/rng_gpu'
+make[1]: *** No rule to make target 'rng_gpu_sp.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter5/rng_gpu'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter5/rng_gpu'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter5/rng_gpu'
+cd chapter5/pi; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter5/pi'
+nvfortran -O2 -cudalib=curand  -c ../common/precision_m.F90
+nvfortran -O2 -cudalib=curand  -c ../common/curand_m.cuf
+nvfortran -O2 -cudalib=curand  -o pi_sp.out precision_m.o curand_m.o  compute_pi.cuf
+compute_pi.cuf:
+nvvmCompileProgram: failed with error 7: NVVM_ERROR_INVALID_OPTION
+nvnvvmd: error: libnvvm : error: -arch=compute_70 is an unsupported option
+NVFORTRAN-F-0155-Compiler failed to translate accelerator region (see -Minfo messages): Device compiler exited with error status code (compute_pi.cuf: 60)
+NVFORTRAN/x86-64 Linux 25.11-0: compilation aborted
+make[1]: *** [Makefile:31: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter5/pi'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter5/pi'
+make[1]: *** No rule to make target 'pi_sp.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter5/pi'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter5/pi'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter5/pi'
+cd chapter5/compute_pi_performance; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter5/compute_pi_performance'
+nvfortran -O2 -cudalib=curand -DLOOP  -c ../common/precision_m.F90
+nvfortran -O2 -cudalib=curand -DLOOP  -c ../common/curand_m.cuf
+nvfortran -O2 -cudalib=curand -DLOOP  -c sum_lock.cuf
+nvvmCompileProgram: failed with error 7: NVVM_ERROR_INVALID_OPTION
+nvnvvmd: error: libnvvm : error: -arch=compute_70 is an unsupported option
+NVFORTRAN-F-0155-Compiler failed to translate accelerator region (see -Minfo messages): Device compiler exited with error status code (sum_lock.cuf: 23)
+NVFORTRAN/x86-64 Linux 25.11-0: compilation aborted
+make[1]: *** [Makefile:31: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter5/compute_pi_performance'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter5/compute_pi_performance'
+make[1]: *** No rule to make target 'compute_pi_performance_sp.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter5/compute_pi_performance'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter5/compute_pi_performance'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter5/compute_pi_performance'
+cd chapter5/mc_european; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter5/mc_european'
+nvfortran -O2 -cudalib=curand  -c ../common/precision_m.F90
+nvfortran -O2 -cudalib=curand  -c ../common/curand_m.cuf
+nvfortran -O2 -cudalib=curand  -o mc_european_sp.out precision_m.o curand_m.o  montecarlo_european_option.cuf
+montecarlo_european_option.cuf:
+nvvmCompileProgram: failed with error 7: NVVM_ERROR_INVALID_OPTION
+nvnvvmd: error: libnvvm : error: -arch=compute_70 is an unsupported option
+NVFORTRAN-F-0155-Compiler failed to translate accelerator region (see -Minfo messages): Device compiler exited with error status code (montecarlo_european_option.cuf: 139)
+NVFORTRAN/x86-64 Linux 25.11-0: compilation aborted
+make[1]: *** [Makefile:31: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter5/mc_european'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter5/mc_european'
+make[1]: *** No rule to make target 'mc_european_sp.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter5/mc_european'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter5/mc_european'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter5/mc_european'
+cd chapter6/finiteDifference; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter6/finiteDifference'
+nvfortran -O2  -c ../common/precision_m.cuf
+nvfortran -O2  -c derivative_m.cuf
+nvvmCompileProgram: failed with error 7: NVVM_ERROR_INVALID_OPTION
+nvnvvmd: error: libnvvm : error: -arch=compute_70 is an unsupported option
+NVFORTRAN-F-0155-Compiler failed to translate accelerator region (see -Minfo messages): Device compiler exited with error status code (derivative_m.cuf: 383)
+NVFORTRAN/x86-64 Linux 25.11-0: compilation aborted
+make[1]: *** [Makefile:30: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter6/finiteDifference'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter6/finiteDifference'
+make[1]: *** No rule to make target 'finiteDifference.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter6/finiteDifference'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter6/finiteDifference'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter6/finiteDifference'
+cd chapter6/limitingFactor; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter6/limitingFactor'
+nvfortran -O2  -c ../common/precision_m.cuf
+nvfortran -O2  -o limitingFactor.out precision_m.o limitingFactor.cuf
+limitingFactor.cuf:
+nvvmCompileProgram: failed with error 7: NVVM_ERROR_INVALID_OPTION
+nvnvvmd: error: libnvvm : error: -arch=compute_70 is an unsupported option
+NVFORTRAN-F-0155-Compiler failed to translate accelerator region (see -Minfo messages): Device compiler exited with error status code (limitingFactor.cuf: 169)
+NVFORTRAN/x86-64 Linux 25.11-0: compilation aborted
+make[1]: *** [Makefile:30: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter6/limitingFactor'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter6/limitingFactor'
+make[1]: *** No rule to make target 'limitingFactor.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter6/limitingFactor'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter6/limitingFactor'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter6/limitingFactor'
+cd chapter6/finiteDifferenceStr; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter6/finiteDifferenceStr'
+nvfortran -O2  -c ../common/precision_m.cuf
+nvfortran -O2  -c derivativeStr_m.cuf
+nvvmCompileProgram: failed with error 7: NVVM_ERROR_INVALID_OPTION
+nvnvvmd: error: libnvvm : error: -arch=compute_70 is an unsupported option
+NVFORTRAN-F-0155-Compiler failed to translate accelerator region (see -Minfo messages): Device compiler exited with error status code (derivativeStr_m.cuf: 408)
+NVFORTRAN/x86-64 Linux 25.11-0: compilation aborted
+make[1]: *** [Makefile:30: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter6/finiteDifferenceStr'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter6/finiteDifferenceStr'
+make[1]: *** No rule to make target 'finiteDifferenceStr.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter6/finiteDifferenceStr'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter6/finiteDifferenceStr'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter6/finiteDifferenceStr'
+cd chapter7/fft_test_c2c; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter7/fft_test_c2c'
+nvfortran -O2 -cudalib=cufft  -c ../common/precision_m.F90
+nvfortran -O2 -cudalib=cufft  -c ../common/cufft_m.cuf
+nvfortran -O2 -cudalib=cufft  -o fft_test_c2c_sp.out precision_m.o cufft_m.o fft_test_c2c.cuf 
+fft_test_c2c.cuf:
+nvlink fatal   : Value 'sm_70' is not defined for option 'arch'
+pgacclnk: child process exit status 2: /cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/25.11/compilers/bin/tools/nvdd
+make[1]: *** [Makefile:31: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter7/fft_test_c2c'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter7/fft_test_c2c'
+make[1]: *** No rule to make target 'fft_test_c2c_sp.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter7/fft_test_c2c'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter7/fft_test_c2c'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter7/fft_test_c2c'
+cd chapter7/fft_test_r2c; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter7/fft_test_r2c'
+nvfortran -O2 -cudalib=cufft  -c ../common/precision_m.F90
+nvfortran -O2 -cudalib=cufft  -c ../common/cufft_m.cuf
+nvfortran -O2 -cudalib=cufft  -o fft_test_r2c_sp.out precision_m.o cufft_m.o fft_test_r2c.cuf 
+fft_test_r2c.cuf:
+nvlink fatal   : Value 'sm_70' is not defined for option 'arch'
+pgacclnk: child process exit status 2: /cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/25.11/compilers/bin/tools/nvdd
+make[1]: *** [Makefile:31: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter7/fft_test_r2c'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter7/fft_test_r2c'
+make[1]: *** No rule to make target 'fft_test_r2c_sp.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter7/fft_test_r2c'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter7/fft_test_r2c'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter7/fft_test_r2c'
+cd chapter7/fft_derivative; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter7/fft_derivative'
+nvfortran -Mpreprocess -O2 -cudalib=cufft  -c ../common/precision_m.F90
+nvfortran -Mpreprocess -O2 -cudalib=cufft  -c ../common/cufft_m.cuf
+nvfortran -Mpreprocess -O2 -cudalib=cufft  -o fft_derivative_sp.out precision_m.o cufft_m.o fft_derivative.cuf 
+fft_derivative.cuf:
+nvvmCompileProgram: failed with error 7: NVVM_ERROR_INVALID_OPTION
+nvnvvmd: error: libnvvm : error: -arch=compute_70 is an unsupported option
+NVFORTRAN-F-0155-Compiler failed to translate accelerator region (see -Minfo messages): Device compiler exited with error status code (fft_derivative.cuf: 71)
+NVFORTRAN/x86-64 Linux 25.11-0: compilation aborted
+make[1]: *** [Makefile:31: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter7/fft_derivative'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter7/fft_derivative'
+make[1]: *** No rule to make target 'fft_derivative_sp.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter7/fft_derivative'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter7/fft_derivative'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter7/fft_derivative'
+cd chapter7/exampleOverlapFFT; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter7/exampleOverlapFFT'
+nvfortran -O2 -cudalib=cufft  -c ../common/precision_m.F90
+nvfortran -O2 -cudalib=cufft  -c ../common/cufft_m.cuf
+nvfortran -O2 -cudalib=cufft  -o exampleOverlapFFT.out precision_m.o cufft_m.o exampleOverlapFFT.cuf 
+exampleOverlapFFT.cuf:
+nvvmCompileProgram: failed with error 7: NVVM_ERROR_INVALID_OPTION
+nvnvvmd: error: libnvvm : error: -arch=compute_70 is an unsupported option
+NVFORTRAN-F-0155-Compiler failed to translate accelerator region (see -Minfo messages): Device compiler exited with error status code (exampleOverlapFFT.cuf: 133)
+NVFORTRAN/x86-64 Linux 25.11-0: compilation aborted
+make[1]: *** [Makefile:31: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter7/exampleOverlapFFT'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter7/exampleOverlapFFT'
+make[1]: *** No rule to make target 'exampleOverlapFFT.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter7/exampleOverlapFFT'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter7/exampleOverlapFFT'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/chapter7/exampleOverlapFFT'
+cd appendixC/sgemmDevice; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/appendixC/sgemmDevice'
+nvfortran -O2 -cudalib=cublas  -o sgemmDevice.out sgemmDevice.cuf
+nvlink fatal   : Value 'sm_70' is not defined for option 'arch'
+pgacclnk: child process exit status 2: /cvmfs/hlit.jinr.ru/alma9/cuda/v13.0/Linux_x86_64/25.11/compilers/bin/tools/nvdd
+make[1]: *** [Makefile:30: build] Error 2
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/appendixC/sgemmDevice'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/appendixC/sgemmDevice'
+make[1]: *** No rule to make target 'sgemmDevice.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/appendixC/sgemmDevice'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/appendixC/sgemmDevice'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/appendixC/sgemmDevice'
+cd appendixC/fCallingC; make build; make run; make clean
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/appendixC/fCallingC'
+nvcc -O3  --generate-code arch=compute_70,code=sm_70 -c zero.cu
+nvcc fatal   : Unsupported gpu architecture 'compute_70'
+make[1]: *** [Makefile:37: build] Error 1
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/appendixC/fCallingC'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/appendixC/fCallingC'
+make[1]: *** No rule to make target 'fCallingC.out', needed by 'run'.  Stop.
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/appendixC/fCallingC'
+make[1]: Entering directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/appendixC/fCallingC'
+Cleaning up...
+make[1]: Leaving directory '/lustre/projects/m/milias/scratch/CUDAFortran.edc4aacc05e6/CUDA-Fortran-Book/appendixC/fCallingC'

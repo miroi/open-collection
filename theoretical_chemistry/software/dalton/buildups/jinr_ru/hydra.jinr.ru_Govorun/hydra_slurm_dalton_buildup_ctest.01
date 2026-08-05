@@ -39,7 +39,7 @@ echo -e "\nRunning on host `hostname`"
 echo -e "Time is `date` \n"
 ulimit -s unlimited
 
-echo -e "\n\n The total memory at the node (in GB)"
+echo -e "The total memory at the node (in GB)"
 free -t -g
  
 echo -e "\n\n Job user is $SLURM_JOB_USER and his job $SLURM_JOB_NAME has assigned ID $SLURM_JOBID"
@@ -51,13 +51,12 @@ echo It is running on the cluster compute node:
 echo $SLURM_CLUSTER_NAME
 echo and is employing $SLURM_JOB_NUM_NODES node/nodes:
 echo $SLURM_JOB_NODELIST
-echo
-echo -e "Job partition is $SLURM_JOB_PARTITION \n"
-echo -e "Job constraint is $SLURM_JOB_CONSTRAINTS  \n"
+echo -e "Job partition is $SLURM_JOB_PARTITION "
+echo -e "Job constraint is $SLURM_JOB_CONSTRAINTS"
 echo -e The job requests $SLURM_CPUS_ON_NODE CPU per task.
 
 # CPU model, total numer of CPUs, number of allocated CPUs
-echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
+echo -e "\n\n The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
 NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
 echo "This node has total NPROCS=$NPROCS CPUs available for an EXCLUSIVE job."
 echo "Based on reserved memory, this node got SLURM_CPUS_ON_NODE=$SLURM_CPUS_ON_NODE CPUs allocated for SLURM calculations."
@@ -81,10 +80,12 @@ module purge
 #module add Python/v3.12.13  
 module add CMake/v4.2.3
 module add Python/v3.12.13
+module add intel/v2026.1.0
+
 #module add openmpi/v5.0.3_gcc1230
 #module add LAPACK/v3.12.0_gcc1230
 #module add Python/v3.12.4-1 # Of J.Busa Jr.
-echo -e "loaded modules:"
+echo -e "List of loaded modules:"
 module list
 
 echo -e "\n\n Checking the software for code buildup :"

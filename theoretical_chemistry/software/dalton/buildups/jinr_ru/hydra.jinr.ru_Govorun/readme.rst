@@ -19,3 +19,8 @@ Cloning into '/lustre/projects/m/milias/work/software/dalton/dalton_cloned/exter
 Cloning into '/lustre/projects/m/milias/work/software/dalton/dalton_cloned/external/pelib'...
 Submodule path 'external/gen1int': checked out 'a9893e074d4f51357b0ea95b2af33a5ee601dd61'
 Submodule path 'external/pelib': checked out '79f54ecf9c4268d3e98a8bdbdb1bccc0744cdaa6'
+
+
+buildup with ctests
+-------------------
+sbatch hydra_slurm_dalton_buildup_ctest.01

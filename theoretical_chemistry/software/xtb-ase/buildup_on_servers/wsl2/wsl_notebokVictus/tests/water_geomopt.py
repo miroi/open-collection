@@ -1,6 +1,6 @@
 from ase import Atoms
 from ase.optimize import BFGS
-from ase.calculators.xtb import XTB
+from xtb.ase.calculator import XTB
 
 # Create water molecule
 water = Atoms('H2O',

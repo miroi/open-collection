@@ -11,3 +11,21 @@ Desired=Unknown/Install/Remove/Purge/Hold
 ii  xtb            6.6.1-1      amd64        semiempirical extended tight-binding program package
 
 
+miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/xtb-ase/buildup_on_servers/wsl2/wsl_notebokVictus/.which xtb
+/usr/bin/xtb
+miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/xtb-ase/buildup_on_servers/wsl2/wsl_notebokVictus/.xtb --version
+      -----------------------------------------------------------
+     |                   =====================                   |
+     |                           x T B                           |
+     |                   =====================                   |
+     |                         S. Grimme                         |
+     |          Mulliken Center for Theoretical Chemistry        |
+     |                    University of Bonn                     |
+      -----------------------------------------------------------
+
+   * xtb version 6.6.1 (unknown) compiled by 'builduser@buildhost' on 2023-08-07
+
+normal termination of xtb
+
+
+

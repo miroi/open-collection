@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -l
 
 #SBATCH -A p326
 
@@ -11,8 +11,8 @@
 ## stdout/stderr output file
 ##SBATCH --output=job.%j.out # Stdout (%j=jobId)
 ##SBATCH --error=job.%j.err # Stderr (%j=jobId)
-##SBATCH -oe log_slurm_job.%j.%N.std_out_err
 #SBATCH -o log_slurm_job.%j.%N.std_out
+#SBATCH -e log_slurm_job.%j.%N.std_err
 
 ## email
 ##SBATCH --mail-user=milias@theor.jinr.ru

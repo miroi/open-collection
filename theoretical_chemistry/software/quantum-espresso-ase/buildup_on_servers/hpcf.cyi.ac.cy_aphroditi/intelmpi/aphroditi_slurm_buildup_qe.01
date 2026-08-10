@@ -11,8 +11,8 @@
 ## stdout/stderr output file
 ##SBATCH --output=job.%j.out # Stdout (%j=jobId)
 ##SBATCH --error=job.%j.err # Stderr (%j=jobId)
-#SBATCH -o log_slurm_job.%j.%N.std_out
-#SBATCH -e log_slurm_job.%j.%N.std_err
+#SBATCH --output=log_slurm_job.%j.%N.std_out
+##SBATCH --error=log_slurm_job.%j.%N.std_err
 
 ## email
 #SBATCH --mail-user=milias@theor.jinr.ru

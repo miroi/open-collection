@@ -13,3 +13,4 @@ ru26mi1@front01:~/work/software/libcx/.tar -xvf libxc-7.1.2.tar.bz2
 
 buildup
 -------
+sbatch aphroditi_libxc_buildup_intel.01

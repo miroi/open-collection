@@ -10,10 +10,8 @@
 #SBATCH --time=8:00:00
 
 ## stdout/stderr output file
-##SBATCH --output=job.%j.out # Stdout (%j=jobId)
-##SBATCH --error=job.%j.err # Stderr (%j=jobId)
-#SBATCH -o log_slurm_job.%j.%N.std_out
-#SBATCH -e log_slurm_job.%j.%N.std_err
+#SBATCH --output=log_slurm_job.%j.%N.std_out
+##SBATCH --error=log_slurm_job.%j.%N.std_err
 
 ## email
 #SBATCH --mail-user=milias@theor.jinr.ru
@@ -86,7 +84,7 @@ echo -e "\n\n My PATH=$PATH\n"
 echo -e "\n My LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
 
 #LIBXC_DIR=/lustre/projects/m/milias/work/software/libxc
-LIBXC_DIR=/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2
+LIBXC_DIR=/nvme/h/ru26mi1/work/software/libcx
 LIBXC=$LIBXC_DIR/libxc-7.1.2
 
 #BUILD=build_intel2023.1

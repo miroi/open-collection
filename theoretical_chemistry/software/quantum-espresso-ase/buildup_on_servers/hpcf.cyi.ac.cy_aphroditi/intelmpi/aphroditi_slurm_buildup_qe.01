@@ -1,43 +1,24 @@
 #!/bin/bash
 
-## jobname
-#SBATCH -J QEbuild
+#SBATCH -A p326
 
-##  partition (queue)
-#SBATCH --account=bltp
-#SBATCH --partition=bltp
-#SBATCH --constraint=cascade
-##SBATCH --constraint=icelake
-#SBATCH --qos=medium
-
-## max. execution time
-##SBATCH -t 3-00:00:00
-#SBATCH -t 0-08:00:00
-
-##SBATCH --exclusive
-
-##SBATCH --mem=64GB
-#SBATCH --mem=32GB
-
-##SBATCH --mem-per-cpu=4GB
-
-# do not restart in the case of nodefail!
-##SBATCH --no-requeue
-##SBATCH --no-kill
-
-#
-#SBATCH -N 1
+#SBATCH --job-name=QEbuild
+#SBATCH --partition=milan
+#SBATCH --nodes=1
 #SBATCH --ntasks-per-node=8
-
+#SBATCH --time=8:00:00
 
 ## stdout/stderr output file
-#SBATCH -o log_slurm_job.%j.%N.std_out_err
+##SBATCH --output=job.%j.out # Stdout (%j=jobId)
+##SBATCH --error=job.%j.err # Stderr (%j=jobId)
+#SBATCH -o log_slurm_job.%j.%N.std_out
+#SBATCH -e log_slurm_job.%j.%N.std_err
 
-## E-mail
+## email
 #SBATCH --mail-user=milias@theor.jinr.ru
 #SBATCH --mail-type=ALL
 
-echo -e "\nRunning on host `hostname`"
+echo -e "\n\nRunning on host `hostname`"
 echo -e "Date & Time is `date` \n"
 
 echo -e "\n\n The total memory at the node (in GB)"
@@ -57,12 +38,6 @@ echo -e "Number of allocated CPUs on each single node, SLURM_CPUS_ON_NODE=$SLURM
 echo -e "Number of all reserved threads over ALL nodes, SLURM_NTASKS=$SLURM_NTASKS ."
 echo -e "Job has reserved memory per node, SLURM_MEM_PER_NODE=$SLURM_MEM_PER_NODE MB of memory"
 
-#MACHINEFILE="nodes.$SLURM_JOB_PARTITION.$SLURM_JOB_ID"
-# Generate Machinefile for mpi such that hosts are in the same
-# order as if run via srun
-#srun -l /bin/hostname | sort -n | awk '{print $2}' > $MACHINEFILE
-#echo -e "\ngenerated machinefile for MPI, $MACHINEFILE"; ls -lt $PWD/$MACHINEFILE; echo "containing:"; cat $MACHINEFILE
-
 # CPU model, total numer of CPUs, number of allocated CPUs
 echo -e "The node's CPU \c"; cat /proc/cpuinfo | grep 'model name' | uniq
 NPROCS=`cat /proc/cpuinfo | grep processor | wc -l`
@@ -78,30 +53,22 @@ echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
 #export OPENBLAS_NUM_THREADS=$RATIO
 #echo -e "\nFor openblas internal parallelization, OPENBLAS_NUM_THREADS=$OPENBLAS_NUM_THREADS"
 
-
 module purge
-#module load GVR/v1.0-1 gcc/v11.2.0 fftw/v3.3.10_gcc1120 LAPACK/v3.9.0 openmpi/v4.1.1_gcc1120
-module load   Python/v3.12.13   
-module load  CMake/v3.26.5
-module load  intel/v2026.1.0
-echo -e "\n\n loaded modules:"
+module load  Python CMake
+#module load  impi/2021.13.0-intel-compilers-2024.2.0
+module load  intel
+echo -e "\n\n...loaded modules :"
 module list
 
-#IntelMPI2026.1 compilers
-#echo -e "\n\n Activating IntelMPI OneAPI 2026.1 :"
-#source /lustre/projects/m/milias/work/software/intel/oneapi/setvars.sh
-
-
 echo -e "\n\n python ? ; python -V :\c"; which python; python -V
-echo -e "\n ifx ? ; ifx -V: \c"; which ifx; ifx -V
-echo -e "\n mpiifx ? ;  mpiifx -V: \c";which mpiifx; mpiifx -V
-echo -e "\n icx ? ; icx -V: \c"; which icx; icx -V
-echo -e "\n mpiicx ? ;  mpiicx -V: \c";which mpiicx; mpiicx -V
-echo -e "\n icpx ? ; icpx -V: \c"; which icpx; icpx -V
-echo -e "\n mpiicpx ? ; mpiicpx -V: \c"; which mpiicpx; mpiicpx -V
-echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"
-echo -e "\n mpirun ? \c"; which mpirun; mpirun --version
 echo -e "\n cmake ? \c"; which cmake; cmake --version
+echo -e "\n\n         ***  IntelMPI+MKL  ***  "
+echo -e "\n ifort ?: \c"; which ifort; ifort -V
+echo -e "\n mpiifort ? : \c";which mpiifort; mpiifort -V
+echo -e "\n icc ? :\c"; which icc; icc -V
+echo -e "\n icpc ? : \c"; which icpc; icpc -V
+echo -e "\n Intel MKL library ? MKLROOT=$MKLROOT"
+echo -e "\n mpiexec ?  :\c"; which mpiexec; mpiexec --version
 
 echo -e "\n\n My PATH=$PATH\n"
 echo -e "\n My LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
@@ -109,12 +76,11 @@ echo -e "\n My LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
 # for running jobs from your homedir, use ...
 #cd $SLURM_SUBMIT_DIR
 
-#QE=/lustre/home/user/m/milias/work/software/quantum-espresso/qe-develop/q-e
-QE=/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e_cloned
+#QE=/lustre/projects/m/milias/work/software/quantum-espresso/git_cloned/q-e_cloned
+QE=/nvme/h/ru26mi1/work/software/quantum-espresso/q-e_cloned
 
 #BUILD=build_intelmpi2025.3.1_libxc_mkl_scalapack
-#BUILD=build_intelmpi2026.1_libxc_mkl_scalapack_hdf5_n05p
-BUILD=build_intelmpi2026.1_libxc_mkl_scalapack_hdf5_n02p
+BUILD=build_intelmpi_mkl_scalapack
 
 echo -e "\n\n QE=$QE"
 echo -e "ls $QE/"
@@ -163,7 +129,9 @@ LIBXC_INC=$LIBXC_DIR/include
 
 #cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_Fortran_COMPILER=mpiifx -DCMAKE_Fortran_FLAGS="-xHost -g -traceback"  -DCMAKE_C_FLAGS="-xHost"  -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=ON  -DHDF5_ROOT=/lustre/projects/m/milias/work/software/hdf5/hdf5-2.1.1/install_build_intelmpi2026.1  .. 
 
-cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=mpiicx -DCMAKE_CXX_COMPILER=mpiicpx -DCMAKE_Fortran_COMPILER=mpiifx -DCMAKE_Fortran_FLAGS="-xHost -g -traceback"  -DCMAKE_C_FLAGS="-xHost"  -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=ON  -DHDF5_ROOT=/lustre/projects/m/milias/work/software/hdf5/hdf5-2.1.1/install_build_intelmpi2026.1  -DHDF5_PREFER_PARALLEL=ON  -DHDF5_IS_PARALLEL=ON .. 
+#cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=mpiicx -DCMAKE_CXX_COMPILER=mpiicpx -DCMAKE_Fortran_COMPILER=mpiifx -DCMAKE_Fortran_FLAGS="-xHost -g -traceback"  -DCMAKE_C_FLAGS="-xHost"  -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=ON  -DHDF5_ROOT=/lustre/projects/m/milias/work/software/hdf5/hdf5-2.1.1/install_build_intelmpi2026.1  -DHDF5_PREFER_PARALLEL=ON  -DHDF5_IS_PARALLEL=ON .. 
+
+cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=mpiicc -DCMAKE_CXX_COMPILER=mpiicpc -DCMAKE_Fortran_COMPILER=mpiifort -DCMAKE_Fortran_FLAGS="-xHost -g -traceback"  -DCMAKE_C_FLAGS="-xHost"  -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=OFF  -DQE_ENABLE_HDF5=OFF  .. 
 
 echo -e "\n\n Running make -j $SLURM_CPUS_ON_NODE :"
 make -j $SLURM_CPUS_ON_NODE
@@ -185,6 +153,6 @@ echo -e "  Tests run as : ${MPIEXEC_EXECUTABLE} ${MPIEXEC_NUMPROC_FLAG} <NUM_PRO
 echo -e "\n\n running ctest -VV:"
 ctest -VV -j2
 
-echo -e "\n\n End of script. Date & Time is `date` \n"
+echo -e "\n\n End of the script. Date & Time is `date` \n"
 
 exit

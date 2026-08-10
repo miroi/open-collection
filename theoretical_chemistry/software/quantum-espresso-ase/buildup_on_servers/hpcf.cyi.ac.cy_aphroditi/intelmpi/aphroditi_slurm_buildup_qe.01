@@ -53,11 +53,14 @@ echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
 #export OPENBLAS_NUM_THREADS=$RATIO
 #echo -e "\nFor openblas internal parallelization, OPENBLAS_NUM_THREADS=$OPENBLAS_NUM_THREADS"
 
+echo -e "\n\n First purge, than loading modules:"
 module purge
-module load  Python CMake
-#module load  impi/2021.13.0-intel-compilers-2024.2.0
-module load  intel
-echo -e "\n\n...loaded modules :"
+module load Python 
+module load CMake
+module load HDF5
+module load libxc
+module load intel
+echo -e "\n...loaded modules :"
 module list
 
 echo -e "\n\n python ? ; python -V :\c"; which python; python -V
@@ -80,7 +83,7 @@ echo -e "\n My LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
 QE=/nvme/h/ru26mi1/work/software/quantum-espresso/q-e_cloned
 
 #BUILD=build_intelmpi2025.3.1_libxc_mkl_scalapack
-BUILD=build_intelmpi_mkl_scalapack
+BUILD=build_intelmpi_mkl_scalapack_libxc_hdf5
 
 echo -e "\n\n QE=$QE"
 echo -e "ls $QE/"
@@ -131,7 +134,9 @@ LIBXC_INC=$LIBXC_DIR/include
 
 #cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=mpiicx -DCMAKE_CXX_COMPILER=mpiicpx -DCMAKE_Fortran_COMPILER=mpiifx -DCMAKE_Fortran_FLAGS="-xHost -g -traceback"  -DCMAKE_C_FLAGS="-xHost"  -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=ON  -DLIBXC_ROOT=$LIBXC_DIR  -DLibxc_VERSION="7.0.0"  -DQE_ENABLE_HDF5=ON  -DHDF5_ROOT=/lustre/projects/m/milias/work/software/hdf5/hdf5-2.1.1/install_build_intelmpi2026.1  -DHDF5_PREFER_PARALLEL=ON  -DHDF5_IS_PARALLEL=ON .. 
 
-cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=mpiicc -DCMAKE_CXX_COMPILER=mpiicpc -DCMAKE_Fortran_COMPILER=mpiifort -DCMAKE_Fortran_FLAGS="-xHost -g -traceback"  -DCMAKE_C_FLAGS="-xHost"  -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=OFF  -DQE_ENABLE_HDF5=OFF  .. 
+#cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=mpiicc -DCMAKE_CXX_COMPILER=mpiicpc -DCMAKE_Fortran_COMPILER=mpiifort -DCMAKE_Fortran_FLAGS="-xHost -g -traceback"  -DCMAKE_C_FLAGS="-xHost"  -DQE_ENABLE_SCALAPACK=ON -DQE_ENABLE_LIBXC=OFF  -DQE_ENABLE_HDF5=OFF  .. 
+
+cmake -DQE_ENABLE_MPI=ON -DQE_ENABLE_MPI_MODULE=ON -DCMAKE_C_COMPILER=mpiicc -DCMAKE_CXX_COMPILER=mpiicpc -DCMAKE_Fortran_COMPILER=mpiifort -DCMAKE_Fortran_FLAGS="-O3"  -DCMAKE_C_FLAGS="-O3"  -DQE_ENABLE_SCALAPACK=ON  -DQE_ENABLE_LIBXC=ON  -DQE_ENABLE_HDF5=ON  .. 
 
 echo -e "\n\n Running make -j $SLURM_CPUS_ON_NODE :"
 make -j $SLURM_CPUS_ON_NODE

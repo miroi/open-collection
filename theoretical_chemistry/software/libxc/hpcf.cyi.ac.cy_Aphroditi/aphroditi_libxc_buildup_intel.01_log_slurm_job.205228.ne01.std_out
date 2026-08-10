@@ -1,0 +1,1160 @@
+
+
+Running on host ne01
+Time is Mon Aug 10 16:53:04 EEST 2026 
+
+
+
+ The total memory at the node (in GB)
+               total        used        free      shared  buff/cache   available
+Mem:             251          38         188           4          31         213
+Swap:              0           0           0
+Total:           251          38         188
+
+
+Job user is SLURM_JOB_USER= ru26mi1
+User job SLURM_JOB_NAME=QEbuild has assigned ID SLURM_JOBID=205228
+This job was submitted from the computer SLURM_SUBMIT_HOST=front01
+and from the home directory SLURM_SUBMIT_DIR:
+/nvme/h/ru26mi1/work/git-projects/open-collection/theoretical_chemistry/software/libxc/hpcf.cyi.ac.cy_Aphroditi
+Job is running on the cluster compute node: SLURM_CLUSTER_NAME=aphroditi
+and is employing SLURM_JOB_NUM_NODES=1 node/nodes:
+SLURM_JOB_NODELIST = ne01
+Job partition is SLURM_JOB_PARTITION=milan 
+
+Number of allocated CPUs on each single node, SLURM_CPUS_ON_NODE=8 .
+Number of all reserved threads over ALL nodes, SLURM_NTASKS=8 .
+Job has reserved memory per node, SLURM_MEM_PER_NODE= MB of memory
+The node's CPU model name	: AMD EPYC 7713 64-Core Processor
+BTW, this node has total 128 CPUs available for an EXCLUSIVE job.
+Based on reserved memory, this node got 8 CPUs allocated for SLURM calculations.
+This job wants SLURM_NTASKS=8 threads . 
+Lmod Warning:
+-------------------------------------------------------------------------------
+The following dependent module(s) are not currently loaded: GCCcore/14.3.0
+(required by: bzip2/1.0.8-GCCcore-14.3.0, ncurses/6.5-GCCcore-14.3.0,
+libreadline/8.2-GCCcore-14.3.0, libtommath/1.3.0-GCCcore-14.3.0,
+Tcl/9.0.1-GCCcore-14.3.0, SQLite/3.50.1-GCCcore-14.3.0,
+XZ/5.8.1-GCCcore-14.3.0, libffi/3.5.1-GCCcore-14.3.0,
+Python/3.13.5-GCCcore-14.3.0, libidn2/2.3.8-GCCcore-14.3.0,
+libiconv/1.18-GCCcore-14.3.0, libunistring/1.3-GCCcore-14.3.0,
+libpsl/0.21.5-GCCcore-14.3.0, cURL/8.14.1-GCCcore-14.3.0,
+libxml2/2.14.3-GCCcore-14.3.0, lz4/1.10.0-GCCcore-14.3.0,
+gzip/1.14-GCCcore-14.3.0, zstd/1.5.7-GCCcore-14.3.0,
+libarchive/3.8.1-GCCcore-14.3.0, CMake/4.0.3-GCCcore-14.3.0),
+binutils/2.44-GCCcore-14.3.0 (required by: Python/3.13.5-GCCcore-14.3.0),
+zlib/1.3.1-GCCcore-14.3.0 (required by: Tcl/9.0.1-GCCcore-14.3.0,
+Python/3.13.5-GCCcore-14.3.0, cURL/8.14.1-GCCcore-14.3.0,
+libxml2/2.14.3-GCCcore-14.3.0, zstd/1.5.7-GCCcore-14.3.0,
+libarchive/3.8.1-GCCcore-14.3.0, CMake/4.0.3-GCCcore-14.3.0)
+-------------------------------------------------------------------------------
+
+
+
+
+The following have been reloaded with a version change:
+  1) GCCcore/14.3.0 => GCCcore/12.3.0
+  2) binutils/2.44-GCCcore-14.3.0 => binutils/2.40-GCCcore-12.3.0
+  3) zlib/1.3.1-GCCcore-14.3.0 => zlib/1.2.13-GCCcore-12.3.0
+
+
+
+...loaded modules :
+
+Currently Loaded Modules:
+  1) bzip2/1.0.8-GCCcore-14.3.0
+  2) ncurses/6.5-GCCcore-14.3.0
+  3) libreadline/8.2-GCCcore-14.3.0
+  4) libtommath/1.3.0-GCCcore-14.3.0
+  5) Tcl/9.0.1-GCCcore-14.3.0
+  6) SQLite/3.50.1-GCCcore-14.3.0
+  7) XZ/5.8.1-GCCcore-14.3.0
+  8) libffi/3.5.1-GCCcore-14.3.0
+  9) OpenSSL/3
+ 10) Python/3.13.5-GCCcore-14.3.0
+ 11) libidn2/2.3.8-GCCcore-14.3.0
+ 12) libiconv/1.18-GCCcore-14.3.0
+ 13) libunistring/1.3-GCCcore-14.3.0
+ 14) libpsl/0.21.5-GCCcore-14.3.0
+ 15) cURL/8.14.1-GCCcore-14.3.0
+ 16) libxml2/2.14.3-GCCcore-14.3.0
+ 17) lz4/1.10.0-GCCcore-14.3.0
+ 18) gzip/1.14-GCCcore-14.3.0
+ 19) zstd/1.5.7-GCCcore-14.3.0
+ 20) libarchive/3.8.1-GCCcore-14.3.0
+ 21) CMake/4.0.3-GCCcore-14.3.0
+ 22) GCCcore/12.3.0
+ 23) zlib/1.2.13-GCCcore-12.3.0
+ 24) binutils/2.40-GCCcore-12.3.0
+ 25) intel-compilers/2023.1.0
+ 26) numactl/2.0.16-GCCcore-12.3.0
+ 27) UCX/1.14.1-GCCcore-12.3.0
+ 28) impi/2021.9.0-intel-compilers-2023.1.0
+ 29) imkl/2023.1.0
+ 30) iimpi/2023a
+ 31) imkl-FFTW/2023.1.0-iimpi-2023a
+ 32) intel/2023a
+
+ 
+
+
+
+ cmake ? /eb/software/CMake/4.0.3-GCCcore-14.3.0/bin/cmake
+cmake version 4.0.3
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
+
+ python ? ; python -v :/eb/software/Python/3.13.5-GCCcore-14.3.0/bin/python
+Python 3.13.5
+
+ pip, pip show pytest numpy ? /eb/software/Python/3.13.5-GCCcore-14.3.0/bin/pip
+Name: pytest
+Version: 9.1.1
+Summary: pytest: simple powerful testing with Python
+Home-page: https://docs.pytest.org/en/latest/
+Author: Brianna Laugher, Bruno Oliveira, Floris Bruynooghe, Freya Bruhin, Holger Krekel, Others (See AUTHORS), Ronny Pfannschmidt
+Author-email: 
+License-Expression: MIT
+Location: /nvme/h/ru26mi1/.local/lib/python3.13/site-packages
+Requires: iniconfig, packaging, pluggy, pygments
+Required-by: 
+---
+Name: numpy
+Version: 2.5.2
+Summary: Fundamental package for array computing in Python
+Home-page: https://numpy.org
+Author: Travis E. Oliphant et al.
+Author-email: 
+License-Expression: BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0
+Location: /nvme/h/ru26mi1/.local/lib/python3.13/site-packages
+Requires: 
+Required-by: 
+
+ ifx ? : /eb/software/intel-compilers/2023.1.0/compiler/2023.1.0/linux/bin/ifx
+Intel(R) Fortran Compiler for applications running on Intel(R) 64, Version 2023.1.0 Build 20230320
+Copyright (C) 1985-2023 Intel Corporation. All rights reserved.
+
+
+ icx ? : /eb/software/intel-compilers/2023.1.0/compiler/2023.1.0/linux/bin/icx
+Intel(R) oneAPI DPC++/C++ Compiler for applications running on Intel(R) 64, Version 2023.1.0 Build 20230320
+Copyright (C) 1985-2023 Intel Corporation. All rights reserved.
+
+
+
+ My PATH=/eb/software/impi/2021.9.0-intel-compilers-2023.1.0/mpi/2021.9.0/libfabric/bin:/eb/software/impi/2021.9.0-intel-compilers-2023.1.0/mpi/2021.9.0/bin:/eb/software/UCX/1.14.1-GCCcore-12.3.0/bin:/eb/software/numactl/2.0.16-GCCcore-12.3.0/bin:/eb/software/intel-compilers/2023.1.0/compiler/2023.1.0/linux/bin/intel64:/eb/software/intel-compilers/2023.1.0/compiler/2023.1.0/linux/bin:/eb/software/binutils/2.40-GCCcore-12.3.0/bin:/eb/software/GCCcore/12.3.0/bin:/eb/software/CMake/4.0.3-GCCcore-14.3.0/bin:/eb/software/libarchive/3.8.1-GCCcore-14.3.0/bin:/eb/software/zstd/1.5.7-GCCcore-14.3.0/bin:/eb/software/gzip/1.14-GCCcore-14.3.0/bin:/eb/software/lz4/1.10.0-GCCcore-14.3.0/bin:/eb/software/libxml2/2.14.3-GCCcore-14.3.0/bin:/eb/software/cURL/8.14.1-GCCcore-14.3.0/bin:/eb/software/libpsl/0.21.5-GCCcore-14.3.0/bin:/eb/software/libiconv/1.18-GCCcore-14.3.0/bin:/eb/software/libidn2/2.3.8-GCCcore-14.3.0/bin:/eb/software/Python/3.13.5-GCCcore-14.3.0/bin:/eb/software/OpenSSL/3/bin:/eb/software/XZ/5.8.1-GCCcore-14.3.0/bin:/eb/software/SQLite/3.50.1-GCCcore-14.3.0/bin:/eb/software/Tcl/9.0.1-GCCcore-14.3.0/bin:/eb/software/ncurses/6.5-GCCcore-14.3.0/bin:/eb/software/bzip2/1.0.8-GCCcore-14.3.0/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:.
+
+
+ My LD_LIBRARY_PATH=/eb/software/imkl-FFTW/2023.1.0-iimpi-2023a/lib:/eb/software/imkl/2023.1.0/mkl/2023.1.0/lib/intel64:/eb/software/imkl/2023.1.0/compiler/2023.1.0/linux/compiler/lib/intel64_lin:/eb/software/impi/2021.9.0-intel-compilers-2023.1.0/mpi/2021.9.0/libfabric/lib:/eb/software/impi/2021.9.0-intel-compilers-2023.1.0/mpi/2021.9.0/lib/release:/eb/software/impi/2021.9.0-intel-compilers-2023.1.0/mpi/2021.9.0/lib:/eb/software/UCX/1.14.1-GCCcore-12.3.0/lib:/eb/software/numactl/2.0.16-GCCcore-12.3.0/lib:/eb/software/intel-compilers/2023.1.0/tbb/2021.9.0/lib/intel64/gcc4.8:/eb/software/intel-compilers/2023.1.0/compiler/2023.1.0/linux/compiler/lib/intel64_lin:/eb/software/intel-compilers/2023.1.0/compiler/2023.1.0/linux/lib/x64:/eb/software/intel-compilers/2023.1.0/compiler/2023.1.0/linux/lib:/eb/software/binutils/2.40-GCCcore-12.3.0/lib:/eb/software/zlib/1.2.13-GCCcore-12.3.0/lib:/eb/software/GCCcore/12.3.0/lib64:/eb/software/libarchive/3.8.1-GCCcore-14.3.0/lib:/eb/software/zstd/1.5.7-GCCcore-14.3.0/lib:/eb/software/lz4/1.10.0-GCCcore-14.3.0/lib:/eb/software/libxml2/2.14.3-GCCcore-14.3.0/lib:/eb/software/cURL/8.14.1-GCCcore-14.3.0/lib:/eb/software/libpsl/0.21.5-GCCcore-14.3.0/lib:/eb/software/libunistring/1.3-GCCcore-14.3.0/lib:/eb/software/libiconv/1.18-GCCcore-14.3.0/lib:/eb/software/libidn2/2.3.8-GCCcore-14.3.0/lib:/eb/software/Python/3.13.5-GCCcore-14.3.0/lib:/eb/software/OpenSSL/3/lib64:/eb/software/libffi/3.5.1-GCCcore-14.3.0/lib64:/eb/software/XZ/5.8.1-GCCcore-14.3.0/lib:/eb/software/SQLite/3.50.1-GCCcore-14.3.0/lib:/eb/software/Tcl/9.0.1-GCCcore-14.3.0/lib:/eb/software/libtommath/1.3.0-GCCcore-14.3.0/lib:/eb/software/libreadline/8.2-GCCcore-14.3.0/lib:/eb/software/ncurses/6.5-GCCcore-14.3.0/lib:/eb/software/bzip2/1.0.8-GCCcore-14.3.0/lib 
+
+I am in the directory LIBXC_DIR=/nvme/h/ru26mi1/work/software/libcx; verify via pwd:
+/nvme/h/ru26mi1/work/software/libcx
+
+PREVIOUS directory 'install_build_intel' exists. Removing it.After recreating it again by mkdir.
+
+ I am in the directory LIBXC=/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2 : /nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2
+Content :
+total 362
+drwxr-xr-x 7 ru26mi1 ru26mi1     29 Aug 10 16:38 build_intel
+drwxr-xr-x 8 ru26mi1 ru26mi1     25 Aug 10 16:38 testsuite
+drwxr-xr-x 3 ru26mi1 ru26mi1     15 Aug 10 16:38 pylibxc
+drwxr-xr-x 2 ru26mi1 ru26mi1      2 Aug 10 15:21 install_build_intel
+-rw-r--r-- 1 ru26mi1 ru26mi1    244 Jul 20 20:06 AUTHORS
+-rw-r--r-- 1 ru26mi1 ru26mi1    613 Jul 20 20:06 CITATION
+-rw-r--r-- 1 ru26mi1 ru26mi1   4805 Jul 20 20:06 CLAUDE.md
+-rw-r--r-- 1 ru26mi1 ru26mi1  19455 Jul 20 20:06 CMakeLists.txt
+-rw-r--r-- 1 ru26mi1 ru26mi1  16726 Jul 20 20:06 COPYING
+lrwxrwxrwx 1 ru26mi1 ru26mi1     12 Jul 20 20:06 ChangeLog -> ChangeLog.md
+-rw-r--r-- 1 ru26mi1 ru26mi1  54059 Jul 20 20:06 ChangeLog.md
+-rw-r--r-- 1 ru26mi1 ru26mi1  65437 Jul 20 20:06 Doxyfile
+-rw-r--r-- 1 ru26mi1 ru26mi1  15752 Jul 20 20:06 INSTALL
+-rw-r--r-- 1 ru26mi1 ru26mi1   1983 Jul 20 20:06 Makefile.am
+-rw-r--r-- 1 ru26mi1 ru26mi1   1368 Jul 20 20:06 NEWS
+-rw-r--r-- 1 ru26mi1 ru26mi1   1081 Jul 20 20:06 PACKAGING
+lrwxrwxrwx 1 ru26mi1 ru26mi1      9 Jul 20 20:06 README -> README.md
+-rw-r--r-- 1 ru26mi1 ru26mi1  12541 Jul 20 20:06 README.md
+drwxr-xr-x 2 ru26mi1 ru26mi1     10 Jul 20 20:06 cmake
+-rw-r--r-- 1 ru26mi1 ru26mi1    474 Jul 20 20:06 config.h.cmake.in
+-rw-r--r-- 1 ru26mi1 ru26mi1  12856 Jul 20 20:06 configure.ac
+drwxr-xr-x 3 ru26mi1 ru26mi1      9 Jul 20 20:06 examples
+-rw-r--r-- 1 ru26mi1 ru26mi1 194576 Jul 20 20:06 libxc.bib
+drwxr-xr-x 2 ru26mi1 ru26mi1      9 Jul 20 20:06 m4
+drwxr-xr-x 8 ru26mi1 ru26mi1     22 Jul 20 20:06 maple
+drwxr-xr-x 2 ru26mi1 ru26mi1      5 Jul 20 20:06 pkgconfig
+-rw-r--r-- 1 ru26mi1 ru26mi1    753 Jul 20 20:06 pyproject.toml
+drwxr-xr-x 8 ru26mi1 ru26mi1     21 Jul 20 20:06 python
+drwxr-xr-x 4 ru26mi1 ru26mi1      8 Jul 20 20:06 scripts
+-rw-r--r-- 1 ru26mi1 ru26mi1   4244 Jul 20 20:06 setup.py
+drwxr-xr-x 3 ru26mi1 ru26mi1    362 Jul 20 20:06 src
+-rw-r--r-- 1 ru26mi1 ru26mi1    550 Jul 20 20:06 xc_version.h.in
+
+Directory 'build_intel' exists. Removing it...
+
+ Doing CMake buildup in LIBXC=/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2 :
+CMake Deprecation Warning at CMakeLists.txt:7 (cmake_policy):
+  The OLD behavior for policy CMP0104 will be removed from a future version
+  of CMake.
+
+  The cmake-policies(7) manual explains that the OLD behaviors of all
+  policies are deprecated and that a policy should be set to OLD only under
+  specific short-term circumstances.  Projects should be ported to the NEW
+  behavior and not rely on setting a policy to OLD.
+
+
+-- The C compiler identification is IntelLLVM 2023.1.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /eb/software/intel-compilers/2023.1.0/compiler/2023.1.0/linux/bin/icx - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Setting (unspecified) option CMAKE_BUILD_TYPE: Release
+-- Setting (unspecified) option BUILD_SHARED_LIBS: ON
+-- Setting (unspecified) option BUILD_TESTING: ON
+-- Setting (unspecified) option BUILD_FPIC: ON
+-- Setting (unspecified) option NAMESPACE_INSTALL_INCLUDEDIR: /
+-- Setting option ENABLE_FORTRAN: ON
+-- Setting (unspecified) option FORTRAN_MODULE_INSTALL_DIR: include/
+-- Setting (unspecified) option ENABLE_PYTHON: OFF
+-- MAXORDER: 2
+-- Setting (unspecified) option DISABLE_FHC: OFF
+-- Setting (unspecified) option XC_CHECK_NUMERICS: OFF
+-- Setting (unspecified) option XC_PROFILING: OFF
+-- Performing Test c_standard_math_library_linked_to_automatically
+-- Performing Test c_standard_math_library_linked_to_automatically - Success
+Test program linked without flags
+-- Performing Test HAVE_CBRT
+-- Performing Test HAVE_CBRT - Success
+-- Performing Test HAVE_FEENABLEEXCEPT
+-- Performing Test HAVE_FEENABLEEXCEPT - Success
+-- Version: Full 7.1.2
+-- SO Version: Full 16:2:1 Major 15
+-- The Fortran compiler identification is IntelLLVM 2023.1.0
+-- Detecting Fortran compiler ABI info
+-- Detecting Fortran compiler ABI info - done
+-- Check for working Fortran compiler: /eb/software/intel-compilers/2023.1.0/compiler/2023.1.0/linux/bin/ifx - skipped
+-- Found PythonInterp: /eb/software/Python/3.13.5-GCCcore-14.3.0/bin/python (found version "3.13.5")
+pytest 9.1.1
+-- Configuring done (4.1s)
+-- Generating done (0.3s)
+-- Build files have been written to: /nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+
+ Im in directory BUILD=build_intel; pwd=
+/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+
+ running make
+[  0%] Building C object CMakeFiles/xc.dir/src/bessel.c.o
+[  0%] Building C object CMakeFiles/xc.dir/src/expint_e1.c.o
+[  0%] Building C object CMakeFiles/xc.dir/src/faddeeva.c.o
+[  1%] Building C object CMakeFiles/xc.dir/src/func_info.c.o
+[  1%] Building C object CMakeFiles/xc.dir/src/func_reference.c.o
+[  1%] Building C object CMakeFiles/xc.dir/src/functionals.c.o
+[  2%] Building C object CMakeFiles/xc.dir/src/gga.c.o
+[  2%] Building C object CMakeFiles/xc.dir/src/gga_c_acgga.c.o
+[  2%] Building C object CMakeFiles/xc.dir/src/gga_c_acggap.c.o
+[  2%] Building C object CMakeFiles/xc.dir/src/gga_c_am05.c.o
+[  3%] Building C object CMakeFiles/xc.dir/src/gga_c_bmk.c.o
+[  3%] Building C object CMakeFiles/xc.dir/src/gga_c_ccdf.c.o
+[  3%] Building C object CMakeFiles/xc.dir/src/gga_c_chachiyo.c.o
+[  3%] Building C object CMakeFiles/xc.dir/src/gga_c_cs1.c.o
+[  4%] Building C object CMakeFiles/xc.dir/src/gga_c_ft97.c.o
+[  4%] Building C object CMakeFiles/xc.dir/src/gga_c_gapc.c.o
+[  4%] Building C object CMakeFiles/xc.dir/src/gga_c_gaploc.c.o
+[  5%] Building C object CMakeFiles/xc.dir/src/gga_c_hcth_a.c.o
+[  5%] Building C object CMakeFiles/xc.dir/src/gga_c_lm.c.o
+[  5%] Building C object CMakeFiles/xc.dir/src/gga_c_lyp.c.o
+[  5%] Building C object CMakeFiles/xc.dir/src/gga_c_lypr.c.o
+[  6%] Building C object CMakeFiles/xc.dir/src/gga_c_op_b88.c.o
+[  6%] Building C object CMakeFiles/xc.dir/src/gga_c_op_g96.c.o
+[  6%] Building C object CMakeFiles/xc.dir/src/gga_c_op_pbe.c.o
+[  7%] Building C object CMakeFiles/xc.dir/src/gga_c_op_pw91.c.o
+[  7%] Building C object CMakeFiles/xc.dir/src/gga_c_op_xalpha.c.o
+[  7%] Building C object CMakeFiles/xc.dir/src/gga_c_optc.c.o
+[  7%] Building C object CMakeFiles/xc.dir/src/gga_c_p86.c.o
+[  8%] Building C object CMakeFiles/xc.dir/src/gga_c_p86vwn.c.o
+[  8%] Building C object CMakeFiles/xc.dir/src/gga_c_pbe.c.o
+[  8%] Building C object CMakeFiles/xc.dir/src/gga_c_pbe_erf_gws.c.o
+[  9%] Building C object CMakeFiles/xc.dir/src/gga_c_pbe_vwn.c.o
+[  9%] Building C object CMakeFiles/xc.dir/src/gga_c_pbeloc.c.o
+[  9%] Building C object CMakeFiles/xc.dir/src/gga_c_pw91.c.o
+[  9%] Building C object CMakeFiles/xc.dir/src/gga_c_q2d.c.o
+[ 10%] Building C object CMakeFiles/xc.dir/src/gga_c_regtpss.c.o
+[ 10%] Building C object CMakeFiles/xc.dir/src/gga_c_revtca.c.o
+[ 10%] Building C object CMakeFiles/xc.dir/src/gga_c_scan_e0.c.o
+[ 10%] Building C object CMakeFiles/xc.dir/src/gga_c_sg4.c.o
+[ 11%] Building C object CMakeFiles/xc.dir/src/gga_c_sogga11.c.o
+[ 11%] Building C object CMakeFiles/xc.dir/src/gga_c_tca.c.o
+[ 11%] Building C object CMakeFiles/xc.dir/src/gga_c_w94.c.o
+[ 12%] Building C object CMakeFiles/xc.dir/src/gga_c_wi.c.o
+[ 12%] Building C object CMakeFiles/xc.dir/src/gga_c_wl.c.o
+[ 12%] Building C object CMakeFiles/xc.dir/src/gga_c_zpbeint.c.o
+[ 12%] Building C object CMakeFiles/xc.dir/src/gga_c_zvpbeint.c.o
+[ 13%] Building C object CMakeFiles/xc.dir/src/gga_c_zvpbeloc.c.o
+[ 13%] Building C object CMakeFiles/xc.dir/src/gga_k_apbe.c.o
+[ 13%] Building C object CMakeFiles/xc.dir/src/gga_k_apbeint.c.o
+[ 14%] Building C object CMakeFiles/xc.dir/src/gga_k_dk.c.o
+[ 14%] Building C object CMakeFiles/xc.dir/src/gga_k_exp4.c.o
+[ 14%] Building C object CMakeFiles/xc.dir/src/gga_k_gds08.c.o
+[ 14%] Building C object CMakeFiles/xc.dir/src/gga_k_lc94.c.o
+[ 15%] Building C object CMakeFiles/xc.dir/src/gga_k_lgap.c.o
+[ 15%] Building C object CMakeFiles/xc.dir/src/gga_k_lgap_ge.c.o
+[ 15%] Building C object CMakeFiles/xc.dir/src/gga_k_lkt.c.o
+[ 15%] Building C object CMakeFiles/xc.dir/src/gga_k_llp.c.o
+[ 16%] Building C object CMakeFiles/xc.dir/src/gga_k_meyer.c.o
+[ 16%] Building C object CMakeFiles/xc.dir/src/gga_k_mpbe.c.o
+[ 16%] Building C object CMakeFiles/xc.dir/src/gga_k_ol1.c.o
+[ 17%] Building C object CMakeFiles/xc.dir/src/gga_k_ol2.c.o
+[ 17%] Building C object CMakeFiles/xc.dir/src/gga_k_pearson.c.o
+[ 17%] Building C object CMakeFiles/xc.dir/src/gga_k_pg.c.o
+[ 17%] Building C object CMakeFiles/xc.dir/src/gga_k_pw86.c.o
+[ 18%] Building C object CMakeFiles/xc.dir/src/gga_k_rational_p.c.o
+[ 18%] Building C object CMakeFiles/xc.dir/src/gga_k_tflw.c.o
+[ 18%] Building C object CMakeFiles/xc.dir/src/gga_k_thakkar.c.o
+[ 19%] Building C object CMakeFiles/xc.dir/src/gga_k_vt84f.c.o
+[ 19%] Building C object CMakeFiles/xc.dir/src/gga_x_2d_b86.c.o
+[ 19%] Building C object CMakeFiles/xc.dir/src/gga_x_2d_b86_mgc.c.o
+[ 19%] Building C object CMakeFiles/xc.dir/src/gga_x_2d_b88.c.o
+[ 20%] Building C object CMakeFiles/xc.dir/src/gga_x_2d_pbe.c.o
+[ 20%] Building C object CMakeFiles/xc.dir/src/gga_x_airy.c.o
+[ 20%] Building C object CMakeFiles/xc.dir/src/gga_x_ak13.c.o
+[ 21%] Building C object CMakeFiles/xc.dir/src/gga_x_am05.c.o
+[ 21%] Building C object CMakeFiles/xc.dir/src/gga_x_b86.c.o
+[ 21%] Building C object CMakeFiles/xc.dir/src/gga_x_b88.c.o
+[ 21%] Building C object CMakeFiles/xc.dir/src/gga_x_bayesian.c.o
+[ 22%] Building C object CMakeFiles/xc.dir/src/gga_x_beefvdw.c.o
+[ 22%] Building C object CMakeFiles/xc.dir/src/gga_x_bkl.c.o
+[ 22%] Building C object CMakeFiles/xc.dir/src/gga_x_bpccac.c.o
+[ 22%] Building C object CMakeFiles/xc.dir/src/gga_x_c09x.c.o
+[ 23%] Building C object CMakeFiles/xc.dir/src/gga_x_cap.c.o
+[ 23%] Building C object CMakeFiles/xc.dir/src/gga_x_chachiyo.c.o
+[ 23%] Building C object CMakeFiles/xc.dir/src/gga_x_dk87.c.o
+[ 24%] Building C object CMakeFiles/xc.dir/src/gga_x_ev93.c.o
+[ 24%] Building C object CMakeFiles/xc.dir/src/gga_x_fd_lb94.c.o
+[ 24%] Building C object CMakeFiles/xc.dir/src/gga_x_ft97.c.o
+[ 24%] Building C object CMakeFiles/xc.dir/src/gga_x_g96.c.o
+[ 25%] Building C object CMakeFiles/xc.dir/src/gga_x_gg99.c.o
+[ 25%] Building C object CMakeFiles/xc.dir/src/gga_x_hcth_a.c.o
+[ 25%] Building C object CMakeFiles/xc.dir/src/gga_x_hjs.c.o
+[ 26%] Building C object CMakeFiles/xc.dir/src/gga_x_hjs_b88_v2.c.o
+[ 26%] Building C object CMakeFiles/xc.dir/src/gga_x_htbs.c.o
+[ 26%] Building C object CMakeFiles/xc.dir/src/gga_x_ityh.c.o
+[ 26%] Building C object CMakeFiles/xc.dir/src/gga_x_ityh_optx.c.o
+[ 27%] Building C object CMakeFiles/xc.dir/src/gga_x_ityh_pbe.c.o
+[ 27%] Building C object CMakeFiles/xc.dir/src/gga_x_kt.c.o
+[ 27%] Building C object CMakeFiles/xc.dir/src/gga_x_lb.c.o
+[ 28%] Building C object CMakeFiles/xc.dir/src/gga_x_lg93.c.o
+[ 28%] Building C object CMakeFiles/xc.dir/src/gga_x_lspbe.c.o
+[ 28%] Building C object CMakeFiles/xc.dir/src/gga_x_lsrpbe.c.o
+[ 28%] Building C object CMakeFiles/xc.dir/src/gga_x_lv_rpw86.c.o
+[ 29%] Building C object CMakeFiles/xc.dir/src/gga_x_mpbe.c.o
+[ 29%] Building C object CMakeFiles/xc.dir/src/gga_x_n12.c.o
+[ 29%] Building C object CMakeFiles/xc.dir/src/gga_x_ncap.c.o
+[ 29%] Building C object CMakeFiles/xc.dir/src/gga_x_ol2.c.o
+[ 30%] Building C object CMakeFiles/xc.dir/src/gga_x_optx.c.o
+[ 30%] Building C object CMakeFiles/xc.dir/src/gga_x_pbe.c.o
+[ 30%] Building C object CMakeFiles/xc.dir/src/gga_x_pbe_erf_gws.c.o
+[ 31%] Building C object CMakeFiles/xc.dir/src/gga_x_pbea.c.o
+[ 31%] Building C object CMakeFiles/xc.dir/src/gga_x_pbeint.c.o
+[ 31%] Building C object CMakeFiles/xc.dir/src/gga_x_pbepow.c.o
+[ 31%] Building C object CMakeFiles/xc.dir/src/gga_x_pbetrans.c.o
+[ 32%] Building C object CMakeFiles/xc.dir/src/gga_x_pw86.c.o
+[ 32%] Building C object CMakeFiles/xc.dir/src/gga_x_pw91.c.o
+[ 32%] Building C object CMakeFiles/xc.dir/src/gga_x_q1d.c.o
+[ 33%] Building C object CMakeFiles/xc.dir/src/gga_x_q2d.c.o
+[ 33%] Building C object CMakeFiles/xc.dir/src/gga_x_rge2.c.o
+[ 33%] Building C object CMakeFiles/xc.dir/src/gga_x_rpbe.c.o
+[ 33%] Building C object CMakeFiles/xc.dir/src/gga_x_s12.c.o
+[ 34%] Building C object CMakeFiles/xc.dir/src/gga_x_sfat.c.o
+[ 34%] Building C object CMakeFiles/xc.dir/src/gga_x_sfat_pbe.c.o
+[ 34%] Building C object CMakeFiles/xc.dir/src/gga_x_sg4.c.o
+[ 34%] Building C object CMakeFiles/xc.dir/src/gga_x_sogga11.c.o
+[ 35%] Building C object CMakeFiles/xc.dir/src/gga_x_ssb_sw.c.o
+[ 35%] Building C object CMakeFiles/xc.dir/src/gga_x_vmt.c.o
+[ 35%] Building C object CMakeFiles/xc.dir/src/gga_x_vmt84.c.o
+[ 36%] Building C object CMakeFiles/xc.dir/src/gga_x_wc.c.o
+[ 36%] Building C object CMakeFiles/xc.dir/src/gga_x_wpbeh.c.o
+[ 36%] Building C object CMakeFiles/xc.dir/src/gga_xc_1w.c.o
+[ 36%] Building C object CMakeFiles/xc.dir/src/gga_xc_b97.c.o
+[ 37%] Building C object CMakeFiles/xc.dir/src/gga_xc_edf1.c.o
+[ 37%] Building C object CMakeFiles/xc.dir/src/gga_xc_oblyp_d.c.o
+[ 37%] Building C object CMakeFiles/xc.dir/src/gga_xc_th1.c.o
+[ 38%] Building C object CMakeFiles/xc.dir/src/gga_xc_th2.c.o
+[ 38%] Building C object CMakeFiles/xc.dir/src/gga_xc_th3.c.o
+[ 38%] Building C object CMakeFiles/xc.dir/src/gga_xc_vv10.c.o
+[ 38%] Building C object CMakeFiles/xc.dir/src/hyb_gga_x_cam_s12.c.o
+[ 39%] Building C object CMakeFiles/xc.dir/src/hyb_gga_xc_b1wc.c.o
+[ 39%] Building C object CMakeFiles/xc.dir/src/hyb_gga_xc_b3lyp.c.o
+[ 39%] Building C object CMakeFiles/xc.dir/src/hyb_gga_xc_cam_b3lyp.c.o
+[ 40%] Building C object CMakeFiles/xc.dir/src/hyb_gga_xc_cam_o3lyp.c.o
+[ 40%] Building C object CMakeFiles/xc.dir/src/hyb_gga_xc_camy_b3lyp.c.o
+[ 40%] Building C object CMakeFiles/xc.dir/src/hyb_gga_xc_camy_blyp.c.o
+[ 40%] Building C object CMakeFiles/xc.dir/src/hyb_gga_xc_case21.c.o
+[ 41%] Building C object CMakeFiles/xc.dir/src/hyb_gga_xc_edf2.c.o
+[ 41%] Building C object CMakeFiles/xc.dir/src/hyb_gga_xc_hse.c.o
+[ 41%] Building C object CMakeFiles/xc.dir/src/hyb_gga_xc_lc_blyp.c.o
+[ 41%] Building C object CMakeFiles/xc.dir/src/hyb_gga_xc_lcy_blyp.c.o
+[ 42%] Building C object CMakeFiles/xc.dir/src/hyb_gga_xc_lcy_pbe.c.o
+[ 42%] Building C object CMakeFiles/xc.dir/src/hyb_gga_xc_o3lyp.c.o
+[ 42%] Building C object CMakeFiles/xc.dir/src/hyb_gga_xc_pbeh.c.o
+[ 43%] Building C object CMakeFiles/xc.dir/src/hyb_gga_xc_wb97.c.o
+[ 43%] Building C object CMakeFiles/xc.dir/src/hyb_lda_xc_bn05.c.o
+[ 43%] Building C object CMakeFiles/xc.dir/src/hyb_lda_xc_cam_lda0.c.o
+[ 43%] Building C object CMakeFiles/xc.dir/src/hyb_mgga_x_dldf.c.o
+[ 44%] Building C object CMakeFiles/xc.dir/src/hyb_mgga_x_js18.c.o
+[ 44%] Building C object CMakeFiles/xc.dir/src/hyb_mgga_x_m05.c.o
+[ 44%] Building C object CMakeFiles/xc.dir/src/hyb_mgga_x_mvsh.c.o
+[ 45%] Building C object CMakeFiles/xc.dir/src/hyb_mgga_x_pjs18.c.o
+[ 45%] Building C object CMakeFiles/xc.dir/src/hyb_mgga_x_wr2scan.c.o
+[ 45%] Building C object CMakeFiles/xc.dir/src/hyb_mgga_xc_b88b95.c.o
+[ 45%] Building C object CMakeFiles/xc.dir/src/hyb_mgga_xc_br3p86.c.o
+[ 46%] Building C object CMakeFiles/xc.dir/src/hyb_mgga_xc_coach.c.o
+[ 46%] Building C object CMakeFiles/xc.dir/src/hyb_mgga_xc_gas22.c.o
+[ 46%] Building C object CMakeFiles/xc.dir/src/hyb_mgga_xc_kcis.c.o
+[ 47%] Building C object CMakeFiles/xc.dir/src/hyb_mgga_xc_r2scan.c.o
+[ 47%] Building C object CMakeFiles/xc.dir/src/hyb_mgga_xc_tpssh.c.o
+[ 47%] Building C object CMakeFiles/xc.dir/src/hyb_mgga_xc_wb97mv.c.o
+[ 47%] Building C object CMakeFiles/xc.dir/src/hybrids.c.o
+[ 48%] Building C object CMakeFiles/xc.dir/src/integrate.c.o
+[ 48%] Building C object CMakeFiles/xc.dir/src/lda.c.o
+[ 48%] Building C object CMakeFiles/xc.dir/src/lda_c_1d_css.c.o
+[ 48%] Building C object CMakeFiles/xc.dir/src/lda_c_1d_loos.c.o
+[ 49%] Building C object CMakeFiles/xc.dir/src/lda_c_2d_amgb.c.o
+[ 49%] Building C object CMakeFiles/xc.dir/src/lda_c_2d_prm.c.o
+[ 49%] Building C object CMakeFiles/xc.dir/src/lda_c_chachiyo.c.o
+[ 50%] Building C object CMakeFiles/xc.dir/src/lda_c_chachiyo_mod.c.o
+[ 50%] Building C object CMakeFiles/xc.dir/src/lda_c_epc17.c.o
+[ 50%] Building C object CMakeFiles/xc.dir/src/lda_c_epc18.c.o
+[ 50%] Building C object CMakeFiles/xc.dir/src/lda_c_gk72.c.o
+[ 51%] Building C object CMakeFiles/xc.dir/src/lda_c_gombas.c.o
+[ 51%] Building C object CMakeFiles/xc.dir/src/lda_c_hl.c.o
+[ 51%] Building C object CMakeFiles/xc.dir/src/lda_c_lp96.c.o
+[ 52%] Building C object CMakeFiles/xc.dir/src/lda_c_ml1.c.o
+[ 52%] Building C object CMakeFiles/xc.dir/src/lda_c_pk09.c.o
+[ 52%] Building C object CMakeFiles/xc.dir/src/lda_c_pmgb06.c.o
+[ 52%] Building C object CMakeFiles/xc.dir/src/lda_c_pw.c.o
+[ 53%] Building C object CMakeFiles/xc.dir/src/lda_c_pw_erf.c.o
+[ 53%] Building C object CMakeFiles/xc.dir/src/lda_c_pz.c.o
+[ 53%] Building C object CMakeFiles/xc.dir/src/lda_c_rc04.c.o
+[ 53%] Building C object CMakeFiles/xc.dir/src/lda_c_rpa.c.o
+[ 54%] Building C object CMakeFiles/xc.dir/src/lda_c_rpaf.c.o
+[ 54%] Building C object CMakeFiles/xc.dir/src/lda_c_vwn.c.o
+[ 54%] Building C object CMakeFiles/xc.dir/src/lda_c_vwn_1.c.o
+[ 55%] Building C object CMakeFiles/xc.dir/src/lda_c_vwn_2.c.o
+[ 55%] Building C object CMakeFiles/xc.dir/src/lda_c_vwn_3.c.o
+[ 55%] Building C object CMakeFiles/xc.dir/src/lda_c_vwn_4.c.o
+[ 55%] Building C object CMakeFiles/xc.dir/src/lda_c_vwn_rpa.c.o
+[ 56%] Building C object CMakeFiles/xc.dir/src/lda_c_w20.c.o
+[ 56%] Building C object CMakeFiles/xc.dir/src/lda_c_wigner.c.o
+[ 56%] Building C object CMakeFiles/xc.dir/src/lda_k_tf.c.o
+[ 57%] Building C object CMakeFiles/xc.dir/src/lda_k_zlp.c.o
+[ 57%] Building C object CMakeFiles/xc.dir/src/lda_x.c.o
+[ 57%] Building C object CMakeFiles/xc.dir/src/lda_x_1d_exponential.c.o
+[ 57%] Building C object CMakeFiles/xc.dir/src/lda_x_1d_soft.c.o
+[ 58%] Building C object CMakeFiles/xc.dir/src/lda_x_2d.c.o
+[ 58%] Building C object CMakeFiles/xc.dir/src/lda_x_erf.c.o
+[ 58%] Building C object CMakeFiles/xc.dir/src/lda_x_rel.c.o
+[ 59%] Building C object CMakeFiles/xc.dir/src/lda_x_sloc.c.o
+[ 59%] Building C object CMakeFiles/xc.dir/src/lda_x_yukawa.c.o
+[ 59%] Building C object CMakeFiles/xc.dir/src/lda_xc_1d_ehwlrg.c.o
+[ 59%] Building C object CMakeFiles/xc.dir/src/lda_xc_ksdt.c.o
+[ 60%] Building C object CMakeFiles/xc.dir/src/lda_xc_teter93.c.o
+[ 60%] Building C object CMakeFiles/xc.dir/src/lda_xc_th_fl.c.o
+[ 60%] Building C object CMakeFiles/xc.dir/src/lda_xc_tih.c.o
+[ 60%] Building C object CMakeFiles/xc.dir/src/lda_xc_zlp.c.o
+[ 61%] Building C object CMakeFiles/xc.dir/src/math_brent.c.o
+[ 61%] Building C object CMakeFiles/xc.dir/src/mgga.c.o
+[ 61%] Building C object CMakeFiles/xc.dir/src/mgga_c_b88.c.o
+[ 62%] Building C object CMakeFiles/xc.dir/src/mgga_c_b94.c.o
+[ 62%] Building C object CMakeFiles/xc.dir/src/mgga_c_bc95.c.o
+[ 62%] Building C object CMakeFiles/xc.dir/src/mgga_c_cc.c.o
+[ 62%] Building C object CMakeFiles/xc.dir/src/mgga_c_ccalda.c.o
+[ 63%] Building C object CMakeFiles/xc.dir/src/mgga_c_cs.c.o
+[ 63%] Building C object CMakeFiles/xc.dir/src/mgga_c_kcis.c.o
+[ 63%] Building C object CMakeFiles/xc.dir/src/mgga_c_kcisk.c.o
+[ 64%] Building C object CMakeFiles/xc.dir/src/mgga_c_lak.c.o
+[ 64%] Building C object CMakeFiles/xc.dir/src/mgga_c_ltapw.c.o
+[ 64%] Building C object CMakeFiles/xc.dir/src/mgga_c_m05.c.o
+[ 64%] Building C object CMakeFiles/xc.dir/src/mgga_c_m06l.c.o
+[ 65%] Building C object CMakeFiles/xc.dir/src/mgga_c_m08.c.o
+[ 65%] Building C object CMakeFiles/xc.dir/src/mgga_c_mscan.c.o
+[ 65%] Building C object CMakeFiles/xc.dir/src/mgga_c_pkzb.c.o
+[ 65%] Building C object CMakeFiles/xc.dir/src/mgga_c_r2scan.c.o
+[ 66%] Building C object CMakeFiles/xc.dir/src/mgga_c_r2scanl.c.o
+[ 66%] Building C object CMakeFiles/xc.dir/src/mgga_c_revscan.c.o
+[ 66%] Building C object CMakeFiles/xc.dir/src/mgga_c_revtpss.c.o
+[ 67%] Building C object CMakeFiles/xc.dir/src/mgga_c_rmggac.c.o
+[ 67%] Building C object CMakeFiles/xc.dir/src/mgga_c_rppscan.c.o
+[ 67%] Building C object CMakeFiles/xc.dir/src/mgga_c_rregtm.c.o
+[ 67%] Building C object CMakeFiles/xc.dir/src/mgga_c_rscan.c.o
+[ 68%] Building C object CMakeFiles/xc.dir/src/mgga_c_scan.c.o
+[ 68%] Building C object CMakeFiles/xc.dir/src/mgga_c_scanl.c.o
+[ 68%] Building C object CMakeFiles/xc.dir/src/mgga_c_tpss.c.o
+[ 69%] Building C object CMakeFiles/xc.dir/src/mgga_c_tpssloc.c.o
+[ 69%] Building C object CMakeFiles/xc.dir/src/mgga_c_vsxc.c.o
+[ 69%] Building C object CMakeFiles/xc.dir/src/mgga_k_csk.c.o
+[ 69%] Building C object CMakeFiles/xc.dir/src/mgga_k_csk_loc.c.o
+[ 70%] Building C object CMakeFiles/xc.dir/src/mgga_k_gea2.c.o
+[ 70%] Building C object CMakeFiles/xc.dir/src/mgga_k_gea4.c.o
+[ 70%] Building C object CMakeFiles/xc.dir/src/mgga_k_lk.c.o
+[ 71%] Building C object CMakeFiles/xc.dir/src/mgga_k_pc07.c.o
+[ 71%] Building C object CMakeFiles/xc.dir/src/mgga_k_pgslb.c.o
+[ 71%] Building C object CMakeFiles/xc.dir/src/mgga_k_rda.c.o
+[ 71%] Building C object CMakeFiles/xc.dir/src/mgga_x_2d_js17.c.o
+[ 72%] Building C object CMakeFiles/xc.dir/src/mgga_x_2d_prhg07.c.o
+[ 72%] Building C object CMakeFiles/xc.dir/src/mgga_x_2d_prp10.c.o
+[ 72%] Building C object CMakeFiles/xc.dir/src/mgga_x_br89.c.o
+[ 72%] Building C object CMakeFiles/xc.dir/src/mgga_x_br89_explicit.c.o
+[ 73%] Building C object CMakeFiles/xc.dir/src/mgga_x_edmgga.c.o
+[ 73%] Building C object CMakeFiles/xc.dir/src/mgga_x_eel.c.o
+[ 73%] Building C object CMakeFiles/xc.dir/src/mgga_x_ft98.c.o
+[ 74%] Building C object CMakeFiles/xc.dir/src/mgga_x_gdme.c.o
+[ 74%] Building C object CMakeFiles/xc.dir/src/mgga_x_gvt4.c.o
+[ 74%] Building C object CMakeFiles/xc.dir/src/mgga_x_gx.c.o
+[ 74%] Building C object CMakeFiles/xc.dir/src/mgga_x_jk.c.o
+[ 75%] Building C object CMakeFiles/xc.dir/src/mgga_x_ktbm.c.o
+[ 75%] Building C object CMakeFiles/xc.dir/src/mgga_x_lak.c.o
+[ 75%] Building C object CMakeFiles/xc.dir/src/mgga_x_lta.c.o
+[ 76%] Building C object CMakeFiles/xc.dir/src/mgga_x_m06l.c.o
+[ 76%] Building C object CMakeFiles/xc.dir/src/mgga_x_m08.c.o
+[ 76%] Building C object CMakeFiles/xc.dir/src/mgga_x_m11.c.o
+[ 76%] Building C object CMakeFiles/xc.dir/src/mgga_x_m11_l.c.o
+[ 77%] Building C object CMakeFiles/xc.dir/src/mgga_x_mbeef.c.o
+[ 77%] Building C object CMakeFiles/xc.dir/src/mgga_x_mbeefvdw.c.o
+[ 77%] Building C object CMakeFiles/xc.dir/src/mgga_x_mbr.c.o
+[ 78%] Building C object CMakeFiles/xc.dir/src/mgga_x_mbrxc_bg.c.o
+[ 78%] Building C object CMakeFiles/xc.dir/src/mgga_x_mbrxh_bg.c.o
+[ 78%] Building C object CMakeFiles/xc.dir/src/mgga_x_mcml.c.o
+[ 78%] Building C object CMakeFiles/xc.dir/src/mgga_x_mggac.c.o
+[ 79%] Building C object CMakeFiles/xc.dir/src/mgga_x_mn12.c.o
+[ 79%] Building C object CMakeFiles/xc.dir/src/mgga_x_ms.c.o
+[ 79%] Building C object CMakeFiles/xc.dir/src/mgga_x_msb.c.o
+[ 79%] Building C object CMakeFiles/xc.dir/src/mgga_x_msb86bl.c.o
+[ 80%] Building C object CMakeFiles/xc.dir/src/mgga_x_mscan.c.o
+[ 80%] Building C object CMakeFiles/xc.dir/src/mgga_x_mspbel.c.o
+[ 80%] Building C object CMakeFiles/xc.dir/src/mgga_x_msrpbel.c.o
+[ 81%] Building C object CMakeFiles/xc.dir/src/mgga_x_mvs.c.o
+[ 81%] Building C object CMakeFiles/xc.dir/src/mgga_x_pbe_gx.c.o
+[ 81%] Building C object CMakeFiles/xc.dir/src/mgga_x_pkzb.c.o
+[ 81%] Building C object CMakeFiles/xc.dir/src/mgga_x_r2scan.c.o
+[ 82%] Building C object CMakeFiles/xc.dir/src/mgga_x_r2scanl.c.o
+[ 82%] Building C object CMakeFiles/xc.dir/src/mgga_x_r4scan.c.o
+[ 82%] Building C object CMakeFiles/xc.dir/src/mgga_x_regtm.c.o
+[ 83%] Building C object CMakeFiles/xc.dir/src/mgga_x_regtpss.c.o
+[ 83%] Building C object CMakeFiles/xc.dir/src/mgga_x_revtm.c.o
+[ 83%] Building C object CMakeFiles/xc.dir/src/mgga_x_rlda.c.o
+[ 83%] Building C object CMakeFiles/xc.dir/src/mgga_x_rppscan.c.o
+[ 84%] Building C object CMakeFiles/xc.dir/src/mgga_x_rscan.c.o
+[ 84%] Building C object CMakeFiles/xc.dir/src/mgga_x_rtpss.c.o
+[ 84%] Building C object CMakeFiles/xc.dir/src/mgga_x_sa_tpss.c.o
+[ 84%] Building C object CMakeFiles/xc.dir/src/mgga_x_scan.c.o
+[ 85%] Building C object CMakeFiles/xc.dir/src/mgga_x_scanl.c.o
+[ 85%] Building C object CMakeFiles/xc.dir/src/mgga_x_sregtm_v1.c.o
+[ 85%] Building C object CMakeFiles/xc.dir/src/mgga_x_sregtm_v2.c.o
+[ 86%] Building C object CMakeFiles/xc.dir/src/mgga_x_sregtm_v3.c.o
+[ 86%] Building C object CMakeFiles/xc.dir/src/mgga_x_task.c.o
+[ 86%] Building C object CMakeFiles/xc.dir/src/mgga_x_tau_hcth.c.o
+[ 86%] Building C object CMakeFiles/xc.dir/src/mgga_x_tb09.c.o
+[ 87%] Building C object CMakeFiles/xc.dir/src/mgga_x_th.c.o
+[ 87%] Building C object CMakeFiles/xc.dir/src/mgga_x_tm.c.o
+[ 87%] Building C object CMakeFiles/xc.dir/src/mgga_x_tpss.c.o
+[ 88%] Building C object CMakeFiles/xc.dir/src/mgga_x_vcml.c.o
+[ 88%] Building C object CMakeFiles/xc.dir/src/mgga_x_vt84.c.o
+[ 88%] Building C object CMakeFiles/xc.dir/src/mgga_xc_b97mv.c.o
+[ 88%] Building C object CMakeFiles/xc.dir/src/mgga_xc_b98.c.o
+[ 89%] Building C object CMakeFiles/xc.dir/src/mgga_xc_cc06.c.o
+[ 89%] Building C object CMakeFiles/xc.dir/src/mgga_xc_hle17.c.o
+[ 89%] Building C object CMakeFiles/xc.dir/src/mgga_xc_lp90.c.o
+[ 90%] Building C object CMakeFiles/xc.dir/src/mgga_xc_otpss_d.c.o
+[ 90%] Building C object CMakeFiles/xc.dir/src/mgga_xc_zlp.c.o
+[ 90%] Building C object CMakeFiles/xc.dir/src/mix_func.c.o
+[ 90%] Building C object CMakeFiles/xc.dir/src/references.c.o
+[ 91%] Building C object CMakeFiles/xc.dir/src/special_functions.c.o
+[ 91%] Building C object CMakeFiles/xc.dir/src/util.c.o
+[ 91%] Building C object CMakeFiles/xc.dir/src/version.c.o
+[ 91%] Linking C shared library libxc.so
+[ 91%] Built target xc
+[ 92%] Building Fortran object CMakeFiles/xcf03.dir/src/libxc_master.F90.o
+[ 92%] Linking Fortran shared library libxcf03.so
+[ 92%] Built target xcf03
+[ 92%] Building C object CMakeFiles/xc-info.dir/src/xc-info.c.o
+[ 93%] Linking C executable xc-info
+[ 93%] Built target xc-info
+[ 93%] Building C object CMakeFiles/xc-threshold.dir/src/xc-threshold.c.o
+[ 93%] Linking C executable xc-threshold
+[ 93%] Built target xc-threshold
+[ 93%] Building C object CMakeFiles/xc-sanity.dir/src/xc-sanity.c.o
+[ 93%] Linking C executable xc-sanity
+[ 93%] Built target xc-sanity
+[ 93%] Building C object CMakeFiles/genwiki.dir/src/genwiki.c.o
+[ 93%] Linking C executable genwiki
+[ 93%] Built target genwiki
+[ 93%] Building C object testsuite/CMakeFiles/xc-get_data.dir/xc-get_data.c.o
+[ 93%] Linking C executable xc-get_data
+[ 93%] Built target xc-get_data
+[ 94%] Building C object testsuite/CMakeFiles/xc-special-functions.dir/xc-special-functions.c.o
+[ 94%] Linking C executable xc-special-functions
+[ 94%] Built target xc-special-functions
+[ 95%] Building C object testsuite/CMakeFiles/xc-api.dir/xc-api.c.o
+[ 95%] Linking C executable xc-api
+[ 95%] Built target xc-api
+[ 95%] Building C object testsuite/CMakeFiles/xc-distinct.dir/xc-distinct.c.o
+[ 96%] Linking C executable xc-distinct
+[ 96%] Built target xc-distinct
+[ 96%] Building C object examples/CMakeFiles/basic.dir/basic.c.o
+[ 96%] Linking C executable basic
+[ 96%] Built target basic
+[ 97%] Building C object examples/CMakeFiles/get_refs.dir/get_refs.c.o
+[ 97%] Linking C executable get_refs
+[ 97%] Built target get_refs
+[ 97%] Building Fortran object examples/CMakeFiles/basic_f90.dir/fortran/basic.f90.o
+[ 98%] Linking Fortran executable basic_f90
+[ 98%] Built target basic_f90
+[ 98%] Building Fortran object examples/CMakeFiles/xcinfo_f90.dir/fortran/xcinfo.f90.o
+[100%] Linking Fortran executable xcinfo_f90
+[100%] Built target xcinfo_f90
+
+ running make test
+Running tests...
+UpdateCTestConfiguration  from :/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel/DartConfiguration.tcl
+Test project /nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 1
+      Start  1: python-gga_c
+
+1: Test command: /eb/software/Python/3.13.5-GCCcore-14.3.0/bin/python "xc-run_pytest" "regression/gga_c"
+1: Working Directory: /nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/testsuite
+1: Environment variables: 
+1:  XC_TEST_FLAGS=XC_FLAGS_ON_HOST
+1: Environment variable modifications: 
+1:  PYTHONPATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2
+1:  LD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+1:  DYLD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+1:  PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+1: Test timeout computed to be: 1800
+1: ........................................................................ [  9%]
+1: ........................................................................ [ 18%]
+1: ........................................................................ [ 27%]
+1: ........................................................................ [ 36%]
+1: ........................................................................ [ 45%]
+1: ........................................................................ [ 54%]
+1: ........................................................................ [ 63%]
+1: ........................................................................ [ 72%]
+1: ........................................................................ [ 81%]
+1: ........................................................................ [ 90%]
+1: ........................................................................ [100%]
+1: 792 passed in 1.51s
+ 1/23 Test  #1: python-gga_c .....................   Passed    1.89 sec
+test 2
+      Start  2: python-gga_k
+
+2: Test command: /eb/software/Python/3.13.5-GCCcore-14.3.0/bin/python "xc-run_pytest" "regression/gga_k"
+2: Working Directory: /nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/testsuite
+2: Environment variables: 
+2:  XC_TEST_FLAGS=XC_FLAGS_ON_HOST
+2: Environment variable modifications: 
+2:  PYTHONPATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2
+2:  LD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+2:  DYLD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+2:  PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+2: Test timeout computed to be: 1800
+2: ........................................................................ [ 11%]
+2: ........................................................................ [ 23%]
+2: ........................................................................ [ 35%]
+2: ........................................................................ [ 47%]
+2: ........................................................................ [ 58%]
+2: ........................................................................ [ 70%]
+2: ........................................................................ [ 82%]
+2: ........................................................................ [ 94%]
+2: ....................................                                     [100%]
+2: 612 passed in 1.13s
+ 2/23 Test  #2: python-gga_k .....................   Passed    1.45 sec
+test 3
+      Start  3: python-gga_x
+
+3: Test command: /eb/software/Python/3.13.5-GCCcore-14.3.0/bin/python "xc-run_pytest" "regression/gga_x"
+3: Working Directory: /nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/testsuite
+3: Environment variables: 
+3:  XC_TEST_FLAGS=XC_FLAGS_ON_HOST
+3: Environment variable modifications: 
+3:  PYTHONPATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2
+3:  LD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+3:  DYLD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+3:  PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+3: Test timeout computed to be: 1800
+3: ........................................................................ [  5%]
+3: ........................................................................ [ 10%]
+3: ........................................................................ [ 15%]
+3: ........................................................................ [ 21%]
+3: ........................................................................ [ 26%]
+3: ........................................................................ [ 31%]
+3: ........................................................................ [ 37%]
+3: ........................................................................ [ 42%]
+3: ........................................................................ [ 47%]
+3: ........................................................................ [ 53%]
+3: ........................................................................ [ 58%]
+3: ........................................................................ [ 63%]
+3: ........................................................................ [ 69%]
+3: ........................................................................ [ 74%]
+3: ........................................................................ [ 79%]
+3: ........................................................................ [ 85%]
+3: ........................................................................ [ 90%]
+3: ........................................................................ [ 95%]
+3: ........................................................                 [100%]
+3: 1352 passed in 2.26s
+ 3/23 Test  #3: python-gga_x .....................   Passed    2.57 sec
+test 4
+      Start  4: python-gga_xc
+
+4: Test command: /eb/software/Python/3.13.5-GCCcore-14.3.0/bin/python "xc-run_pytest" "regression/gga_xc"
+4: Working Directory: /nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/testsuite
+4: Environment variables: 
+4:  XC_TEST_FLAGS=XC_FLAGS_ON_HOST
+4: Environment variable modifications: 
+4:  PYTHONPATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2
+4:  LD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+4:  DYLD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+4:  PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+4: Test timeout computed to be: 1800
+4: ........................................................................ [ 17%]
+4: ........................................................................ [ 34%]
+4: ........................................................................ [ 51%]
+4: ........................................................................ [ 68%]
+4: ........................................................................ [ 85%]
+4: ............................................................             [100%]
+4: 420 passed in 0.89s
+ 4/23 Test  #4: python-gga_xc ....................   Passed    1.19 sec
+test 5
+      Start  5: python-hyb_gga_x
+
+5: Test command: /eb/software/Python/3.13.5-GCCcore-14.3.0/bin/python "xc-run_pytest" "regression/hyb_gga_x"
+5: Working Directory: /nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/testsuite
+5: Environment variables: 
+5:  XC_TEST_FLAGS=XC_FLAGS_ON_HOST
+5: Environment variable modifications: 
+5:  PYTHONPATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2
+5:  LD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+5:  DYLD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+5:  PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+5: Test timeout computed to be: 1800
+5: ........................................................................ [100%]
+5: 72 passed in 0.39s
+ 5/23 Test  #5: python-hyb_gga_x .................   Passed    0.67 sec
+test 6
+      Start  6: python-hyb_gga_xc
+
+6: Test command: /eb/software/Python/3.13.5-GCCcore-14.3.0/bin/python "xc-run_pytest" "regression/hyb_gga_xc"
+6: Working Directory: /nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/testsuite
+6: Environment variables: 
+6:  XC_TEST_FLAGS=XC_FLAGS_ON_HOST
+6: Environment variable modifications: 
+6:  PYTHONPATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2
+6:  LD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+6:  DYLD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+6:  PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+6: Test timeout computed to be: 1800
+6: ........................................................................ [  5%]
+6: ........................................................................ [ 11%]
+6: ........................................................................ [ 16%]
+6: ........................................................................ [ 22%]
+6: ........................................................................ [ 28%]
+6: ........................................................................ [ 33%]
+6: ........................................................................ [ 39%]
+6: ........................................................................ [ 44%]
+6: ........................................................................ [ 50%]
+6: ........................................................................ [ 56%]
+6: ........................................................................ [ 61%]
+6: ........................................................................ [ 67%]
+6: ........................................................................ [ 72%]
+6: ........................................................................ [ 78%]
+6: ........................................................................ [ 84%]
+6: ........................................................................ [ 89%]
+6: ........................................................................ [ 95%]
+6: ............................................................             [100%]
+6: 1284 passed in 2.12s
+ 6/23 Test  #6: python-hyb_gga_xc ................   Passed    2.45 sec
+test 7
+      Start  7: python-hyb_lda_x
+
+7: Test command: /eb/software/Python/3.13.5-GCCcore-14.3.0/bin/python "xc-run_pytest" "regression/hyb_lda_x"
+7: Working Directory: /nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/testsuite
+7: Environment variables: 
+7:  XC_TEST_FLAGS=XC_FLAGS_ON_HOST
+7: Environment variable modifications: 
+7:  PYTHONPATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2
+7:  LD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+7:  DYLD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+7:  PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+7: Test timeout computed to be: 1800
+7: ......                                                                   [100%]
+7: 6 passed in 0.30s
+ 7/23 Test  #7: python-hyb_lda_x .................   Passed    0.59 sec
+test 8
+      Start  8: python-hyb_lda_xc
+
+8: Test command: /eb/software/Python/3.13.5-GCCcore-14.3.0/bin/python "xc-run_pytest" "regression/hyb_lda_xc"
+8: Working Directory: /nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/testsuite
+8: Environment variables: 
+8:  XC_TEST_FLAGS=XC_FLAGS_ON_HOST
+8: Environment variable modifications: 
+8:  PYTHONPATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2
+8:  LD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+8:  DYLD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+8:  PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+8: Test timeout computed to be: 1800
+8: ........................                                                 [100%]
+8: 24 passed in 0.33s
+ 8/23 Test  #8: python-hyb_lda_xc ................   Passed    0.61 sec
+test 9
+      Start  9: python-hyb_mgga_x
+
+9: Test command: /eb/software/Python/3.13.5-GCCcore-14.3.0/bin/python "xc-run_pytest" "regression/hyb_mgga_x"
+9: Working Directory: /nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/testsuite
+9: Environment variables: 
+9:  XC_TEST_FLAGS=XC_FLAGS_ON_HOST
+9: Environment variable modifications: 
+9:  PYTHONPATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2
+9:  LD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+9:  DYLD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+9:  PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+9: Test timeout computed to be: 1800
+9: ........................................................................ [ 13%]
+9: ........................................................................ [ 27%]
+9: ........................................................................ [ 41%]
+9: ........................................................................ [ 55%]
+9: ........................................................................ [ 69%]
+9: ........................................................................ [ 83%]
+9: ........................................................................ [ 96%]
+9: ................                                                         [100%]
+9: 520 passed in 0.98s
+ 9/23 Test  #9: python-hyb_mgga_x ................   Passed    1.27 sec
+test 10
+      Start 10: python-hyb_mgga_xc
+
+10: Test command: /eb/software/Python/3.13.5-GCCcore-14.3.0/bin/python "xc-run_pytest" "regression/hyb_mgga_xc"
+10: Working Directory: /nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/testsuite
+10: Environment variables: 
+10:  XC_TEST_FLAGS=XC_FLAGS_ON_HOST
+10: Environment variable modifications: 
+10:  PYTHONPATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2
+10:  LD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+10:  DYLD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+10:  PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+10: Test timeout computed to be: 1800
+10: ........................................................................ [ 11%]
+10: ........................................................................ [ 23%]
+10: ........................................................................ [ 34%]
+10: ........................................................................ [ 46%]
+10: ........................................................................ [ 58%]
+10: ........................................................................ [ 69%]
+10: ........................................................................ [ 81%]
+10: ........................................................................ [ 92%]
+10: ............................................                             [100%]
+10: 620 passed in 1.14s
+10/23 Test #10: python-hyb_mgga_xc ...............   Passed    1.44 sec
+test 11
+      Start 11: python-lda_c
+
+11: Test command: /eb/software/Python/3.13.5-GCCcore-14.3.0/bin/python "xc-run_pytest" "regression/lda_c"
+11: Working Directory: /nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/testsuite
+11: Environment variables: 
+11:  XC_TEST_FLAGS=XC_FLAGS_ON_HOST
+11: Environment variable modifications: 
+11:  PYTHONPATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2
+11:  LD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+11:  DYLD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+11:  PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+11: Test timeout computed to be: 1800
+11: ........................................................................ [ 24%]
+11: ........................................................................ [ 48%]
+11: ........................................................................ [ 72%]
+11: ........................................................................ [ 96%]
+11: ............                                                             [100%]
+11: 300 passed in 0.79s
+11/23 Test #11: python-lda_c .....................   Passed    1.09 sec
+test 12
+      Start 12: python-lda_k
+
+12: Test command: /eb/software/Python/3.13.5-GCCcore-14.3.0/bin/python "xc-run_pytest" "regression/lda_k"
+12: Working Directory: /nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/testsuite
+12: Environment variables: 
+12:  XC_TEST_FLAGS=XC_FLAGS_ON_HOST
+12: Environment variable modifications: 
+12:  PYTHONPATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2
+12:  LD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+12:  DYLD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+12:  PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+12: Test timeout computed to be: 1800
+12: ..............................                                           [100%]
+12: 30 passed in 0.31s
+12/23 Test #12: python-lda_k .....................   Passed    0.60 sec
+test 13
+      Start 13: python-lda_x
+
+13: Test command: /eb/software/Python/3.13.5-GCCcore-14.3.0/bin/python "xc-run_pytest" "regression/lda_x"
+13: Working Directory: /nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/testsuite
+13: Environment variables: 
+13:  XC_TEST_FLAGS=XC_FLAGS_ON_HOST
+13: Environment variable modifications: 
+13:  PYTHONPATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2
+13:  LD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+13:  DYLD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+13:  PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+13: Test timeout computed to be: 1800
+13: ............................................................             [100%]
+13: 60 passed in 0.34s
+13/23 Test #13: python-lda_x .....................   Passed    0.68 sec
+test 14
+      Start 14: python-lda_xc
+
+14: Test command: /eb/software/Python/3.13.5-GCCcore-14.3.0/bin/python "xc-run_pytest" "regression/lda_xc"
+14: Working Directory: /nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/testsuite
+14: Environment variables: 
+14:  XC_TEST_FLAGS=XC_FLAGS_ON_HOST
+14: Environment variable modifications: 
+14:  PYTHONPATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2
+14:  LD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+14:  DYLD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+14:  PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+14: Test timeout computed to be: 1800
+14: ......................................................................   [100%]
+14: 70 passed in 0.36s
+14/23 Test #14: python-lda_xc ....................   Passed    0.70 sec
+test 15
+      Start 15: python-mgga_c
+
+15: Test command: /eb/software/Python/3.13.5-GCCcore-14.3.0/bin/python "xc-run_pytest" "regression/mgga_c"
+15: Working Directory: /nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/testsuite
+15: Environment variables: 
+15:  XC_TEST_FLAGS=XC_FLAGS_ON_HOST
+15: Environment variable modifications: 
+15:  PYTHONPATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2
+15:  LD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+15:  DYLD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+15:  PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+15: Test timeout computed to be: 1800
+15: ........................................................................ [  6%]
+15: ........................................................................ [ 12%]
+15: ........................................................................ [ 18%]
+15: ........................................................................ [ 25%]
+15: ........................................................................ [ 31%]
+15: ........................................................................ [ 37%]
+15: ........................................................................ [ 44%]
+15: ........................................................................ [ 50%]
+15: ........................................................................ [ 56%]
+15: ........................................................................ [ 63%]
+15: ........................................................................ [ 69%]
+15: ........................................................................ [ 75%]
+15: ........................................................................ [ 82%]
+15: ........................................................................ [ 88%]
+15: ........................................................................ [ 94%]
+15: ............................................................             [100%]
+15: 1140 passed in 1.93s
+15/23 Test #15: python-mgga_c ....................   Passed    2.31 sec
+test 16
+      Start 16: python-mgga_k
+
+16: Test command: /eb/software/Python/3.13.5-GCCcore-14.3.0/bin/python "xc-run_pytest" "regression/mgga_k"
+16: Working Directory: /nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/testsuite
+16: Environment variables: 
+16:  XC_TEST_FLAGS=XC_FLAGS_ON_HOST
+16: Environment variable modifications: 
+16:  PYTHONPATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2
+16:  LD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+16:  DYLD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+16:  PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+16: Test timeout computed to be: 1800
+16: ........................................................................ [ 30%]
+16: ........................................................................ [ 60%]
+16: ........................................................................ [ 90%]
+16: ........................                                                 [100%]
+16: 240 passed in 0.61s
+16/23 Test #16: python-mgga_k ....................   Passed    0.89 sec
+test 17
+      Start 17: python-mgga_x
+
+17: Test command: /eb/software/Python/3.13.5-GCCcore-14.3.0/bin/python "xc-run_pytest" "regression/mgga_x"
+17: Working Directory: /nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/testsuite
+17: Environment variables: 
+17:  XC_TEST_FLAGS=XC_FLAGS_ON_HOST
+17: Environment variable modifications: 
+17:  PYTHONPATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2
+17:  LD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+17:  DYLD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+17:  PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+17: Test timeout computed to be: 1800
+17: ........................................................................ [  3%]
+17: ........................................................................ [  6%]
+17: ........................................................................ [  9%]
+17: ........................................................................ [ 12%]
+17: ........................................................................ [ 15%]
+17: ........................................................................ [ 18%]
+17: ........................................................................ [ 21%]
+17: ........................................................................ [ 24%]
+17: ........................................................................ [ 27%]
+17: ........................................................................ [ 30%]
+17: ........................................................................ [ 33%]
+17: ........................................................................ [ 36%]
+17: ........................................................................ [ 39%]
+17: ........................................................................ [ 42%]
+17: ........................................................................ [ 45%]
+17: ........................................................................ [ 48%]
+17: ........................................................................ [ 51%]
+17: ........................................................................ [ 54%]
+17: ........................................................................ [ 57%]
+17: ........................................................................ [ 60%]
+17: ........................................................................ [ 63%]
+17: ........................................................................ [ 66%]
+17: ........................................................................ [ 69%]
+17: ........................................................................ [ 72%]
+17: ........................................................................ [ 75%]
+17: ........................................................................ [ 78%]
+17: ........................................................................ [ 81%]
+17: ........................................................................ [ 84%]
+17: ........................................................................ [ 87%]
+17: ........................................................................ [ 90%]
+17: ........................................................................ [ 93%]
+17: ........................................................................ [ 96%]
+17: ........................................................................ [ 99%]
+17: ......                                                                   [100%]
+17: 2382 passed in 3.51s
+17/23 Test #17: python-mgga_x ....................   Passed    3.86 sec
+test 18
+      Start 18: python-mgga_xc
+
+18: Test command: /eb/software/Python/3.13.5-GCCcore-14.3.0/bin/python "xc-run_pytest" "regression/mgga_xc"
+18: Working Directory: /nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/testsuite
+18: Environment variables: 
+18:  XC_TEST_FLAGS=XC_FLAGS_ON_HOST
+18: Environment variable modifications: 
+18:  PYTHONPATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2
+18:  LD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+18:  DYLD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+18:  PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+18: Test timeout computed to be: 1800
+18: ........................................................................ [ 36%]
+18: ........................................................................ [ 73%]
+18: ....................................................                     [100%]
+18: 196 passed in 0.50s
+18/23 Test #18: python-mgga_xc ...................   Passed    0.72 sec
+test 19
+      Start 19: python-general
+
+19: Test command: /eb/software/Python/3.13.5-GCCcore-14.3.0/bin/python "xc-run_pytest" "general"
+19: Working Directory: /nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/testsuite
+19: Environment variables: 
+19:  XC_TEST_FLAGS=XC_FLAGS_ON_HOST
+19: Environment variable modifications: 
+19:  PYTHONPATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2
+19:  LD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+19:  DYLD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+19:  PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+19: Test timeout computed to be: 1800
+19: ........................                                                 [100%]
+19: 24 passed in 0.27s
+19/23 Test #19: python-general ...................   Passed    0.51 sec
+test 20
+      Start 20: python-codegen
+
+20: Test command: /eb/software/Python/3.13.5-GCCcore-14.3.0/bin/python "xc-run_pytest" "test_codegen_determinism.py" "test_codegen_jet_arrays.py" "test_math_utilities.py"
+20: Working Directory: /nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/testsuite
+20: Environment variables: 
+20:  XC_TEST_FLAGS=XC_FLAGS_ON_HOST
+20: Environment variable modifications: 
+20:  PYTHONPATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2
+20:  LD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+20:  DYLD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+20:  PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+20: Test timeout computed to be: 1800
+20: ss...................................................................... [ 25%]
+20: ........................................................................ [ 51%]
+20: ........................................................................ [ 77%]
+20: ...............................................................          [100%]
+20: 277 passed, 3 skipped in 2.49s
+20/23 Test #20: python-codegen ...................   Passed    2.76 sec
+test 21
+      Start 21: special-functions
+
+21: Test command: /nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel/testsuite/xc-special-functions
+21: Working Directory: /nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel/testsuite
+21: Environment variable modifications: 
+21:  LD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+21:  DYLD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+21:  PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+21: Test timeout computed to be: 300
+21: special functions: 99 cases, 0 failures (rel tol 1e-12)
+21/23 Test #21: special-functions ................   Passed    0.01 sec
+test 22
+      Start 22: api
+
+22: Test command: /nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel/testsuite/xc-api
+22: Working Directory: /nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel/testsuite
+22: Environment variable modifications: 
+22:  LD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+22:  DYLD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+22:  PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+22: Test timeout computed to be: 300
+22:   (checked 712 functionals)
+22: public API: 0 failure(s)
+22/23 Test #22: api ..............................   Passed    0.01 sec
+test 23
+      Start 23: distinct
+
+23: Test command: /nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel/testsuite/xc-distinct
+23: Working Directory: /nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel/testsuite
+23: Environment variable modifications: 
+23:  LD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+23:  DYLD_LIBRARY_PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+23:  PATH=path_list_prepend:/nvme/h/ru26mi1/work/software/libcx/libxc-7.1.2/build_intel
+23: Test timeout computed to be: 300
+23: distinct-values check: 695 functionals, 0 unexpected collision group(s)
+23/23 Test #23: distinct .........................   Passed    0.02 sec
+
+100% tests passed, 0 tests failed out of 23
+
+Total Test time (real) =  28.32 sec
+
+ running make install
+[ 91%] Built target xc
+[ 92%] Built target xcf03
+[ 93%] Built target xc-info
+[ 93%] Built target xc-threshold
+[ 93%] Built target xc-sanity
+[ 93%] Built target genwiki
+[ 93%] Built target xc-get_data
+[ 94%] Built target xc-special-functions
+[ 95%] Built target xc-api
+[ 96%] Built target xc-distinct
+[ 96%] Built target basic
+[ 97%] Built target get_refs
+[ 98%] Built target basic_f90
+[100%] Built target xcinfo_f90
+Install the project...
+-- Install configuration: "Release"
+-- Installing: /nvme/h/ru26mi1/work/software/libcx/install_build_intel/include/xc.h
+-- Installing: /nvme/h/ru26mi1/work/software/libcx/install_build_intel/include/xc_funcs.h
+-- Installing: /nvme/h/ru26mi1/work/software/libcx/install_build_intel/include/xc_funcs_worker.h
+-- Installing: /nvme/h/ru26mi1/work/software/libcx/install_build_intel/include/xc_funcs_removed.h
+-- Installing: /nvme/h/ru26mi1/work/software/libcx/install_build_intel/include/xc_version.h
+-- Installing: /nvme/h/ru26mi1/work/software/libcx/install_build_intel/bin/xc-info
+-- Set non-toolchain portion of runtime path of "/nvme/h/ru26mi1/work/software/libcx/install_build_intel/bin/xc-info" to "$ORIGIN:$ORIGIN/../lib64"
+-- Installing: /nvme/h/ru26mi1/work/software/libcx/install_build_intel/lib64/libxc.so.15
+-- Set non-toolchain portion of runtime path of "/nvme/h/ru26mi1/work/software/libcx/install_build_intel/lib64/libxc.so.15" to "$ORIGIN:$ORIGIN/../lib64"
+-- Installing: /nvme/h/ru26mi1/work/software/libcx/install_build_intel/lib64/libxc.so
+-- Up-to-date: /nvme/h/ru26mi1/work/software/libcx/install_build_intel/lib64/libxc.so.15
+-- Up-to-date: /nvme/h/ru26mi1/work/software/libcx/install_build_intel/lib64/libxc.so
+-- Installing: /nvme/h/ru26mi1/work/software/libcx/install_build_intel/lib64/libxcf03.so.15
+-- Set non-toolchain portion of runtime path of "/nvme/h/ru26mi1/work/software/libcx/install_build_intel/lib64/libxcf03.so.15" to "$ORIGIN:$ORIGIN/../lib64"
+-- Installing: /nvme/h/ru26mi1/work/software/libcx/install_build_intel/lib64/libxcf03.so
+-- Installing: /nvme/h/ru26mi1/work/software/libcx/install_build_intel/include/xc_f03_lib_m.mod
+-- Installing: /nvme/h/ru26mi1/work/software/libcx/install_build_intel/include/xc_f03_funcs_m.mod
+-- Installing: /nvme/h/ru26mi1/work/software/libcx/install_build_intel/lib64/pkgconfig/libxcf03.pc
+-- Installing: /nvme/h/ru26mi1/work/software/libcx/install_build_intel/lib64/cmake/Libxc/LibxcConfig.cmake
+-- Installing: /nvme/h/ru26mi1/work/software/libcx/install_build_intel/lib64/cmake/Libxc/LibxcConfigVersion.cmake
+-- Installing: /nvme/h/ru26mi1/work/software/libcx/install_build_intel/lib64/cmake/Libxc/LibxcTargets-C.cmake
+-- Installing: /nvme/h/ru26mi1/work/software/libcx/install_build_intel/lib64/cmake/Libxc/LibxcTargets-C-release.cmake
+-- Installing: /nvme/h/ru26mi1/work/software/libcx/install_build_intel/lib64/cmake/Libxc/LibxcTargets-Fortran.cmake
+-- Installing: /nvme/h/ru26mi1/work/software/libcx/install_build_intel/lib64/cmake/Libxc/LibxcTargets-Fortran-release.cmake
+-- Installing: /nvme/h/ru26mi1/work/software/libcx/install_build_intel/lib64/pkgconfig/libxc.pc

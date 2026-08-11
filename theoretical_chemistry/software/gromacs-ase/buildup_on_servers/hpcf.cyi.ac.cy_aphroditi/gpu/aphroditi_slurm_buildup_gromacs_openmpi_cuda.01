@@ -33,10 +33,69 @@ echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
 module purge
 module load  Python CMake
 #module load  intel
-module load GCC CUDA imkl
+module load GCC OpenMPI CUDA imkl
 
 echo -e "\n\n...loaded modules :"
 module list
+
+# Check GPU availability and compute capability
+echo -e "\n\nChecking GPU hardware:"
+if command -v nvidia-smi &> /dev/null; then
+    echo "✅ nvidia-smi found: $(which nvidia-smi)"
+    nvidia-smi --query-gpu=name,compute_cap,memory.total --format=csv
+else
+    echo "⚠️  nvidia-smi not found (might be on compute node without GPU access)"
+    echo "Will check compute capability later with CMake"
+fi
+# Check CUDA samples/test
+echo -e "\nTesting CUDA compilation:"
+cat > test_cuda.cu << EOF
+#include <cuda_runtime.h>
+#include <stdio.h>
+int main() {
+    int deviceCount;
+    cudaGetDeviceCount(&deviceCount);
+    printf("Found %d CUDA devices\n", deviceCount);
+    for (int i=0; i<deviceCount; i++) {
+        cudaDeviceProp prop;
+        cudaGetDeviceProperties(&prop, i);
+        printf("Device %d: %s (CC: %d.%d)\n", i, prop.name, prop.major, prop.minor);
+    }
+    return 0;
+}
+EOF
+
+if nvcc -o test_cuda test_cuda.cu 2>/dev/null; then
+    echo "✅ CUDA compilation successful"
+    if ./test_cuda 2>/dev/null; then
+        echo "✅ CUDA runtime test successful"
+    else
+        echo "⚠️  CUDA runtime test failed (no GPU access?)"
+    fi
+    rm -f test_cuda test_cuda.cu
+else
+    echo "⚠️  CUDA compilation test failed (this is OK if compiling for different GPU)"
+    rm -f test_cuda.cu
+fi
+
+    # Check MPI compilers
+    if command -v mpicc &> /dev/null; then
+        echo -e "\n✅ mpicc found: $(which mpicc)"
+        echo "mpicc version:"
+        mpicc --version 2>&1 | head -3
+    else
+        echo -e "\n❌ mpicc NOT found in PATH"
+        echo "Searching for MPI installations..."
+        find /eb/software -name "mpicc" -type f 2>/dev/null | head -5
+    fi
+    
+    if command -v mpirun &> /dev/null; then
+        echo -e "\n✅ mpirun found: $(which mpirun)"
+        echo "mpirun version:"
+        mpirun --version 2>&1 | head -3
+    else
+        echo -e "\n❌ mpirun NOT found"
+    fi
 
 # 
   echo -e "\n\n*** hydra.jinr.ru setting for compilation:   ***"
@@ -45,7 +104,7 @@ module list
   export GROMACS=$GROMACS_ROOT/gromacs_cloned
   export REGTESTS=$GROMACS_ROOT/gromacs-regressiontests
   #export BUILD=build_intelmpi2025.3.1_mkl
-  export BUILD=build-gpu_gcc_cuda
+  export BUILD=build-gpu_openmpi_cuda
 
   INSTALL_DIR=$GROMACS_ROOT/install_$BUILD
   echo "\n INSTALL_DIR=$INSTALL_DIR"
@@ -73,7 +132,6 @@ module list
  # echo -e "mpiicpx ?"; which mpiicpc; mpiicpc  --version
  # echo -e "mpiifort ?"; which mpiifort; mpiifort -V
   #echo -e "mpiexec ?";  which mpiexec; mpiexec --version
-  #echo -e "mpirun ?";  which mpirun; mpirun --version
   echo -e "\n ===  We have the MKL library, MKLROOT=${MKLROOT}"
 
   cd $GROMACS
@@ -98,7 +156,7 @@ module list
 #  cmake .. -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=mpiicpc -DGMX_MPI=on  -DGMX_FFT_LIBRARY=mkl  -DGMX_OPENMP=OFF -DREGRESSIONTEST_DOWNLOAD=OFF -DREGRESSIONTEST_PATH=$REGTESTS
 #  cmake .. -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++  -DGMX_MPI=on  -DGMX_FFT_LIBRARY=mkl  -DGMX_OPENMP=ON  -DGMX_GPU=OFF  -DREGRESSIONTEST_DOWNLOAD=OFF -DREGRESSIONTEST_PATH=$REGTESTS
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++  -DGMX_MPI=off  -DGMX_FFT_LIBRARY=mkl  -DGMX_THREAD_MPI=ON  -DGMX_OPENMP=OFF  -DGMX_GPU=CUDA  -DGMX_DOUBLE=OFF -DREGRESSIONTEST_DOWNLOAD=OFF -DREGRESSIONTEST_PATH=$REGTESTS
+  cmake .. -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++  -DGMX_MPI=ON  -DGMX_FFT_LIBRARY=mkl  -DGMX_THREAD_MPI=ON  -DGMX_OPENMP=ON  -DGMX_GPU=CUDA  -DGMX_DOUBLE=OFF -DREGRESSIONTEST_DOWNLOAD=OFF -DREGRESSIONTEST_PATH=$REGTESTS
   
 
   echo -e "\n\n running make -j $SLURM_CPUS_ON_NODE : "

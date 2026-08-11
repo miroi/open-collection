@@ -33,7 +33,8 @@ echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
 module purge
 module load  Python CMake
 #module load  intel
-module load GCC OpenMPI imkl
+module load GCC CUDA imkl
+
 echo -e "\n\n...loaded modules :"
 module list
 
@@ -44,7 +45,16 @@ module list
   export GROMACS=$GROMACS_ROOT/gromacs_cloned
   export REGTESTS=$GROMACS_ROOT/gromacs-regressiontests
   #export BUILD=build_intelmpi2025.3.1_mkl
-  export BUILD=build_openmpi_mkl
+  export BUILD=build-gpu_gcc_cuda
+
+  INSTALL_DIR=$GROMACS_ROOT/install_$BUILD
+  if [ -d "install_$BUILD" ]; then
+    echo -e "\nPREVIOUS directory 'install_$BUILD' exists. Removing it.After recreating it again by mkdir."
+    rm -rf install_$BUILD
+  else
+    echo -e "\nPREVIOUS directory 'install_$BUILD' does not exist - will be created by mkdir."
+  fi
+  mkdir install_$BUILD
 
   echo -e "\n GROMACS=$GROMACS"
   echo -e "\n GROMACS REGRESSION TESTS=$REGTESTS"
@@ -55,13 +65,14 @@ module list
   echo -e "\n\nCMake ?"; which cmake; cmake --version
   echo -e "Python ?"; which python; python -V
 
+  echo -e "gcc ?"; which gcc; gcc --version
   #echo -e "icc ?"; which icc; icc --version
   #echo -e "icx ?"; which icx; icx --version
   #echo -e "mpiicpc ?"; which mpiicpc; mpiicpc  --version
  # echo -e "mpiicpx ?"; which mpiicpc; mpiicpc  --version
  # echo -e "mpiifort ?"; which mpiifort; mpiifort -V
   #echo -e "mpiexec ?";  which mpiexec; mpiexec --version
-  echo -e "mpirun ?";  which mpirun; mpirun --version
+  #echo -e "mpirun ?";  which mpirun; mpirun --version
   echo -e "\n ===  We have the MKL library, MKLROOT=${MKLROOT}"
 
   cd $GROMACS
@@ -84,13 +95,17 @@ module list
  # cmake .. -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++  -DGMX_MPI=on  -DGMX_FFT_LIBRARY=mkl  -DGMX_OPENMP=OFF -DREGRESSIONTEST_DOWNLOAD=OFF -DREGRESSIONTEST_PATH=$REGTESTS
 #  cmake .. -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=mpiicpx  -DGMX_MPI=on  -DGMX_FFT_LIBRARY=mkl  -DGMX_OPENMP=OFF -DREGRESSIONTEST_DOWNLOAD=OFF -DREGRESSIONTEST_PATH=$REGTESTS
 #  cmake .. -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=mpiicpc -DGMX_MPI=on  -DGMX_FFT_LIBRARY=mkl  -DGMX_OPENMP=OFF -DREGRESSIONTEST_DOWNLOAD=OFF -DREGRESSIONTEST_PATH=$REGTESTS
+#  cmake .. -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++  -DGMX_MPI=on  -DGMX_FFT_LIBRARY=mkl  -DGMX_OPENMP=ON  -DGMX_GPU=OFF  -DREGRESSIONTEST_DOWNLOAD=OFF -DREGRESSIONTEST_PATH=$REGTESTS
 
-  cmake .. -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++  -DGMX_MPI=on  -DGMX_FFT_LIBRARY=mkl  -DGMX_OPENMP=ON  -DGMX_GPU=OFF  -DREGRESSIONTEST_DOWNLOAD=OFF -DREGRESSIONTEST_PATH=$REGTESTS
+  cmake .. -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++  -DGMX_MPI=off  -DGMX_FFT_LIBRARY=mkl  -DGMX_THREAD_MPI=ON  -DGMX_OPENMP=OFF  -DGMX_GPU=CUDA  -DREGRESSIONTEST_DOWNLOAD=OFF -DREGRESSIONTEST_PATH=$REGTESTS
   
 
   echo -e "\n\n running make -j $SLURM_CPUS_ON_NODE : "
   #make -j $SLURM_CPUS_ON_NODE
   make VERBOSE=2 -j $SLURM_CPUS_ON_NODE
+
+  make install
+  echo -e "\n\n After make install; ls $INSTALL_DIR "; ls $INSTALL_DIR
    
   echo -e "\n\n After, ls -lt bin :"
   ls -lt bin

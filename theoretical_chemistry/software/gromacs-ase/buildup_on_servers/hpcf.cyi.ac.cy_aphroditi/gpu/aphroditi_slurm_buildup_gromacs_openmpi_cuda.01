@@ -149,15 +149,58 @@ fi
   echo -e "\n I am in GROMACS/BUILD=$GROMACS/$BUILD:\c";
   echo -e "\n                   pwd=\c";pwd
 
-# The Intel classic compiler (icc/icpc) is no longer supported in GROMACS. Use Intel’s newer clang-based compiler from oneAPI, or gcc.
-  echo -e "\n\n running cmake configuration : "
- # cmake .. -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++  -DGMX_MPI=on  -DGMX_FFT_LIBRARY=mkl  -DGMX_OPENMP=OFF -DREGRESSIONTEST_DOWNLOAD=OFF -DREGRESSIONTEST_PATH=$REGTESTS
-#  cmake .. -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=mpiicpx  -DGMX_MPI=on  -DGMX_FFT_LIBRARY=mkl  -DGMX_OPENMP=OFF -DREGRESSIONTEST_DOWNLOAD=OFF -DREGRESSIONTEST_PATH=$REGTESTS
-#  cmake .. -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=mpiicpc -DGMX_MPI=on  -DGMX_FFT_LIBRARY=mkl  -DGMX_OPENMP=OFF -DREGRESSIONTEST_DOWNLOAD=OFF -DREGRESSIONTEST_PATH=$REGTESTS
-#  cmake .. -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++  -DGMX_MPI=on  -DGMX_FFT_LIBRARY=mkl  -DGMX_OPENMP=ON  -DGMX_GPU=OFF  -DREGRESSIONTEST_DOWNLOAD=OFF -DREGRESSIONTEST_PATH=$REGTESTS
+echo -e "\n\n========================================="
+echo "CMAKE CONFIGURATION"
+echo "========================================="
 
-  cmake .. -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++  -DGMX_MPI=ON  -DGMX_FFT_LIBRARY=mkl  -DGMX_THREAD_MPI=ON  -DGMX_OPENMP=ON  -DGMX_GPU=CUDA  -DGMX_DOUBLE=OFF -DREGRESSIONTEST_DOWNLOAD=OFF -DREGRESSIONTEST_PATH=$REGTESTS
-  
+# Check if MPI should be used (MPI and thread-MPI are mutually exclusive)
+#USE_MPI=false  # Set to true if you want MPI
+USE_MPI=tru  # Set to true if you want MPI
+
+# Determine MPI usage based on availability and user preference
+if [ "$USE_MPI" = true ] && command -v mpicc &> /dev/null; then
+    echo "✅ Using MPI build with CUDA-aware MPI"
+    GMX_MPI="ON"
+    GMX_THREAD_MPI="OFF"
+    CMAKE_C_COMPILER="mpicc"
+    CMAKE_CXX_COMPILER="mpicxx"
+    echo "⚠️  Note: MPI and thread-MPI are incompatible. Using MPI only."
+else
+    echo "✅ Using thread-MPI build (no external MPI)"
+    GMX_MPI="OFF"
+    GMX_THREAD_MPI="ON"
+    CMAKE_C_COMPILER="gcc"
+    CMAKE_CXX_COMPILER="g++"
+    
+    # If MPI is available but we're not using it, unload or ignore it
+    if command -v mpicc &> /dev/null; then
+        echo "⚠️  MPI available but not being used (set USE_MPI=true to enable)"
+    fi
+fi
+
+echo -e "\nConfiguration summary:"
+echo "  GMX_MPI: $GMX_MPI"
+echo "  GMX_THREAD_MPI: $GMX_THREAD_MPI"
+echo "  C compiler: $CMAKE_C_COMPILER"
+echo "  CXX compiler: $CMAKE_CXX_COMPILER"
+
+# The rest of your script remains the same...
+
+echo -e "\n\n running cmake configuration : "
+cmake .. \
+  -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR \
+  -DCMAKE_C_COMPILER=$CMAKE_C_COMPILER \
+  -DCMAKE_CXX_COMPILER=$CMAKE_CXX_COMPILER \
+  -DGMX_MPI=$GMX_MPI \
+  -DGMX_THREAD_MPI=$GMX_THREAD_MPI \
+  -DGMX_OPENMP=OFF \
+  -DGMX_GPU=CUDA \
+  -DGMX_DOUBLE=OFF \
+  -DGMX_FFT_LIBRARY=mkl \
+  -DGMX_BUILD_OWN_FFTW=OFF \
+  -DREGRESSIONTEST_DOWNLOAD=OFF \
+  -DREGRESSIONTEST_PATH=$REGTESTS
+
 
   echo -e "\n\n running make -j $SLURM_CPUS_ON_NODE : "
   #make -j $SLURM_CPUS_ON_NODE

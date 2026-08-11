@@ -9,10 +9,7 @@
 #SBATCH --time=4:00:00 
 
 ## stdout/stderr output file
-##SBATCH --output=job.%j.out # Stdout (%j=jobId)
-##SBATCH --error=job.%j.err # Stderr (%j=jobId)
 #SBATCH -o log_slurm_job.%j.%N.std_out
-#SBATCH -e log_slurm_job.%j.%N.std_err
 
 ## email
 ##SBATCH --mail-user=milias@theor.jinr.ru
@@ -34,7 +31,6 @@ echo The job requests $SLURM_CPUS_ON_NODE CPU per task.
 
 module purge
 module load  Python CMake
-#module load  impi/2021.13.0-intel-compilers-2024.2.0
 module load  intel
 echo -e "\n\n...loaded modules :"
 module list

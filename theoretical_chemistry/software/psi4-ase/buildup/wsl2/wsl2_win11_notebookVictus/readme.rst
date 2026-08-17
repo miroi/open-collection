@@ -28,7 +28,8 @@ ASE
 (psi4env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/psi4-ase/buildup/wsl2/wsl2_win11_notebookVictus/.ase --version
 ase-3.29.0
 
-
-
+Verify ASE-Psi4
+---------------
+python verify-ase-psi4.py  > verify-ase-psi4.py_logfile
 
 

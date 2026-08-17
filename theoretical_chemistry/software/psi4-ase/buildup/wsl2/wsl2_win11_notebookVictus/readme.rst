@@ -2,7 +2,10 @@
 ASE-Psi4 installation on WSL2
 =============================
 
-conda create -n psi4env
+conda
+------
+
+create own environment: conda create -n psi4env
 
 #
 # To activate this environment, use

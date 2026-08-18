@@ -15,3 +15,5 @@ conda install conda-forge::quippy
 
 tests
 -----
+
+not working from conda installation ! tests programs crashing...

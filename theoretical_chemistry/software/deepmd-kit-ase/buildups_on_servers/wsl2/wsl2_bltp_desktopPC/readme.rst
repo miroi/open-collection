@@ -20,6 +20,14 @@ done
 #
 #     $ conda deactivate
 
+list all packages
+~~~~~~~~~~~~~~~~~
+conda list > conda_list.logfile
 
+test
+----
+wget https://bohrium-api.dp.tech/ds-dl/DeePMD-kit-Tutorial-a8z5-v1.zip
+cp DeePMD-kit_Tutorial/01.train.finished/graph.pb  .
 
+python methane_ase_dp.py > methane_ase_dp.py_logfile
 

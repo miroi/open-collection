@@ -10,6 +10,16 @@ installation
 ------------
 conda create -n deepmd deepmd-kit ase lammps horovod -c conda-forge
 
+done
+#
+# To activate this environment, use
+#
+#     $ conda activate deepmd
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
 
 
 

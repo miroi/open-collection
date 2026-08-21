@@ -40,6 +40,11 @@ pw_atom - atom.in: Passed.
 pw_atom - atom-lsda.in: Passed.
 .
 .
+All done. ERROR: only 246 out of 252 tests passed.
+Failed tests in:
+        /home/milias/work/software/qe/qe-7.5/test-suite/pw_lda+U/
+        /home/milias/work/software/qe/qe-7.5/test-suite/pw_libxc/
+        /home/milias/work/software/qe/qe-7.5/test-suite/pw_metaGGA/
 
 
 

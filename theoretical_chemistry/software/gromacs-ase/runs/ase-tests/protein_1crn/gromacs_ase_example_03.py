@@ -17,8 +17,11 @@ from datetime import datetime
 # CONFIGURATION
 # =============================================================================
 
-gmx_bin_dir = "/home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin"
-gmx_exe = os.path.join(gmx_bin_dir, "gmx_mpi")
+#gmx_bin_dir = "/home/miroi/work/software/gromacs/gromacs_cloned/build_gnu/bin"
+gmx_bin_dir = "/home/miroi/miniconda3/envs/mace_env/bin.AVX2_256"
+#gmx_exe = os.path.join(gmx_bin_dir, "gmx_mpi")
+gmx_exe = os.path.join(gmx_bin_dir, "gmx")
+
 MPI_NPROCS_MDRUN = 2
 MPI_NPROCS_SERIAL = 1
 mpi_parallel_cmd = f"mpirun -np {MPI_NPROCS_MDRUN}"

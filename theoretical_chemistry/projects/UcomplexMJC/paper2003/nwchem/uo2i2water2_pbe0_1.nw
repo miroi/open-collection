@@ -1,5 +1,7 @@
 title "UO2I2(OH2)2 - DFT Single Point Restart"
 
+print low
+
 geometry units angstroms
   U   0.00000000   0.00000000   0.00000000
   O   0.00000000   0.00000000   1.77300000
@@ -16,9 +18,7 @@ end
 
 basis
   U library crenbl_ecp
- # U library stuttgart_rlc_ecp
   I library crenbl_ecp
-  I library stuttgart_rlc_ecp
   O library 3-21G*
   H library 3-21G*
 end
@@ -26,11 +26,14 @@ end
 dft
   xc pbe0
   mult 1
-  iterations 100
+ # convergence lshift 0. ncydp 0 dampon 1d99 dampoff 1d-4 damp 40
+  convergence fast 
+  convergence energy 1e-2
+  convergence density 1e-1
+  convergence gradient 1e-1
   vectors input hcore
   grid coarse
-  convergence energy 1e-6
-  convergence density 1e-5
+  maxiter 100
 end
 
 

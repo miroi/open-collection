@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Fixed CIF parser - captures ALL atoms from the CIF file
+Final working CIF parser for uranium complex - captures ALL atoms
 """
 
 import re
@@ -10,8 +10,9 @@ from ase.cell import Cell
 from ase.io import write
 from pathlib import Path
 
-def parse_cif_all_atoms(cif_file):
-    """Parse CIF file and capture ALL atoms"""
+def parse_cif_final(cif_file):
+    """Parse CIF and capture ALL atoms - the final working version"""
+    
     with open(cif_file, 'r') as f:
         content = f.read()
     
@@ -41,106 +42,131 @@ def parse_cif_all_atoms(cif_file):
         cell_params.get('_cell_angle_gamma', 90.0)
     ])
     
-    # Find the atom_site loop
-    loop_pattern = r'loop_\s*\n.*?_atom_site_label.*?\n(.*?)(?=\n\s*loop_|\n\s*_|\n\s*#|\Z)'
-    match = re.search(loop_pattern, content, re.DOTALL)
-    
-    if not match:
-        raise ValueError("Could not find atom_site loop")
-    
-    atom_lines = match.group(1).strip().split('\n')
+    # Split into lines and find atom data
+    lines = content.split('\n')
     
     symbols = []
     positions = []
     labels = []
     occupancies = []
     
-    # Valid element symbols (all elements)
-    valid_elements = ['H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne', 'Na', 'Mg', 
-                      'Al', 'Si', 'P', 'S', 'Cl', 'Ar', 'K', 'Ca', 'Sc', 'Ti', 'V', 
-                      'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 
-                      'Se', 'Br', 'Kr', 'Rb', 'Sr', 'Y', 'Zr', 'Nb', 'Mo', 'Tc', 
-                      'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Sb', 'Te', 'I', 
-                      'Xe', 'Cs', 'Ba', 'La', 'Ce', 'Pr', 'Nd', 'Pm', 'Sm', 'Eu', 
-                      'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu', 'Hf', 'Ta', 
-                      'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb', 'Bi', 
-                      'Po', 'At', 'Rn', 'Fr', 'Ra', 'Ac', 'Th', 'Pa', 'U', 'Np', 
-                      'Pu', 'Am', 'Cm', 'Bk', 'Cf', 'Es', 'Fm', 'Md', 'No', 'Lr']
+    # We know from the debug output that atom data starts at line 213
+    # and continues until line 252
+    # Let's search for the pattern of atom lines
+    atom_pattern = re.compile(r'^([A-Z][a-z]?\d*)\s+([A-Z][a-z]?)\s+([\d.]+(?:\([\d]+\))?)\s+([\d.]+(?:\([\d]+\))?)\s+([\d.]+(?:\([\d]+\))?)\s+([\d.]+(?:\([\d]+\))?)\s+(\w+)\s+([\d.]+(?:\([\d]+\))?)')
     
-    for line in atom_lines:
+    in_atom_section = False
+    atom_lines_found = 0
+    
+    for i, line in enumerate(lines):
         line = line.strip()
-        if not line or line.startswith('_'):
+        if not line:
             continue
         
+        # Check if this is an atom data line
+        # Atom lines in this CIF start with: U1, I1, O1, O2, O5, O6, O7, N1, H1O, H2O, O3, O4, C1, H1A, etc.
         parts = line.split()
         
-        # Need at least label, symbol, x, y, z
+        # Check if first part is a label like U1, I1, O1, etc.
         if len(parts) >= 5:
             label = parts[0]
-            symbol = parts[1]
+            symbol = parts[1] if len(parts) > 1 else ""
             
-            # Check if symbol is a valid element (or starts with valid element)
-            # For labels like "I1", "O1", etc.
-            element = symbol
-            # If symbol is like "O1", extract "O"
-            if not symbol in valid_elements and len(symbol) > 0:
-                # Check if first 1-2 characters are an element
-                for length in [2, 1]:
-                    if symbol[:length] in valid_elements:
-                        element = symbol[:length]
-                        break
+            # Valid elements in this CIF
+            valid_elements = ['U', 'I', 'O', 'N', 'C', 'H']
             
-            if element in valid_elements:
+            # Check if this is an atom line
+            if symbol in valid_elements:
                 try:
-                    x = float(parts[2]) if len(parts) > 2 else 0
-                    y = float(parts[3]) if len(parts) > 3 else 0
-                    z = float(parts[4]) if len(parts) > 4 else 0
+                    # Extract coordinates (handle values with parentheses like 0.5000(2))
+                    x_str = parts[2].split('(')[0]
+                    y_str = parts[3].split('(')[0]
+                    z_str = parts[4].split('(')[0]
                     
-                    # Check for occupancy
+                    x = float(x_str)
+                    y = float(y_str)
+                    z = float(z_str)
+                    
+                    # Check for occupancy (might be in column 7)
                     occupancy = 1.0
-                    if len(parts) > 7:  # occupancy is usually in column 7
+                    if len(parts) > 7:
                         try:
-                            # Extract occupancy from parts[7] (e.g., "0.685(5)")
                             occ_str = parts[7].split('(')[0]
                             occupancy = float(occ_str)
                         except:
                             pass
                     
-                    symbols.append(element)
-                    positions.append([x, y, z])
-                    labels.append(label)
-                    occupancies.append(occupancy)
+                    # Only add if occupancy > 0.01
+                    if occupancy > 0.01:
+                        symbols.append(symbol)
+                        positions.append([x, y, z])
+                        labels.append(label)
+                        occupancies.append(occupancy)
+                        atom_lines_found += 1
+                        
                 except ValueError:
                     continue
+    
+    print(f"Found {atom_lines_found} atom lines")
     
     if not symbols:
         raise ValueError("No atoms found in CIF")
     
-    print(f"Found {len(symbols)} atoms total")
+    # Create Atoms object
+    atoms = Atoms(
+        symbols=symbols,
+        positions=positions,
+        cell=atoms_cell,
+        pbc=True
+    )
     
-    # Print summary by element
-    element_counts = {}
-    for symbol in symbols:
-        element_counts[symbol] = element_counts.get(symbol, 0) + 1
-    
-    print("\nElement counts:")
-    for elem, count in sorted(element_counts.items()):
-        print(f"  {elem}: {count}")
-    
-    # Create Atoms object with all atoms
-    atoms = Atoms(symbols=symbols, positions=positions, cell=atoms_cell, pbc=True)
-    
-    # Store additional info in info dict
+    # Store additional info
     atoms.info['labels'] = labels
     atoms.info['occupancies'] = occupancies
-    atoms.info['original_cif'] = cif_file
     
     return atoms
 
+def print_structure_info(atoms):
+    """Print detailed structure information"""
+    print(f"\n{'='*60}")
+    print("Structure Information")
+    print("="*60)
+    
+    symbols = atoms.get_chemical_symbols()
+    
+    print(f"\n  Total atoms: {len(atoms)}")
+    
+    # Count elements
+    element_counts = {}
+    for s in symbols:
+        element_counts[s] = element_counts.get(s, 0) + 1
+    
+    print(f"\n  Element counts:")
+    expected = {'U': 1, 'I': 2, 'O': 6, 'N': 1, 'C': 8, 'H': 22}
+    for elem in sorted(expected.keys()):
+        count = element_counts.get(elem, 0)
+        exp = expected.get(elem, 0)
+        status = "✓" if count == exp else f"✗ (found {count}, expected {exp})"
+        print(f"    {elem}: {count:2d} {status}")
+    
+    # Check total
+    total_expected = sum(expected.values())
+    if len(atoms) == total_expected:
+        print(f"\n  ✓ All {total_expected} atoms captured correctly!")
+    else:
+        print(f"\n  ⚠ Expected {total_expected} atoms, found {len(atoms)}")
+        print(f"    Missing: {total_expected - len(atoms)} atoms")
+    
+    # Show first few atoms
+    print(f"\n  First 10 atoms:")
+    for i in range(min(10, len(atoms))):
+        label = atoms.info['labels'][i] if 'labels' in atoms.info else f"{symbols[i]}{i}"
+        pos = atoms.get_scaled_positions()[i]
+        print(f"    {i:2d} {label}: ({pos[0]:.4f}, {pos[1]:.4f}, {pos[2]:.4f})")
+
 def main():
-    """Main function"""
     print("\n" + "="*60)
-    print("CIF Parser - Capturing ALL Atoms")
+    print("Final Working Uranium Complex CIF Parser")
     print("="*60 + "\n")
     
     cif_file = 'ja030260r_2.cif'
@@ -150,64 +176,39 @@ def main():
         return
     
     try:
-        atoms = parse_cif_all_atoms(cif_file)
+        # Parse CIF
+        atoms = parse_cif_final(cif_file)
         
-        print(f"\n✓ Successfully parsed CIF!")
-        print(f"  Total atoms: {len(atoms)}")
-        print(f"  Chemical formula: {atoms.get_chemical_formula()}")
-        print(f"  Elements: {set(atoms.get_chemical_symbols())}")
+        print(f"✓ Successfully parsed CIF!")
+        print_structure_info(atoms)
         
-        # Check for Uranium
-        symbols = atoms.get_chemical_symbols()
-        if 'U' in symbols:
-            u_indices = [i for i, s in enumerate(symbols) if s == 'U']
-            print(f"\n✓ Uranium found at positions: {u_indices}")
-            u_pos = atoms.get_scaled_positions()[u_indices[0]]
-            print(f"  U position (fractional): ({u_pos[0]:.4f}, {u_pos[1]:.4f}, {u_pos[2]:.4f})")
+        # Save files
+        write('structure_final.xyz', atoms)
+        write('structure_final.cif', atoms, format='cif')
+        print(f"\n✓ Saved to 'structure_final.xyz' and 'structure_final.cif'")
         
-        # Check for Iodine
-        if 'I' in symbols:
-            i_indices = [i for i, s in enumerate(symbols) if s == 'I']
-            print(f"✓ Iodine found: {len(i_indices)} atoms")
-        
-        # Check for Oxygen
-        if 'O' in symbols:
-            o_indices = [i for i, s in enumerate(symbols) if s == 'O']
-            print(f"✓ Oxygen found: {len(o_indices)} atoms")
-        
-        # Save to XYZ
-        write('structure.xyz', atoms)
-        print(f"\n✓ Saved to 'structure.xyz' for visualization")
-        
-        # Also save to CIF format that ASE can read
-        from ase.io import write as ase_write
-        ase_write('structure_cleaned.cif', atoms, format='cif')
-        print(f"✓ Saved to 'structure_cleaned.cif'")
-        
-        # Now test with MACE
-        print(f"\n{'-'*60}")
-        print("Testing with MACE (if model available):")
-        print("  from mace.calculators import MACECalculator")
-        print("  from pathlib import Path")
-        print("  model_path = Path.home() / '.cache' / 'mace' / 'mace-osaka26-small.model'")
-        print("  calc = MACECalculator(model_path=str(model_path), device='cpu')")
-        print("  atoms.calc = calc")
-        print("  energy = atoms.get_potential_energy()")
-        
-        # Actually try the MACE calculation if model exists
+        # Test with MACE if model exists
         model_path = Path.home() / '.cache' / 'mace' / 'mace-osaka26-small.model'
-        if model_path.exists():
-            print(f"\n✓ MACE model found! Running test calculation...")
+        if model_path.exists() and len(atoms) > 0:
+            print(f"\n{'='*60}")
+            print("Testing with MACE")
+            print("="*60)
+            
             try:
                 from mace.calculators import MACECalculator
                 import warnings
                 warnings.filterwarnings('ignore')
                 
+                print(f"  Loading model: {model_path.name}")
                 calc = MACECalculator(model_path=str(model_path), device='cpu')
-                atoms.calc = calc
                 
-                # Make sure atoms are not too close (needs vacuum)
-                # For periodic systems, this is fine
+                # Check which elements are supported
+                elements = set(atoms.get_chemical_symbols())
+                print(f"  Elements in structure: {elements}")
+                
+                # Try calculation
+                atoms.calc = calc
+                print("\n  Running MACE calculation...")
                 energy = atoms.get_potential_energy()
                 print(f"  ✓ Energy: {energy:.6f} eV")
                 print(f"  ✓ Energy: {energy * 96.485:.2f} kJ/mol")
@@ -218,12 +219,13 @@ def main():
                 
             except Exception as e:
                 print(f"  ✗ MACE calculation failed: {e}")
-                print("  This might be because the model doesn't support Uranium")
-                print("  Elements in structure:", set(atoms.get_chemical_symbols()))
-                print("  Elements supported by Osaka model: 97 elements including U")
+                print("  This is expected if Uranium is not supported")
+        
+        print(f"\n{'='*60}")
+        print("✓ Done!")
         
     except Exception as e:
-        print(f"✗ Error parsing CIF: {e}")
+        print(f"✗ Error: {e}")
         import traceback
         traceback.print_exc()
 

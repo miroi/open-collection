@@ -13,6 +13,9 @@ which ase
 ase --version
 ase-3.29.0
 
+(mace_env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/mace-ase/buildups/wsl2/.pip list | grep mace
+mace-torch             0.3.16
+
 conda config --add channels conda-forge
 Warning: 'conda-forge' already in 'channels' list, moving to the top
 conda config --set channel_priority strict

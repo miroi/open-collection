@@ -48,7 +48,7 @@ class MACEMLChecker:
         
         # MACE-ML packages to check
         self.mace_packages = [
-            'mace_torch',
+            'mace',  # The actual import name (not mace_torch)
             'ase',
             'torch',
             'e3nn',
@@ -159,45 +159,66 @@ class MACEMLChecker:
             self.print_warning(f"Could not get conda list: {e}")
     
     def check_mace_package(self):
-        """Check MACE-Torch package installation"""
-        self.print_header("MACE-Torch Package Check")
+        """Check MACE package installation"""
+        self.print_header("MACE Package Check")
         
-        try:
-            import mace_torch
-            self.print_success("mace-torch package is installed")
-            
-            # Get version
-            version = getattr(mace_torch, '__version__', 'Unknown')
-            if version == 'Unknown':
-                version = self.get_package_version('mace-torch')
-            print(f"  Version: {version}")
-            
-            # Get installation location
-            file_path = mace_torch.__file__
-            print(f"  Location: {file_path}")
-            
-            # Check if it's the correct version
-            if version.startswith('0.3'):
-                self.print_success(f"MACE version {version} - compatible with this environment")
-            else:
-                self.print_warning(f"MACE version {version} - check compatibility with other packages")
-            
-            # Try to import key modules
-            modules = ['mace_torch.tools', 'mace_torch.data', 'mace_torch.calculators']
-            available_modules = 0
-            for module in modules:
+        # Try both possible import names
+        import_names = ['mace', 'mace_torch']
+        found_mace = False
+        
+        for import_name in import_names:
+            try:
+                module = importlib.import_module(import_name)
+                found_mace = True
+                version = getattr(module, '__version__', 'Unknown')
+                if version == 'Unknown':
+                    version = self.get_package_version('mace-torch')
+                
+                self.print_success(f"MACE package imported as '{import_name}' (version: {version})")
+                
+                # Get installation location
+                file_path = module.__file__
+                print(f"  Location: {file_path}")
+                
+                # Check if it's the correct version
+                if version.startswith('0.3'):
+                    self.print_success(f"MACE version {version} - compatible with this environment")
+                else:
+                    self.print_warning(f"MACE version {version} - check compatibility with other packages")
+                
+                # Try to import key modules
+                modules_to_check = [
+                    f'{import_name}.tools',
+                    f'{import_name}.data',
+                    f'{import_name}.calculators'
+                ]
+                available_modules = 0
+                for module_path in modules_to_check:
+                    try:
+                        importlib.import_module(module_path)
+                        self.print_success(f"Submodule {module_path} available")
+                        available_modules += 1
+                    except ImportError as e:
+                        self.print_warning(f"Submodule {module_path} not available: {e}")
+                
+                # Try the calculator
                 try:
-                    importlib.import_module(module)
-                    self.print_success(f"Submodule {module} available")
-                    available_modules += 1
-                except ImportError as e:
-                    self.print_warning(f"Submodule {module} not available: {e}")
-            
-            if available_modules == 0:
-                self.print_warning("No submodules found - might be an incomplete installation")
-                    
-        except ImportError as e:
-            self.print_failure(f"mace-torch package not found: {e}")
+                    from mace.calculators import MACECalculator
+                    self.print_success("MACECalculator available from mace.calculators")
+                except ImportError:
+                    try:
+                        from ase.calculators.mace import MACECalculator
+                        self.print_success("MACECalculator available from ase.calculators.mace")
+                    except ImportError:
+                        self.print_warning("MACECalculator not available")
+                
+                break  # Found a working import
+                
+            except ImportError as e:
+                continue
+        
+        if not found_mace:
+            self.print_failure("MACE package not found (tried: mace, mace_torch)")
             self.print_info("Install with: pip install mace-torch")
             self.print_info("Or: conda install mace-torch -c conda-forge")
     
@@ -216,46 +237,38 @@ class MACEMLChecker:
             try:
                 from ase.calculators.mace import MACECalculator
                 self.print_success("MACE calculator available in ASE")
-                
-                # Check if we can instantiate a calculator
-                try:
-                    calc = MACECalculator(device='cpu', model=None)
-                    self.print_success("MACECalculator can be instantiated")
-                except Exception as e:
-                    self.print_warning(f"MACECalculator instantiation issue: {e}")
-                
-                # Check available models
-                print(f"\n{Colors.BOLD}Available MACE models:{Colors.NC}")
-                
-                # Check if model files exist in common locations
-                model_paths = [
-                    Path.home() / ".ase" / "mace-models",
-                    Path.home() / ".cache" / "mace-models",
-                    Path.cwd() / "models",
-                    Path.cwd() / "mace-models",
-                    Path.cwd() / "checkpoints"
-                ]
-                
-                found_models = []
-                for path in model_paths:
-                    if path.exists():
-                        model_files = list(path.glob("*.model")) + list(path.glob("*.pt")) + list(path.glob("*.pth"))
-                        if model_files:
-                            found_models.extend([str(f) for f in model_files])
-                
-                if found_models:
-                    for model in found_models[:5]:
-                        size = Path(model).stat().st_size / (1024 * 1024) if Path(model).exists() else 0
-                        print(f"  {Path(model).name} ({size:.1f} MB)")
-                    if len(found_models) > 5:
-                        print(f"  ... and {len(found_models)-5} more")
-                else:
-                    print("  No local model files found")
-                    self.print_info("  Download models from: https://github.com/ACEsuit/mace-models")
-                    
-            except ImportError as e:
-                self.print_warning(f"MACE calculator not available in ASE: {e}")
-                self.print_info("  You may need to update ASE: pip install --upgrade ase")
+            except ImportError:
+                self.print_warning("MACE calculator not available in ASE.calculators.mace")
+                self.print_info("  Try: from mace.calculators import MACECalculator")
+            
+            # Check available models
+            print(f"\n{Colors.BOLD}Available MACE models:{Colors.NC}")
+            
+            # Check if model files exist in common locations
+            model_paths = [
+                Path.home() / ".ase" / "mace-models",
+                Path.home() / ".cache" / "mace-models",
+                Path.cwd() / "models",
+                Path.cwd() / "mace-models",
+                Path.cwd() / "checkpoints"
+            ]
+            
+            found_models = []
+            for path in model_paths:
+                if path.exists():
+                    model_files = list(path.glob("*.model")) + list(path.glob("*.pt")) + list(path.glob("*.pth"))
+                    if model_files:
+                        found_models.extend([str(f) for f in model_files])
+            
+            if found_models:
+                for model in found_models[:5]:
+                    size = Path(model).stat().st_size / (1024 * 1024) if Path(model).exists() else 0
+                    print(f"  {Path(model).name} ({size:.1f} MB)")
+                if len(found_models) > 5:
+                    print(f"  ... and {len(found_models)-5} more")
+            else:
+                print("  No local model files found")
+                self.print_info("  Download models from: https://github.com/ACEsuit/mace-models")
                 
         except ImportError as e:
             self.print_failure(f"ASE not installed: {e}")
@@ -393,7 +406,19 @@ class MACEMLChecker:
         try:
             import ase
             from ase.build import molecule
-            from ase.calculators.mace import MACECalculator
+            
+            # Try both import paths for MACECalculator
+            MACECalculator = None
+            try:
+                from mace.calculators import MACECalculator
+                self.print_info("Using MACECalculator from mace.calculators")
+            except ImportError:
+                try:
+                    from ase.calculators.mace import MACECalculator
+                    self.print_info("Using MACECalculator from ase.calculators.mace")
+                except ImportError:
+                    self.print_warning("MACECalculator not available")
+                    return
             
             # Check for model files
             model_files = []
@@ -511,11 +536,16 @@ class MACEMLChecker:
             print(f"  PyTorch: Not installed")
             
         try:
-            import mace_torch
-            version = getattr(mace_torch, '__version__', 'Unknown')
-            print(f"  MACE-Torch: {version}")
+            import mace
+            version = getattr(mace, '__version__', 'Unknown')
+            print(f"  MACE: {version}")
         except:
-            print(f"  MACE-Torch: Not installed")
+            try:
+                import mace_torch
+                version = getattr(mace_torch, '__version__', 'Unknown')
+                print(f"  MACE: {version}")
+            except:
+                print(f"  MACE: Not installed")
             
         try:
             import ase

@@ -1,0 +1,72 @@
+[0;32m✓ Found model: mace-osaka26-small.model[0m
+
+[0;32m================================================================================[0m
+[0;32m[1m  UO₂I₂(OH₂)₂ MACE Optimization  [0m
+[0;32m================================================================================[0m
+
+[0;34mStructure information:[0m
+  Atoms: 11
+  Elements: {'O', 'H', 'I', 'U'}
+cuequivariance or cuequivariance_torch is not available. Cuequivariance acceleration will be disabled.
+[0;32m✓ MACE model loaded successfully[0m
+[0;34m✓ Constraining Uranium atom (index: 0)[0m
+[0;32m✓ Optimization setup complete[0m
+
+[0;36m================================================================================[0m
+[1mRunning Geometry Optimization[0m
+[0;36m================================================================================[0m
+
+  Step     Energy (eV)     Max Force (eV/Å)   Time (s)
+-------------------------------------------------------
+  Init      -60.884945                                
+      Step     Time          Energy          fmax
+BFGS:    0 00:32:27      -60.884945        1.240853
+BFGS:    1 00:32:27      -61.011408        1.211628
+BFGS:    2 00:32:27      -61.197185        0.623735
+BFGS:    3 00:32:27      -61.239397        0.545592
+BFGS:    4 00:32:27      -61.314542        0.713031
+BFGS:    5 00:32:27      -61.384008        0.711798
+BFGS:    6 00:32:27      -61.474415        0.984058
+BFGS:    7 00:32:27      -61.538591        0.711926
+BFGS:    8 00:32:27      -61.557689        0.278109
+BFGS:    9 00:32:28      -61.562142        0.221623
+BFGS:   10 00:32:28      -61.564818        0.163914
+BFGS:   11 00:32:28      -61.568920        0.227213
+BFGS:   12 00:32:28      -61.572557        0.181385
+BFGS:   13 00:32:28      -61.574145        0.061554
+BFGS:   14 00:32:28      -61.574404        0.010711
+-------------------------------------------------------
+ Final      -61.574404                             1.0
+
+[0;32m✓ Optimization complete![0m
+  Initial energy: -60.884945 eV
+  Final energy:   -61.574404 eV
+  Energy change:  -0.689460 eV
+  Time elapsed:   1.0 seconds
+
+[0;36m================================================================================[0m
+[1mGeometry Comparison: Paper vs Initial vs MACE Optimized[0m
+[0;36m================================================================================[0m
+
+[1mBond Lengths (Å):[0m
+Bond                 Paper        Initial      Optimized    Difference     
+---------------------------------------------------------------------------
+U=O (avg)            1.7730       1.7730       1.7895       +0.0165 Å  ✓
+U-I (avg)            3.0267       3.0267       2.8656       -0.1611 Å  ⚠
+O-H (avg)            0.9500       0.9513       0.9657       +0.0157 Å  ✓
+
+[1mBond Angles (degrees):[0m
+Angle                     Paper        Initial      Optimized    Difference     
+--------------------------------------------------------------------------------
+O=U=O                     180.00       180.00       180.00         +0.00°  ✓
+I-U-I                     180.00       180.00       180.00         +0.00°  ✓
+O(water)-U-O(water)       180.00       180.00       180.00         +0.00°  ✓
+O(water)-U-I              90.27        90.00        90.00          -0.27°  ✓
+O=U-I                     89.00        90.00        90.00          +1.00°  ✓
+
+[1mSummary:[0m
+  [0;32m✓ U=O bond length matches paper within 0.1 Å[0m
+  [1;33m⚠ U-I bond length differs from paper by > 0.1 Å[0m
+✓ Paper-based initial structure: uo2i2_paper_initial.xyz
+✓ Initial structure (before optimization): uo2i2_initial.xyz
+✓ Optimized structure: uo2i2_optimized.xyz and uo2i2_optimized.cif

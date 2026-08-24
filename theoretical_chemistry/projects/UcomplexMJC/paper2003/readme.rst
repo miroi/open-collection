@@ -8,5 +8,7 @@ https://sci-hub.ru/10.1021/ja030260r
 read cif file
 -------------
 pip install pymatgen
+... is wrong ! use rather deepseek analyse of pdf paper
+
 
 

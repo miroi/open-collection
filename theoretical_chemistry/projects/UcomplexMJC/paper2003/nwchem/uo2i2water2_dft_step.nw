@@ -1,44 +1,44 @@
-# UO2I2(OH2)2 - DFT Single Point with LANL2DZ ECP
-# Most reliable ECP for heavy elements in NWChem
+title "UO2I2(OH2)2 - DFT Single Point Restart"
 
-title "UO2I2(OH2)2 - DFT Single Point"
-
-# Memory allocation
-memory heap 1024 mb stack 512 mb global 2048 mb
-
-# Geometry from uo2i2_initial.xyz
-geometry units angstroms noautoz
-  U       0.000000      0.000000      0.000000
-  O       0.000000      0.000000      1.773000
-  O       0.000000      0.000000     -1.773000
-  I       0.000000     -3.026700      0.000000
-  I       0.000000      3.026700      0.000000
-  O       2.318000      0.000000      0.000000
-  O      -2.318000      0.000000      0.000000
-  H       2.657900     -0.748700      0.050000
-  H       2.657900      0.748700     -0.050000
-  H      -2.657900     -0.748700     -0.050000
-  H      -2.657900      0.748700      0.050000
+geometry units angstroms
+  U   0.00000000   0.00000000   0.00000000
+  O   0.00000000   0.00000000   1.77300000
+  O   0.00000000   0.00000000  -1.77300000
+  I   0.00000000  -3.02670000   0.00000000
+  I   0.00000000   3.02670000   0.00000000
+  O   2.31800000   0.00000000   0.00000000
+  O  -2.31800000   0.00000000   0.00000000
+  H   2.65790000  -0.74870000   0.05000000
+  H   2.65790000   0.74870000  -0.05000000
+  H  -2.65790000  -0.74870000  -0.05000000
+  H  -2.65790000   0.74870000   0.05000000
 end
 
-# Basis sets with LANL2DZ ECP
 basis
-  # Uranium: LANL2DZ ECP
-  #U library "lanl2dz_ecp"
-  U library "crenbl_ecp"
-  # Iodine: LANL2DZ ECP
-  #I library "lanl2dz_ecp"
-  I library "crenbl_ecp"
-  # Oxygen: 6-31G*
-  O library  "6-31G*"
-  # Hydrogen: 6-31G*
-  H library "6-31G*"
+ # U library crenbl_ecp
+  U library stuttgart_rlc_ecp
+ # I library crenbl_ecp
+  I library stuttgart_rlc_ecp
+  O library 6-31G*
+  H library 6-31G*
 end
 
-# DFT settings
 dft
   xc b3lyp
+  mult 1
+  iterations 100
+  convergence energy 1e-6
+  convergence density 1e-5
+  convergence gradient 5e-4
 end
 
-# Single point energy calculation
+scf
+  vectors input hcore
+  vectors output uo2i2water2
+ thresh 1e-4
+  diis
+  maxiter 100
+end
+
 task dft energy
+

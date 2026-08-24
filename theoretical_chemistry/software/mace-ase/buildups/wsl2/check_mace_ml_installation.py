@@ -9,7 +9,6 @@ import os
 import sys
 import subprocess
 import importlib
-import pkg_resources
 import torch
 from pathlib import Path
 import logging
@@ -17,6 +16,7 @@ from datetime import datetime
 from typing import Dict, List, Tuple, Optional
 import json
 import platform
+import pkgutil
 
 # Color codes for terminal output
 class Colors:
@@ -69,6 +69,47 @@ class MACEMLChecker:
         )
         self.logger = logging.getLogger(__name__)
     
+    def get_package_version(self, package_name):
+        """Get package version using multiple methods"""
+        # Try importlib.metadata (Python 3.8+)
+        try:
+            import importlib.metadata
+            return importlib.metadata.version(package_name)
+        except (ImportError, importlib.metadata.PackageNotFoundError):
+            pass
+        
+        # Try using pip
+        try:
+            result = subprocess.run(
+                ['pip', 'show', package_name],
+                capture_output=True,
+                text=True,
+                timeout=5
+            )
+            for line in result.stdout.split('\n'):
+                if line.startswith('Version:'):
+                    return line.split(':', 1)[1].strip()
+        except:
+            pass
+        
+        # Try using conda list
+        try:
+            result = subprocess.run(
+                ['conda', 'list', package_name],
+                capture_output=True,
+                text=True,
+                timeout=5
+            )
+            for line in result.stdout.split('\n'):
+                if line.startswith(package_name):
+                    parts = line.split()
+                    if len(parts) >= 2:
+                        return parts[1]
+        except:
+            pass
+        
+        return 'Unknown'
+    
     def print_header(self, message: str):
         """Print a formatted section header"""
         print(f"\n{Colors.YELLOW}{'='*60}{Colors.NC}")
@@ -109,7 +150,11 @@ class MACEMLChecker:
                                   capture_output=True, 
                                   text=True,
                                   timeout=10)
-            self.print_success(f"Conda list output available ({len(result.stdout.splitlines())} packages)")
+            if result.returncode == 0:
+                package_lines = [line for line in result.stdout.splitlines() if line and not line.startswith('#')]
+                self.print_success(f"Conda environment has {len(package_lines)} packages installed")
+            else:
+                self.print_warning("Could not get conda package list")
         except Exception as e:
             self.print_warning(f"Could not get conda list: {e}")
     
@@ -123,6 +168,8 @@ class MACEMLChecker:
             
             # Get version
             version = getattr(mace_torch, '__version__', 'Unknown')
+            if version == 'Unknown':
+                version = self.get_package_version('mace-torch')
             print(f"  Version: {version}")
             
             # Get installation location
@@ -137,16 +184,22 @@ class MACEMLChecker:
             
             # Try to import key modules
             modules = ['mace_torch.tools', 'mace_torch.data', 'mace_torch.calculators']
+            available_modules = 0
             for module in modules:
                 try:
                     importlib.import_module(module)
                     self.print_success(f"Submodule {module} available")
+                    available_modules += 1
                 except ImportError as e:
                     self.print_warning(f"Submodule {module} not available: {e}")
+            
+            if available_modules == 0:
+                self.print_warning("No submodules found - might be an incomplete installation")
                     
         except ImportError as e:
             self.print_failure(f"mace-torch package not found: {e}")
             self.print_info("Install with: pip install mace-torch")
+            self.print_info("Or: conda install mace-torch -c conda-forge")
     
     def check_ase_integration(self):
         """Check ASE integration"""
@@ -154,12 +207,22 @@ class MACEMLChecker:
         
         try:
             import ase
-            self.print_success(f"ASE installed (version: {ase.__version__})")
+            version = getattr(ase, '__version__', 'Unknown')
+            if version == 'Unknown':
+                version = self.get_package_version('ase')
+            self.print_success(f"ASE installed (version: {version})")
             
             # Try to import MACE calculator from ASE
             try:
                 from ase.calculators.mace import MACECalculator
                 self.print_success("MACE calculator available in ASE")
+                
+                # Check if we can instantiate a calculator
+                try:
+                    calc = MACECalculator(device='cpu', model=None)
+                    self.print_success("MACECalculator can be instantiated")
+                except Exception as e:
+                    self.print_warning(f"MACECalculator instantiation issue: {e}")
                 
                 # Check available models
                 print(f"\n{Colors.BOLD}Available MACE models:{Colors.NC}")
@@ -168,19 +231,22 @@ class MACEMLChecker:
                 model_paths = [
                     Path.home() / ".ase" / "mace-models",
                     Path.home() / ".cache" / "mace-models",
-                    Path.cwd() / "models"
+                    Path.cwd() / "models",
+                    Path.cwd() / "mace-models",
+                    Path.cwd() / "checkpoints"
                 ]
                 
                 found_models = []
                 for path in model_paths:
                     if path.exists():
-                        model_files = list(path.glob("*.model")) + list(path.glob("*.pt"))
+                        model_files = list(path.glob("*.model")) + list(path.glob("*.pt")) + list(path.glob("*.pth"))
                         if model_files:
                             found_models.extend([str(f) for f in model_files])
                 
                 if found_models:
                     for model in found_models[:5]:
-                        print(f"  {Path(model).name}")
+                        size = Path(model).stat().st_size / (1024 * 1024) if Path(model).exists() else 0
+                        print(f"  {Path(model).name} ({size:.1f} MB)")
                     if len(found_models) > 5:
                         print(f"  ... and {len(found_models)-5} more")
                 else:
@@ -189,6 +255,7 @@ class MACEMLChecker:
                     
             except ImportError as e:
                 self.print_warning(f"MACE calculator not available in ASE: {e}")
+                self.print_info("  You may need to update ASE: pip install --upgrade ase")
                 
         except ImportError as e:
             self.print_failure(f"ASE not installed: {e}")
@@ -200,7 +267,8 @@ class MACEMLChecker:
         
         try:
             import torch
-            self.print_success(f"PyTorch installed (version: {torch.__version__})")
+            version = getattr(torch, '__version__', 'Unknown')
+            self.print_success(f"PyTorch installed (version: {version})")
             
             # Check CUDA availability
             if torch.cuda.is_available():
@@ -212,9 +280,11 @@ class MACEMLChecker:
                 for i in range(torch.cuda.device_count()):
                     mem_info = torch.cuda.get_device_properties(i).total_memory
                     print(f"  GPU {i} memory: {mem_info / 1e9:.1f} GB")
+                self.print_success(f"GPU acceleration available with {torch.cuda.device_count()} GPU(s)")
             else:
-                self.print_warning("CUDA not available - running on CPU")
+                self.print_warning("CUDA not available - running on CPU only")
                 self.print_info("For GPU support: conda install pytorch cudatoolkit -c pytorch")
+                self.print_info("Or: pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118")
             
             # Check MPS support (Apple Silicon)
             if hasattr(torch.backends, 'mps') and torch.backends.mps.is_available():
@@ -223,6 +293,7 @@ class MACEMLChecker:
         except ImportError as e:
             self.print_failure(f"PyTorch not installed: {e}")
             self.print_info("Install with: pip install torch")
+            self.print_info("Or: conda install pytorch -c pytorch")
     
     def check_e3nn(self):
         """Check e3nn package (Euclidean neural networks)"""
@@ -231,16 +302,23 @@ class MACEMLChecker:
         try:
             import e3nn
             version = getattr(e3nn, '__version__', 'Unknown')
+            if version == 'Unknown':
+                version = self.get_package_version('e3nn')
             self.print_success(f"e3nn installed (version: {version})")
             
             # Check important modules
             modules = ['e3nn.o3', 'e3nn.nn', 'e3nn.math']
+            available_modules = 0
             for module in modules:
                 try:
                     importlib.import_module(module)
                     self.print_success(f"e3nn module {module} available")
+                    available_modules += 1
                 except ImportError:
                     self.print_warning(f"e3nn module {module} not available")
+            
+            if available_modules == 0:
+                self.print_warning("e3nn submodules not found - check installation")
                     
         except ImportError as e:
             self.print_failure(f"e3nn not installed: {e}")
@@ -259,13 +337,18 @@ class MACEMLChecker:
             'tqdm': 'Progress bars (optional)'
         }
         
+        installed_packages = []
         for package, description in dependencies.items():
             try:
                 importlib.import_module(package)
-                version = pkg_resources.get_distribution(package).version
+                version = self.get_package_version(package)
                 self.print_success(f"{package} {version} - {description}")
-            except (ImportError, pkg_resources.DistributionNotFound):
+                installed_packages.append(package)
+            except (ImportError, subprocess.TimeoutExpired):
                 self.print_warning(f"{package} not installed - {description}")
+        
+        if len(installed_packages) >= 4:
+            self.print_success(f"Core dependencies installed ({len(installed_packages)}/{len(dependencies)})")
     
     def check_mace_models(self):
         """Check for MACE model files"""
@@ -289,6 +372,8 @@ class MACEMLChecker:
                     found_models.extend(search_dir.glob(f"*{ext}"))
         
         if found_models:
+            # Deduplicate
+            found_models = list(set(found_models))
             self.print_success(f"Found {len(found_models)} model files")
             print(f"\n{Colors.BOLD}Model files:{Colors.NC}")
             for model in found_models[:10]:
@@ -314,16 +399,19 @@ class MACEMLChecker:
             model_files = []
             model_dirs = [
                 Path.home() / ".ase" / "mace-models",
-                Path.cwd() / "models"
+                Path.cwd() / "models",
+                Path.cwd() / "mace-models"
             ]
             
             for model_dir in model_dirs:
                 if model_dir.exists():
                     model_files.extend(model_dir.glob("*.model"))
+                    model_files.extend(model_dir.glob("*.pt"))
             
             if not model_files:
                 self.print_warning("No model files found, cannot run test calculation")
                 self.print_info("Download a model to test the full functionality")
+                self.print_info("Example: wget https://github.com/ACEsuit/mace-models/raw/main/mace_ani.model")
                 return
             
             # Use the first found model
@@ -335,18 +423,25 @@ class MACEMLChecker:
             atoms.center(vacuum=3.0)
             
             # Set up calculator
-            calculator = MACECalculator(model_path=str(model_path), device='cpu')
-            atoms.calc = calculator
-            
-            # Calculate energy
-            energy = atoms.get_potential_energy()
-            self.print_success(f"Test calculation successful!")
-            print(f"  Energy of H2O: {energy:.6f} eV")
-            
-            # Calculate forces
-            forces = atoms.get_forces()
-            self.print_success("Force calculation successful")
-            print(f"  Forces (eV/Å): {forces}")
+            try:
+                calculator = MACECalculator(model_path=str(model_path), device='cpu')
+                atoms.calc = calculator
+                
+                # Calculate energy
+                energy = atoms.get_potential_energy()
+                self.print_success(f"Test calculation successful!")
+                print(f"  Energy of H2O: {energy:.6f} eV")
+                
+                # Calculate forces
+                forces = atoms.get_forces()
+                self.print_success("Force calculation successful")
+                print(f"  Forces (eV/Å):")
+                for i, force in enumerate(forces):
+                    print(f"    Atom {i}: {force}")
+                    
+            except Exception as e:
+                self.print_failure(f"Error during calculation: {e}")
+                self.print_info("The model might be incompatible with this MACE version")
             
         except ImportError as e:
             self.print_warning(f"Could not run test: {e}")
@@ -366,10 +461,17 @@ class MACEMLChecker:
         }
         
         print(f"{Colors.BOLD}Environment variables:{Colors.NC}")
+        has_settings = False
         for var, desc in env_vars.items():
             value = os.environ.get(var, 'Not set')
-            status = Colors.GREEN if value != 'Not set' else Colors.YELLOW
-            print(f"  {status}{var}{Colors.NC} = {value} ({desc})")
+            if value != 'Not set':
+                print(f"  {Colors.GREEN}{var}{Colors.NC} = {value} ({desc})")
+                has_settings = True
+            else:
+                print(f"  {Colors.YELLOW}{var}{Colors.NC} = {value} ({desc})")
+        
+        if not has_settings:
+            self.print_info("No performance environment variables set - using defaults")
         
         # Check PyTorch configuration
         try:
@@ -379,10 +481,11 @@ class MACEMLChecker:
             if torch.cuda.is_available():
                 print(f"  CUDA devices: {torch.cuda.device_count()}")
                 
-            # Check if MACE is using optimized libraries
-            for lib in ['mkl', 'openblas']:
-                if lib in torch.__config__.show():
-                    print(f"  Using {lib} optimizations")
+            # Check for optimizations
+            import torch.backends
+            if hasattr(torch.backends, 'cudnn'):
+                if torch.backends.cudnn.is_available():
+                    print(f"  cuDNN available: {torch.backends.cudnn.version()}")
                     
         except Exception:
             pass
@@ -399,20 +502,45 @@ class MACEMLChecker:
         print(f"  {Colors.YELLOW}Warnings: {self.results['warnings']}{Colors.NC}")
         print(f"  Total Checks: {total_checks}")
         
+        print(f"\n{Colors.BOLD}Environment Summary:{Colors.NC}")
+        try:
+            import torch
+            device = 'GPU' if torch.cuda.is_available() else 'CPU'
+            print(f"  PyTorch: {getattr(torch, '__version__', 'Unknown')} ({device})")
+        except:
+            print(f"  PyTorch: Not installed")
+            
+        try:
+            import mace_torch
+            version = getattr(mace_torch, '__version__', 'Unknown')
+            print(f"  MACE-Torch: {version}")
+        except:
+            print(f"  MACE-Torch: Not installed")
+            
+        try:
+            import ase
+            version = getattr(ase, '__version__', 'Unknown')
+            print(f"  ASE: {version}")
+        except:
+            print(f"  ASE: Not installed")
+        
         if self.results['failed'] == 0:
             print(f"\n{Colors.GREEN}{Colors.BOLD}✓ MACE-ML installation appears to be healthy{Colors.NC}")
             
             # Additional recommendations
             if self.results['warnings'] > 0:
                 print(f"\n{Colors.YELLOW}Recommendations:{Colors.NC}")
+                # Check for models
                 if not any(Path.home().glob(".ase/mace-models/*.model")):
                     print("  • Download MACE models for ready-to-use force fields")
+                # Check for GPU support
                 try:
                     import torch
                     if not torch.cuda.is_available():
                         print("  • Install CUDA version of PyTorch for GPU acceleration")
                 except:
                     pass
+                print("  • Set OMP_NUM_THREADS environment variable for better CPU performance")
         else:
             print(f"\n{Colors.RED}{Colors.BOLD}✗ Some issues were detected. Review the output above.{Colors.NC}")
         

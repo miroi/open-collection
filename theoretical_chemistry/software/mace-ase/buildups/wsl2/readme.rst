@@ -13,3 +13,10 @@ which ase
 ase --version
 ase-3.29.0
 
+conda config --add channels conda-forge
+Warning: 'conda-forge' already in 'channels' list, moving to the top
+conda config --set channel_priority strict
+conda install setuptools
+
+(mace_env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/mace-ase/buildups/wsl2/.python check_mace_ml_installation.py
+

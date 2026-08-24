@@ -502,10 +502,17 @@ class UO2I2Optimizer:
     
     def save_results(self, prefix='uo2i2_optimized'):
         """Save optimization results"""
-        if self.initial_atoms:
-            write(f'{prefix}_initial.xyz', self.initial_atoms)
-            print(f"✓ Initial structure: {prefix}_initial.xyz")
+        # Save the paper-based initial structure
+        paper_atoms = create_uo2i2_oh2_2()
+        write(f'uo2i2_paper_initial.xyz', paper_atoms)
+        print(f"✓ Paper-based initial structure: uo2i2_paper_initial.xyz")
         
+        # Save the initial structure (before optimization)
+        if self.initial_atoms:
+            write(f'uo2i2_initial.xyz', self.initial_atoms)
+            print(f"✓ Initial structure (before optimization): uo2i2_initial.xyz")
+        
+        # Save the optimized structure
         if self.optimized_atoms:
             write(f'{prefix}.xyz', self.optimized_atoms)
             write(f'{prefix}.cif', self.optimized_atoms, format='cif')

@@ -2,6 +2,12 @@
 MACE installation on WSL2
 =========================
 
+https://github.com/ACEsuit/mace
+
+models
+~~~~~~
+https://github.com/qiqb-osaka/mace-osaka26
+
 Victus notebook
 ---------------
 con

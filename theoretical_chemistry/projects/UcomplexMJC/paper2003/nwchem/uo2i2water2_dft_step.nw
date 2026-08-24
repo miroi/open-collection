@@ -1,0 +1,149 @@
+# UO2I2(OH2)2 - DFT Single Point Energy Calculation
+# Based on Crawford et al., Inorg. Chem. 2003
+# Using Relativistic Effective Core Potentials (ECP)
+
+title "UO2I2(OH2)2 - DFT Single Point"
+
+# Start with memory allocation
+memory heap 1024 mb stack 512 mb global 2048 mb
+
+# Geometry from uo2i2_initial.xyz
+geometry units angstroms noautoz
+  # Uranium at center
+  U       0.000000      0.000000      0.000000
+  
+  # Uranyl oxygens (U=O)
+  O       0.000000      0.000000      1.773000
+  O       0.000000      0.000000     -1.773000
+  
+  # Iodides (U-I)
+  I       3.026700      0.000000      0.000000
+  I      -3.026700      0.000000      0.000000
+  
+  # Water oxygens (U-OH2)
+  O       0.000000      2.318000      0.000000
+  O       0.000000     -2.318000      0.000000
+  
+  # Water hydrogens (Water 1)
+  H       0.748700      2.657900      0.050000
+  H      -0.748700      2.657900     -0.050000
+  
+  # Water hydrogens (Water 2)
+  H       0.748700     -2.657900     -0.050000
+  H      -0.748700     -2.657900      0.050000
+end
+
+# Basis sets and ECPs
+basis
+  # Uranium: Stuttgart RSC 1997 ECP with associated basis
+  # ECP60MDF (60 core electrons)
+  U library "Stuttgart RSC 1997 ECP" 
+  U "Stuttgart RSC 1997"        ! ECP60MDF
+  
+  # Iodine: Stuttgart RSC 1997 ECP
+  # ECP46MDF (46 core electrons)
+  I library "Stuttgart RSC 1997 ECP"
+  I "Stuttgart RSC 1997"
+  
+  # Oxygen: 6-31G* or cc-pVDZ
+  O "6-31G*"                    ! Polarized double-zeta
+  # O "cc-pVDZ"                 ! Alternative
+  
+  # Hydrogen: 6-31G*
+  H "6-31G*"
+end
+
+# ECP definitions (explicit)
+ecp
+  # Uranium: ECP60MDF (60 core electrons)
+  # http://www.theochem.uni-stuttgart.de/pseudopotentials/
+  U nelec 60
+  U ul
+    1
+     2        1.00000000        0.00000000
+  U s
+    3
+     0        8.81073973      120.55438180
+     0        3.30944876      -73.72968421
+     0        1.29587305      -97.99854467
+  U p
+    3
+     1       11.81485570      233.72617624
+     1        3.59150387      -68.83036631
+     1        1.09112021     -159.71664478
+  U d
+    3
+     2        5.83709741      174.49373896
+     2        1.83525626      -16.80390836
+     2        0.73316658     -133.47162145
+  U f
+    2
+     3        3.76800263       87.99960634
+     3        1.30750819      -74.28367445
+  U g
+    1
+     4        1.83655913      -40.88960186
+  
+  # Iodine: ECP46MDF (46 core electrons)
+  I nelec 46
+  I ul
+    1
+     2        1.00000000        0.00000000
+  I s
+    3
+     0        8.61245075       72.36927586
+     0        3.31284772      -39.18011815
+     0        1.15483524      -49.74070658
+  I p
+    3
+     1       12.89996814      176.28218285
+     1        2.69799417       -1.86987651
+     1        1.04827712      -91.77546554
+  I d
+    2
+     2        3.61840906       78.55608389
+     2        1.58053050      -80.66395154
+  I f
+    1
+     3        2.46893566      -32.63095674
+end
+
+# DFT settings
+dft
+  # Exchange-correlation functional
+  xc b3lyp                       ! B3LYP hybrid functional
+  # xc pbe0                      ! PBE0 hybrid functional
+  # xc cam-b3lyp                 ! Range-separated hybrid
+  
+  # Grid quality for numerical integration
+  grid 5 5 6                    ! Fine grid for accuracy
+  
+  # Convergence criteria
+  convergence energy 1e-6 density 1e-6 gradient 1e-6
+  maxiter 200
+  
+  # Use symmetry (if applicable)
+  sym on
+end
+
+# Single point energy calculation
+task dft energy
+
+# Optional: Print detailed output
+print "final energy analysis"
+print "dipole moment"
+print "mulliken charges"
+print "population analysis"
+print "natural bond orbital" optional
+
+# Optional: If you want to save the wavefunction for further analysis
+# task dft wavefunction
+
+# Optional: Geometry optimization (uncomment to use)
+# task dft optimize
+
+# Optional: Frequency calculation (uncomment to use)
+# task dft freq
+
+# Optional: NMR calculation (uncomment to use)
+# task dft nmr

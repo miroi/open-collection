@@ -1,0 +1,129 @@
+[0;32m============================================================[0m
+[0;32m[1m   MACE-ML Installation Check Script   [0m
+[0;32m============================================================[0m
+
+
+[1;33m============================================================[0m
+[1;33m Conda Environment Information [0m
+[1;33m============================================================[0m
+
+[1mEnvironment:[0m mace_env
+[1mPrefix:[0m /home/miroi/miniconda3/envs/mace_env
+[1mPython:[0m 3.13.14
+[1mOS:[0m Linux 6.18.33.2-microsoft-standard-WSL2
+[1mPlatform:[0m x86_64
+[0;32m✓[0m Conda environment has 214 packages installed
+
+[1;33m============================================================[0m
+[1;33m MACE Package Check [0m
+[1;33m============================================================[0m
+
+[0;32m✓[0m MACE package imported as 'mace' (version: 0.3.16)
+  Location: /home/miroi/miniconda3/envs/mace_env/lib/python3.13/site-packages/mace/__init__.py
+[0;32m✓[0m MACE version 0.3.16 - compatible with this environment
+cuequivariance or cuequivariance_torch is not available. Cuequivariance acceleration will be disabled.
+[0;32m✓[0m Submodule mace.tools available
+[0;32m✓[0m Submodule mace.data available
+[0;32m✓[0m Submodule mace.calculators available
+[0;32m✓[0m MACECalculator available from mace.calculators
+
+[1;33m============================================================[0m
+[1;33m ASE Integration Check [0m
+[1;33m============================================================[0m
+
+[0;32m✓[0m ASE installed (version: 3.29.0)
+[1;33m⚠[0m MACE calculator not available in ASE.calculators.mace
+[0;36m▶[0m   Try: from mace.calculators import MACECalculator
+
+[1mAvailable MACE models:[0m
+  No local model files found
+[0;36m▶[0m   Download models from: https://github.com/ACEsuit/mace-models
+
+[1;33m============================================================[0m
+[1;33m PyTorch Setup Check [0m
+[1;33m============================================================[0m
+
+[0;32m✓[0m PyTorch installed (version: 2.13.0+cu130)
+[0;32m✓[0m CUDA available: NVIDIA GeForce RTX 3050 Laptop GPU
+  CUDA version: 13.0
+  GPU count: 1
+  GPU 0 memory: 4.3 GB
+[0;32m✓[0m GPU acceleration available with 1 GPU(s)
+
+[1;33m============================================================[0m
+[1;33m e3nn Package Check [0m
+[1;33m============================================================[0m
+
+[0;32m✓[0m e3nn installed (version: 0.4.4)
+[0;32m✓[0m e3nn module e3nn.o3 available
+[0;32m✓[0m e3nn module e3nn.nn available
+[0;32m✓[0m e3nn module e3nn.math available
+
+[1;33m============================================================[0m
+[1;33m Dependency Check [0m
+[1;33m============================================================[0m
+
+[0;32m✓[0m numpy 2.5.2 - Numerical operations
+[0;32m✓[0m scipy 1.18.1 - Scientific computing
+[0;32m✓[0m matplotlib 3.11.1 - Visualization (optional)
+[0;32m✓[0m matscipy 1.2.0 - Materials science utilities
+[0;32m✓[0m pandas 3.0.5 - Data handling (optional)
+[0;32m✓[0m tqdm 4.70.0 - Progress bars (optional)
+[0;32m✓[0m Core dependencies installed (6/6)
+
+[1;33m============================================================[0m
+[1;33m MACE Model Files [0m
+[1;33m============================================================[0m
+
+[1;33m⚠[0m No MACE model files found in common locations
+[0;36m▶[0m Download models from: https://github.com/ACEsuit/mace-models
+[0;36m▶[0m Example: wget https://github.com/ACEsuit/mace-models/raw/main/mace_ani.model
+
+[1;33m============================================================[0m
+[1;33m Test MACE Calculation [0m
+[1;33m============================================================[0m
+
+[0;36m▶[0m Using MACECalculator from mace.calculators
+[1;33m⚠[0m No model files found, cannot run test calculation
+[0;36m▶[0m Download a model to test the full functionality
+[0;36m▶[0m Example: wget https://github.com/ACEsuit/mace-models/raw/main/mace_ani.model
+
+[1;33m============================================================[0m
+[1;33m Performance Settings [0m
+[1;33m============================================================[0m
+
+[1mEnvironment variables:[0m
+  [1;33mOMP_NUM_THREADS[0m = Not set (OpenMP threads)
+  [1;33mMKL_NUM_THREADS[0m = Not set (MKL threads)
+  [1;33mCUDA_VISIBLE_DEVICES[0m = Not set (Visible CUDA devices)
+  [1;33mTORCH_DEVICE[0m = Not set (PyTorch device)
+[0;36m▶[0m No performance environment variables set - using defaults
+
+[1mPyTorch configuration:[0m
+  Default device: cuda
+  CUDA devices: 1
+  cuDNN available: 92000
+
+[1;33m============================================================[0m
+[1;33m MACE-ML Installation Status Summary [0m
+[1;33m============================================================[0m
+
+
+[1mCheck Summary:[0m
+  [0;32mPassed: 22[0m
+  [0;31mFailed: 0[0m
+  [1;33mWarnings: 3[0m
+  Total Checks: 25
+
+[1mEnvironment Summary:[0m
+  PyTorch: 2.13.0+cu130 (GPU)
+  MACE: 0.3.16
+  ASE: 3.29.0
+
+[0;32m[1m✓ MACE-ML installation appears to be healthy[0m
+
+[1;33mRecommendations:[0m
+  • Download MACE models for ready-to-use force fields
+  • Set OMP_NUM_THREADS environment variable for better CPU performance
+
+[0;36mLog file saved to: /tmp/mace_ml_check_20260824_222525.log[0m

@@ -15,11 +15,26 @@ ase-3.29.0
 
 (mace_env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/mace-ase/buildups/wsl2/.pip list | grep mace
 mace-torch             0.3.16
+(mace_env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/mace-ase/buildups/wsl2/.pip show mace-torch
+Name: mace-torch
+Version: 0.3.16
+Summary:
+Home-page: https://github.com/ACEsuit/mace
+Author:
+Author-email:
+License:
+Location: /home/miroi/miniconda3/envs/mace_env/lib/python3.13/site-packages
+Requires: ase, configargparse, e3nn, GitPython, h5py, lmdb, matplotlib, matscipy, numpy, opt_einsum, orjson, pandas, prettytable, python-hostlist, pyYAML, torch, torch-ema, torchmetrics, tqdm
+Required-by:
+
 
 conda config --add channels conda-forge
 Warning: 'conda-forge' already in 'channels' list, moving to the top
 conda config --set channel_priority strict
 conda install setuptools
+
+tests
+-----
 
 (mace_env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/mace-ase/buildups/wsl2/.python model_analyzer.py  > model_analyzer.py_logfile
 

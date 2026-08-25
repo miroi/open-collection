@@ -1,0 +1,40 @@
+start
+
+title "UO2I2(OH2)2 - DFT Single Point"
+
+print low 
+
+geometry units angstroms autosymm
+  U   0.00000000   0.00000000   0.00000000
+  O   0.00000000   0.00000000   1.77300000
+  O   0.00000000   0.00000000  -1.77300000
+  I   0.00000000  -3.02670000   0.00000000
+  I   0.00000000   3.02670000   0.00000000
+  O   2.31800000   0.00000000   0.00000000
+  O  -2.31800000   0.00000000   0.00000000
+  H   2.65790000  -0.74870000   0.05000000
+  H   2.65790000   0.74870000  -0.05000000
+  H  -2.65790000  -0.74870000  -0.05000000
+  H  -2.65790000   0.74870000   0.05000000
+end
+
+basis spherical
+  U library "stuttgart_rlc_ecp"
+  I library "stuttgart_rlc_ecp"
+  O library "3-21G*"
+  H library "3-21G*"
+end
+
+ecp
+  U library "stuttgart_rlc_ecp"
+  I library "stuttgart_rlc_ecp"
+end
+
+dft
+  xc b3lyp
+  iterations 100
+  #convergence energy 1e-6 density 1e-5 gradient 5e-4
+  #vectors input atomic output uo2i2water2
+end
+
+task dft optimize

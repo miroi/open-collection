@@ -2,6 +2,7 @@
 import os
 import subprocess
 import glob
+import re
 from ase import Atoms
 from ase.io import write
 
@@ -26,7 +27,6 @@ def write_nwchem_input(atoms, filename, task='gradient', properties=None):
     coords = atoms.get_positions()
     symbols = atoms.get_chemical_symbols()
     
-    # Build input content as a single string
     input_content = f"start {filename[:-4]}\n\n"
     input_content += "geometry\n"
     
@@ -85,7 +85,6 @@ def parse_optimized_geometry():
     coords = []
     lines = content.split('\n')
     
-    # Find the XYZ format geometry section
     for i, line in enumerate(lines):
         if 'XYZ format geometry' in line:
             for j in range(i+3, len(lines)):
@@ -104,7 +103,6 @@ def parse_optimized_geometry():
     if coords:
         return coords
     
-    # Try to find coordinates in the Geometry section
     for i, line in enumerate(lines):
         if 'Geometry "geometry"' in line:
             for j in range(i+5, len(lines)):
@@ -132,22 +130,16 @@ def parse_nmr_shielding():
     with open(output_files[0], 'r') as f:
         content = f.read()
     
-    shielding_values = []
-    lines = content.split('\n')
+    # Find all shielding values using regex
+    # Look for "isotropic = XXX.XXXX" pattern
+    pattern = r'isotropic\s*=\s*([0-9.]+)'
+    matches = re.findall(pattern, content)
     
-    for line in lines:
-        if 'Isotropic =' in line:
-            try:
-                parts = line.split('=')
-                if len(parts) >= 2:
-                    value_str = parts[1].strip().split()[0]
-                    value_str = value_str.strip('()')
-                    value = float(value_str)
-                    shielding_values.append(value)
-            except:
-                pass
+    if matches:
+        shielding_values = [float(val) for val in matches]
+        return shielding_values
     
-    return shielding_values
+    return None
 
 # Clean up old files
 print("Cleaning up old files...")
@@ -238,22 +230,56 @@ if nmr_result.stdout:
         shielding_values = parse_nmr_shielding()
         
         if shielding_values:
-            print("\n📊 NMR Shielding Constants (Isotropic, ppm):")
-            for i, (symbol, value) in enumerate(zip(ethanol.symbols, shielding_values)):
-                print(f"  Atom {i} ({symbol}): {value:.3f} ppm")
+            # Map atoms to their symbols
+            atom_symbols = ethanol.get_chemical_symbols()
             
-            print("\n   Detailed shielding information:")
-            for line in nmr_result.stdout.split('\n'):
-                if 'shielding tensor' in line.lower() or 'Isotropic =' in line:
-                    print(f"   {line.strip()}")
-                    idx = nmr_result.stdout.split('\n').index(line)
-                    for j in range(1, 3):
-                        if idx+j < len(nmr_result.stdout.split('\n')):
-                            next_line = nmr_result.stdout.split('\n')[idx+j]
-                            if next_line.strip():
-                                print(f"   {next_line.strip()}")
+            print("\n📊 NMR Shielding Constants (Isotropic, ppm):")
+            print("   (These are absolute shielding values, not chemical shifts)")
+            print("   For chemical shifts, you need a reference (e.g., TMS)")
+            print("")
+            
+            # Print each atom's shielding
+            for i, (symbol, value) in enumerate(zip(atom_symbols, shielding_values)):
+                print(f"  Atom {i:2d} ({symbol}): {value:10.4f} ppm")
+            
+            # Show carbon shielding values (C1 and C2)
+            carbon_shieldings = []
+            for i, (symbol, value) in enumerate(zip(atom_symbols, shielding_values)):
+                if symbol == 'C':
+                    carbon_shieldings.append((i, value))
+            
+            if carbon_shieldings:
+                print("\n   Carbon shielding constants:")
+                for i, value in carbon_shieldings:
+                    print(f"      C{i+1}: {value:.4f} ppm")
+            
+            # Show oxygen shielding
+            for i, (symbol, value) in enumerate(zip(atom_symbols, shielding_values)):
+                if symbol == 'O':
+                    print(f"\n   Oxygen shielding (O): {value:.4f} ppm")
+            
+            # Show hydrogen shielding values (excluding the OH proton)
+            h_shieldings = []
+            for i, (symbol, value) in enumerate(zip(atom_symbols, shielding_values)):
+                if symbol == 'H':
+                    h_shieldings.append((i, value))
+            
+            if h_shieldings:
+                print(f"\n   Hydrogen shieldings ({len(h_shieldings)} protons):")
+                for i, value in h_shieldings:
+                    label = "OH" if i == 8 else "CH" 
+                    print(f"      H{i+1} ({label}): {value:.4f} ppm")
+            
+            # Provide reference for chemical shifts
+            print("\n   💡 To get chemical shifts (δ):")
+            print("      δ = σ_ref - σ_sample")
+            print("      For ¹³C and ¹H, use TMS as reference (σ_TMS needed)")
+            print("      Common TMS shieldings: ¹³C ≈ 188 ppm, ¹H ≈ 31.8 ppm")
+            
         else:
             print("⚠️  Could not parse shielding values from output.")
+            print("   The output format may be different than expected.")
+            
             print("\n   Searching for NMR-related output:")
             for line in nmr_result.stdout.split('\n'):
                 if any(keyword in line.lower() for keyword in ['shielding', 'ppm', 'isotropic', 'tensor']):
@@ -272,3 +298,10 @@ print("   - ethanol_nmr.nwi (NMR input)")
 print("   - ethanol_nmr.out (NMR output)")
 if os.path.exists('ethanol_optimized.xyz'):
     print("   - ethanol_optimized.xyz (optimized geometry)")
+
+# Optional: Show how to run a reference calculation
+print("\n" + "="*60)
+print("📝 To calculate chemical shifts, run a separate calculation for TMS:")
+print("   python nmr_tms.py")
+print("   Then: δ = σ_TMS - σ_ethanol")
+print("="*60)

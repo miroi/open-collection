@@ -12,4 +12,6 @@ pip install pymatgen
 
 
 
-
+deepseek AI
+-----------
+https://chat.deepseek.com/share/ba4qrqgsctzy6hy7ry

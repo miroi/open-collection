@@ -8,6 +8,13 @@ models
 ~~~~~~
 https://github.com/qiqb-osaka/mace-osaka26
 
+(molmatmodel) milias@DESKTOP-7OTLCGO:~/.cache/mace/.wget https://github.com/qiqb-osaka/mace-osaka26/releases/download/v0.0.1/mace-osaka26-small.model
+
+(molmatmodel) milias@DESKTOP-7OTLCGO:~/.cache/mace/.ls -lt mace-osaka26-small.model
+-rw-r--r-- 1 milias milias 35170196 Mar  4 10:17 mace-osaka26-small.model
+(molmatmodel) milias@DESKTOP-7OTLCGO:~/.cache/mace/.du -h -s mace-osaka26-small.model
+34M     mace-osaka26-small.model
+
 Victus notebook
 ---------------
 con

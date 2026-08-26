@@ -2,6 +2,7 @@
 Cu7 cluster
 ===========
 
+ASE EMT and MACE calculators for geometry optimization of the Cu7 cluster.
 
 
 deepseek AI

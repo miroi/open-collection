@@ -1,0 +1,144 @@
+cuequivariance or cuequivariance_torch is not available. Cuequivariance acceleration will be disabled.
+============================================================
+Cu7 Cluster: EMT vs MACE Comparison
+============================================================
+
+✓ MACE is available
+
+Creating initial Cu7 pentagonal bipyramid structure...
+Number of atoms: 7
+
+============================================================
+RUNNING EMT CALCULATIONS
+============================================================
+
+============================================================
+Optimizing Cu7 with EMT calculator
+============================================================
+Initial energy: 15.290253 eV
+
+Optimization complete!
+  Final energy: 6.587557 eV
+  Energy change: 8.702696 eV
+  Maximum force: 0.002183 eV/Å
+  Optimization steps: 12
+  Converged: True
+  Time: 0.03 seconds
+
+EMT Structure Analysis:
+  Number of bonds: 16
+  Average bond:    2.4584 Å
+  Coordination:    [4, 4, 4, 4, 4, 6, 6]
+
+----------------------------------------
+Calculating EMT Vibrations...
+
+Calculating vibrational frequencies for EMT...
+  ✓ Vibrational calculation complete
+  ✓ Frequencies saved to: cu7_frequencies_emt.txt
+  ✓ Modes saved to: cu7_vibrations_emt.*.traj
+  ✓ Time: 0.00 seconds
+
+============================================================
+RUNNING MACE CALCULATIONS
+============================================================
+
+Setting up MACE calculator...
+  Using MACE model: /home/miroi/.cache/mace/macempa0mediummodel
+
+============================================================
+Optimizing Cu7 with MACE calculator
+============================================================
+Initial energy: -11.751189 eV
+
+Optimization complete!
+  Final energy: -18.317244 eV
+  Energy change: 6.566054 eV
+  Maximum force: 0.022808 eV/Å
+  Optimization steps: 11
+  Converged: True
+  Time: 1.00 seconds
+
+MACE Structure Analysis:
+  Number of bonds: 16
+  Average bond:    2.4474 Å
+  Coordination:    [4, 4, 4, 4, 4, 6, 6]
+
+----------------------------------------
+Calculating MACE Vibrations...
+
+Calculating vibrational frequencies for MACE...
+  ✓ Vibrational calculation complete
+  ✓ Frequencies saved to: cu7_frequencies_mace.txt
+  ✓ Modes saved to: cu7_vibrations_mace.*.traj
+  ✓ Time: 0.00 seconds
+
+============================================================
+COMPARISON: EMT vs MACE
+============================================================
+
+1. ENERGY COMPARISON:
+----------------------------------------
+  EMT initial:   15.290253 eV
+  MACE initial: -11.751189 eV
+  Difference:    27.041442 eV
+
+  EMT final:      6.587557 eV
+  MACE final:   -18.317244 eV
+  Difference:    24.904800 eV
+
+  EMT energy change:    8.702696 eV
+  MACE energy change:   6.566054 eV
+  Difference:           2.136642 eV
+
+2. STRUCTURE COMPARISON:
+----------------------------------------
+  RMSD between structures: 0.0258 Å
+
+  EMT bond lengths:
+    Average: 2.4584 Å
+    Min:     2.4362 Å
+    Max:     2.6245 Å
+
+  MACE bond lengths:
+    Average: 2.4474 Å
+    Min:     2.4355 Å
+    Max:     2.4767 Å
+
+  Bond length differences:
+    Average: 0.0110 Å
+    Min:     0.0007 Å
+    Max:     0.1478 Å
+
+  Coordination numbers:
+    EMT:  [4, 4, 4, 4, 4, 6, 6]
+    MACE: [4, 4, 4, 4, 4, 6, 6]
+
+3. PERFORMANCE COMPARISON:
+----------------------------------------
+  EMT optimization time:  0.03 seconds
+  MACE optimization time: 1.00 seconds
+  Speedup (EMT vs MACE):  32.6x faster
+
+  Maximum forces:
+    EMT:  0.002183 eV/Å
+    MACE: 0.022808 eV/Å
+
+============================================================
+SUMMARY
+============================================================
+⚠️  Large energy difference between EMT and MACE
+   EMT is less accurate for this system
+   MACE should provide more reliable results
+✓  Good structural agreement between methods
+
+============================================================
+✅ Script completed successfully!
+============================================================
+
+Visualization instructions:
+  - EMT structure: ase gui cu7_optimized_emt.xyz
+  - MACE structure: ase gui cu7_optimized_mace.xyz
+  - EMT vibrations: ase gui cu7_vibrations_emt.*.traj
+  - MACE vibrations: ase gui cu7_vibrations_mace.*.traj
+  - Compare structures: ase gui cu7_optimized_emt.xyz cu7_optimized_mace.xyz

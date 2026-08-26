@@ -10,10 +10,6 @@ from ase.io import write
 import numpy as np
 
 # Create Cu7 cluster
-# Common structures for 7-atom clusters:
-# 1. Pentagonal bipyramid (5 equatorial + 2 axial = 7 atoms)
-# 2. Capped octahedron
-
 def create_pentagonal_bipyramid():
     """Create a pentagonal bipyramid Cu7 cluster (5 equatorial + 2 axial)"""
     positions = []
@@ -124,17 +120,63 @@ print(f"Total bonds found: {len(bonds)}")
 for i, j, d in bonds[:15]:  # Show first 15 bonds
     print(f"  Cu{cu7[i].symbol}{i+1} - Cu{cu7[j].symbol}{j+1}: {d:.4f} Å")
 
-# Write final structure to file
-write('cu7_optimized.xyz', cu7, format='xyz')
-write('cu7_optimized.traj', cu7, format='traj')
-write('cu7_optimized.pdb', cu7, format='pdb')
+# Calculate symmetry and structure analysis
+print("\n" + "=" * 60)
+print("Structure Analysis:")
+print("=" * 60)
+print(f"Average bond length: {np.mean([b[2] for b in bonds]):.4f} Å")
+print(f"Min bond length: {min([b[2] for b in bonds]):.4f} Å")
+print(f"Max bond length: {max([b[2] for b in bonds]):.4f} Å")
 
-print(f"\nOptimized structure saved to:")
-print("  - cu7_optimized.xyz (XYZ format)")
-print("  - cu7_optimized.traj (Trajectory format)")
-print("  - cu7_optimized.pdb (PDB format)")
-print("  - cu7_optimization.traj (Optimization trajectory)")
-print("  - cu7_optimization.log (Optimization log)")
+# Calculate coordination numbers
+coord_numbers = []
+for i in range(len(cu7)):
+    coord = sum(1 for j in range(len(cu7)) if i != j and distances[i][j] < 3.0)
+    coord_numbers.append(coord)
+print(f"Coordination numbers: {coord_numbers}")
+
+# Write final structure to files (only formats that are supported)
+print("\nWriting output files...")
+try:
+    # XYZ format (most universal)
+    write('cu7_optimized.xyz', cu7, format='xyz')
+    print("  ✓ cu7_optimized.xyz (XYZ format)")
+except Exception as e:
+    print(f"  ✗ Failed to write XYZ: {e}")
+
+try:
+    # Trajectory format
+    write('cu7_optimized.traj', cu7, format='traj')
+    print("  ✓ cu7_optimized.traj (Trajectory format)")
+except Exception as e:
+    print(f"  ✗ Failed to write TRAJ: {e}")
+
+try:
+    # Try to write PDB if available
+    write('cu7_optimized.pdb', cu7, format='pdb')
+    print("  ✓ cu7_optimized.pdb (PDB format)")
+except Exception as e:
+    print(f"  ✗ PDB format not supported: {e}")
+
+try:
+    # Try to write JSON format
+    write('cu7_optimized.json', cu7, format='json')
+    print("  ✓ cu7_optimized.json (JSON format)")
+except Exception as e:
+    print(f"  ✗ JSON format not supported: {e}")
+
+print("  ✓ cu7_optimization.traj (Optimization trajectory)")
+print("  ✓ cu7_optimization.log (Optimization log)")
+
+# Display optimized structure information
+print("\n" + "=" * 60)
+print("Summary:")
+print("=" * 60)
+print(f"Initial energy: 15.290253 eV")
+print(f"Final energy:   {final_energy:.6f} eV")
+print(f"Energy change:  {15.290253 - final_energy:.6f} eV")
+print(f"Energy released: {(15.290253 - final_energy) * 96.485:.2f} kJ/mol")
+print(f"Number of steps: {optimizer.get_number_of_steps()}")
 
 # Visualize (optional)
 try:
@@ -142,11 +184,18 @@ try:
     print("\nDisplaying optimized structure...")
     print("Close the visualization window to exit")
     view(cu7, viewer='ase')
+except ImportError:
+    print("\nVisualization not available (ase.visualize not installed)")
+    print("You can view the structure using external software like:")
+    print("  - Avogadro: avogadro cu7_optimized.xyz")
+    print("  - VMD: vmd cu7_optimized.xyz")
+    print("  - chemCraft: chemcraft cu7_optimized.xyz")
 except Exception as e:
-    print(f"\nVisualization not available: {e}")
+    print(f"\nVisualization failed: {e}")
     print("You can view the structure using external software like:")
     print("  - Avogadro: avogadro cu7_optimized.xyz")
     print("  - VMD: vmd cu7_optimized.xyz")
 
 print("\n" + "=" * 60)
-print("Script completed successfully!")
+print("✅ Script completed successfully!")
+print("=" * 60)

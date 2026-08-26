@@ -2,6 +2,7 @@
 """
 ASE script for geometry optimization of Cu7 cluster using EMT
 with harmonic vibrational frequency analysis
+Based on ASE Vibrations class manual
 """
 
 from ase import Atoms
@@ -9,7 +10,6 @@ from ase.calculators.emt import EMT
 from ase.optimize import BFGS
 from ase.io import write
 from ase.vibrations import Vibrations
-from ase.constraints import FixAtoms
 import numpy as np
 import os
 
@@ -141,67 +141,186 @@ print(f"Coordination numbers: {coord_numbers}")
 
 # ============================================================
 # HARMONIC VIBRATIONAL FREQUENCY CALCULATION
+# Based on ASE Vibrations class
 # ============================================================
 print("\n" + "=" * 60)
 print("Harmonic Vibrational Frequency Analysis")
 print("=" * 60)
 
-# Save optimized structure before vibrations
-write('cu7_optimized_before_vib.xyz', cu7)
-
 print("\nCalculating harmonic vibrational frequencies...")
 print("This may take a few minutes (3N-6 = 15 modes)...")
+print("Using EMT calculator with delta=0.01 Å displacement")
 
 # Create vibrations object
-# We use a smaller displacement to avoid issues with flat potentials
+# delta is the displacement distance in Å for finite difference
 vib = Vibrations(cu7, name='cu7_vibrations', delta=0.01)
 
+# Initialize error flag
+vibration_error = None
+
 try:
-    # Run vibrational calculation
+    # Run the vibrational calculation
+    # This calculates forces for all displaced structures
+    print("\nRunning vibrational calculation...")
     vib.run()
     
     # Get frequencies in cm^-1
+    # The frequencies include 6 zero modes (3 translations + 3 rotations)
     frequencies = vib.get_frequencies()
     
-    # Get normal modes
-    modes = vib.get_modes()
+    print("\n" + "=" * 60)
+    print("Vibrational Frequencies Results")
+    print("=" * 60)
     
     print("\nVibrational Frequencies (cm⁻¹):")
-    print("-" * 40)
+    print("-" * 60)
     print("  Mode   Frequency (cm⁻¹)   Energy (meV)   Type")
-    print("  " + "-" * 45)
+    print("  " + "-" * 55)
     
-    # Classify modes
-    for i, freq in enumerate(frequencies):
-        # Convert to meV
-        freq_meV = freq * 0.123984  # 1 cm⁻¹ = 0.123984 meV
+    # Convert frequencies to real numbers for display
+    freqs_real = np.real(frequencies)
+    freqs_imag = np.imag(frequencies)
+    
+    # Classify modes based on frequency
+    meaningful_modes = 0
+    for i, freq in enumerate(freqs_real):
+        # Convert to meV (1 cm⁻¹ = 0.123984 meV)
+        freq_meV = freq * 0.123984
+        
         # Determine mode type based on frequency range
-        if freq < 10:
-            mode_type = "Translation/Rotation"
-        elif freq < 50:
-            mode_type = "Low-frequency vibration"
-        elif freq < 100:
+        if abs(freq) < 1.0:
+            mode_type = "Translation"
+        elif abs(freq) < 10.0:
+            mode_type = "Rotation"
+        elif abs(freq) < 50.0:
+            mode_type = "Low-frequency"
+        elif abs(freq) < 100.0:
             mode_type = "Bending/Breathing"
-        elif freq < 200:
+        elif abs(freq) < 200.0:
             mode_type = "Deformation"
         else:
             mode_type = "Stretching"
+            meaningful_modes += 1
         
-        print(f"  {i+1:3d}   {freq:8.2f}        {freq_meV:6.2f}      {mode_type}")
+        # Check for imaginary frequencies
+        if freqs_imag[i] > 1.0:
+            mode_type = "⚠️ IMAGINARY"
+        
+        # Display with imaginary part if present
+        if freqs_imag[i] > 0.1:
+            print(f"  {i+1:3d}   {freq:10.2f}+{freqs_imag[i]:.2f}j     {freq_meV:8.2f}+{freqs_imag[i]*0.123984:.2f}j     {mode_type}")
+        else:
+            print(f"  {i+1:3d}   {freq:10.2f}     {freq_meV:8.2f}     {mode_type}")
     
-    print("\n  " + "-" * 45)
-    print(f"  Total modes: {len(frequencies)} (3N-6 = 15 for nonlinear molecule)")
+    print("\n  " + "-" * 60)
+    print(f"  Total modes: {len(frequencies)} (3N = 21 modes)")
+    print(f"  Meaningful vibrations (3N-6 = 15 modes) excluding translations/rotations")
     
     # Calculate zero-point energy
-    zero_point_energy = 0.5 * np.sum(frequencies) * 0.123984  # in meV
-    zero_point_energy_eV = zero_point_energy / 1000  # in eV
+    # Use only positive frequencies (ignore translations/rotations)
+    positive_freqs = freqs_real[freqs_real > 1.0]
+    if len(positive_freqs) > 0:
+        zero_point_energy = 0.5 * np.sum(positive_freqs) * 0.123984  # in meV
+        zero_point_energy_eV = zero_point_energy / 1000  # in eV
+        
+        print(f"\nZero-point energy (ZPE):")
+        print(f"  ZPE = {zero_point_energy:.2f} meV = {zero_point_energy_eV:.6f} eV")
+        print(f"  ZPE per atom = {zero_point_energy/7:.2f} meV")
+        print(f"  ZPE per atom = {zero_point_energy_eV/7:.6f} eV")
     
-    print(f"\nZero-point energy (ZPE):")
-    print(f"  ZPE = {zero_point_energy:.2f} meV = {zero_point_energy_eV:.4f} eV")
-    print(f"  ZPE per atom = {zero_point_energy/7:.2f} meV")
+    # Check for imaginary frequencies (indicates instability)
+    imag_freqs = freqs_real[freqs_real < 0]
+    if len(imag_freqs) > 0:
+        print(f"\n⚠️  WARNING: {len(imag_freqs)} imaginary frequencies found!")
+        print("   This indicates the structure is not at a true minimum.")
+        print("   Consider further optimization or checking convergence.")
+        
+        # List imaginary frequencies
+        print("\n   Imaginary frequencies:")
+        for i, freq in enumerate(freqs_real):
+            if freq < 0:
+                print(f"     Mode {i+1}: {freq:.2f} cm⁻¹")
+    else:
+        print("\n✅ No imaginary frequencies found - structure is at a true minimum!")
     
-    # Thermodynamic properties at 298.15 K (optional)
-    print("\nThermodynamic properties at 298.15 K:")
+    # Save frequencies to file
+    with open('cu7_frequencies.txt', 'w') as f:
+        f.write("Cu7 Cluster Vibrational Frequencies\n")
+        f.write("=" * 60 + "\n\n")
+        f.write("Computed with EMT calculator\n")
+        f.write("Harmonic approximation with delta=0.01 Å\n\n")
+        f.write("Mode    Frequency (cm⁻¹)    Energy (meV)    Type\n")
+        f.write("-" * 55 + "\n")
+        
+        for i, freq in enumerate(freqs_real):
+            freq_meV = freq * 0.123984
+            if abs(freq) < 1.0:
+                mode_type = "Translation"
+            elif abs(freq) < 10.0:
+                mode_type = "Rotation"
+            elif abs(freq) < 50.0:
+                mode_type = "Low-frequency"
+            elif abs(freq) < 100.0:
+                mode_type = "Bending/Breathing"
+            elif abs(freq) < 200.0:
+                mode_type = "Deformation"
+            else:
+                mode_type = "Stretching"
+            
+            if freqs_imag[i] > 0.1:
+                mode_type = "IMAGINARY"
+            
+            f.write(f"{i+1:4d}    {freq:10.2f}        {freq_meV:8.2f}        {mode_type}\n")
+        
+        if len(positive_freqs) > 0:
+            f.write("\n" + "-" * 55 + "\n")
+            f.write(f"Zero-point energy: {zero_point_energy:.2f} meV ({zero_point_energy_eV:.6f} eV)\n")
+        f.write(f"Number of modes: {len(frequencies)}\n")
+    
+    print("\n  ✓ Frequencies saved to: cu7_frequencies.txt")
+    
+    # Write vibrational modes for visualization in ASE GUI
+    # Following the manual: vib.write_mode(-1) writes all modes
+    print("\nWriting vibrational mode trajectories for visualization...")
+    
+    try:
+        # Write all modes to trajectory files
+        # This creates files like cu7_vibrations.0.traj, cu7_vibrations.1.traj, etc.
+        # Mode numbering: 0 is the highest frequency mode
+        vib.write_mode(-1)  # -1 writes all modes
+        print("  ✓ All vibrational modes written to cu7_vibrations.*.traj")
+        print("    You can view them with: ase gui cu7_vibrations.*.traj")
+        
+        # Write a specific mode as an example (mode 0 = highest frequency)
+        vib.write_mode(0)
+        print(f"  ✓ Highest frequency mode (mode 0) written to cu7_vibrations.0.traj")
+        
+        # Write the lowest frequency vibrational mode (not translation/rotation)
+        for i, freq in enumerate(freqs_real):
+            if freq > 1.0:  # First positive frequency after translations/rotations
+                vib.write_mode(i)
+                print(f"  ✓ Lowest vibrational mode (mode {i+1}) written to cu7_vibrations.{i}.traj")
+                break
+        
+        # Also demonstrate show_as_force for interactive visualization
+        print("\n  To view modes with force arrows, use:")
+        print("  ase gui -f cu7_vibrations.0.traj")
+        
+    except Exception as e:
+        print(f"  ✗ Could not write normal modes: {e}")
+    
+    # Summary of frequency statistics
+    real_freqs = freqs_real[freqs_real > 1.0]  # Exclude translations/rotations
+    if len(real_freqs) > 0:
+        print("\nFrequency statistics (excluding translations/rotations):")
+        print(f"  Number of vibrational modes: {len(real_freqs)}")
+        print(f"  Average frequency: {np.mean(real_freqs):.1f} cm⁻¹")
+        print(f"  Minimum frequency: {np.min(real_freqs):.1f} cm⁻¹")
+        print(f"  Maximum frequency: {np.max(real_freqs):.1f} cm⁻¹")
+        print(f"  Standard deviation: {np.std(real_freqs):.1f} cm⁻¹")
+    
+    # Calculate approximate thermodynamic properties
+    print("\nApproximate thermodynamic properties at 298.15 K:")
     print("-" * 40)
     
     # Constants
@@ -210,75 +329,42 @@ try:
     c = 2.99792458e10        # cm/s
     T = 298.15               # K
     
-    # Calculate vibrational contribution to energy
+    # Calculate vibrational contribution to energy (excluding translations/rotations)
     vib_energy = 0.0
-    for freq in frequencies:
-        if freq > 1:  # Skip near-zero frequencies
+    vib_entropy = 0.0
+    vib_heat_capacity = 0.0
+    
+    for freq in real_freqs:
+        if freq > 1.0:  # Skip near-zero frequencies
             w = freq * c * h  # Angular frequency in eV
-            vib_energy += w * (0.5 + 1/(np.exp(w/(k_B*T)) - 1))
+            if np.exp(w/(k_B*T)) - 1 > 0:
+                # Vibrational energy contribution
+                vib_energy += w * (0.5 + 1/(np.exp(w/(k_B*T)) - 1))
+                # Vibrational entropy contribution (approximate)
+                vib_entropy += (w/(k_B*T)) / (np.exp(w/(k_B*T)) - 1) - np.log(1 - np.exp(-w/(k_B*T)))
+                # Vibrational heat capacity
+                vib_heat_capacity += (w/(k_B*T))**2 * np.exp(w/(k_B*T)) / (np.exp(w/(k_B*T)) - 1)**2
     
-    print(f"  Vibrational energy: {vib_energy:.4f} eV")
-    print(f"  Vibrational energy per atom: {vib_energy/7:.4f} eV")
-    
-    # Save frequencies to file
-    with open('cu7_frequencies.txt', 'w') as f:
-        f.write("Cu7 Cluster Vibrational Frequencies\n")
-        f.write("=" * 60 + "\n\n")
-        f.write("Mode    Frequency (cm⁻¹)    Energy (meV)    Type\n")
-        f.write("-" * 50 + "\n")
-        
-        for i, freq in enumerate(frequencies):
-            freq_meV = freq * 0.123984
-            if freq < 10:
-                mode_type = "Translation/Rotation"
-            elif freq < 50:
-                mode_type = "Low-frequency"
-            elif freq < 100:
-                mode_type = "Bending/Breathing"
-            elif freq < 200:
-                mode_type = "Deformation"
-            else:
-                mode_type = "Stretching"
-            f.write(f"{i+1:4d}    {freq:10.2f}        {freq_meV:8.2f}        {mode_type}\n")
-        
-        f.write("\n" + "-" * 50 + "\n")
-        f.write(f"Zero-point energy: {zero_point_energy:.2f} meV ({zero_point_energy_eV:.6f} eV)\n")
-        f.write(f"Number of modes: {len(frequencies)}\n")
-    
-    print("\n  ✓ Frequencies saved to: cu7_frequencies.txt")
-    
-    # Save normal modes to trajectory
-    try:
-        vib.write_mode(-1)  # Write all modes
-        print("  ✓ Normal modes saved to: cu7_vibrations.mode.xyz")
-        print("  ✓ Mode trajectories saved to: cu7_vibrations.*.traj")
-    except Exception as e:
-        print(f"  ✗ Could not save normal modes: {e}")
-    
-    # Summary of frequency statistics
-    freq_cm1 = frequencies[frequencies > 10]  # Exclude translations/rotations
-    if len(freq_cm1) > 0:
-        print("\nFrequency statistics (excluding translations/rotations):")
-        print(f"  Average frequency: {np.mean(freq_cm1):.1f} cm⁻¹")
-        print(f"  Minimum frequency: {np.min(freq_cm1):.1f} cm⁻¹")
-        print(f"  Maximum frequency: {np.max(freq_cm1):.1f} cm⁻¹")
-    
-    # Check for imaginary frequencies (indicates instability)
-    imag_freqs = frequencies[frequencies < 0]
-    if len(imag_freqs) > 0:
-        print(f"\n⚠️  WARNING: {len(imag_freqs)} imaginary frequencies found!")
-        print("   This indicates the structure is not at a true minimum.")
-        print("   Consider further optimization or checking convergence.")
-    else:
-        print("\n✅ No imaginary frequencies found - structure is at a true minimum!")
+    if vib_energy > 0:
+        print(f"  Vibrational energy: {vib_energy:.4f} eV")
+        print(f"  Vibrational energy per atom: {vib_energy/7:.4f} eV")
+        print(f"  Vibrational entropy: {vib_entropy*k_B*1000:.2f} meV/K")
+        print(f"  Vibrational heat capacity: {vib_heat_capacity*k_B*1000:.2f} meV/K")
     
 except Exception as e:
+    vibration_error = e
     print(f"\n❌ Vibrational calculation failed: {e}")
     print("   This might be due to the EMT calculator limitations.")
     print("   For accurate frequencies, consider using a DFT calculator.")
     print("   Continuing with the rest of the script...")
+    
+    # Print helpful information
+    print("\nTroubleshooting tips:")
+    print("1. Check that the calculator (EMT) is properly installed")
+    print("2. Try using a smaller delta value (e.g., 0.005)")
+    print("3. Ensure the structure is fully optimized before frequency calculation")
 
-# Write final structure to files (only formats that are supported)
+# Write final structure to files
 print("\nWriting output files...")
 try:
     # XYZ format (most universal)
@@ -293,13 +379,6 @@ try:
     print("  ✓ cu7_optimized.traj (Trajectory format)")
 except Exception as e:
     print(f"  ✗ Failed to write TRAJ: {e}")
-
-try:
-    # Try to write PDB if available
-    write('cu7_optimized.pdb', cu7, format='pdb')
-    print("  ✓ cu7_optimized.pdb (PDB format)")
-except Exception as e:
-    print(f"  ✗ PDB format not supported: {e}")
 
 try:
     # Try to write JSON format
@@ -342,3 +421,19 @@ except Exception as e:
 print("\n" + "=" * 60)
 print("✅ Script completed successfully!")
 print("=" * 60)
+
+# Print instructions for viewing vibrational modes
+# Check if vibration calculation was successful
+if 'vib' in locals() and vibration_error is None:
+    print("\n" + "=" * 60)
+    print("How to view vibrational modes:")
+    print("=" * 60)
+    print("1. View all modes in ASE GUI:")
+    print("   ase gui cu7_vibrations.*.traj")
+    print("\n2. View a specific mode (e.g., mode 0):")
+    print("   ase gui cu7_vibrations.0.traj")
+    print("\n3. View with force arrows pointing in movement direction:")
+    print("   ase gui -f cu7_vibrations.0.traj")
+    print("\n4. View in other software (convert using ase):")
+    print("   python -c 'from ase.io import read, write; write(\"mode.xyz\", read(\"cu7_vibrations.0.traj\"))'")
+    print("=" * 60)

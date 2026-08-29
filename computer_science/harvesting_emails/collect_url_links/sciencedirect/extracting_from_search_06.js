@@ -472,7 +472,7 @@ function showProgressSummary() {
                 else if (s === 'error') { statuses.push('❌'); percents.push(p + '%'); }
                 else if (s === 'processing') { statuses.push('🔄'); percents.push(Math.round(p) + '%'); }
                 else if (s === 'opening') { statuses.push('📂'); percents.push('0%'); }
-        else { statuses.push('⏳'); percents.push(Math.round(p) + '%'); }
+                else { statuses.push('⏳'); percents.push(Math.round(p) + '%'); }
                 if (found.length > 0) {
                     emailsList.push(found.join(', '));
                 }
@@ -481,7 +481,7 @@ function showProgressSummary() {
             percentStr = percents.join(' ');
             emailStr = emailsList.length > 0 ? ' | 📧 ' + emailsList.join(' | ') : '';
         }
-        console.log(`📊 [${new Date().toLocaleTimeString()}] ${processed}/${total} articles (${percent}%) | 📧 ${emails ${statusStr}`);
+        console.log(`📊 [${new Date().toLocaleTimeString()}] ${processed}/${total} articles (${percent}%) | 📧 ${emails} emails ${statusStr}`);
         if (percentStr) {
             console.log(`   └─ Tab progress: ${percentStr}${emailStr}`);
         }
@@ -500,7 +500,7 @@ function stopProgressMonitor() {
 function clearEmails() {
     localStorage.removeItem('collectedEmails');
     localStorage.removeItem('extractorProgress');
-    localStorage.remo('lastProcessed');
+    localStorage.removeItem('lastProcessed');
     console.log("🗑️ Cleared all collected emails and progress data");
 }
 
@@ -516,7 +516,8 @@ function downloadEmails() {
     const emailCount = uniqueEmails.length;
     
     console.log(`\n📧 Unique emails (${emailCount}):`);
-    uniqueEmails.forEach((email, i) => { console.log(`  ${i+1}. ${email}`);
+    uniqueEmails.forEach((email, i) => {
+        console.log(`  ${i+1}. ${email}`);
     });
     
     if (emailCount === 0) {
@@ -534,7 +535,7 @@ function downloadEmails() {
         
         const nameParts = name.split(' ');
         if (nameParts.length >= 2) {
-          firstName = nameParts[0];
+            firstName = nameParts[0];
             lastName = nameParts.slice(1).join(' ');
         } else if (nameParts.length === 1 && nameParts[0].length > 2) {
             const single = nameParts[0];
@@ -579,7 +580,7 @@ END:VCARD`;
 function checkProgress() {
     const stored = JSON.parse(localStorage.getItem('collectedEmails') || '[]');
     const unique = [...new Set(stored)];
-    console.log(`ðess: ${unique.length} unique emails collected`);
+    console.log(`📊 Progress: ${unique.length} unique emails collected`);
     if (unique.length > 0) { console.log(`   ${unique.join(', ')}`); }
     return unique;
 }
@@ -590,6 +591,6 @@ console.log("=".repeat(60));
 console.log("\n📌 Commands:");
 console.log("  openArticlesWithDetector(3)  - Open 3 articles (auto-download)");
 console.log("  showProgress()              - Show detailed progress with emails");
-console.log("  stopProgressMonito      - Stop auto-refresh");
+console.log("  stopProgressMonitor()       - Stop auto-refresh");
 console.log("  downloadEmails()            - Manual download VCF");
 console.log("=".repeat(60));

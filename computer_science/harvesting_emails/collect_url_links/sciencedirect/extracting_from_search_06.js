@@ -472,8 +472,8 @@ function showProgressSummary() {
                 else if (s === 'error') { statuses.push('❌'); percents.push(p + '%'); }
                 else if (s === 'processing') { statuses.push('🔄'); percents.push(Math.round(p) + '%'); }
                 else if (s === 'opening') { statuses.push('📂'); percents.push('0%'); }
-                else { statuses.push('⏳'); percents.push(Math.round(p) + '%'); }
-              d.length > 0) {
+        else { statuses.push('⏳'); percents.push(Math.round(p) + '%'); }
+                if (found.length > 0) {
                     emailsList.push(found.join(', '));
                 }
             }
@@ -481,9 +481,9 @@ function showProgressSummary() {
             percentStr = percents.join(' ');
             emailStr = emailsList.length > 0 ? ' | 📧 ' + emailsList.join(' | ') : '';
         }
-        console.log(`📊 [${new Date().toLocaleTimeString()}] ${processed}/${total} articles (${percent}%) | 📧 ${emails} emails ${statusStr}`);
+        console.log(`📊 [${new Date().toLocaleTimeString()}] ${processed}/${total} articles (${percent}%) | 📧 ${emails ${statusStr}`);
         if (percentStr) {
-            console.log(`   └─ Tab progresstStr}${emailStr}`);
+            console.log(`   └─ Tab progress: ${percentStr}${emailStr}`);
         }
     }
 }
@@ -500,9 +500,11 @@ function stopProgressMonitor() {
 function clearEmails() {
     localStorage.removeItem('collectedEmails');
     localStorage.removeItem('extractorProgress');
-    localStorage.removeItem('lastProcessed');
+    localStorage.remo('lastProcessed');
     console.log("🗑️ Cleared all collected emails and progress data");
-ction downloadEmails() {
+}
+
+function downloadEmails() {
     let stored = JSON.parse(localStorage.getItem('collectedEmails') || '[]');
     
     if (stored.length === 0) {
@@ -514,12 +516,11 @@ ction downloadEmails() {
     const emailCount = uniqueEmails.length;
     
     console.log(`\n📧 Unique emails (${emailCount}):`);
-    uniqueEmails.forEach((email, i) => {
-        console.log(`  ${i+1}. ${email}`);
+    uniqueEmails.forEach((email, i) => { console.log(`  ${i+1}. ${email}`);
     });
     
     if (emailCount === 0) {
-        console("❌ No valid emails found");
+        console.log("❌ No valid emails found");
         return;
     }
     
@@ -533,9 +534,9 @@ ction downloadEmails() {
         
         const nameParts = name.split(' ');
         if (nameParts.length >= 2) {
-            firstName = nameParts[0];
+          firstName = nameParts[0];
             lastName = nameParts.slice(1).join(' ');
-        } ee if (nameParts.length === 1 && nameParts[0].length > 2) {
+        } else if (nameParts.length === 1 && nameParts[0].length > 2) {
             const single = nameParts[0];
             if (single.length > 4) {
                 const mid = Math.ceil(single.length / 2);
@@ -578,8 +579,8 @@ END:VCARD`;
 function checkProgress() {
     const stored = JSON.parse(localStorage.getItem('collectedEmails') || '[]');
     const unique = [...new Set(stored)];
-    console.log(`📊 Progress: ${unique.length} unique emails collected`);
-    if (unique.length > 0) { console.lo${unique.join(', ')}`); }
+    console.log(`ðess: ${unique.length} unique emails collected`);
+    if (unique.length > 0) { console.log(`   ${unique.join(', ')}`); }
     return unique;
 }
 
@@ -589,6 +590,6 @@ console.log("=".repeat(60));
 console.log("\n📌 Commands:");
 console.log("  openArticlesWithDetector(3)  - Open 3 articles (auto-download)");
 console.log("  showProgress()              - Show detailed progress with emails");
-console.log("  stopProgressMonitor()       - Stop auto-refresh");
-console.log("  downloadEmails()            - Manual download VC
+console.log("  stopProgressMonito      - Stop auto-refresh");
+console.log("  downloadEmails()            - Manual download VCF");
 console.log("=".repeat(60));

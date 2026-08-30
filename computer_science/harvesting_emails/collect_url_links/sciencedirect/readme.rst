@@ -25,6 +25,10 @@ In ideal case all extracted emails from each open tab (journal article) will dow
 Otherwise type  downloadEmails() .
 
 
+TODO: 
+in each open search page : 
+-  extend the script for closing open tabs from where email(s) were sucessfully extracted
+- when all emails got downloaded or progress is stalled CONTINUE to next search batch and initiate harvesting from open tabs
 
 
 

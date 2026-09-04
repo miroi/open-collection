@@ -29,8 +29,8 @@ molecules:
     symmetry: 2
     geometry: 'linear'
     # Set to true to ONLY run geometry optimization for this molecule (skip frequencies)
-    only_geometry_optimization: true  # false = full analysis, true = geometry only
-    # eq_distance: 1.1031  # Uncomment to skip geometry optimization entirely
+    only_geometry_optimization: false # false = full analysis, true = geometry only
+    eq_distance: 1.1031  # Uncomment to skip geometry optimization entirely
     reference:
       d_eq: 1.0977
       freq: 2358.6
@@ -118,13 +118,13 @@ qe:
   
   # Vibration settings
   # Options: '1d', 'xonly', 'full', '1d+xonly', '1d+full', 'xonly+full', 'all'
-  vibration_method: '1d'  # RECOMMENDED for diatomics
+  vibration_method: '1d+xonly'  # RECOMMENDED for diatomics
   
   # 1D Scan parameters
   1d_settings:
-    delta: 0.001              # Scan range (Å) - smaller for better accuracy
+    delta: 0.1              # Scan range (Å) - smaller for better accuracy
     n_points: 9               # Number of points for the scan
-    refined_delta: 0.0005     # Refined scan range (Å) - even smaller for high accuracy
+    refined_delta: 0.05     # Refined scan range (Å) - even smaller for high accuracy
     refined_n_points: 11      # Number of points for refined scan
   
   # X-Only Hessian parameters

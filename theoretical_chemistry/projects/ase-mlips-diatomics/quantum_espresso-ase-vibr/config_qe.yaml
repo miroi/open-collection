@@ -64,14 +64,79 @@ qe:
   mixing_beta: 0.7
   electron_maxstep: 200
   
-  # Vibration settings - Use 'full' for best accuracy
-  vibration_method: 'full'  # Use full Vibrations class
-  
-  # Full 3D Hessian parameters
-  full_settings:
-    delta: 0.01           # Same as your working script
-    nfree: 2
+  # --------------------------------------------------------------------------
+  # VIBRATION METHOD SELECTION
+  # --------------------------------------------------------------------------
+  # Options:
+  #   '1d'        - Fast 1D scan along bond (quadratic fit)
+  #   'xonly'     - X-Only Hessian (manual displacement along bond)
+  #   'full'      - Full 3D Hessian (ASE Vibrations class) - MOST ACCURATE
+  #   '1d+xonly'  - Run both 1D and X-Only methods
+  #   '1d+full'   - Run both 1D and Full methods
+  #   'xonly+full'- Run both X-Only and Full methods
+  #   'all'       - Run all three methods
+  vibration_method: '1d+xonly'  # Use full Vibrations class
 
+  # --------------------------------------------------------------------------
+  # METHOD 1: 1D SCAN PARAMETERS (Fast, but less accurate for flat PES)
+  # --------------------------------------------------------------------------
+  # How it works: Fits a quadratic polynomial to the PES along the bond
+  # Pros: Very fast (only n_points SCF calculations)
+  # Cons: Less accurate, sensitive to numerical noise
+  # Best for: Quick screening, qualitative analysis
+  # --------------------------------------------------------------------------
+  1d_settings:
+    delta: 0.01                                  # Scan range: ±delta (Å)
+                                                  #   - Too small: numerical noise
+                                                  #   - Too large: anharmonic effects
+                                                  #   - Recommended: 0.001-0.005 Å
+    n_points: 9                                   # Number of points for quadratic fit
+                                                  #   - Must be odd (center point at equilibrium)
+                                                  #   - 7-11 points recommended
+    refined_delta: 0.005                         # Refined scan range (Å)
+                                                  #   - Smaller range for higher accuracy
+                                                  #   - Recommended: 0.0005-0.001 Å
+    refined_n_points: 11                          # Points for refined scan
+                                                  #   - More points = better fit
+                                                  #   - Recommended: 9-13 points
+
+  # --------------------------------------------------------------------------
+  # METHOD 2: X-ONLY HESSIAN PARAMETERS (Accurate, only along bond)
+  # --------------------------------------------------------------------------
+  # How it works: Uses FixAtoms to freeze y,z and manually displaces along x
+  # Pros: Full Hessian accuracy for stretching mode, only 4 SCF calcs
+  # Cons: Requires FixAtoms constraint, manual displacement
+  # Best for: Fast accurate frequencies for diatomics
+  # --------------------------------------------------------------------------
+  xonly_settings:
+    delta: 0.01                                  # Displacement range (Å)
+                                                  #   - Step size for displacement
+                                                  #   - Recommended: 0.001-0.005 Å
+    nfree: 2                                      # Number of displacements per direction
+                                                  #   - Total calcs = 2 × nfree (only x-direction)
+                                                  #   - nfree=2 gives 4 SCF calculations
+                                                  #   - Higher nfree = more accurate but slower
+
+  # --------------------------------------------------------------------------
+  # METHOD 3: FULL HESSIAN PARAMETERS (Most accurate, uses ASE Vibrations)
+  # --------------------------------------------------------------------------
+  # How it works: Uses ASE's Vibrations class for full 3D Hessian
+  # Pros: Most accurate, complete vibrational analysis
+  # Cons: Slow (24 SCF calculations for diatomics with nfree=2)
+  # Best for: Final accurate frequencies, benchmark calculations
+  # --------------------------------------------------------------------------
+  full_settings:
+    delta: 0.01                                   # Displacement for finite differences (Å)
+                                                  #   - Same as your working script
+                                                  #   - Recommended: 0.005-0.01 Å
+                                                  #   - Too small: numerical noise
+                                                  #   - Too large: anharmonic effects
+    nfree: 2                                      # Number of displacements per direction
+                                                  #   - Total calcs = 2 × atoms × 3 × nfree
+                                                  #   - For N2: 2 × 2 × 3 × 2 = 24 SCF calcs
+                                                  #   - nfree=2 recommended
+                                                  #   - Higher nfree = more accurate but slower
+  
 # Output settings
 output:
   save_structures: true

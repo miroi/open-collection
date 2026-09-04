@@ -25,4 +25,8 @@ https://github.com/dipayanster/MatScProjects/tree/main/Vibration_tests/molecule/
 
 N.pbe-n-kjpaw_psl.1.0.0.UPF
 
+  Finding equilibrium geometry...
+  Log files: N2_opt.log, N2_opt.traj
+  ✓ Equilibrium bond distance: 1.1100 Å
+
 

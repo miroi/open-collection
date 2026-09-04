@@ -154,7 +154,7 @@ class MoleculeAnalyzer:
         xonly_nfree = self.qe_config.get('xonly_settings', {}).get('nfree', 2)
         
         # Get Full Hessian parameters
-        full_delta = self.qe_config.get('full_settings', {}).get('delta', 0.001)
+        full_delta = self.qe_config.get('full_settings', {}).get('delta', 0.01)
         full_nfree = self.qe_config.get('full_settings', {}).get('nfree', 2)
         
         # Dictionary to store results
@@ -166,7 +166,8 @@ class MoleculeAnalyzer:
             'full': 'Full 3D Hessian'
         }
         
-        # Run each method
+        # Run methods based on configuration
+        # IMPORTANT: Only run methods that are explicitly requested!
         if '1d' in methods_to_run:
             print(f"\n  Method 1: 1D Scan (quadratic fit along bond)")
             print(f"    Scan range: ±{scan_delta} Å, {scan_n_points} points")
@@ -181,19 +182,20 @@ class MoleculeAnalyzer:
                 print(f"    ✓ 1D Scan: {freq_1d:.2f} cm⁻¹ (took {elapsed_1d:.1f}s, {scan_n_points} SCF)")
             freq_results['1d'] = {'freq': freq_1d, 'time': elapsed_1d, 'scf': scan_n_points}
         
-        # Always run refined 1D scan for better accuracy
-        print(f"\n  Method 1b: 1D Scan (Refined - more accurate)")
-        print(f"    Scan range: ±{refined_delta} Å, {refined_n_points} points")
-        
-        start_time = time.time()
-        freq_1d_refined = self.vibration_calc.calculate_1d_scan_refined(
-            opt_atoms, molecule_name, refined_delta, refined_n_points
-        )
-        elapsed_1d_refined = time.time() - start_time
-        
-        if freq_1d_refined > 0:
-            print(f"    ✓ 1D Scan (Refined): {freq_1d_refined:.2f} cm⁻¹ (took {elapsed_1d_refined:.1f}s, {refined_n_points} SCF)")
-        freq_results['1d_refined'] = {'freq': freq_1d_refined, 'time': elapsed_1d_refined, 'scf': refined_n_points}
+        # Only run refined 1D scan if requested (not by default for 'full' method)
+        if '1d_refined' in methods_to_run or vib_method == '1d':
+            print(f"\n  Method 1b: 1D Scan (Refined - more accurate)")
+            print(f"    Scan range: ±{refined_delta} Å, {refined_n_points} points")
+            
+            start_time = time.time()
+            freq_1d_refined = self.vibration_calc.calculate_1d_scan_refined(
+                opt_atoms, molecule_name, refined_delta, refined_n_points
+            )
+            elapsed_1d_refined = time.time() - start_time
+            
+            if freq_1d_refined > 0:
+                print(f"    ✓ 1D Scan (Refined): {freq_1d_refined:.2f} cm⁻¹ (took {elapsed_1d_refined:.1f}s, {refined_n_points} SCF)")
+            freq_results['1d_refined'] = {'freq': freq_1d_refined, 'time': elapsed_1d_refined, 'scf': refined_n_points}
         
         if 'xonly' in methods_to_run:
             print(f"\n  Method 2: X-Only Hessian (manual, only along bond)")
@@ -240,16 +242,16 @@ class MoleculeAnalyzer:
             
             print(f"  {'='*55}")
         
-        # Select primary method: use refined 1D as primary
-        if '1d_refined' in freq_results and freq_results['1d_refined']['freq'] > 0:
-            primary_method = '1d_refined'
-            final_freq = freq_results['1d_refined']['freq']
+        # Select primary method: use 'full' if available, otherwise 'xonly', then '1d_refined'
+        if 'full' in freq_results and freq_results['full']['freq'] > 0:
+            primary_method = 'full'
+            final_freq = freq_results['full']['freq']
         elif 'xonly' in freq_results and freq_results['xonly']['freq'] > 0:
             primary_method = 'xonly'
             final_freq = freq_results['xonly']['freq']
-        elif 'full' in freq_results and freq_results['full']['freq'] > 0:
-            primary_method = 'full'
-            final_freq = freq_results['full']['freq']
+        elif '1d_refined' in freq_results and freq_results['1d_refined']['freq'] > 0:
+            primary_method = '1d_refined'
+            final_freq = freq_results['1d_refined']['freq']
         elif '1d' in freq_results and freq_results['1d']['freq'] > 0:
             primary_method = '1d'
             final_freq = freq_results['1d']['freq']
@@ -309,7 +311,8 @@ class MoleculeAnalyzer:
         if exp_freq and final_freq > 0:
             print(f"    Frequency: {final_freq:.2f} cm⁻¹ (exp: {exp_freq:.2f} cm⁻¹, error: {freq_error:.2f}%)")
             print(f"    Method used: {primary_method}")
-            print(f"    Scan parameters: delta={refined_delta} Å, n_points={refined_n_points}")
+            if primary_method == 'full':
+                print(f"    Displacement: ±{full_delta} Å, nfree={full_nfree}")
         elif exp_freq:
             print(f"    ⚠ Frequency not calculated")
         print(f"  {'='*50}")

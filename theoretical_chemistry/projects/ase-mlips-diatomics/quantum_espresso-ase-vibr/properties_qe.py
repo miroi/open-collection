@@ -2,7 +2,7 @@
 """
 Diatomic molecule analysis with Quantum ESPRESSO
 Full vibrational analysis using ASE Vibrations class
-Optimized for diatomics with per-molecule logging
+Supports 1D scan, X-Only Hessian, and Full Hessian methods
 """
 
 import os
@@ -10,10 +10,12 @@ import sys
 import yaml
 import numpy as np
 import pandas as pd
+import time
 from ase import Atoms
 from ase.calculators.espresso import Espresso, EspressoProfile
 from ase.optimize import BFGS
 from ase.vibrations import Vibrations, VibrationsData
+from ase.constraints import FixCartesian
 from ase.io import write, read
 from ase.units import invcm
 from datetime import datetime
@@ -41,6 +43,9 @@ class QEDiatomicAnalyzer:
         self.pseudo_dir = self.qe_config.get('pseudo_dir', './pseudopotentials/')
         self.pseudopotentials = self.qe_config.get('pseudopotentials', {})
         self.molecules_to_calculate = config.get('molecules_to_calculate', {})
+        
+        # Vibration method
+        self.vibration_method = self.qe_config.get('vibration_method', 'xonly')
         
         # Build the command with MPI
         self.command = self._build_command()
@@ -240,115 +245,38 @@ class QEDiatomicAnalyzer:
         }
         return [masses.get(s, 0.0) for s in symbols]
     
-    def calculate_vibrational_frequency_full(self, atoms, mol_name, delta=0.005, nfree=2):
-        """
-        Calculate vibrational frequencies using ASE Vibrations class.
-        This does a full 3D Hessian calculation for all atoms.
-        For diatomics, we only vibrate the two atoms.
-        """
-        try:
-            print(f"    Using ASE Vibrations with delta={delta}, nfree={nfree}")
-            
-            # Set the vibration calculator
-            atoms.set_calculator(self.vib_calc)
-            
-            # Create Vibrations object - only vibrate atoms 0 and 1
-            vib_name = f'vib/{mol_name}'
-            vib = Vibrations(
-                atoms, 
-                indices=[0, 1],  # Only vibrate the two atoms
-                name=vib_name,
-                delta=delta,
-                nfree=nfree
-            )
-            
-            # Run the calculations
-            print(f"    Running {2 * nfree * 2} displacement calculations...")
-            vib.run()
-            
-            # Get frequencies in cm^-1
-            frequencies = vib.get_frequencies()
-            
-            # Filter out near-zero frequencies (translations and rotations)
-            valid_freqs = [f for f in frequencies if abs(f) > 1.0]
-            
-            if len(valid_freqs) > 0:
-                # For diatomic, the first non-zero frequency is the stretching mode
-                freq_cm1 = abs(valid_freqs[0])
-                print(f"    Found {len(valid_freqs)} non-zero modes")
-                print(f"    Stretching mode: {freq_cm1:.2f} cm⁻¹")
-                
-                # Get summary
-                vib.summary()
-                
-                # Write the mode to a trajectory file for visualization
-                try:
-                    vib.write_mode(-1)  # Write last mode
-                    print(f"    Mode written to {vib_name}.8.traj")
-                except:
-                    pass
-                
-                # Get detailed vibrational data
-                vib_data = vib.get_vibrations()
-                energies = vib_data.get_energies()
-                zero_point = vib_data.get_zero_point_energy()
-                print(f"    Zero-point energy: {zero_point:.4f} eV")
-                
-            else:
-                freq_cm1 = 0.0
-                print(f"    No non-zero modes found")
-            
-            # Clean up
-            try:
-                vib.clean()
-            except:
-                pass
-            
-            return freq_cm1
-            
-        except Exception as e:
-            print(f"  Error in full vibration calculation: {e}")
-            return 0.0
-    
     def calculate_vibrational_frequency_1d(self, atoms, mol_name, delta=0.005, n_points=7):
         """
         Calculate vibrational frequency using 1D scan along the bond.
-        This is MUCH faster than full 3D Hessian calculation.
-        Only samples along the M-M bond direction.
-        Returns frequency in cm^-1.
+        Fast method - only samples along the M-M bond direction.
         """
         try:
+            print(f"    Using 1D scan with n_points={n_points}, delta={delta}")
+            
             symbols = atoms.get_chemical_symbols()
             r_eq = atoms.get_distance(0, 1)
             
-            # Sample points along the bond direction
             r_values = np.linspace(r_eq - delta, r_eq + delta, n_points)
             energies = []
             
             print(f"    Scanning bond length from {r_values[0]:.4f} to {r_values[-1]:.4f} Å")
             
-            # Get the cell from the optimized atoms
             cell = atoms.get_cell()
             
             for i, r in enumerate(r_values):
-                # Create temporary atoms with this bond length
                 temp_atoms = Atoms(symbols, positions=[(0, 0, 0), (r, 0, 0)])
                 temp_atoms.set_cell(cell)
                 temp_atoms.set_pbc(True)
                 temp_atoms.set_calculator(self.vib_calc)
                 
-                # Calculate energy
                 energy = temp_atoms.get_potential_energy()
                 energies.append(energy)
                 
-                # Progress indicator
                 print(f"      Point {i+1}/{n_points}: r = {r:.4f} Å, E = {energy:.6f} eV")
             
-            # Fit to a quadratic polynomial: E(r) = a0 + a1*(r-r_eq) + a2*(r-r_eq)^2
             r_shifted = r_values - r_eq
             coeffs = np.polyfit(r_shifted, energies, 2)
             
-            # Second derivative = 2 * coeffs[0] (eV/A^2)
             second_deriv = 2 * coeffs[0]
             
             if second_deriv <= 0:
@@ -358,25 +286,201 @@ class QEDiatomicAnalyzer:
                     return self.calculate_vibrational_frequency_1d(atoms, mol_name, delta, n_points + 2)
                 return 0.0
             
-            # Convert to frequency
             masses = self._get_masses(symbols)
             reduced_mass_amu = (masses[0] * masses[1]) / (masses[0] + masses[1])
             reduced_mass_kg = reduced_mass_amu * 1.66054e-27
             
-            # k in N/m = second_deriv (eV/A^2) * 160.2177
             k_Nm = second_deriv * 160.2177
-            
-            # Frequency in cm^-1: v = 1/(2*pi*c) * sqrt(k/mu)
             c_cm_s = 2.99792458e10
             freq_cm1 = 1/(2 * np.pi * c_cm_s) * np.sqrt(k_Nm / reduced_mass_kg)
             
             print(f"    Force constant: {k_Nm:.2f} N/m")
             print(f"    Reduced mass: {reduced_mass_amu:.4f} amu")
+            print(f"    1D scan frequency: {abs(freq_cm1):.2f} cm⁻¹")
             
             return abs(freq_cm1)
             
         except Exception as e:
             print(f"  Error in 1D frequency calculation: {e}")
+            return 0.0
+    
+    def calculate_vibrational_frequency_xonly(self, atoms, mol_name, delta=0.005, nfree=2):
+        """
+        Calculate vibrational frequency using ASE Vibrations class
+        but ONLY along the x-axis (M-M bond direction).
+        
+        This gives only the stretching mode with minimal computational cost.
+        """
+        try:
+            print(f"    Using X-Only Hessian with delta={delta}, nfree={nfree}")
+            print(f"    Only displacing along x-axis (bond direction)")
+            
+            # Freeze y and z for both atoms
+            constraint = FixCartesian(
+                indices=[0, 1],
+                mask=[True, False, False]  # Only x is free
+            )
+            
+            # Apply constraint
+            original_constraints = atoms.constraints.copy()
+            atoms.set_constraint([constraint])
+            atoms.set_calculator(self.vib_calc)
+            
+            vib_name = f'vib/{mol_name}_xonly'
+            vib = Vibrations(
+                atoms, 
+                indices=[0, 1],
+                name=vib_name,
+                delta=delta,
+                nfree=nfree
+            )
+            
+            total_calcs = 2 * nfree  # Only x-direction
+            print(f"    Running {total_calcs} displacement calculations...")
+            vib.run()
+            
+            # Get frequencies
+            frequencies = vib.get_frequencies()
+            
+            # With x-only constraints, we should only get the stretching mode
+            valid_freqs = [f for f in frequencies if abs(f) > 1.0]
+            
+            if len(valid_freqs) > 0:
+                # The first valid frequency is the stretching mode
+                freq_cm1 = abs(valid_freqs[0])
+                print(f"\n    {'='*50}")
+                print(f"    STRETCHING MODE FOR {mol_name}")
+                print(f"    {'='*50}")
+                print(f"    Frequency: {freq_cm1:.2f} cm⁻¹")
+                
+                # Get zero-point energy (only stretching mode)
+                vib_data = vib.get_vibrations()
+                zero_point = vib_data.get_zero_point_energy()
+                print(f"    Zero-point energy: {zero_point:.4f} eV")
+                print(f"    {'='*50}")
+                
+                try:
+                    vib.write_mode(-1)
+                    print(f"    Mode written to {vib_name}.8.traj")
+                except:
+                    pass
+            else:
+                freq_cm1 = 0.0
+                print(f"    No stretching mode found")
+            
+            # Restore original constraints
+            atoms.set_constraint(original_constraints)
+            
+            try:
+                vib.clean()
+            except:
+                pass
+            
+            return freq_cm1
+            
+        except Exception as e:
+            print(f"  Error in X-Only vibration calculation: {e}")
+            try:
+                atoms.set_constraint(original_constraints)
+            except:
+                pass
+            return 0.0
+    
+    def calculate_vibrational_frequency_full(self, atoms, mol_name, delta=0.005, nfree=2):
+        """
+        Calculate vibrational frequencies using ASE Vibrations class (full Hessian).
+        Automatically identifies and returns ONLY the stretching mode for diatomics.
+        """
+        try:
+            print(f"    Using ASE Vibrations (full Hessian) with delta={delta}, nfree={nfree}")
+            
+            atoms.set_calculator(self.vib_calc)
+            
+            vib_name = f'vib/{mol_name}_full'
+            vib = Vibrations(
+                atoms, 
+                indices=[0, 1],
+                name=vib_name,
+                delta=delta,
+                nfree=nfree
+            )
+            
+            print(f"    Running {2 * nfree * 2} displacement calculations...")
+            vib.run()
+            
+            # Get frequencies in cm^-1
+            frequencies = vib.get_frequencies()
+            
+            # Get energies in eV
+            energies = vib.get_energies()
+            
+            # Print summary for debugging
+            print(f"\n    {'='*50}")
+            print(f"    VIBRATIONAL MODES FOR {mol_name}")
+            print(f"    {'='*50}")
+            print(f"    {'Mode':<6} {'Energy (eV)':<15} {'Frequency (cm⁻¹)':<15} {'Type'}")
+            print(f"    {'-'*50}")
+            
+            # Classify modes and find the stretching mode
+            stretching_mode = None
+            stretching_freq = 0.0
+            stretching_energy = 0.0
+            
+            for i, (freq, energy) in enumerate(zip(frequencies, energies)):
+                freq_abs = abs(freq)
+                energy_abs = abs(energy)
+                
+                # Classify mode type
+                if freq_abs < 1.0:
+                    mode_type = "Translation"
+                elif freq_abs < 100.0:
+                    mode_type = "Rotation (numerical noise)"
+                else:
+                    mode_type = "STRETCHING ✓"
+                    # Store the stretching mode (highest frequency non-zero mode)
+                    if freq_abs > stretching_freq:
+                        stretching_freq = freq_abs
+                        stretching_energy = energy_abs
+                        stretching_mode = i
+                
+                # Print each mode
+                freq_str = f"{freq:.2f}" if freq_abs > 0.01 else "0.00"
+                print(f"    {i:<6} {energy_abs:<15.4f} {freq_str:<15} {mode_type}")
+            
+            print(f"    {'='*50}")
+            
+            # Now we have the stretching mode
+            if stretching_mode is not None:
+                print(f"\n    ✓ Stretching mode identified: Mode {stretching_mode}")
+                print(f"      Frequency: {stretching_freq:.2f} cm⁻¹")
+                print(f"      Energy: {stretching_energy:.4f} eV")
+                
+                # Write the stretching mode to a trajectory file
+                try:
+                    vib.write_mode(stretching_mode)
+                    print(f"    ✓ Mode written to {vib_name}.{stretching_mode}.traj")
+                except:
+                    pass
+                
+                # Get zero-point energy (all modes)
+                vib_data = vib.get_vibrations()
+                zero_point = vib_data.get_zero_point_energy()
+                print(f"    Total zero-point energy: {zero_point:.4f} eV")
+                
+            else:
+                stretching_freq = 0.0
+                print(f"    ⚠ No stretching mode found!")
+            
+            # Clean up
+            try:
+                vib.clean()
+            except:
+                pass
+            
+            return stretching_freq
+            
+        except Exception as e:
+            print(f"  Error in full vibration calculation: {e}")
             return 0.0
     
     def analyze_molecule(self, molecule_name, properties):
@@ -400,7 +504,7 @@ class QEDiatomicAnalyzer:
         # Update calculator for this molecule
         self._update_calculator_for_molecule(unique_symbols)
         
-        # Get equilibrium distance with per-molecule naming
+        # Get equilibrium distance
         fmax = self.config.get('general', {}).get('fmax', 0.001)
         max_steps = self.config.get('general', {}).get('max_steps', 100)
         
@@ -416,63 +520,140 @@ class QEDiatomicAnalyzer:
         
         print(f"  ✓ Equilibrium bond distance: {eq_dist:.4f} Å")
         
-        # Choose frequency calculation method
-        vib_method = self.qe_config.get('vibration_method', '1d')
+        # Determine which methods to use
+        vib_method = self.qe_config.get('vibration_method', 'xonly')
         
-        print(f"  Calculating vibrational frequency using method: {vib_method}")
-        delta = self.qe_config.get('delta', 0.005)
+        # Dictionary to store results
+        freq_results = {}
         
-        import time
-        start_time = time.time()
+        # Method 1: 1D Scan (fastest)
+        if vib_method in ['1d', 'both']:
+            print(f"\n  Method 1: 1D Scan (quadratic fit)")
+            delta = self.qe_config.get('1d_settings', {}).get('delta', 0.005)
+            n_points = self.qe_config.get('1d_settings', {}).get('n_points', 7)
+            
+            start_time = time.time()
+            freq_1d = self.calculate_vibrational_frequency_1d(opt_atoms, molecule_name, delta, n_points)
+            elapsed_1d = time.time() - start_time
+            
+            if freq_1d > 0:
+                print(f"    ✓ 1D Scan: {freq_1d:.2f} cm⁻¹ (took {elapsed_1d:.1f}s, {n_points} SCF)")
+            freq_results['1d'] = {'freq': freq_1d, 'time': elapsed_1d, 'scf': n_points}
         
+        # Method 2: X-Only Hessian (recommended for diatomics)
+        if vib_method in ['xonly', 'both']:
+            print(f"\n  Method 2: X-Only Hessian (only along bond)")
+            delta = self.qe_config.get('xonly_settings', {}).get('delta', 0.005)
+            nfree = self.qe_config.get('xonly_settings', {}).get('nfree', 2)
+            scf_count = 2 * nfree  # Only x-direction
+            
+            start_time = time.time()
+            freq_xonly = self.calculate_vibrational_frequency_xonly(opt_atoms, molecule_name, delta, nfree)
+            elapsed_xonly = time.time() - start_time
+            
+            if freq_xonly > 0:
+                print(f"    ✓ X-Only Hessian: {freq_xonly:.2f} cm⁻¹ (took {elapsed_xonly:.1f}s, {scf_count} SCF)")
+            freq_results['xonly'] = {'freq': freq_xonly, 'time': elapsed_xonly, 'scf': scf_count}
+        
+        # Method 3: Full 3D Hessian (most accurate, slowest)
+        if vib_method in ['full', 'both']:
+            print(f"\n  Method 3: Full 3D Hessian (all directions)")
+            delta = self.qe_config.get('full_settings', {}).get('delta', 0.005)
+            nfree = self.qe_config.get('full_settings', {}).get('nfree', 2)
+            scf_count = 2 * nfree * 3 * 2  # 2 atoms × 3 directions × 2 displacements
+            
+            start_time = time.time()
+            freq_full = self.calculate_vibrational_frequency_full(opt_atoms, molecule_name, delta, nfree)
+            elapsed_full = time.time() - start_time
+            
+            if freq_full > 0:
+                print(f"    ✓ Full Hessian: {freq_full:.2f} cm⁻¹ (took {elapsed_full:.1f}s, {scf_count} SCF)")
+            freq_results['full'] = {'freq': freq_full, 'time': elapsed_full, 'scf': scf_count}
+        
+        # Print comparison table
+        if len(freq_results) > 1:
+            print(f"\n  {'='*50}")
+            print(f"  VIBRATION METHOD COMPARISON")
+            print(f"  {'='*50}")
+            print(f"  {'Method':<15} {'Frequency (cm⁻¹)':<18} {'Time (s)':<12} {'SCF count':<12}")
+            print(f"  {'-'*50}")
+            
+            method_names = {
+                '1d': '1D Scan',
+                'xonly': 'X-Only Hessian',
+                'full': 'Full 3D Hessian'
+            }
+            
+            for method, data in freq_results.items():
+                freq = data['freq']
+                freq_str = f"{freq:.2f}" if freq > 0 else "Failed"
+                print(f"  {method_names[method]:<15} {freq_str:<18} {data['time']:<12.1f} {data['scf']:<12}")
+            
+            print(f"  {'='*50}")
+        
+        # Select primary method (priority: full > xonly > 1d)
         if vib_method == 'full':
-            # Use full ASE Vibrations class
-            nfree = self.qe_config.get('nfree', 2)
-            freq_cm1 = self.calculate_vibrational_frequency_full(opt_atoms, molecule_name, delta, nfree)
-        else:
-            # Use 1D scan (default, faster)
-            n_points = self.qe_config.get('n_points', 7)
-            freq_cm1 = self.calculate_vibrational_frequency_1d(opt_atoms, molecule_name, delta, n_points)
+            primary_method = 'full'
+        elif vib_method == 'xonly':
+            primary_method = 'xonly'
+        elif vib_method == '1d':
+            primary_method = '1d'
+        else:  # 'both'
+            # Use xonly if available, otherwise full, otherwise 1d
+            if freq_results.get('xonly', {}).get('freq', 0) > 0:
+                primary_method = 'xonly'
+            elif freq_results.get('full', {}).get('freq', 0) > 0:
+                primary_method = 'full'
+            else:
+                primary_method = '1d'
         
-        elapsed = time.time() - start_time
+        final_freq = freq_results.get(primary_method, {}).get('freq', 0)
         
-        if freq_cm1 > 0:
-            print(f"  ✓ Vibrational frequency: {freq_cm1:.2f} cm⁻¹ (took {elapsed:.1f} seconds)")
-        else:
-            print(f"  ✗ Frequency calculation failed")
-        
-        # Get experimental reference values
+        # Get experimental reference
         ref_data = properties.get('reference', {})
-        exp_d_eq = ref_data.get('d_eq', None)
-        exp_freq = ref_data.get('freq', None)
-        ref_source = ref_data.get('source', 'Unknown')
+        exp_freq = ref_data.get('freq')
+        exp_d_eq = ref_data.get('d_eq')
         
-        # Calculate errors if experimental values exist
-        d_eq_error = abs(eq_dist - exp_d_eq) / exp_d_eq * 100 if exp_d_eq else None
-        freq_error = abs(freq_cm1 - exp_freq) / exp_freq * 100 if exp_freq and freq_cm1 > 0 else None
+        # Calculate errors
+        d_eq_error = None
+        freq_error = None
+        
+        if exp_d_eq and eq_dist > 0:
+            d_eq_error = abs(eq_dist - exp_d_eq) / exp_d_eq * 100
+        
+        if exp_freq and final_freq > 0:
+            freq_error = abs(final_freq - exp_freq) / exp_freq * 100
         
         results = {
             'molecule': molecule_name,
             'symbols': symbols,
-            'calculator': 'Quantum ESPRESSO (ONCVPSP PBE)',
             'equilibrium_distance': eq_dist,
             'exp_equilibrium_distance': exp_d_eq,
             'd_eq_error_percent': d_eq_error,
-            'vibrational_frequency_cm1': freq_cm1,
+            'vibrational_frequency_cm1': final_freq,
             'exp_vibrational_frequency': exp_freq,
             'freq_error_percent': freq_error,
-            'reference_source': ref_source,
-            'vibration_method': vib_method,
-            'calculation_time': elapsed,
+            'vibration_method': primary_method,
+            'freq_1d': freq_results.get('1d', {}).get('freq', 0),
+            'freq_xonly': freq_results.get('xonly', {}).get('freq', 0),
+            'freq_full': freq_results.get('full', {}).get('freq', 0),
+            'time_1d': freq_results.get('1d', {}).get('time', 0),
+            'time_xonly': freq_results.get('xonly', {}).get('time', 0),
+            'time_full': freq_results.get('full', {}).get('time', 0),
+            'reference_source': ref_data.get('source', 'Unknown'),
             'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         }
         
         # Print comparison with experiment
-        print(f"\n  Comparison with experiment:")
+        print(f"\n  {'='*50}")
+        print(f"  COMPARISON WITH EXPERIMENT")
+        print(f"  {'='*50}")
         if exp_d_eq:
             print(f"    Bond length: {eq_dist:.4f} Å (exp: {exp_d_eq:.4f} Å, error: {d_eq_error:.2f}%)")
-        if exp_freq and freq_cm1 > 0:
-            print(f"    Frequency: {freq_cm1:.2f} cm⁻¹ (exp: {exp_freq:.2f} cm⁻¹, error: {freq_error:.2f}%)")
+        if exp_freq and final_freq > 0:
+            print(f"    Frequency: {final_freq:.2f} cm⁻¹ (exp: {exp_freq:.2f} cm⁻¹, error: {freq_error:.2f}%)")
+            print(f"    Method used: {primary_method}")
+        print(f"  {'='*50}")
         
         return results, opt_atoms
 
@@ -492,7 +673,7 @@ def load_config(config_file='config_qe.yaml'):
         sys.exit(1)
 
 def save_results(results, config):
-    """Save results to files."""
+    """Save results to files with all three methods compared."""
     output_config = config.get('output', {})
     output_dir = output_config.get('output_dir', 'results_qe')
     os.makedirs(output_dir, exist_ok=True)
@@ -501,9 +682,12 @@ def save_results(results, config):
     csv_file = os.path.join(output_dir, 'summary.csv')
     with open(csv_file, 'w') as f:
         # Write header with all fields
-        f.write("Molecule,Symbols,Calculator,d_eq_calc(Å),d_eq_exp(Å),d_eq_error(%),"
-                "freq_calc(cm⁻¹),freq_exp(cm⁻¹),freq_error(%),"
-                "Reference,Method,Time(s),Timestamp\n")
+        f.write("Molecule,Symbols,d_eq_calc(Å),d_eq_exp(Å),d_eq_error(%),"
+                "freq_1d(cm⁻¹),time_1d(s),"
+                "freq_xonly(cm⁻¹),time_xonly(s),"
+                "freq_full(cm⁻¹),time_full(s),"
+                "freq_final(cm⁻¹),freq_exp(cm⁻¹),freq_error(%),"
+                "Method,Reference,Timestamp\n")
         
         for mol_name, mol_result in results.items():
             if mol_result:
@@ -513,19 +697,21 @@ def save_results(results, config):
                 freq_exp = mol_result.get('exp_vibrational_frequency', 'N/A')
                 freq_error = f"{mol_result.get('freq_error_percent', 0):.2f}" if mol_result.get('freq_error_percent') is not None else 'N/A'
                 
-                f.write(f"{mol_name},{symbols},Quantum ESPRESSO (ONCVPSP PBE),"
+                f.write(f"{mol_name},{symbols},"
                        f"{mol_result['equilibrium_distance']:.4f},{d_eq_exp},{d_eq_error},"
-                       f"{mol_result['vibrational_frequency_cm1']:.2f},{freq_exp},{freq_error},"
-                       f"{mol_result.get('reference_source', 'N/A')},"
+                       f"{mol_result.get('freq_1d', 0):.2f},{mol_result.get('time_1d', 0):.1f},"
+                       f"{mol_result.get('freq_xonly', 0):.2f},{mol_result.get('time_xonly', 0):.1f},"
+                       f"{mol_result.get('freq_full', 0):.2f},{mol_result.get('time_full', 0):.1f},"
+                       f"{mol_result.get('vibrational_frequency_cm1', 0):.2f},{freq_exp},{freq_error},"
                        f"{mol_result.get('vibration_method', 'N/A')},"
-                       f"{mol_result.get('calculation_time', 0):.1f},"
+                       f"{mol_result.get('reference_source', 'N/A')},"
                        f"{mol_result.get('timestamp', 'N/A')}\n")
     
     print(f"✓ Results saved to {csv_file}")
     
-    # Create a human-readable summary
-    summary_file = os.path.join(output_dir, 'summary.txt')
-    with open(summary_file, 'w') as f:
+    # Create human-readable summary
+    txt_file = os.path.join(output_dir, 'summary.txt')
+    with open(txt_file, 'w') as f:
         f.write("="*80 + "\n")
         f.write("DIATOMIC MOLECULE ANALYSIS SUMMARY\n")
         f.write("="*80 + "\n\n")
@@ -548,13 +734,23 @@ def save_results(results, config):
                     error = mol_result.get('freq_error_percent', 0)
                     f.write(f"  Experimental frequency: {exp_freq:.2f} cm⁻¹ (error: {error:.2f}%)\n")
                 
+                f.write(f"  Method used: {mol_result.get('vibration_method', 'N/A')}\n")
+                
+                # Show all method results if available
+                if mol_result.get('freq_1d', 0) > 0 or mol_result.get('freq_xonly', 0) > 0 or mol_result.get('freq_full', 0) > 0:
+                    f.write(f"  All methods:\n")
+                    if mol_result.get('freq_1d', 0) > 0:
+                        f.write(f"    1D Scan: {mol_result['freq_1d']:.2f} cm⁻¹ (time: {mol_result.get('time_1d', 0):.1f}s)\n")
+                    if mol_result.get('freq_xonly', 0) > 0:
+                        f.write(f"    X-Only Hessian: {mol_result['freq_xonly']:.2f} cm⁻¹ (time: {mol_result.get('time_xonly', 0):.1f}s)\n")
+                    if mol_result.get('freq_full', 0) > 0:
+                        f.write(f"    Full Hessian: {mol_result['freq_full']:.2f} cm⁻¹ (time: {mol_result.get('time_full', 0):.1f}s)\n")
+                
                 f.write(f"  Reference source: {mol_result.get('reference_source', 'N/A')}\n")
-                f.write(f"  Vibration method: {mol_result.get('vibration_method', 'N/A')}\n")
-                f.write(f"  Calculation time: {mol_result.get('calculation_time', 0):.1f} seconds\n")
                 f.write(f"  Timestamp: {mol_result.get('timestamp', 'N/A')}\n")
                 f.write("-"*40 + "\n")
     
-    print(f"✓ Human-readable summary saved to {summary_file}")
+    print(f"✓ Human-readable summary saved to {txt_file}")
 
 def compare_with_reference(results, config):
     """Compare with reference values from NIST."""
@@ -564,8 +760,6 @@ def compare_with_reference(results, config):
     print(f"{'Molecule':<10} {'Property':<15} {'Calculated':<15} {'Experimental':<15} {'Error (%)':<12} {'Status'}")
     print("-"*80)
     
-    comparisons = []
-    
     for mol_name, res in results.items():
         if res is None:
             continue
@@ -574,64 +768,24 @@ def compare_with_reference(results, config):
         exp_d_eq = res.get('exp_equilibrium_distance')
         exp_freq = res.get('exp_vibrational_frequency')
         
-        # Bond length comparison
         if exp_d_eq:
             dist_err = abs(res['equilibrium_distance'] - exp_d_eq) / exp_d_eq * 100
             d_eq_marker = "✓" if dist_err < 2 else "⚠" if dist_err < 5 else "✗"
             print(f"{mol_name:<10} {'d_eq (Å)':<15} {res['equilibrium_distance']:<15.4f} {exp_d_eq:<15.4f} {dist_err:<12.2f} {d_eq_marker}")
         
-        # Frequency comparison
         if exp_freq and freq > 0:
             freq_err = abs(freq - exp_freq) / exp_freq * 100
             freq_marker = "✓" if freq_err < 10 else "⚠" if freq_err < 20 else "✗"
-            print(f"{mol_name:<10} {'freq (cm⁻¹)':<15} {freq:<15.2f} {exp_freq:<15.2f} {freq_err:<12.2f} {freq_marker}")
+            method = res.get('vibration_method', 'N/A')
+            print(f"{mol_name:<10} {'freq (cm⁻¹)':<15} {freq:<15.2f} {exp_freq:<15.2f} {freq_err:<12.2f} {freq_marker} ({method})")
         
         print("-"*80)
-    
-    # Summary statistics
-    print("\n" + "="*80)
-    print("SUMMARY STATISTICS")
-    print("="*80)
-    
-    valid_results = [r for r in results.values() if r is not None]
-    
-    if valid_results:
-        # Bond length errors
-        d_eq_errors = [r.get('d_eq_error_percent') for r in valid_results if r.get('d_eq_error_percent') is not None]
-        if d_eq_errors:
-            avg_dist_err = np.mean(d_eq_errors)
-            max_dist_err = np.max(d_eq_errors)
-            min_dist_err = np.min(d_eq_errors)
-            print(f"\n  Bond Length Errors:")
-            print(f"    Average: {avg_dist_err:.2f}%")
-            print(f"    Maximum: {max_dist_err:.2f}%")
-            print(f"    Minimum: {min_dist_err:.2f}%")
-        
-        # Frequency errors
-        freq_errors = [r.get('freq_error_percent') for r in valid_results if r.get('freq_error_percent') is not None and r.get('freq_error_percent') < 1000]
-        if freq_errors:
-            avg_freq_err = np.mean(freq_errors)
-            max_freq_err = np.max(freq_errors)
-            min_freq_err = np.min(freq_errors)
-            print(f"\n  Frequency Errors:")
-            print(f"    Average: {avg_freq_err:.2f}%")
-            print(f"    Maximum: {max_freq_err:.2f}%")
-            print(f"    Minimum: {min_freq_err:.2f}%")
-        
-        # Overall assessment
-        if d_eq_errors and freq_errors:
-            if avg_dist_err < 2 and avg_freq_err < 10:
-                print("\n  ✓ Excellent agreement with experimental values")
-            elif avg_dist_err < 5 and avg_freq_err < 20:
-                print("\n  ✓ Good agreement with experimental values")
-            else:
-                print("\n  ⚠ Moderate agreement - consider improving convergence parameters")
 
 def main():
     """Main execution function."""
     print("="*80)
     print("Diatomic Molecule Analysis with Quantum ESPRESSO")
-    print("Using ASE Vibrations for Full Vibrational Analysis")
+    print("Full Vibrational Analysis with Multiple Methods")
     print("="*80)
     
     config = load_config('config_qe.yaml')
@@ -640,14 +794,15 @@ def main():
     print("CALCULATION SETTINGS")
     print("="*60)
     qe_config = config.get('qe', {})
-    vib_method = qe_config.get('vibration_method', '1d')
+    vib_method = qe_config.get('vibration_method', 'xonly')
     
     print(f"  Vibration method: {vib_method}")
-    if vib_method == 'full':
-        print(f"    nfree: {qe_config.get('nfree', 2)}")
-    else:
-        print(f"    n_points: {qe_config.get('n_points', 7)}")
-    print(f"  delta: {qe_config.get('delta', 0.005)} Å")
+    if vib_method in ['1d', 'both']:
+        print(f"    1D Scan: n_points={qe_config.get('1d_settings', {}).get('n_points', 7)}, delta={qe_config.get('1d_settings', {}).get('delta', 0.005)} Å")
+    if vib_method in ['xonly', 'both']:
+        print(f"    X-Only Hessian: nfree={qe_config.get('xonly_settings', {}).get('nfree', 2)}, delta={qe_config.get('xonly_settings', {}).get('delta', 0.005)} Å")
+    if vib_method in ['full', 'both']:
+        print(f"    Full Hessian: nfree={qe_config.get('full_settings', {}).get('nfree', 2)}, delta={qe_config.get('full_settings', {}).get('delta', 0.005)} Å")
     
     # Show which molecules will be calculated
     molecules_to_calc = config.get('molecules_to_calculate', {})
@@ -661,7 +816,6 @@ def main():
     results = {}
     
     for mol_name, properties in molecules.items():
-        # Check if this molecule should be calculated
         if not molecules_to_calc.get(mol_name, False):
             print(f"\n⏭ Skipping {mol_name} (disabled in config)")
             continue
@@ -690,12 +844,12 @@ def main():
     output_dir = output_config.get('output_dir', 'results_qe')
     print(f"  Results saved in: {output_dir}/")
     print("\n  Files generated:")
-    print(f"    - {output_dir}/summary.csv: All calculated properties with experimental comparison")
+    print(f"    - {output_dir}/summary.csv: All calculated properties")
     print(f"    - {output_dir}/summary.txt: Human-readable summary")
     print(f"    - {output_dir}/*_qe_opt.xyz: Optimized structures")
     print("    - *_opt.traj: Per-molecule optimization trajectories")
     print("    - *_opt.log: Per-molecule optimization logs")
-    if vib_method == 'full':
+    if vib_method in ['full', 'both']:
         print("    - vib/*.json: Vibration displacement files")
         print("    - vib/*.traj: Vibrational mode trajectories")
     print("="*80)

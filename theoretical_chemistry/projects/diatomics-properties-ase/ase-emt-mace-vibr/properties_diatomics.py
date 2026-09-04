@@ -123,32 +123,6 @@ class DiatomicAnalyzer:
             return opt_atoms.get_distance(0, 1), opt_atoms
         return initial_distance, None
     
-    def calculate_dissociation_energy(self, atoms):
-        """Calculate dissociation energy."""
-        if atoms is None or self.calculator is None:
-            return 0.0, 0.0
-        
-        try:
-            # Energy of the molecule
-            molecule_energy = atoms.get_potential_energy()
-            
-            # Energy of isolated atoms (far apart)
-            symbols = atoms.get_chemical_symbols()
-            far_distance = 10.0
-            far_atoms = Atoms(symbols, positions=[(0, 0, 0), (far_distance, 0, 0)])
-            far_atoms.set_calculator(self.calculator)
-            atom_energy = far_atoms.get_potential_energy()
-            
-            # Dissociation energy (positive for bound molecule)
-            diss_energy = atom_energy - molecule_energy
-            diss_energy_eV = diss_energy
-            diss_energy_kJmol = diss_energy * 96.485  # 1 eV = 96.485 kJ/mol
-            
-            return diss_energy_eV, diss_energy_kJmol
-        except Exception as e:
-            print(f"Error calculating dissociation energy: {e}")
-            return 0.0, 0.0
-    
     def calculate_vibrational_frequency_improved(self, atoms):
         """
         Calculate vibrational frequency using improved methods.
@@ -394,13 +368,6 @@ class DiatomicAnalyzer:
         
         print(f"✓ Equilibrium bond distance: {eq_dist:.4f} Å")
         
-        # Calculate dissociation energy
-        diss_eV, diss_kJmol = self.calculate_dissociation_energy(opt_atoms)
-        if diss_eV > 0:
-            print(f"✓ Dissociation energy: {diss_eV:.4f} eV ({diss_kJmol:.2f} kJ/mol)")
-        else:
-            print(f"⚠ Dissociation energy calculation may be incorrect: {diss_eV:.4f} eV")
-        
         # Calculate vibrational frequency with improved method
         vib_method = advanced.get('vibrations', {}).get('method', 'polyfit')
         freq_cm1 = self.calculate_vibrational_frequency_improved(opt_atoms)
@@ -417,8 +384,6 @@ class DiatomicAnalyzer:
             'molecule': molecule_name,
             'calculator': self.calculator_name,
             'equilibrium_distance': eq_dist,
-            'dissociation_energy_eV': diss_eV,
-            'dissociation_energy_kJmol': diss_kJmol,
             'vibrational_frequency_cm1': freq_cm1,
             'vibration_method': vib_method
         }
@@ -443,8 +408,6 @@ def get_default_config():
     """Return default configuration."""
     return {
         'general': {
-            'temperature': 298.15,
-            'pressure': 101325,
             'fmax': 0.001,
             'max_steps': 100,
             'compare_with_reference': True,
@@ -494,7 +457,7 @@ def save_results(all_results, config):
     csv_file = os.path.join(output_dir, 'summary.csv')
     with open(csv_file, 'w') as f:
         # Write header
-        f.write("Molecule,Calculator,d_eq(Å),D_e(eV),D_e(kJ/mol),freq(cm⁻¹),freq_method\n")
+        f.write("Molecule,Calculator,d_eq(Å),freq(cm⁻¹),freq_method\n")
         
         for calc_name, calc_results in all_results.items():
             for mol_name, mol_result in calc_results.items():
@@ -504,8 +467,6 @@ def save_results(all_results, config):
                         freq = 0.0
                     f.write(f"{mol_name},{calc_name},"
                            f"{mol_result['equilibrium_distance']:.4f},"
-                           f"{mol_result['dissociation_energy_eV']:.4f},"
-                           f"{mol_result['dissociation_energy_kJmol']:.2f},"
                            f"{freq:.2f},"
                            f"{mol_result.get('vibration_method', 'N/A')}\n")
     
@@ -519,10 +480,10 @@ def compare_with_reference_combined(config, all_results):
     
     # Reference values from NIST
     reference = {
-        'N2': {'d_eq': 1.0977, 'D_e': 9.76, 'freq': 2358.6},
-        'H2': {'d_eq': 0.7414, 'D_e': 4.52, 'freq': 4401.2},
-        'F2': {'d_eq': 1.4119, 'D_e': 1.60, 'freq': 917.0},
-        'O2': {'d_eq': 1.2075, 'D_e': 5.12, 'freq': 1580.2}
+        'N2': {'d_eq': 1.0977, 'freq': 2358.6},
+        'H2': {'d_eq': 0.7414, 'freq': 4401.2},
+        'F2': {'d_eq': 1.4119, 'freq': 917.0},
+        'O2': {'d_eq': 1.2075, 'freq': 1580.2}
     }
     
     # Collect results from all calculators
@@ -533,11 +494,9 @@ def compare_with_reference_combined(config, all_results):
             continue
             
         ref = reference[mol_name]
-        print(f"\n{mol_name} Reference: d_eq={ref['d_eq']:.4f} Å, "
-              f"D_e={ref['D_e']:.2f} eV, freq={ref['freq']:.1f} cm⁻¹")
+        print(f"\n{mol_name} Reference: d_eq={ref['d_eq']:.4f} Å, freq={ref['freq']:.1f} cm⁻¹")
         print("-"*80)
         print(f"{'Calculator':<12} {'d_eq (Å)':<15} {'Error %':<10} "
-              f"{'D_e (eV)':<15} {'Error %':<10} "
               f"{'freq (cm⁻¹)':<15} {'Error %':<10} {'Method':<10}")
         print("-"*80)
         
@@ -555,7 +514,6 @@ def compare_with_reference_combined(config, all_results):
                 
             # Calculate errors
             dist_err = abs(res['equilibrium_distance'] - ref['d_eq']) / ref['d_eq'] * 100
-            diss_err = abs(res['dissociation_energy_eV'] - ref['D_e']) / ref['D_e'] * 100 if ref['D_e'] > 0 else 0
             freq_err = abs(freq_calc - ref['freq']) / ref['freq'] * 100 if ref['freq'] > 0 and freq_calc > 0 else 999.0
             
             # Store for CSV
@@ -565,9 +523,6 @@ def compare_with_reference_combined(config, all_results):
                 'd_eq_calc': res['equilibrium_distance'],
                 'd_eq_ref': ref['d_eq'],
                 'd_eq_error': dist_err,
-                'D_e_calc': res['dissociation_energy_eV'],
-                'D_e_ref': ref['D_e'],
-                'D_e_error': diss_err,
                 'freq_calc': freq_calc,
                 'freq_ref': ref['freq'],
                 'freq_error': freq_err,
@@ -576,13 +531,10 @@ def compare_with_reference_combined(config, all_results):
             
             # Determine best performance indicators
             d_eq_marker = "✓" if dist_err < 5 else "⚠" if dist_err < 20 else "✗"
-            diss_marker = "✓" if diss_err < 10 else "⚠" if diss_err < 30 else "✗"
             freq_marker = "✓" if freq_err < 10 else "⚠" if freq_err < 30 else "✗" if freq_err < 999 else "✗"
             
             print(f"{calc_name:<12} {res['equilibrium_distance']:<15.4f} "
                   f"{dist_err:<10.2f}{d_eq_marker} "
-                  f"{res['dissociation_energy_eV']:<15.4f} "
-                  f"{diss_err:<10.2f}{diss_marker} "
                   f"{freq_calc:<15.2f} "
                   f"{freq_err:<10.2f}{freq_marker} "
                   f"{res.get('vibration_method', 'N/A'):<10}")
@@ -607,7 +559,6 @@ def compare_with_reference_combined(config, all_results):
             if calc_data:
                 valid_data = [c for c in calc_data if c['freq_error'] < 999]
                 avg_dist_err = np.mean([c['d_eq_error'] for c in calc_data])
-                avg_diss_err = np.mean([c['D_e_error'] for c in calc_data])
                 if valid_data:
                     avg_freq_err = np.mean([c['freq_error'] for c in valid_data])
                 else:
@@ -615,7 +566,6 @@ def compare_with_reference_combined(config, all_results):
                 
                 print(f"\n{calc_name}:")
                 print(f"  Average d_eq error: {avg_dist_err:.2f}%")
-                print(f"  Average D_e error: {avg_diss_err:.2f}%")
                 if avg_freq_err < 999:
                     print(f"  Average freq error: {avg_freq_err:.2f}%")
                 else:
@@ -674,14 +624,13 @@ def run_analysis(config):
             print(f"\n{'='*60}")
             print(f"Summary for {calc_name}")
             print(f"{'='*60}")
-            print(f"{'Molecule':<8} {'d_eq (Å)':<10} {'D_e (eV)':<12} {'freq (cm⁻¹)':<12} {'Method':<10}")
-            print("-"*55)
+            print(f"{'Molecule':<8} {'d_eq (Å)':<10} {'freq (cm⁻¹)':<12} {'Method':<10}")
+            print("-"*45)
             for mol, res in results.items():
                 freq = res.get('vibrational_frequency_cm1', 0.0)
                 if freq is None or np.isnan(freq):
                     freq = 0.0
                 print(f"{mol:<8} {res['equilibrium_distance']:<10.4f} "
-                      f"{res['dissociation_energy_eV']:<12.4f} "
                       f"{freq:<12.2f} "
                       f"{res.get('vibration_method', 'N/A'):<10}")
         else:

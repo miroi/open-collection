@@ -1,0 +1,53 @@
+(mace_env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/projects/adsorptions_with_ase/N2_on_gold/.python N2Au111_EMT_MACE.py
+/home/miroi/miniconda3/envs/mace_env/lib/python3.13/site-packages/e3nn/o3/_wigner.py:10: UserWarning: Environment variable TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD detected, since the`weights_only` argument was not explicitly passed to `torch.load`, forcing weights_only=False.
+  _Jd, _W3j_flat, _W3j_indices = torch.load(os.path.join(os.path.dirname(__file__), 'constants.pt'))
+cuequivariance or cuequivariance_torch is not available. Cuequivariance acceleration will be disabled.
+Using Materials Project MACE for MACECalculator with /home/miroi/.cache/mace/20231203mace128L1_epoch199model
+Using float64 for MACECalculator, which is slower but more accurate. Recommended for geometry optimization.
+/home/miroi/miniconda3/envs/mace_env/lib/python3.13/site-packages/mace/calculators/mace.py:226: UserWarning: Environment variable TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD detected, since the`weights_only` argument was not explicitly passed to `torch.load`, forcing weights_only=False.
+  torch.load(f=model_path, map_location=device)
+
+========================================
+ Running with EMT Calculator
+========================================
+ Relaxing clean Au(111) slab with EMT...
+ Relaxing N2 + top 2 layers of Au(111) with EMT...
+                Step[ FC]     Time          Energy          fmax
+BFGSLineSearch:    0[  0] 22:41:55       18.478148       3.5727
+BFGSLineSearch:    1[  1] 22:41:55       18.181581       2.3896
+BFGSLineSearch:    2[  3] 22:41:55       18.098493       1.1331
+BFGSLineSearch:    3[  4] 22:41:55       18.032492       0.2337
+BFGSLineSearch:    4[  6] 22:41:55       18.011232       0.2163
+BFGSLineSearch:    5[  8] 22:41:55       17.985786       0.1924
+BFGSLineSearch:    6[ 10] 22:41:55       17.976049       0.0606
+BFGSLineSearch:    7[ 11] 22:41:55       17.973642       0.0249
+BFGSLineSearch:    8[ 12] 22:41:55       17.972526       0.0122
+
+========================================
+ Running with MACE Calculator
+========================================
+ Relaxing clean Au(111) slab with MACE...
+ Relaxing N2 + top 2 layers of Au(111) with MACE...
+                Step[ FC]     Time          Energy          fmax
+BFGSLineSearch:    0[  0] 22:42:08     -460.849838       2.9438
+BFGSLineSearch:    1[  2] 22:42:11     -460.941337       4.4456
+BFGSLineSearch:    2[  4] 22:42:14     -461.132760       0.6910
+BFGSLineSearch:    3[  5] 22:42:16     -461.144712       0.1875
+BFGSLineSearch:    4[  7] 22:42:19     -461.157849       0.6366
+BFGSLineSearch:    5[  9] 22:42:22     -461.188875       0.6238
+BFGSLineSearch:    6[ 11] 22:42:25     -461.277684       1.8163
+BFGSLineSearch:    7[ 12] 22:42:26     -461.294638       2.1474
+BFGSLineSearch:    8[ 14] 22:42:30     -461.446586       2.1446
+BFGSLineSearch:    9[ 16] 22:42:34     -461.508492       0.4279
+BFGSLineSearch:   10[ 18] 22:42:38     -461.526600       0.0803
+BFGSLineSearch:   11[ 20] 22:42:41     -461.541865       0.1856
+BFGSLineSearch:   12[ 22] 22:42:44     -461.551939       0.0735
+BFGSLineSearch:   13[ 24] 22:42:47     -461.556148       0.0393
+BFGSLineSearch:   14[ 26] 22:42:50     -461.557438       0.0315
+BFGSLineSearch:   15[ 28] 22:42:54     -461.557869       0.0294
+BFGSLineSearch:   16[ 30] 22:42:57     -461.558083       0.0057
+
+=================== FINAL COMPARISON (RELAXED SURFACE) ===================
+Calculator  E_slab (eV)  E_N2 (eV)  E_combined (eV)  E_ads (+ favorable)  E_ads (- favorable)
+       EMT      17.8028     0.4403          17.9725               0.2706              -0.2706
+      MACE    -445.2994   -16.2139        -461.5581               0.0448              -0.0448

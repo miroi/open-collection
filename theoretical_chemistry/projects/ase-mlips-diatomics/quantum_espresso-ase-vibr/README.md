@@ -14,3 +14,23 @@ This package performs geometry optimization and vibrational frequency calculatio
 - MPI parallelization support
 
 ## File Structure
+
+## Summary of All Files
+
+| File | Description |
+|------|-------------|
+| `config_qe.yaml` | Configuration file |
+| `main.py` | Main entry point |
+| `config_loader.py` | Configuration loading |
+| `utils.py` | Utility functions |
+| `calculator.py` | QE calculator setup |
+| `vibration.py` | Vibration calculation methods |
+| `analysis.py` | Molecule analysis |
+| `io_utils.py` | Results saving and comparison |
+| `requirements.txt` | Python dependencies |
+| `README.md` | Documentation |
+
+**To run the code:**
+```bash
+pip install -r requirements.txt
+python main.py

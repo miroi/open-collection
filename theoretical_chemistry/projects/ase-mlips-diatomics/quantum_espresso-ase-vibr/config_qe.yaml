@@ -28,9 +28,8 @@ molecules:
     spin: 0
     symmetry: 2
     geometry: 'linear'
-    # Set to true to ONLY run geometry optimization for this molecule (skip frequencies)
-    only_geometry_optimization: false # false = full analysis, true = geometry only
-    eq_distance: 1.1031  # Uncomment to skip geometry optimization entirely
+    eq_distance: 1.1031  # Skip geometry optimization
+    only_geometry_optimization: false
     reference:
       d_eq: 1.0977
       freq: 2358.6
@@ -43,7 +42,6 @@ molecules:
     spin: 0
     symmetry: 2
     geometry: 'linear'
-    only_geometry_optimization: false
     # eq_distance: 0.7790
     reference:
       d_eq: 0.7414
@@ -57,7 +55,6 @@ molecules:
     spin: 1
     symmetry: 2
     geometry: 'linear'
-    only_geometry_optimization: false
     # eq_distance: 1.1003
     reference:
       d_eq: 1.2075
@@ -71,7 +68,6 @@ molecules:
     spin: 0
     symmetry: 2
     geometry: 'linear'
-    only_geometry_optimization: false
     # eq_distance: 1.4191
     reference:
       d_eq: 1.4119
@@ -85,7 +81,6 @@ molecules:
     spin: 0
     symmetry: 2
     geometry: 'linear'
-    only_geometry_optimization: false
     # eq_distance: 1.9879
     reference:
       d_eq: 1.9879
@@ -101,14 +96,18 @@ qe:
   
   pseudo_dir: './pseudopotentials/'
   pseudopotentials:
-    H: 'H.upf'
     N: 'N.upf'
+    H: 'H.upf'
     O: 'O.upf'
     F: 'F.upf'
     Cl: 'Cl.upf'
   
-  ecutwfc: 80.0
-  ecutrho: 320.0
+  # ============================================================
+  # IMPORTANT: For ONCVPSP norm-conserving pseudopotentials,
+  # use HIGHER cutoff energies!
+  # ============================================================
+  ecutwfc: 100.0          # INCREASED from 80 to 100 Ry
+  ecutrho: 400.0          # INCREASED from 320 to 400 Ry (4x ecutwfc)
   kpts: [1, 1, 1]
   smearing: 'gaussian'
   degauss: 0.01
@@ -118,24 +117,24 @@ qe:
   
   # Vibration settings
   # Options: '1d', 'xonly', 'full', '1d+xonly', '1d+full', 'xonly+full', 'all'
-  vibration_method: '1d+xonly'  # RECOMMENDED for diatomics
+  vibration_method: '1d+xonly'  # Run both methods for comparison
   
   # 1D Scan parameters
   1d_settings:
-    delta: 0.1              # Scan range (Å) - smaller for better accuracy
-    n_points: 9               # Number of points for the scan
-    refined_delta: 0.05     # Refined scan range (Å) - even smaller for high accuracy
-    refined_n_points: 11      # Number of points for refined scan
+    delta: 0.01
+    n_points: 9
+    refined_delta: 0.005
+    refined_n_points: 11
   
   # X-Only Hessian parameters
   xonly_settings:
-    delta: 0.001              # Displacement range (Å)
-    nfree: 2                  # Number of displacements per direction
+    delta: 0.001
+    nfree: 2
   
   # Full 3D Hessian parameters
   full_settings:
-    delta: 0.001              # Displacement range (Å)
-    nfree: 2                  # Number of displacements per direction
+    delta: 0.001
+    nfree: 2
 
 # Output settings
 output:

@@ -11,3 +11,5 @@ with MACE, allow both pbc=true and false
 python properties_diatomics.py > properties_diatomics.py_logfileSAVED
 
 see https://chat.deepseek.com/share/11e9kiwmwfqsrr8d4f
+
+compare against Dip's N2, https://github.com/dipayanster/MatScProjects/tree/main/Vibration_tests/molecule/N2

@@ -96,18 +96,17 @@ qe:
   
   pseudo_dir: './pseudopotentials/'
   pseudopotentials:
-    N: 'N.upf'
+   # N: 'N.upf'
+    N: 'N.pbe-n-kjpaw_psl.1.0.0.UPF'
     H: 'H.upf'
     O: 'O.upf'
     F: 'F.upf'
     Cl: 'Cl.upf'
   
   # ============================================================
-  # IMPORTANT: For ONCVPSP norm-conserving pseudopotentials,
-  # use HIGHER cutoff energies!
   # ============================================================
-  ecutwfc: 100.0          # INCREASED from 80 to 100 Ry
-  ecutrho: 400.0          # INCREASED from 320 to 400 Ry (4x ecutwfc)
+  ecutwfc: 80.0   
+  ecutrho: 640.0 
   kpts: [1, 1, 1]
   smearing: 'gaussian'
   degauss: 0.01
@@ -121,9 +120,9 @@ qe:
   
   # 1D Scan parameters
   1d_settings:
-    delta: 0.01
+    delta: 0.1
     n_points: 9
-    refined_delta: 0.005
+    refined_delta: 0.05
     refined_n_points: 11
   
   # X-Only Hessian parameters

@@ -13,7 +13,6 @@ molecules:
   N2:
     symbols: ['N', 'N']
     initial_distance: 1.2
-    mass: 28.0134
     spin: 0
     symmetry: 2
     geometry: 'linear'
@@ -25,7 +24,6 @@ molecules:
   H2:
     symbols: ['H', 'H']
     initial_distance: 0.8
-    mass: 2.01588
     spin: 0
     symmetry: 2
     geometry: 'linear'
@@ -37,7 +35,6 @@ molecules:
   F2:
     symbols: ['F', 'F']
     initial_distance: 1.4
-    mass: 37.9968
     spin: 0
     symmetry: 2
     geometry: 'linear'
@@ -49,7 +46,6 @@ molecules:
   O2:
     symbols: ['O', 'O']
     initial_distance: 1.3
-    mass: 31.9988
     spin: 1
     symmetry: 2
     geometry: 'linear'
@@ -76,12 +72,16 @@ output:
   verbose: true
   output_dir: 'results'
 
-# Advanced settings
+# Advanced settings - Using ASE Vibrations (Full Hessian)
 advanced:
   vibrations:
-    delta: 0.005          # Displacement for finite differences
-    nfree: 4              # Number of displacements per mode
-    method: 'numeric'     # Options: 'freq', 'polyfit', 'numeric'
+    delta: 0.01           # Displacement for finite differences (Å)
+                          # - Larger delta (0.01) gives better numerical stability
+                          # - Smaller delta (0.005) gives better accuracy
+                          # - 0.01 is recommended for most calculations
+    nfree: 2              # Number of displacements per direction
+                          # - nfree=2 gives 24 SCF calculations for diatomics
+                          # - Higher nfree = more accurate but slower
   
   optimization:
     algorithm: 'BFGS'

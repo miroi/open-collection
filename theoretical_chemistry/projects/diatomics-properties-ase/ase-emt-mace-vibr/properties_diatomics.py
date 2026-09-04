@@ -123,205 +123,117 @@ class DiatomicAnalyzer:
             return opt_atoms.get_distance(0, 1), opt_atoms
         return initial_distance, None
     
-    def calculate_vibrational_frequency_improved(self, atoms):
+    def calculate_vibrational_frequency(self, atoms, delta=0.01, nfree=2):
         """
-        Calculate vibrational frequency using improved methods.
+        Calculate vibrational frequency using ASE's Vibrations class (Full Hessian).
+        This method uses FORCES to compute the Hessian, which is much more accurate
+        than using energy differences.
+        
         Returns frequency in cm^-1.
         """
         if atoms is None or self.calculator is None:
             return 0.0
         
         try:
-            # Get vibration parameters from config
-            vib_params = self.calculator_params.get('vibrations', {})
-            method = vib_params.get('method', 'polyfit')
-            delta = vib_params.get('delta', 0.005)
-            nfree = vib_params.get('nfree', 4)
+            print(f"    Using ASE Vibrations (Full Hessian) with delta={delta}, nfree={nfree}")
             
-            if method == 'freq':
-                return self._calculate_frequency_standard(atoms, delta, nfree)
-            elif method == 'polyfit':
-                return self._calculate_frequency_polyfit_fixed(atoms)
-            elif method == 'numeric':
-                return self._calculate_frequency_numeric_fixed(atoms)
-            else:
-                return self._calculate_frequency_standard(atoms, delta, nfree)
-                
-        except Exception as e:
-            print(f"Error calculating vibrational frequency: {e}")
-            return 0.0
-    
-    def _calculate_frequency_standard(self, atoms, delta=0.005, nfree=4):
-        """Standard vibrational frequency calculation using ASE's Vibrations."""
-        try:
-            vib = Vibrations(atoms, indices=[0, 1], delta=delta, nfree=nfree)
+            # Set calculator
+            atoms.set_calculator(self.calculator)
+            
+            # Create Vibrations object - only vibrate atoms 0 and 1
+            vib = Vibrations(
+                atoms, 
+                indices=[0, 1],  # Only vibrate the two atoms
+                name='vib',      # Name for output files
+                delta=delta,     # Displacement for finite differences
+                nfree=nfree      # Number of displacements per direction
+            )
+            
+            # Run the calculations
+            total_calcs = 2 * nfree * 3 * 2  # 2 atoms × 3 directions × 2 displacements
+            print(f"    Running {total_calcs} displacement calculations...")
             vib.run()
             
             # Get frequencies in cm^-1
             frequencies = vib.get_frequencies()
             
-            # For diatomic, take the first non-zero frequency
-            valid_freqs = [f for f in frequencies if abs(f) > 0.5]
+            # Get energies in eV
+            energies = vib.get_energies()
             
-            if len(valid_freqs) > 0:
-                freq_cm1 = abs(valid_freqs[0])
+            # Print summary for debugging
+            print(f"\n    {'='*50}")
+            print(f"    FULL HESSIAN RESULTS")
+            print(f"    {'='*50}")
+            print(f"    {'Mode':<6} {'Energy (eV)':<15} {'Frequency (cm⁻¹)':<15} {'Type'}")
+            print(f"    {'-'*50}")
+            
+            # Classify modes and find the stretching mode
+            stretching_mode = None
+            stretching_freq = 0.0
+            stretching_energy = 0.0
+            
+            for i, (freq, energy) in enumerate(zip(frequencies, energies)):
+                freq_abs = abs(freq)
+                energy_abs = abs(energy)
+                
+                # Classify mode type
+                if freq_abs < 1.0:
+                    mode_type = "Translation"
+                elif freq_abs < 100.0:
+                    mode_type = "Rotation (numerical noise)"
+                else:
+                    mode_type = "STRETCHING ✓"
+                    # Store the stretching mode (highest frequency non-zero mode)
+                    if freq_abs > stretching_freq:
+                        stretching_freq = freq_abs
+                        stretching_energy = energy_abs
+                        stretching_mode = i
+                
+                # Print each mode
+                freq_str = f"{freq:.2f}" if freq_abs > 0.01 else "0.00"
+                print(f"    {i:<6} {energy_abs:<15.4f} {freq_str:<15} {mode_type}")
+            
+            print(f"    {'='*50}")
+            
+            # Now we have the stretching mode
+            if stretching_mode is not None:
+                print(f"\n    ✓ Stretching mode identified: Mode {stretching_mode}")
+                print(f"      Frequency: {stretching_freq:.2f} cm⁻¹")
+                print(f"      Energy: {stretching_energy:.4f} eV")
+                
+                # Write the stretching mode to a trajectory file for visualization
+                try:
+                    vib.write_mode(stretching_mode)
+                    print(f"    ✓ Mode written to vib.{stretching_mode}.traj")
+                except:
+                    pass
+                
+                # Get zero-point energy (all modes)
+                try:
+                    vib_data = vib.get_vibrations()
+                    zero_point = vib_data.get_zero_point_energy()
+                    print(f"    Total zero-point energy: {zero_point:.4f} eV")
+                except:
+                    pass
+                
             else:
-                freq_cm1 = 0.0
+                stretching_freq = 0.0
+                print(f"    ⚠ No stretching mode found!")
             
-            # Clean up vibration files
+            # Clean up
             try:
                 vib.clean()
             except:
                 pass
             
-            return freq_cm1
+            return stretching_freq
             
         except Exception as e:
-            print(f"Error in standard frequency calculation: {e}")
+            print(f"  Error in vibration calculation: {e}")
             return 0.0
     
-    def _calculate_frequency_polyfit_fixed(self, atoms, n_points=11, range_factor=0.02):
-        """
-        Calculate vibrational frequency by fitting the PES to a quadratic polynomial
-        near the equilibrium. This is more robust for flat PES.
-        """
-        try:
-            # Get equilibrium distance
-            r_eq = atoms.get_distance(0, 1)
-            symbols = atoms.get_chemical_symbols()
-            
-            # Sample points close to equilibrium (small range for better accuracy)
-            r_values = np.linspace(r_eq * (1 - range_factor), 
-                                  r_eq * (1 + range_factor), n_points)
-            energies = []
-            
-            for r in r_values:
-                temp_atoms = Atoms(symbols, positions=[(0, 0, 0), (r, 0, 0)])
-                temp_atoms.set_calculator(self.calculator)
-                energies.append(temp_atoms.get_potential_energy())
-            
-            # Fit to a quadratic polynomial (2nd order) for harmonic approximation
-            # E(r) = a0 + a1*(r-r0) + a2*(r-r0)^2
-            # Use r_eq as the reference point
-            r_shifted = r_values - r_eq
-            coeffs = np.polyfit(r_shifted, energies, 2)
-            
-            # The second derivative is 2 * coeffs[0] (for quadratic term)
-            # Note: polyfit returns coefficients in order [a2, a1, a0]
-            second_deriv = 2 * coeffs[0]  # eV/A^2
-            
-            # If second derivative is negative or too small, use the standard method
-            if second_deriv <= 0:
-                print(f"Warning: Negative second derivative ({second_deriv:.6f} eV/A^2), using standard method")
-                return self._calculate_frequency_standard(atoms)
-            
-            # Convert to frequency: omega = sqrt(k/mu) / (2*pi*c)
-            # k = second_deriv (in eV/A^2)
-            # Convert eV/A^2 to N/m: 1 eV/A^2 = 160.2177 N/m
-            k_Nm = second_deriv * 160.2177
-            
-            # Get reduced mass in kg
-            masses = [self._get_mass(sym) for sym in symbols]
-            reduced_mass_amu = (masses[0] * masses[1]) / (masses[0] + masses[1])
-            reduced_mass_kg = reduced_mass_amu * 1.66054e-27
-            
-            # Calculate frequency in Hz: omega = 1/(2*pi) * sqrt(k/m)
-            # For vibrational frequency: v = 1/(2*pi*c) * sqrt(k/mu)
-            # where c is the speed of light in cm/s
-            c_cm_s = 2.99792458e10  # cm/s
-            freq_cm1 = 1/(2 * np.pi * c_cm_s) * np.sqrt(k_Nm / reduced_mass_kg)
-            
-            return abs(freq_cm1)
-            
-        except Exception as e:
-            print(f"Error in polynomial fit method: {e}")
-            return self._calculate_frequency_standard(atoms)
-    
-    def _calculate_frequency_numeric_fixed(self, atoms, delta_multiplier=1.0):
-        """
-        Calculate vibrational frequency using direct numeric differentiation
-        with multiple delta values for convergence check.
-        """
-        try:
-            # Get delta from params
-            base_delta = self.calculator_params.get('vibrations', {}).get('delta', 0.005)
-            delta = base_delta * delta_multiplier
-            
-            r_eq = atoms.get_distance(0, 1)
-            symbols = atoms.get_chemical_symbols()
-            
-            # Get energy at equilibrium
-            energy_eq = atoms.get_potential_energy()
-            
-            # Calculate second derivative using central difference
-            # with two different delta values for convergence check
-            frequencies = []
-            deltas = [delta * 0.5, delta, delta * 2.0]
-            
-            for d in deltas:
-                if d < 1e-6:  # Too small
-                    continue
-                    
-                r_plus = r_eq + d
-                r_minus = r_eq - d
-                
-                atoms_plus = Atoms(symbols, positions=[(0, 0, 0), (r_plus, 0, 0)])
-                atoms_plus.set_calculator(self.calculator)
-                energy_plus = atoms_plus.get_potential_energy()
-                
-                atoms_minus = Atoms(symbols, positions=[(0, 0, 0), (r_minus, 0, 0)])
-                atoms_minus.set_calculator(self.calculator)
-                energy_minus = atoms_minus.get_potential_energy()
-                
-                # Second derivative
-                second_deriv = (energy_plus + energy_minus - 2*energy_eq) / (d**2)
-                
-                if second_deriv <= 0:
-                    continue
-                
-                # Convert to frequency
-                masses = [self._get_mass(sym) for sym in symbols]
-                reduced_mass_amu = (masses[0] * masses[1]) / (masses[0] + masses[1])
-                reduced_mass_kg = reduced_mass_amu * 1.66054e-27
-                
-                k_Nm = second_deriv * 160.2177  # eV/A^2 to N/m
-                c_cm_s = 2.99792458e10  # cm/s
-                freq_cm1 = 1/(2 * np.pi * c_cm_s) * np.sqrt(k_Nm / reduced_mass_kg)
-                frequencies.append(abs(freq_cm1))
-            
-            # Take the median of converged frequencies
-            if frequencies:
-                # Use the median to avoid outliers
-                freq_cm1 = np.median(frequencies)
-                # Check if frequencies are converged
-                if len(frequencies) > 1:
-                    rel_std = np.std(frequencies) / freq_cm1
-                    if rel_std > 0.1:
-                        print(f"Warning: Frequencies not well converged (std={rel_std:.2%})")
-                return freq_cm1
-            else:
-                print("Warning: Numeric differentiation failed, using standard method")
-                return self._calculate_frequency_standard(atoms)
-            
-        except Exception as e:
-            print(f"Error in numeric differentiation method: {e}")
-            return self._calculate_frequency_standard(atoms)
-    
-    def _get_mass(self, symbol):
-        """Get atomic mass in amu."""
-        masses = {
-            'H': 1.008, 'He': 4.0026, 'Li': 6.941, 'Be': 9.0122,
-            'B': 10.81, 'C': 12.011, 'N': 14.007, 'O': 15.999,
-            'F': 18.998, 'Ne': 20.180, 'Na': 22.990, 'Mg': 24.305,
-            'Al': 26.982, 'Si': 28.086, 'P': 30.974, 'S': 32.065,
-            'Cl': 35.453, 'Ar': 39.948, 'K': 39.098, 'Ca': 40.078,
-            'Fe': 55.845, 'Ni': 58.693, 'Cu': 63.546, 'Ag': 107.868,
-            'Au': 196.967, 'Pt': 195.084, 'Pd': 106.42
-        }
-        return masses.get(symbol, 0.0)
-    
     def analyze_molecule(self, molecule_name, properties, config):
-        """Complete analysis of a diatomic molecule - only bond distance and frequency."""
+        """Complete analysis of a diatomic molecule - bond distance and frequency."""
         print(f"\n{'='*60}")
         print(f"Analyzing {molecule_name} with {self.calculator_name}")
         print(f"{'='*60}")
@@ -339,11 +251,16 @@ class DiatomicAnalyzer:
         fmax = general.get('fmax', 0.001)
         max_steps = general.get('max_steps', 100)
         
-        # Get advanced optimization settings
+        # Get advanced settings
         advanced = config.get('advanced', {})
         opt_settings = advanced.get('optimization', {})
         fmax = opt_settings.get('fmax', fmax)
         max_steps = opt_settings.get('max_steps', max_steps)
+        
+        # Get vibration parameters
+        vib_settings = advanced.get('vibrations', {})
+        delta = vib_settings.get('delta', 0.01)
+        nfree = vib_settings.get('nfree', 2)
         
         # Check if equilibrium distance is provided in config
         eq_distance_from_config = properties.get('eq_distance', None)
@@ -368,16 +285,14 @@ class DiatomicAnalyzer:
         
         print(f"✓ Equilibrium bond distance: {eq_dist:.4f} Å")
         
-        # Calculate vibrational frequency with improved method
-        vib_method = advanced.get('vibrations', {}).get('method', 'polyfit')
-        freq_cm1 = self.calculate_vibrational_frequency_improved(opt_atoms)
+        # Calculate vibrational frequency using ASE Vibrations (Full Hessian)
+        print(f"\n  Calculating vibrational frequency...")
+        freq_cm1 = self.calculate_vibrational_frequency(opt_atoms, delta, nfree)
         
-        # Handle NaN frequencies
-        if freq_cm1 is None or np.isnan(freq_cm1) or freq_cm1 == 0:
-            print(f"⚠ Vibrational frequency calculation failed, using standard method")
-            freq_cm1 = self._calculate_frequency_standard(opt_atoms)
-        
-        print(f"✓ Vibrational frequency (method={vib_method}): {freq_cm1:.2f} cm⁻¹")
+        if freq_cm1 > 0:
+            print(f"✓ Vibrational frequency: {freq_cm1:.2f} cm⁻¹")
+        else:
+            print(f"⚠ Vibrational frequency calculation failed")
         
         # Store results
         results = {
@@ -385,7 +300,9 @@ class DiatomicAnalyzer:
             'calculator': self.calculator_name,
             'equilibrium_distance': eq_dist,
             'vibrational_frequency_cm1': freq_cm1,
-            'vibration_method': vib_method
+            'vibration_method': 'full_hessian',
+            'delta': delta,
+            'nfree': nfree
         }
         
         return results, opt_atoms
@@ -415,13 +332,13 @@ def get_default_config():
         },
         'molecules': {
             'N2': {'symbols': ['N', 'N'], 'initial_distance': 1.2, 
-                   'mass': 28.0134, 'spin': 0, 'symmetry': 2, 'geometry': 'linear'},
+                   'spin': 0, 'symmetry': 2, 'geometry': 'linear'},
             'H2': {'symbols': ['H', 'H'], 'initial_distance': 0.8,
-                   'mass': 2.01588, 'spin': 0, 'symmetry': 2, 'geometry': 'linear'},
+                   'spin': 0, 'symmetry': 2, 'geometry': 'linear'},
             'F2': {'symbols': ['F', 'F'], 'initial_distance': 1.4,
-                   'mass': 37.9968, 'spin': 0, 'symmetry': 2, 'geometry': 'linear'},
+                   'spin': 0, 'symmetry': 2, 'geometry': 'linear'},
             'O2': {'symbols': ['O', 'O'], 'initial_distance': 1.3,
-                   'mass': 31.9988, 'spin': 1, 'symmetry': 2, 'geometry': 'linear'}
+                   'spin': 1, 'symmetry': 2, 'geometry': 'linear'}
         },
         'calculators': {
             'EMT': {'enabled': True},
@@ -435,9 +352,8 @@ def get_default_config():
         },
         'advanced': {
             'vibrations': {
-                'delta': 0.005,
-                'nfree': 4,
-                'method': 'numeric'
+                'delta': 0.01,   # Displacement for finite differences (Å)
+                'nfree': 2       # Number of displacements per direction
             },
             'optimization': {
                 'algorithm': 'BFGS',
@@ -457,7 +373,7 @@ def save_results(all_results, config):
     csv_file = os.path.join(output_dir, 'summary.csv')
     with open(csv_file, 'w') as f:
         # Write header
-        f.write("Molecule,Calculator,d_eq(Å),freq(cm⁻¹),freq_method\n")
+        f.write("Molecule,Calculator,d_eq(Å),freq(cm⁻¹),method,delta(Å),nfree\n")
         
         for calc_name, calc_results in all_results.items():
             for mol_name, mol_result in calc_results.items():
@@ -468,7 +384,9 @@ def save_results(all_results, config):
                     f.write(f"{mol_name},{calc_name},"
                            f"{mol_result['equilibrium_distance']:.4f},"
                            f"{freq:.2f},"
-                           f"{mol_result.get('vibration_method', 'N/A')}\n")
+                           f"{mol_result.get('vibration_method', 'N/A')},"
+                           f"{mol_result.get('delta', 0.01)},"
+                           f"{mol_result.get('nfree', 2)}\n")
     
     print(f"Results saved to {csv_file}")
 
@@ -654,9 +572,8 @@ def main():
     # Print advanced settings
     advanced = config.get('advanced', {})
     vib_settings = advanced.get('vibrations', {})
-    print(f"Vibration method: {vib_settings.get('method', 'numeric')}")
-    print(f"Vibration delta: {vib_settings.get('delta', 0.005)} Å")
-    print(f"Vibration nfree: {vib_settings.get('nfree', 4)}")
+    print(f"Vibration delta: {vib_settings.get('delta', 0.01)} Å")
+    print(f"Vibration nfree: {vib_settings.get('nfree', 2)}")
     print("="*60)
     
     # Check MACE availability
@@ -697,6 +614,8 @@ def main():
     print("  - comparison_with_reference.csv: Comparison with NIST reference values")
     print("  - *_opt.xyz: Optimized structures for each molecule and calculator")
     print("  - *_opt.traj: Optimization trajectories")
+    print("  - vib/*.json: Vibration displacement files")
+    print("  - vib.*.traj: Vibrational mode trajectories")
     print("="*80)
 
 if __name__ == "__main__":

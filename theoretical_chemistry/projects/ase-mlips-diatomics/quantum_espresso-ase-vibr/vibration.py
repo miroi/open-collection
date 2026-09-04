@@ -30,11 +30,13 @@ class VibrationCalculator:
             symbols = atoms.get_chemical_symbols()
             r_eq = atoms.get_distance(0, 1)
             
-            # Use the specified range
+            # Generate symmetric points around equilibrium
+            # Points go from r_eq - delta to r_eq + delta
             r_values = np.linspace(r_eq - delta, r_eq + delta, n_points)
             energies = []
             
             print(f"    Scanning bond length from {r_values[0]:.6f} to {r_values[-1]:.6f} Å")
+            print(f"    Center: {r_eq:.6f} Å, Range: ±{delta:.6f} Å")
             
             cell = atoms.get_cell()
             
@@ -92,11 +94,13 @@ class VibrationCalculator:
             symbols = atoms.get_chemical_symbols()
             r_eq = atoms.get_distance(0, 1)
             
-            # Use a very small range for high accuracy
+            # Generate symmetric points around equilibrium
+            # Points go from r_eq - delta to r_eq + delta
             r_values = np.linspace(r_eq - delta, r_eq + delta, n_points)
             energies = []
             
             print(f"    Scanning bond length from {r_values[0]:.6f} to {r_values[-1]:.6f} Å")
+            print(f"    Center: {r_eq:.6f} Å, Range: ±{delta:.6f} Å")
             
             cell = atoms.get_cell()
             

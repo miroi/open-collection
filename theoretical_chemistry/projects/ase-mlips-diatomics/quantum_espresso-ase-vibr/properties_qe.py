@@ -1,4 +1,12 @@
+#!/usr/bin/env python3
+"""
+Diatomic molecule analysis with Quantum ESPRESSO
+Using NC SR (ONCVPSP) PBE pseudopotentials
+Run with: python properties_qe.py
+"""
+
 import os
+import sys
 import yaml
 import numpy as np
 import pandas as pd
@@ -19,7 +27,14 @@ class QEDiatomicAnalyzer:
         self.pseudo_dir = self.qe_config.get('pseudo_dir', './pseudopotentials/')
         self.pseudopotentials = self.qe_config.get('pseudopotentials', {})
         self.calc = None
+        self._setup_directories()
         self._setup_calculator()
+    
+    def _setup_directories(self):
+        """Create necessary directories."""
+        os.makedirs(self.pseudo_dir, exist_ok=True)
+        os.makedirs('./tmp/', exist_ok=True)
+        os.makedirs(self.config.get('output', {}).get('output_dir', 'results_qe'), exist_ok=True)
     
     def _setup_calculator(self):
         """Setup Quantum ESPRESSO calculator."""
@@ -38,7 +53,7 @@ class QEDiatomicAnalyzer:
             'system': {
                 'ibrav': 0,  # Free coordinates
                 'nat': 2,
-                'ntyp': 1,   # Will be updated
+                'ntyp': 1,   # Will be updated per molecule
                 'ecutwfc': self.qe_config.get('ecutwfc', 80.0),
                 'ecutrho': self.qe_config.get('ecutrho', 320.0),
                 'occupations': 'smearing',
@@ -73,11 +88,10 @@ class QEDiatomicAnalyzer:
         """Check if pseudopotential file exists."""
         pp_file = self.get_pseudopotential(symbol)
         pp_path = os.path.join(self.pseudo_dir, pp_file)
-        if not os.path.exists(pp_path):
-            print(f"Warning: Pseudopotential {pp_path} not found!")
-            print(f"Please ensure {pp_file} is in {self.pseudo_dir}")
-            return False
-        return True
+        exists = os.path.exists(pp_path)
+        if not exists:
+            print(f"  ✗ Pseudopotential {pp_path} not found!")
+        return exists
     
     def create_diatomic(self, symbols, distance, cell_size=15.0):
         """Create a diatomic molecule with vacuum cell."""
@@ -86,7 +100,6 @@ class QEDiatomicAnalyzer:
         
         # Add vacuum around molecule
         atoms.center(vacuum=cell_size/2)
-        atoms.set_pbc(False)
         
         # Set cell with enough vacuum
         cell = np.eye(3) * (distance + cell_size)
@@ -97,21 +110,23 @@ class QEDiatomicAnalyzer:
     
     def optimize_geometry(self, atoms, fmax=0.001, steps=100):
         """Optimize geometry using BFGS."""
-        # Set calculator
         atoms.set_calculator(self.calc)
-        
         opt = BFGS(atoms, trajectory='qe_opt.traj', logfile='qe_opt.log')
         opt.run(fmax=fmax, steps=steps)
-        
         return atoms
     
     def get_equilibrium_distance(self, symbols, initial_distance=1.2, fmax=0.001, steps=100):
         """Find equilibrium bond distance."""
         # Check pseudopotentials
         unique_symbols = list(set(symbols))
+        all_exist = True
         for sym in unique_symbols:
             if not self.check_pseudopotential_exists(sym):
-                return initial_distance, None
+                all_exist = False
+        
+        if not all_exist:
+            print(f"  ✗ Missing pseudopotentials for {symbols}")
+            return initial_distance, None
         
         atoms = self.create_diatomic(symbols, initial_distance)
         opt_atoms = self.optimize_geometry(atoms, fmax, steps)
@@ -123,7 +138,6 @@ class QEDiatomicAnalyzer:
         Returns frequencies in cm^-1.
         """
         try:
-            # Set calculator for vibrations
             atoms.set_calculator(self.calc)
             
             # Calculate vibrations with optimized parameters
@@ -150,13 +164,13 @@ class QEDiatomicAnalyzer:
             return freq_cm1
             
         except Exception as e:
-            print(f"Error in vibration calculation: {e}")
+            print(f"  Error in vibration calculation: {e}")
             return 0.0
     
     def analyze_molecule(self, molecule_name, properties):
         """Complete analysis of a diatomic molecule."""
         print(f"\n{'='*60}")
-        print(f"Analyzing {molecule_name} with Quantum ESPRESSO")
+        print(f"Analyzing {molecule_name}")
         print(f"{'='*60}")
         
         # Get parameters
@@ -165,18 +179,6 @@ class QEDiatomicAnalyzer:
         
         # Setup calculator for this molecule
         unique_symbols = list(set(symbols))
-        
-        # Check all pseudopotentials exist
-        all_exist = True
-        for sym in unique_symbols:
-            if not self.check_pseudopotential_exists(sym):
-                all_exist = False
-        
-        if not all_exist:
-            print(f"✗ Missing pseudopotentials for {molecule_name}")
-            return None, None
-        
-        # Update calculator for this molecule
         pseudo_dict = {sym: self.get_pseudopotential(sym) for sym in unique_symbols}
         self.calc.pseudopotentials = pseudo_dict
         self.calc.input_data['system']['ntyp'] = len(unique_symbols)
@@ -185,47 +187,50 @@ class QEDiatomicAnalyzer:
         fmax = self.config.get('general', {}).get('fmax', 0.001)
         max_steps = self.config.get('general', {}).get('max_steps', 100)
         
+        print(f"  Finding equilibrium geometry...")
         eq_dist, opt_atoms = self.get_equilibrium_distance(
             symbols, initial_dist, fmax, max_steps
         )
         
         if opt_atoms is None:
-            print(f"✗ Optimization failed for {molecule_name}")
+            print(f"  ✗ Optimization failed for {molecule_name}")
             return None, None
         
-        print(f"✓ Equilibrium bond distance: {eq_dist:.4f} Å")
+        print(f"  ✓ Equilibrium bond distance: {eq_dist:.4f} Å")
         
         # Calculate vibrational frequency
+        print(f"  Calculating vibrational frequency...")
         delta = self.qe_config.get('delta', 0.005)
         nfree = self.qe_config.get('nfree', 4)
         freq_cm1 = self.calculate_vibrational_frequencies(opt_atoms, delta, nfree)
-        print(f"✓ Vibrational frequency: {freq_cm1:.2f} cm⁻¹")
+        print(f"  ✓ Vibrational frequency: {freq_cm1:.2f} cm⁻¹")
         
         # Store results
         results = {
             'molecule': molecule_name,
+            'symbols': symbols,
             'calculator': 'Quantum ESPRESSO (ONCVPSP PBE)',
             'equilibrium_distance': eq_dist,
             'vibrational_frequency_cm1': freq_cm1,
-            'd_eq_error': 0.0,
-            'freq_error': 0.0
         }
         
         return results, opt_atoms
 
 def load_config(config_file='config_qe.yaml'):
     """Load configuration from YAML file."""
+    if not os.path.exists(config_file):
+        print(f"Error: Config file {config_file} not found!")
+        print("Please create config_qe.yaml with your settings.")
+        sys.exit(1)
+    
     try:
         with open(config_file, 'r') as f:
             config = yaml.safe_load(f)
-        print(f"Loaded configuration from {config_file}")
+        print(f"✓ Loaded configuration from {config_file}")
         return config
-    except FileNotFoundError:
-        print(f"Config file {config_file} not found.")
-        return None
     except Exception as e:
         print(f"Error loading config: {e}")
-        return None
+        sys.exit(1)
 
 def save_results(results, config):
     """Save results to files."""
@@ -236,14 +241,15 @@ def save_results(results, config):
     # Save summary as CSV
     csv_file = os.path.join(output_dir, 'summary.csv')
     with open(csv_file, 'w') as f:
-        f.write("Molecule,Calculator,d_eq(Å),freq(cm⁻¹)\n")
+        f.write("Molecule,Symbols,Calculator,d_eq(Å),freq(cm⁻¹)\n")
         for mol_name, mol_result in results.items():
             if mol_result:
-                f.write(f"{mol_name},Quantum ESPRESSO (ONCVPSP PBE),"
+                symbols = ''.join(mol_result.get('symbols', []))
+                f.write(f"{mol_name},{symbols},Quantum ESPRESSO (ONCVPSP PBE),"
                        f"{mol_result['equilibrium_distance']:.4f},"
                        f"{mol_result['vibrational_frequency_cm1']:.2f}\n")
     
-    print(f"Results saved to {csv_file}")
+    print(f"✓ Results saved to {csv_file}")
 
 def compare_with_reference(results, config):
     """Compare with reference values from NIST."""
@@ -301,7 +307,7 @@ def compare_with_reference(results, config):
         os.makedirs(output_dir, exist_ok=True)
         df = pd.DataFrame(comparisons)
         df.to_csv(os.path.join(output_dir, 'comparison_with_reference.csv'), index=False)
-        print(f"\nComparison results saved to {output_dir}/comparison_with_reference.csv")
+        print(f"\n✓ Comparison results saved to {output_dir}/comparison_with_reference.csv")
         
         # Print summary statistics
         print("\n" + "="*80)
@@ -312,43 +318,123 @@ def compare_with_reference(results, config):
             avg_dist_err = np.mean([c['d_eq_error'] for c in comparisons])
             avg_freq_err = np.mean([c['freq_error'] for c in comparisons if c['freq_error'] < 1000])
             
-            print(f"Average d_eq error: {avg_dist_err:.2f}%")
-            print(f"Average freq error: {avg_freq_err:.2f}%")
+            print(f"  Average d_eq error: {avg_dist_err:.2f}%")
+            print(f"  Average freq error: {avg_freq_err:.2f}%")
             
             # Overall assessment
             if avg_dist_err < 2 and avg_freq_err < 10:
-                print("✓ Excellent agreement with reference values")
+                print("  ✓ Excellent agreement with reference values")
             elif avg_dist_err < 5 and avg_freq_err < 20:
-                print("✓ Good agreement with reference values")
+                print("  ✓ Good agreement with reference values")
             else:
-                print("⚠ Moderate agreement - consider improving convergence parameters")
+                print("  ⚠ Moderate agreement - consider improving convergence parameters")
+
+def check_environment():
+    """Check if required executables and files are available."""
+    print("\n" + "="*60)
+    print("CHECKING ENVIRONMENT")
+    print("="*60)
+    
+    # Check QE executables
+    qe_exes = ['pw.x', 'ph.x', 'q2r.x', 'matdyn.x']
+    all_found = True
+    for exe in qe_exes:
+        found = False
+        # Check if in PATH
+        for path in os.environ.get('PATH', '').split(':'):
+            if os.path.exists(os.path.join(path, exe)):
+                found = True
+                break
+        if found:
+            print(f"  ✓ {exe} found in PATH")
+        else:
+            print(f"  ✗ {exe} not found in PATH")
+            all_found = False
+    
+    # Check pseudopotentials
+    print(f"\n  Checking pseudopotentials in {config.get('qe', {}).get('pseudo_dir', './pseudopotentials/')}:")
+    pp_files = ['H.upf', 'N.upf', 'O.upf', 'F.upf', 'Cl.upf']
+    pp_dir = config.get('qe', {}).get('pseudo_dir', './pseudopotentials/')
+    
+    for pp in pp_files:
+        pp_path = os.path.join(pp_dir, pp)
+        if os.path.exists(pp_path):
+            print(f"    ✓ {pp} found")
+        else:
+            print(f"    ✗ {pp} not found in {pp_dir}")
+            all_found = False
+    
+    if not all_found:
+        print("\n  ⚠ Some requirements are missing. The calculation may fail.")
+        print("  Make sure:")
+        print("    1. Quantum ESPRESSO executables are in your PATH")
+        print("    2. Pseudopotential files (.upf) are in the pseudopotentials/ directory")
+    
+    return all_found
+
+def print_usage():
+    """Print usage information."""
+    print("""
+USAGE:
+  python properties_qe.py
+
+REQUIREMENTS:
+  1. Quantum ESPRESSO executables (pw.x, ph.x, q2r.x, matdyn.x) in PATH
+  2. Pseudopotential files (.upf) in ./pseudopotentials/ directory
+  3. Python packages: ase, numpy, pandas, pyyaml
+
+FILES NEEDED:
+  - config_qe.yaml: Configuration file
+  - pseudopotentials/H.upf, N.upf, O.upf, F.upf, Cl.upf
+
+EXAMPLE:
+  python properties_qe.py
+    """)
 
 def main():
     """Main execution function."""
+    print("="*80)
+    print("Diatomic Molecule Analysis with Quantum ESPRESSO")
+    print("Using NC SR (ONCVPSP) PBE Pseudopotentials")
+    print("="*80)
+    
     # Load configuration
+    global config
     config = load_config('config_qe.yaml')
     
-    if config is None:
-        print("Please create config_qe.yaml file")
-        return
+    # Check environment
+    env_ok = check_environment()
     
     # Print settings
     general = config.get('general', {})
-    print("Diatomic Molecule Analysis with Quantum ESPRESSO")
+    print("\n" + "="*60)
+    print("CALCULATION SETTINGS")
     print("="*60)
-    print(f"Temperature: {general.get('temperature', 298.15):.2f} K")
-    print(f"Pressure: {general.get('pressure', 101325):.0f} Pa")
-    print(f"Convergence: fmax = {general.get('fmax', 0.001)}")
+    print(f"  Temperature: {general.get('temperature', 298.15):.2f} K")
+    print(f"  Pressure: {general.get('pressure', 101325):.0f} Pa")
+    print(f"  Convergence: fmax = {general.get('fmax', 0.001)}")
     
-    # Print QE settings
     qe_config = config.get('qe', {})
-    print(f"QE pseudopotential directory: {qe_config.get('pseudo_dir', './pseudopotentials/')}")
-    print(f"QE ecutwfc: {qe_config.get('ecutwfc', 80.0)} Ry")
-    print(f"QE ecutrho: {qe_config.get('ecutrho', 320.0)} Ry")
-    print(f"QE conv_thr: {qe_config.get('conv_thr', 1.0e-10)}")
-    print("="*60)
+    print(f"\n  Quantum ESPRESSO Settings:")
+    print(f"    ecutwfc: {qe_config.get('ecutwfc', 80.0)} Ry")
+    print(f"    ecutrho: {qe_config.get('ecutrho', 320.0)} Ry")
+    print(f"    conv_thr: {qe_config.get('conv_thr', 1.0e-10)}")
+    print(f"    delta: {qe_config.get('delta', 0.005)} Å")
+    print(f"    nfree: {qe_config.get('nfree', 4)}")
+    
+    if not env_ok:
+        print("\n" + "!"*60)
+        print("WARNING: Some requirements are missing!")
+        print("!"*60)
+        response = input("\nContinue anyway? (y/n): ")
+        if response.lower() != 'y':
+            print("Exiting...")
+            sys.exit(1)
     
     # Create analyzer
+    print("\n" + "="*60)
+    print("RUNNING CALCULATIONS")
+    print("="*60)
     analyzer = QEDiatomicAnalyzer(config)
     
     # Run analysis for each molecule
@@ -369,10 +455,12 @@ def main():
     
     # Save results
     if results:
+        print("\n" + "="*60)
+        print("SAVING RESULTS")
+        print("="*60)
         save_results(results, config)
-    
-    # Compare with reference values
-    if results:
+        
+        # Compare with reference values
         compare_with_reference(results, config)
     
     # Print final summary
@@ -381,13 +469,13 @@ def main():
     print("="*80)
     output_config = config.get('output', {})
     output_dir = output_config.get('output_dir', 'results_qe')
-    print(f"Results saved in: {output_dir}/")
-    print("Files generated:")
-    print("  - summary.csv: All calculated properties")
-    print("  - comparison_with_reference.csv: Comparison with NIST reference values")
-    print("  - *_qe_opt.xyz: Optimized structures")
-    print("  - qe_opt.traj: Optimization trajectory")
-    print("  - qe_opt.log: Optimization log")
+    print(f"  Results saved in: {output_dir}/")
+    print("\n  Files generated:")
+    print(f"    - {output_dir}/summary.csv: All calculated properties")
+    print(f"    - {output_dir}/comparison_with_reference.csv: Comparison with NIST values")
+    print(f"    - {output_dir}/*_qe_opt.xyz: Optimized structures")
+    print("    - qe_opt.traj: Optimization trajectory")
+    print("    - qe_opt.log: Optimization log")
     print("="*80)
 
 if __name__ == "__main__":

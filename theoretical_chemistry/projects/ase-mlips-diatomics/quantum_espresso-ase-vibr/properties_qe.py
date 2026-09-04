@@ -2,7 +2,7 @@
 """
 Diatomic molecule analysis with Quantum ESPRESSO
 Full vibrational analysis using ASE Vibrations class
-Supports 1D scan, X-Only Hessian, and Full Hessian methods
+Supports 1D scan and Full Hessian methods
 """
 
 import os
@@ -15,7 +15,6 @@ from ase import Atoms
 from ase.calculators.espresso import Espresso, EspressoProfile
 from ase.optimize import BFGS
 from ase.vibrations import Vibrations, VibrationsData
-from ase.constraints import FixCartesian
 from ase.io import write, read
 from ase.units import invcm
 from datetime import datetime
@@ -45,7 +44,7 @@ class QEDiatomicAnalyzer:
         self.molecules_to_calculate = config.get('molecules_to_calculate', {})
         
         # Vibration method
-        self.vibration_method = self.qe_config.get('vibration_method', 'xonly')
+        self.vibration_method = self.qe_config.get('vibration_method', '1d')
         
         # Build the command with MPI
         self.command = self._build_command()
@@ -304,93 +303,6 @@ class QEDiatomicAnalyzer:
             print(f"  Error in 1D frequency calculation: {e}")
             return 0.0
     
-    def calculate_vibrational_frequency_xonly(self, atoms, mol_name, delta=0.005, nfree=2):
-        """
-        Calculate vibrational frequency using ASE Vibrations class
-        but ONLY along the x-axis (M-M bond direction).
-        
-        This gives only the stretching mode with minimal computational cost.
-        """
-        try:
-            print(f"    Using X-Only Hessian with delta={delta}, nfree={nfree}")
-            print(f"    Only displacing along x-axis (bond direction)")
-            
-            # Save original constraints
-            original_constraints = atoms.constraints.copy()
-            
-            # Apply constraint: freeze y and z for both atoms
-            # In ASE, FixCartesian uses a mask where True = free, False = fixed
-            # For 2 atoms, we need a list of masks for each atom
-            constraint = FixCartesian(
-                mask=[[True, False, False], [True, False, False]]  # Only x is free for both atoms
-            )
-            atoms.set_constraint([constraint])
-            atoms.set_calculator(self.vib_calc)
-            
-            vib_name = f'vib/{mol_name}_xonly'
-            vib = Vibrations(
-                atoms, 
-                indices=[0, 1],
-                name=vib_name,
-                delta=delta,
-                nfree=nfree
-            )
-            
-            total_calcs = 2 * nfree  # Only x-direction
-            print(f"    Running {total_calcs} displacement calculations...")
-            vib.run()
-            
-            # Get frequencies
-            frequencies = vib.get_frequencies()
-            
-            # With x-only constraints, we should only get the stretching mode
-            valid_freqs = [f for f in frequencies if abs(f) > 1.0]
-            
-            if len(valid_freqs) > 0:
-                # The first valid frequency is the stretching mode
-                freq_cm1 = abs(valid_freqs[0])
-                print(f"\n    {'='*50}")
-                print(f"    STRETCHING MODE FOR {mol_name}")
-                print(f"    {'='*50}")
-                print(f"    Frequency: {freq_cm1:.2f} cm⁻¹")
-                
-                # Get zero-point energy (only stretching mode)
-                try:
-                    vib_data = vib.get_vibrations()
-                    zero_point = vib_data.get_zero_point_energy()
-                    print(f"    Zero-point energy: {zero_point:.4f} eV")
-                except:
-                    pass
-                
-                print(f"    {'='*50}")
-                
-                try:
-                    vib.write_mode(-1)
-                    print(f"    Mode written to {vib_name}.8.traj")
-                except:
-                    pass
-            else:
-                freq_cm1 = 0.0
-                print(f"    No stretching mode found")
-            
-            # Restore original constraints
-            atoms.set_constraint(original_constraints)
-            
-            try:
-                vib.clean()
-            except:
-                pass
-            
-            return freq_cm1
-            
-        except Exception as e:
-            print(f"  Error in X-Only vibration calculation: {e}")
-            try:
-                atoms.set_constraint(original_constraints)
-            except:
-                pass
-            return 0.0
-    
     def calculate_vibrational_frequency_full(self, atoms, mol_name, delta=0.005, nfree=2):
         """
         Calculate vibrational frequencies using ASE Vibrations class (full Hessian).
@@ -529,14 +441,14 @@ class QEDiatomicAnalyzer:
         print(f"  ✓ Equilibrium bond distance: {eq_dist:.4f} Å")
         
         # Determine which methods to use
-        vib_method = self.qe_config.get('vibration_method', 'xonly')
+        vib_method = self.qe_config.get('vibration_method', '1d')
         
         # Dictionary to store results
         freq_results = {}
         
-        # Method 1: 1D Scan (fastest)
+        # Method 1: 1D Scan (recommended, works without constraints)
         if vib_method in ['1d', 'both']:
-            print(f"\n  Method 1: 1D Scan (quadratic fit)")
+            print(f"\n  Method 1: 1D Scan (quadratic fit along bond)")
             delta = self.qe_config.get('1d_settings', {}).get('delta', 0.005)
             n_points = self.qe_config.get('1d_settings', {}).get('n_points', 7)
             
@@ -548,24 +460,9 @@ class QEDiatomicAnalyzer:
                 print(f"    ✓ 1D Scan: {freq_1d:.2f} cm⁻¹ (took {elapsed_1d:.1f}s, {n_points} SCF)")
             freq_results['1d'] = {'freq': freq_1d, 'time': elapsed_1d, 'scf': n_points}
         
-        # Method 2: X-Only Hessian (recommended for diatomics)
-        if vib_method in ['xonly', 'both']:
-            print(f"\n  Method 2: X-Only Hessian (only along bond)")
-            delta = self.qe_config.get('xonly_settings', {}).get('delta', 0.005)
-            nfree = self.qe_config.get('xonly_settings', {}).get('nfree', 2)
-            scf_count = 2 * nfree  # Only x-direction
-            
-            start_time = time.time()
-            freq_xonly = self.calculate_vibrational_frequency_xonly(opt_atoms, molecule_name, delta, nfree)
-            elapsed_xonly = time.time() - start_time
-            
-            if freq_xonly > 0:
-                print(f"    ✓ X-Only Hessian: {freq_xonly:.2f} cm⁻¹ (took {elapsed_xonly:.1f}s, {scf_count} SCF)")
-            freq_results['xonly'] = {'freq': freq_xonly, 'time': elapsed_xonly, 'scf': scf_count}
-        
-        # Method 3: Full 3D Hessian (most accurate, slowest)
+        # Method 2: Full 3D Hessian (most accurate but slow)
         if vib_method in ['full', 'both']:
-            print(f"\n  Method 3: Full 3D Hessian (all directions)")
+            print(f"\n  Method 2: Full 3D Hessian (all directions)")
             delta = self.qe_config.get('full_settings', {}).get('delta', 0.005)
             nfree = self.qe_config.get('full_settings', {}).get('nfree', 2)
             scf_count = 2 * nfree * 3 * 2  # 2 atoms × 3 directions × 2 displacements
@@ -588,7 +485,6 @@ class QEDiatomicAnalyzer:
             
             method_names = {
                 '1d': '1D Scan',
-                'xonly': 'X-Only Hessian',
                 'full': 'Full 3D Hessian'
             }
             
@@ -599,23 +495,13 @@ class QEDiatomicAnalyzer:
             
             print(f"  {'='*50}")
         
-        # Select primary method (priority: full > xonly > 1d)
-        if vib_method == 'full':
+        # Select primary method
+        if vib_method == 'full' and freq_results.get('full', {}).get('freq', 0) > 0:
             primary_method = 'full'
-        elif vib_method == 'xonly':
-            primary_method = 'xonly'
-        elif vib_method == '1d':
+            final_freq = freq_results['full']['freq']
+        else:
             primary_method = '1d'
-        else:  # 'both'
-            # Use xonly if available, otherwise full, otherwise 1d
-            if freq_results.get('xonly', {}).get('freq', 0) > 0:
-                primary_method = 'xonly'
-            elif freq_results.get('full', {}).get('freq', 0) > 0:
-                primary_method = 'full'
-            else:
-                primary_method = '1d'
-        
-        final_freq = freq_results.get(primary_method, {}).get('freq', 0)
+            final_freq = freq_results.get('1d', {}).get('freq', 0)
         
         # Get experimental reference
         ref_data = properties.get('reference', {})
@@ -643,10 +529,8 @@ class QEDiatomicAnalyzer:
             'freq_error_percent': freq_error,
             'vibration_method': primary_method,
             'freq_1d': freq_results.get('1d', {}).get('freq', 0),
-            'freq_xonly': freq_results.get('xonly', {}).get('freq', 0),
             'freq_full': freq_results.get('full', {}).get('freq', 0),
             'time_1d': freq_results.get('1d', {}).get('time', 0),
-            'time_xonly': freq_results.get('xonly', {}).get('time', 0),
             'time_full': freq_results.get('full', {}).get('time', 0),
             'reference_source': ref_data.get('source', 'Unknown'),
             'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -664,6 +548,8 @@ class QEDiatomicAnalyzer:
         print(f"  {'='*50}")
         
         return results, opt_atoms
+
+# [Rest of the functions remain the same...]
 
 def load_config(config_file='config_qe.yaml'):
     """Load configuration from YAML file."""
@@ -692,7 +578,6 @@ def save_results(results, config):
         # Write header with all fields
         f.write("Molecule,Symbols,d_eq_calc(Å),d_eq_exp(Å),d_eq_error(%),"
                 "freq_1d(cm⁻¹),time_1d(s),"
-                "freq_xonly(cm⁻¹),time_xonly(s),"
                 "freq_full(cm⁻¹),time_full(s),"
                 "freq_final(cm⁻¹),freq_exp(cm⁻¹),freq_error(%),"
                 "Method,Reference,Timestamp\n")
@@ -708,7 +593,6 @@ def save_results(results, config):
                 f.write(f"{mol_name},{symbols},"
                        f"{mol_result['equilibrium_distance']:.4f},{d_eq_exp},{d_eq_error},"
                        f"{mol_result.get('freq_1d', 0):.2f},{mol_result.get('time_1d', 0):.1f},"
-                       f"{mol_result.get('freq_xonly', 0):.2f},{mol_result.get('time_xonly', 0):.1f},"
                        f"{mol_result.get('freq_full', 0):.2f},{mol_result.get('time_full', 0):.1f},"
                        f"{mol_result.get('vibrational_frequency_cm1', 0):.2f},{freq_exp},{freq_error},"
                        f"{mol_result.get('vibration_method', 'N/A')},"
@@ -751,14 +635,10 @@ def save_results(results, config):
                 f.write(f"  Method used: {mol_result.get('vibration_method', 'N/A')}\n")
                 
                 # Show all method results if available
-                if (mol_result.get('freq_1d', 0) > 0 or 
-                    mol_result.get('freq_xonly', 0) > 0 or 
-                    mol_result.get('freq_full', 0) > 0):
+                if (mol_result.get('freq_1d', 0) > 0 or mol_result.get('freq_full', 0) > 0):
                     f.write(f"  All methods:\n")
                     if mol_result.get('freq_1d', 0) > 0:
                         f.write(f"    1D Scan: {mol_result['freq_1d']:.2f} cm⁻¹ (time: {mol_result.get('time_1d', 0):.1f}s)\n")
-                    if mol_result.get('freq_xonly', 0) > 0:
-                        f.write(f"    X-Only Hessian: {mol_result['freq_xonly']:.2f} cm⁻¹ (time: {mol_result.get('time_xonly', 0):.1f}s)\n")
                     if mol_result.get('freq_full', 0) > 0:
                         f.write(f"    Full Hessian: {mol_result['freq_full']:.2f} cm⁻¹ (time: {mol_result.get('time_full', 0):.1f}s)\n")
                 
@@ -810,13 +690,11 @@ def main():
     print("CALCULATION SETTINGS")
     print("="*60)
     qe_config = config.get('qe', {})
-    vib_method = qe_config.get('vibration_method', 'xonly')
+    vib_method = qe_config.get('vibration_method', '1d')
     
     print(f"  Vibration method: {vib_method}")
     if vib_method in ['1d', 'both']:
         print(f"    1D Scan: n_points={qe_config.get('1d_settings', {}).get('n_points', 7)}, delta={qe_config.get('1d_settings', {}).get('delta', 0.005)} Å")
-    if vib_method in ['xonly', 'both']:
-        print(f"    X-Only Hessian: nfree={qe_config.get('xonly_settings', {}).get('nfree', 2)}, delta={qe_config.get('xonly_settings', {}).get('delta', 0.005)} Å")
     if vib_method in ['full', 'both']:
         print(f"    Full Hessian: nfree={qe_config.get('full_settings', {}).get('nfree', 2)}, delta={qe_config.get('full_settings', {}).get('delta', 0.005)} Å")
     

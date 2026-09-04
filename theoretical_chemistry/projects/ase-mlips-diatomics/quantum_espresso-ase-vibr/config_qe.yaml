@@ -19,6 +19,8 @@ molecules_to_calculate:
   O2: false
   F2: false
   Cl2: false
+  HCl: false   # Added: Hydrogen Chloride (set to true to calculate)
+  HF: false    # Added: Hydrogen Fluoride (set to true to calculate)
 
 # Molecule definitions
 molecules:
@@ -36,13 +38,97 @@ molecules:
       freq: 2358.6
       source: "NIST Chemistry WebBook"
 
+  H2:
+    symbols: ['H', 'H']
+    initial_distance: 0.8
+    mass: 2.01588
+    spin: 0
+    symmetry: 2
+    geometry: 'linear'
+    # eq_distance: 0.7790
+    reference:
+      d_eq: 0.7414
+      freq: 4401.2
+      source: "NIST Chemistry WebBook"
+
+  O2:
+    symbols: ['O', 'O']
+    initial_distance: 1.3
+    mass: 31.9988
+    spin: 1                                       # O2 is a triplet (2 unpaired electrons)
+    symmetry: 2
+    geometry: 'linear'
+    # eq_distance: 1.1003
+    reference:
+      d_eq: 1.2075
+      freq: 1580.2
+      source: "NIST Chemistry WebBook"
+
+  F2:
+    symbols: ['F', 'F']
+    initial_distance: 1.4
+    mass: 37.9968
+    spin: 0
+    symmetry: 2
+    geometry: 'linear'
+    # eq_distance: 1.4191
+    reference:
+      d_eq: 1.4119
+      freq: 917.0
+      source: "NIST Chemistry WebBook"
+
+  Cl2:
+    symbols: ['Cl', 'Cl']
+    initial_distance: 2.0
+    mass: 70.906
+    spin: 0
+    symmetry: 2
+    geometry: 'linear'
+    # eq_distance: 1.9879
+    reference:
+      d_eq: 1.9879
+      freq: 559.7
+      source: "NIST Chemistry WebBook"
+
+  # ========================================================================
+  # NEW MOLECULES (set to false by default)
+  # ========================================================================
+
+  HCl:
+    symbols: ['H', 'Cl']
+    initial_distance: 1.3
+    mass: 36.461
+    spin: 0
+    symmetry: 1                                     # Heteronuclear diatomic: symmetry number = 1
+    geometry: 'linear'
+    # eq_distance: 1.2746                           # Uncomment to skip geometry optimization
+    # only_geometry_optimization: true              # Uncomment for geometry optimization ONLY
+    reference:
+      d_eq: 1.2746                                  # Experimental bond length (Å)
+      freq: 2990.9                                  # Experimental vibrational frequency (cm⁻¹)
+      source: "NIST Chemistry WebBook"
+
+  HF:
+    symbols: ['H', 'F']
+    initial_distance: 1.0
+    mass: 20.006
+    spin: 0
+    symmetry: 1                                     # Heteronuclear diatomic: symmetry number = 1
+    geometry: 'linear'
+    # eq_distance: 0.9168                           # Uncomment to skip geometry optimization
+    # only_geometry_optimization: true              # Uncomment for geometry optimization ONLY
+    reference:
+      d_eq: 0.9168                                  # Experimental bond length (Å)
+      freq: 4138.3                                  # Experimental vibrational frequency (cm⁻¹)
+      source: "NIST Chemistry WebBook"
+
 # Quantum ESPRESSO settings
 qe:
   parallel:
     use_mpi: true
     nprocs: 4
     mpi_command: 'mpirun'
-  
+
   pseudo_dir: './pseudopotentials/'
   pseudopotentials:
     N: 'N.pbe-n-kjpaw_psl.1.0.0.UPF'  # PAW pseudopotential (recommended)
@@ -50,7 +136,7 @@ qe:
     O: 'O.pbe-n-kjpaw_psl.1.0.0.UPF'
     F: 'F.pbe-n-kjpaw_psl.1.0.0.UPF'
     Cl: 'Cl.pbe-n-kjpaw_psl.1.0.0.UPF'
-  
+
   # ============================================================
   # For PAW pseudopotentials (pbe-n-kjpaw_psl):
   # Use high ecutrho (8x ecutwfc) for accuracy
@@ -63,7 +149,7 @@ qe:
   conv_thr: 1.0e-10
   mixing_beta: 0.7
   electron_maxstep: 200
-  
+
   # --------------------------------------------------------------------------
   # VIBRATION METHOD SELECTION
   # --------------------------------------------------------------------------
@@ -136,7 +222,7 @@ qe:
                                                   #   - For N2: 2 × 2 × 3 × 2 = 24 SCF calcs
                                                   #   - nfree=2 recommended
                                                   #   - Higher nfree = more accurate but slower
-  
+
 # Output settings
 output:
   save_structures: true

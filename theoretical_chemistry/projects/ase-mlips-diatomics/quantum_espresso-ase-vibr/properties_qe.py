@@ -7,11 +7,12 @@ Run with: python properties_qe.py
 
 import os
 import sys
+import subprocess
 import yaml
 import numpy as np
 import pandas as pd
 from ase import Atoms
-from ase.calculators.espresso import Espresso
+from ase.calculators.espresso import Espresso, EspressoProfile
 from ase.optimize import BFGS
 from ase.vibrations import Vibrations
 from ase.io import write, read
@@ -19,16 +20,57 @@ from ase.units import kB, mol
 import warnings
 warnings.filterwarnings('ignore')
 
+# ============================================================================
+# OpenMP Thread Control - Keep only MPI parallelization
+# ============================================================================
+# Set OpenMP threads to 1 before launching Quantum ESPRESSO
+# This prevents OpenMP from using multiple threads and interfering with MPI
+os.environ["OMP_NUM_THREADS"] = "1"
+os.environ["MKL_NUM_THREADS"] = "1"  # Also restricts Intel MKL threads
+os.environ["OPENBLAS_NUM_THREADS"] = "1"  # For OpenBLAS
+os.environ["NUMEXPR_NUM_THREADS"] = "1"   # For NumExpr
+
+# Optional: Also set these for additional control
+os.environ["MKL_DYNAMIC"] = "FALSE"
+os.environ["MKL_NUM_THREADS"] = "1"
+os.environ["OMP_DYNAMIC"] = "FALSE"
+os.environ["OMP_MAX_ACTIVE_LEVELS"] = "1"
+# ============================================================================
+
 class QEDiatomicAnalyzer:
     def __init__(self, config):
         """Initialize with configuration."""
         self.config = config
         self.qe_config = config.get('qe', {})
+        self.parallel_config = self.qe_config.get('parallel', {})
         self.pseudo_dir = self.qe_config.get('pseudo_dir', './pseudopotentials/')
         self.pseudopotentials = self.qe_config.get('pseudopotentials', {})
+        
+        # Build the command with MPI
+        self.command = self._build_command()
+        
         self.calc = None
         self._setup_directories()
         self._setup_calculator()
+    
+    def _build_command(self):
+        """Build the command string with MPI if enabled."""
+        use_mpi = self.parallel_config.get('use_mpi', True)
+        nprocs = self.parallel_config.get('nprocs', 4)
+        mpi_command = self.parallel_config.get('mpi_command', 'mpirun')
+        
+        if use_mpi and nprocs > 1:
+            # Build MPI command
+            # Check if we're on a SLURM system
+            if 'SLURM_NTASKS' in os.environ:
+                # Use srun if available
+                return f'srun -n {nprocs} pw.x'
+            else:
+                # Use mpirun/mpiexec
+                return f'{mpi_command} -np {nprocs} pw.x'
+        else:
+            # Serial run
+            return 'pw.x'
     
     def _setup_directories(self):
         """Create necessary directories."""
@@ -37,47 +79,46 @@ class QEDiatomicAnalyzer:
         os.makedirs(self.config.get('output', {}).get('output_dir', 'results_qe'), exist_ok=True)
     
     def _setup_calculator(self):
-        """Setup Quantum ESPRESSO calculator."""
-        # Basic QE parameters
-        input_params = {
-            'control': {
-                'calculation': 'scf',
-                'restart_mode': 'from_scratch',
-                'pseudo_dir': self.pseudo_dir,
-                'outdir': './tmp/',
-                'prefix': 'qe',
-                'tprnfor': True,
-                'tstress': True,
-                'verbosity': 'high',
-            },
-            'system': {
-                'ibrav': 0,  # Free coordinates
-                'nat': 2,
-                'ntyp': 1,   # Will be updated per molecule
-                'ecutwfc': self.qe_config.get('ecutwfc', 80.0),
-                'ecutrho': self.qe_config.get('ecutrho', 320.0),
-                'occupations': 'smearing',
-                'smearing': self.qe_config.get('smearing', 'gaussian'),
-                'degauss': self.qe_config.get('degauss', 0.01),
-                'nspin': 1,
-                'tot_charge': 0,
-            },
-            'electrons': {
-                'conv_thr': self.qe_config.get('conv_thr', 1.0e-10),
-                'mixing_beta': self.qe_config.get('mixing_beta', 0.7),
-                'electron_maxstep': self.qe_config.get('electron_maxstep', 200),
-            }
+        """Setup Quantum ESPRESSO calculator using EspressoProfile."""
+        
+        # Create profile with command and pseudo_dir
+        profile = EspressoProfile(
+            command=self.command,
+            pseudo_dir=self.pseudo_dir,
+        )
+        
+        # Basic QE parameters in flat format (ASE will put them in correct sections)
+        self.input_data = {
+            # Control section
+            'calculation': 'scf',
+            'restart_mode': 'from_scratch',
+            'outdir': './tmp/',
+            'prefix': 'qe',
+            'tprnfor': True,
+            'tstress': True,
+            'verbosity': 'high',
+            
+            # System section
+            'ecutwfc': self.qe_config.get('ecutwfc', 80.0),
+            'ecutrho': self.qe_config.get('ecutrho', 320.0),
+            'occupations': 'smearing',
+            'smearing': self.qe_config.get('smearing', 'gaussian'),
+            'degauss': self.qe_config.get('degauss', 0.01),
+            'nspin': 1,
+            'ntyp': 1,  # Will be updated per molecule
+            
+            # Electrons section
+            'conv_thr': self.qe_config.get('conv_thr', 1.0e-10),
+            'mixing_beta': self.qe_config.get('mixing_beta', 0.7),
+            'electron_maxstep': self.qe_config.get('electron_maxstep', 200),
         }
         
-        # Setup calculator
+        # Setup calculator with profile
         self.calc = Espresso(
+            profile=profile,
             pseudopotentials=self.pseudopotentials,
-            input_data=input_params,
+            input_data=self.input_data,
             kpts=self.qe_config.get('kpts', [1, 1, 1]),
-            pw_path=self.qe_config.get('pw_path', 'pw.x'),
-            ph_path=self.qe_config.get('ph_path', 'ph.x'),
-            q2r_path=self.qe_config.get('q2r_path', 'q2r.x'),
-            matdyn_path=self.qe_config.get('matdyn_path', 'matdyn.x'),
         )
     
     def get_pseudopotential(self, symbol):
@@ -129,8 +170,44 @@ class QEDiatomicAnalyzer:
             return initial_distance, None
         
         atoms = self.create_diatomic(symbols, initial_distance)
+        
+        # Update calculator for this molecule
+        self._update_calculator_for_molecule(unique_symbols)
+        atoms.set_calculator(self.calc)
+        
         opt_atoms = self.optimize_geometry(atoms, fmax, steps)
         return opt_atoms.get_distance(0, 1), opt_atoms
+    
+    def _update_calculator_for_molecule(self, symbols):
+        """Update calculator for specific molecule."""
+        # Update pseudopotentials
+        pseudo_dict = {sym: self.get_pseudopotential(sym) for sym in symbols}
+        self.calc.pseudopotentials = pseudo_dict
+        
+        # Update ntyp
+        self.input_data['ntyp'] = len(symbols)
+        
+        # Need to recreate calculator with updated input_data
+        profile = EspressoProfile(
+            command=self.command,
+            pseudo_dir=self.pseudo_dir,
+        )
+        
+        # Create new calculator with updated parameters
+        self.calc = Espresso(
+            profile=profile,
+            pseudopotentials=pseudo_dict,
+            input_data=self.input_data,
+            kpts=self.qe_config.get('kpts', [1, 1, 1]),
+        )
+    
+    def _get_mass(self, symbol):
+        """Get atomic mass in amu."""
+        masses = {
+            'H': 1.008, 'N': 14.007, 'O': 15.999,
+            'F': 18.998, 'Cl': 35.453
+        }
+        return masses.get(symbol, 0.0)
     
     def calculate_vibrational_frequencies(self, atoms, delta=0.005, nfree=4):
         """
@@ -179,9 +256,15 @@ class QEDiatomicAnalyzer:
         
         # Setup calculator for this molecule
         unique_symbols = list(set(symbols))
-        pseudo_dict = {sym: self.get_pseudopotential(sym) for sym in unique_symbols}
-        self.calc.pseudopotentials = pseudo_dict
-        self.calc.input_data['system']['ntyp'] = len(unique_symbols)
+        
+        # Check pseudopotentials exist
+        for sym in unique_symbols:
+            if not self.check_pseudopotential_exists(sym):
+                print(f"  ✗ Pseudopotential for {sym} not found")
+                return None, None
+        
+        # Update calculator for this molecule
+        self._update_calculator_for_molecule(unique_symbols)
         
         # Get equilibrium distance
         fmax = self.config.get('general', {}).get('fmax', 0.001)
@@ -335,9 +418,34 @@ def check_environment():
     print("CHECKING ENVIRONMENT")
     print("="*60)
     
+    # Display OpenMP thread settings
+    print("\n  OpenMP Thread Control:")
+    print(f"    OMP_NUM_THREADS = {os.environ.get('OMP_NUM_THREADS', 'Not set')}")
+    print(f"    MKL_NUM_THREADS = {os.environ.get('MKL_NUM_THREADS', 'Not set')}")
+    print(f"    OPENBLAS_NUM_THREADS = {os.environ.get('OPENBLAS_NUM_THREADS', 'Not set')}")
+    
+    # Load config to get parallel settings
+    config = load_config('config_qe.yaml')
+    parallel_config = config.get('qe', {}).get('parallel', {})
+    use_mpi = parallel_config.get('use_mpi', True)
+    nprocs = parallel_config.get('nprocs', 4)
+    mpi_command = parallel_config.get('mpi_command', 'mpirun')
+    
+    # Check MPI executable
+    if use_mpi and nprocs > 1:
+        # Check if mpi command exists
+        try:
+            subprocess.run([mpi_command, '--version'], capture_output=True, check=False)
+            print(f"\n  ✓ {mpi_command} found in PATH")
+            print(f"    Using {nprocs} processors with MPI")
+        except FileNotFoundError:
+            print(f"\n  ✗ {mpi_command} not found in PATH")
+            print(f"    Will try to use {nprocs} processors with MPI anyway")
+    
     # Check QE executables
     qe_exes = ['pw.x', 'ph.x', 'q2r.x', 'matdyn.x']
     all_found = True
+    print("\n  Quantum ESPRESSO Executables:")
     for exe in qe_exes:
         found = False
         # Check if in PATH
@@ -346,13 +454,13 @@ def check_environment():
                 found = True
                 break
         if found:
-            print(f"  ✓ {exe} found in PATH")
+            print(f"    ✓ {exe} found in PATH")
         else:
-            print(f"  ✗ {exe} not found in PATH")
+            print(f"    ✗ {exe} not found in PATH")
             all_found = False
     
     # Check pseudopotentials
-    print(f"\n  Checking pseudopotentials in {config.get('qe', {}).get('pseudo_dir', './pseudopotentials/')}:")
+    print(f"\n  Pseudopotentials in {config.get('qe', {}).get('pseudo_dir', './pseudopotentials/')}:")
     pp_files = ['H.upf', 'N.upf', 'O.upf', 'F.upf', 'Cl.upf']
     pp_dir = config.get('qe', {}).get('pseudo_dir', './pseudopotentials/')
     
@@ -369,27 +477,33 @@ def check_environment():
         print("  Make sure:")
         print("    1. Quantum ESPRESSO executables are in your PATH")
         print("    2. Pseudopotential files (.upf) are in the pseudopotentials/ directory")
+        if use_mpi and nprocs > 1:
+            print(f"    3. {mpi_command} is available for parallel execution")
     
     return all_found
 
-def print_usage():
-    """Print usage information."""
-    print("""
-USAGE:
-  python properties_qe.py
-
-REQUIREMENTS:
-  1. Quantum ESPRESSO executables (pw.x, ph.x, q2r.x, matdyn.x) in PATH
-  2. Pseudopotential files (.upf) in ./pseudopotentials/ directory
-  3. Python packages: ase, numpy, pandas, pyyaml
-
-FILES NEEDED:
-  - config_qe.yaml: Configuration file
-  - pseudopotentials/H.upf, N.upf, O.upf, F.upf, Cl.upf
-
-EXAMPLE:
-  python properties_qe.py
-    """)
+def print_parallel_info():
+    """Print information about parallelization settings."""
+    print("\n" + "="*60)
+    print("PARALLELIZATION INFORMATION")
+    print("="*60)
+    
+    # Read config
+    config = load_config('config_qe.yaml')
+    parallel_config = config.get('qe', {}).get('parallel', {})
+    
+    use_mpi = parallel_config.get('use_mpi', True)
+    nprocs = parallel_config.get('nprocs', 4)
+    mpi_command = parallel_config.get('mpi_command', 'mpirun')
+    
+    print(f"  MPI enabled: {use_mpi}")
+    print(f"  Number of MPI processes: {nprocs}")
+    print(f"  MPI command: {mpi_command}")
+    
+    print("\n  Thread settings (OpenMP disabled for MPI-only parallelization):")
+    print(f"    OMP_NUM_THREADS = {os.environ.get('OMP_NUM_THREADS', '1')}")
+    print(f"    MKL_NUM_THREADS = {os.environ.get('MKL_NUM_THREADS', '1')}")
+    print(f"    OPENBLAS_NUM_THREADS = {os.environ.get('OPENBLAS_NUM_THREADS', '1')}")
 
 def main():
     """Main execution function."""
@@ -398,8 +512,10 @@ def main():
     print("Using NC SR (ONCVPSP) PBE Pseudopotentials")
     print("="*80)
     
+    # Print parallelization info
+    print_parallel_info()
+    
     # Load configuration
-    global config
     config = load_config('config_qe.yaml')
     
     # Check environment
@@ -415,7 +531,10 @@ def main():
     print(f"  Convergence: fmax = {general.get('fmax', 0.001)}")
     
     qe_config = config.get('qe', {})
+    parallel_config = qe_config.get('parallel', {})
+    
     print(f"\n  Quantum ESPRESSO Settings:")
+    print(f"    Pseudo dir: {qe_config.get('pseudo_dir', './pseudopotentials/')}")
     print(f"    ecutwfc: {qe_config.get('ecutwfc', 80.0)} Ry")
     print(f"    ecutrho: {qe_config.get('ecutrho', 320.0)} Ry")
     print(f"    conv_thr: {qe_config.get('conv_thr', 1.0e-10)}")

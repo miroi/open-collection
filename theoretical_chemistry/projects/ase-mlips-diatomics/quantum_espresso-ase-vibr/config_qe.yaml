@@ -69,13 +69,15 @@ molecules:
 
 # Quantum ESPRESSO settings
 qe:
-  # Path to QE executables (assumes they are in PATH)
-  pw_path: 'pw.x'
-  ph_path: 'ph.x'
-  q2r_path: 'q2r.x'
-  matdyn_path: 'matdyn.x'
+  # Parallelization settings
+  parallel:
+    use_mpi: true           # Whether to use MPI
+    nprocs: 4               # Number of processors to use
+    mpi_command: 'mpirun'   # MPI command (mpirun, mpiexec, srun, etc.)
+    # For SLURM, you might use: mpi_command: 'srun'
+    # For OpenMPI: mpi_command: 'mpirun'
   
-  # Pseudopotential directory (where .upf files are located)
+  # Pseudopotential directory
   pseudo_dir: './pseudopotentials/'
   
   # Pseudopotentials (NC SR ONCVPSP PBE)
@@ -86,15 +88,15 @@ qe:
     F: 'F.upf'
     Cl: 'Cl.upf'
   
-  # SCF parameters
-  ecutwfc: 80.0        # Wavefunction cutoff (Ry) - higher for ONCVPSP
-  ecutrho: 320.0       # Density cutoff (Ry) - 4x ecutwfc for NC
-  kpts: [1, 1, 1]      # k-point grid for molecules (use gamma only)
+  # SCF parameters (in Ry)
+  ecutwfc: 80.0        # Wavefunction cutoff
+  ecutrho: 320.0       # Density cutoff (4x ecutwfc for NC)
+  kpts: [1, 1, 1]      # Gamma point only for molecules
   smearing: 'gaussian'
   degauss: 0.01
   
   # Convergence
-  conv_thr: 1.0e-10    # Tighter SCF convergence for accurate frequencies
+  conv_thr: 1.0e-10
   mixing_beta: 0.7
   electron_maxstep: 200
   

@@ -13,7 +13,12 @@ N.upf - wrong frequencies !!!
   ✓ Optimized structure saved to results_qe/N2_qe_opt.xyz
 
 
+Dip
+---
+https://github.com/dipayanster/MatScProjects/tree/main/Vibration_tests/molecule/N2
+
 N.pbe-rrkjus.UPFN.pbe-rrkjus.UPF
  Optimized bond distance: 1.1100 Å
 
+https://chat.deepseek.com/share/aa77phawu0bqtkmq20
 

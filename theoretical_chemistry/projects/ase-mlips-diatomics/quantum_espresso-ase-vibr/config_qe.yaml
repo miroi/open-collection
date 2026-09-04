@@ -1,5 +1,5 @@
 # Configuration file for diatomic molecule analysis with Quantum ESPRESSO
-# Using 1D scan for fast vibrational frequencies
+# Using ASE Vibrations for vibrational analysis
 
 # General settings
 general:
@@ -9,7 +9,19 @@ general:
   max_steps: 100
   verbose: true
 
-# Molecule definitions
+# Select which molecules to calculate (set to true/false)
+molecules_to_calculate:
+  N2: true
+  H2: false
+  O2: false
+  F2: false
+  Cl2: false
+  # Add more molecules as needed:
+  # CO: true
+  # NO: true
+  # HF: true
+
+# Molecule definitions with experimental reference values
 molecules:
   N2:
     symbols: ['N', 'N']
@@ -19,8 +31,9 @@ molecules:
     symmetry: 2
     geometry: 'linear'
     reference:
-      d_eq: 1.0977
-      freq: 2358.6
+      d_eq: 1.0977      # Experimental bond length (Å)
+      freq: 2358.6      # Experimental vibrational frequency (cm⁻¹)
+      source: "NIST Chemistry WebBook"
   
   H2:
     symbols: ['H', 'H']
@@ -32,6 +45,7 @@ molecules:
     reference:
       d_eq: 0.7414
       freq: 4401.2
+      source: "NIST Chemistry WebBook"
   
   O2:
     symbols: ['O', 'O']
@@ -43,6 +57,7 @@ molecules:
     reference:
       d_eq: 1.2075
       freq: 1580.2
+      source: "NIST Chemistry WebBook"
   
   F2:
     symbols: ['F', 'F']
@@ -54,6 +69,7 @@ molecules:
     reference:
       d_eq: 1.4119
       freq: 917.0
+      source: "NIST Chemistry WebBook"
   
   Cl2:
     symbols: ['Cl', 'Cl']
@@ -65,6 +81,44 @@ molecules:
     reference:
       d_eq: 1.9879
       freq: 559.7
+      source: "NIST Chemistry WebBook"
+  
+  # Additional molecules (commented out by default)
+  # CO:
+  #   symbols: ['C', 'O']
+  #   initial_distance: 1.2
+  #   mass: 28.010
+  #   spin: 0
+  #   symmetry: 1
+  #   geometry: 'linear'
+  #   reference:
+  #     d_eq: 1.1283
+  #     freq: 2170.2
+  #     source: "NIST Chemistry WebBook"
+  
+  # NO:
+  #   symbols: ['N', 'O']
+  #   initial_distance: 1.2
+  #   mass: 30.006
+  #   spin: 0.5
+  #   symmetry: 1
+  #   geometry: 'linear'
+  #   reference:
+  #     d_eq: 1.1508
+  #     freq: 1904.2
+  #     source: "NIST Chemistry WebBook"
+  
+  # HF:
+  #   symbols: ['H', 'F']
+  #   initial_distance: 1.0
+  #   mass: 20.006
+  #   spin: 0
+  #   symmetry: 1
+  #   geometry: 'linear'
+  #   reference:
+  #     d_eq: 0.9168
+  #     freq: 4138.3
+  #     source: "NIST Chemistry WebBook"
 
 # Quantum ESPRESSO settings
 qe:
@@ -82,10 +136,12 @@ qe:
     O: 'O.upf'
     F: 'F.upf'
     Cl: 'Cl.upf'
+    # For additional elements, uncomment and add:
+    # C: 'C.upf'
   
   # SCF parameters
   ecutwfc: 80.0
-  ecutrho: 320.0
+  #ecutrho: 320.0
   kpts: [1, 1, 1]
   smearing: 'gaussian'
   degauss: 0.01
@@ -93,9 +149,11 @@ qe:
   mixing_beta: 0.7
   electron_maxstep: 200
   
-  # 1D Vibration settings (new)
-  delta: 0.005         # Displacement for 1D scan
-  n_points: 7          # Number of points for 1D scan (odd number recommended)
+  # Vibration settings
+  vibration_method: 'full'  # Options: '1d' (fast) or 'full' (full Hessian)
+  delta: 0.005              # Displacement for finite differences
+  nfree: 2                  # Number of displacements per direction (for 'full' method)
+  n_points: 7               # Number of points for 1D scan (for '1d' method)
 
 # Output settings
 output:

@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
 Diatomic molecule analysis with Quantum ESPRESSO
-Optimized for fast vibrational frequency calculation using 1D scan
+Full vibrational analysis using ASE Vibrations class
+Optimized for diatomics with per-molecule logging
 """
 
 import os
@@ -12,7 +13,10 @@ import pandas as pd
 from ase import Atoms
 from ase.calculators.espresso import Espresso, EspressoProfile
 from ase.optimize import BFGS
+from ase.vibrations import Vibrations, VibrationsData
 from ase.io import write, read
+from ase.units import invcm
+from datetime import datetime
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -36,6 +40,7 @@ class QEDiatomicAnalyzer:
         self.parallel_config = self.qe_config.get('parallel', {})
         self.pseudo_dir = self.qe_config.get('pseudo_dir', './pseudopotentials/')
         self.pseudopotentials = self.qe_config.get('pseudopotentials', {})
+        self.molecules_to_calculate = config.get('molecules_to_calculate', {})
         
         # Build the command with MPI
         self.command = self._build_command()
@@ -68,6 +73,7 @@ class QEDiatomicAnalyzer:
         """Create necessary directories."""
         os.makedirs(self.pseudo_dir, exist_ok=True)
         os.makedirs('./tmp/', exist_ok=True)
+        os.makedirs('./vib/', exist_ok=True)
         os.makedirs(self.config.get('output', {}).get('output_dir', 'results_qe'), exist_ok=True)
     
     def _setup_calculator(self):
@@ -165,14 +171,17 @@ class QEDiatomicAnalyzer:
         atoms.set_pbc(True)
         return atoms
     
-    def optimize_geometry(self, atoms, fmax=0.001, steps=100):
-        """Optimize geometry using BFGS."""
+    def optimize_geometry(self, atoms, mol_name, fmax=0.001, steps=100):
+        """Optimize geometry using BFGS with per-molecule naming."""
+        traj_file = f'{mol_name}_opt.traj'
+        log_file = f'{mol_name}_opt.log'
+        
         atoms.set_calculator(self.calc)
-        opt = BFGS(atoms, trajectory='qe_opt.traj', logfile='qe_opt.log')
+        opt = BFGS(atoms, trajectory=traj_file, logfile=log_file)
         opt.run(fmax=fmax, steps=steps)
         return atoms
     
-    def get_equilibrium_distance(self, symbols, initial_distance=1.2, fmax=0.001, steps=100):
+    def get_equilibrium_distance(self, symbols, mol_name, initial_distance=1.2, fmax=0.001, steps=100):
         """Find equilibrium bond distance."""
         unique_symbols = list(set(symbols))
         all_exist = True
@@ -188,7 +197,7 @@ class QEDiatomicAnalyzer:
         self._update_calculator_for_molecule(unique_symbols)
         atoms.set_calculator(self.calc)
         
-        opt_atoms = self.optimize_geometry(atoms, fmax, steps)
+        opt_atoms = self.optimize_geometry(atoms, mol_name, fmax, steps)
         return opt_atoms.get_distance(0, 1), opt_atoms
     
     def _update_calculator_for_molecule(self, symbols):
@@ -231,11 +240,80 @@ class QEDiatomicAnalyzer:
         }
         return [masses.get(s, 0.0) for s in symbols]
     
-    def calculate_vibrational_frequency_1d(self, atoms, delta=0.005, n_points=7):
+    def calculate_vibrational_frequency_full(self, atoms, mol_name, delta=0.005, nfree=2):
+        """
+        Calculate vibrational frequencies using ASE Vibrations class.
+        This does a full 3D Hessian calculation for all atoms.
+        For diatomics, we only vibrate the two atoms.
+        """
+        try:
+            print(f"    Using ASE Vibrations with delta={delta}, nfree={nfree}")
+            
+            # Set the vibration calculator
+            atoms.set_calculator(self.vib_calc)
+            
+            # Create Vibrations object - only vibrate atoms 0 and 1
+            vib_name = f'vib/{mol_name}'
+            vib = Vibrations(
+                atoms, 
+                indices=[0, 1],  # Only vibrate the two atoms
+                name=vib_name,
+                delta=delta,
+                nfree=nfree
+            )
+            
+            # Run the calculations
+            print(f"    Running {2 * nfree * 2} displacement calculations...")
+            vib.run()
+            
+            # Get frequencies in cm^-1
+            frequencies = vib.get_frequencies()
+            
+            # Filter out near-zero frequencies (translations and rotations)
+            valid_freqs = [f for f in frequencies if abs(f) > 1.0]
+            
+            if len(valid_freqs) > 0:
+                # For diatomic, the first non-zero frequency is the stretching mode
+                freq_cm1 = abs(valid_freqs[0])
+                print(f"    Found {len(valid_freqs)} non-zero modes")
+                print(f"    Stretching mode: {freq_cm1:.2f} cm⁻¹")
+                
+                # Get summary
+                vib.summary()
+                
+                # Write the mode to a trajectory file for visualization
+                try:
+                    vib.write_mode(-1)  # Write last mode
+                    print(f"    Mode written to {vib_name}.8.traj")
+                except:
+                    pass
+                
+                # Get detailed vibrational data
+                vib_data = vib.get_vibrations()
+                energies = vib_data.get_energies()
+                zero_point = vib_data.get_zero_point_energy()
+                print(f"    Zero-point energy: {zero_point:.4f} eV")
+                
+            else:
+                freq_cm1 = 0.0
+                print(f"    No non-zero modes found")
+            
+            # Clean up
+            try:
+                vib.clean()
+            except:
+                pass
+            
+            return freq_cm1
+            
+        except Exception as e:
+            print(f"  Error in full vibration calculation: {e}")
+            return 0.0
+    
+    def calculate_vibrational_frequency_1d(self, atoms, mol_name, delta=0.005, n_points=7):
         """
         Calculate vibrational frequency using 1D scan along the bond.
         This is MUCH faster than full 3D Hessian calculation.
-        
         Only samples along the M-M bond direction.
         Returns frequency in cm^-1.
         """
@@ -275,10 +353,9 @@ class QEDiatomicAnalyzer:
             
             if second_deriv <= 0:
                 print(f"    Warning: Negative second derivative ({second_deriv:.6f} eV/A^2)")
-                # Try fitting with more points
                 if n_points < 11:
                     print(f"    Retrying with more points...")
-                    return self.calculate_vibrational_frequency_1d(atoms, delta, n_points + 2)
+                    return self.calculate_vibrational_frequency_1d(atoms, mol_name, delta, n_points + 2)
                 return 0.0
             
             # Convert to frequency
@@ -307,6 +384,8 @@ class QEDiatomicAnalyzer:
         print(f"\n{'='*60}")
         print(f"Analyzing {molecule_name}")
         print(f"{'='*60}")
+        print(f"Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        print(f"{'='*60}")
         
         symbols = properties['symbols']
         initial_dist = properties['initial_distance']
@@ -321,13 +400,14 @@ class QEDiatomicAnalyzer:
         # Update calculator for this molecule
         self._update_calculator_for_molecule(unique_symbols)
         
-        # Get equilibrium distance
+        # Get equilibrium distance with per-molecule naming
         fmax = self.config.get('general', {}).get('fmax', 0.001)
         max_steps = self.config.get('general', {}).get('max_steps', 100)
         
         print(f"  Finding equilibrium geometry...")
+        print(f"  Log files: {molecule_name}_opt.log, {molecule_name}_opt.traj")
         eq_dist, opt_atoms = self.get_equilibrium_distance(
-            symbols, initial_dist, fmax, max_steps
+            symbols, molecule_name, initial_dist, fmax, max_steps
         )
         
         if opt_atoms is None:
@@ -336,14 +416,24 @@ class QEDiatomicAnalyzer:
         
         print(f"  ✓ Equilibrium bond distance: {eq_dist:.4f} Å")
         
-        # Calculate vibrational frequency using 1D scan
-        print(f"  Calculating vibrational frequency using 1D scan...")
+        # Choose frequency calculation method
+        vib_method = self.qe_config.get('vibration_method', '1d')
+        
+        print(f"  Calculating vibrational frequency using method: {vib_method}")
         delta = self.qe_config.get('delta', 0.005)
-        n_points = self.qe_config.get('n_points', 7)
         
         import time
         start_time = time.time()
-        freq_cm1 = self.calculate_vibrational_frequency_1d(opt_atoms, delta, n_points)
+        
+        if vib_method == 'full':
+            # Use full ASE Vibrations class
+            nfree = self.qe_config.get('nfree', 2)
+            freq_cm1 = self.calculate_vibrational_frequency_full(opt_atoms, molecule_name, delta, nfree)
+        else:
+            # Use 1D scan (default, faster)
+            n_points = self.qe_config.get('n_points', 7)
+            freq_cm1 = self.calculate_vibrational_frequency_1d(opt_atoms, molecule_name, delta, n_points)
+        
         elapsed = time.time() - start_time
         
         if freq_cm1 > 0:
@@ -351,14 +441,38 @@ class QEDiatomicAnalyzer:
         else:
             print(f"  ✗ Frequency calculation failed")
         
+        # Get experimental reference values
+        ref_data = properties.get('reference', {})
+        exp_d_eq = ref_data.get('d_eq', None)
+        exp_freq = ref_data.get('freq', None)
+        ref_source = ref_data.get('source', 'Unknown')
+        
+        # Calculate errors if experimental values exist
+        d_eq_error = abs(eq_dist - exp_d_eq) / exp_d_eq * 100 if exp_d_eq else None
+        freq_error = abs(freq_cm1 - exp_freq) / exp_freq * 100 if exp_freq and freq_cm1 > 0 else None
+        
         results = {
             'molecule': molecule_name,
             'symbols': symbols,
             'calculator': 'Quantum ESPRESSO (ONCVPSP PBE)',
             'equilibrium_distance': eq_dist,
+            'exp_equilibrium_distance': exp_d_eq,
+            'd_eq_error_percent': d_eq_error,
             'vibrational_frequency_cm1': freq_cm1,
+            'exp_vibrational_frequency': exp_freq,
+            'freq_error_percent': freq_error,
+            'reference_source': ref_source,
+            'vibration_method': vib_method,
             'calculation_time': elapsed,
+            'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         }
+        
+        # Print comparison with experiment
+        print(f"\n  Comparison with experiment:")
+        if exp_d_eq:
+            print(f"    Bond length: {eq_dist:.4f} Å (exp: {exp_d_eq:.4f} Å, error: {d_eq_error:.2f}%)")
+        if exp_freq and freq_cm1 > 0:
+            print(f"    Frequency: {freq_cm1:.2f} cm⁻¹ (exp: {exp_freq:.2f} cm⁻¹, error: {freq_error:.2f}%)")
         
         return results, opt_atoms
 
@@ -383,86 +497,162 @@ def save_results(results, config):
     output_dir = output_config.get('output_dir', 'results_qe')
     os.makedirs(output_dir, exist_ok=True)
     
+    # Save detailed summary as CSV
     csv_file = os.path.join(output_dir, 'summary.csv')
     with open(csv_file, 'w') as f:
-        f.write("Molecule,Symbols,Calculator,d_eq(Å),freq(cm⁻¹),Time(s)\n")
+        # Write header with all fields
+        f.write("Molecule,Symbols,Calculator,d_eq_calc(Å),d_eq_exp(Å),d_eq_error(%),"
+                "freq_calc(cm⁻¹),freq_exp(cm⁻¹),freq_error(%),"
+                "Reference,Method,Time(s),Timestamp\n")
+        
         for mol_name, mol_result in results.items():
             if mol_result:
                 symbols = ''.join(mol_result.get('symbols', []))
+                d_eq_exp = mol_result.get('exp_equilibrium_distance', 'N/A')
+                d_eq_error = f"{mol_result.get('d_eq_error_percent', 0):.2f}" if mol_result.get('d_eq_error_percent') is not None else 'N/A'
+                freq_exp = mol_result.get('exp_vibrational_frequency', 'N/A')
+                freq_error = f"{mol_result.get('freq_error_percent', 0):.2f}" if mol_result.get('freq_error_percent') is not None else 'N/A'
+                
                 f.write(f"{mol_name},{symbols},Quantum ESPRESSO (ONCVPSP PBE),"
-                       f"{mol_result['equilibrium_distance']:.4f},"
-                       f"{mol_result['vibrational_frequency_cm1']:.2f},"
-                       f"{mol_result.get('calculation_time', 0):.1f}\n")
+                       f"{mol_result['equilibrium_distance']:.4f},{d_eq_exp},{d_eq_error},"
+                       f"{mol_result['vibrational_frequency_cm1']:.2f},{freq_exp},{freq_error},"
+                       f"{mol_result.get('reference_source', 'N/A')},"
+                       f"{mol_result.get('vibration_method', 'N/A')},"
+                       f"{mol_result.get('calculation_time', 0):.1f},"
+                       f"{mol_result.get('timestamp', 'N/A')}\n")
     
     print(f"✓ Results saved to {csv_file}")
+    
+    # Create a human-readable summary
+    summary_file = os.path.join(output_dir, 'summary.txt')
+    with open(summary_file, 'w') as f:
+        f.write("="*80 + "\n")
+        f.write("DIATOMIC MOLECULE ANALYSIS SUMMARY\n")
+        f.write("="*80 + "\n\n")
+        
+        for mol_name, mol_result in results.items():
+            if mol_result:
+                f.write(f"Molecule: {mol_name}\n")
+                f.write(f"  Symbols: {mol_result.get('symbols', [])}\n")
+                f.write(f"  Equilibrium bond length: {mol_result['equilibrium_distance']:.4f} Å\n")
+                
+                exp_d_eq = mol_result.get('exp_equilibrium_distance')
+                if exp_d_eq:
+                    error = mol_result.get('d_eq_error_percent', 0)
+                    f.write(f"  Experimental bond length: {exp_d_eq:.4f} Å (error: {error:.2f}%)\n")
+                
+                f.write(f"  Vibrational frequency: {mol_result['vibrational_frequency_cm1']:.2f} cm⁻¹\n")
+                
+                exp_freq = mol_result.get('exp_vibrational_frequency')
+                if exp_freq:
+                    error = mol_result.get('freq_error_percent', 0)
+                    f.write(f"  Experimental frequency: {exp_freq:.2f} cm⁻¹ (error: {error:.2f}%)\n")
+                
+                f.write(f"  Reference source: {mol_result.get('reference_source', 'N/A')}\n")
+                f.write(f"  Vibration method: {mol_result.get('vibration_method', 'N/A')}\n")
+                f.write(f"  Calculation time: {mol_result.get('calculation_time', 0):.1f} seconds\n")
+                f.write(f"  Timestamp: {mol_result.get('timestamp', 'N/A')}\n")
+                f.write("-"*40 + "\n")
+    
+    print(f"✓ Human-readable summary saved to {summary_file}")
 
 def compare_with_reference(results, config):
     """Compare with reference values from NIST."""
-    reference = {
-        'N2': {'d_eq': 1.0977, 'freq': 2358.6},
-        'H2': {'d_eq': 0.7414, 'freq': 4401.2},
-        'F2': {'d_eq': 1.4119, 'freq': 917.0},
-        'O2': {'d_eq': 1.2075, 'freq': 1580.2},
-        'Cl2': {'d_eq': 1.9879, 'freq': 559.7}
-    }
-    
     print("\n" + "="*80)
-    print("COMPARISON WITH REFERENCE VALUES (NIST)")
+    print("COMPARISON WITH EXPERIMENTAL VALUES")
     print("="*80)
-    print(f"{'Molecule':<8} {'Property':<15} {'Calculated':<12} {'Reference':<12} {'Error (%)':<10} {'Status'}")
+    print(f"{'Molecule':<10} {'Property':<15} {'Calculated':<15} {'Experimental':<15} {'Error (%)':<12} {'Status'}")
     print("-"*80)
     
     comparisons = []
     
-    for mol_name, ref in reference.items():
-        if mol_name not in results:
-            continue
-            
-        res = results[mol_name]
+    for mol_name, res in results.items():
         if res is None:
             continue
         
         freq = res['vibrational_frequency_cm1']
-        dist_err = abs(res['equilibrium_distance'] - ref['d_eq']) / ref['d_eq'] * 100
-        freq_err = abs(freq - ref['freq']) / ref['freq'] * 100 if ref['freq'] > 0 and freq > 0 else 999.0
+        exp_d_eq = res.get('exp_equilibrium_distance')
+        exp_freq = res.get('exp_vibrational_frequency')
         
-        comparisons.append({
-            'Molecule': mol_name,
-            'd_eq_calc': res['equilibrium_distance'],
-            'd_eq_ref': ref['d_eq'],
-            'd_eq_error': dist_err,
-            'freq_calc': freq,
-            'freq_ref': ref['freq'],
-            'freq_error': freq_err
-        })
+        # Bond length comparison
+        if exp_d_eq:
+            dist_err = abs(res['equilibrium_distance'] - exp_d_eq) / exp_d_eq * 100
+            d_eq_marker = "✓" if dist_err < 2 else "⚠" if dist_err < 5 else "✗"
+            print(f"{mol_name:<10} {'d_eq (Å)':<15} {res['equilibrium_distance']:<15.4f} {exp_d_eq:<15.4f} {dist_err:<12.2f} {d_eq_marker}")
         
-        d_eq_marker = "✓" if dist_err < 2 else "⚠" if dist_err < 5 else "✗"
-        freq_marker = "✓" if freq_err < 10 else "⚠" if freq_err < 20 else "✗" if freq_err < 999 else "✗"
+        # Frequency comparison
+        if exp_freq and freq > 0:
+            freq_err = abs(freq - exp_freq) / exp_freq * 100
+            freq_marker = "✓" if freq_err < 10 else "⚠" if freq_err < 20 else "✗"
+            print(f"{mol_name:<10} {'freq (cm⁻¹)':<15} {freq:<15.2f} {exp_freq:<15.2f} {freq_err:<12.2f} {freq_marker}")
         
-        print(f"{mol_name:<8} {'d_eq (Å)':<15} {res['equilibrium_distance']:<12.4f} {ref['d_eq']:<12.4f} {dist_err:<10.2f} {d_eq_marker}")
-        freq_display = f"{freq:.2f}" if freq > 0 else "N/A"
-        print(f"{mol_name:<8} {'freq (cm⁻¹)':<15} {freq_display:<12s} {ref['freq']:<12.2f} {freq_err:<10.2f} {freq_marker}")
         print("-"*80)
+    
+    # Summary statistics
+    print("\n" + "="*80)
+    print("SUMMARY STATISTICS")
+    print("="*80)
+    
+    valid_results = [r for r in results.values() if r is not None]
+    
+    if valid_results:
+        # Bond length errors
+        d_eq_errors = [r.get('d_eq_error_percent') for r in valid_results if r.get('d_eq_error_percent') is not None]
+        if d_eq_errors:
+            avg_dist_err = np.mean(d_eq_errors)
+            max_dist_err = np.max(d_eq_errors)
+            min_dist_err = np.min(d_eq_errors)
+            print(f"\n  Bond Length Errors:")
+            print(f"    Average: {avg_dist_err:.2f}%")
+            print(f"    Maximum: {max_dist_err:.2f}%")
+            print(f"    Minimum: {min_dist_err:.2f}%")
+        
+        # Frequency errors
+        freq_errors = [r.get('freq_error_percent') for r in valid_results if r.get('freq_error_percent') is not None and r.get('freq_error_percent') < 1000]
+        if freq_errors:
+            avg_freq_err = np.mean(freq_errors)
+            max_freq_err = np.max(freq_errors)
+            min_freq_err = np.min(freq_errors)
+            print(f"\n  Frequency Errors:")
+            print(f"    Average: {avg_freq_err:.2f}%")
+            print(f"    Maximum: {max_freq_err:.2f}%")
+            print(f"    Minimum: {min_freq_err:.2f}%")
+        
+        # Overall assessment
+        if d_eq_errors and freq_errors:
+            if avg_dist_err < 2 and avg_freq_err < 10:
+                print("\n  ✓ Excellent agreement with experimental values")
+            elif avg_dist_err < 5 and avg_freq_err < 20:
+                print("\n  ✓ Good agreement with experimental values")
+            else:
+                print("\n  ⚠ Moderate agreement - consider improving convergence parameters")
 
 def main():
     """Main execution function."""
     print("="*80)
     print("Diatomic Molecule Analysis with Quantum ESPRESSO")
-    print("Using 1D Scan for Fast Vibrational Frequencies")
+    print("Using ASE Vibrations for Full Vibrational Analysis")
     print("="*80)
     
     config = load_config('config_qe.yaml')
     
     print("\n" + "="*60)
-    print("OPTIMIZED SETTINGS")
+    print("CALCULATION SETTINGS")
     print("="*60)
     qe_config = config.get('qe', {})
-    print(f"  Vibration method: 1D scan along bond")
-    print(f"    n_points: {qe_config.get('n_points', 7)} (SCF calculations per molecule)")
-    print(f"    delta: {qe_config.get('delta', 0.005)} Å")
-    print(f"  vs. traditional 3D Hessian:")
-    print(f"    nfree=4: 8 SCF calculations per atom = 16 total")
-    print(f"    Speedup: ~2-3x faster")
+    vib_method = qe_config.get('vibration_method', '1d')
+    
+    print(f"  Vibration method: {vib_method}")
+    if vib_method == 'full':
+        print(f"    nfree: {qe_config.get('nfree', 2)}")
+    else:
+        print(f"    n_points: {qe_config.get('n_points', 7)}")
+    print(f"  delta: {qe_config.get('delta', 0.005)} Å")
+    
+    # Show which molecules will be calculated
+    molecules_to_calc = config.get('molecules_to_calculate', {})
+    selected_molecules = [m for m, enabled in molecules_to_calc.items() if enabled]
+    print(f"\n  Molecules to calculate: {', '.join(selected_molecules) if selected_molecules else 'None'}")
     print("="*60)
     
     analyzer = QEDiatomicAnalyzer(config)
@@ -471,6 +661,11 @@ def main():
     results = {}
     
     for mol_name, properties in molecules.items():
+        # Check if this molecule should be calculated
+        if not molecules_to_calc.get(mol_name, False):
+            print(f"\n⏭ Skipping {mol_name} (disabled in config)")
+            continue
+        
         result, atoms = analyzer.analyze_molecule(mol_name, properties)
         if result:
             results[mol_name] = result
@@ -494,6 +689,15 @@ def main():
     output_config = config.get('output', {})
     output_dir = output_config.get('output_dir', 'results_qe')
     print(f"  Results saved in: {output_dir}/")
+    print("\n  Files generated:")
+    print(f"    - {output_dir}/summary.csv: All calculated properties with experimental comparison")
+    print(f"    - {output_dir}/summary.txt: Human-readable summary")
+    print(f"    - {output_dir}/*_qe_opt.xyz: Optimized structures")
+    print("    - *_opt.traj: Per-molecule optimization trajectories")
+    print("    - *_opt.log: Per-molecule optimization logs")
+    if vib_method == 'full':
+        print("    - vib/*.json: Vibration displacement files")
+        print("    - vib/*.traj: Vibrational mode trajectories")
     print("="*80)
 
 if __name__ == "__main__":

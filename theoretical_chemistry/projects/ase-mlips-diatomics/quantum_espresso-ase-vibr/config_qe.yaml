@@ -1,0 +1,97 @@
+# Configuration file for diatomic molecule analysis with Quantum ESPRESSO
+# ============================================================================
+
+# General settings
+general:
+  temperature: 298.15  # Kelvin
+  pressure: 101325    # Pa (1 atm)
+  fmax: 0.001        # Convergence criterion for geometry optimization
+  max_steps: 100     # Maximum optimization steps
+  verbose: true
+
+# Molecule definitions
+molecules:
+  N2:
+    symbols: ['N', 'N']
+    initial_distance: 1.2
+    mass: 28.0134
+    spin: 0
+    symmetry: 2
+    geometry: 'linear'
+    reference:
+      d_eq: 1.0977
+      freq: 2358.6
+  
+  H2:
+    symbols: ['H', 'H']
+    initial_distance: 0.8
+    mass: 2.01588
+    spin: 0
+    symmetry: 2
+    geometry: 'linear'
+    reference:
+      d_eq: 0.7414
+      freq: 4401.2
+  
+  O2:
+    symbols: ['O', 'O']
+    initial_distance: 1.3
+    mass: 31.9988
+    spin: 1
+    symmetry: 2
+    geometry: 'linear'
+    reference:
+      d_eq: 1.2075
+      freq: 1580.2
+  
+  F2:
+    symbols: ['F', 'F']
+    initial_distance: 1.4
+    mass: 37.9968
+    spin: 0
+    symmetry: 2
+    geometry: 'linear'
+    reference:
+      d_eq: 1.4119
+      freq: 917.0
+
+# Quantum ESPRESSO settings
+qe:
+  # Path to QE executables
+  pw_path: 'pw.x'
+  ph_path: 'ph.x'
+  q2r_path: 'q2r.x'
+  matdyn_path: 'matdyn.x'
+  
+  # Calculation parameters
+  pseudopotentials:
+    H: 'H.pbe-rrkjus.UPF'
+    N: 'N.pbe-rrkjus.UPF'
+    O: 'O.pbe-rrkjus.UPF'
+    F: 'F.pbe-rrkjus.UPF'
+  
+  # SCF parameters
+  ecutwfc: 50.0        # Wavefunction cutoff (Ry)
+  ecutrho: 200.0       # Density cutoff (Ry)
+  kpts: [1, 1, 1]      # k-point grid for molecules (use gamma only)
+  smearing: 'gaussian'
+  degauss: 0.01
+  
+  # Convergence
+  conv_thr: 1.0e-8     # SCF convergence threshold
+  mixing_beta: 0.7
+  electron_maxstep: 100
+  
+  # Vibration calculation
+  q_points: [0.0, 0.0, 0.0]  # Only gamma point for molecules
+  nq1: 1
+  nq2: 1
+  nq3: 1
+  tr2_ph: 1.0e-12     # Phonon convergence threshold
+
+# Output settings
+output:
+  save_structures: true
+  save_trajectories: true
+  verbose: true
+  output_dir: 'results_qe'

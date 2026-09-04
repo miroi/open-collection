@@ -1,13 +1,12 @@
 # Configuration file for diatomic molecule analysis with Quantum ESPRESSO
-# Using NC SR (ONCVPSP) PBE pseudopotentials
-# ============================================================================
+# Using 1D scan for fast vibrational frequencies
 
 # General settings
 general:
-  temperature: 298.15  # Kelvin
-  pressure: 101325    # Pa (1 atm)
-  fmax: 0.001        # Convergence criterion for geometry optimization
-  max_steps: 100     # Maximum optimization steps
+  temperature: 298.15
+  pressure: 101325
+  fmax: 0.001
+  max_steps: 100
   verbose: true
 
 # Molecule definitions
@@ -69,18 +68,14 @@ molecules:
 
 # Quantum ESPRESSO settings
 qe:
-  # Parallelization settings
+  # Parallelization
   parallel:
-    use_mpi: true           # Whether to use MPI
-    nprocs: 4               # Number of processors to use
-    mpi_command: 'mpirun'   # MPI command (mpirun, mpiexec, srun, etc.)
-    # For SLURM, you might use: mpi_command: 'srun'
-    # For OpenMPI: mpi_command: 'mpirun'
+    use_mpi: true
+    nprocs: 4
+    mpi_command: 'mpirun'
   
-  # Pseudopotential directory
+  # Pseudopotentials
   pseudo_dir: './pseudopotentials/'
-  
-  # Pseudopotentials (NC SR ONCVPSP PBE)
   pseudopotentials:
     H: 'H.upf'
     N: 'N.upf'
@@ -88,21 +83,19 @@ qe:
     F: 'F.upf'
     Cl: 'Cl.upf'
   
-  # SCF parameters (in Ry)
-  ecutwfc: 80.0        # Wavefunction cutoff
-  ecutrho: 320.0       # Density cutoff (4x ecutwfc for NC)
-  kpts: [1, 1, 1]      # Gamma point only for molecules
+  # SCF parameters
+  ecutwfc: 80.0
+  ecutrho: 320.0
+  kpts: [1, 1, 1]
   smearing: 'gaussian'
   degauss: 0.01
-  
-  # Convergence
   conv_thr: 1.0e-10
   mixing_beta: 0.7
   electron_maxstep: 200
   
-  # Vibration calculation
-  delta: 0.005         # Displacement for finite differences
-  nfree: 4             # Number of displacements per mode
+  # 1D Vibration settings (new)
+  delta: 0.005         # Displacement for 1D scan
+  n_points: 7          # Number of points for 1D scan (odd number recommended)
 
 # Output settings
 output:

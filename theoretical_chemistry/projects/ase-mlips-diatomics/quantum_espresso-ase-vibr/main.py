@@ -41,22 +41,53 @@ def main():
     print("\n" + "="*60)
     print("CALCULATION SETTINGS")
     print("="*60)
+    
+    # Get enabled molecules
+    molecules_to_calc = config.get('molecules_to_calculate', {})
+    enabled_molecules = [m for m, enabled in molecules_to_calc.items() if enabled]
+    
+    # Check which enabled molecules have only_geometry_optimization enabled
+    molecules = config.get('molecules', {})
+    geometry_only_molecules = []
+    full_analysis_molecules = []
+    
+    for mol_name in enabled_molecules:
+        if mol_name in molecules:
+            if molecules[mol_name].get('only_geometry_optimization', False):
+                geometry_only_molecules.append(mol_name)
+            else:
+                full_analysis_molecules.append(mol_name)
+    
+    if geometry_only_molecules:
+        print(f"  🔧 GEOMETRY ONLY MODE: {', '.join(geometry_only_molecules)}")
+    if full_analysis_molecules:
+        print(f"  📊 FULL ANALYSIS MODE: {', '.join(full_analysis_molecules)}")
+    
+    if not enabled_molecules:
+        print("  ⚠ No molecules selected for calculation!")
+        print("  Please enable molecules in molecules_to_calculate section")
+        return
+    
     qe_config = config.get('qe', {})
     vib_method = qe_config.get('vibration_method', '1d')
     
-    print(f"  Vibration method: {vib_method}")
-    print(f"    Options: 1d, xonly, full, 1d+xonly, 1d+full, xonly+full, all")
+    if full_analysis_molecules:
+        print(f"  Vibration method: {vib_method}")
+        print(f"    Options: 1d, xonly, full, 1d+xonly, 1d+full, xonly+full, all")
+        
+        if '1d' in vib_method:
+            print(f"    1D Scan: n_points={qe_config.get('1d_settings', {}).get('n_points', 9)}, delta={qe_config.get('1d_settings', {}).get('delta', 0.001)} Å")
+        if 'xonly' in vib_method:
+            print(f"    X-Only Hessian: nfree={qe_config.get('xonly_settings', {}).get('nfree', 2)}, delta={qe_config.get('xonly_settings', {}).get('delta', 0.001)} Å")
+        if 'full' in vib_method:
+            print(f"    Full Hessian: nfree={qe_config.get('full_settings', {}).get('nfree', 2)}, delta={qe_config.get('full_settings', {}).get('delta', 0.001)} Å")
     
-    if '1d' in vib_method:
-        print(f"    1D Scan: n_points={qe_config.get('1d_settings', {}).get('n_points', 7)}, delta={qe_config.get('1d_settings', {}).get('delta', 0.005)} Å")
-    if 'xonly' in vib_method:
-        print(f"    X-Only Hessian: nfree={qe_config.get('xonly_settings', {}).get('nfree', 2)}, delta={qe_config.get('xonly_settings', {}).get('delta', 0.005)} Å")
-    if 'full' in vib_method:
-        print(f"    Full Hessian: nfree={qe_config.get('full_settings', {}).get('nfree', 2)}, delta={qe_config.get('full_settings', {}).get('delta', 0.005)} Å")
+    # Check if any enabled molecule has eq_distance pre-computed
+    for mol_name in enabled_molecules:
+        if mol_name in molecules and 'eq_distance' in molecules[mol_name]:
+            print(f"  Note: {mol_name} has pre-computed eq_distance={molecules[mol_name]['eq_distance']:.4f} Å (will skip geometry optimization)")
     
-    molecules_to_calc = config.get('molecules_to_calculate', {})
-    selected_molecules = [m for m, enabled in molecules_to_calc.items() if enabled]
-    print(f"\n  Molecules to calculate: {', '.join(selected_molecules) if selected_molecules else 'None'}")
+    print(f"\n  Molecules to calculate: {', '.join(enabled_molecules) if enabled_molecules else 'None'}")
     print("="*60)
     
     # Setup directories
@@ -66,8 +97,6 @@ def main():
     setup_directories(pseudo_dir, output_dir)
     
     analyzer = MoleculeAnalyzer(config)
-    
-    molecules = config.get('molecules', {})
     results = {}
     
     for mol_name, properties in molecules.items():
@@ -88,7 +117,13 @@ def main():
         print("SAVING RESULTS")
         print("="*60)
         save_results(results, config)
-        compare_with_reference(results, config)
+        
+        # Check if any calculated molecule had full analysis (frequencies calculated)
+        any_full_analysis = any(not r.get('only_geometry', True) for r in results.values() if r)
+        if any_full_analysis:
+            compare_with_reference(results, config)
+        else:
+            print("\n  ⏭ Skipping comparison with reference (all calculated molecules in geometry-only mode)")
     
     print("\n" + "="*80)
     print("ANALYSIS COMPLETE")
@@ -98,9 +133,10 @@ def main():
     print(f"    - {output_dir}/summary.csv: All calculated properties")
     print(f"    - {output_dir}/summary.txt: Human-readable summary")
     print(f"    - {output_dir}/*_qe_opt.xyz: Optimized structures")
-    print("    - *_opt.traj: Per-molecule optimization trajectories")
-    print("    - *_opt.log: Per-molecule optimization logs")
-    if 'full' in vib_method or 'xonly' in vib_method:
+    if any(not r.get('only_geometry', True) for r in results.values() if r):
+        print("    - *_opt.traj: Per-molecule optimization trajectories")
+        print("    - *_opt.log: Per-molecule optimization logs")
+    if any(not r.get('only_geometry', True) for r in results.values() if r) and ('full' in vib_method or 'xonly' in vib_method):
         print("    - vib/*.json: Vibration displacement files")
         print("    - vib/*.traj: Vibrational mode trajectories")
     print("="*80)

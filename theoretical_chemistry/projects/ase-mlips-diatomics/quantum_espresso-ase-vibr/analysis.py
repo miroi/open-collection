@@ -7,6 +7,7 @@ import time
 from datetime import datetime
 from ase import Atoms
 from ase.optimize import BFGS
+from ase.io import write
 from calculator import QECalculatorSetup
 from vibration import VibrationCalculator
 from utils import create_diatomic, parse_vibration_methods
@@ -67,6 +68,9 @@ class MoleculeAnalyzer:
         initial_dist = properties['initial_distance']
         unique_symbols = list(set(symbols))
         
+        # Check if this molecule should only do geometry optimization
+        only_geometry = properties.get('only_geometry_optimization', False)
+        
         # Check pseudopotentials exist
         for sym in unique_symbols:
             if not self.calc_setup.check_pseudopotential_exists(sym):
@@ -78,6 +82,9 @@ class MoleculeAnalyzer:
         
         # Check if equilibrium distance is already provided in config
         eq_distance_from_config = properties.get('eq_distance', None)
+        
+        if only_geometry:
+            print(f"  🔧 ONLY GEOMETRY OPTIMIZATION MODE (frequencies will be skipped for this molecule)")
         
         if eq_distance_from_config is not None:
             print(f"  ✓ Using pre-computed equilibrium bond distance: {eq_distance_from_config:.4f} Å")
@@ -103,6 +110,34 @@ class MoleculeAnalyzer:
                 return None, None
             
             print(f"  ✓ Equilibrium bond distance: {eq_dist:.4f} Å")
+        
+        # If only geometry optimization is requested for this molecule, skip frequency calculations
+        if only_geometry:
+            print(f"\n  ✓ Geometry optimization complete (frequencies skipped per molecule configuration)")
+            print(f"  Optimized bond distance: {eq_dist:.4f} Å")
+            
+            # Save the optimized structure
+            output_config = self.config.get('output', {})
+            output_dir = output_config.get('output_dir', 'results_qe')
+            if output_config.get('save_structures', True) and opt_atoms:
+                write(f"{output_dir}/{molecule_name}_qe_opt.xyz", opt_atoms)
+                print(f"  ✓ Optimized structure saved to {output_dir}/{molecule_name}_qe_opt.xyz")
+            
+            results = {
+                'molecule': molecule_name,
+                'symbols': symbols,
+                'equilibrium_distance': eq_dist,
+                'exp_equilibrium_distance': properties.get('reference', {}).get('d_eq'),
+                'vibrational_frequency_cm1': 0.0,
+                'vibration_method': 'skipped',
+                'geometry_optimized': eq_distance_from_config is None,
+                'only_geometry': True,
+                'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            }
+            return results, opt_atoms
+        
+        # If we get here, we need to calculate frequencies
+        print(f"\n  Calculating vibrational frequencies...")
         
         # Parse the vibration method
         vib_method = self.qe_config.get('vibration_method', '1d')
@@ -261,6 +296,7 @@ class MoleculeAnalyzer:
             'time_full': freq_results.get('full', {}).get('time', 0),
             'reference_source': ref_data.get('source', 'Unknown'),
             'geometry_optimized': eq_distance_from_config is None,
+            'only_geometry': False,
             'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         }
         

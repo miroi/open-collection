@@ -28,8 +28,9 @@ molecules:
     spin: 0
     symmetry: 2
     geometry: 'linear'
-    # ADD THIS LINE TO SKIP GEOMETRY OPTIMIZATION:
-    eq_distance: 1.1031  # Pre-computed equilibrium bond distance
+    # Set to true to ONLY run geometry optimization for this molecule (skip frequencies)
+    only_geometry_optimization: true  # false = full analysis, true = geometry only
+    # eq_distance: 1.1031  # Uncomment to skip geometry optimization entirely
     reference:
       d_eq: 1.0977
       freq: 2358.6
@@ -42,7 +43,8 @@ molecules:
     spin: 0
     symmetry: 2
     geometry: 'linear'
-    # eq_distance: 0.7790  # Uncomment to skip optimization
+    only_geometry_optimization: false
+    # eq_distance: 0.7790
     reference:
       d_eq: 0.7414
       freq: 4401.2
@@ -55,7 +57,8 @@ molecules:
     spin: 1
     symmetry: 2
     geometry: 'linear'
-    # eq_distance: 1.1003  # Uncomment to skip optimization
+    only_geometry_optimization: false
+    # eq_distance: 1.1003
     reference:
       d_eq: 1.2075
       freq: 1580.2
@@ -68,7 +71,8 @@ molecules:
     spin: 0
     symmetry: 2
     geometry: 'linear'
-    # eq_distance: 1.4191  # Uncomment to skip optimization
+    only_geometry_optimization: false
+    # eq_distance: 1.4191
     reference:
       d_eq: 1.4119
       freq: 917.0
@@ -81,7 +85,8 @@ molecules:
     spin: 0
     symmetry: 2
     geometry: 'linear'
-    # eq_distance: 1.9879  # Uncomment to skip optimization
+    only_geometry_optimization: false
+    # eq_distance: 1.9879
     reference:
       d_eq: 1.9879
       freq: 559.7
@@ -91,7 +96,7 @@ molecules:
 qe:
   parallel:
     use_mpi: true
-    nprocs: 6
+    nprocs: 4
     mpi_command: 'mpirun'
   
   pseudo_dir: './pseudopotentials/'

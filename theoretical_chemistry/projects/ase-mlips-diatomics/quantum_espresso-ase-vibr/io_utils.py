@@ -23,7 +23,7 @@ def save_results(results, config):
                 "freq_xonly(cm⁻¹),time_xonly(s),"
                 "freq_full(cm⁻¹),time_full(s),"
                 "freq_final(cm⁻¹),freq_exp(cm⁻¹),freq_error(%),"
-                "Method,Optimized,Reference,Timestamp\n")
+                "Method,Optimized,Only_Geometry,Reference,Timestamp\n")
         
         for mol_name, mol_result in results.items():
             if mol_result:
@@ -33,6 +33,7 @@ def save_results(results, config):
                 freq_exp = mol_result.get('exp_vibrational_frequency', 'N/A')
                 freq_error = f"{mol_result.get('freq_error_percent', 0):.2f}" if mol_result.get('freq_error_percent') is not None else 'N/A'
                 optimized = "Yes" if mol_result.get('geometry_optimized', True) else "No"
+                only_geometry = "Yes" if mol_result.get('only_geometry', False) else "No"
                 
                 scan_delta = mol_result.get('scan_delta', 0.001)
                 scan_n_points = mol_result.get('scan_n_points', 9)
@@ -49,7 +50,7 @@ def save_results(results, config):
                        f"{mol_result.get('freq_full', 0):.2f},{mol_result.get('time_full', 0):.1f},"
                        f"{mol_result.get('vibrational_frequency_cm1', 0):.2f},{freq_exp},{freq_error},"
                        f"{mol_result.get('vibration_method', 'N/A')},"
-                       f"{optimized},"
+                       f"{optimized},{only_geometry},"
                        f"{mol_result.get('reference_source', 'N/A')},"
                        f"{mol_result.get('timestamp', 'N/A')}\n")
     
@@ -69,6 +70,12 @@ def save_results(results, config):
                 f.write(f"  Equilibrium bond length: {mol_result['equilibrium_distance']:.4f} Å\n")
                 f.write(f"  Geometry optimized: {'Yes' if mol_result.get('geometry_optimized', True) else 'No (from config)'}\n")
                 
+                only_geometry = mol_result.get('only_geometry', False)
+                if only_geometry:
+                    f.write(f"  Mode: Geometry only (frequencies skipped)\n")
+                else:
+                    f.write(f"  Mode: Full analysis (geometry + frequencies)\n")
+                
                 exp_d_eq = mol_result.get('exp_equilibrium_distance')
                 if exp_d_eq is not None:
                     error = mol_result.get('d_eq_error_percent', 0)
@@ -78,28 +85,29 @@ def save_results(results, config):
                         f.write(f"  Experimental bond length: {exp_d_eq:.4f} Å\n")
                 
                 freq = mol_result.get('vibrational_frequency_cm1', 0)
-                if freq > 0:
+                if not only_geometry and freq > 0:
                     f.write(f"  Vibrational frequency: {freq:.2f} cm⁻¹\n")
                     f.write(f"  Method used: {mol_result.get('vibration_method', 'N/A')}\n")
                     
-                    # Show scan parameters
                     if mol_result.get('vibration_method') == '1d_refined':
                         refined_delta = mol_result.get('refined_delta', 0.0005)
                         refined_n_points = mol_result.get('refined_n_points', 11)
                         f.write(f"  Scan parameters: delta={refined_delta} Å, n_points={refined_n_points}\n")
-                else:
+                elif not only_geometry:
                     f.write(f"  Vibrational frequency: Not calculated\n")
+                else:
+                    f.write(f"  Vibrational frequency: Skipped (geometry only mode)\n")
                 
                 exp_freq = mol_result.get('exp_vibrational_frequency')
-                if exp_freq is not None and freq > 0:
+                if exp_freq is not None and not only_geometry and freq > 0:
                     error = mol_result.get('freq_error_percent', 0)
                     if error is not None:
                         f.write(f"  Experimental frequency: {exp_freq:.2f} cm⁻¹ (error: {error:.2f}%)\n")
                     else:
                         f.write(f"  Experimental frequency: {exp_freq:.2f} cm⁻¹\n")
                 
-                # Show all method results if available
-                if (mol_result.get('freq_1d', 0) > 0 or 
+                # Show all method results if available (only for full analysis)
+                if not only_geometry and (mol_result.get('freq_1d', 0) > 0 or 
                     mol_result.get('freq_1d_refined', 0) > 0 or 
                     mol_result.get('freq_xonly', 0) > 0 or 
                     mol_result.get('freq_full', 0) > 0):
@@ -133,6 +141,12 @@ def compare_with_reference(results, config):
         if res is None:
             continue
         
+        # Skip molecules that only did geometry optimization
+        if res.get('only_geometry', False):
+            print(f"{mol_name:<10} {'Skipped':<15} {'Geometry only':<15} {'N/A':<15} {'N/A':<12} {'⏭'}")
+            print("-"*80)
+            continue
+        
         freq = res.get('vibrational_frequency_cm1', 0)
         exp_d_eq = res.get('exp_equilibrium_distance')
         exp_freq = res.get('exp_vibrational_frequency')
@@ -147,7 +161,6 @@ def compare_with_reference(results, config):
             freq_err = abs(freq - exp_freq) / exp_freq * 100
             freq_marker = "✓" if freq_err < 10 else "⚠" if freq_err < 20 else "✗"
             method = res.get('vibration_method', 'N/A')
-            # Show scan parameters for refined method
             if method == '1d_refined':
                 refined_delta = res.get('refined_delta', 0.0005)
                 refined_n_points = res.get('refined_n_points', 11)

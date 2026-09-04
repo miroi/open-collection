@@ -1,5 +1,4 @@
 # Configuration file for diatomic molecule analysis with Quantum ESPRESSO
-# Using ASE Vibrations for vibrational analysis
 
 # General settings
 general:
@@ -9,7 +8,7 @@ general:
   max_steps: 100
   verbose: true
 
-# Select which molecules to calculate (set to true/false)
+# Select which molecules to calculate
 molecules_to_calculate:
   N2: true
   H2: false
@@ -17,7 +16,7 @@ molecules_to_calculate:
   F2: false
   Cl2: false
 
-# Molecule definitions with experimental reference values
+# Molecule definitions
 molecules:
   N2:
     symbols: ['N', 'N']
@@ -81,13 +80,11 @@ molecules:
 
 # Quantum ESPRESSO settings
 qe:
-  # Parallelization
   parallel:
     use_mpi: true
     nprocs: 4
     mpi_command: 'mpirun'
   
-  # Pseudopotentials
   pseudo_dir: './pseudopotentials/'
   pseudopotentials:
     H: 'H.upf'
@@ -96,7 +93,6 @@ qe:
     F: 'F.upf'
     Cl: 'Cl.upf'
   
-  # SCF parameters
   ecutwfc: 80.0
   ecutrho: 320.0
   kpts: [1, 1, 1]
@@ -106,21 +102,17 @@ qe:
   mixing_beta: 0.7
   electron_maxstep: 200
   
-  # Vibration settings
-  # Options: '1d', 'xonly', 'full', or 'both'
-  vibration_method: 'xonly'  # 'xonly' is recommended for diatomics
+  # Vibration settings - 'xonly' is recommended for diatomics
+  vibration_method: 'xonly'
   
-  # 1D Scan parameters (fast, quadratic fit)
   1d_settings:
     delta: 0.005
     n_points: 7
   
-  # X-Only Hessian parameters (recommended for diatomics)
   xonly_settings:
     delta: 0.005
     nfree: 2
   
-  # Full 3D Hessian parameters (most accurate but slow)
   full_settings:
     delta: 0.005
     nfree: 2

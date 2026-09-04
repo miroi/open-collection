@@ -315,14 +315,15 @@ class QEDiatomicAnalyzer:
             print(f"    Using X-Only Hessian with delta={delta}, nfree={nfree}")
             print(f"    Only displacing along x-axis (bond direction)")
             
-            # Freeze y and z for both atoms
-            constraint = FixCartesian(
-                indices=[0, 1],
-                mask=[True, False, False]  # Only x is free
-            )
-            
-            # Apply constraint
+            # Save original constraints
             original_constraints = atoms.constraints.copy()
+            
+            # Apply constraint: freeze y and z for both atoms
+            # In ASE, FixCartesian uses a mask where True = free, False = fixed
+            # For 2 atoms, we need a list of masks for each atom
+            constraint = FixCartesian(
+                mask=[[True, False, False], [True, False, False]]  # Only x is free for both atoms
+            )
             atoms.set_constraint([constraint])
             atoms.set_calculator(self.vib_calc)
             
@@ -354,9 +355,13 @@ class QEDiatomicAnalyzer:
                 print(f"    Frequency: {freq_cm1:.2f} cm⁻¹")
                 
                 # Get zero-point energy (only stretching mode)
-                vib_data = vib.get_vibrations()
-                zero_point = vib_data.get_zero_point_energy()
-                print(f"    Zero-point energy: {zero_point:.4f} eV")
+                try:
+                    vib_data = vib.get_vibrations()
+                    zero_point = vib_data.get_zero_point_energy()
+                    print(f"    Zero-point energy: {zero_point:.4f} eV")
+                except:
+                    pass
+                
                 print(f"    {'='*50}")
                 
                 try:
@@ -463,9 +468,12 @@ class QEDiatomicAnalyzer:
                     pass
                 
                 # Get zero-point energy (all modes)
-                vib_data = vib.get_vibrations()
-                zero_point = vib_data.get_zero_point_energy()
-                print(f"    Total zero-point energy: {zero_point:.4f} eV")
+                try:
+                    vib_data = vib.get_vibrations()
+                    zero_point = vib_data.get_zero_point_energy()
+                    print(f"    Total zero-point energy: {zero_point:.4f} eV")
+                except:
+                    pass
                 
             else:
                 stretching_freq = 0.0
@@ -723,21 +731,29 @@ def save_results(results, config):
                 f.write(f"  Equilibrium bond length: {mol_result['equilibrium_distance']:.4f} Å\n")
                 
                 exp_d_eq = mol_result.get('exp_equilibrium_distance')
-                if exp_d_eq:
+                if exp_d_eq is not None:
                     error = mol_result.get('d_eq_error_percent', 0)
-                    f.write(f"  Experimental bond length: {exp_d_eq:.4f} Å (error: {error:.2f}%)\n")
+                    if error is not None:
+                        f.write(f"  Experimental bond length: {exp_d_eq:.4f} Å (error: {error:.2f}%)\n")
+                    else:
+                        f.write(f"  Experimental bond length: {exp_d_eq:.4f} Å\n")
                 
                 f.write(f"  Vibrational frequency: {mol_result['vibrational_frequency_cm1']:.2f} cm⁻¹\n")
                 
                 exp_freq = mol_result.get('exp_vibrational_frequency')
-                if exp_freq:
+                if exp_freq is not None:
                     error = mol_result.get('freq_error_percent', 0)
-                    f.write(f"  Experimental frequency: {exp_freq:.2f} cm⁻¹ (error: {error:.2f}%)\n")
+                    if error is not None:
+                        f.write(f"  Experimental frequency: {exp_freq:.2f} cm⁻¹ (error: {error:.2f}%)\n")
+                    else:
+                        f.write(f"  Experimental frequency: {exp_freq:.2f} cm⁻¹\n")
                 
                 f.write(f"  Method used: {mol_result.get('vibration_method', 'N/A')}\n")
                 
                 # Show all method results if available
-                if mol_result.get('freq_1d', 0) > 0 or mol_result.get('freq_xonly', 0) > 0 or mol_result.get('freq_full', 0) > 0:
+                if (mol_result.get('freq_1d', 0) > 0 or 
+                    mol_result.get('freq_xonly', 0) > 0 or 
+                    mol_result.get('freq_full', 0) > 0):
                     f.write(f"  All methods:\n")
                     if mol_result.get('freq_1d', 0) > 0:
                         f.write(f"    1D Scan: {mol_result['freq_1d']:.2f} cm⁻¹ (time: {mol_result.get('time_1d', 0):.1f}s)\n")
@@ -768,12 +784,12 @@ def compare_with_reference(results, config):
         exp_d_eq = res.get('exp_equilibrium_distance')
         exp_freq = res.get('exp_vibrational_frequency')
         
-        if exp_d_eq:
+        if exp_d_eq is not None:
             dist_err = abs(res['equilibrium_distance'] - exp_d_eq) / exp_d_eq * 100
             d_eq_marker = "✓" if dist_err < 2 else "⚠" if dist_err < 5 else "✗"
             print(f"{mol_name:<10} {'d_eq (Å)':<15} {res['equilibrium_distance']:<15.4f} {exp_d_eq:<15.4f} {dist_err:<12.2f} {d_eq_marker}")
         
-        if exp_freq and freq > 0:
+        if exp_freq is not None and freq > 0:
             freq_err = abs(freq - exp_freq) / exp_freq * 100
             freq_marker = "✓" if freq_err < 10 else "⚠" if freq_err < 20 else "✗"
             method = res.get('vibration_method', 'N/A')

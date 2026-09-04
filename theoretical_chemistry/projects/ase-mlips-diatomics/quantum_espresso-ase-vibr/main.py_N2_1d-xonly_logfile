@@ -1,0 +1,143 @@
+(molmatmodel) milias@DESKTOP-7OTLCGO:~/work/projects/open-collection/theoretical_chemistry/projects/ase-mlips-diatomics/quantum_espresso-ase-vibr/.python  main.py
+================================================================================
+Diatomic Molecule Analysis with Quantum ESPRESSO
+Full Vibrational Analysis with Multiple Methods
+================================================================================
+✓ Loaded configuration from config_qe.yaml
+
+============================================================
+CALCULATION SETTINGS
+============================================================
+  📊 FULL ANALYSIS MODE: N2
+  Vibration method: 1d+xonly
+    Options: 1d, xonly, full, 1d+xonly, 1d+full, xonly+full, all
+    1D Scan: n_points=9, delta=0.01 Å
+    X-Only Hessian: nfree=2, delta=0.01 Å
+  Note: N2 has pre-computed eq_distance=1.1100 Å (will skip geometry optimization)
+
+  Molecules to calculate: N2
+============================================================
+
+============================================================
+Analyzing N2
+============================================================
+Time: 2026-09-04 17:19:14
+============================================================
+  ✓ Using pre-computed equilibrium bond distance: 1.1100 Å
+    (Skipping geometry optimization)
+
+  Calculating vibrational frequencies...
+
+  Method 1: 1D Scan (quadratic fit along bond)
+    Scan range: ±0.01 Å, 9 points
+    Using 1D scan with n_points=9, delta=0.01
+    Scanning bond length from 1.100000 to 1.120000 Å
+    Center: 1.110000 Å, Range: ±0.010000 Å
+      Point 1/9: r = 1.100000 Å, E = -767.810580 eV
+      Point 2/9: r = 1.102500 Å, E = -767.813825 eV
+      Point 3/9: r = 1.105000 Å, E = -767.816132 eV
+      Point 4/9: r = 1.107500 Å, E = -767.817517 eV
+      Point 5/9: r = 1.110000 Å, E = -767.817998 eV
+      Point 6/9: r = 1.112500 Å, E = -767.817590 eV
+      Point 7/9: r = 1.115000 Å, E = -767.816311 eV
+      Point 8/9: r = 1.117500 Å, E = -767.814175 eV
+      Point 9/9: r = 1.120000 Å, E = -767.811200 eV
+    Force constant: 22776.19 N/m
+    Reduced mass: 7.0035 amu
+    1D scan frequency: 7429.47 cm⁻¹
+    ✓ 1D Scan: 7429.47 cm⁻¹ (took 251.1s, 9 SCF)
+
+  Method 1b: 1D Scan (Refined - more accurate)
+    Scan range: ±0.005 Å, 11 points
+    Using refined 1D scan with n_points=11, delta=0.005
+    Scanning bond length from 1.105000 to 1.115000 Å
+    Center: 1.110000 Å, Range: ±0.005000 Å
+      Point 1/11: r = 1.105000 Å, E = -767.816132 eV
+      Point 2/11: r = 1.106000 Å, E = -767.816796 eV
+      Point 3/11: r = 1.107000 Å, E = -767.817313 eV
+      Point 4/11: r = 1.108000 Å, E = -767.817686 eV
+      Point 5/11: r = 1.109000 Å, E = -767.817913 eV
+      Point 6/11: r = 1.110000 Å, E = -767.817998 eV
+      Point 7/11: r = 1.111000 Å, E = -767.817940 eV
+      Point 8/11: r = 1.112000 Å, E = -767.817742 eV
+      Point 9/11: r = 1.113000 Å, E = -767.817403 eV
+      Point 10/11: r = 1.114000 Å, E = -767.816926 eV
+      Point 11/11: r = 1.115000 Å, E = -767.816311 eV
+    Force constant: 22766.94 N/m
+    Reduced mass: 7.0035 amu
+    Refined 1D scan frequency: 7427.96 cm⁻¹
+    ✓ 1D Scan (Refined): 7427.96 cm⁻¹ (took 301.3s, 11 SCF)
+
+  Method 2: X-Only Hessian (manual, only along bond)
+    Displacement: ±0.01 Å, nfree=2
+    Using X-Only Hessian with delta=0.01, nfree=2
+    Only displacing along x-axis (bond direction)
+    Using manual displacement along x with FixAtoms
+      Atom 0, dx = -0.002500 Å, E = -767.817590 eV
+      Atom 0, dx = -0.005000 Å, E = -767.816311 eV
+      Atom 0, dx = 0.002500 Å, E = -767.817517 eV
+      Atom 0, dx = 0.005000 Å, E = -767.816132 eV
+      Atom 1, dx = -0.002500 Å, E = -767.817517 eV
+      Atom 1, dx = -0.005000 Å, E = -767.816132 eV
+      Atom 1, dx = 0.002500 Å, E = -767.817590 eV
+      Atom 1, dx = 0.005000 Å, E = -767.816311 eV
+      Equilibrium: r = 1.110000 Å, E = -767.817998 eV
+      Atom 0: d_avg = 0.005000 Å, second_deriv = 142.114173 eV/A²
+      Atom 1: d_avg = 0.005000 Å, second_deriv = 142.103289 eV/A²
+
+    ==================================================
+    X-ONLY HESSIAN RESULTS FOR N2
+    ==================================================
+    Force constant: 22768.33 N/m
+    Reduced mass: 7.0035 amu
+    ✓ Stretching mode: 7428.19 cm⁻¹
+    ==================================================
+    ✓ X-Only Hessian: 7428.19 cm⁻¹ (took 246.9s, 4 SCF)
+
+  =======================================================
+  VIBRATION METHOD COMPARISON
+  =======================================================
+  Method             Frequency (cm⁻¹)     Time (s)     SCF count
+  -------------------------------------------------------
+  1D Scan            7429.47              251.1        9
+  1D Scan (Refined)  7427.96              301.3        11
+  X-Only Hessian     7428.19              246.9        4
+  =======================================================
+
+  ==================================================
+  COMPARISON WITH EXPERIMENT
+  ==================================================
+    Bond length: 1.1100 Å (exp: 1.0977 Å, error: 1.12%)
+    Frequency: 7428.19 cm⁻¹ (exp: 2358.60 cm⁻¹, error: 214.94%)
+    Method used: xonly
+  ==================================================
+
+============================================================
+SAVING RESULTS
+============================================================
+✓ Results saved to results_qe/summary.csv
+✓ Human-readable summary saved to results_qe/summary.txt
+
+================================================================================
+COMPARISON WITH EXPERIMENTAL VALUES
+================================================================================
+Molecule   Property        Calculated      Experimental    Error (%)    Status
+--------------------------------------------------------------------------------
+N2         d_eq (Å)        1.1100          1.0977          1.12         ✓ (cfg)
+N2         freq (cm⁻¹)     7428.19         2358.60         214.94       ✗ (xonly)
+--------------------------------------------------------------------------------
+
+================================================================================
+ANALYSIS COMPLETE
+================================================================================
+  Results saved in: results_qe/
+
+  Files generated:
+    - results_qe/summary.csv: All calculated properties
+    - results_qe/summary.txt: Human-readable summary
+    - results_qe/*_qe_opt.xyz: Optimized structures
+    - *_opt.traj: Per-molecule optimization trajectories
+    - *_opt.log: Per-molecule optimization logs
+    - vib/*.json: Vibration displacement files
+    - vib/*.traj: Vibrational mode trajectories
+================================================================================

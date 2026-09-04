@@ -1,4 +1,5 @@
 # Configuration file for diatomic molecule analysis with Quantum ESPRESSO
+# Using NC SR (ONCVPSP) PBE pseudopotentials
 # ============================================================================
 
 # General settings
@@ -54,6 +55,17 @@ molecules:
     reference:
       d_eq: 1.4119
       freq: 917.0
+  
+  Cl2:
+    symbols: ['Cl', 'Cl']
+    initial_distance: 2.0
+    mass: 70.906
+    spin: 0
+    symmetry: 2
+    geometry: 'linear'
+    reference:
+      d_eq: 1.9879
+      freq: 559.7
 
 # Quantum ESPRESSO settings
 qe:
@@ -63,31 +75,32 @@ qe:
   q2r_path: 'q2r.x'
   matdyn_path: 'matdyn.x'
   
-  # Calculation parameters
+  # Pseudopotential directory
+  pseudo_dir: './pseudopotentials/'
+  
+  # Pseudopotentials (NC SR ONCVPSP PBE)
   pseudopotentials:
-    H: 'H.pbe-rrkjus.UPF'
-    N: 'N.pbe-rrkjus.UPF'
-    O: 'O.pbe-rrkjus.UPF'
-    F: 'F.pbe-rrkjus.UPF'
+    H: 'H.upf'
+    N: 'N.upf'
+    O: 'O.upf'
+    F: 'F.upf'
+    Cl: 'Cl.upf'
   
   # SCF parameters
-  ecutwfc: 50.0        # Wavefunction cutoff (Ry)
-  ecutrho: 200.0       # Density cutoff (Ry)
+  ecutwfc: 80.0        # Wavefunction cutoff (Ry) - higher for ONCVPSP
+  ecutrho: 320.0       # Density cutoff (Ry) - 4x ecutwfc for NC
   kpts: [1, 1, 1]      # k-point grid for molecules (use gamma only)
   smearing: 'gaussian'
   degauss: 0.01
   
   # Convergence
-  conv_thr: 1.0e-8     # SCF convergence threshold
+  conv_thr: 1.0e-10    # Tighter SCF convergence for accurate frequencies
   mixing_beta: 0.7
-  electron_maxstep: 100
+  electron_maxstep: 200
   
   # Vibration calculation
-  q_points: [0.0, 0.0, 0.0]  # Only gamma point for molecules
-  nq1: 1
-  nq2: 1
-  nq3: 1
-  tr2_ph: 1.0e-12     # Phonon convergence threshold
+  delta: 0.005         # Displacement for finite differences
+  nfree: 4             # Number of displacements per mode
 
 # Output settings
 output:

@@ -16,6 +16,7 @@ class QEDiatomicAnalyzer:
         """Initialize with configuration."""
         self.config = config
         self.qe_config = config.get('qe', {})
+        self.pseudo_dir = self.qe_config.get('pseudo_dir', './pseudopotentials/')
         self.pseudopotentials = self.qe_config.get('pseudopotentials', {})
         self.calc = None
         self._setup_calculator()
@@ -27,7 +28,7 @@ class QEDiatomicAnalyzer:
             'control': {
                 'calculation': 'scf',
                 'restart_mode': 'from_scratch',
-                'pseudo_dir': './pseudopotentials/',
+                'pseudo_dir': self.pseudo_dir,
                 'outdir': './tmp/',
                 'prefix': 'qe',
                 'tprnfor': True,
@@ -37,9 +38,9 @@ class QEDiatomicAnalyzer:
             'system': {
                 'ibrav': 0,  # Free coordinates
                 'nat': 2,
-                'ntyp': 1,
-                'ecutwfc': self.qe_config.get('ecutwfc', 50.0),
-                'ecutrho': self.qe_config.get('ecutrho', 200.0),
+                'ntyp': 1,   # Will be updated
+                'ecutwfc': self.qe_config.get('ecutwfc', 80.0),
+                'ecutrho': self.qe_config.get('ecutrho', 320.0),
                 'occupations': 'smearing',
                 'smearing': self.qe_config.get('smearing', 'gaussian'),
                 'degauss': self.qe_config.get('degauss', 0.01),
@@ -47,9 +48,9 @@ class QEDiatomicAnalyzer:
                 'tot_charge': 0,
             },
             'electrons': {
-                'conv_thr': self.qe_config.get('conv_thr', 1.0e-8),
+                'conv_thr': self.qe_config.get('conv_thr', 1.0e-10),
                 'mixing_beta': self.qe_config.get('mixing_beta', 0.7),
-                'electron_maxstep': self.qe_config.get('electron_maxstep', 100),
+                'electron_maxstep': self.qe_config.get('electron_maxstep', 200),
             }
         }
         
@@ -65,8 +66,18 @@ class QEDiatomicAnalyzer:
         )
     
     def get_pseudopotential(self, symbol):
-        """Get pseudopotential for given element."""
-        return self.pseudopotentials.get(symbol, f'{symbol}.pbe-rrkjus.UPF')
+        """Get pseudopotential filename for given element."""
+        return self.pseudopotentials.get(symbol, f'{symbol}.upf')
+    
+    def check_pseudopotential_exists(self, symbol):
+        """Check if pseudopotential file exists."""
+        pp_file = self.get_pseudopotential(symbol)
+        pp_path = os.path.join(self.pseudo_dir, pp_file)
+        if not os.path.exists(pp_path):
+            print(f"Warning: Pseudopotential {pp_path} not found!")
+            print(f"Please ensure {pp_file} is in {self.pseudo_dir}")
+            return False
+        return True
     
     def create_diatomic(self, symbols, distance, cell_size=15.0):
         """Create a diatomic molecule with vacuum cell."""
@@ -96,11 +107,17 @@ class QEDiatomicAnalyzer:
     
     def get_equilibrium_distance(self, symbols, initial_distance=1.2, fmax=0.001, steps=100):
         """Find equilibrium bond distance."""
+        # Check pseudopotentials
+        unique_symbols = list(set(symbols))
+        for sym in unique_symbols:
+            if not self.check_pseudopotential_exists(sym):
+                return initial_distance, None
+        
         atoms = self.create_diatomic(symbols, initial_distance)
         opt_atoms = self.optimize_geometry(atoms, fmax, steps)
         return opt_atoms.get_distance(0, 1), opt_atoms
     
-    def calculate_vibrational_frequencies(self, atoms, delta=0.01, nfree=2):
+    def calculate_vibrational_frequencies(self, atoms, delta=0.005, nfree=4):
         """
         Calculate vibrational frequencies using finite differences.
         Returns frequencies in cm^-1.
@@ -109,7 +126,7 @@ class QEDiatomicAnalyzer:
             # Set calculator for vibrations
             atoms.set_calculator(self.calc)
             
-            # Calculate vibrations
+            # Calculate vibrations with optimized parameters
             vib = Vibrations(atoms, indices=[0, 1], delta=delta, nfree=nfree)
             vib.run()
             
@@ -146,35 +163,48 @@ class QEDiatomicAnalyzer:
         symbols = properties['symbols']
         initial_dist = properties['initial_distance']
         
-        # Setup pseudopotentials for this molecule
+        # Setup calculator for this molecule
         unique_symbols = list(set(symbols))
-        pseudos = {sym: self.get_pseudopotential(sym) for sym in unique_symbols}
-        self.calc.pseudopotentials = pseudos
         
-        # Update system ntyp
+        # Check all pseudopotentials exist
+        all_exist = True
+        for sym in unique_symbols:
+            if not self.check_pseudopotential_exists(sym):
+                all_exist = False
+        
+        if not all_exist:
+            print(f"✗ Missing pseudopotentials for {molecule_name}")
+            return None, None
+        
+        # Update calculator for this molecule
+        pseudo_dict = {sym: self.get_pseudopotential(sym) for sym in unique_symbols}
+        self.calc.pseudopotentials = pseudo_dict
         self.calc.input_data['system']['ntyp'] = len(unique_symbols)
         
         # Get equilibrium distance
+        fmax = self.config.get('general', {}).get('fmax', 0.001)
+        max_steps = self.config.get('general', {}).get('max_steps', 100)
+        
         eq_dist, opt_atoms = self.get_equilibrium_distance(
-            symbols, initial_dist, 
-            fmax=self.config.get('general', {}).get('fmax', 0.001),
-            steps=self.config.get('general', {}).get('max_steps', 100)
+            symbols, initial_dist, fmax, max_steps
         )
+        
+        if opt_atoms is None:
+            print(f"✗ Optimization failed for {molecule_name}")
+            return None, None
         
         print(f"✓ Equilibrium bond distance: {eq_dist:.4f} Å")
         
         # Calculate vibrational frequency
-        freq_cm1 = self.calculate_vibrational_frequencies(
-            opt_atoms, 
-            delta=self.config.get('advanced', {}).get('vibrations', {}).get('delta', 0.01),
-            nfree=self.config.get('advanced', {}).get('vibrations', {}).get('nfree', 2)
-        )
+        delta = self.qe_config.get('delta', 0.005)
+        nfree = self.qe_config.get('nfree', 4)
+        freq_cm1 = self.calculate_vibrational_frequencies(opt_atoms, delta, nfree)
         print(f"✓ Vibrational frequency: {freq_cm1:.2f} cm⁻¹")
         
         # Store results
         results = {
             'molecule': molecule_name,
-            'calculator': 'Quantum ESPRESSO',
+            'calculator': 'Quantum ESPRESSO (ONCVPSP PBE)',
             'equilibrium_distance': eq_dist,
             'vibrational_frequency_cm1': freq_cm1,
             'd_eq_error': 0.0,
@@ -209,7 +239,7 @@ def save_results(results, config):
         f.write("Molecule,Calculator,d_eq(Å),freq(cm⁻¹)\n")
         for mol_name, mol_result in results.items():
             if mol_result:
-                f.write(f"{mol_name},Quantum ESPRESSO,"
+                f.write(f"{mol_name},Quantum ESPRESSO (ONCVPSP PBE),"
                        f"{mol_result['equilibrium_distance']:.4f},"
                        f"{mol_result['vibrational_frequency_cm1']:.2f}\n")
     
@@ -222,13 +252,14 @@ def compare_with_reference(results, config):
         'N2': {'d_eq': 1.0977, 'freq': 2358.6},
         'H2': {'d_eq': 0.7414, 'freq': 4401.2},
         'F2': {'d_eq': 1.4119, 'freq': 917.0},
-        'O2': {'d_eq': 1.2075, 'freq': 1580.2}
+        'O2': {'d_eq': 1.2075, 'freq': 1580.2},
+        'Cl2': {'d_eq': 1.9879, 'freq': 559.7}
     }
     
     print("\n" + "="*80)
     print("COMPARISON WITH REFERENCE VALUES (NIST)")
     print("="*80)
-    print(f"{'Molecule':<8} {'Property':<15} {'Calculated':<12} {'Reference':<12} {'Error (%)':<10}")
+    print(f"{'Molecule':<8} {'Property':<15} {'Calculated':<12} {'Reference':<12} {'Error (%)':<10} {'Status'}")
     print("-"*80)
     
     comparisons = []
@@ -256,11 +287,11 @@ def compare_with_reference(results, config):
         })
         
         # Print results with indicators
-        d_eq_marker = "✓" if dist_err < 5 else "⚠" if dist_err < 20 else "✗"
-        freq_marker = "✓" if freq_err < 10 else "⚠" if freq_err < 30 else "✗"
+        d_eq_marker = "✓" if dist_err < 2 else "⚠" if dist_err < 5 else "✗"
+        freq_marker = "✓" if freq_err < 10 else "⚠" if freq_err < 20 else "✗"
         
-        print(f"{mol_name:<8} {'d_eq (Å)':<15} {res['equilibrium_distance']:<12.4f} {ref['d_eq']:<12.4f} {dist_err:<10.2f}{d_eq_marker}")
-        print(f"{mol_name:<8} {'freq (cm⁻¹)':<15} {res['vibrational_frequency_cm1']:<12.2f} {ref['freq']:<12.2f} {freq_err:<10.2f}{freq_marker}")
+        print(f"{mol_name:<8} {'d_eq (Å)':<15} {res['equilibrium_distance']:<12.4f} {ref['d_eq']:<12.4f} {dist_err:<10.2f} {d_eq_marker}")
+        print(f"{mol_name:<8} {'freq (cm⁻¹)':<15} {res['vibrational_frequency_cm1']:<12.2f} {ref['freq']:<12.2f} {freq_err:<10.2f} {freq_marker}")
         print("-"*80)
     
     # Save comparison to CSV
@@ -283,6 +314,14 @@ def compare_with_reference(results, config):
             
             print(f"Average d_eq error: {avg_dist_err:.2f}%")
             print(f"Average freq error: {avg_freq_err:.2f}%")
+            
+            # Overall assessment
+            if avg_dist_err < 2 and avg_freq_err < 10:
+                print("✓ Excellent agreement with reference values")
+            elif avg_dist_err < 5 and avg_freq_err < 20:
+                print("✓ Good agreement with reference values")
+            else:
+                print("⚠ Moderate agreement - consider improving convergence parameters")
 
 def main():
     """Main execution function."""
@@ -303,9 +342,10 @@ def main():
     
     # Print QE settings
     qe_config = config.get('qe', {})
-    print(f"QE pseudopotential path: {qe_config.get('pseudo_dir', './pseudopotentials/')}")
-    print(f"QE ecutwfc: {qe_config.get('ecutwfc', 50.0)} Ry")
-    print(f"QE ecutrho: {qe_config.get('ecutrho', 200.0)} Ry")
+    print(f"QE pseudopotential directory: {qe_config.get('pseudo_dir', './pseudopotentials/')}")
+    print(f"QE ecutwfc: {qe_config.get('ecutwfc', 80.0)} Ry")
+    print(f"QE ecutrho: {qe_config.get('ecutrho', 320.0)} Ry")
+    print(f"QE conv_thr: {qe_config.get('conv_thr', 1.0e-10)}")
     print("="*60)
     
     # Create analyzer
@@ -332,7 +372,8 @@ def main():
         save_results(results, config)
     
     # Compare with reference values
-    compare_with_reference(results, config)
+    if results:
+        compare_with_reference(results, config)
     
     # Print final summary
     print("\n" + "="*80)

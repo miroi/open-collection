@@ -8,4 +8,4 @@ vibr.frequency, formation enthalpy, entropy and Gibbs energy
 
 with MACE, allow both pbc=true and false
 
-
+python properties_diatomics.py > properties_diatomics.py_logfileSAVED

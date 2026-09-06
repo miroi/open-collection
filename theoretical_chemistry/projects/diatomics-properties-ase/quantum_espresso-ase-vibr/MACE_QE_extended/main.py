@@ -36,7 +36,7 @@ def main():
     print("Full Vibrational Analysis with Multiple Methods")
     print("="*80)
     
-    config = load_config('configure.yaml')
+    config = load_config('config_qe.yaml')
     
     print("\n" + "="*60)
     print("CALCULATION SETTINGS")
@@ -98,20 +98,20 @@ def main():
     
     analyzer = MoleculeAnalyzer(config)
     results = {}
-
+    
     for mol_name, properties in molecules.items():
         if not molecules_to_calc.get(mol_name, False):
+            print(f"\n⏭ Skipping {mol_name} (disabled in config)")
             continue
-        mode = properties.get("calculator", config.get("calculator", "qe"))
-        for backend in mode.split("+"):
-            print(f"\n### {mol_name}: {backend} ###")
-            analyzer.calc_setup.set_backend(backend)
-            result, atoms = analyzer.analyze_molecule(mol_name, properties)
-            if result:
-                results[f"{mol_name}_{backend}"] = result
-                if output_config.get('save_structures', True) and atoms:
-                    write(f"{output_dir}/{mol_name}_{backend}_opt.xyz", atoms)
-
+        
+        result, atoms = analyzer.analyze_molecule(mol_name, properties)
+        if result:
+            results[mol_name] = result
+            
+            if output_config.get('save_structures', True) and atoms:
+                os.makedirs(output_dir, exist_ok=True)
+                write(f"{output_dir}/{mol_name}_qe_opt.xyz", atoms)
+    
     if results:
         print("\n" + "="*60)
         print("SAVING RESULTS")

@@ -7,7 +7,7 @@ import os
 import sys
 import yaml
 
-def load_config(config_file='configure.yaml'):
+def load_config(config_file='config_qe.yaml'):
     """Load configuration from YAML file."""
     if not os.path.exists(config_file):
         print(f"Error: Config file {config_file} not found!")

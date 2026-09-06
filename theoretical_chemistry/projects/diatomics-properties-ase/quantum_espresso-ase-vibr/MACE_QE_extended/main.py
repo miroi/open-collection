@@ -92,7 +92,11 @@ def main():
     
     # Setup directories
     output_config = config.get('output', {})
-    output_dir = output_config.get('output_dir', 'results_qe')
+    calculator_mode = config.get('calculator', 'qe')
+    if calculator_mode == 'mace':
+        output_dir = output_config.get('mace_output_dir', 'results_mace')
+    else:
+        output_dir = output_config.get('output_dir', 'results_qe')
     pseudo_dir = qe_config.get('pseudo_dir', './pseudopotentials/')
     setup_directories(pseudo_dir, output_dir)
     
@@ -110,7 +114,8 @@ def main():
             
             if output_config.get('save_structures', True) and atoms:
                 os.makedirs(output_dir, exist_ok=True)
-                write(f"{output_dir}/{mol_name}_qe_opt.xyz", atoms)
+                suffix = 'mace' if calculator_mode == 'mace' else 'qe'
+                write(f"{output_dir}/{mol_name}_{suffix}_opt.xyz", atoms)
     
     if results:
         print("\n" + "="*60)

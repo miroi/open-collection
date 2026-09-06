@@ -43,15 +43,17 @@ def parse_vibration_methods(vib_method):
     method_map = {
         '1d': ['1d'],
         '1d_r': ['1d_refined'],
-        '1d+1d_r': ['1d', '1d_refined'],
         'xonly': ['xonly'],
-        'full': ['full'],  # Only run full Hessian
+        'full': ['full'],
         '1d+xonly': ['1d', 'xonly'],
         '1d_r+xonly': ['1d_refined', 'xonly'],
+        '1d+1d_r': ['1d', '1d_refined'],
         '1d+1d_r+xonly': ['1d', '1d_refined', 'xonly'],
         '1d+full': ['1d', 'full'],
         '1d_r+full': ['1d_refined', 'full'],
         'xonly+full': ['xonly', 'full'],
+        '1d+1d_r+full': ['1d', '1d_refined', 'full'],
+        '1d+1d_r+xonly+full': ['1d', '1d_refined', 'xonly', 'full'],
         'all': ['1d', '1d_refined', 'xonly', 'full']
     }
     return method_map.get(vib_method, ['1d'])

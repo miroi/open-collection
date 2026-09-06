@@ -17,10 +17,10 @@ molecules_to_calculate:
   N2: true
   H2: true
   O2: true
-  F2: true
-  Cl2: true
-  HCl: true  
-  HF: true   
+  F2: false
+  Cl2: false
+  HCl: false
+  HF: false
 
 # Molecule definitions
 molecules:
@@ -31,7 +31,7 @@ molecules:
     spin: 0
     symmetry: 2
     geometry: 'linear'
-    calculator: mace
+    calculator: mace+qe
     #eq_distance: 1.1100  # Skip geometry optimization
     # only_geometry_optimization: true
     reference:
@@ -46,7 +46,7 @@ molecules:
     spin: 0
     symmetry: 2
     geometry: 'linear'
-    calculator: mace
+    calculator: mace+qe
     # eq_distance: 0.7790
     reference:
       d_eq: 0.7414
@@ -60,7 +60,7 @@ molecules:
     spin: 1                                       # O2 is a triplet (2 unpaired electrons)
     symmetry: 2
     geometry: 'linear'
-    calculator: mace
+    calculator: mace+qe
     # eq_distance: 1.1003
     reference:
       d_eq: 1.2075
@@ -130,7 +130,7 @@ molecules:
       source: "NIST Chemistry WebBook"
 
 # qe, mace, qe+mace
-calculator: mace
+calculator: mace+qe
 
 mace:
   model_path: /home/miroi/.cache/mace/mace-mp-0b3-medium.model
@@ -178,7 +178,7 @@ qe:
   #   'xonly+full'- Run both X-Only and Full methods
   #   'all'       - Run all three methods
  # vibration_method: '1d+xonly'  # Use full Vibrations class
-  vibration_method: 'all'  # Use full Vibrations class
+  vibration_method: '1d+full'  # Use full Vibrations class
 
   # --------------------------------------------------------------------------
   # METHOD 1: 1D SCAN PARAMETERS (Fast, but less accurate for flat PES)

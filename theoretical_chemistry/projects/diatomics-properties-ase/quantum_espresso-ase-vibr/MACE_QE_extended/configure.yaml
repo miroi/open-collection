@@ -31,6 +31,7 @@ molecules:
     spin: 0
     symmetry: 2
     geometry: 'linear'
+    calculator: mace
     #eq_distance: 1.1100  # Skip geometry optimization
     # only_geometry_optimization: true
     reference:
@@ -121,6 +122,14 @@ molecules:
       d_eq: 0.9168                                  # Experimental bond length (Å)
       freq: 4138.3                                  # Experimental vibrational frequency (cm⁻¹)
       source: "NIST Chemistry WebBook"
+
+calculator: qe
+
+mace:
+  model: small
+  device: cpu
+
+# Per molecule calculator can be: qe, mace, mace+qe
 
 # Quantum ESPRESSO settings
 qe:

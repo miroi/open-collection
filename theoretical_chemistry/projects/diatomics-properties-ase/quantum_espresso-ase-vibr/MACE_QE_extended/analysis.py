@@ -21,10 +21,12 @@ class MoleculeAnalyzer:
         self.backend = config.get('calculator', 'qe')
         self.qe_config = config.get('qe', {})
         self.calc_setup = QECalculatorSetup(config)
-        self.vibration_calc = VibrationCalculator(
-            self.calc_setup.vib_calc, 
-            self.qe_config
-        )
+        self.vibration_calc = None
+        if self.calc_setup.vib_calc is not None:
+            self.vibration_calc = VibrationCalculator(
+                self.calc_setup.vib_calc,
+                self.qe_config
+            )
     
     def optimize_geometry(self, atoms, mol_name, fmax=0.001, steps=100):
         """Optimize geometry using BFGS with per-molecule naming."""

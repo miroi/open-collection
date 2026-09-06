@@ -135,24 +135,37 @@ class QECalculatorSetup:
         )
     
     def update_for_molecule(self, symbols):
-        """Update calculators for specific molecule."""
-        pseudo_dict = {sym: self.pseudopotentials.get(sym, f'{sym}.upf') 
-                      for sym in set(symbols)}
-        
-        # Update main calculator
+        """Update calculators for specific molecule.
+
+        QE input structures are only updated for QE-enabled workflows.
+        MACE-only workflows must never access QE input_data dictionaries.
+        """
+
+        if self.backend == 'mace':
+            self.calc = self.mace_calc
+            self.vib_calc = self.mace_calc
+            return
+
+        pseudo_dict = {sym: self.pseudopotentials.get(sym, f'{sym}.upf')
+                       for sym in set(symbols)}
+
+        if self.main_input_data is None:
+            self._setup_main_calculator()
+        if self.vib_input_data is None:
+            self._setup_vibration_calculator()
+
         self.main_input_data['ntyp'] = len(set(symbols))
         profile = self._create_profile()
-        
+
         self.calc = Espresso(
             profile=profile,
             pseudopotentials=pseudo_dict,
             input_data=self.main_input_data,
             kpts=self.qe_config.get('kpts', [1, 1, 1]),
         )
-        
-        # Update vibration calculator
+
         self.vib_input_data['ntyp'] = len(set(symbols))
-        
+
         self.vib_calc = Espresso(
             profile=profile,
             pseudopotentials=pseudo_dict,

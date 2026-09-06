@@ -1,5 +1,5 @@
 # =============================================================================
-# FILE: configure.yaml
+# FILE: config_qe.yaml
 # Configuration file for diatomic molecule analysis with Quantum ESPRESSO
 # Using PAW pseudopotentials (N.pbe-n-kjpaw_psl.1.0.0.UPF)
 # =============================================================================
@@ -23,7 +23,114 @@ molecules_to_calculate:
   HF: false    # Added: Hydrogen Fluoride (set to true to calculate)
 
 # Molecule definitions
-mace, qe, mace+qe
+molecules:
+  N2:
+    symbols: ['N', 'N']
+    initial_distance: 1.2
+    mass: 28.0134
+    spin: 0
+    symmetry: 2
+    geometry: 'linear'
+    calculator: mace
+    #eq_distance: 1.1100  # Skip geometry optimization
+    # only_geometry_optimization: true
+    reference:
+      d_eq: 1.0977
+      freq: 2358.6
+      source: "NIST Chemistry WebBook"
+
+  H2:
+    symbols: ['H', 'H']
+    initial_distance: 0.8
+    mass: 2.01588
+    spin: 0
+    symmetry: 2
+    geometry: 'linear'
+    # eq_distance: 0.7790
+    reference:
+      d_eq: 0.7414
+      freq: 4401.2
+      source: "NIST Chemistry WebBook"
+
+  O2:
+    symbols: ['O', 'O']
+    initial_distance: 1.3
+    mass: 31.9988
+    spin: 1                                       # O2 is a triplet (2 unpaired electrons)
+    symmetry: 2
+    geometry: 'linear'
+    # eq_distance: 1.1003
+    reference:
+      d_eq: 1.2075
+      freq: 1580.2
+      source: "NIST Chemistry WebBook"
+
+  F2:
+    symbols: ['F', 'F']
+    initial_distance: 1.4
+    mass: 37.9968
+    spin: 0
+    symmetry: 2
+    geometry: 'linear'
+    # eq_distance: 1.4191
+    reference:
+      d_eq: 1.4119
+      freq: 917.0
+      source: "NIST Chemistry WebBook"
+
+  Cl2:
+    symbols: ['Cl', 'Cl']
+    initial_distance: 2.0
+    mass: 70.906
+    spin: 0
+    symmetry: 2
+    geometry: 'linear'
+    # eq_distance: 1.9879
+    reference:
+      d_eq: 1.9879
+      freq: 559.7
+      source: "NIST Chemistry WebBook"
+
+  # ========================================================================
+  # NEW MOLECULES (set to false by default)
+  # ========================================================================
+
+  HCl:
+    symbols: ['H', 'Cl']
+    initial_distance: 1.3
+    mass: 36.461
+    spin: 0
+    symmetry: 1                                     # Heteronuclear diatomic: symmetry number = 1
+    geometry: 'linear'
+    # eq_distance: 1.2746                           # Uncomment to skip geometry optimization
+    # only_geometry_optimization: true              # Uncomment for geometry optimization ONLY
+    reference:
+      d_eq: 1.2746                                  # Experimental bond length (Å)
+      freq: 2990.9                                  # Experimental vibrational frequency (cm⁻¹)
+      source: "NIST Chemistry WebBook"
+
+  HF:
+    symbols: ['H', 'F']
+    initial_distance: 1.0
+    mass: 20.006
+    spin: 0
+    symmetry: 1                                     # Heteronuclear diatomic: symmetry number = 1
+    geometry: 'linear'
+    # eq_distance: 0.9168                           # Uncomment to skip geometry optimization
+    # only_geometry_optimization: true              # Uncomment for geometry optimization ONLY
+    reference:
+      d_eq: 0.9168                                  # Experimental bond length (Å)
+      freq: 4138.3                                  # Experimental vibrational frequency (cm⁻¹)
+      source: "NIST Chemistry WebBook"
+
+# qe, mace, qe+mace
+calculator: mace
+
+mace:
+  model_path: /home/miroi/.cache/mace/mace-mp-0b3-medium.model
+  device: cude
+
+# Per molecule calculator can be: qe, mace, mace+qe
 
 # Quantum ESPRESSO settings
 qe:
@@ -56,87 +163,15 @@ qe:
   # --------------------------------------------------------------------------
   # VIBRATION METHOD SELECTION
   # --------------------------------------------------------------------------
-  #
-  # Available vibration calculation methods:
-  #
-  #   '1d'
-  #       Standard 1D bond scan.
-  #       The potential energy surface is sampled by changing only the
-  #       internuclear distance. A quadratic fit around the equilibrium bond
-  #       length is used to obtain the force constant and harmonic frequency.
-  #       Fastest method, suitable for quick estimates.
-  #
-  #   '1d_r'
-  #       Refined 1D bond scan.
-  #       Similar to '1d', but uses a denser scan and a smaller displacement
-  #       range. The energy curve is fitted with a higher-order polynomial
-  #       for improved curvature determination.
-  #       More accurate than '1d', but requires additional energy evaluations.
-  #
-  #   'xonly'
-  #       X-Only Hessian calculation.
-  #       Manual finite-difference displacement along the molecular bond axis
-  #       (x direction only). The Hessian is obtained directly from energy
-  #       changes caused by atomic displacements.
-  #       More accurate than a simple 1D scan while remaining efficient for
-  #       diatomic molecules.
-  #
-  #   'full'
-  #       Full 3D Hessian calculation.
-  #       Uses the ASE Vibrations framework to calculate the complete Hessian
-  #       matrix including all Cartesian displacement directions.
-  #       Most general and accurate method, but computationally the most
-  #       expensive.
-  #
-  # --------------------------------------------------------------------------
-  # Combination methods:
-  #
-  #   '1d+xonly'
-  #       Run standard 1D scan and X-Only Hessian.
-  #       Allows comparison between a simple PES fit and finite-difference
-  #       Hessian calculation.
-  #
-  #   '1d_r+xonly'
-  #       Run refined 1D scan and X-Only Hessian.
-  #       Recommended for high-accuracy diatomic frequency calculations while
-  #       avoiding the cost of a full Hessian.
-  #
-  #   '1d+1d_r'
-  #       Run both standard and refined 1D scans.
-  #       Useful for evaluating convergence of the 1D scan with respect to
-  #       displacement range and sampling density.
-  #
-  #   '1d+1d_r+xonly'
-  #       Run standard 1D scan, refined 1D scan, and X-Only Hessian.
-  #       Provides a detailed comparison of three bond-stretching approaches.
-  #
-  #   '1d+full'
-  #       Run standard 1D scan and full 3D Hessian.
-  #
-  #   '1d_r+full'
-  #       Run refined 1D scan and full 3D Hessian.
-  #
-  #   'xonly+full'
-  #       Run X-Only Hessian and full 3D Hessian.
-  #
-  #   '1d+1d_r+full'
-  #       Run both 1D methods and the full 3D Hessian.
-  #
-  #   '1d+1d_r+xonly+full'
-  #       Run every available vibration method:
-  #       standard 1D scan,
-  #       refined 1D scan,
-  #       X-Only Hessian,
-  #       full 3D Hessian.
-  #
-  #   'all'
-  #       Run ALL available vibration methods.
-  #       Equivalent to:
-  #       '1d+1d_r+xonly+full'
-  #
-  # --------------------------------------------------------------------------
-
-  #vibration_method: '1d+xonly'  # Use full Vibrations class
+  # Options:
+  #   '1d'        - Fast 1D scan along bond (quadratic fit)
+  #   'xonly'     - X-Only Hessian (manual displacement along bond)
+  #   'full'      - Full 3D Hessian (ASE Vibrations class) - MOST ACCURATE
+  #   '1d+xonly'  - Run both 1D and X-Only methods
+  #   '1d+full'   - Run both 1D and Full methods
+  #   'xonly+full'- Run both X-Only and Full methods
+  #   'all'       - Run all three methods
+ # vibration_method: '1d+xonly'  # Use full Vibrations class
   vibration_method: 'all'  # Use full Vibrations class
 
   # --------------------------------------------------------------------------

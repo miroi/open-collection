@@ -29,14 +29,33 @@ os.environ["OMP_DYNAMIC"] = "FALSE"
 os.environ["OMP_MAX_ACTIVE_LEVELS"] = "1"
 # ============================================================================
 
+
+def print_configuration_summary(config):
+    print("\n" + "="*60)
+    print("CONFIGURE.YAML PARAMETERS")
+    print("="*60)
+    print(f"Calculator: {config.get('calculator', 'qe')}")
+    print("Molecules:")
+    for k,v in config.get('molecules_to_calculate', {}).items():
+        print(f"  {k}: {'ON' if v else 'OFF'}")
+    print("MACE:")
+    for k,v in config.get('mace', {}).items():
+        print(f"  {k}: {v}")
+    print("QE:")
+    for k,v in config.get('qe', {}).items():
+        print(f"  {k}: {v}")
+    print("="*60)
+
+
 def main():
     """Main execution function."""
     print("="*80)
-    print("Diatomic Molecule Analysis with Quantum ESPRESSO")
+    print("Diatomic Molecule Analysis with MACE / Quantum ESPRESSO")
     print("Full Vibrational Analysis with Multiple Methods")
     print("="*80)
     
     config = load_config('configure.yaml')
+    print_configuration_summary(config)
     
     print("\n" + "="*60)
     print("CALCULATION SETTINGS")
@@ -137,7 +156,7 @@ def main():
     print("\n  Files generated:")
     print(f"    - {output_dir}/summary.csv: All calculated properties")
     print(f"    - {output_dir}/summary.txt: Human-readable summary")
-    print(f"    - {output_dir}/*_qe_opt.xyz: Optimized structures")
+    print(f"    - {output_dir}/*_opt.xyz: Optimized structures")
     if any(not r.get('only_geometry', True) for r in results.values() if r):
         print("    - *_opt.traj: Per-molecule optimization trajectories")
         print("    - *_opt.log: Per-molecule optimization logs")

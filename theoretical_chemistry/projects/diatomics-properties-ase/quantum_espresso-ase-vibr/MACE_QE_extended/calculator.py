@@ -105,6 +105,13 @@ class QECalculatorSetup:
             'electron_maxstep': self.qe_config.get('electron_maxstep', 200),
         }
         
+        self.qe_vib_calc = Espresso(
+            profile=profile,
+            pseudopotentials=self.pseudopotentials,
+            input_data=self.vib_input_data,
+            kpts=self.qe_config.get('kpts', [1, 1, 1]),
+        )
+
         self.vib_calc = self.qe_vib_calc
     
     def _setup_mace_calculator(self):
@@ -122,9 +129,9 @@ class QECalculatorSetup:
             self.vib_calc = self.mace_calc
         elif backend == "qe":
             self.calc = self.qe_calc if self.qe_calc else self.calc
-            self.vib_calc = self.qe_vib_calc if hasattr(self, "qe_vib_calc") else self.vib_calc
+            self.vib_calc = self.qe_vib_calc
         else:
-            raise ValueError(backend)
+            raise ValueError(f"Unknown backend: {backend}")
 
     def update_for_molecule(self, symbols):
         """Update calculators for specific molecule."""

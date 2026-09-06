@@ -83,17 +83,17 @@ class QECalculatorSetup:
             'tstress': True,
             'verbosity': 'low',
             
-            'ecutwfc': max(40.0, self.qe_config.get('ecutwfc', 80.0) * 0.6),
-            'ecutrho': max(160.0, self.qe_config.get('ecutrho', 320.0) * 0.6),
+            'ecutwfc': self.qe_config.get('ecutwfc', 80.0),
+            'ecutrho': self.qe_config.get('ecutrho', 640.0),
             'occupations': 'smearing',
             'smearing': self.qe_config.get('smearing', 'gaussian'),
             'degauss': self.qe_config.get('degauss', 0.01),
             'nspin': 1,
             'ntyp': 1,
             
-            'conv_thr': 1.0e-8,
+            'conv_thr': self.qe_config.get('conv_thr', 1.0e-10),
             'mixing_beta': self.qe_config.get('mixing_beta', 0.7),
-            'electron_maxstep': 100,
+            'electron_maxstep': self.qe_config.get('electron_maxstep', 200),
         }
         
         self.vib_calc = Espresso(

@@ -67,7 +67,7 @@ class VibrationCalculator:
             reduced_mass_kg = reduced_mass_amu * 1.66054e-27
             
             # Convert eV/A^2 to N/m
-            k_Nm = second_deriv * 160.2177
+            k_Nm = second_deriv * 16.02177
             
             # Frequency in cm^-1
             c_cm_s = 2.99792458e10
@@ -138,7 +138,7 @@ class VibrationCalculator:
             reduced_mass_amu = (masses[0] * masses[1]) / (masses[0] + masses[1])
             reduced_mass_kg = reduced_mass_amu * 1.66054e-27
             
-            k_Nm = second_deriv * 160.2177
+            k_Nm = second_deriv * 16.02177
             c_cm_s = 2.99792458e10
             freq_cm1 = 1/(2 * np.pi * c_cm_s) * np.sqrt(k_Nm / reduced_mass_kg)
             
@@ -256,7 +256,7 @@ class VibrationCalculator:
             reduced_mass_amu = (masses[0] * masses[1]) / (masses[0] + masses[1])
             reduced_mass_kg = reduced_mass_amu * 1.66054e-27
             
-            k_Nm = avg_second_deriv * 160.2177
+            k_Nm = avg_second_deriv * 16.02177
             c_cm_s = 2.99792458e10
             freq_cm1 = 1/(2 * np.pi * c_cm_s) * np.sqrt(k_Nm / reduced_mass_kg)
             

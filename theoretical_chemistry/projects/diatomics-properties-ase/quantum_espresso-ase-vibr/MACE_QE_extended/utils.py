@@ -41,15 +41,20 @@ def parse_vibration_methods(vib_method):
     Parse the vibration method string and return a list of methods to run.
     """
     method_map = {
-        '1d': ['1d', '1d_refined'],  # Run both 1D and refined
+        '1d': ['1d'],
+        '1d_r': ['1d_refined'],
+        '1d+1d_r': ['1d', '1d_refined'],
         'xonly': ['xonly'],
         'full': ['full'],  # Only run full Hessian
-        '1d+xonly': ['1d', '1d_refined', 'xonly'],
-        '1d+full': ['1d', '1d_refined', 'full'],
+        '1d+xonly': ['1d', 'xonly'],
+        '1d_r+xonly': ['1d_refined', 'xonly'],
+        '1d+1d_r+xonly': ['1d', '1d_refined', 'xonly'],
+        '1d+full': ['1d', 'full'],
+        '1d_r+full': ['1d_refined', 'full'],
         'xonly+full': ['xonly', 'full'],
         'all': ['1d', '1d_refined', 'xonly', 'full']
     }
-    return method_map.get(vib_method, ['1d', '1d_refined'])
+    return method_map.get(vib_method, ['1d'])
 
 def build_mpi_command(parallel_config):
     """Build the MPI command string."""

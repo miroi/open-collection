@@ -36,7 +36,7 @@ def main():
     print("Full Vibrational Analysis with Multiple Methods")
     print("="*80)
     
-    config = load_config('config_qe.yaml')
+    config = load_config('configure.yaml')
     
     print("\n" + "="*60)
     print("CALCULATION SETTINGS")
@@ -73,7 +73,7 @@ def main():
     
     if full_analysis_molecules:
         print(f"  Vibration method: {vib_method}")
-        print(f"    Options: 1d, xonly, full, 1d+xonly, 1d+full, xonly+full, all")
+        print(f"    Options: 1d, 1d_r, xonly, full, 1d+xonly, 1d_r+xonly, 1d+1d_r+xonly, all")
         
         if '1d' in vib_method:
             print(f"    1D Scan: n_points={qe_config.get('1d_settings', {}).get('n_points', 9)}, delta={qe_config.get('1d_settings', {}).get('delta', 0.001)} Å")

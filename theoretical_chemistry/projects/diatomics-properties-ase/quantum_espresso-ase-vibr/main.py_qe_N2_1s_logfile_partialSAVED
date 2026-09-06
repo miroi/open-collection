@@ -1,0 +1,58 @@
+(mace_env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/projects/diatomics-properties-ase/quantum_espresso-ase-vibr/.python main.py
+================================================================================
+Diatomic Molecule Analysis with Quantum ESPRESSO
+Full Vibrational Analysis with Multiple Methods
+================================================================================
+✓ Loaded configuration from config_qe.yaml
+
+============================================================
+CALCULATION SETTINGS
+============================================================
+  📊 FULL ANALYSIS MODE: N2
+  Vibration method: 1d+xonly
+    Options: 1d, xonly, full, 1d+xonly, 1d+full, xonly+full, all
+    1D Scan: n_points=9, delta=0.01 Å
+    X-Only Hessian: nfree=2, delta=0.01 Å
+
+  Molecules to calculate: N2
+============================================================
+
+============================================================
+Analyzing N2
+============================================================
+Time: 2026-09-06 21:23:31
+============================================================
+  Finding equilibrium geometry...
+  Log files: N2_opt.log, N2_opt.traj
+ls
+  ✓ Equilibrium bond distance: 1.1100 Å
+
+  Calculating vibrational frequencies...
+
+  Method 1: 1D Scan (quadratic fit along bond)
+    Scan range: ±0.01 Å, 9 points
+    Using 1D scan with n_points=9, delta=0.01
+    Scanning bond length from 1.100022 to 1.120022 Å
+    Center: 1.110022 Å, Range: ±0.010000 Å
+      Point 1/9: r = 1.100022 Å, E = -767.832091 eV
+      Point 2/9: r = 1.102522 Å, E = -767.835307 eV
+      Point 3/9: r = 1.105022 Å, E = -767.837583 eV
+      Point 4/9: r = 1.107522 Å, E = -767.838937 eV
+      Point 5/9: r = 1.110022 Å, E = -767.839384 eV
+      Point 6/9: r = 1.112522 Å, E = -767.838944 eV
+      Point 7/9: r = 1.115022 Å, E = -767.837630 eV
+      Point 8/9: r = 1.117522 Å, E = -767.835460 eV
+      Point 9/9: r = 1.120022 Å, E = -767.832449 eV
+    Force constant: 2279.77 N/m
+    Reduced mass: 7.0035 amu
+    1D scan frequency: 2350.51 cm⁻¹
+    ✓ 1D Scan: 2350.51 cm⁻¹ (took 1678.7s, 9 SCF)
+
+  Method 1b: 1D Scan (Refined - more accurate)
+    Scan range: ±0.005 Å, 11 points
+    Using refined 1D scan with n_points=11, delta=0.005
+    Scanning bond length from 1.105022 to 1.115022 Å
+    Center: 1.110022 Å, Range: ±0.005000 Å
+      Point 1/11: r = 1.105022 Å, E = -767.837583 eV
+      Point 2/11: r = 1.106022 Å, E = -767.838234 eV
+^CTraceback (most recent call last):

@@ -1,1 +1,0 @@
-Final merged package. Includes MACE/QE backend separation, results_mace/results_qe separation, explicit 1d_r vibration keyword, all=1d+1d_r+xonly+full, documented configure.yaml, and startup configuration printout.

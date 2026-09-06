@@ -18,6 +18,7 @@ class MoleculeAnalyzer:
     def __init__(self, config):
         """Initialize with configuration."""
         self.config = config
+        self.backend = config.get('calculator', 'qe')
         self.qe_config = config.get('qe', {})
         self.calc_setup = QECalculatorSetup(config)
         self.vibration_calc = VibrationCalculator(
@@ -71,11 +72,12 @@ class MoleculeAnalyzer:
         # Check if this molecule should only do geometry optimization
         only_geometry = properties.get('only_geometry_optimization', False)
         
-        # Check pseudopotentials exist
-        for sym in unique_symbols:
-            if not self.calc_setup.check_pseudopotential_exists(sym):
-                print(f"  ✗ Pseudopotential for {sym} not found")
-                return None, None
+        # Check pseudopotentials only for QE workflows
+        if self.backend in ['qe', 'mace+qe']:
+            for sym in unique_symbols:
+                if not self.calc_setup.check_pseudopotential_exists(sym):
+                    print(f"  ✗ Pseudopotential for {sym} not found")
+                    return None, None
         
         # Update calculator for this molecule
         self.calc_setup.update_for_molecule(unique_symbols)

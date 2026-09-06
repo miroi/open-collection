@@ -5,6 +5,10 @@
 
 import os
 from ase.calculators.espresso import Espresso, EspressoProfile
+try:
+    from mace.calculators import MACECalculator
+except ImportError:
+    MACECalculator = None
 from utils import build_mpi_command
 
 class QECalculatorSetup:
@@ -13,7 +17,9 @@ class QECalculatorSetup:
     def __init__(self, config):
         """Initialize with configuration."""
         self.config = config
+        self.backend = config.get('calculator', 'qe')
         self.qe_config = config.get('qe', {})
+        self.mace_config = config.get('mace', {})
         self.pseudo_dir = self.qe_config.get('pseudo_dir', './pseudopotentials/')
         self.pseudopotentials = self.qe_config.get('pseudopotentials', {})
         
@@ -26,10 +32,35 @@ class QECalculatorSetup:
         self.vib_input_data = None
         self.calc = None
         self.vib_calc = None
-        
-        self._setup_main_calculator()
-        self._setup_vibration_calculator()
+        self.mace_calc = None
+
+        if self.backend in ['qe', 'mace+qe']:
+            self._setup_main_calculator()
+            self._setup_vibration_calculator()
+        else:
+            print("  MACE-only mode: skipping QE calculator and pseudopotential setup")
+
+        if self.backend in ['mace', 'mace+qe']:
+            self._setup_mace_calculator()
     
+    def _setup_mace_calculator(self):
+        if MACECalculator is None:
+            raise ImportError("MACE calculator is not available")
+
+        model = self.mace_config.get('model_path', self.mace_config.get('model'))
+        device = self.mace_config.get('device', 'cpu')
+        if device in ['gpu', 'cude']:
+            device = 'cuda'
+
+        print(f"  Loading MACE model: {model}")
+        self.mace_calc = MACECalculator(
+            model_paths=model,
+            device=device
+        )
+        if self.backend == 'mace':
+            self.calc = self.mace_calc
+            self.vib_calc = self.mace_calc
+
     def _create_profile(self):
         """Create EspressoProfile."""
         return EspressoProfile(
@@ -135,6 +166,8 @@ class QECalculatorSetup:
     
     def check_pseudopotential_exists(self, symbol):
         """Check if pseudopotential file exists."""
+        if self.backend == 'mace':
+            return True
         pp_file = self.get_pseudopotential(symbol)
         pp_path = os.path.join(self.pseudo_dir, pp_file)
         exists = os.path.exists(pp_path)

@@ -111,11 +111,19 @@ def main():
     
     # Setup directories
     output_config = config.get('output', {})
-    calculator_mode = config.get('calculator', 'qe')
+    calculator_mode = config.get('calculator', 'qe').lower()
+
     if calculator_mode == 'mace':
         output_dir = output_config.get('mace_output_dir', 'results_mace')
-    else:
+    elif calculator_mode == 'qe':
         output_dir = output_config.get('output_dir', 'results_qe')
+    elif calculator_mode == 'mace+qe':
+        output_dir = output_config.get('mace_qe_output_dir', 'results_mace_qe')
+    else:
+        raise ValueError(
+            f"Unknown calculator mode '{calculator_mode}'. "
+            "Allowed values: qe, mace, mace+qe"
+        )
     pseudo_dir = qe_config.get('pseudo_dir', './pseudopotentials/')
     setup_directories(pseudo_dir, output_dir)
     
@@ -133,7 +141,13 @@ def main():
             
             if output_config.get('save_structures', True) and atoms:
                 os.makedirs(output_dir, exist_ok=True)
-                suffix = 'mace' if calculator_mode == 'mace' else 'qe'
+                if calculator_mode == 'mace':
+                    suffix = 'mace'
+                elif calculator_mode == 'qe':
+                    suffix = 'qe'
+                else:
+                    suffix = 'mace_qe'
+
                 write(f"{output_dir}/{mol_name}_{suffix}_opt.xyz", atoms)
     
     if results:

@@ -1,0 +1,216 @@
+(mace_env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/projects/diatomics-properties-ase/quantum_espresso-ase-vibr/MACE_QE_extended/.python main.py
+/home/miroi/miniconda3/envs/mace_env/lib/python3.13/site-packages/e3nn/o3/_wigner.py:10: UserWarning: Environment variable TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD detected, since the`weights_only` argument was not explicitly passed to `torch.load`, forcing weights_only=False.
+  _Jd, _W3j_flat, _W3j_indices = torch.load(os.path.join(os.path.dirname(__file__), 'constants.pt'))
+cuequivariance or cuequivariance_torch is not available. Cuequivariance acceleration will be disabled.
+================================================================================
+Diatomic Molecule Analysis with MACE / Quantum ESPRESSO
+Full Vibrational Analysis with Multiple Methods
+================================================================================
+✓ Loaded configuration from configure.yaml
+
+============================================================
+CONFIGURE.YAML PARAMETERS
+============================================================
+Calculator: mace
+Molecules:
+  N2: ON
+  H2: OFF
+  O2: OFF
+  F2: OFF
+  Cl2: OFF
+  HCl: OFF
+  HF: OFF
+MACE:
+  model_path: /home/miroi/.cache/mace/mace-mp-0b3-medium.model
+  device: cuda
+QE:
+  parallel: {'use_mpi': True, 'nprocs': 4, 'mpi_command': 'mpirun'}
+  pseudo_dir: ./pseudopotentials/
+  pseudopotentials: {'N': 'N.pbe-n-kjpaw_psl.1.0.0.UPF', 'H': 'H.pbe-kjpaw_psl.1.0.0.UPF', 'O': 'O.pbe-n-kjpaw_psl.1.0.0.UPF', 'F': 'F.pbe-n-kjpaw_psl.1.0.0.UPF', 'Cl': 'Cl.pbe-n-kjpaw_psl.1.0.0.UPF'}
+  ecutwfc: 80.0
+  ecutrho: 640.0
+  kpts: [1, 1, 1]
+  smearing: gaussian
+  degauss: 0.01
+  conv_thr: 1e-10
+  mixing_beta: 0.7
+  electron_maxstep: 200
+  vibration_method: all
+  1d_settings: {'delta': 0.01, 'n_points': 9, 'refined_delta': 0.005, 'refined_n_points': 11}
+  xonly_settings: {'delta': 0.01, 'nfree': 2}
+  full_settings: {'delta': 0.01, 'nfree': 2}
+============================================================
+
+============================================================
+CALCULATION SETTINGS
+============================================================
+  📊 FULL ANALYSIS MODE: N2
+  Vibration method: all
+    Options: 1d, 1d_r, xonly, full, 1d+xonly, 1d_r+xonly, 1d+1d_r+xonly, all
+
+  Molecules to calculate: N2
+============================================================
+  MACE-only mode: skipping QE calculator and pseudopotential setup
+  Loading MACE model: /home/miroi/.cache/mace/mace-mp-0b3-medium.model
+/home/miroi/miniconda3/envs/mace_env/lib/python3.13/site-packages/mace/calculators/mace.py:226: UserWarning: Environment variable TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD detected, since the`weights_only` argument was not explicitly passed to `torch.load`, forcing weights_only=False.
+  torch.load(f=model_path, map_location=device)
+WARNING:root:No dtype selected, switching to float64 to match model dtype.
+
+============================================================
+Analyzing N2
+============================================================
+Time: 2026-09-07 00:04:08
+============================================================
+  Finding equilibrium geometry...
+  Log files: N2_opt.log, N2_opt.traj
+  ✓ Equilibrium bond distance: 1.1137 Å
+
+  Calculating vibrational frequencies...
+
+  Method 1: 1D Scan (quadratic fit along bond)
+    Scan range: ±0.01 Å, 9 points
+    Using 1D scan with n_points=9, delta=0.01
+    Scanning bond length from 1.103706 to 1.123706 Å
+    Center: 1.113706 Å, Range: ±0.010000 Å
+      Point 1/9: r = 1.103706 Å, E = -15.853821 eV
+      Point 2/9: r = 1.106206 Å, E = -15.857235 eV
+      Point 3/9: r = 1.108706 Å, E = -15.859651 eV
+      Point 4/9: r = 1.111206 Å, E = -15.861088 eV
+      Point 5/9: r = 1.113706 Å, E = -15.861562 eV
+      Point 6/9: r = 1.116206 Å, E = -15.861090 eV
+      Point 7/9: r = 1.118706 Å, E = -15.859688 eV
+      Point 8/9: r = 1.121206 Å, E = -15.857374 eV
+      Point 9/9: r = 1.123706 Å, E = -15.854163 eV
+    Force constant: 2425.78 N/m
+    Reduced mass: 7.0035 amu
+    1D scan frequency: 2424.62 cm⁻¹
+    ✓ 1D Scan: 2424.62 cm⁻¹ (took 0.4s, 9 SCF)
+
+  Method 1b: 1D Scan (Refined - more accurate)
+    Scan range: ±0.005 Å, 11 points
+    Using refined 1D scan with n_points=11, delta=0.005
+    Scanning bond length from 1.108706 to 1.118706 Å
+    Center: 1.113706 Å, Range: ±0.005000 Å
+      Point 1/11: r = 1.108706 Å, E = -15.859651 eV
+      Point 2/11: r = 1.109706 Å, E = -15.860343 eV
+      Point 3/11: r = 1.110706 Å, E = -15.860878 eV
+      Point 4/11: r = 1.111706 Å, E = -15.861259 eV
+      Point 5/11: r = 1.112706 Å, E = -15.861487 eV
+      Point 6/11: r = 1.113706 Å, E = -15.861562 eV
+      Point 7/11: r = 1.114706 Å, E = -15.861486 eV
+      Point 8/11: r = 1.115706 Å, E = -15.861259 eV
+      Point 9/11: r = 1.116706 Å, E = -15.860883 eV
+      Point 10/11: r = 1.117706 Å, E = -15.860359 eV
+      Point 11/11: r = 1.118706 Å, E = -15.859688 eV
+    Force constant: 2425.01 N/m
+    Reduced mass: 7.0035 amu
+    Refined 1D scan frequency: 2424.23 cm⁻¹
+    ✓ 1D Scan (Refined): 2424.23 cm⁻¹ (took 0.4s, 11 SCF)
+
+  Method 2: X-Only Hessian (manual, only along bond)
+    Displacement: ±0.01 Å, nfree=2
+    Using X-Only Hessian with delta=0.01, nfree=2
+    Only displacing along x-axis (bond direction)
+    Using manual displacement along x with FixAtoms
+      Atom 0, dx = -0.002500 Å, E = -15.861090 eV
+      Atom 0, dx = -0.005000 Å, E = -15.859688 eV
+      Atom 0, dx = 0.002500 Å, E = -15.861088 eV
+      Atom 0, dx = 0.005000 Å, E = -15.859651 eV
+      Atom 1, dx = -0.002500 Å, E = -15.861088 eV
+      Atom 1, dx = -0.005000 Å, E = -15.859651 eV
+      Atom 1, dx = 0.002500 Å, E = -15.861090 eV
+      Atom 1, dx = 0.005000 Å, E = -15.859688 eV
+      Equilibrium: r = 1.113706 Å, E = -15.861562 eV
+      Atom 0: d_avg = 0.005000 Å, second_deriv = 151.368866 eV/A²
+      Atom 1: d_avg = 0.005000 Å, second_deriv = 151.368866 eV/A²
+
+    ==================================================
+    X-ONLY HESSIAN RESULTS FOR N2
+    ==================================================
+    Force constant: 2425.20 N/m
+    Reduced mass: 7.0035 amu
+    ✓ Stretching mode: 2424.32 cm⁻¹
+    ==================================================
+    ✓ X-Only Hessian: 2424.32 cm⁻¹ (took 0.4s, 4 SCF)
+
+  Method 3: Full 3D Hessian (all directions)
+    Displacement: ±0.01 Å, nfree=2
+    Using ASE Vibrations (full Hessian) with delta=0.01, nfree=2
+    Running 24 displacement calculations (all directions)...
+
+    ==================================================
+    FULL HESSIAN RESULTS FOR N2
+    ==================================================
+    Mode   Energy (eV)     Frequency (cm⁻¹) Type
+    --------------------------------------------------
+    0      0.0000          0.00            Translation
+    1      0.0000          0.00            Translation
+    2      0.0000          0.00            Translation
+    3      0.0020          16.25+0.00j     Rotation
+    4      0.0020          16.25+0.00j     Rotation
+    5      0.3007          2424.99+0.00j   STRETCHING ✓
+    ==================================================
+    ✓ Stretching mode: Mode 5, 2424.99 cm⁻¹
+    Mode written to vib/N2_full.5.traj
+    Total zero-point energy: 0.1523 eV
+    ✓ Full Hessian: 2424.99 cm⁻¹ (took 0.5s, 24 SCF)
+
+  =======================================================
+  VIBRATION METHOD COMPARISON
+  =======================================================
+  Method             Frequency (cm⁻¹)     Time (s)     SCF count
+  -------------------------------------------------------
+  1D Scan            2424.62              0.4          9
+  1D Scan (Refined)  2424.23              0.4          11
+  X-Only Hessian     2424.32              0.4          4
+  Full 3D Hessian    2424.99              0.5          24
+  =======================================================
+
+  ==================================================
+  COMPARISON WITH EXPERIMENT
+  ==================================================
+    Bond length: 1.1137 Å (exp: 1.0977 Å, error: 1.46%)
+    Frequency: 2424.99 cm⁻¹ (exp: 2358.60 cm⁻¹, error: 2.81%)
+    Method used: full
+    Displacement: ±0.01 Å, nfree=2
+  ==================================================
+
+⏭ Skipping H2 (disabled in config)
+
+⏭ Skipping O2 (disabled in config)
+
+⏭ Skipping F2 (disabled in config)
+
+⏭ Skipping Cl2 (disabled in config)
+
+⏭ Skipping HCl (disabled in config)
+
+⏭ Skipping HF (disabled in config)
+
+============================================================
+SAVING RESULTS
+============================================================
+✓ Results saved to results_mace/summary.csv
+✓ Human-readable summary saved to results_mace/summary.txt
+
+================================================================================
+COMPARISON WITH EXPERIMENTAL VALUES
+================================================================================
+Molecule   Property        Calculated      Experimental    Error (%)    Status
+--------------------------------------------------------------------------------
+N2         d_eq (Å)        1.1137          1.0977          1.46         ✓ (opt)
+N2         freq (cm⁻¹)     2424.99         2358.60         2.81         ✓ (full)
+--------------------------------------------------------------------------------
+
+================================================================================
+ANALYSIS COMPLETE
+================================================================================
+  Results saved in: results_mace/
+
+  Files generated:
+    - results_mace/summary.csv: All calculated properties
+    - results_mace/summary.txt: Human-readable summary
+    - results_mace/*_opt.xyz: Optimized structures
+    - *_opt.traj: Per-molecule optimization trajectories
+    - *_opt.log: Per-molecule optimization logs
+================================================================================

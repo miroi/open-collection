@@ -15,12 +15,12 @@ general:
 # Select which molecules to calculate
 molecules_to_calculate:
   N2: true
-  H2: true
-  O2: true
-  F2: true
-  Cl2: true
-  HCl: true  
-  HF: true   
+  H2: false
+  O2: false
+  F2: false
+  Cl2: false
+  HCl: false   # Added: Hydrogen Chloride (set to true to calculate)
+  HF: false    # Added: Hydrogen Fluoride (set to true to calculate)
 
 # Molecule definitions
 molecules:
@@ -46,7 +46,6 @@ molecules:
     spin: 0
     symmetry: 2
     geometry: 'linear'
-    calculator: mace
     # eq_distance: 0.7790
     reference:
       d_eq: 0.7414
@@ -60,7 +59,6 @@ molecules:
     spin: 1                                       # O2 is a triplet (2 unpaired electrons)
     symmetry: 2
     geometry: 'linear'
-    calculator: mace
     # eq_distance: 1.1003
     reference:
       d_eq: 1.2075
@@ -74,7 +72,6 @@ molecules:
     spin: 0
     symmetry: 2
     geometry: 'linear'
-    calculator: mace
     # eq_distance: 1.4191
     reference:
       d_eq: 1.4119
@@ -88,7 +85,6 @@ molecules:
     spin: 0
     symmetry: 2
     geometry: 'linear'
-    calculator: mace
     # eq_distance: 1.9879
     reference:
       d_eq: 1.9879
@@ -106,7 +102,6 @@ molecules:
     spin: 0
     symmetry: 1                                     # Heteronuclear diatomic: symmetry number = 1
     geometry: 'linear'
-    calculator: mace
     # eq_distance: 1.2746                           # Uncomment to skip geometry optimization
     # only_geometry_optimization: true              # Uncomment for geometry optimization ONLY
     reference:
@@ -121,7 +116,6 @@ molecules:
     spin: 0
     symmetry: 1                                     # Heteronuclear diatomic: symmetry number = 1
     geometry: 'linear'
-    calculator: mace
     # eq_distance: 0.9168                           # Uncomment to skip geometry optimization
     # only_geometry_optimization: true              # Uncomment for geometry optimization ONLY
     reference:
@@ -245,4 +239,4 @@ output:
   save_structures: true
   save_trajectories: true
   verbose: true
-#  output_dir: 'results_qe'
+  output_dir: 'results_qe'

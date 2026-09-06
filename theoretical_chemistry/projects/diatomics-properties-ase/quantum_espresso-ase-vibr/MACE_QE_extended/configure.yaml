@@ -127,7 +127,7 @@ calculator: qe
 
 mace:
   model_path: /home/miroi/.cache/mace/mace-mp-0b3-medium.model
-  device: gpu
+  device: cuda
 
 # Per molecule calculator can be: qe, mace, mace+qe
 
@@ -162,14 +162,86 @@ qe:
   # --------------------------------------------------------------------------
   # VIBRATION METHOD SELECTION
   # --------------------------------------------------------------------------
-  # Options:
-  #   '1d'        - Fast 1D scan along bond (quadratic fit)
-  #   'xonly'     - X-Only Hessian (manual displacement along bond)
-  #   'full'      - Full 3D Hessian (ASE Vibrations class) - MOST ACCURATE
-  #   '1d+xonly'  - Run both 1D and X-Only methods
-  #   '1d+full'   - Run both 1D and Full methods
-  #   'xonly+full'- Run both X-Only and Full methods
-  #   'all'       - Run all three methods
+  #
+  # Available vibration calculation methods:
+  #
+  #   '1d'
+  #       Standard 1D bond scan.
+  #       The potential energy surface is sampled by changing only the
+  #       internuclear distance. A quadratic fit around the equilibrium bond
+  #       length is used to obtain the force constant and harmonic frequency.
+  #       Fastest method, suitable for quick estimates.
+  #
+  #   '1d_r'
+  #       Refined 1D bond scan.
+  #       Similar to '1d', but uses a denser scan and a smaller displacement
+  #       range. The energy curve is fitted with a higher-order polynomial
+  #       for improved curvature determination.
+  #       More accurate than '1d', but requires additional energy evaluations.
+  #
+  #   'xonly'
+  #       X-Only Hessian calculation.
+  #       Manual finite-difference displacement along the molecular bond axis
+  #       (x direction only). The Hessian is obtained directly from energy
+  #       changes caused by atomic displacements.
+  #       More accurate than a simple 1D scan while remaining efficient for
+  #       diatomic molecules.
+  #
+  #   'full'
+  #       Full 3D Hessian calculation.
+  #       Uses the ASE Vibrations framework to calculate the complete Hessian
+  #       matrix including all Cartesian displacement directions.
+  #       Most general and accurate method, but computationally the most
+  #       expensive.
+  #
+  # --------------------------------------------------------------------------
+  # Combination methods:
+  #
+  #   '1d+xonly'
+  #       Run standard 1D scan and X-Only Hessian.
+  #       Allows comparison between a simple PES fit and finite-difference
+  #       Hessian calculation.
+  #
+  #   '1d_r+xonly'
+  #       Run refined 1D scan and X-Only Hessian.
+  #       Recommended for high-accuracy diatomic frequency calculations while
+  #       avoiding the cost of a full Hessian.
+  #
+  #   '1d+1d_r'
+  #       Run both standard and refined 1D scans.
+  #       Useful for evaluating convergence of the 1D scan with respect to
+  #       displacement range and sampling density.
+  #
+  #   '1d+1d_r+xonly'
+  #       Run standard 1D scan, refined 1D scan, and X-Only Hessian.
+  #       Provides a detailed comparison of three bond-stretching approaches.
+  #
+  #   '1d+full'
+  #       Run standard 1D scan and full 3D Hessian.
+  #
+  #   '1d_r+full'
+  #       Run refined 1D scan and full 3D Hessian.
+  #
+  #   'xonly+full'
+  #       Run X-Only Hessian and full 3D Hessian.
+  #
+  #   '1d+1d_r+full'
+  #       Run both 1D methods and the full 3D Hessian.
+  #
+  #   '1d+1d_r+xonly+full'
+  #       Run every available vibration method:
+  #       standard 1D scan,
+  #       refined 1D scan,
+  #       X-Only Hessian,
+  #       full 3D Hessian.
+  #
+  #   'all'
+  #       Run ALL available vibration methods.
+  #       Equivalent to:
+  #       '1d+1d_r+xonly+full'
+  #
+  # --------------------------------------------------------------------------
+
   vibration_method: '1d+xonly'  # Use full Vibrations class
 
   # --------------------------------------------------------------------------

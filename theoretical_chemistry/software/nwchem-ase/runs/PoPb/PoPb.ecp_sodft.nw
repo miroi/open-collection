@@ -1,103 +1,133 @@
 start pbpo_sodft
 echo
 
-# --- Memory and charge ---
 memory 4000 mb
 charge 0
 
-# --- Geometry (C∞v, no symmetry for SODFT) ---
+# ============================================================
+# LOAD BASIS SET LIBRARY
+# ============================================================
+# Reference the cc-pVTZ-PP library file containing
+# "Pb_cc-pVTZ-PP" and "Po_cc-pVTZ-PP"
+library "/home/miroi/miniconda3/envs/mace_env/share/nwchem/libraries/cc-pvtz-pp"
+
 geometry noautosym noautoz units angstrom
   Pb   0.000000   0.000000   0.000000
   Po   0.000000   0.000000   2.730000
 end
 
-# =============================================================================
-# BASIS SETS AND EFFECTIVE CORE POTENTIALS
-# =============================================================================
-# CRITICAL: NWChem has NO spin-orbit potentials in its library.
-# You MUST paste the ECP and SO data from the Stuttgart/Köln library.
-# The placeholder sections below show the expected format.
-# =============================================================================
-
-basis "ao basis" cartesian print
-  # -------------------------------------------------------------------------
-  # Pb Orbital Basis (ECP60MDF)
-  # Paste the orbital basis functions for Pb here.
-  # -------------------------------------------------------------------------
-  Pb    S
-        #PASTE_Pb_ORBITAL_S_DATA_HERE
-  Pb    P
-        #PASTE_Pb_ORBITAL_P_DATA_HERE
-  Pb    D
-        #PASTE_Pb_ORBITAL_D_DATA_HERE
-  # -------------------------------------------------------------------------
-  # Po Orbital Basis (ECP60MDF)
-  # Paste the orbital basis functions for Po here.
-  # -------------------------------------------------------------------------
-  Po    S
-        #PASTE_Po_ORBITAL_S_DATA_HERE
-  Po    P
-        #PASTE_Po_ORBITAL_P_DATA_HERE
-  Po    D
-        #PASTE_Po_ORBITAL_D_DATA_HERE
+# ============================================================
+# BASIS (loaded from library)
+# ============================================================
+basis "ao basis" spherical print
+  Pb library "Pb_cc-pVTZ-PP"
+  Po library "Po_cc-pVTZ-PP"
 end
 
-# --- Scalar-relativistic ECPs (ECP directive) ---
-# Paste the scalar ECP parameters for Pb and Po from the Stuttgart library.
+# ============================================================
+# SCALAR ECP (extracted from Molpro scalar part)
+# ============================================================
 ECP
-  # -------------------------------------------------------------------------
-  # Pb ECP (e.g., ECP60MDF, 60 core electrons)
-  # -------------------------------------------------------------------------
-  Pb    nelec 60
-        #PASTE_Pb_ECP_UL_AND_COEFFICIENTS
-  # -------------------------------------------------------------------------
-  # Po ECP (e.g., ECP60MDF, 60 core electrons)
-  # NOTE: Ensure the core size matches the SO potential exactly.
-  # -------------------------------------------------------------------------
-  Po    nelec 60
-        #PASTE_Po_ECP_UL_AND_COEFFICIENTS
+  Pb nelec 60
+    Pb ul
+      2   5.691577   -9.096665
+      2   5.715567  -11.531996
+    Pb s
+      2  12.296303  281.285499
+      2   8.632634   62.520217
+    Pb p
+      2  10.241790   72.276897
+      2   8.924176  144.591083
+      2   6.581342    4.758693
+      2   6.255403    9.940621
+    Pb d
+      2   7.754336   35.848507
+      2   7.720281   53.724342
+      2   4.970264   10.115256
+      2   4.563789   14.833731
+    Pb f
+      2   3.887512   12.209892
+      2   3.811963   16.190291
+
+  Po nelec 60
+    Po ul
+      2   6.771526  -11.563294
+      2   6.777925  -14.509788
+    Po s
+      2  13.277227  283.244706
+      2   8.399518   62.396461
+    Po p
+      2  10.665682   71.991716
+      2   9.283753  143.971871
+      2   6.872749    4.949615
+      2   6.326150    9.740499
+    Po d
+      2   8.214866   36.378383
+      2   8.008696   54.562715
+      2   5.055227    9.889499
+      2   4.782553   14.693877
+    Po f
+      2   5.013270   17.428295
+      2   4.984640   23.380353
+      2   1.326760    0.163392
+      2   1.528758    0.324566
 end
 
-# --- Spin-Orbit potentials (SO directive) ---
-# Paste the SO parameters from the Stuttgart library.
-# These are already scaled correctly for NWChem; use them as-is[citation:3].
+# ============================================================
+# SPIN-ORBIT POTENTIAL (extracted from Molpro SO part)
+# NOTE: coefficients already pre-scaled by 2/(2l+1)
+# ============================================================
 SO
-  # -------------------------------------------------------------------------
-  # Pb SO potential (matching ECP60MDF core)
-  # -------------------------------------------------------------------------
   Pb
-        #PASTE_Pb_SO_COEFFICIENTS
-  # -------------------------------------------------------------------------
-  # Po SO potential (matching ECP60MDF core)
-  # -------------------------------------------------------------------------
+    # p channel (l=1)
+    p  2  10.241790  -144.553795
+    p  2   8.924176   144.591083
+    p  2   6.581342    -9.517385
+    p  2   6.255403     9.940621
+    # d channel (l=2)
+    d  2   7.754336   -35.848507
+    d  2   7.720281    35.816228
+    d  2   4.970264   -10.115256
+    d  2   4.563789     9.889154
+    # f channel (l=3)
+    f  2   3.887512    -8.139928
+    f  2   3.811963     8.095145
+    # g channel (l=4)
+    g  2   5.691577     4.548332
+    g  2   5.715567    -4.612798
+
   Po
-        #PASTE_Po_SO_COEFFICIENTS
+    # p channel
+    p  2  10.665682  -143.983431
+    p  2   9.283753   143.971871
+    p  2   6.872749    -9.899231
+    p  2   6.326150     9.740499
+    # d channel
+    d  2   8.214866   -36.378383
+    d  2   8.008696    36.375143
+    d  2   5.055227    -9.889499
+    d  2   4.782553     9.795918
+    # f channel
+    f  2   5.013270   -11.618863
+    f  2   4.984640    11.690177
+    f  2   1.326760    -0.108928
+    f  2   1.528758     0.162283
+    # g channel
+    g  2   6.771526     5.781647
+    g  2   6.777925    -5.803915
 end
 
-# =============================================================================
+# ============================================================
 # DFT / SODFT SETTINGS
-# =============================================================================
-
+# ============================================================
 dft
-  # Exchange-correlation functional (PBE is a common starting point)
   xc pbe
-  
-  # Convergence settings for SODFT
   convergence
     energy 1e-7
     density 1e-6
     gradient 5e-6
   end
-  
-  # Maximum SCF iterations
   maxiter 200
-  
-  # Multiplicity is not used for two-component SODFT (alpha/beta symmetries are broken)[citation:2]
-  # mult 1
 end
 
-# =============================================================================
-# TASK
-# =============================================================================
-# Use "optimize" for geometry, "energy" for single-point.
-task sodft optimize
+task sodft energy

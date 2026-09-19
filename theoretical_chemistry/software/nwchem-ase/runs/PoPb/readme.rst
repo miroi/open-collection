@@ -9,6 +9,11 @@ see https://pubs-acs-org-443.webvpna.lzu.edu.cn/jpclcd/article-pdf/10/11/2879/64
 
 
 
+deepseek:
+https://chat.deepseek.com/share/m1x9t5lg7jm9pqjmp4
+
+
+
 
 
 

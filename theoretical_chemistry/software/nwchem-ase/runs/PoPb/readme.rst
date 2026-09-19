@@ -5,6 +5,8 @@ see https://pubs-acs-org-443.webvpna.lzu.edu.cn/jpclcd/article-pdf/10/11/2879/64
 
 (mace_env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/nwchem-ase/runs/PoPb/.mpirun -np 4 nwchem PoPb.ecp_sodft.nw > PoPb.ecp_sodft.nw_logfile
 
+(mace_env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/nwchem-ase/runs/PoPb/scalar_ecp/.mpirun -np 4 nwchem PoPb.C2v_ecp_dft.nw > PoPb.C2v_ecp_dft.nw_logfileSAVED
+
 
 
 

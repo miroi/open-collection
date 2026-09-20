@@ -17,7 +17,10 @@ geometry optimization
 (mace_env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/nwchem-ase/runs/PoPb/.mpirun -np 6 nwchem PoPb.ecp_sodft_geopt.nw > PoPb.ecp_sodft_geopt.nw_logfile
 
 
+PoPb converged distance
 
+SO DFT    2.49972588 Å = 2.4997 Ang
+SR DFT    2.52751244 Å = 2.5275 Ang
 
 
 

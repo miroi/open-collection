@@ -1,0 +1,68 @@
+(molmatmodel) milias@DESKTOP-7OTLCGO:~/work/projects/open-collection/theoretical_chemistry/projects/isp2026/thao/Hg_on_Gold111_MACE/.python  hg_mace_adsorption_03.py
+========================================================================
+Hg adsorption on Au(111)  --  MACE (float64, tight convergence)
+========================================================================
+Slab:       Au(111) 4x4x4  (64 Au atoms)
+Adsorbate:  1 Hg atom, initial height 2.0 A
+Vacuum:     10.0 A
+Optimizer:  BFGS, fmax < 0.01 eV/A (maxsteps=500)
+Calculator: MACE (medium, float64, cuda)
+Degeneracy threshold: 1.00 meV
+------------------------------------------------------------------------
+    Initializing MACE (model=medium, device=cuda, dtype=float64)...
+Using Materials Project MACE for MACECalculator with /home/milias/.cache/mace/20231203mace128L1_epoch199model
+Using float64 for MACECalculator, which is slower but more accurate. Recommended for geometry optimization.
+Using TorchDFTD3Calculator for D3 dispersion corrections
+    MACE calculator ready.
+
+[1/2] Reference energies
+/home/milias/miniconda3/envs/molmatmodel/lib/python3.13/site-packages/torch_dftd/torch_dftd3_calculator.py:98: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /home/conda/feedstock_root/build_artifacts/libtorch_1736187088862/work/torch/csrc/utils/tensor_new.cpp:278.)
+  cell: Optional[Tensor] = torch.tensor(
+    E_slab           = -229.749631 eV   (steps=8, fmax=0.002851  [OK])
+    E_atom(Hg)     = 0.090456 eV
+
+[2/2] Adsorption sites
+
+  -> fcc
+     E_total = -230.827211 eV
+     E_ads   = -1.168037 eV
+     fmax    = 0.008745 eV/A   [OK, 25 steps]
+
+  -> hcp
+     E_total = -230.822018 eV
+     E_ads   = -1.162843 eV
+     fmax    = 0.008761 eV/A   [OK, 25 steps]
+
+  -> bridge
+     E_total = -230.800500 eV
+     E_ads   = -1.141325 eV
+     fmax    = 0.008380 eV/A   [OK, 31 steps]
+
+  -> ontop
+     E_total = -230.634520 eV
+     E_ads   = -0.975345 eV
+     fmax    = 0.008259 eV/A   [OK, 27 steps]
+
+========================================================================
+Summary
+========================================================================
+Site        E_total (eV)      E_ads (eV)     fmax (eV/A)   Steps
+----------------------------------------------------------------
+fcc          -230.827211       -1.168037        0.008745      25
+hcp          -230.822018       -1.162843        0.008761      25
+bridge       -230.800500       -1.141325        0.008380      31
+ontop        -230.634520       -0.975345        0.008259      27
+
+Site preference (most stable first):
+  1. fcc       E_ads = -1.168037 eV  <-- most stable
+  2. hcp       E_ads = -1.162843 eV
+  3. bridge    E_ads = -1.141325 eV
+  4. ontop     E_ads = -0.975345 eV
+
+Numerical resolution check (threshold = 1.00 meV):
+  fcc vs hcp: gap = 5.19 meV  -> resolved
+  hcp vs bridge: gap = 21.52 meV  -> resolved
+  bridge vs ontop: gap = 165.98 meV  -> resolved
+
+All calculations converged.
+

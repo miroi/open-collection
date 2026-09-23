@@ -16,7 +16,7 @@ from ase import Atoms
 from ase.build import fcc111, add_adsorbate
 from ase.calculators.emt import EMT
 from ase.optimize import BFGS
-from ase.io import write, read
+from ase.io import write
 
 
 # ============================================================
@@ -80,8 +80,6 @@ def run_site(site, E_slab, E_atom):
     add_adsorbate(slab, ADSORBATE, height=HEIGHT, position=site)
     slab.calc = EMT()
 
-    E_init = slab.get_potential_energy()
-
     opt = BFGS(slab,
                trajectory=os.path.join(OUT_TRAJ, f'relax_{site}.traj'),
                logfile=os.path.join(OUT_LOGS,  f'relax_{site}.log'))
@@ -97,7 +95,6 @@ def run_site(site, E_slab, E_atom):
 
     return {
         'site':      site,
-        'E_init':    E_init,
         'E_total':   E_total,
         'E_ads':     E_ads,
         'fmax':      fmax,
@@ -138,7 +135,6 @@ def main():
         r = run_site(site, E_slab, E_atom)
         results.append(r)
         status = "OK" if r['converged'] else "NOT CONVERGED"
-        print(f"     E_init  = {r['E_init']:.6f} eV")
         print(f"     E_total = {r['E_total']:.6f} eV")
         print(f"     E_ads   = {r['E_ads']:.6f} eV")
         print(f"     fmax    = {r['fmax']:.6f} eV/A   [{status},"

@@ -5,7 +5,8 @@ from mace.calculators import mace_mp
 
 # 1. Initialize the ML Potential (MACE-MP)
 # 'medium' is usually sufficient for accurate geometry and energy
-calc = mace_mp(model="medium", device='cpu') # Use 'cuda' if GPU is available
+#calc = mace_mp(model="medium", device='cpu') # Use 'cuda' if GPU is available
+calc = mace_mp(model="medium", device='cuda') # Use 'cuda' if GPU is available
 
 def get_optimized_energy(atoms):
     atoms.calc = calc
@@ -14,8 +15,8 @@ def get_optimized_energy(atoms):
     return atoms.get_potential_energy()
 
 # 2. Setup the Au(111) Slab
-# 4 layers, 3x3 supercell. 
-slab = fcc111('Au', size=(3, 3, 4), vacuum=12.0)
+# 6 layers, 4x4 supercell. 
+slab = fcc111('Au', size=(4, 4, 6), vacuum=18.0)
 
 # Constraint: Freeze the bottom two layers to simulate bulk
 mask = [atom.tag > 2 for atom in slab]

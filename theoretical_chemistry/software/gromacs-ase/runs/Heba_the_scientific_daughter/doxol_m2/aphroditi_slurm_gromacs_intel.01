@@ -71,9 +71,11 @@ module list
   echo -e "\n SLURM_JOB_CPUS_PER_NODE = $SLURM_JOB_CPUS_PER_NODE "
   echo -e "\n SLURM_NTASKS = $SLURM_NTASKS "
   echo -e "\n SLURM_CPUS_PER_TASK = $SLURM_CPUS_PER_TASK "
+
    
   echo -e "\n\n ===  Own GROMACS production run :"
 
 #   mpirun -np 2 $GROMACS/$BUILD/bin/gmx_mpi  mdrun -deffnm step6.1_equilibration    -ntomp 6
+  srun gmx_mpi mdrun  -deffnm step6.1_equilibration  -ntomp 1
 
   exit 0

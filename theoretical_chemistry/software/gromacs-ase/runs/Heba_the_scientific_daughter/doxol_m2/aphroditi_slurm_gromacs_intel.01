@@ -5,7 +5,7 @@
 #SBATCH --job-name=GMX
 #SBATCH --partition=milan 
 #SBATCH --nodes=1 
-#SBATCH --ntasks-per-node=8
+#SBATCH --ntasks-per-node=12
 #SBATCH --time=12:00:00 
 
 ## stdout/stderr output file
@@ -58,8 +58,18 @@ module list
   echo -e "mpiexec ?";  which mpiexec; mpiexec --version
   echo -e "The MKL library, MKLROOT=${MKLROOT}"
 
-  echo -e "\n\n ldd $GROMACS/$BUILD/bin/gmx_mpi :"
+  echo -e "\n\n ===  GROMACS CHECKS: "
+  echo -e  "ldd $GROMACS/$BUILD/bin/gmx_mpi :"
   ldd $GROMACS/$BUILD/bin/gmx_mpi
+  
+  echo -e "\n which gmx_mpi:"
+  which  $GROMACS/$BUILD/bin/gmx_mpi
+  echo -e "\n gmx_mpi --version :"
+  $GROMACS/$BUILD/bin/gmx_mpi --version
+
    
+  echo -e "\n\n Own GROMACS production run :"
+
+  mpirun -np 2 $GROMACS/$BUILD/bin/gmx_mpi  mdrun -deffnm step6.1_equilibration    -ntomp 6
 
   exit 0

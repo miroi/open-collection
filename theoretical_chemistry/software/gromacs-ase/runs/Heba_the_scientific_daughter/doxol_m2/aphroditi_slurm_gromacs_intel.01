@@ -66,10 +66,14 @@ module list
   which  $GROMACS/$BUILD/bin/gmx_mpi
   echo -e "\n gmx_mpi --version :"
   $GROMACS/$BUILD/bin/gmx_mpi --version
-
+  
+  echo -e "\n lspcu: "; lscpu
+  echo -e "\n SLURM_JOB_CPUS_PER_NODE = $SLURM_JOB_CPUS_PER_NODE "
+  echo -e "\n SLURM_NTASKS = $SLURM_NTASKS "
+  echo -e "\n SLURM_CPUS_PER_TASK = $SLURM_CPUS_PER_TASK "
    
-  echo -e "\n\n Own GROMACS production run :"
+  echo -e "\n\n ===  Own GROMACS production run :"
 
-  mpirun -np 2 $GROMACS/$BUILD/bin/gmx_mpi  mdrun -deffnm step6.1_equilibration    -ntomp 6
+#   mpirun -np 2 $GROMACS/$BUILD/bin/gmx_mpi  mdrun -deffnm step6.1_equilibration    -ntomp 6
 
   exit 0

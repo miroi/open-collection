@@ -1,0 +1,76 @@
+&CONTROL
+   calculation       = 'scf'
+   prefix            = 'GdMnO3'
+   outdir            = './tmp'
+   pseudo_dir        = './'
+   restart_mode      = 'from_scratch'
+   tstress           = .true.
+   tprnfor           = .true.
+   disk_io           = 'low'
+   verbosity         = 'high'
+/
+&SYSTEM
+   ibrav             = 0
+   nat               = 20
+   ntyp              = 3
+   ecutwfc           = 60.0
+   ecutrho           = 480.0
+   occupations       = 'smearing'
+   smearing          = 'gaussian'
+   degauss           = 0.01
+   nspin             = 2
+   tot_magnetization = 44.0
+   starting_magnetization(1) = 1.0000
+   starting_magnetization(2) = 0.8000
+   starting_magnetization(3) = 0.0000
+/
+&ELECTRONS
+   conv_thr          = 1.0d-8
+   electron_maxstep  = 300
+   diagonalization   = 'david'
+/
+&MIXING
+   mixing_beta       = 0.2
+   mixing_mode       = 'plain'
+   mixing_type       = 'plain'
+/
+&IONS
+   ion_dynamics      = 'bfgs'
+/
+ATOMIC_SPECIES
+Gd  157.25  Gd.pbe-spdn-kjpaw_psl.1.0.0.UPF
+Mn  54.938044  Mn.pbe-spn-kjpaw_psl.0.3.1.UPF
+O  15.999  O.pbe-n-kjpaw_psl.1.0.0.UPF
+
+K_POINTS automatic
+4 4 3  0 0 0
+
+HUBBARD (ortho-atomic)
+U Mn-3d 4.5000
+
+CELL_PARAMETERS angstrom
+  5.3326696700  0.0000000000  0.0000000000
+  0.0000000000  5.6353168900  0.0000000000
+  0.0000000000  0.0000000000  7.6200618600
+
+ATOMIC_POSITIONS crystal
+Gd  0.5161264500  0.5658718000  0.2500000000
+Gd  0.9838735500  0.0658718000  0.2500000000
+Gd  0.4838735500  0.4341282000  0.7500000000
+Gd  0.0161264500  0.9341282000  0.7500000000
+Mn  0.5000000000  0.0000000000  0.0000000000
+Mn  0.0000000000  0.5000000000  0.5000000000
+Mn  0.5000000000  0.0000000000  0.5000000000
+Mn  0.0000000000  0.5000000000  0.0000000000
+O   0.4011589500  0.9705682100  0.2500000000
+O   0.0988410500  0.4705682100  0.2500000000
+O   0.5988410500  0.0294317900  0.7500000000
+O   0.9011589500  0.5294317900  0.7500000000
+O   0.7964368000  0.8055999700  0.0507227500
+O   0.7035632000  0.3055999700  0.4492772500
+O   0.2035632000  0.1944000300  0.5507227500
+O   0.2964368000  0.6944000300  0.9492772500
+O   0.2035632000  0.1944000300  0.9492772500
+O   0.2964368000  0.6944000300  0.5507227500
+O   0.7964368000  0.8055999700  0.4492772500
+O   0.7035632000  0.3055999700  0.0507227500

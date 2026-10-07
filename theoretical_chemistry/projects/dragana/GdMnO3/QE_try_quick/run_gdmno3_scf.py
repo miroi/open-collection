@@ -19,12 +19,12 @@ from ase.calculators.espresso import Espresso, EspressoProfile
 # ======================================================================
 # 0. User-configurable paths
 # ======================================================================
-CIF_FILE   = "GdMnO3.cif"          # <-- geometry file
-PSEUDO_DIR = "./"
-OUTDIR     = "./tmp"
+CIF_FILE   = "GdMnO3.cif"          # geometry file
+PSEUDO_DIR = "./"                  # pseudopotentials in the current dir
+OUTDIR     = "./tmp"               # scratch directory
 PREFIX     = "GdMnO3"
 
-PW_COMMAND = "mpirun -np 4 pw.x"   # adjust for your machine
+PW_COMMAND = "mpirun -np 4 pw.x"   # adjust to your machine
 
 os.makedirs(OUTDIR, exist_ok=True)
 
@@ -55,7 +55,7 @@ print("=" * 72)
 #   ----------------------------------------
 #   Total per f.u.         -> 11 muB
 #
-# The CIF cell has Z = 4 formula units, so:
+# The CIF cell has Z = 4 formula units:
 #   tot_magnetization (per cell) = 11 * 4 = 44 muB
 # ======================================================================
 Z_FORMULA_UNITS = 4
@@ -67,7 +67,7 @@ print(f"[i] Target tot_magnetization = {TOT_MAG:.1f} muB  "
       f"(Gd {MU_GD_HIGHSPIN} + Mn {MU_MN_HIGHSPIN}) x Z={Z_FORMULA_UNITS}")
 
 # ======================================================================
-# 3. Pseudopotentials (SSSP / PBE PAW recommended)
+# 3. Pseudopotentials (filenames must match files in PSEUDO_DIR)
 # ======================================================================
 pseudopotentials = {
     "Gd": "Gd.pbe-spdn-kjpaw_psl.1.0.0.UPF",
@@ -110,9 +110,9 @@ input_data = {
         # This ENFORCES the high-spin configuration globally.
         "tot_magnetization": TOT_MAG,
 
-        # ---- Small per-species seeds (symmetry breaking) ----
+        # ---- Initial guess for per-species moments ----
         # tot_magnetization fixes the SUM; starting_magnetization
-        # only sets the initial guess / sign pattern.
+        # only sets the initial sign pattern / guess.
         "starting_magnetization": {
             "Gd": 1.0,     # f7 -> maximum positive
             "Mn": 0.8,     # high-spin d4
@@ -136,6 +136,9 @@ input_data = {
     },
 }
 
+KPOINTS  = (4, 4, 3)
+KOFFSET  = (0, 0, 0)
+
 # ======================================================================
 # 6. Espresso profile + calculator
 # ======================================================================
@@ -148,19 +151,28 @@ calc = Espresso(
     profile=profile,
     pseudopotentials=pseudopotentials,
     input_data=input_data,
-    kpts=(4, 4, 3),
-    koffset=(0, 0, 0),
+    kpts=KPOINTS,
+    koffset=KOFFSET,
 )
 
 atoms.calc = calc
 
 # ======================================================================
-# 7. Write the input file (inspection / reproducibility)
+# 7. Write the QE input file explicitly (for inspection / reproducibility)
+# ----------------------------------------------------------------------
+# Use ase.io.write with format="espresso-in" – this is independent of the
+# calculator and works in all recent ASE versions.
 # ======================================================================
-calc.write_input(atoms)
-if os.path.exists("espresso.pwi"):
-    os.replace("espresso.pwi", f"{PREFIX}.scf.in")
-    print(f"[i] QE input written to {PREFIX}.scf.in\n")
+write(
+    f"{PREFIX}.scf.in",
+    atoms,
+    format="espresso-in",
+    input_data=input_data,
+    pseudopotentials=pseudopotentials,
+    kpts=KPOINTS,
+    koffset=KOFFSET,
+)
+print(f"[i] QE input written to {PREFIX}.scf.in\n")
 
 # ======================================================================
 # 8. Run SCF directly (interactive)

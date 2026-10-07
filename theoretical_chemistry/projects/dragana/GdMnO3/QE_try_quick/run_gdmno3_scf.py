@@ -20,7 +20,7 @@ from ase.calculators.espresso import Espresso, EspressoProfile
 # 0. User-configurable paths
 # ======================================================================
 CIF_FILE   = "GdMnO3.cif"          # <-- geometry file
-PSEUDO_DIR = "./pseudo"
+PSEUDO_DIR = "./"
 OUTDIR     = "./tmp"
 PREFIX     = "GdMnO3"
 
@@ -70,8 +70,8 @@ print(f"[i] Target tot_magnetization = {TOT_MAG:.1f} muB  "
 # 3. Pseudopotentials (SSSP / PBE PAW recommended)
 # ======================================================================
 pseudopotentials = {
-    "Gd": "Gd.pbe-spn-kjpaw_psl.1.0.0.UPF",
-    "Mn": "Mn.pbe-spn-kjpaw_psl.1.0.0.UPF",
+    "Gd": "Gd.pbe-spdn-kjpaw_psl.1.0.0.UPF",
+    "Mn": "Mn.pbe-spn-kjpaw_psl.0.3.1.UPF",
     "O" : "O.pbe-n-kjpaw_psl.1.0.0.UPF",
 }
 
@@ -102,7 +102,7 @@ input_data = {
         "ecutwfc"      : 60.0,         # Ry
         "ecutrho"      : 480.0,        # Ry (8x ecutwfc for PAW)
         "occupations"  : "smearing",
-        "smearing"     : "mv",
+        "smearing"     : "gaussian",
         "degauss"      : 0.01,         # Ry
         "nspin"        : 2,            # spin-polarized
 

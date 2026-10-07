@@ -3,14 +3,16 @@
 Direct interactive Quantum ESPRESSO SCF for GdMnO3
 ------------------------------------------------------------------
 - Geometry from GdMnO3.cif (read with ASE)
-- DFT+U (Hubbard) for Mn 3d and Gd 4f
+- DFT+U (Hubbard) on Mn 3d only (Gd 4f is frozen in the UPF core;
+  the pseudopotential Gd.pbe-spdn-kjpaw_psl.1.0.0.UPF does not expose
+  a 4F manifold, so U(Gd) cannot be applied with this UPF)
 - High-spin configuration enforced via tot_magnetization = 44 muB
     Gd3+ 4f7  -> S = 7/2 -> 7 muB
     Mn3+ 3d4  -> S = 2   -> 4 muB   (high-spin, t2g^3 eg^1)
     per formula unit: 11 muB;  Z = 4  =>  44 muB per cell
-- Writes a VALID pw.x input manually, because ASE's espresso-in writer
-  emits illegal nested namelists for Hubbard_U / starting_magnetization.
+- Writes a VALID pw.x input manually.
 - Uses the NEW DFT+U syntax (QE >= 7.1): the HUBBARD card.
+- mixing parameters in &MIXING namelist (not &ELECTRONS).
 - Launches pw.x directly with subprocess (interactive run).
 ------------------------------------------------------------------
 """
@@ -63,8 +65,6 @@ print(f"[i] Target tot_magnetization = {TOT_MAG:.1f} muB  "
 
 # ======================================================================
 # 3. Species table
-#    (ORDER DEFINES THE INDEX i IN starting_magnetization(i);
-#     must be consistent with ATOMIC_SPECIES below)
 # ======================================================================
 species_order = ["Gd", "Mn", "O"]
 species_mass  = {"Gd": 157.25, "Mn": 54.938044, "O": 15.999}
@@ -75,17 +75,15 @@ pseudopotentials = {
     "O" : "O.pbe-n-kjpaw_psl.1.0.0.UPF",
 }
 
-# fractional starting magnetizations (-1 .. 1)
 start_mag = {"Gd": 1.0, "Mn": 0.8, "O": 0.0}
 
-# Hubbard U (eV) — only species with U > 0 will be written to the
-# HUBBARD card. Set Gd to 0.0 if the Gd UPF lacks the 4F manifold label.
-hubbard_u = {"Gd": 6.5, "Mn": 4.5, "O": 0.0}
-
-# Orbital manifold used in the HUBBARD card (must match the UPF labels)
+# ----------------------------------------------------------------
+# Hubbard U: only Mn 3d is available in the chosen UPFs.
+# Gd 4f is frozen in the core of Gd.pbe-spdn-...UPF, so U(Gd)=0.
+# ----------------------------------------------------------------
+hubbard_u        = {"Gd": 0.0, "Mn": 4.5, "O": 0.0}
 hubbard_manifold = {"Gd": "4f", "Mn": "3d", "O": "2p"}
 
-# k-mesh
 KPOINTS = (4, 4, 3)
 KOFFSET = (0, 0, 0)
 
@@ -108,8 +106,6 @@ lines.append("   verbosity         = 'high'")
 lines.append("/")
 
 # ---- &SYSTEM ----
-# NOTE: With QE >= 7.1, the HUBBARD card REPLACES:
-#       lda_plus_u, U_projection_type, Hubbard_U(i)
 lines.append("&SYSTEM")
 lines.append("   ibrav             = 0")
 lines.append(f"   nat               = {len(atoms)}")
@@ -128,10 +124,15 @@ lines.append("/")
 # ---- &ELECTRONS ----
 lines.append("&ELECTRONS")
 lines.append("   conv_thr          = 1.0d-8")
-lines.append("   mixing_beta       = 0.2")
-lines.append("   mixing_type       = 'plain'")
 lines.append("   electron_maxstep  = 300")
 lines.append("   diagonalization   = 'david'")
+lines.append("/")
+
+# ---- &MIXING ----
+lines.append("&MIXING")
+lines.append("   mixing_beta       = 0.2")
+lines.append("   mixing_mode       = 'plain'")
+lines.append("   mixing_type       = 'plain'")
 lines.append("/")
 
 # ---- &IONS ----
@@ -151,8 +152,7 @@ lines.append(f"{KPOINTS[0]} {KPOINTS[1]} {KPOINTS[2]}  "
              f"{KOFFSET[0]} {KOFFSET[1]} {KOFFSET[2]}")
 lines.append("")
 
-# ---- HUBBARD card (QE >= 7.1) ----
-# Only emit if at least one species has U > 0
+# ---- HUBBARD card (QE >= 7.1): only species with U > 0 ----
 if any(hubbard_u[sp] > 0.0 for sp in species_order):
     lines.append("HUBBARD (ortho-atomic)")
     for sp in species_order:
@@ -181,7 +181,7 @@ with open(INPUT_FILE, "w") as fh:
     fh.write(qe_input_text)
 
 print(f"[i] Wrote valid pw.x input to {INPUT_FILE}")
-print(f"[i] (using QE >= 7.1 HUBBARD card syntax)\n")
+print(f"[i] DFT+U applied to Mn-3d only (Gd 4f frozen in UPF core)\n")
 
 # ======================================================================
 # 5. Launch pw.x directly
@@ -198,7 +198,7 @@ with open(OUTPUT_FILE, "w") as out_fh:
     )
 
 # ======================================================================
-# 6. Error handling — dump last lines of QE output on failure
+# 6. Error handling
 # ======================================================================
 if result.returncode != 0:
     print(f"\n[!] pw.x failed with exit code {result.returncode}.")
@@ -211,7 +211,7 @@ if result.returncode != 0:
 print(f"[i] pw.x finished successfully. Output: {OUTPUT_FILE}\n")
 
 # ======================================================================
-# 7. Parse key results from the QE output
+# 7. Parse key results
 # ======================================================================
 with open(OUTPUT_FILE) as fh:
     out = fh.read()
@@ -245,10 +245,10 @@ m = re.findall(r"convergence has been achieved in\s+(\d+)\s+iterations", out)
 if m:
     print(f"[i] SCF converged in       : {m[-1]} iterations")
 
-# Check if Hubbard U was actually applied
-if "Hubbard" in out or "HUBBARD" in out:
-    for line in out.splitlines():
-        if "Hubbard" in line or "HUBBARD" in line:
-            print(f"[i] {line.strip()}")
+# Print any Hubbard summary lines QE printed
+for line in out.splitlines():
+    low = line.lower()
+    if "hubbard" in low and ("u =" in low or "manifold" in low or "atom" in low):
+        print(f"[i] {line.strip()}")
 
 print("\nDone.")

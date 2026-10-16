@@ -15,3 +15,7 @@ milias@DESKTOP-7OTLCGO:~/.cache/mace/dip/.pwd
 /home/milias/.cache/mace/dip
 milias@DESKTOP-7OTLCGO:~/.cache/mace/dip/.ls -lt MACE_AuFl_compiled.model
 -rw-rw-rw- 1 milias milias 8699841 Oct 16 14:57 MACE_AuFl_compiled.model
+
+see https://chat.deepseek.com/share/0u5ououmu0cm6f7odo
+
+TODO: retrain

@@ -16,7 +16,8 @@ ELEMENT1 = "Au"
 ELEMENT2 = "Fl"
 DEVICE   = "cpu"
 
-R_MIN, R_MAX, N_POINTS = 1.5, 8.0, 100
+#R_MIN, R_MAX, N_POINTS = 1.5, 8.0, 100
+R_MIN, R_MAX, N_POINTS = 0.5, 5.0, 60
 
 # ------------------------------------------------------------------
 # Setup MACE calculator

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Calculate the adsorption energy of a Fl atom on Au(111) at the hcp site
-using a MACE model. Saves optimization trajectories.
+using a MACE model. Saves optimization trajectories and final structures.
 
 The isolated Fl reference energy E_fl is taken from a Quantum ESPRESSO
 calculation of the free Fl atom.
@@ -38,6 +38,18 @@ E_FL_QE    = -5240.211831   # eV
 # Setup MACE calculator
 # ------------------------------------------------------------------
 calc = MACECalculator(model_paths=MODEL_PATH, device=DEVICE)
+
+# ------------------------------------------------------------------
+# Helper: strip non-standard info/arrays so the XYZ writer works
+# ------------------------------------------------------------------
+def clean_atoms(atoms):
+    """Return a copy with only the data the XYZ writer needs."""
+    a = atoms.copy()
+    a.info = {}
+    for key in list(a.arrays.keys()):
+        if key not in ('numbers', 'positions'):
+            del a.arrays[key]
+    return a
 
 # ------------------------------------------------------------------
 # 1. Build and optimize the clean Au(111) slab
@@ -107,15 +119,15 @@ print(f"E_ads            = {E_ads:.6f} eV")
 print("=" * 60)
 
 # ------------------------------------------------------------------
-# 5. Save final structures (strip problematic info dicts)
+# 5. Save final structures (XYZ and native ASE traj)
 # ------------------------------------------------------------------
-slab_ads.info.pop('adsorbate_info', None)
-slab.info.pop('adsorbate_info', None)
+write('clean_slab_final.xyz',      clean_atoms(slab))
+write('fl_on_au111_hcp_final.xyz', clean_atoms(slab_ads))
 
-write('clean_slab_final.xyz', slab)
-write('fl_on_au111_hcp_final.xyz', slab_ads)
+write('clean_slab_final.traj',      slab)
+write('fl_on_au111_hcp_final.traj', slab_ads)
 
-# Save the optimized adsorbate geometry details
+# Report optimized adsorbate geometry
 fl_pos = slab_ads.positions[-1]
 au_surface_z = slab_ads.positions[:-1, 2].max()
 print(f"\nFl position (x, y, z) = {fl_pos[0]:.4f}, {fl_pos[1]:.4f}, {fl_pos[2]:.4f}")
@@ -125,6 +137,8 @@ print(f"Fl height above surface = {fl_pos[2] - au_surface_z:.4f} Å")
 # 6. Report trajectory information
 # ------------------------------------------------------------------
 print("\nTrajectory files saved:")
-print("  clean_slab.traj        - clean slab optimization")
-print("  fl_on_au111_hcp.traj   - Fl adsorption optimization")
+print("  clean_slab.traj            - clean slab optimization")
+print("  fl_on_au111_hcp.traj       - Fl adsorption optimization")
+print("  clean_slab_final.xyz/.traj - final clean slab")
+print("  fl_on_au111_hcp_final.xyz/.traj - final Fl/slab")
 print("\nTo visualize:  ase gui fl_on_au111_hcp.traj")

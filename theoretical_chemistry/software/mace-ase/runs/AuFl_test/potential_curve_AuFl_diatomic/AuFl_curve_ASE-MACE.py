@@ -6,23 +6,22 @@ Calculate and plot the AuFl diatomic potential energy curve using a MACE model.
 import numpy as np
 import matplotlib.pyplot as plt
 from ase import Atoms
-from ase.calculators.mace import MACE
+from mace.calculators import MACECalculator   # <-- corrected import
 
 # ------------------------------------------------------------------
 # Configuration
 # ------------------------------------------------------------------
 MODEL_PATH = "/home/milias/.cache/mace/dip/MACE_AuFl_compiled.model"
 ELEMENT1 = "Au"
-ELEMENT2 = "Fl"          # Flerovium (Z=114)
-DEVICE   = "cpu"          # change to "cuda" if you have a GPU
+ELEMENT2 = "Fl"
+DEVICE   = "cpu"
 
-# Distance range in Å
 R_MIN, R_MAX, N_POINTS = 1.5, 8.0, 100
 
 # ------------------------------------------------------------------
 # Setup MACE calculator
 # ------------------------------------------------------------------
-calc = MACE(model_paths=MODEL_PATH, device=DEVICE)
+calc = MACECalculator(model_paths=MODEL_PATH, device=DEVICE)  # <-- MACECalculator
 
 # ------------------------------------------------------------------
 # Scan the potential
@@ -31,13 +30,14 @@ distances = np.linspace(R_MIN, R_MAX, N_POINTS)
 energies  = np.zeros_like(distances)
 
 for i, r in enumerate(distances):
-    atoms = Atoms(ELEMENT1 + ELEMENT2, positions=[[0.0, 0.0, 0.0], [0.0, 0.0, r]])
+    atoms = Atoms(ELEMENT1 + ELEMENT2,
+                  positions=[[0.0, 0.0, 0.0], [0.0, 0.0, r]])
     atoms.calc = calc
     energies[i] = atoms.get_potential_energy()
     print(f"r = {r:6.3f} Å   E = {energies[i]:12.6f} eV")
 
 # ------------------------------------------------------------------
-# Shift so that the minimum is zero and get equilibrium distance
+# Shift and find equilibrium
 # ------------------------------------------------------------------
 E_min = energies.min()
 energies_shifted = energies - E_min

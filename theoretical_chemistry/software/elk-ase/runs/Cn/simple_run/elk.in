@@ -1,0 +1,53 @@
+! Cn FCC lattice optimization analog for Elk
+! Note: Elk does NOT perform lattice optimization in the AMS sense.
+!       This input performs a fixed-geometry SCF calculation.
+
+tasks
+  0          ! Ground state SCF calculation
+
+! --- Lattice (from AMS input, converted to Bohr) ---
+! AMS used Angstrom; Elk uses atomic units (Bohr).
+! Conversion: 1 Angstrom = 1.889726125 Bohr
+avec
+  7.763   0.000   0.000
+  3.881   6.722   0.000
+  3.881   2.241   6.338
+
+! --- Atom ---
+atoms
+  1                    ! nspecies
+  'Cn.in'              ! species file name (must exist in elk/species/)
+  1                    ! natoms for this species
+  0.0  0.0  0.0        ! atomic position in lattice coordinates
+
+! --- k-point mesh (15x15x15 from AMS) ---
+ngridk
+  15 15 15
+
+! --- Exchange-correlation: PBE (AMS used GGA PBE) ---
+xctype
+  20                   ! GGA PBE (Perdew-Burke-Ernzerhof)
+
+! --- Relativity: Scalar (AMS used SRZORA) ---
+! Elk handles scalar relativistic effects by default for valence states.
+! For explicit spin-orbit, additional flags are needed (not required for scalar).
+
+! --- Unrestricted / spin-polarized (AMS used Unrestricted Yes) ---
+spinpol
+  .true.
+
+! --- Electronic temperature (AMS: 0.001 Ha) ---
+! Elk uses tempk in atomic units (Hartree); 0.001 Ha is very cold.
+stype
+  3                    ! Fermi-Dirac smearing
+tempk
+  0.001                ! same value as AMS ElectronicTemperature
+
+! --- Convergence ---
+! Elk uses its own SCF convergence; there is no direct "MultiSecant" analog.
+! Default Broyden mixing is used. Reduce mixing if convergence is difficult.
+
+! --- Basis / cutoff (Elk defaults, adjust for convergence) ---
+! AMS TZ2P has no direct Elk analog. Use rgkmax to control basis size.
+rgkmax
+  7.0                  ! default; increase for better convergence

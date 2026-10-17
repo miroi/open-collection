@@ -1,53 +1,48 @@
-! Cn FCC lattice optimization analog for Elk
-! Note: Elk does NOT perform lattice optimization in the AMS sense.
-!       This input performs a fixed-geometry SCF calculation.
+! ============================================================
+! Elk input for Cn (Copernicium, Z=112) FCC lattice
+! Analog of AMS BAND input: PBE, scalar relativistic,
+! spin-polarized, 15x15x15 k-mesh, T=0.001 Ha smearing
+! ============================================================
 
+! --- Task: ground-state SCF ---
 tasks
-  0          ! Ground state SCF calculation
+  0
 
-! --- Lattice (from AMS input, converted to Bohr) ---
-! AMS used Angstrom; Elk uses atomic units (Bohr).
-! Conversion: 1 Angstrom = 1.889726125 Bohr
+! --- Lattice vectors (Bohr) ---
+! Converted from AMS input (Angstrom) by factor 1.889726125
 avec
   7.763   0.000   0.000
   3.881   6.722   0.000
   3.881   2.241   6.338
 
-! --- Atom ---
+! --- Atoms ---
+! Species file 'Cn.in' must exist in elk/species/
 atoms
-  1                    ! nspecies
-  'Cn.in'              ! species file name (must exist in elk/species/)
-  1                    ! natoms for this species
-  0.0  0.0  0.0        ! atomic position in lattice coordinates
+  1
+  'Cn.in'
+  1
+  0.0  0.0  0.0
 
-! --- k-point mesh (15x15x15 from AMS) ---
+! --- k-point mesh (15x15x15) ---
 ngridk
   15 15 15
 
-! --- Exchange-correlation: PBE (AMS used GGA PBE) ---
+! --- Exchange-correlation: PBE ---
+! Format: exchange correlation additional (three integers)
 xctype
-  20                   ! GGA PBE (Perdew-Burke-Ernzerhof)
+  20 0 0
 
-! --- Relativity: Scalar (AMS used SRZORA) ---
-! Elk handles scalar relativistic effects by default for valence states.
-! For explicit spin-orbit, additional flags are needed (not required for scalar).
-
-! --- Unrestricted / spin-polarized (AMS used Unrestricted Yes) ---
+! --- Spin polarization (AMS: Unrestricted Yes) ---
 spinpol
   .true.
 
-! --- Electronic temperature (AMS: 0.001 Ha) ---
-! Elk uses tempk in atomic units (Hartree); 0.001 Ha is very cold.
+! --- Electronic temperature / smearing ---
+! stype 3 = Fermi-Dirac; tempk in Hartree
 stype
-  3                    ! Fermi-Dirac smearing
+  3
 tempk
-  0.001                ! same value as AMS ElectronicTemperature
+  0.001
 
-! --- Convergence ---
-! Elk uses its own SCF convergence; there is no direct "MultiSecant" analog.
-! Default Broyden mixing is used. Reduce mixing if convergence is difficult.
-
-! --- Basis / cutoff (Elk defaults, adjust for convergence) ---
-! AMS TZ2P has no direct Elk analog. Use rgkmax to control basis size.
+! --- Basis size (AMS TZ2P has no direct analog) ---
 rgkmax
-  7.0                  ! default; increase for better convergence
+  7.0

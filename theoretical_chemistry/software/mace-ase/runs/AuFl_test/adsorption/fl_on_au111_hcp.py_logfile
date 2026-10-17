@@ -1,0 +1,123 @@
+(molmatmodel) milias@DESKTOP-7OTLCGO:~/work/projects/open-collection/theoretical_chemistry/software/mace-ase/runs/AuFl_test/adsorption/.python fl_on_au111_hcp.py
+/home/milias/miniconda3/envs/molmatmodel/lib/python3.13/site-packages/e3nn/o3/_wigner.py:10: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  _Jd, _W3j_flat, _W3j_indices = torch.load(os.path.join(os.path.dirname(__file__), 'constants.pt'))
+======================================================================
+Loading MACE model
+======================================================================
+/home/milias/miniconda3/envs/molmatmodel/lib/python3.13/site-packages/mace/calculators/mace.py:226: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  torch.load(f=model_path, map_location=device)
+/home/milias/miniconda3/envs/molmatmodel/lib/python3.13/site-packages/torch/serialization.py:1336: UserWarning: 'torch.load' received a zip file that looks like a TorchScript archive dispatching to 'torch.jit.load' (call 'torch.jit.load' directly to silence this warning)
+  warnings.warn(
+WARNING:root:No dtype selected, switching to float64 to match model dtype.
+
+======================================================================
+MACE model internal atomic reference energies
+======================================================================
+/home/milias/work/projects/open-collection/theoretical_chemistry/software/mace-ase/runs/AuFl_test/adsorption/fl_on_au111_hcp.py:56: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model = torch.load(MODEL_PATH, map_location="cpu")
+atomic_energies_fn.atomic_energies:
+tensor([[-4019.5509, -5240.2118]], dtype=torch.float64)
+atomic_numbers: tensor([ 79, 114])
+
+======================================================================
+Optimizing clean Au(111) slab...
+======================================================================
+Clean slab energy: -257252.340476 eV
+  steps taken: 0
+
+======================================================================
+Isolated Fl atom energy (MACE, in 20 Å box)
+======================================================================
+E(Fl, MACE)  = -5240.211831 eV
+
+======================================================================
+Isolated Fl atom energy (QE reference)
+======================================================================
+E(Fl, QE)    = -5240.211831 eV
+Difference E(Fl,MACE) - E(Fl,QE) = +0.000000 eV
+
+======================================================================
+Fl on Au(111) hcp site
+======================================================================
+
+Forces BEFORE optimization:
+  |F(Fl)|  = 0.000023 eV/Å
+  F(Fl)    = [-9.14775918e-20 -6.55603501e-19  2.30052433e-05]
+  max|F| over all atoms = 0.011252 eV/Å
+  Fl height before opt = 2.5000 Å
+  E(slab+Fl, before opt) = -262492.551659 eV
+
+Forces AFTER optimization:
+  |F(Fl)|  = 0.000023 eV/Å
+  F(Fl)    = [-9.14775918e-20 -6.55603501e-19  2.30052433e-05]
+  max|F| over all atoms = 0.011252 eV/Å
+  steps taken: 0
+  Fl height after opt = 2.5000 Å
+  Fl moved in z: +0.0000 Å
+E(slab+Fl, after opt) = -262492.551659 eV
+
+======================================================================
+ADSORPTION ENERGY
+======================================================================
+  E(slab+Fl)      = -262492.551659 eV
+  E(slab)         = -257252.340476 eV
+  E(Fl, QE)       = -5240.211831 eV
+  E(Fl, MACE)     = -5240.211831 eV
+  ------------------------------------------
+  E_ads (QE ref)   = 0.000648 eV
+  E_ads (MACE ref) = 0.000648 eV
+======================================================================
+
+======================================================================
+Rigid E vs. Fl height scan (unrelaxed, hcp site)
+======================================================================
+  h =  1.60 Å   E = -262492.552630 eV
+  h =  1.80 Å   E = -262492.552420 eV
+  h =  2.00 Å   E = -262492.552135 eV
+  h =  2.20 Å   E = -262492.551855 eV
+  h =  2.40 Å   E = -262492.551681 eV
+  h =  2.60 Å   E = -262492.551684 eV
+  h =  2.80 Å   E = -262492.551852 eV
+  h =  3.00 Å   E = -262492.552088 eV
+  h =  3.20 Å   E = -262492.552281 eV
+  h =  3.40 Å   E = -262492.552371 eV
+  h =  3.60 Å   E = -262492.552369 eV
+  h =  3.80 Å   E = -262492.552333 eV
+  h =  4.00 Å   E = -262492.552307 eV
+  h =  4.20 Å   E = -262492.552302 eV
+  h =  4.40 Å   E = -262492.552306 eV
+  h =  4.60 Å   E = -262492.552307 eV
+  h =  4.80 Å   E = -262492.552307 eV
+  h =  5.00 Å   E = -262492.552307 eV
+
+Interaction energy relative to largest separation:
+  (reference E at h = 5.00 Å = -262492.552307 eV)
+  h =  1.60 Å   E_int =     -0.323 meV
+  h =  1.80 Å   E_int =     -0.113 meV
+  h =  2.00 Å   E_int =      0.172 meV
+  h =  2.20 Å   E_int =      0.452 meV
+  h =  2.40 Å   E_int =      0.627 meV
+  h =  2.60 Å   E_int =      0.623 meV
+  h =  2.80 Å   E_int =      0.455 meV
+  h =  3.00 Å   E_int =      0.219 meV
+  h =  3.20 Å   E_int =      0.026 meV
+  h =  3.40 Å   E_int =     -0.063 meV
+  h =  3.60 Å   E_int =     -0.062 meV
+  h =  3.80 Å   E_int =     -0.025 meV
+  h =  4.00 Å   E_int =      0.000 meV
+  h =  4.20 Å   E_int =      0.005 meV
+  h =  4.40 Å   E_int =      0.001 meV
+  h =  4.60 Å   E_int =      0.000 meV
+  h =  4.80 Å   E_int =      0.000 meV
+  h =  5.00 Å   E_int =      0.000 meV
+
+Saved scan plot to Au111_Fl_hcp_scan.png
+
+Files written:
+  clean_slab.traj / clean_slab.log
+  fl_on_au111_hcp.traj / fl_on_au111_hcp.log
+  clean_slab_final.xyz / .traj
+  fl_on_au111_hcp_final.xyz / .traj
+  Au111_Fl_hcp_scan.png
+
+Visualize:  ase gui fl_on_au111_hcp.traj

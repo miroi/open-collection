@@ -1,5 +1,5 @@
 =======================
-Diplomovky M. & P. Vano
+NMR parameters
 =======================
 
 https://link.springer.com/content/pdf/10.1007/s00216-011-5561-7.pdf  

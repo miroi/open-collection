@@ -20,6 +20,13 @@ MTEST/  cis*       dmrcc*                    drpa_mpi*   manual.pdf  mrcc*      
 ccsd*   dftd3*     dmrcc_mpi*                goldstone*  minp*       mrcc.25.1.5.binary.tar.gz*  mulli*         prop*    scf_mpi*  xmrcc_mpi*
 
 
+newest version
+--------------
+milias@DESKTOP-7OTLCGO:~/work/software/mrcc/mrcc_26.1.3/.ls
+BASIS/  ccsd_mpi*                                dirac_mointegral_export*  drpa_mpi*   minp*        mrcc*                      mulli*   prop*     uccsd*
+MTEST/  cis*                                     dmrcc*                    goldstone*  mp2f12*      mrcc.26.1.3.binary.tar.gz  nevpt*   qmmod*    xmrcc*
+ccfno*  copyright_transfer_agreement_filled.pdf  dmrcc_mpi*                integ*      mp2f12_mpi*  mrcc_manager*              orbloc*  scf*      xmrcc_mpi*
+ccsd*   dftd3*                                   drpa*           
 
 
 

@@ -1,0 +1,48 @@
+! ============================================================
+! Elk input for Cn (Copernicium, Z=112) FCC lattice
+! Analog of AMS BAND input: PBE, scalar relativistic,
+! spin-polarized, 15x15x15 k-mesh, T=0.001 Ha smearing
+! ============================================================
+
+! --- Task: ground-state SCF ---
+tasks
+  0
+
+! --- Lattice vectors (Bohr) ---
+! Converted from AMS input (Angstrom) by factor 1.889726125
+avec
+  7.763   0.000   0.000
+  3.881   6.722   0.000
+  3.881   2.241   6.338
+
+! --- Atoms ---
+! Species file 'Cn.in' must exist in elk/species/
+atoms
+  1
+  'Cn.in'
+  1
+  0.0  0.0  0.0
+
+! --- k-point mesh (15x15x15) ---
+ngridk
+  15 15 15
+
+! --- Exchange-correlation: PBE ---
+! Format: exchange correlation additional (three integers)
+xctype
+  20 0 0
+
+! --- Spin polarization (AMS: Unrestricted Yes) ---
+spinpol
+  .true.
+
+! --- Electronic temperature / smearing ---
+! stype 3 = Fermi-Dirac; tempk in Hartree
+stype
+  3
+tempk
+  0.001
+
+! --- Basis size (AMS TZ2P has no direct analog) ---
+rgkmax
+  7.0

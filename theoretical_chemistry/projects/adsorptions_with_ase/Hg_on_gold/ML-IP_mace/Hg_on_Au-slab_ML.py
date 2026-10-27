@@ -7,6 +7,7 @@ from mace.calculators import mace_mp
 # 'medium' is usually sufficient for accurate geometry and energy
 calc = mace_mp(model="medium", device='cpu') # Use 'cuda' if GPU is available
 
+# to the geometry optimization to get the total energy of the system
 def get_optimized_energy(atoms):
     atoms.calc = calc
     dyn = BFGS(atoms, logfile=None)
@@ -15,10 +16,10 @@ def get_optimized_energy(atoms):
 
 # 2. Setup the Au(111) Slab
 # 4 layers, 3x3 supercell. 
-slab = fcc111('Au', size=(3, 3, 4), vacuum=12.0)
+slab = fcc111('Au', size=(4, 4, 4), vacuum=12.0)
 
-# Constraint: Freeze the bottom two layers to simulate bulk
-mask = [atom.tag > 2 for atom in slab]
+# Constraint: Freeze the bottom layer to simulate bulk
+mask = [atom.tag > 1 for atom in slab]
 slab.set_constraint(FixAtoms(mask=[not m for m in mask]))
 
 # 3. Reference: Energy of Clean Slab

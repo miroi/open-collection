@@ -1,4 +1,4 @@
-from ase.build import fcc111, add_adsorbate
+from ase.build import fcc100, add_adsorbate
 from ase.optimize import BFGS
 from ase.constraints import FixAtoms
 from ase.io import write
@@ -10,7 +10,7 @@ import os
 
 calc = mace_mp(model="medium", device='cpu', default_dtype="float64")
 
-OUTDIR = "results"
+OUTDIR = "results_Au100"
 os.makedirs(OUTDIR, exist_ok=True)
 
 
@@ -55,8 +55,8 @@ def get_optimized_energy(atoms, label="", save=True):
     return e
 
 
-# --- Slab ---
-slab = fcc111('Au', size=(4, 4, 4), vacuum=12.0)
+# --- Slab: Au(100) ---
+slab = fcc100('Au', size=(4, 4, 4), vacuum=12.0)
 
 # Freeze the bottom layer by z-coordinate (robust to tag convention)
 zmin = min(a.position[2] for a in slab)
@@ -68,7 +68,7 @@ print("fixed z values:", fixed_z,
       "| N fixed =", len(fa.get_indices()), "of", len(slab))
 
 # --- References ---
-e_slab = get_optimized_energy(slab, "clean_slab")
+e_slab = get_optimized_energy(slab, "clean_slab_Au100")
 
 from ase import Atoms
 hg = Atoms('Hg', pbc=True)
@@ -76,12 +76,14 @@ hg.set_cell([15, 15, 15])
 hg.center()
 e_atom = get_optimized_energy(hg, "Hg_atom")
 
-# --- Adsorption: all sites, on a fresh copy each time ---
+# --- Adsorption: Au(100) sites, on a fresh copy each time ---
+# Note: Au(100) has top, bridge, and 4-fold hollow sites (no fcc/hcp distinction).
+# ASE's add_adsorbate understands 'ontop', 'bridge', 'hollow' on fcc100.
 results = {}
-for site in ('ontop', 'bridge', 'fcc', 'hcp'):
+for site in ('ontop', 'bridge', 'hollow'):
     s = slab.copy()
     add_adsorbate(s, 'Hg', height=2.5, position=site)
-    e_tot = get_optimized_energy(s, f"HgAu_{site}")
+    e_tot = get_optimized_energy(s, f"HgAu100_{site}")
     results[site] = e_tot - e_slab - e_atom
 
 print("\n" + "=" * 40)

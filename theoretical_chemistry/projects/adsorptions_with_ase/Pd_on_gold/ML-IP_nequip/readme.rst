@@ -2,7 +2,9 @@
 Hg@Au(111) with Nequip MLIP
 ===========================
 
-claude ai: https://claude.ai/share/81d8a6ee-8585-45f2-91af-37bf923e7ef4
+claude ai:
+---------
+ https://claude.ai/share/81d8a6ee-8585-45f2-91af-37bf923e7ef4
 
 installation into own conda environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -61,6 +63,16 @@ nequip-compile \
 .
 .
 [2026-11-10 10:36:08,169][nequip.scripts.compile][INFO] - [rank: 0] Exported model saved to model.nequip.pt2
+
+
+running
+-------
+python pd_on_gold_nequip.py >  pd_on_gold_nequip.py_logfile
+
+
+Literature
+----------
+https://proceedings.spp-online.org/article/view/SPP-2017-PB-21
 
 
 

@@ -52,7 +52,7 @@ Requires: ase, e3nn, hydra-core, lightning, lmdb, matscipy, numpy, pyyaml, reque
 
 
 Download and compile a foundation model
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------------
 nequip-compile \
   nequip.net:mir-group/NequIP-OAM-L:0.1 \
   model.nequip.pt2 \
@@ -63,6 +63,12 @@ nequip-compile \
 .
 .
 [2026-11-10 10:36:08,169][nequip.scripts.compile][INFO] - [rank: 0] Exported model saved to model.nequip.pt2
+
+
+compiled model
+~~~~~~~~~~~~~~
+ls -lt model.nequip.pt2
+-rw-r--r-- 1 miroi miroi 45031816 Nov 10 10:36 model.nequip.pt2
 
 
 running

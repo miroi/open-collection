@@ -33,13 +33,13 @@ except ImportError:
 # --------------------------------------------------------------------------
 # DEFAULTS  (edit here)
 # --------------------------------------------------------------------------
-DEFAULT_MODEL = os.environ.get("NEQUIP_MODEL", "model.nequip.pth")  # <-- set your model path
+DEFAULT_MODEL = os.environ.get("NEQUIP_MODEL", "model.nequip.pt2")  # <-- set your model path
 DEFAULT_DEVICE = "cpu"
 DEFAULT_ADSORBATE = "Pd"
 DEFAULT_SIZE = (4, 4)
 DEFAULT_LAYERS = 4
 DEFAULT_VACUUM = 10.0
-DEFAULT_N_FIXED = 2
+DEFAULT_N_FIXED = 1
 DEFAULT_HEIGHT = 2.4  # initial adsorbate height (A); use ~2.8 for Hg
 DEFAULT_FMAX = 0.03
 DEFAULT_E_ATOM = None  # isolated-atom energy (eV); None -> computed with the model

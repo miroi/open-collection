@@ -69,6 +69,8 @@ running
 -------
 python pd_on_gold_nequip.py >  pd_on_gold_nequip.py_logfile
 
+python pd_on_gold_nequip.py    --size 5 5  --n-fixed 1  --layers 4 > pd_on_gold_nequip_5x5_fixed1_lay4.logfile
+
 
 Literature
 ----------

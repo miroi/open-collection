@@ -21,7 +21,7 @@ import os
 import numpy as np
 from ase import Atoms
 from ase.build import add_adsorbate, bulk, fcc111
-from ase.constraints import FixAtoms
+from ase.constraints import FixAtoms, FixCartesian
 from ase.io import write
 from ase.optimize import BFGS
 
@@ -164,7 +164,7 @@ def main():
     results = {}
     for site in ["ontop", "bridge", "fcc", "hcp"]:
         ads = slab.copy()
-        ads.set_constraint(slab.constraints[0])
+        ads.set_constraint([slab.constraints[0], FixCartesian(len(slab), mask=(True, True, False))])
         add_adsorbate(ads, ads_sym, height=args.height, position=site)
         e_tot = relax(ads, calc, args.fmax, traj=f"{ads_sym.lower()}_{site}.traj")
         write(f"{ads_sym.lower()}_{site}.xyz", ads)

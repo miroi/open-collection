@@ -3,18 +3,22 @@
 #SBATCH --job-name=GMX_build
 #SBATCH --partition=rtx
 #SBATCH --nodes=1
-#SBATCH --ntasks=8             # MPI tests need up to 8 Slurm slots
-#SBATCH --cpus-per-task=2          # 8 x 2 = 16 cores for compiling
+#SBATCH --ntasks=4             # slots for 2/4-rank MPI tests
+#SBATCH --cpus-per-task=2          # 4 x 2 = 8 cores in total
 #SBATCH --gres=gpu:1            # GPU must be visible for detection and tests
-#SBATCH --time=4:00:00
+#SBATCH --time=2:00:00
 #SBATCH -o log_slurm_job.%j.%N.std_out
 
 #SBATCH --mail-user=milias@theor.jinr.ru
 #SBATCH --mail-type=ALL
 
-# Usage: sbatch THISSCRIPT            (MPI build)
+# Usage: sbatch THISSCRIPT            (MPI build, quick tests)
+#        TEST_MODE=none|quick|full   none = skip building/running tests (lightest)
+#        RUN_REGRESSION=true         add the 8-rank regression tests (needs --ntasks=8)
 #        USE_MPI=false sbatch --export=ALL ...   (thread-MPI build, best for 1 node)
 USE_MPI=${USE_MPI:-true}
+TEST_MODE=${TEST_MODE:-quick}
+RUN_REGRESSION=${RUN_REGRESSION:-false}
 NCPU=$(( ${SLURM_NTASKS:-1} * ${SLURM_CPUS_PER_TASK:-4} ))
 
 module purge
@@ -56,6 +60,10 @@ echo -e "\n CMake  INSTALL_DIR=$INSTALL_DIR"
 echo -e "\n GROMACS commit: $(git -C "$GROMACS" describe --always --dirty)"
 echo -e "\n MKLROOT=${MKLROOT:?MKLROOT not set - imkl module missing}"
 
+UNITTESTS=ON; [ "$TEST_MODE" = none ] && UNITTESTS=OFF   # OFF skips compiling ~100 test binaries
+REGR_OPT="-DREGRESSIONTEST_DOWNLOAD=OFF"
+[ "$RUN_REGRESSION" = true ] && REGR_OPT="$REGR_OPT -DREGRESSIONTEST_PATH=$REGTESTS"
+
 rm -rf "${INSTALL_DIR:?}"; mkdir -p "$INSTALL_DIR"
 cd "$GROMACS"
 rm -rf "${BUILD:?}"; mkdir "$BUILD"; cd "$BUILD"
@@ -72,15 +80,19 @@ cmake .. \
   -DGMX_DOUBLE=OFF \
   -DGMX_FFT_LIBRARY=mkl \
   -DGMX_BUILD_OWN_FFTW=OFF \
-  -DREGRESSIONTEST_DOWNLOAD=OFF \
-  -DREGRESSIONTEST_PATH="$REGTESTS"
+  -DGMX_BUILD_UNITTESTS=$UNITTESTS $REGR_OPT
 # Cross-partition builds: add -DGMX_SIMD=AVX2_256 (or AVX_512) explicitly.
 
 make -j "$NCPU"
 
-# Test, but keep a good build even if some tests fail; verdict goes to exit code.
+# Tests: keep a good build even if some tests fail; verdict goes to exit code.
 CHECK_RC=0
-make -j "$NCPU" check || CHECK_RC=1
+case "$TEST_MODE" in
+  none)  echo "Tests skipped (TEST_MODE=none)";;
+  quick) make -j "$NCPU" tests
+         ctest -j 2 -L "UnitTest|QuickGpuTest" --output-on-failure || CHECK_RC=1;;
+  full)  make -j "$NCPU" check || CHECK_RC=1;;
+esac
 
 make install
 ls -lt "$INSTALL_DIR/bin"

@@ -2,6 +2,8 @@
 H2O ALIGNN properties
 =====================
 
+https://claude.ai/share/20dc0163-ece0-4d25-b61c-10a5637bed98
+
 conda activate alignn_dgl2
 pip install "torchdata==0.8.0" --no-deps
 python -c "import torch, dgl; print(torch.__version__, dgl.__version__)"

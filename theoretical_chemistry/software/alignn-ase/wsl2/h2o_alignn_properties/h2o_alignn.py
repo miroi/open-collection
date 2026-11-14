@@ -14,7 +14,7 @@ T, P = 298.15, 101325.0                # K, Pa
 # ---------- 1. ALIGNN-FF: geometry ----------
 atoms = molecule("H2O")
 atoms.center(vacuum=8.0)
-atoms.pbc = True
+atoms.pbc = True                        # needed by ALIGNN's graph builder
 atoms.calc = AlignnAtomwiseCalculator(
     path=get_figshare_model_ff(model_name=FF_MODEL), device=DEVICE, stress_wt=0.0)
 BFGS(atoms, logfile=None).run(fmax=0.001, steps=500)
@@ -37,7 +37,10 @@ print("\n  internal modes (cm^-1): bend {:.0f}, sym {:.0f}, asym {:.0f}".format(
 print(f"  largest translation/rotation mode: {np.abs(freqs[:6]).max():.1f} cm^-1 (should be ~0)")
 print(f"  ZPE (internal modes) = {0.5 * internal_e.sum():.4f} eV")
 
-thermo = IdealGasThermo(vib_energies=internal_e, potentialenergy=E, atoms=atoms,
+# IdealGasThermo requires a non-periodic Atoms object: use a copy
+thermo_atoms = atoms.copy()
+thermo_atoms.pbc = False
+thermo = IdealGasThermo(vib_energies=internal_e, potentialenergy=E, atoms=thermo_atoms,
                         geometry="nonlinear", symmetrynumber=2, spin=0)
 H = thermo.get_enthalpy(temperature=T, verbose=False)
 S = thermo.get_entropy(temperature=T, pressure=P, verbose=False)

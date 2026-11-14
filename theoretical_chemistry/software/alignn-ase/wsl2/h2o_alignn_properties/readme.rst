@@ -18,4 +18,6 @@ pip list 2>/dev/null | grep -i -E "^(torch|dgl|numpy|torchdata|alignn|ase|jarvis
 python -c "import alignn, dgl, torch; print('ok')"
 
 
+https://claude.ai/share/c6044baa-1c59-4eba-b130-f12640348aaf
+
 

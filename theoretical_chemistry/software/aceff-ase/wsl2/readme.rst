@@ -24,3 +24,7 @@ Installing collected packages: truststore, hf-xet, anyio, httpcore2, httpx2, hug
 Successfully installed anyio-4.16.0 hf-xet-1.8.0 httpcore2-2.16.0 httpx2-2.16.0 huggingface_hub-2.4.0 truststore-0.10.5
 
 
+AceFF-2.0 is trained for small drug-like molecules (≤30 atoms, elements H/B/C/N/O/F/Si/P/S/Cl/Br/I), charges −2…+2. Do not apply it to proteins, water, or periodic solids.
+
+
+

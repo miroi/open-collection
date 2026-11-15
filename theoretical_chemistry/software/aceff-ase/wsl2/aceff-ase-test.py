@@ -1,11 +1,14 @@
 import os
 import platform
+import numpy as np
 import torch
 import ase
 from ase.build import molecule
-from ase.units import kcal, mol
 from torchmdnet.calculators import TMDNETCalculator
 from huggingface_hub import hf_hub_download
+
+# 1 eV = 23.060548867 kcal/mol (CODATA)
+EV_TO_KCAL_PER_MOL = 23.060548867
 
 
 def section(title):
@@ -65,7 +68,6 @@ calc = TMDNETCalculator(model_file_path, device=device)
 print(f"Calculator class : {type(calc).__name__}")
 print(f"Requested device : {device}")
 
-# Some versions expose .device; print defensively
 calc_device = getattr(calc, "device", None)
 if calc_device is None and hasattr(calc, "model"):
     try:
@@ -75,7 +77,6 @@ if calc_device is None and hasattr(calc, "model"):
         calc_device = "unknown"
 print(f"Resolved device  : {calc_device}")
 
-# Try to report model hyper-parameters if available
 model = getattr(calc, "model", None)
 if model is not None:
     n_params = sum(p.numel() for p in model.parameters())
@@ -112,22 +113,38 @@ section("SINGLE-POINT CALCULATION")
 
 energy = atoms.get_potential_energy()      # eV
 forces = atoms.get_forces()                # eV / Å
-fmax = (forces ** 2).sum(axis=1).max() ** 0.5
+
+fmax = np.sqrt((forces ** 2).sum(axis=1).max())
+rms_force = np.sqrt((forces ** 2).sum() / forces.size)
 
 print(f"Energy           : {energy:.6f} eV")
-print(f"Energy           : {energy / mol:.6f} kcal/mol")
+print(f"Energy           : {energy * EV_TO_KCAL_PER_MOL:.6f} kcal/mol")
 print(f"Energy / atom    : {energy / len(atoms):.6f} eV/atom")
 print(f"Forces shape     : {forces.shape}")
 print(f"Max force (fmax) : {fmax:.6f} eV/Å")
-print(f"RMS force        : {(forces**2).sum()/forces.size)**0.5:.6f} eV/Å")
+print(f"RMS force        : {rms_force:.6f} eV/Å")
+
 print("Forces (eV/Å):")
 for i, (sym, f) in enumerate(zip(symbols, forces)):
     print(f"  {i:>2} {sym:<3} {f[0]: .6f} {f[1]: .6f} {f[2]: .6f}")
 
 # Sanity checks
-if not torch.isfinite(torch.as_tensor(energy)):
+if not np.isfinite(energy):
     print("WARNING: energy is not finite!")
-if not torch.isfinite(torch.as_tensor(forces)).all():
+if not np.isfinite(forces).all():
     print("WARNING: forces contain non-finite values!")
+
+# check geometry optimization
+
+from ase.optimize import BFGS
+
+atoms.calc = calc   # reuse the same calculator
+opt = BFGS(atoms, logfile=None)
+opt.run(fmax=0.01)
+
+e_opt = atoms.get_potential_energy()
+f_opt = atoms.get_forces()
+print(f"Optimized energy : {e_opt:.6f} eV ({e_opt * EV_TO_KCAL_PER_MOL:.3f} kcal/mol)")
+print(f"Optimized fmax   : {np.sqrt((f_opt ** 2).sum(axis=1).max()):.6f} eV/Å")
 
 section("DONE")

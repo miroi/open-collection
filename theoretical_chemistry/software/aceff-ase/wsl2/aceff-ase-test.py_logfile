@@ -1,0 +1,90 @@
+(mace_env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/aceff-ase/wsl2/.python aceff-ase-test.py
+Warp 1.19.0 initialized:
+   CUDA Toolkit 13.4, Driver 13.3
+   Devices:
+     "cpu"      : "x86_64"
+     "cuda:0"   : "NVIDIA GeForce RTX 3050 Laptop GPU" (4 GiB, sm_86, mempool enabled)
+   Kernel cache:
+     /home/miroi/.cache/warp/1.19.0
+
+======================================================================
+ENVIRONMENT & DEVICE
+======================================================================
+Python           : 3.13.14 (Linux x86_64)
+PyTorch          : 2.13.0+cu130
+PyTorch CUDA     : 13.0
+CUDA available   : True
+CUDA device count: 1
+  [0] NVIDIA GeForce RTX 3050 Laptop GPU | 4.00 GiB | sm_86 | multi_processor_count=16
+ASE              : 3.29.0
+
+======================================================================
+ACEFF MODEL
+======================================================================
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Repo ID          : Acellera/AceFF-2.0
+File name        : aceff_v2.0.ckpt
+Local path       : /home/miroi/.cache/huggingface/hub/models--Acellera--AceFF-2.0/snapshots/67ad6a3b06ee9b44cfbac3bc32117dd6276e9122/aceff_v2.0.ckpt
+File size        : 11.49 MiB
+
+======================================================================
+CALCULATOR
+======================================================================
+/home/miroi/miniconda3/envs/mace_env/lib/python3.13/site-packages/torchmdnet/models/model.py:312: UserWarning: Old-format checkpoint detected ('check_errors' found in hyper_parameters). Automatically applying compatibility_load to remap linear-layer weights. Pass compatibility_load=False to suppress this.
+  warnings.warn(
+Calculator class : TMDNETCalculator
+Requested device : cuda
+Resolved device  : cuda
+Model class      : TorchMD_Net
+Parameters       : 994,537 (trainable 0)
+
+======================================================================
+MOLECULE
+======================================================================
+Formula          : C2H6
+Number of atoms  : 8
+Symbols          : ['C', 'C', 'H', 'H', 'H', 'H', 'H', 'H']
+Charge           : 0
+Cell             : non-periodic (molecule)
+
+======================================================================
+SINGLE-POINT CALCULATION
+======================================================================
+Module neighbors_brute_specialized_fwd_P0_T1_L1_float32 68159e2 load on device 'cuda:0' took 3.95 ms  (cached)
+Module torchmdnet.extensions.warp_kernels.graph_transform e75f6ee load on device 'cuda:0' took 3.29 ms  (cached)
+Module radial_message_passing_fwd_float32 9669aed load on device 'cuda:0' took 3.12 ms  (cached)
+Module compose_tensor_float32 608ce7f load on device 'cuda:0' took 1.84 ms  (cached)
+Module decompose_tensor_float32 a539753 load on device 'cuda:0' took 3.09 ms  (cached)
+Module tensor_norm3_fwd_float32 47f9127 load on device 'cuda:0' took 1.84 ms  (cached)
+Module message_passing_fwd_float32 6399881 load on device 'cuda:0' took 2.56 ms  (cached)
+Module tensor_matmul_o3_3x3_float32 b1de5f2 load on device 'cuda:0' took 1.78 ms  (cached)
+Module tensor_matmul_so3_3x3_float32 9bdf2b2 load on device 'cuda:0' took 2.32 ms  (cached)
+Module tensor_norm3_bwd_float32 9d716e2 load on device 'cuda:0' took 1.94 ms  (cached)
+Module compose_tensor_bwd_float32 b63518c load on device 'cuda:0' took 2.16 ms  (cached)
+Module decompose_tensor_bwd_float32 4916362 load on device 'cuda:0' took 2.18 ms  (cached)
+Module tensor_matmul_so3_3x3_bwd_float32 7ee9777 load on device 'cuda:0' took 1.71 ms  (cached)
+Module tensor_matmul_o3_3x3_bwd_float32 6faa924 load on device 'cuda:0' took 2.04 ms  (cached)
+Module message_passing_bwd_float32 af2465d load on device 'cuda:0' took 2.33 ms  (cached)
+Module radial_message_passing_bwd_float32 7dcc07d load on device 'cuda:0' took 2.36 ms  (cached)
+Energy           : -1.868868 eV
+Energy           : -43.097113 kcal/mol
+Energy / atom    : -0.233608 eV/atom
+Forces shape     : (8, 3)
+Max force (fmax) : 0.119496 eV/Å
+RMS force        : 0.059487 eV/Å
+Forces (eV/Å):
+   0 C   -0.000000 -0.000014  0.119496
+   1 C    0.000000  0.000015 -0.119496
+   2 H    0.000000 -0.095383 -0.017187
+   3 H    0.082615  0.047699 -0.017192
+   4 H   -0.082615  0.047699 -0.017192
+   5 H   -0.000000  0.095383  0.017186
+   6 H    0.082615 -0.047699  0.017192
+   7 H   -0.082615 -0.047699  0.017192
+Optimized energy : -1.869818 eV (-43.119 kcal/mol)
+Optimized fmax   : 0.009974 eV/Å
+
+======================================================================
+DONE
+======================================================================
+(mace_env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/aceff-ase/wsl2/.

@@ -27,4 +27,9 @@ Successfully installed anyio-4.16.0 hf-xet-1.8.0 httpcore2-2.16.0 httpx2-2.16.0 
 AceFF-2.0 is trained for small drug-like molecules (≤30 atoms, elements H/B/C/N/O/F/Si/P/S/Cl/Br/I), charges −2…+2. Do not apply it to proteins, water, or periodic solids.
 
 
+deepseek
+--------
+https://chat.deepseek.com/share/q3hzadmx2968gbeevu
+
+
 

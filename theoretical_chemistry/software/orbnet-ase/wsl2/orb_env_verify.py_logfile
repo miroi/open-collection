@@ -1,0 +1,116 @@
+(orb_env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/orbnet-ase/wsl2/.python orb_env_verify.py
+============================================================
+1. Python & Package Versions
+============================================================
+Python: 3.10.22 | packaged by conda-forge | (main, Oct  6 2026, 23:02:24) [GCC 14.4.0]
+orb_models version: v0.5.5
+torch version: 2.14.1+cu130
+CUDA available: True
+CUDA device: NVIDIA GeForce RTX 3050 Laptop GPU
+
+============================================================
+2. Import Core Modules
+============================================================
+✓ orb_models.forcefield.pretrained
+✓ orb_models.forcefield.calculator.ORBCalculator
+✓ orb_models.forcefield.atomic_system
+
+============================================================
+3. Discover Available Pretrained Models
+============================================================
+Public symbols in pretrained module:
+  - BesselBasis
+  - ChargeSpinConditioner
+  - ConfidenceHead
+  - ConservativeForcefieldRegressor
+  - DirectForcefieldRegressor
+  - EnergyHead
+  - ForceHead
+  - GraphHead
+  - MoleculeGNS
+  - ORB_PRETRAINED_MODELS
+  - Optional
+  - SphericalHarmonics
+  - StressHead
+  - SystemConfig
+  - Union
+  - cached_path
+  - gaussian_basis_function
+  - get_device
+  - load_model
+  - load_model_for_inference
+  - orb_d3_sm_v1
+  - orb_d3_sm_v2
+  - orb_d3_v1
+  - orb_d3_v2
+  - orb_d3_xs_v1
+  - orb_d3_xs_v2
+  - orb_mptraj_only_v2
+  - orb_v1
+  - orb_v1_mptraj_only
+  - orb_v2
+  - orb_v2_architecture
+  - orb_v3_conservative_20_mpa
+  - orb_v3_conservative_20_omat
+  - orb_v3_conservative_architecture
+  - orb_v3_conservative_inf_mpa
+  - orb_v3_conservative_inf_omat
+  - orb_v3_conservative_omol
+  - orb_v3_direct_20_mpa
+  - orb_v3_direct_20_omat
+  - orb_v3_direct_architecture
+  - orb_v3_direct_inf_mpa
+  - orb_v3_direct_inf_omat
+  - orb_v3_direct_omol
+  - partial
+  - separate_d3_direct_3layer
+  - separate_d3_direct_5layer
+  - separate_d4_direct_3layer
+  - separate_d4_direct_5layer
+  - set_torch_precision
+  - torch
+
+ORB_PRETRAINED_MODELS registry keys:
+  - orb-v3-conservative-omol
+  - orb-v3-direct-omol
+  - orb-v3-conservative-20-omat
+  - orb-v3-conservative-inf-omat
+  - orb-v3-direct-20-omat
+  - orb-v3-direct-inf-omat
+  - orb-v3-conservative-20-mpa
+  - orb-v3-conservative-inf-mpa
+  - orb-v3-direct-20-mpa
+  - orb-v3-direct-inf-mpa
+  - separate-d3-3layer
+  - separate-d3-5layer
+  - separate-d4-3layer
+  - separate-d4-5layer
+  - orb-v2
+  - orb-d3-v2
+  - orb-d3-sm-v2
+  - orb-d3-xs-v2
+  - orb-mptraj-only-v2
+  - orb-v1
+  - orb-d3-v1
+  - orb-d3-sm-v1
+  - orb-d3-xs-v1
+  - orb-v1-mptraj-only
+
+============================================================
+4. Load a Pretrained Model & Run ASE Calculator
+============================================================
+Using device: cuda
+Loading pretrained.orb_v2(...)
+/home/miroi/miniconda3/envs/orb_env/lib/python3.10/site-packages/orb_models/utils.py:30: UserWarning: Setting global torch default dtype to torch.float32.
+  warnings.warn(f"Setting global torch default dtype to {torch_dtype}.")
+✓ Loaded model: orb_v2
+Test system: H2O (3 atoms)
+W1116 07:05:11.196000 2555 site-packages/torch/_inductor/utils.py:1806] [0/0_1] Not enough SMs to use max_autotune_gemm mode
+Energy (eV): -14.103416
+Forces shape: (3, 3)
+Max force component: 0.286263 eV/Å
+✓ Forces are non-zero; model inference looks healthy.
+
+============================================================
+Verification complete.
+============================================================

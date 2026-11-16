@@ -1,0 +1,75 @@
+(orb_env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/software/orbnet-ase/wsl2/.python nh3_orbmol_opt.py
+============================================================
+Environment check
+============================================================
+Python: 3.12.16 (main, Oct 26 2026, 11:37:43) [GCC 15.3.0]
+orb_models: v0.7.0
+/home/miroi/miniconda3/envs/orb_env/lib/python3.12/site-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+Warp 1.19.0 initialized:
+   CUDA Toolkit 13.4, Driver 13.3
+   Devices:
+     "cpu"      : "x86_64"
+     "cuda:0"   : "NVIDIA GeForce RTX 3050 Laptop GPU" (4 GiB, sm_86, mempool enabled)
+   Kernel cache:
+     /home/miroi/.cache/warp/1.19.0
+
+Loading orbmol_v2 on device='cuda' ...
+/home/miroi/miniconda3/envs/orb_env/lib/python3.12/site-packages/orb_models/common/training/util.py:20: UserWarning: Setting global torch default dtype to torch.float32.
+  warnings.warn(f"Setting global torch default dtype to {torch_dtype}.")
+Downloading …bmol-v2-teqabfhg-20260523.ckpt ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:19 103.6/103.6 MB
+
+Initial NH3: 4 atoms
+Initial N-H lengths (Å):  1.0168 ± 0.0000
+Initial H-N-H angle (°):  106.33 ± 0.00
+
+Running FIRE optimization (fmax=0.01 eV/Å) ...
+Module nvalchemiops.neighbors.neighbor_utils d062b50 load on device 'cuda:0' took 1163.20 ms  (compiled)
+Module nvalchemiops.neighbors.naive c176179 load on device 'cuda:0' took 1352.36 ms  (compiled)
+/home/miroi/miniconda3/envs/orb_env/lib/python3.12/site-packages/triton/knobs.py:504: UserWarning: TRITON_DEFAULT_FP_FUSION is unset: defaulting to FP fusion ENABLED for backward compatibility in Triton 3.9. The default will change to DISABLED in Triton 3.10; set TRITON_DEFAULT_FP_FUSION=1 to keep fusion enabled or =0 to adopt the new default early and silence this warning.
+  warn_once(FP_FUSION_DEFAULT_WARNING)
+W1116 07:49:38.811000 3649 site-packages/torch/_inductor/utils.py:2143] [4/0] Not enough SMs to use max_autotune_gemm mode
+      Step     Time          Energy          fmax
+FIRE:    0 07:50:20    -1538.810660        0.237303
+FIRE:    1 07:50:20    -1538.811513        0.128993
+FIRE:    2 07:50:20    -1538.811496        0.084041
+FIRE:    3 07:50:20    -1538.811618        0.074135
+FIRE:    4 07:50:20    -1538.811661        0.056520
+FIRE:    5 07:50:21    -1538.811592        0.033989
+FIRE:    6 07:50:21    -1538.811875        0.043202
+FIRE:    7 07:50:21    -1538.811911        0.057645
+FIRE:    8 07:50:21    -1538.811900        0.056120
+FIRE:    9 07:50:21    -1538.812012        0.053956
+FIRE:   10 07:50:21    -1538.812179        0.050767
+FIRE:   11 07:50:21    -1538.811985        0.045826
+FIRE:   12 07:50:21    -1538.811903        0.039954
+FIRE:   13 07:50:21    -1538.811902        0.034161
+FIRE:   14 07:50:21    -1538.811935        0.027546
+FIRE:   15 07:50:22    -1538.811784        0.019700
+FIRE:   16 07:50:22    -1538.811868        0.016150
+FIRE:   17 07:50:22    -1538.811834        0.018616
+FIRE:   18 07:50:22    -1538.811785        0.019778
+FIRE:   19 07:50:22    -1538.812231        0.018232
+FIRE:   20 07:50:22    -1538.811972        0.014341
+FIRE:   21 07:50:22    -1538.812220        0.007533
+
+============================================================
+Optimized geometry
+============================================================
+Final energy: -1538.812220 eV
+N-H lengths (Å):  1.0126 ± 0.0000
+H-N-H angle (°):  107.03 ± 0.01
+
+============================================================
+Comparison with experiment (gas-phase NH3)
+============================================================
+Parameter                MLIP   Experiment          Δ
+----------------------------------------------------
+N-H length (Å)         1.0126       1.0190    -0.0064
+H-N-H angle (°)        107.03        109.1      -2.07
+
+Assessment:
+  ✓ N-H length deviation 0.0064 Å (within 0.02 Å)
+  ✓ H-N-H angle deviation 2.07° (within 3°)
+
+Done.

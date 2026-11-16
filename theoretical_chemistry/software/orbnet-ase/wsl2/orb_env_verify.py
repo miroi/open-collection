@@ -1,15 +1,23 @@
 #!/usr/bin/env python
 """
-orb_env_verify_latest.py
-Verification script for orb-models v0.7.0 (latest) in orb_env.
-Tests on H2O molecule, prioritizing the new orbmol_v2 model.
+orb_env_verify.py
+Verification script for orb-models v0.7.0 in orb_env.
+Tests on H2O molecule using orbmol_v2.
+
+Fixes for 0.7.0:
+  - ORBCalculator imported from orb_models.forcefield.inference.calculator
+  - atomic_system import removed (no longer exported at top level)
+  - Section 5 resolves cached_path hash-named blobs via the "resource"
+    metadata key (cached_path stores the original URL there, not "url").
+    orbmol_v2 weights are served from AWS S3, so on-disk names are hashes.
 """
 
 import os
 import sys
 import time
+import json
+import glob
 import warnings
-import subprocess
 
 warnings.filterwarnings("ignore", category=FutureWarning, module="google.api_core")
 warnings.filterwarnings("ignore", category=FutureWarning, module="torch.jit")
@@ -37,11 +45,12 @@ print("=" * 60)
 from orb_models.forcefield import pretrained
 print("✓ orb_models.forcefield.pretrained")
 
-from orb_models.forcefield.calculator import ORBCalculator
-print("✓ orb_models.forcefield.calculator.ORBCalculator")
+# 0.7.0: calculator lives under inference.calculator
+from orb_models.forcefield.inference.calculator import ORBCalculator
+print("✓ orb_models.forcefield.inference.calculator.ORBCalculator")
 
-from orb_models.forcefield import atomic_system
-print("✓ orb_models.forcefield.atomic_system")
+# Note: atomic_system is no longer re-exported from orb_models.forcefield in 0.7.0.
+# The atoms_adapter returned by pretrained factories replaces its role.
 
 # ------------------------------------------------------------------
 print("\n" + "=" * 60)
@@ -60,7 +69,7 @@ if hasattr(pretrained, "ORB_PRETRAINED_MODELS"):
 
 # ------------------------------------------------------------------
 print("\n" + "=" * 60)
-print("4. Load Latest Model & Run on H2O")
+print("4. Load Model & Run on H2O")
 print("=" * 60)
 
 from ase.build import molecule
@@ -73,9 +82,9 @@ atoms_adapter = None
 model_loaded = False
 model_name = None
 
-# --- Priority 1: orbmol_v2 (new in v0.7.0, molecular systems) ---
+# --- Priority 1: orbmol_v2 (v0.7.0 model for molecular systems) ---
 if hasattr(pretrained, "orbmol_v2"):
-    print("Loading pretrained.orbmol_v2(...) [new in v0.7.0]")
+    print("Loading pretrained.orbmol_v2(...)")
     try:
         result = pretrained.orbmol_v2(device=device)
         if isinstance(result, tuple):
@@ -87,7 +96,7 @@ if hasattr(pretrained, "orbmol_v2"):
     except Exception as e:
         print(f"  orbmol_v2 failed: {e}")
 
-# --- Priority 2: orb_v2 (stable fallback) ---
+# --- Priority 2: orb_v2 fallback ---
 if not model_loaded and hasattr(pretrained, "orb_v2"):
     print("Loading pretrained.orb_v2(...) [fallback]")
     try:
@@ -101,22 +110,6 @@ if not model_loaded and hasattr(pretrained, "orb_v2"):
     except Exception as e:
         print(f"  orb_v2 failed: {e}")
 
-# --- Priority 3: first registry entry ---
-if not model_loaded and hasattr(pretrained, "ORB_PRETRAINED_MODELS"):
-    first_key = next(iter(pretrained.ORB_PRETRAINED_MODELS))
-    print(f"Falling back to ORB_PRETRAINED_MODELS['{first_key}']()")
-    try:
-        factory = pretrained.ORB_PRETRAINED_MODELS[first_key]
-        result = factory(device=device)
-        if isinstance(result, tuple):
-            orbff, atoms_adapter = result
-        else:
-            orbff = result
-        model_loaded = True
-        model_name = first_key
-    except Exception as e:
-        print(f"  Fallback failed: {e}")
-
 if not model_loaded:
     print("⚠ Could not load any pretrained model.")
     sys.exit(1)
@@ -124,23 +117,15 @@ if not model_loaded:
 print(f"✓ Loaded model: {model_name}")
 
 # ------------------------------------------------------------------
-# Build H2O and set charge/spin (required by orbmol_v2, safe for all)
+# Build H2O and set charge/spin (required by orbmol_v2)
 atoms = molecule("H2O")
 atoms.info["charge"] = 0   # neutral
 atoms.info["spin"] = 1     # singlet (2S+1)
 print(f"Test system: H2O ({len(atoms)} atoms), charge=0, spin=1")
 
 # ------------------------------------------------------------------
-# Build calculator (v0.7.0 may require atoms_adapter)
-try:
-    calc = ORBCalculator(orbff, atoms_adapter=atoms_adapter, device=device)
-except TypeError:
-    try:
-        calc = ORBCalculator(orbff, device=device)
-    except TypeError:
-        # v0.7.0 new API: ORBCalculator(model, device=...)
-        calc = ORBCalculator(orbff, device=device)
-
+# Build calculator (0.7.0: pass atoms_adapter)
+calc = ORBCalculator(orbff, atoms_adapter=atoms_adapter, device=device)
 atoms.calc = calc
 
 energy = atoms.get_potential_energy()
@@ -166,33 +151,22 @@ for var in ("ORB_MODELS_CACHE", "CACHED_PATH_CACHE_ROOT",
     val = os.environ.get(var)
     print(f"  {var} = {val}" if val else f"  {var} = (unset)")
 
-orb_cache_roots = []
-for candidate in (
-    os.path.expanduser(os.environ.get("ORB_MODELS_CACHE", "")),
-    os.path.expanduser("~/.cache/orb_models"),
-    os.path.expanduser("~/.cache/cached_path"),
-    os.path.join(os.path.expanduser(os.environ.get("XDG_CACHE_HOME", "~/.cache")),
-                 "orb_models"),
-):
-    if candidate and os.path.isdir(candidate) and candidate not in orb_cache_roots:
-        orb_cache_roots.append(candidate)
+cached_path_root = os.path.expanduser(
+    os.environ.get("CACHED_PATH_CACHE_ROOT")
+    or os.path.join(os.environ.get("XDG_CACHE_HOME", "~/.cache"),
+                    "cached_path")
+)
+hf_hub_cache = os.path.expanduser("~/.cache/huggingface/hub")
 
-if not orb_cache_roots:
-    print("\nNo orb-models-specific cache directory found.")
-    hf_orb = os.path.expanduser("~/.cache/huggingface/hub")
-    if os.path.isdir(hf_orb):
-        for entry in os.listdir(hf_orb):
-            if "orb" in entry.lower():
-                orb_cache_roots.append(os.path.join(hf_orb, entry))
-else:
-    print("\norb-models cache directory:")
-    for d in orb_cache_roots:
-        print(f"  {d}")
+roots = [r for r in (cached_path_root, hf_hub_cache) if os.path.isdir(r)]
+print("\nScanned cache roots:")
+for d in roots:
+    print(f"  {d}")
 
-checkpoint_exts = (".ckpt", ".pt", ".pth", ".bin", ".safetensors")
-ORB_MARKERS = ("orb_models", "orb-models", "orb-v", "orb_d3",
-               "orb-mptraj", "forcefields/orb", "orbital-materials",
-               "orbmol")
+# cached_path stores the original URL under "resource"; older versions
+# used "url" or "source". Match any of them.
+ORB_URL_MARKERS = ("orbmol", "orbitalmaterials", "/forcefields/orb",
+                   "orb-v2", "orb-v3", "orb-d3", "/forcefields/")
 
 def human_size(n):
     for unit in ("B", "K", "M", "G", "T"):
@@ -201,51 +175,75 @@ def human_size(n):
         n /= 1024
     return f"{n:6.1f}P"
 
-def is_orb_checkpoint(path):
-    low = path.lower()
-    return (low.endswith(checkpoint_exts)
-            and any(m in low for m in ORB_MARKERS))
+def url_is_orb(url: str) -> bool:
+    low = (url or "").lower()
+    return any(m in low for m in ORB_URL_MARKERS)
 
-print("\norb-models checkpoint files (newest first, ls -lt style):")
+def extract_url(meta: dict) -> str:
+    for key in ("resource", "url", "source", "requested_url", "path"):
+        v = meta.get(key)
+        if isinstance(v, str) and v.startswith(("http", "s3", "gs", "hf")):
+            return v
+    return ""
 
+# ---- 5a. cached_path: resolve hash-named blobs via metadata JSON ----
+print("\norb-models checkpoints in cached_path (via metadata 'resource' URL):")
 hits = []
-for root in orb_cache_roots:
-    for dirpath, _dirnames, filenames in os.walk(root):
-        for fn in filenames:
-            full = os.path.join(dirpath, fn)
-            if not is_orb_checkpoint(full):
-                continue
-            try:
-                st = os.stat(full)
-            except OSError:
-                continue
-            hits.append((st.st_mtime, full, st.st_size))
+for jpath in glob.glob(os.path.join(cached_path_root, "*.json")):
+    try:
+        meta = json.load(open(jpath))
+    except Exception:
+        continue
+    url = extract_url(meta)
+    if not url_is_orb(url):
+        continue
+    # Blob is sibling without ".json"
+    blob = jpath[:-5]
+    if not os.path.exists(blob):
+        continue
+    st = os.stat(blob)
+    hits.append((st.st_mtime, blob, st.st_size, url))
 
 if not hits:
-    print("  (No orb-models checkpoint files found.)")
+    print("  (No cached_path entries with orb URLs.)")
 else:
     hits.sort(key=lambda t: t[0], reverse=True)
     print(f"  {'mtime':<20} {'size':>10}  path")
-    print(f"  {'-' * 100}")
-    for mtime, full, size in hits:
+    print(f"  {'-' * 110}")
+    for mtime, blob, size, url in hits:
         ts = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(mtime))
-        print(f"  {ts:<20} {human_size(size):>10}  {full}")
-
+        print(f"  {ts:<20} {human_size(size):>10}  {blob}")
+        print(f"  {'':<20} {'':>10}  ↳ {url}")
     print(f"\n  Total orb-models checkpoints: {len(hits)}")
-    total = sum(s for _, _, s in hits)
+    total = sum(s for _, _, s, _ in hits)
     print(f"  Total size on disk:           {human_size(total)}")
 
-# literal ls -lt on primary
-primary = os.path.expanduser("~/.cache/orb_models")
-if os.path.isdir(primary):
-    print(f"\nLiteral `ls -lt {primary}`:")
-    try:
-        out = subprocess.check_output(["ls", "-lt", primary],
-                                      text=True, stderr=subprocess.STDOUT)
-        for line in out.splitlines():
-            print(f"  {line}")
-    except Exception as e:
-        print(f"  ls failed: {e}")
+# ---- 5b. HuggingFace hub (fallback, filename-based) ----
+print("\norb-models checkpoints in HuggingFace hub (by filename marker):")
+hf_hits = []
+for dirpath, dirnames, filenames in os.walk(hf_hub_cache):
+    if "models--" in dirpath:
+        dirnames[:] = [d for d in dirnames if "orb" in d.lower()]
+    for fn in filenames:
+        low = fn.lower()
+        if not low.endswith((".ckpt", ".pt", ".pth", ".safetensors")):
+            continue
+        if not any(m in low for m in ("orbmol", "orb-v", "orb_d3", "orb-d3")):
+            continue
+        full = os.path.join(dirpath, fn)
+        try:
+            st = os.stat(full)
+        except OSError:
+            continue
+        hf_hits.append((st.st_mtime, full, st.st_size))
+
+if not hf_hits:
+    print("  (No orb-models files under HF hub cache.)")
+else:
+    hf_hits.sort(key=lambda t: t[0], reverse=True)
+    for mtime, full, size in hf_hits:
+        ts = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(mtime))
+        print(f"  {ts:<20} {human_size(size):>10}  {full}")
 
 print("\n" + "=" * 60)
 print("Verification complete.")

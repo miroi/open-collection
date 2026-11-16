@@ -1,19 +1,16 @@
 #!/usr/bin/env python
 """
-orb_env_verify.py
-Comprehensive verification script for orb-models in a conda environment.
-Tailored for orb-models 0.5.5 / Python 3.10 / CUDA-enabled WSL2.
-
-Fixes applied:
-  - Handles orb_v2 returning a single model object (not a tuple).
-  - Sets atoms.info["charge"] / ["spin"] required by omol models.
-  - Falls back to orb-v3-conservative-omol with charge/spin set.
+orb_env_verify_latest.py
+Verification script for orb-models v0.7.0 (latest) in orb_env.
+Tests on H2O molecule, prioritizing the new orbmol_v2 model.
 """
 
+import os
 import sys
+import time
 import warnings
+import subprocess
 
-# Suppress known non-blocking warnings during verification
 warnings.filterwarnings("ignore", category=FutureWarning, module="google.api_core")
 warnings.filterwarnings("ignore", category=FutureWarning, module="torch.jit")
 
@@ -51,28 +48,23 @@ print("\n" + "=" * 60)
 print("3. Discover Available Pretrained Models")
 print("=" * 60)
 
-# Public names in the pretrained module
 public_names = [n for n in dir(pretrained) if not n.startswith("_")]
 print("Public symbols in pretrained module:")
 for name in public_names:
     print(f"  - {name}")
 
-# Registry dict (if present) gives the canonical factory names
 if hasattr(pretrained, "ORB_PRETRAINED_MODELS"):
     print("\nORB_PRETRAINED_MODELS registry keys:")
     for key in pretrained.ORB_PRETRAINED_MODELS:
         print(f"  - {key}")
-else:
-    print("\n(No ORB_PRETRAINED_MODELS registry found in this version.)")
 
 # ------------------------------------------------------------------
 print("\n" + "=" * 60)
-print("4. Load a Pretrained Model & Run ASE Calculator")
+print("4. Load Latest Model & Run on H2O")
 print("=" * 60)
 
 from ase.build import molecule
 
-# Choose device
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"Using device: {device}")
 
@@ -80,11 +72,24 @@ orbff = None
 atoms_adapter = None
 model_loaded = False
 model_name = None
-needs_charge_spin = False  # omol models require charge/spin
 
-# --- Preferred: orb_v2 (returns a single model object in 0.5.5) ---
-if hasattr(pretrained, "orb_v2"):
-    print("Loading pretrained.orb_v2(...)")
+# --- Priority 1: orbmol_v2 (new in v0.7.0, molecular systems) ---
+if hasattr(pretrained, "orbmol_v2"):
+    print("Loading pretrained.orbmol_v2(...) [new in v0.7.0]")
+    try:
+        result = pretrained.orbmol_v2(device=device)
+        if isinstance(result, tuple):
+            orbff, atoms_adapter = result
+        else:
+            orbff = result
+        model_loaded = True
+        model_name = "orbmol_v2"
+    except Exception as e:
+        print(f"  orbmol_v2 failed: {e}")
+
+# --- Priority 2: orb_v2 (stable fallback) ---
+if not model_loaded and hasattr(pretrained, "orb_v2"):
+    print("Loading pretrained.orb_v2(...) [fallback]")
     try:
         result = pretrained.orb_v2(device=device)
         if isinstance(result, tuple):
@@ -96,22 +101,7 @@ if hasattr(pretrained, "orb_v2"):
     except Exception as e:
         print(f"  orb_v2 failed: {e}")
 
-# --- Fallback: orb-v3-conservative-omol (needs charge/spin) ---
-if not model_loaded:
-    print("Falling back to orb-v3-conservative-omol (requires charge/spin)")
-    try:
-        result = pretrained.orb_v3_conservative_omol(device=device)
-        if isinstance(result, tuple):
-            orbff, atoms_adapter = result
-        else:
-            orbff = result
-        model_loaded = True
-        model_name = "orb-v3-conservative-omol"
-        needs_charge_spin = True
-    except Exception as e:
-        print(f"  orb-v3-conservative-omol failed: {e}")
-
-# --- Last resort: first registry entry ---
+# --- Priority 3: first registry entry ---
 if not model_loaded and hasattr(pretrained, "ORB_PRETRAINED_MODELS"):
     first_key = next(iter(pretrained.ORB_PRETRAINED_MODELS))
     print(f"Falling back to ORB_PRETRAINED_MODELS['{first_key}']()")
@@ -124,38 +114,32 @@ if not model_loaded and hasattr(pretrained, "ORB_PRETRAINED_MODELS"):
             orbff = result
         model_loaded = True
         model_name = first_key
-        needs_charge_spin = "omol" in first_key
     except Exception as e:
         print(f"  Fallback failed: {e}")
 
 if not model_loaded:
-    print("⚠ Could not load any pretrained model. Skipping calculator test.")
+    print("⚠ Could not load any pretrained model.")
     sys.exit(1)
 
 print(f"✓ Loaded model: {model_name}")
 
 # ------------------------------------------------------------------
-# Build test system: water molecule
+# Build H2O and set charge/spin (required by orbmol_v2, safe for all)
 atoms = molecule("H2O")
-print(f"Test system: {atoms.get_chemical_formula()} ({len(atoms)} atoms)")
-
-# omol models require explicit charge/spin in atoms.info
-if needs_charge_spin:
-    atoms.info["charge"] = 0   # neutral water
-    atoms.info["spin"] = 1     # singlet (2S+1)
-    print(f"Set atoms.info charge={atoms.info['charge']}, spin={atoms.info['spin']}")
-else:
-    # Safe to set even for models that don't require it
-    atoms.info["charge"] = 0
-    atoms.info["spin"] = 1
+atoms.info["charge"] = 0   # neutral
+atoms.info["spin"] = 1     # singlet (2S+1)
+print(f"Test system: H2O ({len(atoms)} atoms), charge=0, spin=1")
 
 # ------------------------------------------------------------------
-# Initialize ORBCalculator (handle API differences across versions)
+# Build calculator (v0.7.0 may require atoms_adapter)
 try:
     calc = ORBCalculator(orbff, atoms_adapter=atoms_adapter, device=device)
 except TypeError:
-    # Older API signature without atoms_adapter keyword
-    calc = ORBCalculator(orbff, device=device)
+    try:
+        calc = ORBCalculator(orbff, device=device)
+    except TypeError:
+        # v0.7.0 new API: ORBCalculator(model, device=...)
+        calc = ORBCalculator(orbff, device=device)
 
 atoms.calc = calc
 
@@ -166,13 +150,103 @@ print(f"Energy (eV): {energy:.6f}")
 print(f"Forces shape: {forces.shape}")
 print(f"Max force component: {abs(forces).max():.6f} eV/Å")
 
-# Basic sanity: forces should not be all zero for a non-equilibrium geometry
 if abs(forces).max() < 1e-8:
-    print("⚠ Warning: forces are essentially zero — verify model/geometry.")
+    print("⚠ Warning: forces are essentially zero.")
 else:
     print("✓ Forces are non-zero; model inference looks healthy.")
 
 # ------------------------------------------------------------------
+print("\n" + "=" * 60)
+print("5. Locate orb-models Checkpoints on Disk")
+print("=" * 60)
+
+print("Cache-related environment variables:")
+for var in ("ORB_MODELS_CACHE", "CACHED_PATH_CACHE_ROOT",
+            "XDG_CACHE_HOME", "HF_HOME", "TRANSFORMERS_CACHE"):
+    val = os.environ.get(var)
+    print(f"  {var} = {val}" if val else f"  {var} = (unset)")
+
+orb_cache_roots = []
+for candidate in (
+    os.path.expanduser(os.environ.get("ORB_MODELS_CACHE", "")),
+    os.path.expanduser("~/.cache/orb_models"),
+    os.path.expanduser("~/.cache/cached_path"),
+    os.path.join(os.path.expanduser(os.environ.get("XDG_CACHE_HOME", "~/.cache")),
+                 "orb_models"),
+):
+    if candidate and os.path.isdir(candidate) and candidate not in orb_cache_roots:
+        orb_cache_roots.append(candidate)
+
+if not orb_cache_roots:
+    print("\nNo orb-models-specific cache directory found.")
+    hf_orb = os.path.expanduser("~/.cache/huggingface/hub")
+    if os.path.isdir(hf_orb):
+        for entry in os.listdir(hf_orb):
+            if "orb" in entry.lower():
+                orb_cache_roots.append(os.path.join(hf_orb, entry))
+else:
+    print("\norb-models cache directory:")
+    for d in orb_cache_roots:
+        print(f"  {d}")
+
+checkpoint_exts = (".ckpt", ".pt", ".pth", ".bin", ".safetensors")
+ORB_MARKERS = ("orb_models", "orb-models", "orb-v", "orb_d3",
+               "orb-mptraj", "forcefields/orb", "orbital-materials",
+               "orbmol")
+
+def human_size(n):
+    for unit in ("B", "K", "M", "G", "T"):
+        if n < 1024:
+            return f"{n:6.1f}{unit}"
+        n /= 1024
+    return f"{n:6.1f}P"
+
+def is_orb_checkpoint(path):
+    low = path.lower()
+    return (low.endswith(checkpoint_exts)
+            and any(m in low for m in ORB_MARKERS))
+
+print("\norb-models checkpoint files (newest first, ls -lt style):")
+
+hits = []
+for root in orb_cache_roots:
+    for dirpath, _dirnames, filenames in os.walk(root):
+        for fn in filenames:
+            full = os.path.join(dirpath, fn)
+            if not is_orb_checkpoint(full):
+                continue
+            try:
+                st = os.stat(full)
+            except OSError:
+                continue
+            hits.append((st.st_mtime, full, st.st_size))
+
+if not hits:
+    print("  (No orb-models checkpoint files found.)")
+else:
+    hits.sort(key=lambda t: t[0], reverse=True)
+    print(f"  {'mtime':<20} {'size':>10}  path")
+    print(f"  {'-' * 100}")
+    for mtime, full, size in hits:
+        ts = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(mtime))
+        print(f"  {ts:<20} {human_size(size):>10}  {full}")
+
+    print(f"\n  Total orb-models checkpoints: {len(hits)}")
+    total = sum(s for _, _, s in hits)
+    print(f"  Total size on disk:           {human_size(total)}")
+
+# literal ls -lt on primary
+primary = os.path.expanduser("~/.cache/orb_models")
+if os.path.isdir(primary):
+    print(f"\nLiteral `ls -lt {primary}`:")
+    try:
+        out = subprocess.check_output(["ls", "-lt", primary],
+                                      text=True, stderr=subprocess.STDOUT)
+        for line in out.splitlines():
+            print(f"  {line}")
+    except Exception as e:
+        print(f"  ls failed: {e}")
+
 print("\n" + "=" * 60)
 print("Verification complete.")
 print("=" * 60)

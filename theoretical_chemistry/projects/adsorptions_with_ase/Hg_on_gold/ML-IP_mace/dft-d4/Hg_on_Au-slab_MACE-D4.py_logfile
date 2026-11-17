@@ -1,0 +1,80 @@
+(mace_env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/projects/adsorptions_with_ase/Hg_on_gold/ML-IP_mace/dft-d4/.python Hg_on_Au-slab_MACE-D4.py
+/home/miroi/miniconda3/envs/mace_env/lib/python3.13/site-packages/e3nn/o3/_wigner.py:10: UserWarning: Environment variable TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD detected, since the`weights_only` argument was not explicitly passed to `torch.load`, forcing weights_only=False.
+  _Jd, _W3j_flat, _W3j_indices = torch.load(os.path.join(os.path.dirname(__file__), 'constants.pt'))
+cuequivariance or cuequivariance_torch is not available. Cuequivariance acceleration will be disabled.
+Using Materials Project MACE for MACECalculator with /home/miroi/.cache/mace/20231203mace128L1_epoch199model
+Using float64 for MACECalculator, which is slower but more accurate. Recommended for geometry optimization.
+/home/miroi/miniconda3/envs/mace_env/lib/python3.13/site-packages/mace/calculators/mace.py:226: UserWarning: Environment variable TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD detected, since the`weights_only` argument was not explicitly passed to `torch.load`, forcing weights_only=False.
+  torch.load(f=model_path, map_location=device)
+Using Materials Project MACE for MACECalculator with /home/miroi/.cache/mace/20231203mace128L1_epoch199model
+Using float64 for MACECalculator, which is slower but more accurate. Recommended for geometry optimization.
+/home/miroi/miniconda3/envs/mace_env/lib/python3.13/site-packages/mace/calculators/mace.py:226: UserWarning: Environment variable TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD detected, since the`weights_only` argument was not explicitly passed to `torch.load`, forcing weights_only=False.
+  torch.load(f=model_path, map_location=device)
+fixed z values: [np.float64(12.0)] | N fixed = 16 of 64
+
+############################################################
+# Method: MACE
+############################################################
+[MACE_clean_slab] steps= 14  max|Δr|=0.5160 Å  E=-198.715823 eV  -> results/MACE_clean_slab.traj
+    final structure -> results/MACE_clean_slab.vasp
+[MACE_Hg_atom] steps=  0  max|Δr|=0.0000 Å  E=0.090456 eV  -> results/MACE_Hg_atom.traj
+    final structure -> results/MACE_Hg_atom.vasp
+[MACE_HgAu_ontop] steps= 41  max|Δr|=0.6319 Å  E=-199.193118 eV  -> results/MACE_HgAu_ontop.traj
+    final structure -> results/MACE_HgAu_ontop.vasp
+[MACE_HgAu_bridge] steps= 93  max|Δr|=0.9286 Å  E=-199.353836 eV  -> results/MACE_HgAu_bridge.traj
+    final structure -> results/MACE_HgAu_bridge.vasp
+[MACE_HgAu_fcc] steps= 41  max|Δr|=0.5206 Å  E=-199.354181 eV  -> results/MACE_HgAu_fcc.traj
+    final structure -> results/MACE_HgAu_fcc.vasp
+[MACE_HgAu_hcp] steps= 41  max|Δr|=0.5211 Å  E=-199.350289 eV  -> results/MACE_HgAu_hcp.traj
+    final structure -> results/MACE_HgAu_hcp.vasp
+
+############################################################
+# Method: MACE-D4
+############################################################
+[MACE-D4_clean_slab] steps= 13  max|Δr|=0.3035 Å  E=-232.017590 eV  -> results/MACE-D4_clean_slab.traj
+    final structure -> results/MACE-D4_clean_slab.vasp
+[MACE-D4_Hg_atom] steps=  0  max|Δr|=0.0000 Å  E=0.090373 eV  -> results/MACE-D4_Hg_atom.traj
+    final structure -> results/MACE-D4_Hg_atom.vasp
+[MACE-D4_HgAu_ontop] steps= 37  max|Δr|=0.4582 Å  E=-232.920917 eV  -> results/MACE-D4_HgAu_ontop.traj
+    final structure -> results/MACE-D4_HgAu_ontop.vasp
+[MACE-D4_HgAu_bridge] steps= 78  max|Δr|=0.8209 Å  E=-233.100507 eV  -> results/MACE-D4_HgAu_bridge.traj
+    final structure -> results/MACE-D4_HgAu_bridge.vasp
+[MACE-D4_HgAu_fcc] steps= 37  max|Δr|=0.3106 Å  E=-233.101028 eV  -> results/MACE-D4_HgAu_fcc.traj
+    final structure -> results/MACE-D4_HgAu_fcc.vasp
+[MACE-D4_HgAu_hcp] steps= 38  max|Δr|=0.3097 Å  E=-233.095585 eV  -> results/MACE-D4_HgAu_hcp.traj
+    final structure -> results/MACE-D4_HgAu_hcp.vasp
+
+============================================================
+SUMMARY
+============================================================
+
+--- MACE ---
+  Slab Energy:  -198.7158 eV
+  Hg Atom:         0.0905 eV
+  E_ads[ontop  ] = -0.5678 eV
+  E_ads[bridge ] = -0.7285 eV
+  E_ads[fcc    ] = -0.7288 eV
+  E_ads[hcp    ] = -0.7249 eV
+  Most stable: fcc  (-0.7288 eV)
+
+--- MACE-D4 ---
+  Slab Energy:  -232.0176 eV
+  Hg Atom:         0.0904 eV
+  E_ads[ontop  ] = -0.9937 eV
+  E_ads[bridge ] = -1.1733 eV
+  E_ads[fcc    ] = -1.1738 eV
+  E_ads[hcp    ] = -1.1684 eV
+  Most stable: fcc  (-1.1738 eV)
+
+============================================================
+SIDE-BY-SIDE: E_ads (eV)
+============================================================
+site              MACE       MACE-D4      Δ(D4−MACE)
+----------------------------------------------------
+ontop          -0.5678       -0.9937         -0.4259
+bridge         -0.7285       -1.1733         -0.4448
+fcc            -0.7288       -1.1738         -0.4450
+hcp            -0.7249       -1.1684         -0.4434
+============================================================
+
+All outputs written to: /home/miroi/work/projects/open-collection/theoretical_chemistry/projects/adsorptions_with_ase/Hg_on_gold/ML-IP_mace/dft-d4/results/

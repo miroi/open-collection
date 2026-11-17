@@ -5,7 +5,7 @@ Hg@Au111 with NequIP & DFT-D4
 pip install dftd4
 
 https://chat.deepseek.com/share/vc7rpext1514npzq2o
-
+https://share.google/aimode/M37ozmGam8QQxJZhk
 
 Your --d4 results show severe overbinding (\(E_{\text{ads}} \approx -3.38\text{ eV}\) and \(a_{\text{Au}} = 3.8639\text{ \AA}\)) because your NequIP foundation model already includes dispersion—adding DFTD4 caused double-counting.
 

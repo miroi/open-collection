@@ -38,3 +38,15 @@ nequip-compile \
   --mode aotinductor \
   --target ase
 
+
+(nequip_env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/projects/adsorptions_with_ase/Hg_on_gold/ML-IP_nequip/.export LIBRARY_PATH=/usr/lib/wsl/lib:$LIBRARY_PATH
+(nequip_env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/projects/adsorptions_with_ase/Hg_on_gold/ML-IP_nequip/.nequip-compile \
+  ~/.nequip/model_cache/039e5620e6c89fd53bdd3b6bd33574e5b29704bb4df5bc339869baca3d5eead6.nequip.zip \
+  model.nequip.pt2 \
+  --device cuda \
+  --mode aotinductor \
+  --target ase
+
+[2026-11-17 12:24:30,121][nequip.scripts.compile][INFO] - [rank: 0] Exported model saved to model.nequip.pt2
+(nequip_env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/projects/adsorptions_with_ase/Hg_on_gold/ML-IP_nequip/.ls -lh model.nequip.pt2
+-rw-r--r-- 1 miroi miroi 43M Nov 17 12:24 model.nequip.pt2

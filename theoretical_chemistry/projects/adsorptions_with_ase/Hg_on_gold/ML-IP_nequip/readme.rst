@@ -15,14 +15,13 @@ pip install torch --index-url https://download.pytorch.org/whl/cpu
 
 pip install nequip ase
 
+gpu
+~~~
+pip install torch --index-url https://download.pytorch.org/whl/cu124 --force-reinstall 
+
+
 
 
 Download and compile a foundation model
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-nequip-compile \
-  nequip.net:mir-group/NequIP-OAM-L:0.1 \
-  model.nequip.pth \
-  --device cpu \
-  --mode torchscript \
-  --target ase
 

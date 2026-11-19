@@ -1,4 +1,3 @@
-import os
 import re
 from pathlib import Path
 from ase.build import molecule
@@ -11,14 +10,19 @@ gap_dir = gap_xml.parent
 print("=== GAP Potential File Verification ===")
 print(f"XML Parameter File : {gap_xml} (exists={gap_xml.is_file()}, size={gap_xml.stat().st_size / 1e6:.2f} MB)")
 
-# 2. Parse CH.xml to find all referenced sparseX files and descriptors
+# 2. Parse CH.xml to find all referenced sparseX files, descriptors, and cutoffs
 xml_text = gap_xml.read_text(errors="ignore")
 sparse_refs = sorted(set(re.findall(r'sparseX_filename="([^"]+)"', xml_text)))
 descriptors = sorted(set(re.findall(r'<descriptor[^>]*>([^<]+)</descriptor>', xml_text)))
+cutoffs = [float(c) for c in re.findall(r'(?:cutoff|rcut_hard)=([0-9.]+)', xml_text)]
+max_cutoff = max(cutoffs) if cutoffs else 0.0
 
-print(f"Descriptors in XML : {descriptors if descriptors else 'Parsed inside GAP_params'}")
-print(f"Required sparseX   : {len(sparse_refs)} files referenced")
+print(f"\nDescriptors in XML : {len(descriptors)} active (max cutoff = {max_cutoff:.2f} A)")
+for d in descriptors:
+    desc_type = d.strip().split()[0]
+    print(f"  - {desc_type}: {d.strip()}")
 
+print(f"\nRequired sparseX   : {len(sparse_refs)} files referenced")
 missing_files = []
 for fname in sparse_refs:
     fpath = gap_dir / fname
@@ -34,7 +38,7 @@ if missing_files:
 # 3. Initialize QUIP/GAP calculator (verifies soap_turbo support in quippy)
 print("\n=== Initializing quippy Potential ===")
 calc = Potential(param_filename=str(gap_xml))
-print("Calculator loaded  :", calc.name)
+print(f"Calculator loaded  : {type(calc).__name__} (max XML cutoff = {max_cutoff:.2f} A)")
 
 # 4. Run single-point energy and force evaluation on C2H4
 atoms = molecule("C2H4")

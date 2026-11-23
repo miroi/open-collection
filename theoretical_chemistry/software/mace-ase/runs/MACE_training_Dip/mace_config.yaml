@@ -1,0 +1,59 @@
+# Two-phase MACE training configuration
+
+# Run identity
+name: MACE_GrapheneHg
+model: MACE
+
+# Compute device: 'cuda' for GPU, 'cpu' for CPU-only nodes
+# device: cpu
+device: cuda
+
+# Isolated-atom reference energies (eV), must provide explicitly for all runs
+E0s: '{6: -241.907386, 80: -10952.046782}'
+
+# Model settings
+# Radial cutoff in Angstrom
+r_max: 6
+# standard non-residual block; explicit to avoid silent-rewrite warning
+interaction_first: "RealAgnosticInteractionBlock"
+# Smaller model
+hidden_irreps: '32x0e + 32x1o'
+# Larger model (turn both on)
+# hidden_irreps: '64x0e + 64x1o'
+# num_interactions: 3
+
+# Validation settings: random % of training data, or provide valid_file with valid_fraction=0.0
+# valid_fraction: 0.0
+valid_fraction: 0.2
+
+# Training schedule 
+batch_size: 16          # Number of frames per gradient update
+max_num_epochs: 1750     
+patience: 50            # Stop if validation loss does not improve for this many epochs
+scheduler_patience: 10  # Reduce LR if loss stalls for this many epochs (keep below patience)
+
+# Training weights
+# Phase 1 weights
+forces_weight: 100
+energy_weight: 1
+# Phase 2 weights
+swa: True
+start_swa: 1000
+swa_forces_weight: 100
+swa_energy_weight: 10
+
+# Dataset details
+heads:
+  Dataset_details:
+    train_file:
+      - training_dataset/atop.xyz
+      - training_dataset/bridge.xyz
+      - training_dataset/far.xyz      
+      - training_dataset/hollow.xyz
+      - training_dataset/intermediate.xyz
+      - training_dataset/offcenter.xyz
+      - training_dataset/pristine.xyz
+#    valid_file:
+#      - validation_dataset/1_validation.xyz
+    energy_key: "REF_energy"
+    forces_key: "REF_forces"

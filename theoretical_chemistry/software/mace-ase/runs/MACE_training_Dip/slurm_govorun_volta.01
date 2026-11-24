@@ -79,14 +79,16 @@ echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
 #echo -e "\nFor openblas internal parallelization, OPENBLAS_NUM_THREADS=$OPENBLAS_NUM_THREADS"
 
 module purge
-module load  cuda 
+module load  Python cuda 
 echo -e "\n\n loaded modules:"
 module list
 
-source /lustre/projects/m/milias/work/software/mace_venv/bin/activate
-which python; python -V
+echo -e "\n Python ?"; which python; python -V 
+
+source /lustre/projects/m/milias/work/software/mace_volta_venv/bin/activate
 which mace_run_train; mace_run_train --help
 
+echo -e "\n\n pip show ase mace-torch :"
 pip show ase mace-torch
 
 echo -e "\n\n My PATH=$PATH\n"

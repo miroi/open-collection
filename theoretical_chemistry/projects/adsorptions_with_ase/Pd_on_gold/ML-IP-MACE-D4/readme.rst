@@ -21,4 +21,4 @@ https://pdf.sciencedirectassets.com/271619/1-s2.0-S0039602821X00076/1-s2.0-S0039
 
 deepseek
 ~~~~~~~~
-https://chat.deepseek.com/share/rxz8fdpaxq1wz6v3t2
+https://chat.deepseek.com/share/7jkf9cv1owehqygngd

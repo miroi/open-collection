@@ -8,7 +8,7 @@
 #SBATCH --partition=volta
 ##SBATCH --constraint=cascade
 ##SBATCH --constraint=icelake
-#SBATCH --qos=medium
+##SBATCH --qos=medium
 
 ## max. execution time
 ##SBATCH -t 3-00:00:00
@@ -28,6 +28,7 @@
 #
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=4
+#SBATCH --gres=gpu:1
 
 
 ## stdout/stderr output file
@@ -78,10 +79,23 @@ echo "This job wants SLURM_NTASKS=$SLURM_NTASKS threads . "
 #export OPENBLAS_NUM_THREADS=$RATIO
 #echo -e "\nFor openblas internal parallelization, OPENBLAS_NUM_THREADS=$OPENBLAS_NUM_THREADS"
 
+export CACHE_ROOT=/lustre/projects/m/milias/work/cache
+mkdir -p $CACHE_ROOT/{triton,matplotlib,fontconfig,pip,torch,xdg}
+
+export HOME_CACHE=$CACHE_ROOT
+export TRITON_CACHE_DIR=$CACHE_ROOT/triton
+export MPLCONFIGDIR=$CACHE_ROOT/matplotlib
+export XDG_CACHE_HOME=$CACHE_ROOT/xdg
+export FONTCONFIG_PATH=/etc/fonts
+export PIP_CACHE_DIR=$CACHE_ROOT/pip
+export TORCH_HOME=$CACHE_ROOT/torch
+export TORCHINDUCTOR_CACHE_DIR=$CACHE_ROOT/torch/inductor
+
 module purge
 module load  Python cuda 
 echo -e "\n\n loaded modules:"
 module list
+
 
 echo -e "\n Python ?"; which python; python -V 
 

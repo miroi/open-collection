@@ -1,0 +1,80 @@
+(mace_env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/projects/adsorptions_with_ase/Pd_on_gold/ML-IP-MACE-D4/.python Pd_on_Au-slab_MACE-D4.py
+/home/miroi/miniconda3/envs/mace_env/lib/python3.13/site-packages/e3nn/o3/_wigner.py:10: UserWarning: Environment variable TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD detected, since the`weights_only` argument was not explicitly passed to `torch.load`, forcing weights_only=False.
+  _Jd, _W3j_flat, _W3j_indices = torch.load(os.path.join(os.path.dirname(__file__), 'constants.pt'))
+cuequivariance or cuequivariance_torch is not available. Cuequivariance acceleration will be disabled.
+Using Materials Project MACE for MACECalculator with /home/miroi/.cache/mace/20231203mace128L1_epoch199model
+Using float64 for MACECalculator, which is slower but more accurate. Recommended for geometry optimization.
+/home/miroi/miniconda3/envs/mace_env/lib/python3.13/site-packages/mace/calculators/mace.py:226: UserWarning: Environment variable TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD detected, since the`weights_only` argument was not explicitly passed to `torch.load`, forcing weights_only=False.
+  torch.load(f=model_path, map_location=device)
+Using Materials Project MACE for MACECalculator with /home/miroi/.cache/mace/20231203mace128L1_epoch199model
+Using float64 for MACECalculator, which is slower but more accurate. Recommended for geometry optimization.
+/home/miroi/miniconda3/envs/mace_env/lib/python3.13/site-packages/mace/calculators/mace.py:226: UserWarning: Environment variable TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD detected, since the`weights_only` argument was not explicitly passed to `torch.load`, forcing weights_only=False.
+  torch.load(f=model_path, map_location=device)
+fixed z values: [np.float64(12.0)] | N fixed = 16 of 64
+
+############################################################
+# Method: MACE
+############################################################
+[MACE_clean_slab] steps= 14  max|Δr|=0.5160 Å  E=-198.715823 eV  -> results/MACE_clean_slab.traj
+    final structure -> results/MACE_clean_slab.vasp
+[MACE_Pd_atom] steps=  0  max|Δr|=0.0000 Å  E=-1.711290 eV  -> results/MACE_Pd_atom.traj
+    final structure -> results/MACE_Pd_atom.vasp
+[MACE_PdAu_ontop] steps= 38  max|Δr|=0.6356 Å  E=-202.309177 eV  -> results/MACE_PdAu_ontop.traj
+    final structure -> results/MACE_PdAu_ontop.vasp
+[MACE_PdAu_bridge] steps= 86  max|Δr|=0.8022 Å  E=-202.622955 eV  -> results/MACE_PdAu_bridge.traj
+    final structure -> results/MACE_PdAu_bridge.vasp
+[MACE_PdAu_fcc] steps= 46  max|Δr|=0.5442 Å  E=-202.623309 eV  -> results/MACE_PdAu_fcc.traj
+    final structure -> results/MACE_PdAu_fcc.vasp
+[MACE_PdAu_hcp] steps= 44  max|Δr|=0.5505 Å  E=-202.609676 eV  -> results/MACE_PdAu_hcp.traj
+    final structure -> results/MACE_PdAu_hcp.vasp
+
+############################################################
+# Method: MACE-D4
+############################################################
+[MACE-D4_clean_slab] steps= 13  max|Δr|=0.3035 Å  E=-232.017590 eV  -> results/MACE-D4_clean_slab.traj
+    final structure -> results/MACE-D4_clean_slab.vasp
+[MACE-D4_Pd_atom] steps=  0  max|Δr|=0.0000 Å  E=-1.711431 eV  -> results/MACE-D4_Pd_atom.traj
+    final structure -> results/MACE-D4_Pd_atom.vasp
+[MACE-D4_PdAu_ontop] steps= 39  max|Δr|=0.3936 Å  E=-236.031936 eV  -> results/MACE-D4_PdAu_ontop.traj
+    final structure -> results/MACE-D4_PdAu_ontop.vasp
+[MACE-D4_PdAu_bridge] steps= 77  max|Δr|=0.8438 Å  E=-236.433540 eV  -> results/MACE-D4_PdAu_bridge.traj
+    final structure -> results/MACE-D4_PdAu_bridge.vasp
+[MACE-D4_PdAu_fcc] steps= 40  max|Δr|=0.3286 Å  E=-236.433952 eV  -> results/MACE-D4_PdAu_fcc.traj
+    final structure -> results/MACE-D4_PdAu_fcc.vasp
+[MACE-D4_PdAu_hcp] steps= 38  max|Δr|=0.3307 Å  E=-236.416078 eV  -> results/MACE-D4_PdAu_hcp.traj
+    final structure -> results/MACE-D4_PdAu_hcp.vasp
+
+============================================================
+SUMMARY
+============================================================
+
+--- MACE ---
+  Slab Energy:  -198.7158 eV
+  Pd Atom:        -1.7113 eV
+  E_ads[ontop  ] = -1.8821 eV
+  E_ads[bridge ] = -2.1958 eV
+  E_ads[fcc    ] = -2.1962 eV
+  E_ads[hcp    ] = -2.1826 eV
+  Most stable: fcc  (-2.1962 eV)
+
+--- MACE-D4 ---
+  Slab Energy:  -232.0176 eV
+  Pd Atom:        -1.7114 eV
+  E_ads[ontop  ] = -2.3029 eV
+  E_ads[bridge ] = -2.7045 eV
+  E_ads[fcc    ] = -2.7049 eV
+  E_ads[hcp    ] = -2.6871 eV
+  Most stable: fcc  (-2.7049 eV)
+
+============================================================
+SIDE-BY-SIDE: E_ads (eV)
+============================================================
+site              MACE       MACE-D4      Δ(D4−MACE)
+----------------------------------------------------
+ontop          -1.8821       -2.3029         -0.4209
+bridge         -2.1958       -2.7045         -0.5087
+fcc            -2.1962       -2.7049         -0.5087
+hcp            -2.1826       -2.6871         -0.5045
+============================================================
+
+All outputs written to: /home/miroi/work/projects/open-collection/theoretical_chemistry/projects/adsorptions_with_ase/Pd_on_gold/ML-IP-MACE-D4/results/

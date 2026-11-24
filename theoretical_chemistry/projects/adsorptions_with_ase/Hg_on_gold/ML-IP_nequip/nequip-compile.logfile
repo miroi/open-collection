@@ -1,0 +1,112 @@
+(nequip_env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/projects/adsorptions_with_ase/Hg_on_gold/ML-IP_nequip/.sudo sh cuda_12.4.0_550.54.14_linux.run
+[sudo] password for miroi:
+
+===========
+= Summary =
+===========
+
+Driver:   Not Selected
+Toolkit:  Installed in /usr/local/cuda-12.4/
+
+Please make sure that
+ -   PATH includes /usr/local/cuda-12.4/bin
+ -   LD_LIBRARY_PATH includes /usr/local/cuda-12.4/lib64, or, add /usr/local/cuda-12.4/lib64 to /etc/ld.so.conf and run ldconfig as root
+
+To uninstall the CUDA Toolkit, run cuda-uninstaller in /usr/local/cuda-12.4/bin
+***WARNING: Incomplete installation! This installation did not install the CUDA Driver. A driver of version at least 550.00 is required for CUDA 12.4 functionality to work.
+To install the driver using this installer, run the following command, replacing <CudaInstaller> with the name of this run file:
+    sudo <CudaInstaller>.run --silent --driver
+
+Logfile is /var/log/cuda-installer.log
+(nequip_env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/projects/adsorptions_with_ase/Hg_on_gold/ML-IP_nequip/.nvcc --version
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2024 NVIDIA Corporation
+Built on Tue_Feb_27_16:19:38_PST_2024
+Cuda compilation tools, release 12.4, V12.4.99
+Build cuda_12.4.r12.4/compiler.33961263_0
+(nequip_env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/projects/adsorptions_with_ase/Hg_on_gold/ML-IP_nequip/.ls /usr/local/cuda
+cuda/      cuda-12.4/
+(nequip_env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/projects/adsorptions_with_ase/Hg_on_gold/ML-IP_nequip/.ls /usr/local/cuda-12.4/
+DOCS      README  compute-sanitizer/  gds/       include@  libnvvp/                  nsight-systems-2023.4.4/  nvml/  share/  targets/  version.json
+EULA.txt  bin/    extras/             gds-12.4/  lib64@    nsight-compute-2024.1.0/  nsightee_plugins/         nvvm/  src/    tools/
+(nequip_env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/projects/adsorptions_with_ase/Hg_on_gold/ML-IP_nequip/.export CUDA_HOME=/usr/local/cuda-12.4
+export PATH=$CUDA_HOME/bin:$PATH
+export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
+
+(nequip_env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/projects/adsorptions_with_ase/Hg_on_gold/ML-IP_nequip/.export LIBRARY_PATH=/usr/lib/wsl/lib:$LIBRARY_PATH
+(nequip_env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/projects/adsorptions_with_ase/Hg_on_gold/ML-IP_nequip/.nequip-compile \
+  ~/.nequip/model_cache/039e5620e6c89fd53bdd3b6bd33574e5b29704bb4df5bc339869baca3d5eead6.nequip.zip \
+  model.nequip.pt2 \
+  --device cuda \
+  --mode aotinductor \
+  --target ase
+[2026-11-17 13:36:52,650][nequip.scripts.compile][INFO] - [rank: 0] Compiling for device: cuda
+[2026-11-17 13:36:52,650][nequip.model.saved_models.load_utils][INFO] - [rank: 0] Loading model from /home/miroi/.nequip/model_cache/039e5620e6c89fd53bdd3b6bd33574e5b29704bb4df5bc339869baca3d5eead6.nequip.zip ...
+[2026-11-17 13:36:52,651][nequip.model.saved_models.package][INFO] - [rank: 0] Loading model from package file: /home/miroi/.nequip/model_cache/039e5620e6c89fd53bdd3b6bd33574e5b29704bb4df5bc339869baca3d5eead6.nequip.zip ...
+/home/miroi/miniconda3/envs/nequip_env/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:194: UserWarning: TensorFloat32 tensor cores for float32 matrix multiplication available but not enabled. Consider setting `torch.set_float32_matmul_precision('high')` for better performance.
+  warnings.warn(
+W1117 13:39:34.664000 7125 site-packages/torch/_inductor/utils.py:1137] [0/0] Not enough SMs to use max_autotune_gemm mode
+W1117 13:39:46.692000 7125 site-packages/torch/_inductor/ir.py:6511] [0/0] aten._linalg_det.default is missing a c-shim implementation, using proxy executor as fallback
+W1117 13:39:46.700000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got s0 < 2147483648
+W1117 13:39:46.857000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 3*s0 < 2147483648
+W1117 13:39:46.911000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 48*s0 < 2147483648
+W1117 13:39:48.139000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got s1 < 2147483648
+W1117 13:39:48.142000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 16*s1 - 15 < 2147483648
+W1117 13:39:48.218000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 256*s0 < 2147483648
+W1117 13:39:48.237000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 3*s1 < 2147483648
+W1117 13:39:48.240000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 2*s1 < 2147483648
+W1117 13:39:48.309000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 704*s0 < 2147483648
+W1117 13:39:48.347000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 768*s0 < 2147483648
+W1117 13:39:48.511000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 8*s1 < 2147483648
+W1117 13:39:48.562000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 16*s1 < 2147483648
+W1117 13:39:48.744000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 32*s1 < 2147483648
+W1117 13:39:48.887000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 64*s1 < 2147483648
+W1117 13:39:49.084000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 5472*s0 < 2147483648
+W1117 13:39:49.136000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 128*s1 < 2147483648
+W1117 13:39:49.249000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 768*s1 < 2147483648
+W1117 13:39:49.254000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 192*s1 < 2147483648
+W1117 13:39:49.456000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 336*s0 < 2147483648
+W1117 13:39:49.877000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 704*s0 - 576 < 2147483648
+W1117 13:39:50.069000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 576*s0 < 2147483648
+W1117 13:39:50.221000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 704*s0 - 128 < 2147483648
+W1117 13:39:50.412000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 6144*s0 < 2147483648
+W1117 13:39:50.454000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 704*s1 < 2147483648
+W1117 13:39:50.538000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 480*s1 < 2147483648
+W1117 13:39:50.575000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 960*s1 < 2147483648
+W1117 13:39:50.607000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 1120*s1 < 2147483648
+W1117 13:39:50.690000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 5472*s1 - 5440 < 2147483648
+W1117 13:39:50.696000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 1312*s1 < 2147483648
+W1117 13:39:50.726000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 5472*s1 - 5408 < 2147483648
+W1117 13:39:50.750000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 5472*s1 - 5376 < 2147483648
+W1117 13:39:50.797000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 5472*s1 - 5344 < 2147483648
+W1117 13:39:50.822000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 160*s1 < 2147483648
+W1117 13:39:50.826000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 5472*s1 - 5312 < 2147483648
+W1117 13:39:50.864000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 5472*s1 - 5280 < 2147483648
+W1117 13:39:50.904000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 224*s1 < 2147483648
+W1117 13:39:50.909000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 5472*s1 - 5248 < 2147483648
+W1117 13:39:50.968000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 256*s1 < 2147483648
+W1117 13:39:51.032000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 384*s1 < 2147483648
+W1117 13:39:51.037000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 5472*s1 - 5088 < 2147483648
+W1117 13:39:51.080000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 448*s1 < 2147483648
+W1117 13:39:51.084000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 5472*s1 - 5024 < 2147483648
+W1117 13:39:51.144000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 320*s1 < 2147483648
+W1117 13:39:51.151000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 5472*s1 - 5152 < 2147483648
+W1117 13:39:51.158000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 512*s1 < 2147483648
+W1117 13:39:51.280000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 640*s1 < 2147483648
+W1117 13:39:51.285000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 5472*s1 - 4832 < 2147483648
+W1117 13:39:51.327000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 896*s1 < 2147483648
+W1117 13:39:51.332000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 5472*s1 - 4576 < 2147483648
+W1117 13:39:51.377000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 5472*s1 < 2147483648
+W1117 13:39:51.436000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 1056*s0 < 2147483648
+W1117 13:39:51.459000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 1920*s0 < 2147483648
+W1117 13:39:51.486000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 2240*s0 < 2147483648
+W1117 13:39:51.517000 7125 site-packages/torch/fx/experimental/symbolic_shapes.py:6646] [0/0] runtime_asserts_frozen but then got 832*s0 < 2147483648
+/usr/bin/ld: warning: /tmp/torchinductor_miroi/cbeqjucjjs4mofqbolwpz37kmofztr4ygv5c7erdbvlwb3mfdzjh/cukpfi3ymscjaspj4esvureds4ireuakfgkkqzgypfvjhi2ievmf/clf7twtxkpojzltktx2prfiv3cjq3ey5f64mxdtyaazm5fwbnwe5.o: missing .note.GNU-stack section implies executable stack
+/usr/bin/ld: NOTE: This behaviour is deprecated and will be removed in a future version of the linker
+[2026-11-17 13:41:38,257][nequip.scripts.compile][INFO] - [rank: 0] Exported model saved to model.nequip.pt2
+(nequip_env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/projects/adsorptions_with_ase/Hg_on_gold/ML-IP_nequip/.
+
+
+(nequip_env) miroi@MIRO:~/work/projects/open-collection/theoretical_chemistry/projects/adsorptions_with_ase/Hg_on_gold/ML-IP_nequip/.ls -lh model.nequip.pt2
+-rw-r--r-- 1 miroi miroi 43M Nov 17 13:41 model.nequip.pt2
+

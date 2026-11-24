@@ -1,0 +1,106 @@
+== Environment
+rtx6002
+Thu Nov 12 23:07:45 EET 2026
+name, compute_cap, driver_version
+NVIDIA RTX PRO 6000 Blackwell Server Edition, 12.0, 595.91.07
+/nvme/h/ru26mi1/work/software/gromacs/install_build-gpu_cuda_mpi/bin/gmx_mpi
+/eb/software/OpenMPI/5.0.10-GCC-15.2.0/bin/mpirun
+GROMACS version:     2027.0-dev-20260729-5956ea15b4
+MPI library:         MPI (GPU-aware: CUDA)
+GPU support:         CUDA
+SIMD instructions:   AVX_512
+CUDA targets:        120
+OMPI_MCA_pml=ob1  OMPI_MCA_btl=self,smcuda,tcp
+
+== Building test system (7 nm SPC/E water box)
+water in water
+[ molecules ]
+SOL             11225
+The largest distance between excluded atoms is 0.164 nm between atom 9227 and 9228
+GROMACS reminds you: "We must be clear that when it comes to atoms, language can be used only as in poetry. " (Niels Bohr)
+
+------------------------------------------------------------
+--- CASE A1_1rank_nb_pme_gpu: 1 rank(s)  env: none  mdrun: -ntomp 4 -nb gpu -pme gpu
+  mdrun exit code: 0   (139 = segfault, 134 = abort, 124 = timeout)
+  --- GPU / communication lines from md.log
+  gmx_mpi mdrun -s ../md.tpr -deffnm md -pin off -ntomp 4 -nb gpu -pme gpu
+ Launch PME GPU ops.       1    4      16008       0.033          0.401  15.0
+ PME GPU mesh              1    4       2001       0.035          0.422  15.8
+ Wait PME GPU gather       1    4       2001       0.001          0.006   0.2
+GPU-aware MPI detected, enabling direct GPU communication. If GROMACS crashes at the beginning of the run, try fixing your MPI installation, or set the GMX_DISABLE_DIRECT_GPU_COMM environment variable as a workaround.
+MPI library:         MPI (GPU-aware: CUDA)
+Mapping of GPU IDs to the 2 GPU tasks in the 1 rank on this node:
+PME tasks will do all aspects on the GPU
+Performance:     1553.811        0.015        0.111          302.804 
+  finished: yes   'nan' lines in md.log: 0
+  --- average potential energy (kJ/mol)
+Potential                   -501853      11000      37242   -69249.6  (kJ/mol)
+
+------------------------------------------------------------
+--- CASE A2_1rank_plus_update_gpu: 1 rank(s)  env: none  mdrun: -ntomp 4 -nb gpu -pme gpu -update gpu
+  mdrun exit code: 0   (139 = segfault, 134 = abort, 124 = timeout)
+  --- GPU / communication lines from md.log
+  gmx_mpi mdrun -s ../md.tpr -deffnm md -pin off -ntomp 4 -nb gpu -pme gpu -update gpu
+ Launch PME GPU ops.       1    4      16008       0.033          0.393  14.9
+ PME GPU mesh              1    4       2001       0.035          0.414  15.7
+ Wait PME GPU gather       1    4       2001       0.001          0.007   0.3
+GPU-aware MPI detected, enabling direct GPU communication. If GROMACS crashes at the beginning of the run, try fixing your MPI installation, or set the GMX_DISABLE_DIRECT_GPU_COMM environment variable as a workaround.
+MPI library:         MPI (GPU-aware: CUDA)
+Mapping of GPU IDs to the 2 GPU tasks in the 1 rank on this node:
+PME tasks will do all aspects on the GPU
+Performance:     1568.090        0.015        0.110          305.587 
+  finished: yes   'nan' lines in md.log: 0
+  --- average potential energy (kJ/mol)
+Potential                   -501783      11000    37171.3   -68401.2  (kJ/mol)
+
+------------------------------------------------------------
+--- CASE B_4ranks_host_staging: 4 rank(s)  env: none  mdrun: -ntomp 2 -nb gpu -pme gpu -npme 1 -nsteps 2000
+  mdrun exit code: 0   (139 = segfault, 134 = abort, 124 = timeout)
+  --- GPU / communication lines from md.log
+  gmx_mpi mdrun -s ../md.tpr -deffnm md -pin off -ntomp 2 -nb gpu -pme gpu -npme 1 -nsteps 2000
+ Launch PME GPU ops.       1    2      22011       0.043          0.258   0.3
+ PME GPU mesh *            1    2       2001       2.793         16.730  16.3
+ Wait PME GPU gather       1    2       2001       0.001          0.003   0.0
+GPU-aware MPI detected, enabling direct GPU communication. If GROMACS crashes at the beginning of the run, try fixing your MPI installation, or set the GMX_DISABLE_DIRECT_GPU_COMM environment variable as a workaround.
+MPI library:         MPI (GPU-aware: CUDA)
+Mapping of GPU IDs to the 4 GPU tasks in the 4 ranks on this node:
+PME tasks will do all aspects on the GPU
+Performance:       80.838        0.297        2.138           15.754 
+  finished: yes   'nan' lines in md.log: 0
+  --- average potential energy (kJ/mol)
+Potential                   -502286      11000    37404.8   -70077.7  (kJ/mol)
+
+------------------------------------------------------------
+--- CASE C_4ranks_direct_gpu_comm: 4 rank(s)  env: GMX_ENABLE_DIRECT_GPU_COMM=1  mdrun: -ntomp 2 -nb gpu -pme gpu -npme 1 -nsteps 2000
+  mdrun exit code: 0   (139 = segfault, 134 = abort, 124 = timeout)
+  --- GPU / communication lines from md.log
+  gmx_mpi mdrun -s ../md.tpr -deffnm md -pin off -ntomp 2 -nb gpu -pme gpu -npme 1 -nsteps 2000
+ Launch PME GPU ops.       1    2      22011       0.044          0.265   0.3
+ PME GPU mesh *            1    2       2001       2.761         16.536  16.3
+ Wait PME GPU gather       1    2       2001       0.001          0.003   0.0
+GPU-aware MPI detected, enabling direct GPU communication. If GROMACS crashes at the beginning of the run, try fixing your MPI installation, or set the GMX_DISABLE_DIRECT_GPU_COMM environment variable as a workaround.
+MPI library:         MPI (GPU-aware: CUDA)
+Mapping of GPU IDs to the 4 GPU tasks in the 4 ranks on this node:
+PME tasks will do all aspects on the GPU
+Performance:       81.550        0.294        2.119           15.892 
+  finished: yes   'nan' lines in md.log: 0
+  --- average potential energy (kJ/mol)
+Potential                   -501897      11000    37279.1   -69744.5  (kJ/mol)
+
+==================================================================
+== SUMMARY
+==================================================================
+A1_1rank_nb_pme_gpu                      PASS
+A2_1rank_plus_update_gpu                 PASS
+B_4ranks_host_staging                    PASS
+C_4ranks_direct_gpu_comm                 PASS
+
+How to read this:
+  * A1, B, C pass  -> multi-rank GPU runs work with ob1+smcuda, including
+                                     GPU-aware halo exchange. Use the two OMPI_MCA exports in production.
+  * C fails, B passes             -> GPU-direct communication is not usable; run without
+                                     GMX_ENABLE_DIRECT_GPU_COMM (host staging still uses the GPU for compute).
+  * A1 fails                      -> problem in the GPU build itself, not MPI; send the log.
+  * Average potential energies of A, B, C should agree to within statistical noise
+    (they will not be bit-identical across different decompositions).
+  * Check the 'Performance:' lines (ns/day) to see how multi-rank compares with 1 rank.

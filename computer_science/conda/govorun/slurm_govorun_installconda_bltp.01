@@ -101,9 +101,11 @@ echo -e "\n My LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
 # for running jobs from your homedir, use ...
 cd $SLURM_SUBMIT_DIR
 
-DEST=/lustre/projects/m/milias/work/software/
-
+echo -e "\n\n present  Miniconda3-latest-Linux-x86_64.sh for the installation :"
 ls -lt Miniconda3-latest-Linux-x86_64.sh
+
+export HOME=/lustre/projects/m/milias/work/software
+export DEST=$HOME
 
 bash Miniconda3-latest-Linux-x86_64.sh -b -u -p $DEST/miniconda3
 
@@ -111,21 +113,27 @@ ls -lt $DEST/miniconda3
 ls -lt $DEST/miniconda3/bin/
 ls -lt $DEST/miniconda3/etc/profile.d
 
+ls -lt $DEST/miniconda3/bin/conda
+
 source $DEST/miniconda3/etc/profile.d/conda.sh
 #source $DEST/miniconda3/bin/conda init bash
+
+source /lustre/projects/m/milias/work/software/miniconda3/etc/profile.d/conda.sh
+conda init bash
+
+conda tos accept --override-channels --channel defaults
 
 which conda
 
 conda --version
-conda list
 conda info
 
-conda create -n mace_env -y
-
+conda create -n mace_env python=3.12 -y
 conda activate mace_env
+conda install -c conda-forge ase pyscf nwchem mopac -y
 
-conda install ase
-conda install -c conda-forge pyscf nwchem mopac -y
+conda list -n mace_env | grep -Ei 'ase|pyscf|nwchem|mopac'
+
 
 echo -e "\n\n End of script. Date & Time is `date` \n"
 

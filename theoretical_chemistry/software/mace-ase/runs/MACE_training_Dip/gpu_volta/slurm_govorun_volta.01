@@ -100,17 +100,23 @@ module list
 echo -e "\n Python ?"; which python; python -V 
 
 source /lustre/projects/m/milias/work/software/mace_volta_venv/bin/activate
+
+echo -e "\n\n mace_run_train :  "
 which mace_run_train; mace_run_train --help
 
 echo -e "\n\n pip show ase mace-torch :"
-pip show ase mace-torch
+pip show torch  mace-torch ase
+
+echo -e  "\n\n nvidia-smi :"
+nvidia-smi
+
 
 echo -e "\n\n My PATH=$PATH\n"
 echo -e "\n My LD_LIBRARY_PATH=$LD_LIBRARY_PATH "
 
 # for running jobs from your homedir, use ...
 cd $SLURM_SUBMIT_DIR
-echo -e "\n\n running in home directory, SLURM_SUBMIT_DIR=$SLURM_SUBMIT_DIR"
+echo -e "\n\n running mace_run_train in home directory, SLURM_SUBMIT_DIR=$SLURM_SUBMIT_DIR"
 
 mace_run_train --config="mace_config.yaml"
 

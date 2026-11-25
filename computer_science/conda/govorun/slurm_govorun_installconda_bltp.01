@@ -7,7 +7,8 @@
 ##  partition (queue)
 #SBATCH --account=bltp
 #SBATCH --partition=bltp
-#SBATCH --constraint=icelake
+##SBATCH --constraint=icelake
+#SBATCH --constraint=cascade
 #SBATCH --qos=long
 #SBATCH --distribution=block:block,nopack
 
@@ -104,16 +105,27 @@ DEST=/lustre/projects/m/milias/work/software/
 
 ls -lt Miniconda3-latest-Linux-x86_64.sh
 
-bash Miniconda3-latest-Linux-x86_64.sh -b -p $DEST/miniconda3
+bash Miniconda3-latest-Linux-x86_64.sh -b -u -p $DEST/miniconda3
 
 ls -lt $DEST/miniconda3
+ls -lt $DEST/miniconda3/bin/
+ls -lt $DEST/miniconda3/etc/profile.d
 
-#source $DEST/miniconda3/etc/profile.d/conda.sh
-source $DEST/miniconda3/bin/conda init bash
+source $DEST/miniconda3/etc/profile.d/conda.sh
+#source $DEST/miniconda3/bin/conda init bash
+
+which conda
 
 conda --version
 conda list
+conda info
 
+conda create -n mace_env -y
+
+conda activate mace_env
+
+conda install ase
+conda install -c conda-forge pyscf nwchem mopac -y
 
 echo -e "\n\n End of script. Date & Time is `date` \n"
 
